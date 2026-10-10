@@ -275,7 +275,13 @@ function drawConverse(ctx: Ctx, e: GameEngine, m: ConverseMechanic, t: number) {
     px(ctx, WOOD_DARK, r.x, r.y, r.w, r.h)
     px(ctx, sel ? '#fff1c4' : PARCHMENT, r.x + 1, r.y + 1, r.w - 2, r.h - 2)
     if (sel) selectArrow(ctx, r.x + 5, r.y + r.h / 2, t)
-    textBlock(ctx, o.text, r.x + 14, r.y + (r.h > 20 ? 10 : r.h / 2 + 3), r.w - 20, { size: 7.5, weight: sel ? 800 : 700, maxLines: r.h > 20 ? 2 : 1, lineH: 9 })
+    // long answers drop to a smaller size before they get cut
+    const weight = sel ? 800 : 700
+    const fits = (size: number, lh: number) => wrap(ctx, o.text, r.w - 20, size, weight).length <= Math.floor((r.h - 4) / lh)
+    const [size, lh] = fits(7.5, 9) ? [7.5, 9] : [7, 8]
+    const maxLines = Math.max(1, Math.floor((r.h - 4) / lh))
+    const lines = Math.min(maxLines, wrap(ctx, o.text, r.w - 20, size, weight).length)
+    textBlock(ctx, o.text, r.x + 14, r.y + Math.round((r.h - lines * lh) / 2) + lh - 2, r.w - 20, { size, weight, maxLines, lineH: lh })
   })
 }
 

@@ -1,4 +1,5 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { HalEye } from './HalEye'
 
 const T = 16
 const COLS = 20
@@ -6,6 +7,8 @@ const ROWS = 13
 const W = COLS * T
 const H = ROWS * T
 const SPEED = 70 // world px per second
+const TRAIN_MS = 10_000
+const DONE_MS = 1_400 // tick animation before leaving
 
 type Dir = 'down' | 'up' | 'left' | 'right'
 type Box = { x: number; y: number; w: number; h: number }
@@ -199,6 +202,31 @@ function drawRobot(ctx: CanvasRenderingContext2D, x: number, y: number, dir: Dir
   px(ctx, '#e2b84a', left + 13, top - 5, 1, 2)
 }
 
+const solidTile = (tx: number, ty: number) => SOLIDS.some((s) => tx >= s.x && tx < s.x + s.w && ty >= s.y && ty < s.y + s.h)
+
+// Tile path (excluding the start) from one open tile to another, or [] if unreachable.
+function route(from: [number, number], to: [number, number]): [number, number][] {
+  const key = (x: number, y: number) => y * COLS + x
+  const prev = new Map<number, number>([[key(...from), -1]])
+  const queue = [from]
+  while (queue.length) {
+    const [x, y] = queue.shift()!
+    if (x === to[0] && y === to[1]) break
+    for (const [nx, ny] of [[x + 1, y], [x - 1, y], [x, y + 1], [x, y - 1]]) {
+      if (solidTile(nx, ny) || prev.has(key(nx, ny))) continue
+      prev.set(key(nx, ny), key(x, y))
+      queue.push([nx, ny])
+    }
+  }
+  const path: [number, number][] = []
+  for (let k = key(...to); prev.has(k) && prev.get(k) !== -1; k = prev.get(k)!) path.unshift([k % COLS, Math.floor(k / COLS)])
+  return path
+}
+
+const OPEN_TILES = Array.from({ length: COLS * ROWS }, (_, i) => [i % COLS, Math.floor(i / COLS)] as [number, number]).filter(
+  ([x, y]) => !solidTile(x, y),
+)
+
 function blocked(x: number, y: number) {
   const box = { x: x - 5, y: y - 4, w: 10, h: 4 }
   return SOLIDS.some(
@@ -208,12 +236,40 @@ function blocked(x: number, y: number) {
 
 export function Cafe({ onBack, onTrain }: { onBack: () => void; onTrain: () => void }) {
   const canvas = useRef<HTMLCanvasElement>(null)
+  const [training, setTraining] = useState(false)
+  const [done, setDone] = useState(false)
+  const [botAt, setBotAt] = useState<{ x: number; y: number }>()
+  const trainingRef = useRef(false)
+
+  const startTraining = () => {
+    if (trainingRef.current) return
+    trainingRef.current = true
+    setTraining(true)
+  }
+
+  const onTrainRef = useRef(onTrain)
+  onTrainRef.current = onTrain
+
+  useEffect(() => {
+    if (!training) return
+    const finish = setTimeout(() => {
+      trainingRef.current = false
+      setDone(true)
+    }, TRAIN_MS)
+    const leave = setTimeout(() => onTrainRef.current(), TRAIN_MS + DONE_MS)
+    return () => {
+      clearTimeout(finish)
+      clearTimeout(leave)
+    }
+  }, [training])
 
   useEffect(() => {
     const ctx = canvas.current?.getContext('2d')
     if (!ctx) return
     const held: Dir[] = []
     const bot = { x: 4 * T + 8, y: 3 * T + 14, dir: 'down' as Dir, walked: 0 }
+    // Autopilot while training: walk tile paths to random spots around the room.
+    let path: [number, number][] = []
     let last = performance.now()
     let frame = 0
 
@@ -232,8 +288,28 @@ export function Cafe({ onBack, onTrain }: { onBack: () => void; onTrain: () => v
     const tick = (now: number) => {
       const dt = Math.min(0.05, (now - last) / 1000)
       last = now
-      const dir = held[held.length - 1]
-      if (dir) {
+      let dir: Dir | undefined = held[held.length - 1]
+      if (trainingRef.current) {
+        const here: [number, number] = [Math.floor(bot.x / T), Math.floor((bot.y - 4) / T)]
+        if (!path.length) path = [here, ...route(here, OPEN_TILES[Math.floor(Math.random() * OPEN_TILES.length)])]
+        const next = path[0]
+        if (next) {
+          const tx = next[0] * T + 8
+          const ty = next[1] * T + 12
+          const dist = SPEED * dt
+          if (Math.abs(tx - bot.x) > 0.5) {
+            bot.dir = tx > bot.x ? 'right' : 'left'
+            bot.x += Math.sign(tx - bot.x) * Math.min(dist, Math.abs(tx - bot.x))
+          } else if (Math.abs(ty - bot.y) > 0.5) {
+            bot.dir = ty > bot.y ? 'down' : 'up'
+            bot.y += Math.sign(ty - bot.y) * Math.min(dist, Math.abs(ty - bot.y))
+          } else {
+            path.shift()
+          }
+          bot.walked += dist
+        }
+        dir = bot.dir
+      } else if (dir) {
         bot.dir = dir
         const dist = SPEED * dt
         const dx = dir === 'left' ? -dist : dir === 'right' ? dist : 0
@@ -264,6 +340,10 @@ export function Cafe({ onBack, onTrain }: { onBack: () => void; onTrain: () => v
         [bot.y, () => drawRobot(ctx, bot.x, bot.y, bot.dir, step)],
       ]
       sprites.sort((a, b) => a[0] - b[0]).forEach(([, draw]) => draw())
+      if (trainingRef.current && canvas.current) {
+        const box = canvas.current.getBoundingClientRect()
+        setBotAt({ x: box.left + (bot.x / W) * box.width, y: box.top + ((bot.y - 14) / H) * box.height })
+      }
       frame = requestAnimationFrame(tick)
     }
 
@@ -288,27 +368,17 @@ export function Cafe({ onBack, onTrain }: { onBack: () => void; onTrain: () => v
       </div>
 
       <div className="modes">
-        <button type="button" className="active">
-          <PlayIcon /> Play
-        </button>
-        <button type="button" onClick={onTrain}>
-          <BotIcon /> Train agent
+        <button type="button" onClick={startTraining} disabled={training}>
+          <BotIcon /> {done ? 'Trained' : training ? 'Training…' : 'Train agent'}
         </button>
       </div>
 
       <div className="arena">
         <canvas ref={canvas} width={W} height={H} aria-label="Café; walk the robot with arrow keys or WASD" />
+        {training && <HalEye className="watcher" target={botAt} reach={26} done={done} />}
       </div>
-      <p className="hint">Arrow keys / WASD</p>
+      <p className="hint">{done ? 'Training complete' : training ? 'The agent is exploring the café' : 'Arrow keys / WASD'}</p>
     </section>
-  )
-}
-
-function PlayIcon() {
-  return (
-    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden>
-      <path fill="currentColor" d="M8 5.14v13.72a1 1 0 0 0 1.52.85l10.9-6.86a1 1 0 0 0 0-1.7L9.52 4.29A1 1 0 0 0 8 5.14Z" />
-    </svg>
   )
 }
 

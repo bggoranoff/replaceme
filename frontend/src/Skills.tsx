@@ -21,7 +21,9 @@ export function Skills({ onBack, onOpen }: { onBack: () => void; onOpen: (skill:
               <span className="skill-card-body">
                 <span className="skill-file">{skill.id}/SKILL.md</span>
                 <strong>{skill.title}</strong>
-                <span className="skill-goal">{skill.goal}</span>
+                <span className="skill-goal">
+                  Learned from {skill.clears} clears of level {skill.level}
+                </span>
               </span>
               <span className="chevron" aria-hidden>
                 →

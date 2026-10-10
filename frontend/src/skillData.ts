@@ -1,6 +1,7 @@
 export type Skill = {
   id: string
   level: number
+  clears: number
   title: string
   description: string
   goal: string
@@ -14,8 +15,9 @@ export const DEMO_SKILLS: Skill[] = [
   {
     id: 'first-bite',
     level: 1,
-    title: 'Reach the food',
-    description: 'Get from the start position to the first food without dying.',
+    clears: 14,
+    title: 'Heads straight for food',
+    description: 'Closes the larger gap to the food first, then turns onto its row or column, without ever reversing into its own body.',
     goal: 'Score 1 point',
     steps: [
       'Read where the food is relative to the head.',
@@ -29,8 +31,9 @@ export const DEMO_SKILLS: Skill[] = [
   {
     id: 'wall-awareness',
     level: 2,
-    title: 'Stay off the walls',
-    description: 'Keep a safe margin from the edges while collecting food.',
+    clears: 22,
+    title: 'Keeps a margin from the walls',
+    description: 'Turns a cell early near edges and slides along walls to reach food there, instead of driving into them.',
     goal: 'Score 5 points',
     steps: [
       'Check the cell ahead before every tick.',
@@ -44,8 +47,9 @@ export const DEMO_SKILLS: Skill[] = [
   {
     id: 'no-traps',
     level: 3,
-    title: 'Don’t trap yourself',
-    description: 'Avoid moves that leave the head in a pocket with no way out.',
+    clears: 31,
+    title: 'Avoids boxing itself in',
+    description: 'Counts the open space a move leaves before taking it, and follows its tail when no move is clearly safe.',
     goal: 'Reach length 12',
     steps: [
       'Before turning, count the open cells reachable from the new head.',
@@ -59,8 +63,9 @@ export const DEMO_SKILLS: Skill[] = [
   {
     id: 'short-routes',
     level: 4,
-    title: 'Take the shortest safe route',
-    description: 'Collect food quickly without trading away safety.',
+    clears: 18,
+    title: 'Takes the shortest safe route',
+    description: 'Plans the shortest path to food around its body, but only takes it if an escape route remains after eating.',
     goal: 'Score 10 points in under 60 seconds',
     steps: [
       'Plan the shortest path from head to food around the body.',
@@ -74,8 +79,9 @@ export const DEMO_SKILLS: Skill[] = [
   {
     id: 'long-snake',
     level: 5,
-    title: 'Survive as a long snake',
-    description: 'Keep going when the body fills most of the board.',
+    clears: 9,
+    title: 'Sweeps the board when long',
+    description: 'Once the body fills most of the board, switches to a fixed zig-zag sweep and trades speed for never getting trapped.',
     goal: 'Score 25 points',
     steps: [
       'Switch to a fixed zig-zag sweep of the board.',
@@ -96,9 +102,9 @@ description: ${skill.description}
 
 # ${skill.title}
 
-Level ${skill.level} of the ${job} practice game (Snake demo stand-in). Goal: ${skill.goal}.
+Learned by clearing level ${skill.level} of the ${job} practice game (Snake demo stand-in) ${skill.clears} times. Level goal: ${skill.goal}.
 
-## Procedure
+## Learned procedure
 
 ${skill.steps.map((s, i) => `${i + 1}. ${s}`).join('\n')}
 

@@ -1,26 +1,47 @@
 import { useEffect, useRef, useState } from 'react'
 
-// HAL 9000-style lens whose glowing core follows the cursor.
-export function HalEye() {
+type Point = { x: number; y: number }
+
+// HAL 9000-style lens whose glowing core follows the cursor, or `target` (viewport coords) when given.
+// `reach` is how far the core can travel (lens radius is 40); `done` morphs the lens into a green tick.
+export function HalEye({
+  target,
+  className,
+  reach: maxReach = 12,
+  done = false,
+}: {
+  target?: Point
+  className?: string
+  reach?: number
+  done?: boolean
+}) {
   const ref = useRef<HTMLDivElement>(null)
   const [look, setLook] = useState({ x: 0, y: 0 })
 
+  const lookAt = (x: number, y: number) => {
+    const box = ref.current?.getBoundingClientRect()
+    if (!box) return
+    const dx = x - (box.left + box.width / 2)
+    const dy = y - (box.top + box.height / 2)
+    const dist = Math.hypot(dx, dy) || 1
+    // A tracked target saturates sooner so the core leans fully towards it.
+    const reach = Math.min(1, dist / (box.width * (target ? 1 : 2))) * maxReach
+    setLook({ x: (dx / dist) * reach, y: (dy / dist) * reach })
+  }
+
   useEffect(() => {
-    const onMove = (e: PointerEvent) => {
-      const box = ref.current?.getBoundingClientRect()
-      if (!box) return
-      const dx = e.clientX - (box.left + box.width / 2)
-      const dy = e.clientY - (box.top + box.height / 2)
-      const dist = Math.hypot(dx, dy) || 1
-      const reach = Math.min(1, dist / 300) * 12
-      setLook({ x: (dx / dist) * reach, y: (dy / dist) * reach })
-    }
+    if (target) return
+    const onMove = (e: PointerEvent) => lookAt(e.clientX, e.clientY)
     window.addEventListener('pointermove', onMove)
     return () => window.removeEventListener('pointermove', onMove)
-  }, [])
+  }, [target])
+
+  useEffect(() => {
+    if (target) lookAt(target.x, target.y)
+  }, [target?.x, target?.y, maxReach])
 
   return (
-    <div className="hal" ref={ref} aria-hidden>
+    <div className={`hal${className ? ` ${className}` : ''}${done ? ' done' : ''}`} ref={ref} aria-hidden>
       <svg viewBox="0 0 100 100">
         <defs>
           <linearGradient id="hal-rim" x1="0" y1="0" x2="1" y2="1">
@@ -54,6 +75,12 @@ export function HalEye() {
           <path d="M28 30 Q50 16 72 30" stroke="#9fd0d8" strokeWidth="3" fill="none" opacity="0.35" strokeLinecap="round" />
           <path d="M38 40 Q50 34 62 40" stroke="#c9e6ea" strokeWidth="1.5" fill="none" opacity="0.4" strokeLinecap="round" />
         </g>
+        {done && (
+          <g className="hal-tick">
+            <circle cx="50" cy="50" r="44" fill="#5fb878" />
+            <path d="M31 51 L44 64 L70 37" pathLength="1" stroke="#fbf6ea" strokeWidth="9" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+          </g>
+        )}
       </svg>
     </div>
   )

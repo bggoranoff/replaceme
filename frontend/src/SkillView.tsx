@@ -59,11 +59,13 @@ export function SkillView({ skill, job, onBack }: { skill: Skill; job: string; o
           </header>
           <p className="skill-desc">{skill.description}</p>
           <div className="goal">
-            <span>Level goal</span>
-            <strong>{skill.goal}</strong>
+            <span>Learned from</span>
+            <strong>
+              {skill.clears} clears of level {skill.level} · {skill.goal}
+            </strong>
           </div>
 
-          <h3>Procedure</h3>
+          <h3>Learned procedure</h3>
           <ol className="steps">
             {skill.steps.map((step, i) => (
               <li key={i}>

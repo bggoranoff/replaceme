@@ -5,6 +5,7 @@ import { Cafe, type WorldSpec } from './Cafe'
 import { Frescoes } from './Frescoes'
 import { HalEye } from './HalEye'
 import { LoadingScreen } from './LoadingScreen'
+import { RunsViewer } from './training/RunsViewer'
 import type { Skill } from './skillData'
 
 type Recognition = {
@@ -99,7 +100,7 @@ function PromptHero({ onSubmit }: { onSubmit: (job: string) => void }) {
 
 function App() {
   const [job, setJob] = useState<string | null>(null)
-  const [view, setView] = useState<'game' | 'skills'>('game')
+  const [view, setView] = useState<'game' | 'training' | 'skills'>('game')
   const [skill, setSkill] = useState<Skill | null>(null)
   const [skills, setSkills] = useState<Skill[]>([])
   const [researchData, setResearchData] = useState<{ role?: string; levels?: unknown[] } | null>(null)
@@ -132,24 +133,24 @@ function App() {
     }
   }
 
-  // Rejects when training fails or yields no skills, so the game never reports a fake success.
+  // Starts the actor (shared/game_contract.md section d) and shows the runs viewer; rejects if it cannot start.
   const handleTrain = async () => {
     const res = await fetch('/api/train', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ prompt: job, brief: researchData }),
+      body: JSON.stringify({ slug: (worldData as { slug?: string } | undefined)?.slug }),
     })
     const data = await res.json().catch(() => ({}))
-    if (!res.ok || !Array.isArray(data.skills) || data.skills.length === 0) {
-      throw new Error(data.error ?? `Training failed (${res.status})`)
-    }
-    setSkills(data.skills)
+    if (!res.ok) throw new Error(data.error ?? `Training failed (${res.status})`)
+    setView('training')
   }
 
   const screen = !job ? (
     <PromptHero onSubmit={start} />
   ) : isResearching ? (
     <LoadingScreen job={job} onCancel={() => setJob(null)} />
+  ) : view === 'training' ? (
+    <RunsViewer onDone={() => setView('skills')} />
   ) : skill ? (
     <SkillView skill={skill} job={job} onBack={() => setSkill(null)} />
   ) : view === 'skills' ? (

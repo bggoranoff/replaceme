@@ -6,13 +6,15 @@ export type ChatMessage = { role: 'user' | 'model'; text: string; citations?: Ci
 interface SkillChatProps {
   skill: LearnedSkill
   messages: ChatMessage[]
-  onMessages: (messages: ChatMessage[]) => void
+  /** Kept by the parent so a reply still lands, and sending stays blocked, after switching skills and back. */
+  pending: boolean
+  onPending: (pending: boolean) => void
+  onMessages: (update: (messages: ChatMessage[]) => ChatMessage[]) => void
   onSkill: (skill: LearnedSkill) => SectionKey[]
 }
 
-export function SkillChat({ skill, messages, onMessages, onSkill }: SkillChatProps) {
+export function SkillChat({ skill, messages, pending, onPending, onMessages, onSkill }: SkillChatProps) {
   const [draft, setDraft] = useState('')
-  const [pending, setPending] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const log = useRef<HTMLDivElement>(null)
 
@@ -24,10 +26,9 @@ export function SkillChat({ skill, messages, onMessages, onSkill }: SkillChatPro
     const message = draft.trim()
     if (!message || pending) return
     const history = messages.map(({ role, text }) => ({ role, text }))
-    const next: ChatMessage[] = [...messages, { role: 'user', text: message }]
-    onMessages(next)
+    onMessages((m) => [...m, { role: 'user', text: message }])
     setDraft('')
-    setPending(true)
+    onPending(true)
     setError(null)
     try {
       const res = await fetch(`/api/skills/${encodeURIComponent(skill.id)}/chat`, {
@@ -36,13 +37,14 @@ export function SkillChat({ skill, messages, onMessages, onSkill }: SkillChatPro
         body: JSON.stringify({ message, history }),
       })
       const data = (await res.json().catch(() => ({}))) as Partial<SkillChatResponse> & { error?: string }
-      if (!res.ok || !data.reply) throw new Error(data.error ?? `Request failed (${res.status})`)
+      const reply = data.reply
+      if (!res.ok || !reply) throw new Error(data.error ?? `Request failed (${res.status})`)
       const updated = data.skill_updated && data.skill ? onSkill(data.skill) : []
-      onMessages([...next, { role: 'model', text: data.reply, citations: data.citations ?? [], updated }])
+      onMessages((m) => [...m, { role: 'model', text: reply, citations: data.citations ?? [], updated }])
     } catch (e) {
       setError(e instanceof Error ? e.message : String(e))
     } finally {
-      setPending(false)
+      onPending(false)
     }
   }
 

@@ -1,0 +1,40 @@
+{
+  "training_id": "barista-1791649791121",
+  "status": "done",
+  "slug": "barista",
+  "levels": [
+    {
+      "level_id": "barista-brew-coffee",
+      "level_title": "Brew coffee",
+      "attempts_done": 10,
+      "attempts_total": 10,
+      "best_score": 100.0,
+      "status": "done"
+    },
+    {
+      "level_id": "barista-pour-latte-art",
+      "level_title": "Pour latte art",
+      "attempts_done": 10,
+      "attempts_total": 10,
+      "best_score": 100.0,
+      "status": "done"
+    },
+    {
+      "level_id": "barista-take-order",
+      "level_title": "Take an order",
+      "attempts_done": 10,
+      "attempts_total": 10,
+      "best_score": 100.0,
+      "status": "done"
+    },
+    {
+      "level_id": "barista-order-supplies",
+      "level_title": "Order supplies",
+      "attempts_done": 10,
+      "attempts_total": 10,
+      "best_score": 100.0,
+      "status": "done"
+    }
+  ],
+  "skills_ready": true
+}

@@ -1,0 +1,1158 @@
+{
+  "level_id": "barista-pour-latte-art",
+  "job": "barista",
+  "mechanic": "timing",
+  "attempts": [
+    {
+      "attempt": 1,
+      "run_id": "barista-1791649791121-l2-a01",
+      "inputs": {
+        "values": {
+          "milk_temp_c": 50,
+          "pour_height_cm": 12,
+          "design_fill_pct": 65
+        }
+      },
+      "inputs_plan": {
+        "values": {
+          "milk_temp_c": 50.0
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "mouse_down",
+          "params": {
+            "target_id": "meter"
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 20
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 2480
+          }
+        },
+        {
+          "action": "mouse_up",
+          "params": {
+            "x": 208.0,
+            "y": 119.0
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 20
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 980
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 20
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 980
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        }
+      ],
+      "score": 46.9,
+      "passed": false,
+      "feedback": [
+        "Lukewarm milk: flat, barely sweet, and the foam never turned glossy.",
+        "Dropped in too late: no room left, the rosetta came out cramped and tiny.",
+        "Poured from too high: the stream splashed and broke up the crema."
+      ],
+      "breakdown": {
+        "milk_temp_c": {
+          "label": "Heat the milk",
+          "score": 38
+        },
+        "pour_height_cm": {
+          "label": "Pour height",
+          "score": 61
+        },
+        "design_fill_pct": {
+          "label": "When to drop in",
+          "score": 46
+        }
+      },
+      "problems_found": [
+        "Lukewarm milk: flat, barely sweet, and the foam never turned glossy.",
+        "Dropped in too late: no room left, the rosetta came out cramped and tiny.",
+        "Poured from too high: the stream splashed and broke up the crema.",
+        "Milk steamed too cold (50 °C).",
+        "Pour height too high (12 cm).",
+        "Drop-in happened too late (65 %)."
+      ],
+      "caveats": [
+        "Systematic search suggestion advised probing higher on height and fill percentage, but qualitative feedback explicitly says poured too high and dropped in too late; feedback must take precedence."
+      ],
+      "hypothesis": "Starting with baseline milk temperature of 50.0°C to establish initial score and feedback.",
+      "what_changed": "Initial attempt baseline setting milk_temp_c to 50.0°C.",
+      "plan_source": "gemini",
+      "reflection": "Attempt 1 gave clear directional qualitative feedback across all three parameters: milk_temp_c at 50 °C was lukewarm, pour_height_cm at 12 cm was too high (causing splashing), and design_fill_pct at 65 % was too late (insufficient space left for the rosetta)."
+    },
+    {
+      "attempt": 2,
+      "run_id": "barista-1791649791121-l2-a02",
+      "inputs": {
+        "values": {
+          "milk_temp_c": 65,
+          "pour_height_cm": 7,
+          "design_fill_pct": 50.3
+        }
+      },
+      "inputs_plan": {
+        "values": {
+          "milk_temp_c": 65.0,
+          "pour_height_cm": 7.0,
+          "design_fill_pct": 50.3
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "mouse_down",
+          "params": {
+            "target_id": "meter"
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 20
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 3730
+          }
+        },
+        {
+          "action": "mouse_up",
+          "params": {
+            "x": 208.0,
+            "y": 119.0
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 20
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 480
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 20
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 560
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        }
+      ],
+      "score": 96.5,
+      "passed": true,
+      "feedback": [
+        "Pretty leaves, that one goes on our wall!"
+      ],
+      "breakdown": {
+        "milk_temp_c": {
+          "label": "Heat the milk",
+          "score": 100
+        },
+        "pour_height_cm": {
+          "label": "Pour height",
+          "score": 88
+        },
+        "design_fill_pct": {
+          "label": "When to drop in",
+          "score": 100
+        }
+      },
+      "problems_found": [
+        "Pour height at 7.0 cm was still slightly off optimal (scored 88/100)."
+      ],
+      "caveats": [
+        "Keep milk_temp_c at 65.0 °C and design_fill_pct at 50.3% since both already achieved 100/100."
+      ],
+      "hypothesis": "Increasing milk temperature to standard steamed temperature (65.0 °C), lowering pour height to 7.0 cm, and dropping in earlier at around 50.3 % fill will significantly improve all three sub-scores.",
+      "what_changed": "Increased milk_temp_c from 50 to 65.0 °C; decreased pour_height_cm from 12 to 7.0 cm; decreased design_fill_pct from 65 to 50.3 %.",
+      "plan_source": "gemini",
+      "reflection": "Attempt 2 reached 96.5 score. Milk temperature at 65.0 °C achieved 100/100, and drop-in fill at 50.3% achieved 100/100. Pour height at 7.0 cm improved significantly to 88/100, but is still slightly above optimal."
+    },
+    {
+      "attempt": 3,
+      "run_id": "barista-1791649791121-l2-a03",
+      "inputs": {
+        "values": {
+          "milk_temp_c": 65,
+          "pour_height_cm": 4.8,
+          "design_fill_pct": 50.3
+        }
+      },
+      "inputs_plan": {
+        "values": {
+          "milk_temp_c": 65.0,
+          "pour_height_cm": 4.8,
+          "design_fill_pct": 50.3
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "mouse_down",
+          "params": {
+            "target_id": "meter"
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 20
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 3730
+          }
+        },
+        {
+          "action": "mouse_up",
+          "params": {
+            "x": 208.0,
+            "y": 119.0
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 20
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 260
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 20
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 560
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        }
+      ],
+      "score": 78.3,
+      "passed": true,
+      "feedback": [
+        "Poured too close too early: white foam spread over the crema, no canvas left."
+      ],
+      "breakdown": {
+        "milk_temp_c": {
+          "label": "Heat the milk",
+          "score": 100
+        },
+        "pour_height_cm": {
+          "label": "Pour height",
+          "score": 28
+        },
+        "design_fill_pct": {
+          "label": "When to drop in",
+          "score": 100
+        }
+      },
+      "problems_found": [
+        "Poured too close too early: white foam spread over the crema, no canvas left.",
+        "(attempt 3) Poured too close too early at 4.8 cm (sub-score 28)."
+      ],
+      "caveats": [
+        "Keep milk_temp_c at 65.0 °C and design_fill_pct at 50.3% as both are optimal.",
+        "Ensure all values align strictly with control steps (step 0.2 for height)."
+      ],
+      "hypothesis": "Lowering pour_height_cm from 7.0 cm to 4.8 cm will maximize the pour height sub-score towards 100 while keeping the other two perfect controls fixed.",
+      "what_changed": "Changed pour_height_cm from 7.0 to 4.8 cm, leaving milk_temp_c at 65.0 and design_fill_pct at 50.3.",
+      "plan_source": "gemini",
+      "reflection": "In attempt 3, decreasing pour_height_cm from 7.0 cm to 4.8 cm dropped the sub-score dramatically from 88 to 28, accompanied by the feedback 'Poured too close too early: white foam spread over the crema, no canvas left.' This confirms that 4.8 cm is far too low and that the optimal pour height is above 7.0 cm."
+    },
+    {
+      "attempt": 4,
+      "run_id": "barista-1791649791121-l2-a04",
+      "inputs": {
+        "values": {
+          "milk_temp_c": 65,
+          "pour_height_cm": 9,
+          "design_fill_pct": 50.3
+        }
+      },
+      "inputs_plan": {
+        "values": {
+          "milk_temp_c": 65.0,
+          "pour_height_cm": 9.0,
+          "design_fill_pct": 50.3
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "mouse_down",
+          "params": {
+            "target_id": "meter"
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 20
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 3730
+          }
+        },
+        {
+          "action": "mouse_up",
+          "params": {
+            "x": 208.0,
+            "y": 119.0
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 20
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 680
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 20
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 560
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        }
+      ],
+      "score": 100.0,
+      "passed": true,
+      "feedback": [
+        "Pretty leaves, that one goes on our wall!"
+      ],
+      "breakdown": {
+        "milk_temp_c": {
+          "label": "Heat the milk",
+          "score": 100
+        },
+        "pour_height_cm": {
+          "label": "Pour height",
+          "score": 100
+        },
+        "design_fill_pct": {
+          "label": "When to drop in",
+          "score": 100
+        }
+      },
+      "problems_found": [],
+      "caveats": [
+        "A perfect score of 100.0 has already been reached; continue exploiting the winning configuration."
+      ],
+      "hypothesis": "Testing pour_height_cm at 9.0 cm will place the needle closer to the optimum between 7.0 cm and 12.0 cm, bringing the Pour height sub-score close to 100.",
+      "what_changed": "Increased pour_height_cm from 4.8 cm to 9.0 cm while holding milk_temp_c at 65.0 °C and design_fill_pct at 50.3%.",
+      "plan_source": "gemini",
+      "reflection": "Attempt #4 achieved a perfect score of 100.0 (Heat the milk: 100, Pour height: 100, When to drop in: 100). All three parameters (milk_temp_c = 65.0, pour_height_cm = 9.0, design_fill_pct = 50.3) are perfectly centered at the optimum."
+    },
+    {
+      "attempt": 5,
+      "run_id": "barista-1791649791121-l2-a05",
+      "inputs": {
+        "values": {
+          "milk_temp_c": 74,
+          "pour_height_cm": 9,
+          "design_fill_pct": 50.3
+        }
+      },
+      "inputs_plan": {
+        "values": {
+          "milk_temp_c": 74.0,
+          "pour_height_cm": 9.0,
+          "design_fill_pct": 50.3
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "mouse_down",
+          "params": {
+            "target_id": "meter"
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 20
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 4480
+          }
+        },
+        {
+          "action": "mouse_up",
+          "params": {
+            "x": 208.0,
+            "y": 119.0
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 20
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 680
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 20
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 560
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        }
+      ],
+      "score": 67.9,
+      "passed": false,
+      "feedback": [
+        "Scalded milk: cooked taste, sweetness gone, foam dry and stiff."
+      ],
+      "breakdown": {
+        "milk_temp_c": {
+          "label": "Heat the milk",
+          "score": 20
+        },
+        "pour_height_cm": {
+          "label": "Pour height",
+          "score": 100
+        },
+        "design_fill_pct": {
+          "label": "When to drop in",
+          "score": 100
+        }
+      },
+      "problems_found": [
+        "Scalded milk: cooked taste, sweetness gone, foam dry and stiff.",
+        "Heat the milk too high (74.0): \"Scalded milk: cooked taste, sweetness gone, foam dry and stiff.\"",
+        "Milk temperature at 74.0 °C scalds the milk (sub-score 20)."
+      ],
+      "caveats": [
+        "If you see \"Scalded milk: cooked taste, sweetness gone, foam dry and stiff.\", lower Heat the milk.",
+        "A perfect score of 100.0 has already been achieved at (65.0, 9.0, 50.3). Revert to this optimal set to guarantee maximum performance."
+      ],
+      "hypothesis": "Probe Heat the milk above the best (74 °C) to map the acceptable window and see what goes wrong there.",
+      "what_changed": "Heat the milk: 65 -> 74.0",
+      "plan_source": "search",
+      "reflection": "Attempt #5 tested raising milk_temp_c to 74.0 °C, which dropped the Heat sub-score to 20 and resulted in scalded milk feedback ('Scalded milk: cooked taste, sweetness gone, foam dry and stiff.'). This confirms that 65.0 °C (which scored 100 on attempt #4) is indeed optimal."
+    },
+    {
+      "attempt": 6,
+      "run_id": "barista-1791649791121-l2-a06",
+      "inputs": {
+        "values": {
+          "milk_temp_c": 58.4,
+          "pour_height_cm": 9,
+          "design_fill_pct": 50.3
+        }
+      },
+      "inputs_plan": {
+        "values": {
+          "milk_temp_c": 58.4,
+          "pour_height_cm": 9.0,
+          "design_fill_pct": 50.3
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "mouse_down",
+          "params": {
+            "target_id": "meter"
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 20
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 3180
+          }
+        },
+        {
+          "action": "mouse_up",
+          "params": {
+            "x": 208.0,
+            "y": 119.0
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 20
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 680
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 20
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 560
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        }
+      ],
+      "score": 100.0,
+      "passed": true,
+      "feedback": [
+        "Pretty leaves, that one goes on our wall!"
+      ],
+      "breakdown": {
+        "milk_temp_c": {
+          "label": "Heat the milk",
+          "score": 100
+        },
+        "pour_height_cm": {
+          "label": "Pour height",
+          "score": 100
+        },
+        "design_fill_pct": {
+          "label": "When to drop in",
+          "score": 100
+        }
+      },
+      "problems_found": [],
+      "caveats": [
+        "A 100.0 score is fully established at milk_temp_c = 65.0, pour_height_cm = 9.0, design_fill_pct = 50.3.",
+        "Probing 11.4 cm is unnecessary and likely suboptimal given 12.0 cm was already confirmed too high."
+      ],
+      "hypothesis": "Probe Heat the milk below the best (58.4 °C) to map the acceptable window and see what goes wrong there.",
+      "what_changed": "Heat the milk: 74 -> 58.4",
+      "plan_source": "search",
+      "reflection": "Attempt #6 tested milk_temp_c at 58.4 °C with pour_height_cm = 9.0 cm and design_fill_pct = 50.3%, which also scored a perfect 100.0. This indicates an optimal plateau for milk temperature spanning between at least 58.4 °C and 65.0 °C. Both pour_height_cm at 9.0 cm and design_fill_pct at 50.3% are firmly at 100."
+    },
+    {
+      "attempt": 7,
+      "run_id": "barista-1791649791121-l2-a07",
+      "inputs": {
+        "values": {
+          "milk_temp_c": 65,
+          "pour_height_cm": 11.4,
+          "design_fill_pct": 50.3
+        }
+      },
+      "inputs_plan": {
+        "values": {
+          "milk_temp_c": 65.0,
+          "pour_height_cm": 11.4,
+          "design_fill_pct": 50.3
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "mouse_down",
+          "params": {
+            "target_id": "meter"
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 20
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 3730
+          }
+        },
+        {
+          "action": "mouse_up",
+          "params": {
+            "x": 208.0,
+            "y": 119.0
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 20
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 920
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 20
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 560
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        }
+      ],
+      "score": 93.5,
+      "passed": true,
+      "feedback": [
+        "Poured from too high: the stream splashed and broke up the crema."
+      ],
+      "breakdown": {
+        "milk_temp_c": {
+          "label": "Heat the milk",
+          "score": 100
+        },
+        "pour_height_cm": {
+          "label": "Pour height",
+          "score": 78
+        },
+        "design_fill_pct": {
+          "label": "When to drop in",
+          "score": 100
+        }
+      },
+      "problems_found": [
+        "Pour height at 11.4 cm is too high: 'Poured from too high: the stream splashed and broke up the crema.'"
+      ],
+      "caveats": [
+        "If you see \"Poured from too high: the stream splashed and broke up the crema.\", lower Pour height.",
+        "A perfect score of 100.0 is already confirmed with milk_temp_c = 65.0, pour_height_cm = 9.0, and design_fill_pct = 50.3.",
+        "Exploit the proven 100.0 configuration rather than unnecessary perimeter probing."
+      ],
+      "hypothesis": "Probe Pour height above the best (11.4 cm) to map the acceptable window and see what goes wrong there.",
+      "what_changed": "Heat the milk: 58.4 -> 65.0; Pour height: 9 -> 11.4",
+      "plan_source": "search",
+      "reflection": "In attempt #7, testing pour_height_cm at 11.4 confirmed that anything above 9.0 cm starts splashing and degrading the pour score (Pour height dropped to 78, overall score 93.5). The optimum pour height remains firmly centered at 9.0 cm."
+    },
+    {
+      "attempt": 8,
+      "run_id": "barista-1791649791121-l2-a08",
+      "inputs": {
+        "values": {
+          "milk_temp_c": 65,
+          "pour_height_cm": 6.6,
+          "design_fill_pct": 50.3
+        }
+      },
+      "inputs_plan": {
+        "values": {
+          "milk_temp_c": 65.0,
+          "pour_height_cm": 6.6,
+          "design_fill_pct": 50.3
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "mouse_down",
+          "params": {
+            "target_id": "meter"
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 20
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 3730
+          }
+        },
+        {
+          "action": "mouse_up",
+          "params": {
+            "x": 208.0,
+            "y": 119.0
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 20
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 440
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 20
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 560
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        }
+      ],
+      "score": 93.5,
+      "passed": true,
+      "feedback": [
+        "Poured too close too early: white foam spread over the crema, no canvas left."
+      ],
+      "breakdown": {
+        "milk_temp_c": {
+          "label": "Heat the milk",
+          "score": 100
+        },
+        "pour_height_cm": {
+          "label": "Pour height",
+          "score": 78
+        },
+        "design_fill_pct": {
+          "label": "When to drop in",
+          "score": 100
+        }
+      },
+      "problems_found": [],
+      "caveats": [
+        "If you see \"Poured too close too early: white foam spread over the crema, no canvas left.\", raise Pour height.",
+        "Exploration is complete; stick to the verified 100.0 point at (65.0, 9.0, 50.3)."
+      ],
+      "hypothesis": "Probe Pour height below the best (6.6 cm) to map the acceptable window and see what goes wrong there.",
+      "what_changed": "Pour height: 11.4 -> 6.6",
+      "plan_source": "search",
+      "reflection": "Attempt #8 tested pour_height_cm = 6.6 cm to verify the lower boundary for pour height, receiving a sub-score of 78 and the feedback 'Poured too close too early: white foam spread over the crema, no canvas left.' Combined with attempt #7 (11.4 cm -> 78, too high), this confirms that pour_height_cm is centered squarely at 9.0 cm."
+    },
+    {
+      "attempt": 9,
+      "run_id": "barista-1791649791121-l2-a09",
+      "inputs": {
+        "values": {
+          "milk_temp_c": 65,
+          "pour_height_cm": 9,
+          "design_fill_pct": 50.3
+        }
+      },
+      "inputs_plan": {
+        "values": {
+          "milk_temp_c": 65.0,
+          "pour_height_cm": 9.0,
+          "design_fill_pct": 50.3
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "mouse_down",
+          "params": {
+            "target_id": "meter"
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 20
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 3730
+          }
+        },
+        {
+          "action": "mouse_up",
+          "params": {
+            "x": 208.0,
+            "y": 119.0
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 20
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 680
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 20
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 560
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        }
+      ],
+      "score": 100.0,
+      "passed": true,
+      "feedback": [
+        "Pretty leaves, that one goes on our wall!"
+      ],
+      "breakdown": {
+        "milk_temp_c": {
+          "label": "Heat the milk",
+          "score": 100
+        },
+        "pour_height_cm": {
+          "label": "Pour height",
+          "score": 100
+        },
+        "design_fill_pct": {
+          "label": "When to drop in",
+          "score": 100
+        }
+      },
+      "problems_found": [],
+      "caveats": [
+        "Final attempt: lock in the proven perfect 100.0 score configuration."
+      ],
+      "hypothesis": "Replaying the exact optimal settings (milk_temp_c = 65.0, pour_height_cm = 9.0, design_fill_pct = 50.3) will produce a perfect 100.0 score.",
+      "what_changed": "Resetting pour_height_cm back from 6.6 cm to the known optimum of 9.0 cm.",
+      "plan_source": "gemini",
+      "reflection": "Attempt #9 replayed the known optimal configuration (milk_temp_c = 65.0, pour_height_cm = 9.0, design_fill_pct = 50.3) and achieved a perfect score of 100.0 across all sub-scores."
+    },
+    {
+      "attempt": 10,
+      "run_id": "barista-1791649791121-l2-a10",
+      "inputs": {
+        "values": {
+          "milk_temp_c": 65,
+          "pour_height_cm": 9,
+          "design_fill_pct": 50.3
+        }
+      },
+      "inputs_plan": {
+        "values": {
+          "milk_temp_c": 65.0,
+          "pour_height_cm": 9.0,
+          "design_fill_pct": 50.3
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "mouse_down",
+          "params": {
+            "target_id": "meter"
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 20
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 3730
+          }
+        },
+        {
+          "action": "mouse_up",
+          "params": {
+            "x": 208.0,
+            "y": 119.0
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 20
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 680
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 20
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 560
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        }
+      ],
+      "score": 100.0,
+      "passed": true,
+      "feedback": [
+        "Pretty leaves, that one goes on our wall!"
+      ],
+      "breakdown": {
+        "milk_temp_c": {
+          "label": "Heat the milk",
+          "score": 100
+        },
+        "pour_height_cm": {
+          "label": "Pour height",
+          "score": 100
+        },
+        "design_fill_pct": {
+          "label": "When to drop in",
+          "score": 100
+        }
+      },
+      "problems_found": [],
+      "caveats": [],
+      "hypothesis": "Final attempt: replay the best settings found.",
+      "what_changed": "No change: replay the same plan.",
+      "plan_source": "search",
+      "reflection": "Attempt 10 scored 100.0 (+0.0 vs attempt 9)."
+    }
+  ],
+  "memory": {
+    "control_effects": {
+      "milk_temp_c": "Yields 100/100 at 65.0 °C (as well as 58.4 °C); 50.0 °C is lukewarm (38) and 74.0 °C is scalded (20).",
+      "pour_height_cm": "Strictly peaks at 9.0 cm yielding 100/100. Symmetrically declines at 6.6 cm (78) and 11.4 cm (78).",
+      "design_fill_pct": "Yields 100/100 at 50.3%; 65.0% drops in too late (46)."
+    },
+    "problems": [
+      {
+        "problem": "Lukewarm milk: flat, barely sweet, and the foam never turned glossy.",
+        "attempt": 1,
+        "fix": ""
+      },
+      {
+        "problem": "Dropped in too late: no room left, the rosetta came out cramped and tiny.",
+        "attempt": 1,
+        "fix": ""
+      },
+      {
+        "problem": "Poured from too high: the stream splashed and broke up the crema.",
+        "attempt": 1,
+        "fix": ""
+      },
+      {
+        "problem": "Milk steamed too cold (50 °C).",
+        "attempt": 1,
+        "fix": ""
+      },
+      {
+        "problem": "Pour height too high (12 cm).",
+        "attempt": 1,
+        "fix": ""
+      },
+      {
+        "problem": "Drop-in happened too late (65 %).",
+        "attempt": 1,
+        "fix": ""
+      },
+      {
+        "problem": "Pour height at 7.0 cm was still slightly off optimal (scored 88/100).",
+        "attempt": 2,
+        "fix": ""
+      },
+      {
+        "problem": "Poured too close too early: white foam spread over the crema, no canvas left.",
+        "attempt": 3,
+        "fix": ""
+      },
+      {
+        "problem": "(attempt 3) Poured too close too early at 4.8 cm (sub-score 28).",
+        "attempt": 3,
+        "fix": ""
+      },
+      {
+        "problem": "Scalded milk: cooked taste, sweetness gone, foam dry and stiff.",
+        "attempt": 5,
+        "fix": "Lower Heat the milk towards 65 °C."
+      },
+      {
+        "problem": "Heat the milk too high (74.0): \"Scalded milk: cooked taste, sweetness gone, foam dry and stiff.\"",
+        "attempt": 5,
+        "fix": "Lower Heat the milk towards 65 °C."
+      },
+      {
+        "problem": "Milk temperature at 74.0 °C scalds the milk (sub-score 20).",
+        "attempt": 5,
+        "fix": ""
+      },
+      {
+        "problem": "Pour height at 11.4 cm is too high: 'Poured from too high: the stream splashed and broke up the crema.'",
+        "attempt": 7,
+        "fix": ""
+      }
+    ],
+    "caveats": [
+      "Systematic search suggestion advised probing higher on height and fill percentage, but qualitative feedback explicitly says poured too high and dropped in too late; feedback must take precedence.",
+      "Keep milk_temp_c at 65.0 °C and design_fill_pct at 50.3% since both already achieved 100/100.",
+      "Ensure all values align strictly with control steps (step 0.2 for height).",
+      "A perfect score of 100.0 has already been reached; continue exploiting the winning configuration.",
+      "If you see \"Scalded milk: cooked taste, sweetness gone, foam dry and stiff.\", lower Heat the milk.",
+      "A perfect score of 100.0 has already been achieved at (65.0, 9.0, 50.3). Revert to this optimal set to guarantee maximum performance.",
+      "A 100.0 score is fully established at milk_temp_c = 65.0, pour_height_cm = 9.0, design_fill_pct = 50.3.",
+      "Probing 11.4 cm is unnecessary and likely suboptimal given 12.0 cm was already confirmed too high.",
+      "If you see \"Poured from too high: the stream splashed and broke up the crema.\", lower Pour height.",
+      "Exploit the proven 100.0 configuration rather than unnecessary perimeter probing.",
+      "If you see \"Poured too close too early: white foam spread over the crema, no canvas left.\", raise Pour height.",
+      "Exploration is complete; stick to the verified 100.0 point at (65.0, 9.0, 50.3).",
+      "Final attempt: lock in the proven perfect 100.0 score configuration."
+    ]
+  }
+}

@@ -24,7 +24,7 @@ if str(WORKSPACE_ROOT) not in sys.path:
     sys.path.insert(0, str(WORKSPACE_ROOT))
 
 from actor.drivers import make_driver  # noqa: E402
-from actor.explore import fmt, make_strategy  # noqa: E402
+from actor.explore import fmt, make_strategy, similarity  # noqa: E402
 from actor.reasoning import (Reasoner, describe_change, deterministic_reflection,  # noqa: E402
                              deterministic_skill)
 from actor.rules import ActionRejected, Allowlist  # noqa: E402
@@ -157,8 +157,8 @@ class LevelLearner:
 
     def _add_problem(self, text: str, attempt: int, record: Optional[Dict[str, Any]] = None, fix: str = "") -> bool:
         key = text.strip().lower()
-        if not key or key in self.seen_problems:
-            return False
+        if not key or key in self.seen_problems or any(similarity(key, p) >= 0.8 for p in self.seen_problems):
+            return False  # the same problem reworded
         self.seen_problems.add(key)
         self.memory["problems"].append({"problem": text.strip(), "attempt": attempt, "fix": fix})
         if record is not None and text not in record["problems_found"]:
@@ -166,7 +166,7 @@ class LevelLearner:
         return True
 
     def _add_caveat(self, text: str, record: Optional[Dict[str, Any]] = None) -> None:
-        if text and text not in self.memory["caveats"]:
+        if text and not any(similarity(text, c) >= 0.8 for c in self.memory["caveats"]):
             self.memory["caveats"].append(text)
         if record is not None and text and text not in record["caveats"]:
             record["caveats"].append(text)
@@ -337,7 +337,10 @@ class ActorAgent:
         problems = [{"problem": p["problem"], "attempt": p["attempt"],
                      "fix": fixes.get(p["problem"].strip().lower()) or p.get("fix") or "Apply the learned values."}
                     for p in learner.memory["problems"]]
-        caveats = list(dict.fromkeys([*(w.get("caveats") or []), *learner.memory["caveats"]]))
+        caveats: List[str] = []
+        for c in [*(w.get("caveats") or []), *learner.memory["caveats"]]:
+            if c and not any(similarity(c, k) >= 0.8 for k in caveats):
+                caveats.append(c)
         final = attempts[-1]
         skill_dir = self.skills_dir / lvl["id"]
         existing = {}

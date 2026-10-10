@@ -6,6 +6,7 @@ import type { Observation, RunEvent, RunSummary } from '../contract'
  * (shared/game_contract.md section c). Props stay the same.
  */
 export interface SpectatorProps {
+  slug: string | null
   run: RunSummary | null
   events: RunEvent[]
 }

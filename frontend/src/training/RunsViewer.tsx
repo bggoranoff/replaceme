@@ -102,7 +102,7 @@ export function RunsViewer({ onDone }: { onDone: () => void }) {
         <button type="button" className="runs-arrow" onClick={() => setLane((i) => i - 1)} disabled={n < 2} aria-label="Previous run">
           ‹
         </button>
-        <RunSpectator run={run} events={events} />
+        <RunSpectator slug={status?.slug ?? null} run={run} events={events} />
         <button type="button" className="runs-arrow" onClick={() => setLane((i) => i + 1)} disabled={n < 2} aria-label="Next run">
           ›
         </button>

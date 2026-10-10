@@ -33,7 +33,8 @@ from builder.world_gen import BuildError, build_world, optimal_point, reveals, s
 RULES = json.loads((root / "shared/actions.json").read_text())
 BRIEFS = sorted((root / "fixtures").glob("*-research.v2.json"))
 # Worlds the builder generated from those briefs (example-world.v2.json is the contract sample).
-BUILT_WORLDS = [p.with_name(p.name.replace("-research.v2", "-world.v2")) for p in BRIEFS]
+# example-*.v2.json are the contract's hand-written shape examples, not builder output
+BUILT_WORLDS = [p.with_name(p.name.replace("-research.v2", "-world.v2")) for p in BRIEFS if not p.name.startswith("example-")]
 check_world = runpy.run_path(str(root / "scripts/check_contracts.py"))["check_world"]
 
 

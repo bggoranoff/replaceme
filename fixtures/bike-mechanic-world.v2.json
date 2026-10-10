@@ -1,0 +1,1506 @@
+{
+  "version": 2,
+  "rulesVersion": 2,
+  "researchVersion": 2,
+  "job": "bike mechanic",
+  "slug": "bike-mechanic",
+  "title": "The Spoke and Cog",
+  "branch": "game/bike-mechanic",
+  "theme": {
+    "name": "Bicycle Workshop",
+    "palette": {
+      "grass": "#78b85a",
+      "path": "#dcb983",
+      "water": "#6fb3d9",
+      "wood": "#9a6a3f",
+      "roof": "#c8553d",
+      "accent": "#f2c14e"
+    }
+  },
+  "map": {
+    "cols": 26,
+    "rows": 16,
+    "tile": 16,
+    "spawn": [
+      13,
+      8
+    ],
+    "ground": [
+      "gggggggggggggggggggggggggg",
+      "gggggggggggggggggggggggggg",
+      "gggggggggggggpgggggggggggg",
+      "gggggggggggggpgggggggpppgg",
+      "gggggggggpppppggggggppgggg",
+      "gggggggpppgggpggggpggpgggg",
+      "gggggpgggggggpggggpggpgggg",
+      "gggggpgggggggpggggpggpgggg",
+      "ggppppppppppppppppppppppgg",
+      "gggpgggggggggpgggggggggpgg",
+      "gggpgggggggggpgggggggggpgg",
+      "gggpgggggggggpgggggggggpgg",
+      "gggpgggggggpppgggggpppgggg",
+      "ggppgggggppggpppppppgggggg",
+      "ggggggggggppppgggggggggggg",
+      "gggggggggggggggggggggggggg"
+    ],
+    "locations": [
+      {
+        "id": "trees-0-0",
+        "name": "Trees",
+        "kind": "decor",
+        "icon": "trees",
+        "tile": [
+          0,
+          0
+        ],
+        "w": 26,
+        "h": 1
+      },
+      {
+        "id": "trees-0-15",
+        "name": "Trees",
+        "kind": "decor",
+        "icon": "trees",
+        "tile": [
+          0,
+          15
+        ],
+        "w": 26,
+        "h": 1
+      },
+      {
+        "id": "trees-0-1",
+        "name": "Trees",
+        "kind": "decor",
+        "icon": "trees",
+        "tile": [
+          0,
+          1
+        ],
+        "w": 1,
+        "h": 14
+      },
+      {
+        "id": "trees-25-1",
+        "name": "Trees",
+        "kind": "decor",
+        "icon": "trees",
+        "tile": [
+          25,
+          1
+        ],
+        "w": 1,
+        "h": 14
+      },
+      {
+        "id": "melting-crock",
+        "name": "Melting Crock",
+        "kind": "station",
+        "icon": "pot",
+        "tile": [
+          17,
+          3
+        ],
+        "w": 3,
+        "h": 2
+      },
+      {
+        "id": "repair-stand",
+        "name": "Repair Stand",
+        "kind": "station",
+        "icon": "bench",
+        "tile": [
+          20,
+          10
+        ],
+        "w": 3,
+        "h": 2
+      },
+      {
+        "id": "lube-bench",
+        "name": "Lube Bench",
+        "kind": "table",
+        "icon": "shelf",
+        "tile": [
+          8,
+          11
+        ],
+        "w": 3,
+        "h": 2
+      },
+      {
+        "id": "dispatch-porch",
+        "name": "Dispatch Porch",
+        "kind": "stall",
+        "icon": "cart",
+        "tile": [
+          3,
+          4
+        ],
+        "w": 4,
+        "h": 2
+      },
+      {
+        "id": "baker-martha-at-the",
+        "name": "Baker Martha at the",
+        "kind": "spot",
+        "icon": "sign",
+        "tile": [
+          9,
+          3
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "forest-ranger-silas-at",
+        "name": "Forest Ranger Silas at",
+        "kind": "spot",
+        "icon": "sign",
+        "tile": [
+          18,
+          12
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "coach-julian-at-the",
+        "name": "Coach Julian at the",
+        "kind": "spot",
+        "icon": "sign",
+        "tile": [
+          2,
+          12
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "miller-hugo-at-the-old",
+        "name": "Miller Hugo at the Old",
+        "kind": "spot",
+        "icon": "sign",
+        "tile": [
+          23,
+          2
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "cottage-1",
+        "name": "Cottage",
+        "kind": "decor",
+        "icon": "cottage",
+        "tile": [
+          16,
+          9
+        ],
+        "w": 4,
+        "h": 3
+      },
+      {
+        "id": "cottage-2",
+        "name": "Cottage",
+        "kind": "decor",
+        "icon": "cottage",
+        "tile": [
+          4,
+          10
+        ],
+        "w": 4,
+        "h": 3
+      },
+      {
+        "id": "flowers-15-7",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          15,
+          7
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-6-2",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          6,
+          2
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "bush-23-5",
+        "name": "Bush",
+        "kind": "decor",
+        "icon": "bush",
+        "tile": [
+          23,
+          5
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-11-11",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          11,
+          11
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "lamp-12-13",
+        "name": "Lamp",
+        "kind": "decor",
+        "icon": "lamp",
+        "tile": [
+          12,
+          13
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-1-4",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          1,
+          4
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-15-12",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          15,
+          12
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-1-11",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          1,
+          11
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-11-7",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          11,
+          7
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-2-4",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          2,
+          4
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-4-9",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          4,
+          9
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-1-3",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          1,
+          3
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "rock-4-14",
+        "name": "Rock",
+        "kind": "decor",
+        "icon": "rock",
+        "tile": [
+          4,
+          14
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "rock-11-10",
+        "name": "Rock",
+        "kind": "decor",
+        "icon": "rock",
+        "tile": [
+          11,
+          10
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-18-2",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          18,
+          2
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-7-1",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          7,
+          1
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "bush-12-6",
+        "name": "Bush",
+        "kind": "decor",
+        "icon": "bush",
+        "tile": [
+          12,
+          6
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-15-10",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          15,
+          10
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-16-4",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          16,
+          4
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "bush-13-1",
+        "name": "Bush",
+        "kind": "decor",
+        "icon": "bush",
+        "tile": [
+          13,
+          1
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "rock-7-4",
+        "name": "Rock",
+        "kind": "decor",
+        "icon": "rock",
+        "tile": [
+          7,
+          4
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-16-12",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          16,
+          12
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "bush-24-14",
+        "name": "Bush",
+        "kind": "decor",
+        "icon": "bush",
+        "tile": [
+          24,
+          14
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-8-3",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          8,
+          3
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-6-7",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          6,
+          7
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-14-14",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          14,
+          14
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "bush-24-6",
+        "name": "Bush",
+        "kind": "decor",
+        "icon": "bush",
+        "tile": [
+          24,
+          6
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-23-13",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          23,
+          13
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-5-14",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          5,
+          14
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-17-5",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          17,
+          5
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-14-7",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          14,
+          7
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-10-10",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          10,
+          10
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "bush-22-14",
+        "name": "Bush",
+        "kind": "decor",
+        "icon": "bush",
+        "tile": [
+          22,
+          14
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-14-11",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          14,
+          11
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "bush-24-2",
+        "name": "Bush",
+        "kind": "decor",
+        "icon": "bush",
+        "tile": [
+          24,
+          2
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-16-1",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          16,
+          1
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-2-5",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          2,
+          5
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "lamp-19-5",
+        "name": "Lamp",
+        "kind": "decor",
+        "icon": "lamp",
+        "tile": [
+          19,
+          5
+        ],
+        "w": 1,
+        "h": 1
+      }
+    ],
+    "solids": [
+      {
+        "x": 0,
+        "y": 0,
+        "w": 26,
+        "h": 1
+      },
+      {
+        "x": 0,
+        "y": 15,
+        "w": 26,
+        "h": 1
+      },
+      {
+        "x": 0,
+        "y": 1,
+        "w": 1,
+        "h": 14
+      },
+      {
+        "x": 25,
+        "y": 1,
+        "w": 1,
+        "h": 14
+      },
+      {
+        "x": 17,
+        "y": 3,
+        "w": 3,
+        "h": 2
+      },
+      {
+        "x": 20,
+        "y": 10,
+        "w": 3,
+        "h": 2
+      },
+      {
+        "x": 8,
+        "y": 11,
+        "w": 3,
+        "h": 2
+      },
+      {
+        "x": 3,
+        "y": 4,
+        "w": 4,
+        "h": 2
+      },
+      {
+        "x": 9,
+        "y": 3,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 18,
+        "y": 12,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 2,
+        "y": 12,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 23,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 16,
+        "y": 9,
+        "w": 4,
+        "h": 3
+      },
+      {
+        "x": 4,
+        "y": 10,
+        "w": 4,
+        "h": 3
+      },
+      {
+        "x": 6,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 23,
+        "y": 5,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 12,
+        "y": 13,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 11,
+        "y": 7,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 4,
+        "y": 9,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 4,
+        "y": 14,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 11,
+        "y": 10,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 18,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 7,
+        "y": 1,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 12,
+        "y": 6,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 15,
+        "y": 10,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 16,
+        "y": 4,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 13,
+        "y": 1,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 7,
+        "y": 4,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 24,
+        "y": 14,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 8,
+        "y": 3,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 24,
+        "y": 6,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 5,
+        "y": 14,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 14,
+        "y": 7,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 10,
+        "y": 10,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 22,
+        "y": 14,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 14,
+        "y": 11,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 24,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 16,
+        "y": 1,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 2,
+        "y": 5,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 19,
+        "y": 5,
+        "w": 1,
+        "h": 1
+      }
+    ]
+  },
+  "npcs": [
+    {
+      "id": "bram",
+      "name": "Bram",
+      "role": "Head Wheelwright",
+      "tile": [
+        20,
+        5
+      ],
+      "palette": {
+        "shirt": "#d9734e",
+        "hair": "#5b3a29",
+        "skin": "#f2c9a0"
+      }
+    },
+    {
+      "id": "pip",
+      "name": "Pip",
+      "role": "Brake Technician",
+      "tile": [
+        23,
+        12
+      ],
+      "palette": {
+        "shirt": "#5e8fc9",
+        "hair": "#2f2a2a",
+        "skin": "#e8b48a"
+      }
+    },
+    {
+      "id": "greta",
+      "name": "Greta",
+      "role": "Shop Steward",
+      "tile": [
+        11,
+        13
+      ],
+      "palette": {
+        "shirt": "#8cbf5a",
+        "hair": "#c9873e",
+        "skin": "#f6d3b0"
+      }
+    },
+    {
+      "id": "milo",
+      "name": "Milo",
+      "role": "Courier Lead",
+      "tile": [
+        7,
+        6
+      ],
+      "palette": {
+        "shirt": "#b56fc2",
+        "hair": "#e3d9c6",
+        "skin": "#c98e64"
+      }
+    }
+  ],
+  "levels": [
+    {
+      "id": "bike-mechanic-chain-hot-wax-blend",
+      "index": 1,
+      "title": "Silky Chain Wax Blend",
+      "task_id": "chain-hot-wax-blend",
+      "skill_name": "Drivetrain Wax Formulation",
+      "mechanic": "mix",
+      "quest": {
+        "npc_id": "bram",
+        "location_id": "melting-crock",
+        "title": "Simmering the Drivetrain Wax"
+      },
+      "aim": "Mix the optimal proportion of paraffin wax, micronized PTFE powder, and liquid paraffin oil to create a flexible, ultra-low-friction solid chain wax bath that will not flake off or attract road grime.",
+      "controls_hint": "Up/Down pick a setting, Left/Right adjust it, Enter to Melt. Or drag a slider and click Melt.",
+      "metric": {
+        "name": "Lube Quality",
+        "description": "0-100 from how close fully refined paraffin wax, sub-micron ptfe powder, liquid paraffin (mineral oil) are to good practice"
+      },
+      "time_limit_ms": null,
+      "success_line": "Gleaming, supple links that hum like silk!",
+      "dialogue": [
+        {
+          "at": "quest",
+          "npc_id": "bram",
+          "text": "The canal towpath dust has been chewing up drivetrains. Let's simmer a clean wax bath with slick powders so every link glides effortlessly."
+        },
+        {
+          "at": "start",
+          "npc_id": "pip",
+          "text": "If the chain cools into a stiff candle, you might need a touch more softening oil."
+        },
+        {
+          "at": "start",
+          "npc_id": "bram",
+          "text": "Make sure the links warm up thoroughly in the pot, or the wax won't soak deep into the rollers."
+        },
+        {
+          "at": "pass",
+          "npc_id": "bram",
+          "text": "That chain will run whisper-quiet across the cobblestones."
+        },
+        {
+          "at": "fail",
+          "npc_id": "bram",
+          "text": "A bit too stiff or gritty—let's rebalance the melt before dipping another link."
+        }
+      ],
+      "params": {
+        "station_id": "melting-crock",
+        "variables": [
+          {
+            "id": "paraffin_wax",
+            "label": "Fully Refined Paraffin Wax",
+            "unit": "g",
+            "min": 250,
+            "max": 750,
+            "step": 25,
+            "default": 300
+          },
+          {
+            "id": "ptfe_powder",
+            "label": "Sub-Micron PTFE Powder",
+            "unit": "g",
+            "min": 10,
+            "max": 90,
+            "step": 5,
+            "default": 15
+          },
+          {
+            "id": "paraffin_oil",
+            "label": "Liquid Paraffin (Mineral Oil)",
+            "unit": "ml",
+            "min": 5,
+            "max": 75,
+            "step": 5,
+            "default": 60
+          }
+        ],
+        "submit_label": "Melt"
+      },
+      "scoring": {
+        "pass_threshold": 70,
+        "variables": {
+          "paraffin_wax": {
+            "range": [
+              475,
+              525
+            ],
+            "tolerance": 50,
+            "weight": 1,
+            "curve": "gaussian",
+            "feedback": {
+              "too_low": "The wax bath volume is insufficient to fully submerge the chain links during thermal immersion.",
+              "too_high": "Excessive wax mass wastes crockpot heating energy and dilutes thermal transfer to the chain pins."
+            }
+          },
+          "ptfe_powder": {
+            "range": [
+              45,
+              55
+            ],
+            "tolerance": 10,
+            "weight": 1.2,
+            "curve": "gaussian",
+            "feedback": {
+              "too_low": "Boundary lubrication is inadequate; friction testing shows increased metal-on-metal wear under high wattage.",
+              "too_high": "Excess modifier agglomerates into sludge at the bottom of the melting vessel and leaves powdery surface buildup."
+            }
+          },
+          "paraffin_oil": {
+            "range": [
+              20,
+              30
+            ],
+            "tolerance": 8,
+            "weight": 1.1,
+            "curve": "gaussian",
+            "feedback": {
+              "too_low": "Wax matrix is too brittle, causing the dried film to shatter and flake off the inner link plates immediately.",
+              "too_high": "Wax blend remains soft and tacky, attracting road dust and grit like wet oil."
+            }
+          }
+        },
+        "derived": [
+          {
+            "id": "additive_to_wax_ratio",
+            "label": "Additive-to-Wax Mass Ratio",
+            "expr": "(ptfe_powder + paraffin_oil) / paraffin_wax",
+            "range": [
+              0.13,
+              0.17
+            ],
+            "tolerance": 0.03,
+            "weight": 1.3,
+            "curve": "gaussian",
+            "feedback": {
+              "too_low": "The additive concentration is too weak relative to the wax carrier, compromising low-friction boundary coating.",
+              "too_high": "Additive saturation destabilizes the crystalline paraffin structure, resulting in premature wash-off and chain noise."
+            }
+          }
+        ]
+      },
+      "sources": [
+        {
+          "title": "Zero Friction Cycling Lubricant Research",
+          "url": "https://zerofrictioncycling.com.au/"
+        },
+        {
+          "title": "Silca Chain Waxing Explained",
+          "url": "https://silca.cc/blogs/silca/chain-waxing-explained"
+        }
+      ]
+    },
+    {
+      "id": "bike-mechanic-hydraulic-brake-bleed-timing",
+      "index": 2,
+      "title": "Hydraulic Line Bleed",
+      "task_id": "hydraulic-brake-bleed-timing",
+      "skill_name": "Hydraulic Bleeding and Degassing",
+      "mechanic": "timing",
+      "quest": {
+        "npc_id": "pip",
+        "location_id": "repair-stand",
+        "title": "Banishing Spongy Brake Levers"
+      },
+      "aim": "Time the caliper negative-pressure vacuum draw and the lever burp flushing stroke to purge all trapped air without damaging internal diaphragm seals.",
+      "controls_hint": "Hold Up, or hold the mouse on the gauge, and release to stop.",
+      "metric": {
+        "name": "Brake Firmness",
+        "description": "0-100 from how well you judged caliper vacuum degassing duration, lever burp & pressurized flush duration"
+      },
+      "time_limit_ms": 40000,
+      "success_line": "Crisp, instantaneous lever snap without a single bubble!",
+      "dialogue": [
+        {
+          "at": "quest",
+          "npc_id": "pip",
+          "text": "The bakery delivery trike has squishy levers that pull right to the handlebars. Help me coax every sneaky air pocket out of the lines."
+        },
+        {
+          "at": "start",
+          "npc_id": "greta",
+          "text": "Gently burp the lever at the top while coaxing microbubbles from the caliper."
+        },
+        {
+          "at": "start",
+          "npc_id": "pip",
+          "text": "Pulling too hard on the syringe can draw air past the caliper seals, so take it easy."
+        },
+        {
+          "at": "pass",
+          "npc_id": "pip",
+          "text": "Feel that firm bite point! Those pads will grab instantly now."
+        },
+        {
+          "at": "fail",
+          "npc_id": "pip",
+          "text": "Still a little squishy at the grip. Let's burp the lines once more."
+        }
+      ],
+      "params": {
+        "station_id": "repair-stand",
+        "phases": [
+          {
+            "id": "caliper_vacuum_draw_duration",
+            "label": "Caliper Vacuum Degassing Duration",
+            "unit": "s",
+            "min": 5,
+            "max": 35,
+            "mode": "hold",
+            "fill_per_s": 7.5
+          },
+          {
+            "id": "lever_pressure_purge_duration",
+            "label": "Lever Burp & Pressurized Flush Duration",
+            "unit": "s",
+            "min": 4,
+            "max": 30,
+            "mode": "hold",
+            "fill_per_s": 6.5
+          }
+        ]
+      },
+      "scoring": {
+        "pass_threshold": 70,
+        "variables": {
+          "caliper_vacuum_draw_duration": {
+            "range": [
+              18,
+              22
+            ],
+            "tolerance": 4,
+            "weight": 1.2,
+            "curve": "gaussian",
+            "feedback": {
+              "too_low": "Vacuum stroke was stopped prematurely; stubborn microbubbles remain trapped behind the caliper slave pistons.",
+              "too_high": "Excessive negative pressure held too long pulled ambient air past the piston quad-ring seals into the caliper bore."
+            }
+          },
+          "lever_pressure_purge_duration": {
+            "range": [
+              12,
+              16
+            ],
+            "tolerance": 3,
+            "weight": 1,
+            "curve": "gaussian",
+            "feedback": {
+              "too_low": "Fluid transit was rushed, causing turbulence that suspended microbubbles in the master cylinder reservoir.",
+              "too_high": "Protracted high-pressure fluid injection risks pressurizing the lever bladder seal and leads to hydraulic fluid seepage."
+            }
+          }
+        }
+      },
+      "sources": [
+        {
+          "title": "Park Tool: How to Bleed Shimano Hydraulic Disc Brakes",
+          "url": "https://www.parktool.com/en-us/blog/repair-help"
+        },
+        {
+          "title": "Shimano Hydraulic Disc Brake Dealer Manual",
+          "url": "https://si.shimano.com/"
+        }
+      ]
+    },
+    {
+      "id": "bike-mechanic-workshop-compound-routing",
+      "index": 3,
+      "title": "Assembly Chemical Sorting",
+      "task_id": "workshop-compound-routing",
+      "skill_name": "Assembly Chemical Selection",
+      "mechanic": "sort",
+      "quest": {
+        "npc_id": "greta",
+        "location_id": "lube-bench",
+        "title": "Sorting the Chemical Shelf"
+      },
+      "aim": "Route 8 workshop assembly scenarios into their correct chemical application categories.",
+      "controls_hint": "Left/Right pick a spot, Down or Enter to place. Or drag the item onto a spot.",
+      "metric": {
+        "name": "Compatibility",
+        "description": "0-100 share of items put in the right place"
+      },
+      "time_limit_ms": 63000,
+      "success_line": "Flawless chemical matching across every single component!",
+      "dialogue": [
+        {
+          "at": "quest",
+          "npc_id": "greta",
+          "text": "A seized pedal or slipping carbon bar can ruin a lovely ride. Route every bolt and interface to its proper compound before we assemble."
+        },
+        {
+          "at": "start",
+          "npc_id": "milo",
+          "text": "Never smear slippery bearing grease on a carbon post unless you fancy sliding downhill."
+        },
+        {
+          "at": "start",
+          "npc_id": "greta",
+          "text": "Bare pedal threads will seize tight to alloy crank arms if you forget the anti-seize paste."
+        },
+        {
+          "at": "pass",
+          "npc_id": "greta",
+          "text": "Everything is treated just right—no creaks, no slipping, and no frozen threads."
+        },
+        {
+          "at": "fail",
+          "npc_id": "greta",
+          "text": "Careful, a couple of those pastes are on the wrong materials. Take another look."
+        }
+      ],
+      "params": {
+        "station_id": "lube-bench",
+        "items": [
+          {
+            "id": "flat-mount-disc-brake-caliper-frame-mounting-screws",
+            "label": "Flat-mount disc brake caliper frame mounting"
+          },
+          {
+            "id": "titanium-pedal-spindles-threading-into-forged-aluminum-crank-arms",
+            "label": "Titanium pedal spindles threading into forged"
+          },
+          {
+            "id": "steel-external-bottom-bracket-cups-threading-into-a-titanium-frame-shell",
+            "label": "Steel external bottom bracket cups threading"
+          },
+          {
+            "id": "disc-brake-rotor-torx-t25-mounting-bolts-threading-into-hub-shell",
+            "label": "Disc brake rotor Torx T25 mounting bolts"
+          },
+          {
+            "id": "carbon-aero-drop-handlebar-clamping-inside-aluminum-stem-faceplate",
+            "label": "Carbon aero drop handlebar clamping inside"
+          },
+          {
+            "id": "rear-freehub-body-pawls-drive-ratchet-teeth-and-ratchet-ring-splines",
+            "label": "Rear freehub body pawls, drive ratchet teeth"
+          },
+          {
+            "id": "carbon-fiber-seatpost-inserted-into-carbon-gravel-frame-seat-tube",
+            "label": "Carbon fiber seatpost inserted into carbon"
+          },
+          {
+            "id": "open-ball-bearings-and-internal-cup-races-of-an-unsealed-cup-and-cone-hub",
+            "label": "Open ball bearings and internal cup races of an"
+          }
+        ],
+        "bins": [
+          {
+            "id": "high-tack-bearing-grease",
+            "label": "High-Tack Bearing Grease"
+          },
+          {
+            "id": "medium-threadlocker-blue-loctite-242",
+            "label": "Medium Threadlocker (Blue /"
+          },
+          {
+            "id": "anti-seize-compound",
+            "label": "Anti-Seize Compound"
+          },
+          {
+            "id": "carbon-friction-paste",
+            "label": "Carbon Friction Paste"
+          }
+        ]
+      },
+      "scoring": {
+        "pass_threshold": 70,
+        "correct": {
+          "carbon-fiber-seatpost-inserted-into-carbon-gravel-frame-seat-tube": "carbon-friction-paste",
+          "disc-brake-rotor-torx-t25-mounting-bolts-threading-into-hub-shell": "medium-threadlocker-blue-loctite-242",
+          "titanium-pedal-spindles-threading-into-forged-aluminum-crank-arms": "anti-seize-compound",
+          "open-ball-bearings-and-internal-cup-races-of-an-unsealed-cup-and-cone-hub": "high-tack-bearing-grease",
+          "carbon-aero-drop-handlebar-clamping-inside-aluminum-stem-faceplate": "carbon-friction-paste",
+          "steel-external-bottom-bracket-cups-threading-into-a-titanium-frame-shell": "anti-seize-compound",
+          "flat-mount-disc-brake-caliper-frame-mounting-screws": "medium-threadlocker-blue-loctite-242",
+          "rear-freehub-body-pawls-drive-ratchet-teeth-and-ratchet-ring-splines": "high-tack-bearing-grease"
+        },
+        "feedback": {
+          "carbon-fiber-seatpost-inserted-into-carbon-gravel-frame-seat-tube": "Carbon paste contains microscopic silica beads that generate friction, preventing slippage at reduced clamp torque to safeguard delicate composite walls.",
+          "disc-brake-rotor-torx-t25-mounting-bolts-threading-into-hub-shell": "Brake rotor bolts endure severe rotational braking harmonics; anaerobic threadlocker prevents backing out under vibration.",
+          "titanium-pedal-spindles-threading-into-forged-aluminum-crank-arms": "Dissimilar metals under high galvanic potential and pressure require anti-seize to prevent permanent cold-welding and galling.",
+          "open-ball-bearings-and-internal-cup-races-of-an-unsealed-cup-and-cone-hub": "Rolling elements demand high-shear-stability water-resistant bearing grease to mitigate friction and corrosion.",
+          "carbon-aero-drop-handlebar-clamping-inside-aluminum-stem-faceplate": "Smooth carbon cockpits rotate under road shock unless mated with carbon assembly compound; never use standard grease on carbon interfaces.",
+          "steel-external-bottom-bracket-cups-threading-into-a-titanium-frame-shell": "Steel-on-titanium threading in bottom brackets is notorious for galvanic corrosion and chronic creaking; anti-seize is mandatory.",
+          "flat-mount-disc-brake-caliper-frame-mounting-screws": "Caliper mounting bolts must resist road vibration and thermal cycling; medium-strength removable threadlocker is required by manufacturers.",
+          "rear-freehub-body-pawls-drive-ratchet-teeth-and-ratchet-ring-splines": "Pawl pivot springs and ratchet teeth require specific light-to-medium tack grease to ensure instant engagement without sticking open."
+        }
+      },
+      "sources": [
+        {
+          "title": "Park Tool: Thread Prep & Assembly Compounds",
+          "url": "https://www.parktool.com/en-us/blog/repair-help"
+        },
+        {
+          "title": "Sheldon Brown: Bicycle Lubrication & Thread Prep",
+          "url": "https://www.sheldonbrown.com/"
+        }
+      ]
+    },
+    {
+      "id": "bike-mechanic-village-fleet-service-dispatch",
+      "index": 4,
+      "title": "Village Fleet Delivery",
+      "task_id": "village-fleet-service-dispatch",
+      "skill_name": "Bicycle Handover and Fitment",
+      "mechanic": "deliver",
+      "quest": {
+        "npc_id": "milo",
+        "location_id": "dispatch-porch",
+        "title": "Returning the Tuned Fleet"
+      },
+      "aim": "Safely carry and hand over 4 serviced bicycles and mechanical equipment to village destinations according to specific tuning notes.",
+      "controls_hint": "Arrows to walk. Enter next to the counter picks up, Enter next to a destination hands over. Or click where to go.",
+      "metric": {
+        "name": "Fit Accuracy",
+        "description": "0-100 from right deliveries and speed"
+      },
+      "time_limit_ms": 40000,
+      "success_line": "Every bike safely delivered and tailored like a glove!",
+      "dialogue": [
+        {
+          "at": "quest",
+          "npc_id": "milo",
+          "text": "The village bikes are polished and tuned to perfection. Let's roll them back to their owners and make sure each setup suits their journey."
+        },
+        {
+          "at": "start",
+          "npc_id": "bram",
+          "text": "Double-check basket struts before rolling off, or heavy cargo will make the front wheel wobble."
+        },
+        {
+          "at": "start",
+          "npc_id": "milo",
+          "text": "A plush fork needs to be dialed for the rider's weight before tackling rooty towpaths."
+        },
+        {
+          "at": "pass",
+          "npc_id": "milo",
+          "text": "Every neighbor has their favorite steed back, running smooth and steady."
+        },
+        {
+          "at": "fail",
+          "npc_id": "milo",
+          "text": "Hold up, that bicycle wasn't dialed in for its rider. Let's recheck the setup."
+        }
+      ],
+      "params": {
+        "start_tile": [
+          5,
+          6
+        ],
+        "orders": [
+          {
+            "id": "order-1",
+            "item": "Restored Dutch 3-Speed",
+            "label": "Restored Dutch 3-Speed for Baker Martha at the",
+            "from": "location:dispatch-porch",
+            "to": "spot:baker-martha-at-the"
+          },
+          {
+            "id": "order-2",
+            "item": "Tuned Hardtail Trail",
+            "label": "Tuned Hardtail Trail for Forest Ranger Silas at",
+            "from": "location:dispatch-porch",
+            "to": "spot:forest-ranger-silas-at"
+          },
+          {
+            "id": "order-3",
+            "item": "Box of Pre-Stretched",
+            "label": "Box of Pre-Stretched for Coach Julian at the",
+            "from": "location:dispatch-porch",
+            "to": "spot:coach-julian-at-the"
+          },
+          {
+            "id": "order-4",
+            "item": "Heavy-Duty Cargo Trike",
+            "label": "Heavy-Duty Cargo Trike for Miller Hugo at the Old",
+            "from": "location:dispatch-porch",
+            "to": "spot:miller-hugo-at-the-old"
+          }
+        ],
+        "capacity": 2,
+        "par_ms": 20000
+      },
+      "scoring": {
+        "pass_threshold": 70,
+        "weights": {
+          "accuracy": 2,
+          "time": 1
+        },
+        "feedback": {
+          "wrong_target": "Someone got an order that was not theirs.",
+          "late": "The orders took too long to arrive.",
+          "missed": "Some orders never reached their destination."
+        }
+      },
+      "sources": [
+        {
+          "title": "Park Tool: Utility & Cargo Bike Maintenance",
+          "url": "https://www.parktool.com/en-us/blog/repair-help"
+        },
+        {
+          "title": "Sheldon Brown: Internal-Gear Hubs & Coaster Brakes",
+          "url": "https://www.sheldonbrown.com/"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": "Zero Friction Cycling Lubricant Research",
+      "url": "https://zerofrictioncycling.com.au/"
+    },
+    {
+      "title": "Silca Chain Waxing Explained",
+      "url": "https://silca.cc/blogs/silca/chain-waxing-explained"
+    },
+    {
+      "title": "Park Tool: How to Bleed Shimano Hydraulic Disc Brakes",
+      "url": "https://www.parktool.com/en-us/blog/repair-help"
+    },
+    {
+      "title": "Shimano Hydraulic Disc Brake Dealer Manual",
+      "url": "https://si.shimano.com/"
+    },
+    {
+      "title": "Sheldon Brown: Bicycle Lubrication & Thread Prep",
+      "url": "https://www.sheldonbrown.com/"
+    }
+  ]
+}

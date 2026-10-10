@@ -1,286 +1,92 @@
 """
 ReplaceMe Builder Agent.
 
-An autonomous AI agent powered by Google Gemini that turns high-level job
-scenarios identified by the Researcher Agent into:
-1. An interactive, playable game environment with human controls (arrows, WASD, space, clicking)
-   defined in world.json.
-2. Headless Python simulation state machines (BaseLevelEnv) for high-speed Actor Agent training.
-3. Automatically creates and checkpoints a new environment branch in Entire (e.g. env/<role>).
+Turns a research brief (research.json v2, shared/schemas/research.py ResearchBrief) into:
+1. One cozy, Stardew-like village world with 4 quest levels (world.json v2,
+   shared/schemas/world.schema.json). Each level uses one of the 5 mechanics in
+   shared/actions.json and a declarative, deterministic scoring spec. Humans and the
+   actor play the same world in the browser.
+2. A game branch game/<slug> in Entire with games/<slug>/ committed on it.
 """
 
-import os
-import sys
 import json
-import pprint
-import re
-import importlib.util
-import subprocess
+import sys
 from pathlib import Path
-from typing import Dict, Any, List, Optional, Tuple
+from typing import Any, Dict, Optional
 
 WORKSPACE_ROOT = Path(__file__).resolve().parents[1]
 if str(WORKSPACE_ROOT) not in sys.path:
     sys.path.insert(0, str(WORKSPACE_ROOT))
 
-from shared.base_env import BaseLevelEnv, validate_level_contract
 from shared.brain import attach_reasoning
-from builder.gemini_client import GeminiClient
+from builder.flavor import fallback_flavor, gemini_flavor, merge_flavor
 from builder.graph_check import finalize_world
-
-SYSTEM_PROMPT = """
-You are the BUILDER AGENT in the ReplaceMe ecosystem.
-Your mission is to transform a job scenario and competency description into a self-contained, runnable, stochastic Python mini-game (state machine).
-
-The environment must satisfy two critical requirements:
-1. Headlessly runnable at high speeds for the automated Actor Agent (100+ simulation trials in milliseconds). Use pure Python standard library and random.Random.
-2. Nicely playable by human users via an interactive UI, exposing clean metadata for sliders, toggles, gauges, and Gradium voice feedback cues.
-
-CRITICAL IMPLEMENTATION CONTRACT:
-You must return ONLY executable Python code defining a class named `LevelEnvironment` that inherits from `BaseLevelEnv`.
-Do not include explanations or markdown outside the code block.
-
-The code must look like:
-```python
-import random
-from typing import Dict, Any, Tuple
-from shared.base_env import BaseLevelEnv
-
-class LevelEnvironment(BaseLevelEnv):
-    def __init__(self, seed: int = None):
-        super().__init__(seed)
-
-    def get_spec(self) -> Dict[str, Any]:
-        return {
-            "level_id": "<level_id>",
-            "title": "<Catchy Title>",
-            "skill_name": "<Target Skill>",
-            "instruction": "<Clear 1-2 sentence goal for a player or voice prompt>",
-            "controls": [
-                {
-                    "id": "<action_id>",
-                    "label": "<Human readable label>",
-                    "type": "slider", # "slider", "toggle", or "choice"
-                    "min": 0.0,
-                    "max": 100.0,
-                    "step": 1.0,
-                    "default": 50.0,
-                    "unit": "<unit>"
-                }
-            ],
-            "telemetry": [
-                {
-                    "id": "<metric_id>",
-                    "label": "<Metric Label>",
-                    "unit": "<unit>",
-                    "target_range": [80, 100]
-                }
-            ]
-        }
-
-    def reset(self, seed: int = None) -> Dict[str, Any]:
-        if seed is not None:
-            self.rng.seed(seed)
-        self.hidden_factors = { "entropy": self.rng.uniform(0.85, 1.15) }
-        self.state = { "progress": 0, "completed": False }
-        return self.get_observation()
-
-    def get_observation(self) -> Dict[str, Any]:
-        return dict(self.state)
-
-    def step(self, actions: Dict[str, Any]) -> Tuple[Dict[str, Any], float, bool, Dict[str, Any]]:
-        score = 90.0
-        is_done = True
-        self.state["completed"] = True
-        return (self.get_observation(), score, is_done, {
-            "voice_narrative": "Action executed successfully!",
-            "breakdown": {"accuracy": 90.0}
-        })
-```
-"""
+from builder.world_gen import BuildError, build_world, select_tasks, slugify, validate_world
 
 
 class BuilderAgent:
     """
     Autonomous Builder Agent that:
-    1. Compiles Researcher scenarios into dynamic world.json (theme, layout, stations, objectives).
-    2. Synthesizes runnable Python environments.
-    3. Creates Entire branches (env/<role>) and commits checkpoints.
+    1. Compiles Researcher tasks into a dynamic world.json (village map, NPCs, 4 quest levels).
+    2. Self-checks the world against the platform rules on main.
+    3. Creates the Entire game branch (game/<slug>) and commits the game to it.
     """
 
-    def __init__(self, workspace_dir: Optional[Path] = None, gemini_client: Optional[GeminiClient] = None):
+    def __init__(self, workspace_dir: Optional[Path] = None, gemini_client: Optional[Any] = None):
         self.workspace_dir = workspace_dir or WORKSPACE_ROOT
-        self.client = gemini_client or GeminiClient()
-        self.levels_dir = self.workspace_dir / "builder" / "levels"
-        self.levels_dir.mkdir(parents=True, exist_ok=True)
+        self.client = gemini_client
+        if self.client is None:
+            try:
+                from builder.gemini_client import GeminiClient
+                self.client = GeminiClient()
+            except Exception as exc:  # SDK missing: build with the deterministic flavor
+                print(f"[BuilderAgent] Gemini client unavailable: {exc}")
 
     def load_research_brief(self, brief_path: Path) -> Dict[str, Any]:
         with open(brief_path, "r", encoding="utf-8") as f:
             # reasoning_traces come from Entire Brain first (research.json copy as fallback) for the generation prompts
             return attach_reasoning(json.load(f))
 
-    def build_world(self, brief: Dict[str, Any]) -> Dict[str, Any]:
+    def load_rules(self) -> Dict[str, Any]:
+        return json.loads((self.workspace_dir / "shared" / "actions.json").read_text(encoding="utf-8"))
+
+    def build_world(self, brief: Dict[str, Any], commit: bool = True) -> Dict[str, Any]:
         """
-        Creates the complete interactive game environment specification for the frontend and Entire.
+        Creates the complete game world for the frontend and the actor, writes
+        games/<slug>/world.json and commits it on game/<slug>.
         """
-        role = brief.get("role", "general")
-        title = brief.get("title", f"{role.capitalize()} Simulation")
-        theme = brief.get("theme", {
-            "name": f"{role.capitalize()} Workplace",
-            "floorType": "planks",
-            "floorColor1": "#c99b6d",
-            "floorColor2": "#bf9063",
-            "wallColor": "#f3e2c7",
-            "wallpaperColor": "#ead2b0",
-            "trimColor": "#a97d55",
-            "accentColor": "#6b4a33"
-        })
+        rules = self.load_rules()
+        slug = slugify(brief.get("slug") or brief.get("job") or "game")
+        brief = dict(brief, slug=slug)
+        picked = select_tasks(brief.get("tasks") or [])
+        traces = brief.get("reasoning_traces") or []
+        flavor = merge_flavor(gemini_flavor(self.client, brief, picked, traces), fallback_flavor(brief, picked))
 
-        # Calculate bounding solids from walls and stations
-        cols = 20
-        rows = 13
-        solids = [
-            {"x": 0, "y": 0, "w": cols, "h": 2}, # Back wall
-            {"x": 0, "y": 0, "w": 1, "h": rows}, # Left wall
-            {"x": cols - 1, "y": 0, "w": 1, "h": rows}, # Right wall
-            {"x": 0, "y": rows - 1, "w": cols, "h": 1}, # Front wall
-        ]
+        world, notes = build_world(brief, flavor, rules["version"])
+        problems = validate_world(world, rules)
+        if problems:
+            # A flavor pack that breaks the rules is dropped; the deterministic pack always passes.
+            print(f"[BuilderAgent] world failed self-check ({problems[:3]}), rebuilding with fallback flavor")
+            world, notes = build_world(brief, fallback_flavor(brief, picked), rules["version"])
+            problems = validate_world(world, rules)
+        if problems:
+            raise BuildError(f"generated world breaks the platform rules: {problems}")
+        for note in notes:
+            print(f"[BuilderAgent] {note}")
 
-        stations = brief.get("stations", [
-            {"id": "station-work", "name": "Workstation", "icon": "tool", "tile": [4, 2], "w": 3, "h": 1, "color": "#7a8a9e", "accent": "#ffd877", "description": "Primary task station."}
-        ])
-
-        for st in stations:
-            tx, ty = st.get("tile", [4, 2])
-            w = st.get("w", 2)
-            h = st.get("h", 1)
-            solids.append({"x": tx, "y": ty, "w": w, "h": h})
-
-        levels = brief.get("levels", [])
-
-        world_metadata = {
-            "version": 1,
-            "researchVersion": brief.get("version", 1),
-            "role": role,
-            "title": title,
-            "theme": theme,
-            "dimensions": {"cols": cols, "rows": rows, "tile": 16},
-            "solids": solids,
-            "stations": stations,
-            "levels": levels,
-            "rules": brief.get("rules", []),
-            "entrypoint": "builder.levels"
-        }
-
-        # Entire Graph check against main's rules: repairs, writes games/<slug>/graph_report.json and
-        # commits a passing v2 world on game/<slug>; raises GraphCheckError instead of committing a failing one
-        world_metadata = finalize_world(world_metadata, self.workspace_dir)
-
-        # Save to root world.json and fixtures
-        world_file = self.workspace_dir / "world.json"
-        with open(world_file, "w", encoding="utf-8") as f:
-            json.dump(world_metadata, f, indent=2)
-
-        fixtures_file = self.workspace_dir / "fixtures" / f"{role}-world.json"
-        fixtures_file.parent.mkdir(parents=True, exist_ok=True)
-        with open(fixtures_file, "w", encoding="utf-8") as f:
-            json.dump(world_metadata, f, indent=2)
-
-        # Generate lightweight Python level environments for Actor training
-        for lvl in levels:
-            self._generate_level_env_file(role, lvl)
-
-        # Create/update Entire branch for this environment
-        self.checkpoint_to_entire(role)
-
-        return world_metadata
-
-    def _generate_level_env_file(self, role: str, level_spec: Dict[str, Any]):
-        lvl_id = level_spec.get("id", "level-1")
-        target_file = self.levels_dir / f"level_{lvl_id}.py"
-
-        # Safe template generator conforming to BaseLevelEnv
-        code_str = f'''"""Generated ReplaceMe environment for {role} level: {lvl_id}"""
-import random
-from typing import Dict, Any, Tuple
-from shared.base_env import BaseLevelEnv
-
-class LevelEnvironment(BaseLevelEnv):
-    def __init__(self, seed: int = None):
-        super().__init__(seed)
-
-    def get_spec(self) -> Dict[str, Any]:
-        # pformat emits Python literals (True/None); json.dumps would emit true/null and break the module
-        return {pprint.pformat({
-            "level_id": lvl_id,
-            "title": level_spec.get("title", lvl_id),
-            "skill_name": level_spec.get("skill_name", lvl_id),
-            "instruction": level_spec.get("goal", ""),
-            "controls": level_spec.get("controls", [
-                {"id": "action", "label": "Execute", "type": "toggle", "default": True}
-            ]),
-            "telemetry": [
-                {"id": "score", "label": "Score", "unit": "%", "target_range": [80, 100]}
-            ]
-        }, indent=4, sort_dicts=False)}
-
-    def reset(self, seed: int = None) -> Dict[str, Any]:
-        if seed is not None:
-            self.rng.seed(seed)
-        self.entropy = self.rng.uniform(0.9, 1.1)
-        self.state = {{"completed": False, "score": 0.0}}
-        return self.get_observation()
-
-    def get_observation(self) -> Dict[str, Any]:
-        return dict(self.state)
-
-    def step(self, actions: Dict[str, Any]) -> Tuple[Dict[str, Any], float, bool, Dict[str, Any]]:
-        self.state["completed"] = True
-        score = round(92.0 * self.entropy, 1)
-        score = max(0.0, min(100.0, score))
-        self.state["score"] = score
-        return (self.get_observation(), score, True, {{
-            "voice_narrative": "Objective completed successfully!",
-            "breakdown": {{"accuracy": score}}
-        }})
-'''
-        target_file.write_text(code_str, encoding="utf-8")
-
-    def checkpoint_to_entire(self, role: str):
-        """
-        Creates or updates a git branch env/<role> in Entire to track the environment checkpoint.
-        """
-        branch_name = f"env/{role}"
-        try:
-            # Check current branch
-            current_branch = subprocess.check_output(
-                ["git", "rev-parse", "--abbrev-ref", "HEAD"],
-                cwd=self.workspace_dir, text=True
-            ).strip()
-
-            # Stage world.json and builder/levels
-            subprocess.run(["git", "add", "world.json", "builder/levels/"], cwd=self.workspace_dir, check=False)
-
-            # Create or checkout the environment branch
-            subprocess.run(["git", "branch", "-f", branch_name], cwd=self.workspace_dir, check=False)
-
-            print(f"[BuilderAgent] Created Entire environment checkpoint for {role} on branch '{branch_name}'")
-        except Exception as exc:
-            print(f"[BuilderAgent] Entire checkpoint notice: {exc}")
+        # Entire Graph check against main's rules: writes games/<slug>/world.json + graph_report.json and
+        # commits the game on game/<slug>; raises GraphCheckError instead of committing a failing world
+        return finalize_world(world, self.workspace_dir, commit=commit)
 
 
 if __name__ == "__main__":
     import argparse
+
     parser = argparse.ArgumentParser(description="ReplaceMe Builder Agent")
-    parser.add_argument("--brief", type=str, default="research.json", help="Path to research brief")
+    parser.add_argument("--brief", type=str, required=True, help="Path to research.json v2 (games/<slug>/research.json)")
+    parser.add_argument("--no-commit", action="store_true", help="Write games/<slug>/world.json without committing a game branch")
     args = parser.parse_args()
 
-    brief_path = Path(args.brief).resolve()
-    if not brief_path.exists():
-        brief_path = WORKSPACE_ROOT / "fixtures" / "barista-research.json"
-
     agent = BuilderAgent()
-    brief_data = agent.load_research_brief(brief_path)
-
-    world = agent.build_world(brief_data)
-    print(f"Builder Agent synthesized world for '{world.get('role')}' with {len(world.get('stations', []))} stations and {len(world.get('levels', []))} levels.")
+    world = agent.build_world(agent.load_research_brief(Path(args.brief).resolve()), commit=not args.no_commit)
+    print(json.dumps({"slug": world["slug"], "branch": world["branch"], "levels": [l["id"] for l in world["levels"]]}))

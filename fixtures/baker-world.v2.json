@@ -1,0 +1,1447 @@
+{
+  "version": 2,
+  "rulesVersion": 2,
+  "researchVersion": 2,
+  "job": "baker",
+  "slug": "baker",
+  "title": "Hearth & Harvest Bakery",
+  "branch": "game/baker",
+  "theme": {
+    "name": "Oakhaven Village Hearth",
+    "palette": {
+      "grass": "#86c45e",
+      "path": "#dcb983",
+      "water": "#6fb3d9",
+      "wood": "#9a6a3f",
+      "roof": "#c27a2c",
+      "accent": "#f2c14e"
+    }
+  },
+  "map": {
+    "cols": 26,
+    "rows": 16,
+    "tile": 16,
+    "spawn": [
+      13,
+      8
+    ],
+    "ground": [
+      "gggggggggggggggggggggggggg",
+      "gggggggggggggggggggggggggg",
+      "gggggggggggggpgggggggggggg",
+      "gggggggggggggpggggggpggggg",
+      "gggggggpppgggpgggggppggggg",
+      "gggggpgggpppppgggpggpggggg",
+      "gggggpgggggggpgggpggpggggg",
+      "gggggpgggggggpgggpggpggggg",
+      "ggppppppppppppppppppppppgg",
+      "ggggggggpggggpgggggpgggggg",
+      "ggggggggpggggpgggggpgggggg",
+      "ggggggggpggggpgggggpgggggg",
+      "ggggggpppggggpgggggppggggg",
+      "ggggppgpgggggpppppggppppgg",
+      "gggggpppgggggggggggggggggg",
+      "gggggggggggggggggggggggggg"
+    ],
+    "locations": [
+      {
+        "id": "trees-0-0",
+        "name": "Trees",
+        "kind": "decor",
+        "icon": "trees",
+        "tile": [
+          0,
+          0
+        ],
+        "w": 26,
+        "h": 1
+      },
+      {
+        "id": "trees-0-15",
+        "name": "Trees",
+        "kind": "decor",
+        "icon": "trees",
+        "tile": [
+          0,
+          15
+        ],
+        "w": 26,
+        "h": 1
+      },
+      {
+        "id": "trees-0-1",
+        "name": "Trees",
+        "kind": "decor",
+        "icon": "trees",
+        "tile": [
+          0,
+          1
+        ],
+        "w": 1,
+        "h": 14
+      },
+      {
+        "id": "trees-25-1",
+        "name": "Trees",
+        "kind": "decor",
+        "icon": "trees",
+        "tile": [
+          25,
+          1
+        ],
+        "w": 1,
+        "h": 14
+      },
+      {
+        "id": "kneading-bench",
+        "name": "Kneading Bench",
+        "kind": "table",
+        "icon": "table",
+        "tile": [
+          16,
+          3
+        ],
+        "w": 3,
+        "h": 2
+      },
+      {
+        "id": "stone-hearth-oven",
+        "name": "Stone Hearth Oven",
+        "kind": "station",
+        "icon": "oven",
+        "tile": [
+          4,
+          3
+        ],
+        "w": 3,
+        "h": 2
+      },
+      {
+        "id": "pantry-mill-bins",
+        "name": "Pantry Mill Bins",
+        "kind": "station",
+        "icon": "shelf",
+        "tile": [
+          3,
+          11
+        ],
+        "w": 3,
+        "h": 2
+      },
+      {
+        "id": "delivery-cart",
+        "name": "Delivery Cart",
+        "kind": "stall",
+        "icon": "cart",
+        "tile": [
+          15,
+          11
+        ],
+        "w": 4,
+        "h": 2
+      },
+      {
+        "id": "the-boar-barrel",
+        "name": "The Boar & Barrel",
+        "kind": "spot",
+        "icon": "sign",
+        "tile": [
+          10,
+          4
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "herbalist-s-manor",
+        "name": "Herbalist's Manor",
+        "kind": "spot",
+        "icon": "sign",
+        "tile": [
+          23,
+          12
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "oakhaven-millhouse",
+        "name": "Oakhaven Millhouse",
+        "kind": "spot",
+        "icon": "sign",
+        "tile": [
+          20,
+          2
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "meadowview-day-nursery",
+        "name": "Meadowview Day Nursery",
+        "kind": "spot",
+        "icon": "sign",
+        "tile": [
+          7,
+          11
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "cottage-1",
+        "name": "Cottage",
+        "kind": "decor",
+        "icon": "cottage",
+        "tile": [
+          9,
+          10
+        ],
+        "w": 4,
+        "h": 3
+      },
+      {
+        "id": "flowers-21-2",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          21,
+          2
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "bush-12-2",
+        "name": "Bush",
+        "kind": "decor",
+        "icon": "bush",
+        "tile": [
+          12,
+          2
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "lamp-8-5",
+        "name": "Lamp",
+        "kind": "decor",
+        "icon": "lamp",
+        "tile": [
+          8,
+          5
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "lamp-7-3",
+        "name": "Lamp",
+        "kind": "decor",
+        "icon": "lamp",
+        "tile": [
+          7,
+          3
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "rock-21-1",
+        "name": "Rock",
+        "kind": "decor",
+        "icon": "rock",
+        "tile": [
+          21,
+          1
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "rock-11-9",
+        "name": "Rock",
+        "kind": "decor",
+        "icon": "rock",
+        "tile": [
+          11,
+          9
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "rock-12-13",
+        "name": "Rock",
+        "kind": "decor",
+        "icon": "rock",
+        "tile": [
+          12,
+          13
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "bush-24-6",
+        "name": "Bush",
+        "kind": "decor",
+        "icon": "bush",
+        "tile": [
+          24,
+          6
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-3-1",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          3,
+          1
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-7-7",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          7,
+          7
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-4-10",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          4,
+          10
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "bush-16-7",
+        "name": "Bush",
+        "kind": "decor",
+        "icon": "bush",
+        "tile": [
+          16,
+          7
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-8-14",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          8,
+          14
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-13-14",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          13,
+          14
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-1-9",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          1,
+          9
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "bush-1-10",
+        "name": "Bush",
+        "kind": "decor",
+        "icon": "bush",
+        "tile": [
+          1,
+          10
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "bush-9-9",
+        "name": "Bush",
+        "kind": "decor",
+        "icon": "bush",
+        "tile": [
+          9,
+          9
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "bush-24-11",
+        "name": "Bush",
+        "kind": "decor",
+        "icon": "bush",
+        "tile": [
+          24,
+          11
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-15-9",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          15,
+          9
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-6-2",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          6,
+          2
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "bush-22-2",
+        "name": "Bush",
+        "kind": "decor",
+        "icon": "bush",
+        "tile": [
+          22,
+          2
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-15-2",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          15,
+          2
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-8-3",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          8,
+          3
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-2-5",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          2,
+          5
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-7-6",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          7,
+          6
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-17-1",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          17,
+          1
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-2-2",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          2,
+          2
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-7-9",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          7,
+          9
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-7-1",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          7,
+          1
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-21-12",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          21,
+          12
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-18-7",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          18,
+          7
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-11-14",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          11,
+          14
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-12-7",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          12,
+          7
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-14-6",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          14,
+          6
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-8-1",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          8,
+          1
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-11-13",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          11,
+          13
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-18-5",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          18,
+          5
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-2-3",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          2,
+          3
+        ],
+        "w": 1,
+        "h": 1
+      }
+    ],
+    "solids": [
+      {
+        "x": 0,
+        "y": 0,
+        "w": 26,
+        "h": 1
+      },
+      {
+        "x": 0,
+        "y": 15,
+        "w": 26,
+        "h": 1
+      },
+      {
+        "x": 0,
+        "y": 1,
+        "w": 1,
+        "h": 14
+      },
+      {
+        "x": 25,
+        "y": 1,
+        "w": 1,
+        "h": 14
+      },
+      {
+        "x": 16,
+        "y": 3,
+        "w": 3,
+        "h": 2
+      },
+      {
+        "x": 4,
+        "y": 3,
+        "w": 3,
+        "h": 2
+      },
+      {
+        "x": 3,
+        "y": 11,
+        "w": 3,
+        "h": 2
+      },
+      {
+        "x": 15,
+        "y": 11,
+        "w": 4,
+        "h": 2
+      },
+      {
+        "x": 10,
+        "y": 4,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 23,
+        "y": 12,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 20,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 7,
+        "y": 11,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 9,
+        "y": 10,
+        "w": 4,
+        "h": 3
+      },
+      {
+        "x": 12,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 8,
+        "y": 5,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 7,
+        "y": 3,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 21,
+        "y": 1,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 11,
+        "y": 9,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 12,
+        "y": 13,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 24,
+        "y": 6,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 7,
+        "y": 7,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 16,
+        "y": 7,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 13,
+        "y": 14,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 1,
+        "y": 10,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 9,
+        "y": 9,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 24,
+        "y": 11,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 15,
+        "y": 9,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 6,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 22,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 15,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 8,
+        "y": 3,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 2,
+        "y": 5,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 7,
+        "y": 6,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 17,
+        "y": 1,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 2,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 7,
+        "y": 9,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 7,
+        "y": 1,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 14,
+        "y": 6,
+        "w": 1,
+        "h": 1
+      }
+    ]
+  },
+  "npcs": [
+    {
+      "id": "bram",
+      "name": "Bram",
+      "role": "Head Baker",
+      "tile": [
+        19,
+        5
+      ],
+      "palette": {
+        "shirt": "#d9734e",
+        "hair": "#5b3a29",
+        "skin": "#f2c9a0"
+      }
+    },
+    {
+      "id": "mina",
+      "name": "Mina",
+      "role": "Hearth Tender",
+      "tile": [
+        7,
+        5
+      ],
+      "palette": {
+        "shirt": "#5e8fc9",
+        "hair": "#2f2a2a",
+        "skin": "#e8b48a"
+      }
+    },
+    {
+      "id": "pip",
+      "name": "Pip",
+      "role": "Miller's Apprentice",
+      "tile": [
+        6,
+        13
+      ],
+      "palette": {
+        "shirt": "#8cbf5a",
+        "hair": "#c9873e",
+        "skin": "#f6d3b0"
+      }
+    },
+    {
+      "id": "rowan",
+      "name": "Rowan",
+      "role": "Delivery Carrier",
+      "tile": [
+        19,
+        13
+      ],
+      "palette": {
+        "shirt": "#b56fc2",
+        "hair": "#e3d9c6",
+        "skin": "#c98e64"
+      }
+    }
+  ],
+  "levels": [
+    {
+      "id": "baker-country-loaf-mix",
+      "index": 1,
+      "title": "Rustic Country Dough",
+      "task_id": "country-loaf-mix",
+      "skill_name": "Dough Hydration and Scaling",
+      "mechanic": "mix",
+      "quest": {
+        "npc_id": "bram",
+        "location_id": "kneading-bench",
+        "title": "Mix the Sourdough Batch"
+      },
+      "aim": "Balance dough hydration and salinity to achieve an open, aerated crumb structure without slack spreading.",
+      "controls_hint": "Up/Down pick a setting, Left/Right adjust it, Enter to Mix. Or drag a slider and click Mix.",
+      "metric": {
+        "name": "Crumb Texture",
+        "description": "0-100 from how close strong bread flour, fine sea salt, hydration ratio are to good practice"
+      },
+      "time_limit_ms": null,
+      "success_line": "Silky, stretchy, and alive—pure bakery magic!",
+      "dialogue": [
+        {
+          "at": "quest",
+          "npc_id": "bram",
+          "text": "Morning, apprentice! Let's get our hands floury and mix up a fresh tub of country sourdough."
+        },
+        {
+          "at": "start",
+          "npc_id": "mina",
+          "text": "If your dough sticks like glue to the scraper, she's craving a touch more flour."
+        },
+        {
+          "at": "start",
+          "npc_id": "bram",
+          "text": "Salt wakes up the starter, but too little leaves the dough lazy and slack."
+        },
+        {
+          "at": "pass",
+          "npc_id": "bram",
+          "text": "That feels supple under the knuckles. Good feel for the dough!"
+        },
+        {
+          "at": "fail",
+          "npc_id": "bram",
+          "text": "Don't fret, dough is forgiving. Scrape down the tub and let's try again."
+        }
+      ],
+      "params": {
+        "station_id": "kneading-bench",
+        "variables": [
+          {
+            "id": "flour_mass",
+            "label": "Strong Bread Flour",
+            "unit": "g",
+            "min": 400,
+            "max": 600,
+            "step": 10,
+            "default": 460
+          },
+          {
+            "id": "water_mass",
+            "label": "Filtered Spring Water",
+            "unit": "g",
+            "min": 250,
+            "max": 450,
+            "step": 5,
+            "default": 290
+          },
+          {
+            "id": "salt_mass",
+            "label": "Fine Sea Salt",
+            "unit": "g",
+            "min": 2,
+            "max": 20,
+            "step": 0.5,
+            "default": 4
+          }
+        ],
+        "submit_label": "Mix"
+      },
+      "scoring": {
+        "pass_threshold": 70,
+        "variables": {
+          "flour_mass": {
+            "range": [
+              490,
+              510
+            ],
+            "tolerance": 25,
+            "weight": 1,
+            "curve": "gaussian",
+            "feedback": {
+              "too_low": "The batch volume is too meager for the proofing baskets, resulting in a squat loaf.",
+              "too_high": "The dough overflows the banneton and spills over the hearth stones."
+            }
+          },
+          "salt_mass": {
+            "range": [
+              9.5,
+              10.5
+            ],
+            "tolerance": 1.5,
+            "weight": 1.5,
+            "curve": "gaussian",
+            "feedback": {
+              "too_low": "The crumb lacks structural resilience and the flavor is flat and bland.",
+              "too_high": "The yeast fermentation is stunted, leaving the bread pale, dense, and unpleasantly salty."
+            }
+          }
+        },
+        "derived": [
+          {
+            "id": "hydration_percent",
+            "label": "Hydration Ratio",
+            "expr": "(water_mass / flour_mass) * 100",
+            "range": [
+              72,
+              76
+            ],
+            "tolerance": 3,
+            "weight": 2,
+            "curve": "gaussian",
+            "feedback": {
+              "too_low": "The dough feels stiff and tight, producing a compact sandwich crumb rather than an open artisan interior.",
+              "too_high": "The dough lacks sufficient surface tension and puddles into a flat disc upon scoring."
+            }
+          }
+        ]
+      },
+      "sources": [
+        {
+          "title": "The Perfect Loaf - Sourdough Hydration Guide",
+          "url": "https://www.theperfectloaf.com/bakers-percentages-and-sourdough-hydration/"
+        },
+        {
+          "title": "King Arthur Baking - Baker's Percentage",
+          "url": "https://www.kingarthurbaking.com/pro/reference/bakers-percentage"
+        }
+      ]
+    },
+    {
+      "id": "baker-deck-oven-steam-bake",
+      "index": 2,
+      "title": "The Hearth Steam Bake",
+      "task_id": "deck-oven-steam-bake",
+      "skill_name": "Deck Oven Steam Timing",
+      "mechanic": "timing",
+      "quest": {
+        "npc_id": "mina",
+        "location_id": "stone-hearth-oven",
+        "title": "Bake the Perfect Crust"
+      },
+      "aim": "Trap steam long enough for maximum oven spring, then vent and bake until the crust reaches deep mahogany caramelization.",
+      "controls_hint": "Hold Up, or hold the mouse on the gauge, and release to stop.",
+      "metric": {
+        "name": "Crust Bloom",
+        "description": "0-100 from how well you judged steam chamber retention phase, vented dry bake phase"
+      },
+      "time_limit_ms": 40000,
+      "success_line": "Deep mahogany crust with that hollow, singing sound!",
+      "dialogue": [
+        {
+          "at": "quest",
+          "npc_id": "mina",
+          "text": "The embers are glowing just right. Let's trap the steam so the loaves bloom before the crust sets dark."
+        },
+        {
+          "at": "start",
+          "npc_id": "pip",
+          "text": "Venting too soon chokes the spring, leaving the loaf pale and tight."
+        },
+        {
+          "at": "start",
+          "npc_id": "mina",
+          "text": "Listen for the crust singing when the dry heat does its work."
+        },
+        {
+          "at": "pass",
+          "npc_id": "mina",
+          "text": "Look at that lovely bloom and proud ear along the score!"
+        },
+        {
+          "at": "fail",
+          "npc_id": "mina",
+          "text": "A bit pale this time, but the hearth is still warm for another peel."
+        }
+      ],
+      "params": {
+        "station_id": "stone-hearth-oven",
+        "phases": [
+          {
+            "id": "steam_retention_minutes",
+            "label": "Steam Chamber Retention Phase",
+            "unit": "min",
+            "min": 5,
+            "max": 30,
+            "mode": "hold",
+            "fill_per_s": 6.25
+          },
+          {
+            "id": "dry_bake_minutes",
+            "label": "Vented Dry Bake Phase",
+            "unit": "min",
+            "min": 10,
+            "max": 35,
+            "mode": "hold",
+            "fill_per_s": 6.25
+          }
+        ]
+      },
+      "scoring": {
+        "pass_threshold": 70,
+        "variables": {
+          "steam_retention_minutes": {
+            "range": [
+              18,
+              22
+            ],
+            "tolerance": 3,
+            "weight": 1.5,
+            "curve": "gaussian",
+            "feedback": {
+              "too_low": "The crust formed prematurely, strangling the loaf ear and producing a dull, thick rind.",
+              "too_high": "The crust remained rubbery and waterlogged, causing the loaf walls to collapse inward upon cooling."
+            }
+          },
+          "dry_bake_minutes": {
+            "range": [
+              20,
+              24
+            ],
+            "tolerance": 2.5,
+            "weight": 1.5,
+            "curve": "gaussian",
+            "feedback": {
+              "too_low": "The crumb retains a gummy raw core and the crust turns soggy within an hour of resting.",
+              "too_high": "The outer crust is scorched and bitter, masking the delicate fermented aromas of the crumb."
+            }
+          }
+        }
+      },
+      "sources": [
+        {
+          "title": "King Arthur Baking - Sourdough Baking with Steam",
+          "url": "https://www.kingarthurbaking.com/blog/2017/02/28/baking-with-steam"
+        }
+      ]
+    },
+    {
+      "id": "baker-flour-mill-sorting",
+      "index": 3,
+      "title": "Mill Sack Sorting",
+      "task_id": "flour-mill-sorting",
+      "skill_name": "Flour Grading and Allergen Separation",
+      "mechanic": "sort",
+      "quest": {
+        "npc_id": "pip",
+        "location_id": "pantry-mill-bins",
+        "title": "Sort the Fresh Mill Sacks"
+      },
+      "aim": "Route milled flours into Bread Flour, Pastry Flour, or Gluten-Free Specialty bins without cross-contamination.",
+      "controls_hint": "Left/Right pick a spot, Down or Enter to place. Or drag the item onto a spot.",
+      "metric": {
+        "name": "Storage Purity",
+        "description": "0-100 share of items put in the right place"
+      },
+      "time_limit_ms": 51000,
+      "success_line": "Sorted to perfection, and not a single allergen crossed!",
+      "dialogue": [
+        {
+          "at": "quest",
+          "npc_id": "pip",
+          "text": "The cart just arrived from the watermill! Help me tuck each grain into the right bin before dust flies."
+        },
+        {
+          "at": "start",
+          "npc_id": "rowan",
+          "text": "Strong flour makes chewy loaves, but it turns delicate sponge cakes tough."
+        },
+        {
+          "at": "start",
+          "npc_id": "pip",
+          "text": "Keep the golden oat flour far from the wheat so our sensitive neighbors stay safe."
+        },
+        {
+          "at": "pass",
+          "npc_id": "pip",
+          "text": "Everything neatly tucked away without a speck in the wrong bin."
+        },
+        {
+          "at": "fail",
+          "npc_id": "pip",
+          "text": "Dust yourself off, friend! Let's check the grain tags once more."
+        }
+      ],
+      "params": {
+        "station_id": "pantry-mill-bins",
+        "items": [
+          {
+            "id": "stoneground-buckwheat-groat-flour",
+            "label": "Stoneground Buckwheat Groat Flour"
+          },
+          {
+            "id": "finely-milled-sweet-white-rice-flour",
+            "label": "Finely Milled Sweet White Rice Flour"
+          },
+          {
+            "id": "hard-red-winter-wheat-13-5-protein",
+            "label": "Hard Red Winter Wheat (13.5% Protein)"
+          },
+          {
+            "id": "soft-white-wheat-8-5-protein",
+            "label": "Soft White Wheat (8.5% Protein)"
+          },
+          {
+            "id": "high-extraction-durum-semolina-14-protein",
+            "label": "High-Extraction Durum Semolina (14% Protein)"
+          },
+          {
+            "id": "chlorinated-cake-flour-7-5-protein",
+            "label": "Chlorinated Cake Flour (7.5% Protein)"
+          }
+        ],
+        "bins": [
+          {
+            "id": "high-gluten-bread-bin",
+            "label": "High-Gluten Bread Bin"
+          },
+          {
+            "id": "low-gluten-pastry-bin",
+            "label": "Low-Gluten Pastry Bin"
+          },
+          {
+            "id": "gluten-free-specialty-bin",
+            "label": "Gluten-Free Specialty Bin"
+          }
+        ]
+      },
+      "scoring": {
+        "pass_threshold": 70,
+        "correct": {
+          "hard-red-winter-wheat-13-5-protein": "high-gluten-bread-bin",
+          "soft-white-wheat-8-5-protein": "low-gluten-pastry-bin",
+          "stoneground-buckwheat-groat-flour": "gluten-free-specialty-bin",
+          "high-extraction-durum-semolina-14-protein": "high-gluten-bread-bin",
+          "chlorinated-cake-flour-7-5-protein": "low-gluten-pastry-bin",
+          "finely-milled-sweet-white-rice-flour": "gluten-free-specialty-bin"
+        },
+        "feedback": {
+          "hard-red-winter-wheat-13-5-protein": "Hard winter wheat contains high protein necessary for strong gluten networks in hearth breads.",
+          "soft-white-wheat-8-5-protein": "Soft low-protein wheat belongs in the pastry bin to yield tender biscuits and cakes.",
+          "stoneground-buckwheat-groat-flour": "Buckwheat is a pseudocereal containing zero gluten proteins, requiring dedicated allergen isolation.",
+          "high-extraction-durum-semolina-14-protein": "Durum has tenacious protein structure ideal for rustic loaves and hearth breads.",
+          "chlorinated-cake-flour-7-5-protein": "Weak gluten and fine milling make this suited exclusively for delicate, aerated pastries.",
+          "finely-milled-sweet-white-rice-flour": "Rice flour lacks prolamins and must be kept in the sealed gluten-free bin to avoid cross-contact."
+        }
+      },
+      "sources": [
+        {
+          "title": "Serious Eats - Guide to Flours",
+          "url": "https://www.seriouseats.com/bread-flour-all-purpose-flour-cake-flour-types-of-flour"
+        }
+      ]
+    },
+    {
+      "id": "baker-morning-hearth-delivery",
+      "index": 4,
+      "title": "Cobblestone Bread Run",
+      "task_id": "morning-hearth-delivery",
+      "skill_name": "Crust Preservation and Packing",
+      "mechanic": "deliver",
+      "quest": {
+        "npc_id": "rowan",
+        "location_id": "delivery-cart",
+        "title": "Deliver Morning Hearth Loaves"
+      },
+      "aim": "Deliver hot and fragile breads to the village destinations without softening crisp crusts or crushing delicate crumb.",
+      "controls_hint": "Arrows to walk. Enter next to the counter picks up, Enter next to a destination hands over. Or click where to go.",
+      "metric": {
+        "name": "Freshness",
+        "description": "0-100 from right deliveries and speed"
+      },
+      "time_limit_ms": 34000,
+      "success_line": "Every loaf arrived crisp, airy, and warm as morning sun!",
+      "dialogue": [
+        {
+          "at": "quest",
+          "npc_id": "rowan",
+          "text": "The village is waking up hungry! Let's pack the baskets carefully so the crusts stay crisp on the cobbles."
+        },
+        {
+          "at": "start",
+          "npc_id": "bram",
+          "text": "Wrap hot bread tight, and trapped steam turns a crispy crust into soggy leather."
+        },
+        {
+          "at": "start",
+          "npc_id": "rowan",
+          "text": "Heavy sourdough rounds on the bottom, airy morning rolls on top!"
+        },
+        {
+          "at": "pass",
+          "npc_id": "rowan",
+          "text": "Arrived warm and crackling, just the way the village loves them."
+        },
+        {
+          "at": "fail",
+          "npc_id": "rowan",
+          "text": "A few loaves got squished, but the villagers still appreciate the warm scent."
+        }
+      ],
+      "params": {
+        "start_tile": [
+          17,
+          13
+        ],
+        "orders": [
+          {
+            "id": "order-1",
+            "item": "Crusty Dark Rye Boules",
+            "label": "Crusty Dark Rye Boules for The Boar & Barrel",
+            "from": "location:delivery-cart",
+            "to": "spot:the-boar-barrel"
+          },
+          {
+            "id": "order-2",
+            "item": "Braided Butter Brioche",
+            "label": "Braided Butter Brioche for Herbalist's Manor",
+            "from": "location:delivery-cart",
+            "to": "spot:herbalist-s-manor"
+          },
+          {
+            "id": "order-3",
+            "item": "Seeded Sourdough Batards",
+            "label": "Seeded Sourdough Batards for Oakhaven Millhouse",
+            "from": "location:delivery-cart",
+            "to": "spot:oakhaven-millhouse"
+          },
+          {
+            "id": "order-4",
+            "item": "Featherlight Milk Rolls",
+            "label": "Featherlight Milk Rolls for Meadowview Day Nursery",
+            "from": "location:delivery-cart",
+            "to": "spot:meadowview-day-nursery"
+          }
+        ],
+        "capacity": 2,
+        "par_ms": 17000
+      },
+      "scoring": {
+        "pass_threshold": 70,
+        "weights": {
+          "accuracy": 2,
+          "time": 1
+        },
+        "feedback": {
+          "wrong_target": "Someone got an order that was not theirs.",
+          "late": "The orders took too long to arrive.",
+          "missed": "Some orders never reached their destination."
+        }
+      },
+      "sources": [
+        {
+          "title": "King Arthur Baking - How to Store Bread",
+          "url": "https://www.kingarthurbaking.com/blog/2020/09/24/how-to-store-bread"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": "The Perfect Loaf - Sourdough Hydration Guide",
+      "url": "https://www.theperfectloaf.com/bakers-percentages-and-sourdough-hydration/"
+    },
+    {
+      "title": "King Arthur Baking - Baker's Percentage",
+      "url": "https://www.kingarthurbaking.com/pro/reference/bakers-percentage"
+    },
+    {
+      "title": "King Arthur Baking - Sourdough Baking with Steam",
+      "url": "https://www.kingarthurbaking.com/blog/2017/02/28/baking-with-steam"
+    },
+    {
+      "title": "Serious Eats - Guide to Flours",
+      "url": "https://www.seriouseats.com/bread-flour-all-purpose-flour-cake-flour-types-of-flour"
+    },
+    {
+      "title": "King Arthur Baking - How to Store Bread",
+      "url": "https://www.kingarthurbaking.com/blog/2020/09/24/how-to-store-bread"
+    }
+  ]
+}

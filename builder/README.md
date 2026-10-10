@@ -1,49 +1,34 @@
 # Builder Agent
 
-The **Builder Agent** is an autonomous AI agent powered by Google Gemini (configured via `GOOGLE_API_KEY` or `GEMINI_API_KEY` in `.env`). It transforms high-level job scenarios and competencies emitted by the Researcher Agent into runnable, stochastic Python mini-games (state machines).
+The **Builder Agent** turns the Researcher's brief (`research.json` v2, `ResearchBrief` in `shared/schemas/research.py`) into one playable game: a cozy, Stardew-style village (`world.json` v2, `shared/schemas/world.schema.json`). Nothing in the builder knows about any particular job; everything comes from the brief.
 
-## Core Philosophy: Dynamic Synthesis, No Hardcoded Levels
+## What it builds
 
-Instead of static, manually written levels, the Builder Agent dynamically synthesizes complete environment modules on the fly for whatever role or scenario the Researcher produces:
+- **One world.** A top-down tile map with paths, a pond, cottages and greenery, generated procedurally and deterministically from the job slug (`builder/world_gen.py`).
+- **Exactly 4 quest levels.** It picks 4 distinct research tasks, preferring different mechanics. Each level uses one of the 5 platform mechanics in `shared/actions.json` (mix, timing, sort, deliver, converse). Each level has:
+  - a quest-giver NPC and a location on the map
+  - an `aim` that says what to achieve, never the answer
+  - a controls hint for arrows and mouse
+  - a metric and a dialogue line for quest, start (villager chatter), pass and fail
+- **Declarative, deterministic scoring.** The researched variables, optima and heuristic become `levels[].scoring`: per-term target or range, tolerance, weight, curve and qualitative feedback, plus derived terms as safe arithmetic expressions. There is no randomness: the same inputs always give the same score. `builder/scoring.py` mirrors the game's TypeScript engine (`frontend/src/game/scoring.ts`).
+- **Repairs.**
+  - Targets are moved inside the control range.
+  - Derived terms that contradict the reachable optimum are aligned.
+  - Starting values are pushed away from the optimum.
+  - Any aim, hint or feedback that states a target is replaced.
+  - Every quest location, NPC and delivery spot is checked to be reachable.
+- **Flavor.** Gemini writes the village title, NPC names, location names and dialogue (`builder/flavor.py`). It never sees the optima. Without a key it falls back to a deterministic pack built from the brief.
 
-1. **Input**: A list of level scenarios (`research.json` or streamed curriculum) containing goals, customer profiles, initial inventory, actions, and success conditions.
-2. **Environment Synthesis**: The Builder uses Gemini to write pure Python state machines inheriting from `shared.base_env.BaseLevelEnv`.
-3. **Dual Execution Guarantee**:
-   - **Headless Actor Execution**: Pure standard library / deterministic math with seeded entropy, capable of running 100+ simulation episodes in milliseconds for automated agent training.
-   - **Interactive Human UI**: Exposes rich metadata via `get_spec()` for sliders, toggles, gauges, and real-time Gradium voice cues (`voice_narrative`).
-4. **Self-Healing Verification Loop**: Before saving any level, the Builder loads the synthesized module in a sandbox, verifies contract conformance with `validate_level_contract()`, runs test rollouts, and automatically re-prompts the LLM with error context if any check fails.
-5. **Entire Platform Checkpoints**: Checkpoints code, AST structure, and reasoning traces to Entire (`entire.io`).
+## Game branches (Entire)
 
-## Architecture & Contract
+The world is written to `games/<slug>/world.json` and committed on branch `game/<slug>` (created from `main`). The commit goes through a temporary `git worktree`, so the main working tree and its checked-out branch are never touched. `games/` is gitignored on main.
 
-Every generated level implements the `BaseLevelEnv` contract (`shared/base_env.py`):
-
-```python
-class LevelEnvironment(BaseLevelEnv):
-    def get_spec(self) -> Dict[str, Any]:
-        """UI controls (sliders/toggles/units), telemetry, and voice mappings."""
-        ...
-
-    def reset(self, seed: int = None) -> Dict[str, Any]:
-        """Injects stochastic entropy (ambient factors, customer patience, supply variations)."""
-        ...
-
-    def get_observation(self) -> Dict[str, Any]:
-        """Returns observable state to players/actors."""
-        ...
-
-    def step(self, actions: Dict[str, Any]) -> Tuple[Dict[str, Any], float, bool, Dict[str, Any]]:
-        """Executes transition, returns (observation, score_0_to_100, is_done, feedback_info)."""
-        ...
-```
-
-## Running the Builder Agent
+## Running
 
 ```bash
-# 1. Provide Gemini API key in .env
-cp .env.example .env
-# Edit .env and set GOOGLE_API_KEY
-
-# 2. Run the Builder Agent against a research brief
-python3 -m builder.agent --brief fixtures/barista-research.json
+python3 -m builder.agent --brief games/<slug>/research.json      # build and commit game/<slug>
+python3 -m builder.agent --brief fixtures/florist-research.v2.json --no-commit
+python3 scripts/test_world_builder.py                             # offline tests, incl. TS/Python scoring parity
 ```
+
+The dev server runs this for `POST /api/research` (`frontend/server/api/world.ts`) and serves the result at `GET /api/world?slug=`.

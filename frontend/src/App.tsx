@@ -1,6 +1,6 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Skills } from './Skills'
-import { Cafe, type WorldSpec } from './Cafe'
+import { fetchWorld, GameScreen, type World } from './game'
 import { Frescoes } from './Frescoes'
 import { HalEye } from './HalEye'
 import { LoadingScreen } from './LoadingScreen'
@@ -68,18 +68,33 @@ function PromptHero({ onSubmit }: { onSubmit: (job: string) => void }) {
   )
 }
 
+const query = new URLSearchParams(window.location.search)
+
 function App() {
-  const [job, setJob] = useState<string | null>(null)
+  const [job, setJob] = useState<string | null>(() => query.get('slug'))
   const [view, setView] = useState<'game' | 'training' | 'skills'>('game')
-  const [researchData, setResearchData] = useState<{ role?: string; levels?: unknown[] } | null>(null)
-  const [worldData, setWorldData] = useState<WorldSpec | undefined>(undefined)
-  const [isResearching, setIsResearching] = useState(false)
+  const [worldData, setWorldData] = useState<World | undefined>(undefined)
+  const [isResearching, setIsResearching] = useState(() => !!query.get('slug'))
+  const [worldError, setWorldError] = useState<string | null>(null)
+
+  // /?slug=<slug> opens an already generated game.
+  useEffect(() => {
+    const slug = query.get('slug')
+    if (!slug) return
+    fetchWorld(slug)
+      .then((w) => {
+        setJob(w.job)
+        setWorldData(w)
+      })
+      .catch((err: Error) => setWorldError(err.message))
+      .finally(() => setIsResearching(false))
+  }, [])
 
   const start = async (next: string) => {
     setJob(next)
     setView('game')
-    setResearchData(null)
     setWorldData(undefined)
+    setWorldError(null)
     setIsResearching(true)
     try {
       const res = await fetch('/api/research', {
@@ -87,24 +102,26 @@ function App() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ prompt: next }),
       })
-      if (res.ok) {
-        const data = await res.json()
-        setResearchData(data.brief || data)
-        setWorldData(data.world || undefined)
+      const data = await res.json().catch(() => ({}))
+      if (res.ok && data.world) {
+        setWorldData(data.world)
+      } else {
+        setWorldError(data.error ?? `Could not build a game for "${next}" (${res.status})`)
       }
     } catch (err) {
       console.warn('Research request failed:', err)
+      setWorldError(`Could not build a game for "${next}"`)
     } finally {
       setIsResearching(false)
     }
   }
 
-  // Starts the actor (shared/game_contract.md section d) and shows the runs viewer; rejects if it cannot start.
+  // POST /api/train {slug} (game_contract.md section d) and show the runs viewer. Rejects on failure so the game never fakes success.
   const handleTrain = async () => {
     const res = await fetch('/api/train', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ slug: (worldData as { slug?: string } | undefined)?.slug }),
+      body: JSON.stringify({ slug: worldData?.slug }),
     })
     const data = await res.json().catch(() => ({}))
     if (!res.ok) throw new Error(data.error ?? `Training failed (${res.status})`)
@@ -119,17 +136,10 @@ function App() {
     <RunsViewer onDone={() => setView('skills')} />
   ) : view === 'skills' ? (
     <Skills job={job} />
+  ) : worldData ? (
+    <GameScreen world={worldData} onTrain={handleTrain} />
   ) : (
-    <Cafe
-      job={job}
-      world={worldData}
-      researchData={researchData}
-      isResearching={isResearching}
-      levelsCount={researchData?.levels?.length ?? worldData?.levels?.length ?? 4}
-      onBack={() => setJob(null)}
-      onTrain={handleTrain}
-      onTrained={() => setView('skills')}
-    />
+    <p className="game-error world-error">{worldError ?? `No game for "${job}" yet.`}</p>
   )
 
   return (

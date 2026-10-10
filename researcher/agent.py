@@ -44,7 +44,7 @@ PLANNED_TASKS = 5
 MAX_THOUGHT_CHARS = 1500
 
 RESEARCHER_SYSTEM_PROMPT = """
-You are the RESEARCHER of ReplaceMe, a cozy village life-sim game that teaches an AI agent the real tasks of a job.
+You are the RESEARCHER of ReplaceMe, a cozy life-sim game that teaches an AI agent the real tasks of a job.
 You research the job the user typed with Google Search and turn it into hands-on tasks that can each be played with exactly
 one of the platform's game mechanics. Everything you write must be specific to that job and backed by the sources you cite.
 Prefer authoritative sources (professional bodies, standards, manuals, training material) and give numbers with units.
@@ -164,7 +164,9 @@ class ResearcherAgent:
             f"with real, measurable quantities whose good values are documented in sources.\n"
             f"- For each task explain what the worker does, why the task is central to the job, why the mechanic fits, and "
             f"which quantities or choices decide the quality of the result and what sources recommend.\n"
-            f"Also describe a cozy village setting where this job happens (the places on the map), the core rules of the job, "
+            f"Also describe the real workplace where this job happens: indoors (e.g. the shop, kitchen, garage, office or clinic and "
+            f"its furniture and stations) when the work is done indoors, outdoors only when it really is; list the places on the "
+            f"map. Also give the core rules of the job "
             f"and the assumptions you made. Cite your sources."
         ), "job research")
         self._log(f"grounded job research done ({len(report.sources)} sources, {len(report.queries)} searches)")

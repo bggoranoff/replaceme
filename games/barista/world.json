@@ -7,14 +7,18 @@
   "title": "Bean & Bloom Cafe",
   "branch": "game/barista",
   "theme": {
-    "name": "Bean & Bloom village",
+    "name": "Bean & Bloom Cafe",
+    "environment": "cafe",
     "palette": {
-      "grass": "#86c45e",
+      "grass": "#8bc766",
       "path": "#dcb983",
       "water": "#6fb3d9",
       "wood": "#9a6a3f",
-      "roof": "#b4563f",
-      "accent": "#f2c14e"
+      "roof": "#3f7fb4",
+      "accent": "#d9734e",
+      "floor": "#b88456",
+      "wall": "#f0dcc0",
+      "trim": "#6e4426"
     }
   },
   "map": {
@@ -26,104 +30,116 @@
       8
     ],
     "ground": [
-      "gggggggggggggggggggggggggg",
-      "gggggggggggggggggggggggggg",
-      "gggggggggggggggggggggggggg",
-      "gggggggggggggggggggggggggg",
-      "gggffffffffffpfffffffffggg",
-      "gggffffffffffpfffffffffggg",
-      "gggffffffffffpfffffffffggg",
-      "gggffffffffffpfffffffffggg",
-      "gppppppppppppppppppppppppg",
-      "gggggpgggggggpggggggpggggg",
-      "gggggpgggggggpggggggpggggg",
-      "gggggpgggggggpggggggpggggg",
-      "ggppppppppppppppppppppppgg",
-      "ggggggggwwwggpgggggggggggg",
-      "ggggggggwwwggpgggggggggggg",
-      "gggggggggggggggggggggggggg"
+      "ffffffffffffffffffffffffff",
+      "ffffffffffffffffffffffffff",
+      "fffffffffffffpffffffffffff",
+      "fffffffffffffpffffffffffff",
+      "fffffffppffffpppppffffffff",
+      "ffffffffppfffpfffpppffffff",
+      "fffffffffpfffpffffffffffff",
+      "fffffffffpfffpffffffffffff",
+      "ffppppppppppppppppppppppff",
+      "fffffffffffffpffffffpfffff",
+      "fffffffffffffpffffffpfffff",
+      "fffffffffffffpffffffpfffff",
+      "fffffffffppffpffffffpfffff",
+      "ffffffffffppppffffffpppfff",
+      "fffffffffffffpffffffffpppf",
+      "ffffffffffffffffffffffffff"
     ],
     "locations": [
       {
-        "id": "trees-0-0",
-        "name": "Trees",
+        "id": "wall-back",
+        "name": "Wall",
         "kind": "decor",
-        "icon": "trees",
+        "icon": "wall",
         "tile": [
           0,
           0
         ],
         "w": 26,
-        "h": 1
+        "h": 2
       },
       {
-        "id": "trees-0-15",
-        "name": "Trees",
+        "id": "wall-left",
+        "name": "Wall",
         "kind": "decor",
-        "icon": "trees",
+        "icon": "wall",
+        "tile": [
+          0,
+          2
+        ],
+        "w": 1,
+        "h": 13
+      },
+      {
+        "id": "wall-right",
+        "name": "Wall",
+        "kind": "decor",
+        "icon": "wall",
+        "tile": [
+          25,
+          2
+        ],
+        "w": 1,
+        "h": 13
+      },
+      {
+        "id": "wall-front-left",
+        "name": "Wall",
+        "kind": "decor",
+        "icon": "wall",
         "tile": [
           0,
           15
         ],
-        "w": 26,
+        "w": 13,
         "h": 1
       },
       {
-        "id": "trees-0-1",
-        "name": "Trees",
+        "id": "wall-front-right",
+        "name": "Wall",
         "kind": "decor",
-        "icon": "trees",
+        "icon": "wall",
         "tile": [
-          0,
-          1
+          14,
+          15
         ],
-        "w": 1,
-        "h": 14
+        "w": 12,
+        "h": 1
       },
       {
-        "id": "trees-25-1",
-        "name": "Trees",
+        "id": "door",
+        "name": "Door",
         "kind": "decor",
-        "icon": "trees",
+        "icon": "door",
         "tile": [
-          25,
-          1
+          13,
+          15
         ],
         "w": 1,
-        "h": 14
-      },
-      {
-        "id": "cafe",
-        "name": "Cafe",
-        "kind": "building",
-        "icon": "shop",
-        "tile": [
-          8,
-          1
-        ],
-        "w": 10,
-        "h": 3
+        "h": 1
       },
       {
         "id": "coffee-bar",
         "name": "Coffee bar",
         "kind": "station",
-        "icon": "pot",
+        "icon": "brewbar",
         "tile": [
-          6,
-          4
+          15,
+          2
         ],
-        "w": 3,
+        "w": 4,
         "h": 2
       },
       {
         "id": "milk-bar",
         "name": "Milk bar",
         "kind": "station",
-        "icon": "tub",
+        "icon": "espresso",
         "tile": [
-          17,
-          4
+          21,
+          11
         ],
         "w": 3,
         "h": 2
@@ -132,10 +148,10 @@
         "id": "counter",
         "name": "Counter",
         "kind": "stall",
-        "icon": "counter",
+        "icon": "till",
         "tile": [
-          3,
-          9
+          7,
+          10
         ],
         "w": 4,
         "h": 2
@@ -143,326 +159,194 @@
       {
         "id": "back-room",
         "name": "Back room",
-        "kind": "stall",
-        "icon": "crate",
+        "kind": "station",
+        "icon": "shelf",
         "tile": [
-          19,
-          9
-        ],
-        "w": 4,
-        "h": 2
-      },
-      {
-        "id": "van",
-        "name": "Van",
-        "kind": "stall",
-        "icon": "cart",
-        "tile": [
-          15,
-          13
+          6,
+          2
         ],
         "w": 3,
         "h": 2
       },
       {
-        "id": "tables",
-        "name": "Tables",
-        "kind": "table",
-        "icon": "counter",
+        "id": "bookcase-10-2",
+        "name": "Bookcase",
+        "kind": "decor",
+        "icon": "bookcase",
         "tile": [
           10,
-          5
+          2
         ],
         "w": 2,
-        "h": 2
+        "h": 1
       },
       {
-        "id": "tables-2",
-        "name": "Tables",
-        "kind": "table",
-        "icon": "counter",
-        "tile": [
-          15,
-          5
-        ],
-        "w": 2,
-        "h": 2
-      },
-      {
-        "id": "lamp-12-9",
-        "name": "Lamp",
+        "id": "sofa-23-2",
+        "name": "Sofa",
         "kind": "decor",
-        "icon": "lamp",
+        "icon": "sofa",
         "tile": [
-          12,
-          9
+          23,
+          2
+        ],
+        "w": 2,
+        "h": 1
+      },
+      {
+        "id": "cafe-table-3-6",
+        "name": "Cafe table",
+        "kind": "decor",
+        "icon": "cafe_table",
+        "tile": [
+          3,
+          6
         ],
         "w": 1,
         "h": 1
       },
       {
-        "id": "lamp-14-11",
-        "name": "Lamp",
+        "id": "cafe-table-16-10",
+        "name": "Cafe table",
         "kind": "decor",
-        "icon": "lamp",
+        "icon": "cafe_table",
         "tile": [
-          14,
+          16,
+          10
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "cafe-table-3-4",
+        "name": "Cafe table",
+        "kind": "decor",
+        "icon": "cafe_table",
+        "tile": [
+          3,
+          4
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "cafe-table-3-11",
+        "name": "Cafe table",
+        "kind": "decor",
+        "icon": "cafe_table",
+        "tile": [
+          3,
           11
         ],
         "w": 1,
         "h": 1
       },
       {
-        "id": "tree-2-2",
-        "name": "Tree",
+        "id": "plant-15-6",
+        "name": "Plant",
         "kind": "decor",
-        "icon": "tree",
+        "icon": "plant",
         "tile": [
-          2,
-          2
+          15,
+          6
         ],
         "w": 1,
         "h": 1
       },
       {
-        "id": "tree-4-2",
-        "name": "Tree",
+        "id": "plant-5-5",
+        "name": "Plant",
         "kind": "decor",
-        "icon": "tree",
+        "icon": "plant",
         "tile": [
-          4,
-          2
+          5,
+          5
         ],
         "w": 1,
         "h": 1
       },
       {
-        "id": "tree-21-2",
-        "name": "Tree",
+        "id": "plant-5-12",
+        "name": "Plant",
         "kind": "decor",
-        "icon": "tree",
+        "icon": "plant",
+        "tile": [
+          5,
+          12
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "plant-21-6",
+        "name": "Plant",
+        "kind": "decor",
+        "icon": "plant",
         "tile": [
           21,
-          2
-        ],
-        "w": 1,
-        "h": 1
-      },
-      {
-        "id": "tree-23-3",
-        "name": "Tree",
-        "kind": "decor",
-        "icon": "tree",
-        "tile": [
-          23,
-          3
-        ],
-        "w": 1,
-        "h": 1
-      },
-      {
-        "id": "tree-2-13",
-        "name": "Tree",
-        "kind": "decor",
-        "icon": "tree",
-        "tile": [
-          2,
-          13
-        ],
-        "w": 1,
-        "h": 1
-      },
-      {
-        "id": "tree-23-13",
-        "name": "Tree",
-        "kind": "decor",
-        "icon": "tree",
-        "tile": [
-          23,
-          13
-        ],
-        "w": 1,
-        "h": 1
-      },
-      {
-        "id": "tree-6-14",
-        "name": "Tree",
-        "kind": "decor",
-        "icon": "tree",
-        "tile": [
-          6,
-          14
-        ],
-        "w": 1,
-        "h": 1
-      },
-      {
-        "id": "bush-2-6",
-        "name": "Bush",
-        "kind": "decor",
-        "icon": "bush",
-        "tile": [
-          2,
           6
         ],
         "w": 1,
         "h": 1
       },
       {
-        "id": "bush-23-6",
-        "name": "Bush",
+        "id": "plant-2-13",
+        "name": "Plant",
         "kind": "decor",
-        "icon": "bush",
-        "tile": [
-          23,
-          6
-        ],
-        "w": 1,
-        "h": 1
-      },
-      {
-        "id": "bush-19-2",
-        "name": "Bush",
-        "kind": "decor",
-        "icon": "bush",
-        "tile": [
-          19,
-          2
-        ],
-        "w": 1,
-        "h": 1
-      },
-      {
-        "id": "bush-6-2",
-        "name": "Bush",
-        "kind": "decor",
-        "icon": "bush",
-        "tile": [
-          6,
-          2
-        ],
-        "w": 1,
-        "h": 1
-      },
-      {
-        "id": "flowers-3-3",
-        "name": "Flowers",
-        "kind": "decor",
-        "icon": "flowers",
-        "tile": [
-          3,
-          3
-        ],
-        "w": 1,
-        "h": 1
-      },
-      {
-        "id": "flowers-22-3",
-        "name": "Flowers",
-        "kind": "decor",
-        "icon": "flowers",
-        "tile": [
-          22,
-          3
-        ],
-        "w": 1,
-        "h": 1
-      },
-      {
-        "id": "flowers-2-10",
-        "name": "Flowers",
-        "kind": "decor",
-        "icon": "flowers",
+        "icon": "plant",
         "tile": [
           2,
-          10
-        ],
-        "w": 1,
-        "h": 1
-      },
-      {
-        "id": "flowers-24-10",
-        "name": "Flowers",
-        "kind": "decor",
-        "icon": "flowers",
-        "tile": [
-          24,
-          10
-        ],
-        "w": 1,
-        "h": 1
-      },
-      {
-        "id": "flowers-11-10",
-        "name": "Flowers",
-        "kind": "decor",
-        "icon": "flowers",
-        "tile": [
-          11,
-          10
-        ],
-        "w": 1,
-        "h": 1
-      },
-      {
-        "id": "flowers-8-9",
-        "name": "Flowers",
-        "kind": "decor",
-        "icon": "flowers",
-        "tile": [
-          8,
-          9
-        ],
-        "w": 1,
-        "h": 1
-      },
-      {
-        "id": "flowers-17-9",
-        "name": "Flowers",
-        "kind": "decor",
-        "icon": "flowers",
-        "tile": [
-          17,
-          9
-        ],
-        "w": 1,
-        "h": 1
-      },
-      {
-        "id": "rock-11-14",
-        "name": "Rock",
-        "kind": "decor",
-        "icon": "rock",
-        "tile": [
-          11,
-          14
-        ],
-        "w": 1,
-        "h": 1
-      },
-      {
-        "id": "flowers-19-14",
-        "name": "Flowers",
-        "kind": "decor",
-        "icon": "flowers",
-        "tile": [
-          19,
-          14
-        ],
-        "w": 1,
-        "h": 1
-      },
-      {
-        "id": "bush-24-13",
-        "name": "Bush",
-        "kind": "decor",
-        "icon": "bush",
-        "tile": [
-          24,
           13
         ],
         "w": 1,
         "h": 1
+      },
+      {
+        "id": "sacks-10-14",
+        "name": "Sacks",
+        "kind": "decor",
+        "icon": "sacks",
+        "tile": [
+          10,
+          14
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "sacks-5-2",
+        "name": "Sacks",
+        "kind": "decor",
+        "icon": "sacks",
+        "tile": [
+          5,
+          2
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "chalkboard-14-2",
+        "name": "Chalkboard",
+        "kind": "decor",
+        "icon": "chalkboard",
+        "tile": [
+          14,
+          2
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "rug-14-11",
+        "name": "Rug",
+        "kind": "decor",
+        "icon": "rug",
+        "tile": [
+          14,
+          11
+        ],
+        "w": 3,
+        "h": 2
       }
     ],
     "solids": [
@@ -470,113 +354,119 @@
         "x": 0,
         "y": 0,
         "w": 26,
-        "h": 1
+        "h": 2
+      },
+      {
+        "x": 0,
+        "y": 2,
+        "w": 1,
+        "h": 13
+      },
+      {
+        "x": 25,
+        "y": 2,
+        "w": 1,
+        "h": 13
       },
       {
         "x": 0,
         "y": 15,
-        "w": 26,
+        "w": 13,
         "h": 1
       },
       {
-        "x": 0,
-        "y": 1,
+        "x": 14,
+        "y": 15,
+        "w": 12,
+        "h": 1
+      },
+      {
+        "x": 13,
+        "y": 15,
         "w": 1,
-        "h": 14
-      },
-      {
-        "x": 25,
-        "y": 1,
-        "w": 1,
-        "h": 14
-      },
-      {
-        "x": 8,
-        "y": 13,
-        "w": 3,
-        "h": 2
-      },
-      {
-        "x": 8,
-        "y": 1,
-        "w": 10,
-        "h": 3
-      },
-      {
-        "x": 6,
-        "y": 4,
-        "w": 3,
-        "h": 2
-      },
-      {
-        "x": 17,
-        "y": 4,
-        "w": 3,
-        "h": 2
-      },
-      {
-        "x": 3,
-        "y": 9,
-        "w": 4,
-        "h": 2
-      },
-      {
-        "x": 19,
-        "y": 9,
-        "w": 4,
-        "h": 2
+        "h": 1
       },
       {
         "x": 15,
-        "y": 13,
+        "y": 2,
+        "w": 4,
+        "h": 2
+      },
+      {
+        "x": 21,
+        "y": 11,
+        "w": 3,
+        "h": 2
+      },
+      {
+        "x": 7,
+        "y": 10,
+        "w": 4,
+        "h": 2
+      },
+      {
+        "x": 6,
+        "y": 2,
         "w": 3,
         "h": 2
       },
       {
         "x": 10,
-        "y": 5,
+        "y": 2,
         "w": 2,
-        "h": 2
+        "h": 1
       },
       {
-        "x": 15,
-        "y": 5,
+        "x": 23,
+        "y": 2,
         "w": 2,
-        "h": 2
+        "h": 1
       },
       {
-        "x": 12,
-        "y": 9,
+        "x": 3,
+        "y": 6,
         "w": 1,
         "h": 1
       },
       {
-        "x": 14,
+        "x": 16,
+        "y": 10,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 3,
+        "y": 4,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 3,
         "y": 11,
         "w": 1,
         "h": 1
       },
       {
-        "x": 2,
-        "y": 2,
+        "x": 15,
+        "y": 6,
         "w": 1,
         "h": 1
       },
       {
-        "x": 4,
-        "y": 2,
+        "x": 5,
+        "y": 5,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 5,
+        "y": 12,
         "w": 1,
         "h": 1
       },
       {
         "x": 21,
-        "y": 2,
-        "w": 1,
-        "h": 1
-      },
-      {
-        "x": 23,
-        "y": 3,
+        "y": 6,
         "w": 1,
         "h": 1
       },
@@ -587,50 +477,20 @@
         "h": 1
       },
       {
-        "x": 23,
-        "y": 13,
-        "w": 1,
-        "h": 1
-      },
-      {
-        "x": 6,
+        "x": 10,
         "y": 14,
         "w": 1,
         "h": 1
       },
       {
-        "x": 2,
-        "y": 6,
-        "w": 1,
-        "h": 1
-      },
-      {
-        "x": 23,
-        "y": 6,
-        "w": 1,
-        "h": 1
-      },
-      {
-        "x": 19,
+        "x": 5,
         "y": 2,
         "w": 1,
         "h": 1
       },
       {
-        "x": 6,
+        "x": 14,
         "y": 2,
-        "w": 1,
-        "h": 1
-      },
-      {
-        "x": 11,
-        "y": 14,
-        "w": 1,
-        "h": 1
-      },
-      {
-        "x": 24,
-        "y": 13,
         "w": 1,
         "h": 1
       }
@@ -642,8 +502,8 @@
       "name": "Juniper",
       "role": "head barista",
       "tile": [
-        5,
-        5
+        19,
+        4
       ],
       "voice": "NbpkqMVS3CJeq2j8",
       "palette": {
@@ -657,8 +517,8 @@
       "name": "Luca",
       "role": "latte art champ",
       "tile": [
-        21,
-        5
+        24,
+        13
       ],
       "voice": "r2sIQdqqoqgRJuXw",
       "palette": {
@@ -672,8 +532,8 @@
       "name": "Maya",
       "role": "regular customer",
       "tile": [
-        8,
-        10
+        11,
+        12
       ],
       "voice": "YVzbrdWnnu9FgRn5",
       "palette": {
@@ -687,8 +547,8 @@
       "name": "Bram",
       "role": "cafe owner",
       "tile": [
-        17,
-        10
+        9,
+        4
       ],
       "voice": "POBHtemksfWQbng0",
       "palette": {
@@ -841,7 +701,7 @@
           "url": "https://coavacoffee.com/brew-methods/v60"
         },
         {
-          "title": "Gusto's Coffee - SCA Golden Cup standards (55 g/L +/-10%, 93 \u00b0C +/-3, contact times)",
+          "title": "Gusto's Coffee - SCA Golden Cup standards (55 g/L +/-10%, 93 °C +/-3, contact times)",
           "url": "https://www.gustoscoffeeco.com/how-to-make-better-coffee-sca-golden-cup-standards/"
         },
         {
@@ -853,7 +713,7 @@
           "url": "https://resource.bunn.com/library/eZine/coffee_basics_brochure_scae_english/files/basic-html/page4.html"
         },
         {
-          "title": "Moccamaster - Certified by the SCA: the Golden Cup standard (92-96 \u00b0C)",
+          "title": "Moccamaster - Certified by the SCA: the Golden Cup standard (92-96 °C)",
           "url": "https://us.moccamaster.com/blogs/blog/certified-by-the-sca-moccamaster-and-the-golden-cup-standard"
         },
         {
@@ -915,7 +775,7 @@
           {
             "id": "milk_temp_c",
             "label": "Heat the milk",
-            "unit": "\u00b0C",
+            "unit": "°C",
             "min": 20,
             "max": 80,
             "mode": "hold",
@@ -1489,7 +1349,7 @@
       "url": "https://coavacoffee.com/brew-methods/v60"
     },
     {
-      "title": "Gusto's Coffee - SCA Golden Cup standards (55 g/L +/-10%, 93 \u00b0C +/-3, contact times)",
+      "title": "Gusto's Coffee - SCA Golden Cup standards (55 g/L +/-10%, 93 °C +/-3, contact times)",
       "url": "https://www.gustoscoffeeco.com/how-to-make-better-coffee-sca-golden-cup-standards/"
     },
     {
@@ -1501,7 +1361,7 @@
       "url": "https://resource.bunn.com/library/eZine/coffee_basics_brochure_scae_english/files/basic-html/page4.html"
     },
     {
-      "title": "Moccamaster - Certified by the SCA: the Golden Cup standard (92-96 \u00b0C)",
+      "title": "Moccamaster - Certified by the SCA: the Golden Cup standard (92-96 °C)",
       "url": "https://us.moccamaster.com/blogs/blog/certified-by-the-sca-moccamaster-and-the-golden-cup-standard"
     },
     {

@@ -18,6 +18,7 @@
       "required": ["name", "palette"],
       "properties": {
         "name": { "type": "string" },
+        "environment": { "type": "string", "description": "builder/environments.py id: village (outdoor, default) or an interior: cafe, kitchen, shop, garage, office, clinic, workshop, warehouse. Interiors add floor, wall and trim to the palette" },
         "palette": {
           "type": "object",
           "required": ["grass", "path", "water", "wood", "roof", "accent"],

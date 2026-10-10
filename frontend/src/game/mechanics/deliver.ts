@@ -2,6 +2,7 @@ import type { Target } from '../../contract'
 import { scoreDeliver, type OrderStatus } from '../scoring'
 import type { DeliverParams } from '../types'
 import { TILE } from '../layout'
+import { drawParcel, ribbonColor } from '../render/objects'
 import { resolveTarget, toTarget, type WorldTarget } from '../worldTargets'
 import type { Dir, Mechanic, MechanicCtx } from './base'
 
@@ -56,6 +57,7 @@ export class DeliverMechanic implements Mechanic {
       this.carrying.push(waiting.id)
       this.ctx.emit('pickup', { order_id: waiting.id, item: waiting.item })
       const [c, r] = this.ctx.avatarTile()
+      this.parcelFlight(waiting.id, this.placeRect(targetId), { x: c * TILE, y: r * TILE - 34, w: TILE, h: 12 })
       this.ctx.juice.collect(c * TILE + TILE / 2, r * TILE - 10, waiting.item)
       return
     }
@@ -66,11 +68,23 @@ export class DeliverMechanic implements Mechanic {
     this.status[handed] = right ? 'delivered' : 'wrong'
     this.ctx.emit('handover', { order_id: handed, to: targetId, status: this.status[handed] })
     const [c, r] = this.ctx.avatarTile()
+    this.parcelFlight(handed, { x: c * TILE, y: r * TILE - 34, w: TILE, h: 12 }, this.placeRect(targetId))
     this.ctx.juice.verdict(c * TILE + TILE / 2, r * TILE - 10, !!right, right ? '✓ Delivered!' : '✗ Wrong place')
     if (this.params.orders.every((o) => this.status[o.id] === 'delivered' || this.status[o.id] === 'wrong')) {
       this.finishedAt = this.ctx.now()
       this.ctx.finish(scoreDeliver(this.ctx.level, this.status, this.finishedAt))
     }
+  }
+
+  private placeRect(id: string) {
+    const p = this.places.find((x) => x.id === id)
+    return p ? toTarget(p) : { x: 0, y: 0, w: 0, h: 0 }
+  }
+
+  /** Cosmetic: the order's parcel arcs from one spot to the other. */
+  private parcelFlight(orderId: string, from: { x: number; y: number; w: number; h: number }, to: { x: number; y: number; w: number; h: number }) {
+    const ribbon = ribbonColor(this.params.orders.findIndex((o) => o.id === orderId))
+    this.ctx.juice.fly(from, to, { ms: 320, art: (g, x, y, s) => drawParcel(g, x - 7 * (0.6 + s), y - 5 * (0.6 + s), ribbon, 1.4 * (0.6 + s)) })
   }
 
   click() {}

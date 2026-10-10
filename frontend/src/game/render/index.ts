@@ -4,7 +4,8 @@ import { TILE } from '../layout'
 import { DeliverMechanic } from '../mechanics/deliver'
 import type { MapLocation } from '../types'
 import { INK, WOOD_DARK, px, roundRect, text, wrap, type Ctx } from './pixel'
-import { drawDeliverHud, drawIntro, drawLevelPanel } from './panels'
+import { drawIntro, drawLevelPanel } from './panels'
+import { drawCarried, drawDeliverHud, drawDeliverWorld } from './deliverRender'
 import { drawScoreCard } from './scorecard'
 import { drawGround, drawLabel, drawLocation, drawMarker, drawPerson, drawRobot, drawWaterShimmer, npcColors } from './sprites'
 
@@ -104,12 +105,10 @@ export function drawFrame(ctx: Ctx, e: GameEngine, view: RenderView, scale: numb
   items.push([view.ay, () => drawRobot(ctx, view.ax, view.ay, e.avatar.facing, moving ? Math.floor(view.walked / 5) % 2 : 0)])
   items.sort((a, b) => a[0] - b[0]).forEach(([, draw]) => draw())
 
-  // carried items
+  // parcels at pickups and destinations, and the ones the bot carries
   if (e.mech instanceof DeliverMechanic) {
-    e.mech.carrying.forEach((_, i) => {
-      px(ctx, WOOD_DARK, view.ax - 6 + i * 7, view.ay - 32, 6, 6)
-      px(ctx, '#fff6e0', view.ax - 5 + i * 7, view.ay - 31, 4, 4)
-    })
+    drawDeliverWorld(ctx, e.mech)
+    drawCarried(ctx, e.mech, view.ax, view.ay, moving ? (Math.floor(view.walked / 5) % 2) : 0)
   }
 
   // labels and quest markers

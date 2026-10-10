@@ -87,18 +87,21 @@ export function sortBins(W: number, H: number, n: number): Rect[] {
 
 export function conversePortrait(W: number, H: number): Rect {
   const c = contentRect(W, H)
-  return { x: c.x, y: c.y + 2, w: 52, h: 52 }
+  return { x: c.x, y: c.y, w: 62, h: 62 }
 }
 
 export function converseBubble(W: number, H: number): Rect {
   const c = contentRect(W, H)
-  return { x: c.x + 62, y: c.y, w: c.w - 62, h: 58 }
+  return { x: c.x + 72, y: c.y, w: c.w - 72, h: 62 }
 }
 
+/** Answer cards below the portrait and bubble, centred in the space that is left. */
 export function converseOptions(W: number, H: number, n: number): Rect[] {
   const c = contentRect(W, H)
-  const top = c.y + 66
-  const gap = 4
-  const h = Math.min(34, Math.floor((c.h - 66 - gap * (n - 1)) / Math.max(1, n)))
-  return Array.from({ length: n }, (_, i) => ({ x: c.x, y: top + i * (h + gap), w: c.w, h }))
+  const top = c.y + 70
+  const gap = 5
+  const room = c.y + c.h - top
+  const h = Math.min(32, Math.floor((room - gap * (n - 1)) / Math.max(1, n)))
+  const y0 = top + Math.max(0, Math.floor((room - (h * n + gap * (n - 1))) / 2))
+  return Array.from({ length: n }, (_, i) => ({ x: c.x, y: y0 + i * (h + gap), w: c.w, h }))
 }

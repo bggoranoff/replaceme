@@ -29,13 +29,13 @@ class NpcFlavor(BaseModel):
 
 class LevelFlavor(BaseModel):
     task_id: str = Field(..., description="The research task id this level implements")
-    title: str = Field(..., description="Catchy level title, max 5 words")
-    skill_name: str = Field(..., description="The skill this level trains, max 6 words")
-    location_name: str = Field(..., description="Name of the place on the village map where the task happens, max 3 words")
+    title: str = Field(..., description="Level title: exactly what the player does, verb first, 2-4 plain words, e.g. 'Restock shelves', 'Greet a customer'; no catchy names, no jargon")
+    skill_name: str = Field(..., description="The same action as a skill, 2-4 plain words, e.g. 'Restocking shelves'")
+    location_name: str = Field(..., description="Plain name of the place on the map where it happens, 1-2 words, e.g. 'Counter', 'Back room'")
     location_kind: Literal["building", "stall", "station", "field", "table"] = Field(..., description="Kind of place")
     icon: str = Field(..., description="Map icon, one of: " + ", ".join(ICONS))
     npc: NpcFlavor = Field(..., description="The villager who gives this quest")
-    quest_title: str = Field(..., description="Quest title shown in the journal, max 7 words")
+    quest_title: str = Field(..., description="Quest title in the journal: plain words, max 5, says the job, no puns")
     aim: str = Field(..., description="The level goal shown to the player, plain everyday words, max 12 words: what to achieve, never how much or the answer")
     quest_line: str = Field(..., description="What the NPC says when giving the quest: ONE short sentence, max 14 words, everyday words (what they need and why), no numbers")
     chatter: List[str] = Field(..., description="2 tips coworkers say during the level, max 10 words each, everyday words, about a common mistake; no numbers, never the answer")
@@ -57,7 +57,7 @@ SYSTEM = (
     "You write the flavor text for a cozy, Stardew Valley style village game that teaches a real job. "
     "The game has one top-down village map. Each task happens at a place on the map and is given as a quest by a villager. "
     "Write warm, short, natural lines in plain everyday words a 12-year-old understands: no jargon, no technical or Latin terms, "
-    "one sentence per line, the shorter the better. Never state numbers, amounts, settings or the correct answer: the player must discover them."
+    "one sentence per line, the shorter the better. Titles and place names say exactly what is done or where, never puns or fancy names. Never state numbers, amounts, settings or the correct answer: the player must discover them."
 )
 
 

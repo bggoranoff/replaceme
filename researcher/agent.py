@@ -170,7 +170,8 @@ class ResearcherAgent:
         self._log(f"grounded job research done ({len(report.sources)} sources, {len(report.queries)} searches)")
         plan = structured(self.client, (
             f'Job: "{job}"\nConvert this research report into the plan JSON with exactly {PLANNED_TASKS} tasks in the '
-            f"report's priority order. Task ids are 1-3 word kebab-case slugs and titles have 2-4 words. "
+            f"report's priority order. Task ids are 1-3 word kebab-case slugs. Titles are 2-4 plain everyday words, verb first, "
+            f"saying exactly what the worker does (e.g. 'Restock shelves', 'Greet a customer'); no jargon, no catchy names. "
             f"mechanic is one of: {', '.join(self.mechanics)}.\n\n"
             f"REPORT:\n{report.text}\n\nNUMBERED SOURCES:\n{report.numbered_sources()}"
         ), ResearchPlan, EXTRACTOR_SYSTEM_PROMPT)

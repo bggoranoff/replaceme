@@ -137,7 +137,7 @@ class DialogueTurn(BaseModel):
 
 class ResearchTask(BaseModel):
     id: str = Field(..., description="kebab-case task slug")
-    title: str = Field(..., description="Short task title")
+    title: str = Field(..., description="2-4 plain words, verb first, exactly what the worker does, e.g. 'Restock shelves'; no jargon or catchy names")
     summary: str = Field(..., description="What the worker does in this task")
     mechanic: MechanicId = Field(..., description="Which of the 5 platform mechanics fits best")
     mechanic_rationale: str = Field(..., description="Why this mechanic models the task")

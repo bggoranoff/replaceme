@@ -50,7 +50,7 @@ class PlannedTask(BaseModel):
 
 class ResearchPlan(BaseModel):
     title: str = Field(..., description="Cozy world title for a game about this job")
-    setting: str = Field(..., description="Cozy village setting and the places where the job happens")
+    setting: str = Field(..., description="The real workplace of the job (indoors when the work is done indoors) and the places in it where the job happens")
     rules: List[str] = Field(..., description="Core domain rules of the job")
     assumptions: List[str] = Field(..., description="Assumptions you made about the job and its context")
     tasks: List[PlannedTask] = Field(..., description="5 distinct tasks in priority order")

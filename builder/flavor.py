@@ -1,5 +1,5 @@
 """
-Flavor pack for a generated world: village title, NPC names and roles, location names,
+Flavor pack for a generated world: environment, venue title, NPC names and roles, location names,
 quest titles and dialogue lines. Gemini writes it from the research brief; a deterministic
 fallback derived from the same brief is used when Gemini is not configured or fails.
 
@@ -26,7 +26,7 @@ ROLES = {"mix": "workshop owner", "timing": "old hand", "sort": "storekeeper", "
 
 
 class NpcFlavor(BaseModel):
-    name: str = Field(..., description="Short friendly first name, unique in the village")
+    name: str = Field(..., description="Short friendly first name, unique in the game")
     role: str = Field(..., description="Who they are in this job's world, e.g. owner, apprentice, regular customer")
 
 
@@ -37,7 +37,7 @@ class LevelFlavor(BaseModel):
     location_name: str = Field(..., description="Plain name of the place on the map where it happens, 1-2 words, e.g. 'Counter', 'Back room'")
     location_kind: Literal["building", "stall", "station", "field", "table"] = Field(..., description="Kind of place")
     icon: str = Field(..., description="The furniture or object this place is, one of: " + ", ".join(FLAVOR_ICONS) + ". Pick one that exists in the chosen environment")
-    npc: NpcFlavor = Field(..., description="The villager who gives this quest")
+    npc: NpcFlavor = Field(..., description="The character who gives this quest")
     quest_title: str = Field(..., description="Quest title in the journal: plain words, max 5, says the job, no puns")
     aim: str = Field(..., description="The level goal shown to the player, plain everyday words, max 12 words: what to achieve, never how much or the answer")
     quest_line: str = Field(..., description="What the NPC says when giving the quest: ONE short sentence, max 14 words, everyday words (what they need and why), no numbers")
@@ -58,7 +58,7 @@ class WorldFlavor(BaseModel):
 
 
 SYSTEM = (
-    "You write the flavor text for a cozy, Stardew Valley style village game that teaches a real job. "
+    "You write the flavor text for a cozy, Stardew Valley style game that teaches a real job. "
     "The game has one top-down map set where the job really happens: pick the environment (a cafe, garage, office, shop, kitchen, clinic, workshop, "
     "warehouse interior, or the outdoor village when the work is outdoors). Each task happens at a piece of furniture or a place in that map and is given as a quest by a character. "
     "Write warm, short, natural lines in plain everyday words a 12-year-old understands: no jargon, no technical or Latin terms, "

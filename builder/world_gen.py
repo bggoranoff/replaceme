@@ -1,7 +1,7 @@
 """
 World v2 generation: research.json v2 (ResearchBrief) -> world.json v2.
 
-Turns the researcher's tasks into one cozy top-down village map with 4 quest levels.
+Turns the researcher's tasks into one cozy top-down map of the workplace (builder/environments.py) with 4 quest levels.
 Every level uses one of the 5 platform mechanics from shared/actions.json and carries a
 declarative, deterministic scoring spec built from the researched variables, optima and
 heuristic. Nothing here knows about any particular job.
@@ -619,7 +619,9 @@ def _furniture(env: Dict[str, Any], mech: str, wanted: Optional[str], used: Set[
     return next((o for o in opts if o[1] not in used), opts[0])
 
 
-def _touches_wall(x: int, y: int, w: int, h: int) -> bool:
+def _touches_wall(x: int, y: int, w: int, h: int, wall: Any = True) -> bool:
+    if wall == "back":
+        return y == 2
     return y == 2 or x == 1 or x + w == COLS - 1 or y + h == ROWS - 1
 
 
@@ -635,7 +637,7 @@ def _furnish(mb: "MapBuilder", env: Dict[str, Any], spawn: Tuple[int, int], rng:
         for (x, y) in spots:
             if n >= cap:
                 break
-            if wall != _touches_wall(x, y, w, h):
+            if bool(wall) != _touches_wall(x, y, w, h, wall):
                 continue
             if not mb.rect_free(x, y, w, h, margin=0 if (wall or not solid) else 1):
                 continue
@@ -765,15 +767,21 @@ def build_world(brief: Dict[str, Any], flavor: Dict[str, Any], rules_version: in
     used_names: Set[str] = set()
     for i, ctx in enumerate(levels_ctx):
         fx, fy = ctx["front"]
-        spot = None
+        spot, reach = None, None
         for dx, dy in ((2, 0), (-2, 0), (3, 0), (-3, 0), (2, 1), (-2, 1), (1, 1), (-1, 1), (0, 2)):
             tx, ty = fx + dx, fy + dy
-            if mb.interior(tx, ty) and not mb.solid[ty][tx] and not mb.reserved[ty][tx] and (tx, ty) not in mb.npc_tiles:
+            if not mb.interior(tx, ty) or mb.solid[ty][tx] or mb.reserved[ty][tx] or (tx, ty) in mb.npc_tiles:
+                continue
+            # The giver must not wall anything off, and must be reachable from a side (not only diagonally).
+            mb.npc_tiles.add((tx, ty))
+            seen = mb.bfs(spawn)
+            reach = next((n for n in ((tx, ty + 1), (tx - 1, ty), (tx + 1, ty), (tx, ty - 1)) if n in seen), None)
+            if reach and all(t in seen for t in mb.required):
                 spot = (tx, ty)
                 break
-        if not spot:
+            mb.npc_tiles.discard((tx, ty))
+        if not spot or not reach:
             raise BuildError("no room for a quest giver")
-        mb.npc_tiles.add(spot)
         nf = ctx["lf"].get("npc") or {}
         name = clip(nf.get("name"), 18) or f"Villager {i + 1}"
         while name in used_names:
@@ -786,8 +794,7 @@ def build_world(brief: Dict[str, Any], flavor: Dict[str, Any], rules_version: in
                "palette": NPC_COLORS[i % len(NPC_COLORS)]}
         npcs.append(npc)
         ctx["npc"] = npc
-        for t in mb.adjacent_walkable(spot[0], spot[1], 1, 1)[:1]:
-            mb.required.add(t)
+        mb.required.add(reach)
 
     # Destinations for deliver levels.
     for ctx in levels_ctx:

@@ -6,6 +6,7 @@ import type { MapLocation } from '../types'
 import { INK, WOOD_DARK, px, roundRect, text, wrap, type Ctx } from './pixel'
 import { drawDeliverHud, drawIntro, drawLevelPanel } from './panels'
 import { drawScoreCard } from './scorecard'
+import { isFlat } from './environments'
 import { drawGround, drawLabel, drawLocation, drawMarker, drawPerson, drawRobot, drawWaterShimmer, npcColors } from './sprites'
 
 /** Per-view render state (visual smoothing and caches); one per canvas. */
@@ -92,7 +93,7 @@ export function drawFrame(ctx: Ctx, e: GameEngine, view: RenderView, scale: numb
   // depth-sorted objects
   const items: [number, () => void][] = []
   for (const loc of world.map.locations) {
-    if (loc.kind === 'decor' && loc.icon === 'flowers') items.push([-1, () => drawLocation(ctx, world, loc, t)])
+    if ((loc.kind === 'decor' && loc.icon === 'flowers') || isFlat(loc.icon)) items.push([-1, () => drawLocation(ctx, world, loc, t)])
     else items.push([(loc.tile[1] + loc.h) * TILE - (loc.icon === 'trees' && loc.h > 1 ? 0 : 0.5), () => drawLocation(ctx, world, loc, t)])
   }
   for (const npc of world.npcs) {

@@ -16,7 +16,8 @@ from typing import Any, Dict, List, Optional, Tuple
 DEFAULT_ENVIRONMENT = "village"
 
 # mech -> preferred (kind, icon) list; the first icon not yet used in the world wins.
-# props: decor placed after the quest locations: icon, w, h, cap, wall (must touch a wall), solid.
+# props: decor placed after the quest locations: icon, w, h, cap, wall (True: against any wall, "back": against the
+# back wall, for tall furniture), solid.
 ENVIRONMENTS: Dict[str, Dict[str, Any]] = {
     "village": {
         "interior": False,
@@ -40,12 +41,12 @@ ENVIRONMENTS: Dict[str, Dict[str, Any]] = {
         },
         "spot": "cafe_table",
         "props": [
-            {"icon": "bookcase", "w": 2, "h": 1, "cap": 1, "wall": True},
-            {"icon": "sofa", "w": 2, "h": 1, "cap": 1, "wall": True},
+            {"icon": "bookcase", "w": 2, "h": 1, "cap": 1, "wall": "back"},
+            {"icon": "sofa", "w": 2, "h": 1, "cap": 1, "wall": "back"},
             {"icon": "cafe_table", "w": 1, "h": 1, "cap": 4},
             {"icon": "plant", "w": 1, "h": 1, "cap": 5},
             {"icon": "sacks", "w": 1, "h": 1, "cap": 2, "wall": True},
-            {"icon": "chalkboard", "w": 1, "h": 1, "cap": 1, "wall": True},
+            {"icon": "chalkboard", "w": 1, "h": 1, "cap": 1, "wall": "back"},
             {"icon": "rug", "w": 3, "h": 2, "cap": 1, "solid": False},
         ],
         "palette": {"floors": ["#b07a4c", "#a8714a", "#b88456"], "walls": ["#ecd6ac", "#e6cfa0", "#f0dcc0"], "trim": "#6e4426", "accent": "#d9734e"},
@@ -63,7 +64,7 @@ ENVIRONMENTS: Dict[str, Dict[str, Any]] = {
         },
         "spot": "dining_table",
         "props": [
-            {"icon": "pantry", "w": 2, "h": 1, "cap": 1, "wall": True},
+            {"icon": "pantry", "w": 2, "h": 1, "cap": 1, "wall": "back"},
             {"icon": "sacks", "w": 1, "h": 1, "cap": 3, "wall": True},
             {"icon": "dining_table", "w": 1, "h": 1, "cap": 3},
             {"icon": "plant", "w": 1, "h": 1, "cap": 3},
@@ -85,8 +86,8 @@ ENVIRONMENTS: Dict[str, Dict[str, Any]] = {
         },
         "spot": "display",
         "props": [
-            {"icon": "cooler", "w": 2, "h": 1, "cap": 1, "wall": True},
-            {"icon": "shelf", "w": 2, "h": 1, "cap": 2, "wall": True},
+            {"icon": "cooler", "w": 2, "h": 1, "cap": 1, "wall": "back"},
+            {"icon": "shelf", "w": 2, "h": 1, "cap": 2, "wall": "back"},
             {"icon": "buckets", "w": 1, "h": 1, "cap": 4},
             {"icon": "plant", "w": 1, "h": 1, "cap": 5},
             {"icon": "crate", "w": 1, "h": 1, "cap": 2, "wall": True},
@@ -108,7 +109,7 @@ ENVIRONMENTS: Dict[str, Dict[str, Any]] = {
         "spot": "bay",
         "props": [
             {"icon": "car", "w": 2, "h": 1, "cap": 1},
-            {"icon": "toolwall", "w": 2, "h": 1, "cap": 1, "wall": True},
+            {"icon": "toolwall", "w": 2, "h": 1, "cap": 1, "wall": "back"},
             {"icon": "tyres", "w": 1, "h": 1, "cap": 3, "wall": True},
             {"icon": "drum", "w": 1, "h": 1, "cap": 2, "wall": True},
             {"icon": "toolbox", "w": 1, "h": 1, "cap": 2},
@@ -130,12 +131,12 @@ ENVIRONMENTS: Dict[str, Dict[str, Any]] = {
         },
         "spot": "desk_small",
         "props": [
-            {"icon": "filing", "w": 2, "h": 1, "cap": 1, "wall": True},
-            {"icon": "bookcase", "w": 2, "h": 1, "cap": 1, "wall": True},
-            {"icon": "cooler_water", "w": 1, "h": 1, "cap": 1, "wall": True},
+            {"icon": "filing", "w": 2, "h": 1, "cap": 1, "wall": "back"},
+            {"icon": "bookcase", "w": 2, "h": 1, "cap": 1, "wall": "back"},
+            {"icon": "cooler_water", "w": 1, "h": 1, "cap": 1, "wall": "back"},
             {"icon": "desk_small", "w": 1, "h": 1, "cap": 4},
             {"icon": "plant", "w": 1, "h": 1, "cap": 5},
-            {"icon": "copier", "w": 1, "h": 1, "cap": 1, "wall": True},
+            {"icon": "copier", "w": 1, "h": 1, "cap": 1, "wall": "back"},
             {"icon": "rug", "w": 3, "h": 2, "cap": 1, "solid": False},
         ],
         "palette": {"floors": ["#7d8ea3", "#8295a6", "#77889c"], "walls": ["#e6e1d6", "#dfe3e6", "#ece6da"], "trim": "#5b6577", "accent": "#5e8fc9"},
@@ -153,8 +154,8 @@ ENVIRONMENTS: Dict[str, Dict[str, Any]] = {
         },
         "spot": "chair",
         "props": [
-            {"icon": "cabinet", "w": 2, "h": 1, "cap": 1, "wall": True},
-            {"icon": "bed", "w": 2, "h": 1, "cap": 1, "wall": True},
+            {"icon": "cabinet", "w": 2, "h": 1, "cap": 1, "wall": "back"},
+            {"icon": "bed", "w": 2, "h": 1, "cap": 1, "wall": "back"},
             {"icon": "curtain", "w": 1, "h": 1, "cap": 2},
             {"icon": "chair", "w": 1, "h": 1, "cap": 3, "wall": True},
             {"icon": "plant", "w": 1, "h": 1, "cap": 4},
@@ -175,9 +176,9 @@ ENVIRONMENTS: Dict[str, Dict[str, Any]] = {
         },
         "spot": "worktable",
         "props": [
-            {"icon": "toolwall", "w": 2, "h": 1, "cap": 1, "wall": True},
-            {"icon": "shelf", "w": 2, "h": 1, "cap": 1, "wall": True},
-            {"icon": "planks", "w": 2, "h": 1, "cap": 1, "wall": True},
+            {"icon": "toolwall", "w": 2, "h": 1, "cap": 1, "wall": "back"},
+            {"icon": "shelf", "w": 2, "h": 1, "cap": 1, "wall": "back"},
+            {"icon": "planks", "w": 2, "h": 1, "cap": 1, "wall": "back"},
             {"icon": "crate", "w": 1, "h": 1, "cap": 3},
             {"icon": "barrel", "w": 1, "h": 1, "cap": 2, "wall": True},
             {"icon": "plant", "w": 1, "h": 1, "cap": 2},
@@ -198,7 +199,7 @@ ENVIRONMENTS: Dict[str, Dict[str, Any]] = {
         },
         "spot": "pallet",
         "props": [
-            {"icon": "rack", "w": 2, "h": 1, "cap": 2, "wall": True},
+            {"icon": "rack", "w": 2, "h": 1, "cap": 2, "wall": "back"},
             {"icon": "pallet", "w": 1, "h": 1, "cap": 4},
             {"icon": "crate", "w": 1, "h": 1, "cap": 3},
             {"icon": "forklift", "w": 1, "h": 1, "cap": 1},
@@ -219,7 +220,10 @@ ENV_ICONS = sorted({icon for env in ENVIRONMENTS.values() for opts in env["kinds
 
 
 def describe_environments() -> str:
-    return "; ".join(f"{eid} = {env['fits']}" for eid, env in ENVIRONMENTS.items())
+    def furniture(env: Dict[str, Any]) -> str:
+        icons = list(dict.fromkeys(icon for opts in env["kinds"].values() for _, icon in opts))
+        return f" (furniture: {', '.join(icons)})" if icons else ""
+    return "; ".join(f"{eid} = {env['fits']}{furniture(env)}" for eid, env in ENVIRONMENTS.items())
 
 
 def _words(text: str) -> List[str]:

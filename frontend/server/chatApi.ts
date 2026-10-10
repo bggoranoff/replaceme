@@ -5,6 +5,7 @@ import os from 'node:os'
 import { execFile } from 'node:child_process'
 import { promisify } from 'node:util'
 import { loadEnv, type Connect, type Plugin } from 'vite'
+import { dispatch } from './api/index.ts'
 
 const execFileAsync = promisify(execFile)
 
@@ -191,6 +192,7 @@ async function callGemini(apiKey: string, model: string, req: ChatRequest): Prom
 
 function createHandler(getEnv: () => Record<string, string>, getRepoRoot: () => string): Connect.NextHandleFunction {
   return (req, res, next) => {
+    if (dispatch(req, res, { repoRoot: getRepoRoot(), env: getEnv() })) return
     const pathname = (req.url ?? '').split('?')[0]
 
     // Endpoint 1: /api/research (Researcher + Builder Agents)

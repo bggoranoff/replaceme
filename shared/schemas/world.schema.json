@@ -1,0 +1,238 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://replaceme.world/schemas/world.v2.json",
+  "title": "ReplaceMe generated game world (v2)",
+  "description": "Builder output committed as games/<slug>/world.json on branch game/<slug>. Only mechanics/controls from shared/actions.json on main are allowed. See shared/game_contract.md.",
+  "type": "object",
+  "required": ["version", "rulesVersion", "job", "slug", "title", "branch", "theme", "map", "npcs", "levels"],
+  "properties": {
+    "version": { "const": 2 },
+    "rulesVersion": { "type": "integer", "description": "shared/actions.json version the game was validated against" },
+    "researchVersion": { "type": "integer" },
+    "job": { "type": "string", "description": "job exactly as the user entered it" },
+    "slug": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+    "title": { "type": "string" },
+    "branch": { "type": "string", "pattern": "^game/[a-z0-9]+(-[a-z0-9]+)*$" },
+    "theme": {
+      "type": "object",
+      "required": ["name", "palette"],
+      "properties": {
+        "name": { "type": "string" },
+        "palette": {
+          "type": "object",
+          "required": ["grass", "path", "water", "wood", "roof", "accent"],
+          "additionalProperties": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" }
+        }
+      }
+    },
+    "map": {
+      "type": "object",
+      "required": ["cols", "rows", "tile", "spawn", "locations", "solids"],
+      "properties": {
+        "cols": { "type": "integer", "minimum": 16, "maximum": 64 },
+        "rows": { "type": "integer", "minimum": 12, "maximum": 48 },
+        "tile": { "const": 16 },
+        "spawn": { "$ref": "#/$defs/tile" },
+        "ground": { "type": "array", "description": "optional rows of tile codes: g grass, p path, w water, f floor, s sand", "items": { "type": "string" } },
+        "locations": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["id", "name", "kind", "tile", "w", "h"],
+            "properties": {
+              "id": { "$ref": "#/$defs/id" },
+              "name": { "type": "string" },
+              "kind": { "enum": ["building", "stall", "station", "field", "table", "spot", "decor"] },
+              "icon": { "type": "string" },
+              "tile": { "$ref": "#/$defs/tile" },
+              "w": { "type": "integer", "minimum": 1 },
+              "h": { "type": "integer", "minimum": 1 },
+              "color": { "type": "string" },
+              "accent": { "type": "string" }
+            }
+          }
+        },
+        "solids": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["x", "y", "w", "h"],
+            "properties": { "x": { "type": "integer" }, "y": { "type": "integer" }, "w": { "type": "integer" }, "h": { "type": "integer" } }
+          }
+        }
+      }
+    },
+    "npcs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "role", "tile"],
+        "properties": {
+          "id": { "$ref": "#/$defs/id" },
+          "name": { "type": "string" },
+          "role": { "type": "string" },
+          "tile": { "$ref": "#/$defs/tile" },
+          "voice": { "type": "string", "description": "optional TTS voice id passed in the dialogue event" },
+          "palette": { "type": "object", "additionalProperties": { "type": "string" } }
+        }
+      }
+    },
+    "levels": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": { "$ref": "#/$defs/level" }
+    },
+    "sources": { "type": "array", "items": { "$ref": "#/$defs/source" } }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[a-z0-9]+([-_][a-z0-9]+)*$" },
+    "tile": { "type": "array", "items": { "type": "integer", "minimum": 0 }, "minItems": 2, "maxItems": 2 },
+    "source": { "type": "object", "required": ["url"], "properties": { "title": { "type": "string" }, "url": { "type": "string" } } },
+    "feedback": {
+      "type": "object",
+      "required": ["too_low", "too_high"],
+      "properties": { "too_low": { "type": "string" }, "too_high": { "type": "string" } }
+    },
+    "numericTerm": {
+      "type": "object",
+      "required": ["tolerance", "weight", "curve", "feedback"],
+      "properties": {
+        "target": { "type": "number" },
+        "range": { "type": "array", "items": { "type": "number" }, "minItems": 2, "maxItems": 2 },
+        "tolerance": { "type": "number", "exclusiveMinimum": 0 },
+        "weight": { "type": "number", "exclusiveMinimum": 0 },
+        "curve": { "enum": ["gaussian", "linear", "step"] },
+        "feedback": { "$ref": "#/$defs/feedback" }
+      },
+      "oneOf": [{ "required": ["target"] }, { "required": ["range"] }]
+    },
+    "variable": {
+      "type": "object",
+      "required": ["id", "label", "unit", "min", "max", "step", "default"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+        "label": { "type": "string" },
+        "unit": { "type": "string" },
+        "min": { "type": "number" },
+        "max": { "type": "number" },
+        "step": { "type": "number", "exclusiveMinimum": 0 },
+        "default": { "type": "number" }
+      }
+    },
+    "dialogueLine": {
+      "type": "object",
+      "required": ["at", "npc_id", "text"],
+      "properties": {
+        "at": { "enum": ["quest", "start", "pass", "fail"] },
+        "npc_id": { "type": "string" },
+        "text": { "type": "string" }
+      }
+    },
+    "level": {
+      "type": "object",
+      "required": ["id", "index", "title", "task_id", "skill_name", "mechanic", "quest", "aim", "controls_hint", "metric", "params", "scoring"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id", "description": "globally unique: <job-slug>-<task-slug>; also the skill id" },
+        "index": { "type": "integer", "minimum": 1, "maximum": 4 },
+        "title": { "type": "string" },
+        "task_id": { "type": "string", "description": "research.json tasks[].id this level implements" },
+        "skill_name": { "type": "string" },
+        "mechanic": { "enum": ["mix", "timing", "sort", "deliver", "converse"] },
+        "quest": {
+          "type": "object",
+          "required": ["npc_id", "location_id", "title"],
+          "properties": {
+            "npc_id": { "type": "string" },
+            "location_id": { "type": "string" },
+            "title": { "type": "string" }
+          }
+        },
+        "aim": { "type": "string", "description": "what to achieve, never the answer" },
+        "controls_hint": { "type": "string" },
+        "metric": {
+          "type": "object",
+          "required": ["name", "description"],
+          "properties": { "name": { "type": "string" }, "description": { "type": "string" } }
+        },
+        "time_limit_ms": { "type": ["integer", "null"], "minimum": 1000 },
+        "success_line": { "type": "string" },
+        "dialogue": { "type": "array", "items": { "$ref": "#/$defs/dialogueLine" } },
+        "params": { "type": "object" },
+        "scoring": {
+          "type": "object",
+          "required": ["pass_threshold"],
+          "properties": {
+            "pass_threshold": { "type": "number", "minimum": 0, "maximum": 100 },
+            "variables": { "type": "object", "additionalProperties": { "$ref": "#/$defs/numericTerm" } },
+            "derived": {
+              "type": "array",
+              "items": {
+                "allOf": [
+                  { "$ref": "#/$defs/numericTerm" },
+                  { "type": "object", "required": ["id", "label", "expr"], "properties": { "id": { "type": "string" }, "label": { "type": "string" }, "expr": { "type": "string", "pattern": "^[a-z0-9_+\\-*/(). ]+$" } } }
+                ]
+              }
+            },
+            "order": { "type": "object", "required": ["expected", "weight", "feedback"] },
+            "correct": { "type": "object", "additionalProperties": { "type": "string" } },
+            "weights": { "type": "object" },
+            "feedback": { "type": "object" },
+            "turns": { "type": "object" }
+          }
+        },
+        "sources": { "type": "array", "items": { "$ref": "#/$defs/source" } }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "mechanic": { "const": "mix" } } },
+          "then": {
+            "properties": {
+              "params": { "type": "object", "required": ["station_id", "variables", "submit_label"], "properties": { "variables": { "type": "array", "minItems": 1, "maxItems": 6, "items": { "$ref": "#/$defs/variable" } } } },
+              "scoring": { "required": ["variables"] }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "mechanic": { "const": "timing" } } },
+          "then": {
+            "properties": {
+              "params": { "type": "object", "required": ["station_id", "phases"], "properties": { "phases": { "type": "array", "minItems": 1, "maxItems": 3 } } },
+              "scoring": { "required": ["variables"] }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "mechanic": { "const": "sort" } } },
+          "then": {
+            "properties": {
+              "params": { "type": "object", "required": ["station_id", "items", "bins"] },
+              "scoring": { "required": ["correct"] }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "mechanic": { "const": "deliver" } } },
+          "then": {
+            "properties": {
+              "params": { "type": "object", "required": ["start_tile", "orders", "capacity", "par_ms"] },
+              "scoring": { "required": ["weights", "feedback"] }
+            },
+            "required": ["time_limit_ms"]
+          }
+        },
+        {
+          "if": { "properties": { "mechanic": { "const": "converse" } } },
+          "then": {
+            "properties": {
+              "params": { "type": "object", "required": ["npc_id", "turns"] },
+              "scoring": { "required": ["turns"] }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

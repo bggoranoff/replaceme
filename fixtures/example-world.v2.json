@@ -1,0 +1,187 @@
+{
+  "version": 2,
+  "rulesVersion": 2,
+  "researchVersion": 2,
+  "job": "beekeeper",
+  "slug": "beekeeper",
+  "title": "Clover Hollow Apiary",
+  "branch": "game/beekeeper",
+  "theme": {
+    "name": "Clover Hollow",
+    "palette": { "grass": "#7fbf5a", "path": "#d9b779", "water": "#6fb3d9", "wood": "#9a6a3f", "roof": "#c8553d", "accent": "#f2c14e" }
+  },
+  "map": {
+    "cols": 32,
+    "rows": 20,
+    "tile": 16,
+    "spawn": [15, 12],
+    "locations": [
+      { "id": "honey-house", "name": "Honey House", "kind": "building", "icon": "house", "tile": [3, 2], "w": 6, "h": 4 },
+      { "id": "extractor", "name": "Extractor Bench", "kind": "station", "icon": "bench", "tile": [4, 7], "w": 3, "h": 1 },
+      { "id": "smoker-pit", "name": "Smoker Pit", "kind": "station", "icon": "fire", "tile": [22, 3], "w": 2, "h": 2 },
+      { "id": "jar-shelf", "name": "Jar Shelf", "kind": "station", "icon": "shelf", "tile": [12, 3], "w": 4, "h": 1 },
+      { "id": "market-stall", "name": "Market Stall", "kind": "stall", "icon": "stall", "tile": [24, 13], "w": 4, "h": 2 },
+      { "id": "hive-row", "name": "Hive Row", "kind": "field", "icon": "hive", "tile": [20, 8], "w": 6, "h": 2 }
+    ],
+    "solids": [
+      { "x": 3, "y": 2, "w": 6, "h": 4 },
+      { "x": 4, "y": 7, "w": 3, "h": 1 },
+      { "x": 22, "y": 3, "w": 2, "h": 2 },
+      { "x": 12, "y": 3, "w": 4, "h": 1 },
+      { "x": 24, "y": 13, "w": 4, "h": 2 },
+      { "x": 20, "y": 8, "w": 6, "h": 2 }
+    ]
+  },
+  "npcs": [
+    { "id": "old-maple", "name": "Old Maple", "role": "retired beekeeper", "tile": [8, 8], "voice": "warm-elder" },
+    { "id": "pip", "name": "Pip", "role": "apprentice", "tile": [21, 6] },
+    { "id": "rosa", "name": "Rosa", "role": "market customer", "tile": [26, 16] },
+    { "id": "theo", "name": "Theo", "role": "shopkeeper", "tile": [14, 5] }
+  ],
+  "levels": [
+    {
+      "id": "beekeeper-extract-honey",
+      "index": 1,
+      "title": "Spin the Frames",
+      "task_id": "extract-honey",
+      "skill_name": "Honey extraction",
+      "mechanic": "mix",
+      "quest": { "npc_id": "old-maple", "location_id": "extractor", "title": "Old Maple needs honey spun" },
+      "aim": "Set the extractor so the frames give the most honey without breaking the comb.",
+      "controls_hint": "Up/Down choose a setting, Left/Right adjust, Enter to spin. Or drag the sliders.",
+      "metric": { "name": "Yield quality", "description": "0-100 from how close speed, time and load are to good practice" },
+      "time_limit_ms": null,
+      "success_line": "Golden and clean, lovely work.",
+      "dialogue": [
+        { "at": "quest", "npc_id": "old-maple", "text": "My old hands can't crank the extractor today. Will you spin these frames?" },
+        { "at": "pass", "npc_id": "old-maple", "text": "Now that's honey worth selling." },
+        { "at": "fail", "npc_id": "old-maple", "text": "Hmm, not quite. Listen to what the comb tells you." }
+      ],
+      "params": {
+        "station_id": "extractor",
+        "variables": [
+          { "id": "speed_rpm", "label": "Spin speed", "unit": "rpm", "min": 50, "max": 500, "step": 10, "default": 100 },
+          { "id": "time_s", "label": "Spin time", "unit": "s", "min": 30, "max": 600, "step": 10, "default": 60 },
+          { "id": "frames", "label": "Frames loaded", "unit": "frames", "min": 1, "max": 12, "step": 1, "default": 2 }
+        ],
+        "submit_label": "Spin"
+      },
+      "scoring": {
+        "pass_threshold": 70,
+        "variables": {
+          "speed_rpm": { "target": 300, "tolerance": 60, "weight": 2, "curve": "gaussian", "feedback": { "too_low": "Lots of honey still clings to the comb.", "too_high": "The comb cracked from the force." } },
+          "time_s": { "range": [180, 300], "tolerance": 60, "weight": 1, "curve": "linear", "feedback": { "too_low": "The frames still feel heavy.", "too_high": "You waited long past the last drip." } },
+          "frames": { "target": 8, "tolerance": 2, "weight": 1, "curve": "gaussian", "feedback": { "too_low": "The drum wobbles, it is unbalanced.", "too_high": "Frames are jammed together." } }
+        },
+        "derived": [
+          { "id": "work", "label": "Spin work per frame", "expr": "speed_rpm * time_s / 60 / frames", "target": 150, "tolerance": 60, "weight": 1, "curve": "gaussian", "feedback": { "too_low": "Each frame got too little spinning.", "too_high": "Each frame was over-spun." } }
+        ]
+      },
+      "sources": [{ "title": "Example source", "url": "https://example.org/extraction" }]
+    },
+    {
+      "id": "beekeeper-smoke-hive",
+      "index": 2,
+      "title": "Calm the Hive",
+      "task_id": "smoke-hive",
+      "skill_name": "Smoking a hive",
+      "mechanic": "timing",
+      "quest": { "npc_id": "pip", "location_id": "smoker-pit", "title": "Pip is afraid of the bees" },
+      "aim": "Puff the smoker just enough to calm the bees before opening the hive.",
+      "controls_hint": "Hold Up or hold the mouse on the bellows, release to stop.",
+      "metric": { "name": "Calmness", "description": "0-100 from how well the smoke amount suits the colony" },
+      "time_limit_ms": 30000,
+      "success_line": "The bees are humming softly.",
+      "dialogue": [
+        { "at": "quest", "npc_id": "pip", "text": "They're buzzing so loud! Can you smoke the hive for me?" }
+      ],
+      "params": {
+        "station_id": "smoker-pit",
+        "phases": [
+          { "id": "smoke_puffs", "label": "Smoke", "unit": "puffs", "min": 0, "max": 10, "mode": "hold", "fill_per_s": 2 }
+        ]
+      },
+      "scoring": {
+        "pass_threshold": 70,
+        "variables": {
+          "smoke_puffs": { "range": [2, 4], "tolerance": 1.5, "weight": 1, "curve": "gaussian", "feedback": { "too_low": "The guard bees are still agitated.", "too_high": "The bees are coughing and fleeing the frames." } }
+        }
+      }
+    },
+    {
+      "id": "beekeeper-grade-jars",
+      "index": 3,
+      "title": "Shelve the Jars",
+      "task_id": "grade-jars",
+      "skill_name": "Grading honey",
+      "mechanic": "sort",
+      "quest": { "npc_id": "theo", "location_id": "jar-shelf", "title": "Theo's shelf is a mess" },
+      "aim": "Put each jar on the right shelf.",
+      "controls_hint": "Left/Right pick a shelf, Down to place. Or drag jars onto shelves.",
+      "metric": { "name": "Shelf accuracy", "description": "0-100 share of jars on the correct shelf" },
+      "time_limit_ms": 60000,
+      "success_line": "Theo's shelf has never looked better.",
+      "params": {
+        "station_id": "jar-shelf",
+        "items": [
+          { "id": "jar-1", "label": "Pale clear jar", "attributes": { "colour": "pale", "clarity": "clear" } },
+          { "id": "jar-2", "label": "Dark cloudy jar", "attributes": { "colour": "dark", "clarity": "cloudy" } },
+          { "id": "jar-3", "label": "Amber clear jar", "attributes": { "colour": "amber", "clarity": "clear" } }
+        ],
+        "bins": [
+          { "id": "light", "label": "Light" },
+          { "id": "amber", "label": "Amber" },
+          { "id": "dark", "label": "Dark" }
+        ]
+      },
+      "scoring": {
+        "pass_threshold": 70,
+        "correct": { "jar-1": "light", "jar-2": "dark", "jar-3": "amber" },
+        "feedback": { "jar-1": "That jar is too pale for this shelf.", "jar-2": "Customers will expect a lighter honey here.", "jar-3": "Look at the colour again." }
+      }
+    },
+    {
+      "id": "beekeeper-sell-honey",
+      "index": 4,
+      "title": "Market Morning",
+      "task_id": "sell-honey",
+      "skill_name": "Selling at market",
+      "mechanic": "converse",
+      "quest": { "npc_id": "rosa", "location_id": "market-stall", "title": "Rosa has questions" },
+      "aim": "Help Rosa pick the right honey.",
+      "controls_hint": "Up/Down choose what to say, Enter to answer. Or click an answer.",
+      "metric": { "name": "Customer care", "description": "0-100 average quality of your answers" },
+      "time_limit_ms": null,
+      "success_line": "Rosa leaves smiling.",
+      "params": {
+        "npc_id": "rosa",
+        "turns": [
+          {
+            "id": "baby",
+            "npc_line": "Is honey fine for my baby? She's eight months.",
+            "options": [
+              { "id": "yes", "text": "Of course, it's natural!", "reply": "Oh, wonderful." },
+              { "id": "wait", "text": "Please wait until she is over one year.", "reply": "Thank you for telling me." }
+            ]
+          },
+          {
+            "id": "crystal",
+            "npc_line": "My last jar went grainy. Is it spoiled?",
+            "options": [
+              { "id": "spoiled", "text": "Yes, throw it away.", "reply": "What a waste..." },
+              { "id": "warm", "text": "It just crystallised. Warm it gently.", "reply": "Oh, good to know!" }
+            ]
+          }
+        ]
+      },
+      "scoring": {
+        "pass_threshold": 70,
+        "turns": {
+          "baby": { "yes": { "points": 0, "feedback": "Honey is not safe for infants under one.", "critical": true }, "wait": { "points": 1, "feedback": "Safe and caring advice." } },
+          "crystal": { "spoiled": { "points": 0, "feedback": "Crystallised honey is not spoiled." }, "warm": { "points": 1, "feedback": "Correct and helpful." } }
+        }
+      }
+    }
+  ],
+  "sources": [{ "title": "Example source", "url": "https://example.org/extraction" }]
+}

@@ -1,7 +1,8 @@
 """
 Tests for researcher reasoning traces in Entire Brain (shared/brain.py), the
-researcher's C1 task normalization (researcher/normalize.py), the builder's
-brain-first trace loading, and the research.json v2 example fixture.
+researcher's C1 task normalization (researcher/normalize.py) and grounding
+retry, the builder's brain-first trace loading, and the research.json v2
+example fixture.
 
     python3 scripts/test_brain.py          # offline (fake entire-brain CLI)
     python3 scripts/test_brain.py --live   # also round-trips through the real entire-brain CLI
@@ -219,6 +220,35 @@ def test_normalize():
     check(playable(fixed_sort, "sort"), "3 valid sort items remain playable")
 
 
+def test_grounding_retry():
+    import researcher.agent as agent_mod
+    from researcher.gemini_research import GroundedResult
+
+    calls = []
+    replies = []
+
+    def fake_grounded(client, prompt, system_instruction):
+        calls.append(prompt)
+        return replies.pop(0)
+
+    real = agent_mod.grounded
+    agent_mod.grounded = fake_grounded
+    try:
+        agent = agent_mod.ResearcherAgent(gemini_client=object())
+        planned = {"id": "task-a", "title": "Task A", "summary": "s", "mechanic": "mix", "research_focus": "f"}
+        empty = GroundedResult(text="uncited", sources=[], queries=[], thoughts=[])
+        replies[:] = [empty, empty]
+        check(agent._research_task("some job", planned) is None and len(calls) == 2,
+              "a task whose grounded research cites nothing is searched again, then dropped")
+        cited = GroundedResult(text="cited [1]", sources=[{"title": "one", "url": "https://one.example"}], queries=["q"], thoughts=[])
+        calls.clear()
+        replies[:] = [empty, cited]
+        check(agent._grounded("prompt", "plan") is cited and len(calls) == 2 and "Google Search" in calls[1],
+              "the cited retry replaces an uncited answer")
+    finally:
+        agent_mod.grounded = real
+
+
 def test_fixture():
     brief = json.loads(FIXTURE.read_text())
     ResearchBrief.model_validate(brief)
@@ -269,6 +299,7 @@ if __name__ == "__main__":
     with_fake_brain(test_push_and_load)
     test_fallback_without_brain()
     test_normalize()
+    test_grounding_retry()
     test_fixture()
     if "--live" in sys.argv:
         test_live()

@@ -153,7 +153,7 @@ class ResearcherAgent:
 
     def _plan(self, job: str) -> Tuple[ResearchPlan, GroundedResult]:
         mechanics = "\n".join(describe_mechanic(mid, m) for mid, m in self.mechanics.items())
-        report = grounded(self.client, (
+        report = self._grounded((
             f'Job: "{job}"\n\n'
             f"The game platform supports exactly these {len(self.mechanics)} mechanics:\n{mechanics}\n\n"
             f"Research what a {job} actually does day to day. Then choose {PLANNED_TASKS} distinct, concrete, hands-on tasks of "
@@ -166,7 +166,7 @@ class ResearcherAgent:
             f"which quantities or choices decide the quality of the result and what sources recommend.\n"
             f"Also describe a cozy village setting where this job happens (the places on the map), the core rules of the job, "
             f"and the assumptions you made. Cite your sources."
-        ), RESEARCHER_SYSTEM_PROMPT)
+        ), "job research")
         self._log(f"grounded job research done ({len(report.sources)} sources, {len(report.queries)} searches)")
         plan = structured(self.client, (
             f'Job: "{job}"\nConvert this research report into the plan JSON with exactly {PLANNED_TASKS} tasks in the '
@@ -181,7 +181,7 @@ class ResearcherAgent:
     def _research_task(self, job: str, planned: Dict[str, Any]) -> Optional[Tuple[Dict[str, Any], GroundedResult]]:
         mechanic = planned["mechanic"]
         try:
-            report = grounded(self.client, (
+            report = self._grounded((
                 f'Job: "{job}". Task: "{planned["title"]}": {planned["summary"]}\n'
                 f"Focus: {planned['research_focus']}\n"
                 f"This task is played with this game mechanic:\n{describe_mechanic(mechanic, self.mechanics[mechanic])}\n\n"
@@ -189,8 +189,11 @@ class ResearcherAgent:
                 f"{MECHANIC_RESEARCH[mechanic]}\n"
                 f"Then list the caveats a practitioner must know and the problems that commonly appear (how they show up and "
                 f"how to fix them). Give numbers with units and cite a source for every number and rule."
-            ), RESEARCHER_SYSTEM_PROMPT)
+            ), f"task {planned['id']}")
             self._log(f"task {planned['id']}: grounded research done ({len(report.sources)} sources)")
+            if not report.sources:
+                print(f"[ResearcherAgent] Dropping task '{planned['id']}': grounded research cited no sources")
+                return None
             prompt = self._extraction_prompt(job, planned, report)
             draft = structured(self.client, prompt, TaskDraft, EXTRACTOR_SYSTEM_PROMPT).model_dump()
             issues = validate_draft(draft, mechanic, len(report.sources))
@@ -209,6 +212,17 @@ class ResearcherAgent:
         except Exception as exc:
             print(f"[ResearcherAgent] Task '{planned['id']}' failed: {exc}")
             return None
+
+    def _grounded(self, prompt: str, what: str) -> GroundedResult:
+        """Grounded call; asked again once when the model answered without searching (no citations to keep)."""
+        report = grounded(self.client, prompt, RESEARCHER_SYSTEM_PROMPT)
+        if not report.sources:
+            self._log(f"{what}: no cited sources, searching again")
+            retry = grounded(self.client, f"{prompt}\n\nUse Google Search for every fact and cite the pages you used.",
+                             RESEARCHER_SYSTEM_PROMPT)
+            if retry.sources:
+                report = retry
+        return report
 
     def _extraction_prompt(self, job: str, planned: Dict[str, Any], report: GroundedResult) -> str:
         mechanic = planned["mechanic"]

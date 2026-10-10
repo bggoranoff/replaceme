@@ -45,11 +45,14 @@ export class SortMechanic implements Mechanic {
 
   start() {}
 
-  private drop(binIndex: number) {
+  private drop(binIndex: number, from?: { x: number; y: number }) {
     const cur = this.current
     if (!cur || binIndex < 0) return
     const bin = this.params.bins[binIndex]
     this.selectedBin = binIndex
+    const ir = this.itemRect()
+    this.ctx.juice.snapInto(from ? { ...ir, ...from } : ir, this.binRects()[binIndex], `bin:${bin.id}`, cur.label)
+    this.ctx.juice.pop('sort:item', 280)
     this.placed.push({ item_id: cur.id, bin_id: bin.id })
     this.ctx.emit('placed', { item_id: cur.id, bin_id: bin.id })
     this.index += 1
@@ -58,9 +61,11 @@ export class SortMechanic implements Mechanic {
 
   dir(d: Dir) {
     const n = this.params.bins.length
+    const before = this.selectedBin
     if (d === 'left') this.selectedBin = Math.max(0, this.selectedBin - 1)
     else if (d === 'right') this.selectedBin = Math.min(n - 1, this.selectedBin + 1)
     else if (d === 'down') this.drop(this.selectedBin)
+    if (d !== 'down' && this.selectedBin !== before) this.ctx.juice.select(`bin:${this.params.bins[this.selectedBin].id}`)
   }
 
   holdStart() {
@@ -85,7 +90,10 @@ export class SortMechanic implements Mechanic {
 
   down(x: number, y: number) {
     const r = this.itemRect()
-    if (this.current && hit(r, x, y)) this.drag = { x, y, dx: x - r.x, dy: y - r.y }
+    if (this.current && hit(r, x, y)) {
+      this.drag = { x, y, dx: x - r.x, dy: y - r.y }
+      this.ctx.juice.sfx('tap')
+    }
   }
 
   move(x: number, y: number) {
@@ -93,15 +101,17 @@ export class SortMechanic implements Mechanic {
       this.drag.x = x
       this.drag.y = y
       const i = this.binAt(x, y)
+      if (i >= 0 && i !== this.selectedBin) this.ctx.juice.select(`bin:${this.params.bins[i].id}`)
       if (i >= 0) this.selectedBin = i
     }
   }
 
   up(x: number, y: number) {
     if (!this.drag) return
+    const at = { x: x - this.drag.dx, y: y - this.drag.dy }
     this.drag = null
     const i = this.binAt(x, y)
-    if (i >= 0) this.drop(i)
+    if (i >= 0) this.drop(i, at)
   }
 
   advance() {}

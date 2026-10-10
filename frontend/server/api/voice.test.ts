@@ -78,8 +78,10 @@ before(async () => {
       }
       calls.push(call)
       if (call.key !== KEY) {
-        res.statusCode = 500
-        return res.end('error from server 1008: invalid api key')
+        // What api.gradium.ai answers for a wrong or expired key.
+        res.statusCode = 401
+        res.setHeader('Content-Type', 'application/json')
+        return res.end('{"detail":"Invalid or expired API key"}')
       }
       if (url.pathname === '/api/post/speech/tts') {
         const { voice_id, output_format, only_audio } = JSON.parse(call.body.toString('utf8'))
@@ -225,18 +227,31 @@ test('without GRADIUM_API_KEY both routes answer 503', async () => {
   assert.match(((await stt.json()) as { error: string }).error, /GRADIUM_API_KEY/)
 })
 
-test('upstream errors become 502 and never echo the key', async () => {
+test('a key Gradium rejects answers 503 once, without a voice retry or the key', async () => {
   const bad = apiServer({ GRADIUM_API_KEY: 'wrong-key-xyz', GRADIUM_BASE_URL: `http://127.0.0.1:${(mock.address() as AddressInfo).port}/api` })
   const url = await listen(bad)
   try {
-    const res = await tts(url, { text: 'A line nobody has asked for yet.' })
-    assert.equal(res.status, 502)
+    const text = 'A line nobody has asked for yet.'
+    const res = await tts(url, { text, voice: 'r2sIQdqqoqgRJuXw' })
+    assert.equal(res.status, 503)
     const body = await res.text()
-    assert.match(body, /Gradium TTS error \(500\)/)
+    assert.match(body, /GRADIUM_API_KEY/)
     assert.ok(!body.includes('wrong-key-xyz'))
+    assert.equal(ttsCalls(text).length, 1, 'no default-voice retry for a rejected key')
+    const stt = await fetch(`${url}/api/stt`, { method: 'POST', headers: { 'Content-Type': 'audio/wav' }, body: wav() })
+    assert.equal(stt.status, 503)
+    assert.ok(!(await stt.text()).includes('wrong-key-xyz'))
   } finally {
     bad.close()
   }
+})
+
+test('other upstream errors become 502 and never echo the key', async () => {
+  const res = await fetch(`${apiUrl}/api/stt`, { method: 'POST', headers: { 'Content-Type': 'audio/pcm' }, body: Buffer.from('not audio') })
+  assert.equal(res.status, 502)
+  const body = await res.text()
+  assert.match(body, /Gradium STT error \(500\)/)
+  assert.ok(!body.includes(KEY))
 })
 
 test('live Gradium TTS -> STT round trip', async (t) => {

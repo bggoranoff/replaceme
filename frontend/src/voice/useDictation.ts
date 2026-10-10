@@ -122,8 +122,11 @@ export function useDictation(onTranscript: (text: string) => void) {
   }
 
   const stop = () => {
-    const recorder = session.current?.recorder
-    if (recorder?.state === 'recording') recorder.stop()
+    const s = session.current
+    if (!s) return
+    if (s.recorder?.state === 'recording') s.recorder.stop()
+    // Pressed again while still waiting for the microphone: cancel instead of starting to record.
+    else if (!s.recorder) s.cancelled = true
   }
 
   const buttonProps = {

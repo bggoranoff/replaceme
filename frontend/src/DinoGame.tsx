@@ -543,7 +543,12 @@ export function DinoGame() {
         aria-label="Dinosaur runner. Space, Up arrow or tap to jump; Down arrow to duck."
       />
       <p className="dino-hint">
-        <kbd>Space</kbd> / <kbd>↑</kbd> / tap to jump · <kbd>↓</kbd> to duck
+        <span>
+          <kbd>Space</kbd> / <kbd>↑</kbd> / tap to jump ·
+        </span>{' '}
+        <span>
+          <kbd>↓</kbd> to duck
+        </span>
       </p>
     </div>
   )

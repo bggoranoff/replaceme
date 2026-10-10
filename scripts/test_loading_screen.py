@@ -7,8 +7,8 @@ Needs a dev server (`cd frontend && npx vite --port 5181 --strictPort`) and Play
     python3 scripts/test_loading_screen.py [--url http://localhost:5181/] [--shots DIR]
 
 POST /api/research is held open so the loading screen stays up. Progress is driven through the
-real GET /api/research/progress by writing pipeline artifacts into games/zz-loading-test/
-(gitignored, removed afterwards).
+real GET /api/research/progress by writing pipeline artifacts into games/zz-loading-test/ and
+games/zz-loading-other/ (gitignored, removed afterwards).
 """
 
 import argparse
@@ -21,6 +21,7 @@ from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
 GAME_DIR = ROOT / 'games' / 'zz-loading-test'
+OTHER_DIR = ROOT / 'games' / 'zz-loading-other'
 failures = []
 
 
@@ -110,10 +111,19 @@ def desktop(browser, url, shots):
     check(step_becomes(pg, 'Building the world'), 'research.json moves progress to the build step')
     check('Found: Task Alpha · Task Beta' in pg.inner_text('.loader-step.done'), 'research step lists the tasks found')
     check('2 of 4' in pg.inner_text('.loader-progress-head').lower().replace('step ', ''), 'counter shows step 2 of 4')
+    OTHER_DIR.mkdir(parents=True, exist_ok=True)
+    (OTHER_DIR / 'world.json').write_text('{}')
+    (OTHER_DIR / 'graph_report.json').write_text('{"ok": true}')
+    pg.wait_for_timeout(2500)
+    check(not step_becomes(pg, 'Saving the game', 100) and step_becomes(pg, 'Building the world', 100),
+          'another game folder does not move progress')
     (GAME_DIR / 'world.json').write_text('{}')
     check(step_becomes(pg, 'Checking the rules'), 'world.json moves progress to the rules check')
+    (GAME_DIR / 'graph_report.json').write_text('{"ok": false}')
+    pg.wait_for_timeout(2500)
+    check(step_becomes(pg, 'Checking the rules', 100), 'a failing rules check does not move on to saving')
     (GAME_DIR / 'graph_report.json').write_text('{"ok": true}')
-    check(step_becomes(pg, 'Saving the game'), 'graph_report.json moves progress to saving')
+    check(step_becomes(pg, 'Saving the game'), 'a passing graph_report.json moves progress to saving')
     check(attr(pg, 'state') in ('running', 'over'), 'game keeps running while progress updates')
     shot(pg, shots, 'desktop-progress')
 
@@ -157,7 +167,8 @@ def main():
     ap.add_argument('--url', default='http://localhost:5181/')
     ap.add_argument('--shots', help='directory for screenshots')
     args = ap.parse_args()
-    shutil.rmtree(GAME_DIR, ignore_errors=True)
+    for d in (GAME_DIR, OTHER_DIR):
+        shutil.rmtree(d, ignore_errors=True)
     try:
         with sync_playwright() as p:
             browser = p.chromium.launch()
@@ -165,7 +176,8 @@ def main():
             phone(browser, args.url, args.shots)
             browser.close()
     finally:
-        shutil.rmtree(GAME_DIR, ignore_errors=True)
+        for d in (GAME_DIR, OTHER_DIR):
+            shutil.rmtree(d, ignore_errors=True)
     print(f'\n{len(failures)} FAILED' if failures else '\nALL PASSED')
     sys.exit(1 if failures else 0)
 

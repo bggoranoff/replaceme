@@ -73,7 +73,12 @@
   margin: 10px 0 0;
   color: var(--ink-soft);
   font-size: 13px;
+  line-height: 2;
   text-align: center;
+}
+
+.dino-hint span {
+  white-space: nowrap;
 }
 
 .dino-hint kbd {

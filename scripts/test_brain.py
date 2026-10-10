@@ -149,6 +149,7 @@ def test_normalize():
         "variables": [
             {"id": "amount", "label": "Amount", "unit": "u", "min": 0, "max": 40, "step": 1, "default": 50},
             {"id": "time_s", "label": "Time", "unit": "s", "min": 10, "max": 100, "step": 5, "default": 30},
+            {"id": "extra", "label": "Unscored", "unit": "u", "min": 0, "max": 10, "step": 1, "default": 2},
         ],
         "derived": [{"id": "rate", "label": "Rate", "expr": "amount / time_s"}, {"id": "bad", "label": "Bad", "expr": "amount ** 2"}],
         "optima": [
@@ -167,7 +168,8 @@ def test_normalize():
         "caveats": ["c"], "problems": ["p"], "source_ids": [1, 2],
     }
     issues = validate_draft(draft, "mix", n_sources=2)
-    for needle in ("outside the variable", "expr", "aim reveals", "feedback reveals", "default must be inside", "disagrees"):
+    for needle in ("outside the variable", "expr", "aim reveals", "feedback reveals", "default must be inside", "disagrees",
+                   "extra affects no heuristic"):
         check(any(needle in issue for issue in issues), f"validate_draft reports '{needle}': {issues}")
 
     fixed = repair_draft(draft, "mix")
@@ -178,6 +180,7 @@ def test_normalize():
     time_s = next(v for v in fixed["variables"] if v["id"] == "time_s")
     check(not 20 <= time_s["default"] <= 40, "default moved out of the optimal range")
     check([d["id"] for d in fixed["derived"]] == ["rate"], "invalid derived term dropped")
+    check([v["id"] for v in fixed["variables"]] == ["amount", "time_s"], "unscored control dropped")
     rate = next(o for o in fixed["optima"] if o["term"] == "rate")
     check(abs(rate["target"] - 50 / 30) < 1e-6, "derived optimum aligned with the variable optima")
     check(evaluate("amount / (time_s - 30)", {"amount": 1, "time_s": 30}) is None, "division by zero evaluates to None")

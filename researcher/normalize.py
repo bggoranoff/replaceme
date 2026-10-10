@@ -355,14 +355,8 @@ def _clean_optimum(opt: Dict[str, Any]) -> Dict[str, Any]:
     return opt
 
 
-def repair_draft(draft: Dict[str, Any], mechanic: str) -> Dict[str, Any]:
-    """Fix what can be fixed deterministically; drop what cannot."""
-    draft = {**draft, "optima": [_clean_optimum(o) for o in draft.get("optima", [])]}
-    if mechanic not in NUMERIC:
-        draft["variables"], draft["derived"], draft["optima"], draft["heuristic"] = [], [], [], []
-    else:
-        draft["variables"] = draft.get("variables", [])[: VARIABLE_LIMITS[mechanic][1]]
-    _fix_variables(draft)
+def _prune_terms(draft: Dict[str, Any]) -> None:
+    """Keep only derived terms, optima and heuristic terms that refer to existing variables/terms."""
     var_ids = {v["id"] for v in draft["variables"]}
     draft["derived"] = [d for d in draft.get("derived", [])
                         if VAR_ID.match(d["id"]) and d["id"] not in var_ids
@@ -373,6 +367,25 @@ def repair_draft(draft: Dict[str, Any], mechanic: str) -> Dict[str, Any]:
                        and (o.get("range") is None or (len(o["range"]) == 2 and o["range"][0] < o["range"][1]))]
     optimum_terms = {o["term"] for o in draft["optima"]}
     draft["heuristic"] = [h for h in draft.get("heuristic", []) if h["term"] in optimum_terms and h["tolerance"] > 0 and h["weight"] > 0]
+
+
+def repair_draft(draft: Dict[str, Any], mechanic: str) -> Dict[str, Any]:
+    """Fix what can be fixed deterministically; drop what cannot."""
+    draft = {**draft, "optima": [_clean_optimum(o) for o in draft.get("optima", [])]}
+    if mechanic not in NUMERIC:
+        draft["variables"], draft["derived"], draft["optima"], draft["heuristic"] = [], [], [], []
+    else:
+        draft["variables"] = draft.get("variables", [])[: VARIABLE_LIMITS[mechanic][1]]
+    _fix_variables(draft)
+    _prune_terms(draft)
+    # A control that no scoring term depends on would only distract: drop it (and anything built on it).
+    covered = {h["term"] for h in draft["heuristic"]}
+    for d in draft["derived"]:
+        if d["id"] in covered:
+            covered |= expr_identifiers(d["expr"]) or set()
+    if covered & {v["id"] for v in draft["variables"]}:
+        draft["variables"] = [v for v in draft["variables"] if v["id"] in covered]
+        _prune_terms(draft)
     mismatches = _derived_mismatches(draft)
     for opt in draft["optima"]:  # the variable optima are researched directly; align derived terms to them
         if opt["term"] in mismatches:

@@ -5,7 +5,6 @@ section i, C1). Sources are referenced by number ([n] from the grounded report)
 and mapped back to the cited URLs here, so no URL is ever invented.
 """
 
-import ast
 import math
 import re
 import unicodedata
@@ -26,11 +25,12 @@ from shared.schemas.research import (
 
 VAR_ID = re.compile(r"^[a-z][a-z0-9_]*$")
 TASK_ID = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
-EXPR_CHARS = re.compile(r"^[a-z0-9_+\-*/(). ]+$")
+EXPR_TOKEN = re.compile(r"\s*(?:(\d+(?:\.\d+)?|\.\d+)|([a-z][a-z0-9_]*)|(.))")
 NUMBER = re.compile(r"(?<![\w.])-?\d+(?:\.\d+)?(?![\w.])")
 NUMERIC = ("mix", "timing")
 VARIABLE_LIMITS = {"mix": (1, 6), "timing": (1, 3)}
 TASK_ID_MAX = 24
+GRID_REACH = 0.9  # a control's best slider position must score at least this on its own term
 
 
 # ---------------------------------------------------------------------------
@@ -92,24 +92,85 @@ def slugify(text: str, fallback: str = "task", max_len: int = 40) -> str:
     return slug or fallback
 
 
-def expr_identifiers(expr: str) -> Optional[Set[str]]:
-    """Identifiers of a valid scoring expression (actions.json expr_grammar), or None if invalid."""
-    if not expr or not EXPR_CHARS.match(expr) or re.search(r"\d[e_]", expr):
+def parse_expr(expr: str) -> Optional[Any]:
+    """Parse a scoring expression exactly per actions.json expr_grammar (so ids like `yield` or `in` are fine).
+
+    Returns a tuple tree ("num", x) | ("var", id) | ("neg", node) | (op, left, right), or None if invalid.
+    """
+    tokens: List[Tuple[str, Any]] = []
+    for num, ident, other in EXPR_TOKEN.findall(expr or ""):
+        if num:
+            tokens.append(("num", float(num)))
+        elif ident:
+            tokens.append(("var", ident))
+        elif other.strip():
+            if other not in "+-*/()":
+                return None
+            tokens.append(("op", other))
+    pos = 0
+
+    def peek() -> Optional[Tuple[str, Any]]:
+        return tokens[pos] if pos < len(tokens) else None
+
+    def factor() -> Any:
+        nonlocal pos
+        tok = peek()
+        if tok is None:
+            raise ValueError("unexpected end")
+        pos += 1
+        if tok[0] in ("num", "var"):
+            return tok
+        if tok == ("op", "-"):
+            return ("neg", factor())
+        if tok == ("op", "("):
+            node = sum_()
+            if peek() != ("op", ")"):
+                raise ValueError("missing )")
+            pos += 1
+            return node
+        raise ValueError(f"unexpected {tok[1]}")
+
+    def product() -> Any:
+        nonlocal pos
+        node = factor()
+        while peek() in (("op", "*"), ("op", "/")):
+            op = tokens[pos][1]
+            pos += 1
+            node = (op, node, factor())
+        return node
+
+    def sum_() -> Any:
+        nonlocal pos
+        node = product()
+        while peek() in (("op", "+"), ("op", "-")):
+            op = tokens[pos][1]
+            pos += 1
+            node = (op, node, product())
+        return node
+
+    if not tokens:
         return None
     try:
-        tree = ast.parse(expr, mode="eval")
-    except SyntaxError:
+        tree = sum_()
+    except ValueError:
         return None
-    names: Set[str] = set()
-    for node in ast.walk(tree):
-        if isinstance(node, ast.Name):
-            names.add(node.id)
-        elif isinstance(node, ast.Constant):
-            if isinstance(node.value, bool) or not isinstance(node.value, (int, float)):
-                return None
-        elif not isinstance(node, (ast.Expression, ast.BinOp, ast.UnaryOp, ast.Add, ast.Sub, ast.Mult, ast.Div, ast.USub, ast.Load)):
-            return None
-    return names
+    return tree if pos == len(tokens) else None
+
+
+def _names(node: Any) -> Set[str]:
+    if node[0] == "num":
+        return set()
+    if node[0] == "var":
+        return {node[1]}
+    if node[0] == "neg":
+        return _names(node[1])
+    return _names(node[1]) | _names(node[2])
+
+
+def expr_identifiers(expr: str) -> Optional[Set[str]]:
+    """Identifiers of a valid scoring expression (actions.json expr_grammar), or None if invalid."""
+    tree = parse_expr(expr)
+    return None if tree is None else _names(tree)
 
 
 def _snap(value: float, lo: float, step: float) -> float:
@@ -138,30 +199,29 @@ def _optimum_values(draft: Dict[str, Any]) -> List[float]:
 
 def evaluate(expr: str, values: Dict[str, float]) -> Optional[float]:
     """Value of a valid scoring expression, or None (invalid, unknown id, division by zero)."""
-    names = expr_identifiers(expr)
-    if names is None or not names <= set(values):
+    tree = parse_expr(expr)
+    if tree is None or not _names(tree) <= set(values):
         return None
 
-    def ev(node: ast.AST) -> float:
-        if isinstance(node, ast.Expression):
-            return ev(node.body)
-        if isinstance(node, ast.Constant):
-            return float(node.value)
-        if isinstance(node, ast.Name):
-            return float(values[node.id])
-        if isinstance(node, ast.UnaryOp):
-            return -ev(node.operand)
-        left, right = ev(node.left), ev(node.right)
-        if isinstance(node.op, ast.Add):
+    def ev(node: Any) -> float:
+        kind = node[0]
+        if kind == "num":
+            return node[1]
+        if kind == "var":
+            return float(values[node[1]])
+        if kind == "neg":
+            return -ev(node[1])
+        left, right = ev(node[1]), ev(node[2])
+        if kind == "+":
             return left + right
-        if isinstance(node.op, ast.Sub):
+        if kind == "-":
             return left - right
-        if isinstance(node.op, ast.Mult):
+        if kind == "*":
             return left * right
         return left / right
 
     try:
-        return ev(ast.parse(expr, mode="eval"))
+        return ev(tree)
     except ZeroDivisionError:
         return None
 
@@ -182,6 +242,37 @@ def _derived_mismatches(draft: Dict[str, Any]) -> Dict[str, float]:
         if gap > tolerance.get(d["id"], abs(centers[d["id"]]) * 0.1 or 1e-9):
             mismatches[d["id"]] = implied
     return mismatches
+
+
+def _curve_score(d: float, tolerance: float, curve: str) -> float:
+    """actions.json scoring_spec.numeric_term curves."""
+    if curve == "gaussian":
+        return math.exp(-0.5 * (d / tolerance) ** 2)
+    if curve == "linear":
+        return max(0.0, 1 - d / (2 * tolerance))
+    return 1.0 if d <= tolerance else 0.0
+
+
+def _best_grid_score(v: Dict[str, Any], opt: Dict[str, Any], h: Dict[str, Any]) -> float:
+    """Best sub-score a control can reach for its own term on its slider grid (min + k*step)."""
+    if not (v["step"] > 0 and v["max"] > v["min"] and h["tolerance"] > 0):
+        return 0.0
+    lo, hi = min(_bounds(opt)), max(_bounds(opt))
+    best = 0.0
+    for goal in {lo, hi, (lo + hi) / 2}:
+        k = round((goal - v["min"]) / v["step"])
+        for kk in (k - 1, k, k + 1):
+            x = v["min"] + kk * v["step"]
+            if v["min"] - 1e-9 <= x <= v["max"] + 1e-9:
+                best = max(best, _curve_score(max(lo - x, x - hi, 0.0), h["tolerance"], h["curve"]))
+    return best
+
+
+def _nice_step(limit: float) -> float:
+    """Largest 1/2/2.5/5 x 10^k step that is <= limit."""
+    exp = math.floor(math.log10(limit))
+    step = next(mult * 10 ** exp for mult in (5, 2.5, 2, 1) if mult * 10 ** exp <= limit)
+    return round(step, 6) or limit
 
 
 # ---------------------------------------------------------------------------
@@ -222,6 +313,7 @@ def validate_draft(draft: Dict[str, Any], mechanic: str, n_sources: int) -> List
     terms = set(var_ids) | set(derived_ids)
     by_id = {v["id"]: v for v in variables}
     optimum_terms = set()
+    optima_by_term: Dict[str, Dict[str, Any]] = {}
     for opt in draft.get("optima", []):
         term = opt["term"]
         if term not in terms:
@@ -238,7 +330,10 @@ def validate_draft(draft: Dict[str, Any], mechanic: str, n_sources: int) -> List
             v = by_id[term]
             if any(not v["min"] <= b <= v["max"] for b in _bounds(opt)):
                 issues.append(f"optimum {term} lies outside the variable's [min, max]; widen min/max or fix the optimum")
+        if not any(1 <= n <= n_sources for n in opt.get("source_ids") or []):
+            issues.append(f"optimum {term}: source_ids must cite the numbered sources that support this value")
         optimum_terms.add(term)
+        optima_by_term[term] = opt
     for term, implied in _derived_mismatches(draft).items():
         issues.append(f"optimum {term} disagrees with the variable optima, which imply about {implied:.4g}; make them consistent")
     covered: Set[str] = set()
@@ -249,6 +344,9 @@ def validate_draft(draft: Dict[str, Any], mechanic: str, n_sources: int) -> List
             issues.append(f"heuristic {h['term']}: tolerance and weight must be > 0")
         if h["term"] in by_id:
             covered.add(h["term"])
+            v, opt = by_id[h["term"]], optima_by_term.get(h["term"])
+            if opt and 0 < v["step"] <= v["max"] - v["min"] and h["tolerance"] > 0 and _best_grid_score(v, opt, h) < GRID_REACH:
+                issues.append(f"variable {h['term']}: step is too coarse to land near its optimum within the tolerance; use a smaller step")
         else:
             expr = next((d["expr"] for d in draft.get("derived", []) if d["id"] == h["term"]), "")
             covered |= expr_identifiers(expr) or set()
@@ -280,6 +378,8 @@ def validate_draft(draft: Dict[str, Any], mechanic: str, n_sources: int) -> List
                 issues.append(f"dialogue turn {i} needs 2-4 options")
             if any(not 0 <= o["points"] <= 1 for o in turn["options"]):
                 issues.append(f"dialogue turn {i}: points must be within 0..1")
+            if not any(o["points"] >= 0.8 and not o["critical"] for o in turn["options"]):
+                issues.append(f"dialogue turn {i} needs a professionally right response (points >= 0.8, not critical)")
     if not draft.get("caveats") or not draft.get("problems"):
         issues.append("give caveats and problems")
     if not any(1 <= n <= n_sources for n in draft.get("source_ids", [])):
@@ -292,7 +392,8 @@ def validate_draft(draft: Dict[str, Any], mechanic: str, n_sources: int) -> List
 # ---------------------------------------------------------------------------
 
 def _fix_variables(draft: Dict[str, Any]) -> None:
-    tolerance = {h["term"]: h["tolerance"] for h in draft.get("heuristic", []) if h["tolerance"] > 0}
+    heuristics = {h["term"]: h for h in draft.get("heuristic", []) if h["tolerance"] > 0}
+    tolerance = {term: h["tolerance"] for term, h in heuristics.items()}
     optima = {o["term"]: o for o in draft.get("optima", []) if (o.get("range") is None) != (o.get("target") is None)}
     seen: Set[str] = set()
     fixed = []
@@ -318,6 +419,10 @@ def _fix_variables(draft: Dict[str, Any]) -> None:
         width = v["max"] - v["min"]
         if not 0 < v["step"] <= width:
             v["step"] = width / 20
+        term = heuristics.get(v["id"])
+        if opt and term and _best_grid_score(v, opt, term) < GRID_REACH:
+            # Too coarse to land near the optimum: the finest curve (linear) needs step/2 within 0.2 x tolerance.
+            v["step"], widened = _nice_step(min(0.4 * term["tolerance"], width)), True
         if widened:  # keep widened bounds on the step grid
             v["min"] = math.floor(v["min"] / v["step"] + 1e-9) * v["step"]
             v["max"] = math.ceil(v["max"] / v["step"] - 1e-9) * v["step"]

@@ -1,7 +1,8 @@
 """
 Tests for researcher reasoning traces in Entire Brain (shared/brain.py), the
-researcher's C1 task normalization (researcher/normalize.py), the builder's
-brain-first trace loading, and the research.json v2 example fixture.
+researcher's C1 task normalization (researcher/normalize.py) and grounding
+retry, the builder's brain-first trace loading, and the research.json v2
+example fixture.
 
     python3 scripts/test_brain.py          # offline (fake entire-brain CLI)
     python3 scripts/test_brain.py --live   # also round-trips through the real entire-brain CLI
@@ -119,6 +120,12 @@ def test_push_and_load(tmp: Path):
     check("Caveats: watch for X." in prompt and "Assumptions" in prompt and "Why chosen" not in prompt,
           "per-task prompt holds overall + that task's traces only")
 
+    # A fact gone from the brain (retracted, gc'd): the rest still come from the brain, the gap from research.json.
+    facts = [f for f in json.loads((tmp / "facts.json").read_text()) if f["id"] != ref["ids"][1]]
+    (tmp / "facts.json").write_text(json.dumps(facts))
+    traces, source = brain.load_traces({**brief, "reasoning_traces": TRACES})
+    check(source == "entire-brain" and traces == TRACES, f"missing brain facts filled from research.json: {traces}")
+
 
 def test_fallback_without_brain():
     old = os.environ.get("ENTIRE_BRAIN_BIN")
@@ -140,6 +147,9 @@ def test_fallback_without_brain():
 
 def test_normalize():
     check(expr_identifiers("a / (b + 2)") == {"a", "b"}, "valid expr")
+    check(expr_identifiers("yield / dose") == {"yield", "dose"} and evaluate("yield / dose", {"yield": 3, "dose": 2}) == 1.5,
+          "ids that are Python keywords are valid grammar ids")
+    check(evaluate("-a - -2 * (b + .5)", {"a": 1, "b": 1}) == 2.0, "unary minus, decimals and precedence")
     for bad in ("a ** 2", "__import__('os')", "a // b", "1e3 * a", "A + b", "a; b"):
         check(expr_identifiers(bad) is None, f"rejects {bad}")
     check(slugify("Fancy Task Name With Many Words", max_len=12) == "fancy-task", "slug cut at a word boundary")
@@ -186,6 +196,17 @@ def test_normalize():
     check(evaluate("amount / (time_s - 30)", {"amount": 1, "time_s": 30}) is None, "division by zero evaluates to None")
     check("50" not in fixed["aim"] and "50" not in fixed["heuristic"][0]["too_low"], "leaked targets stripped")
 
+    coarse = {**draft, "variables": [{"id": "heat", "label": "Heat", "unit": "C", "min": 0, "max": 100, "step": 0, "default": 10}],
+              "derived": [], "optima": [{"term": "heat", "target": 47, "range": None, "rationale": "r", "source_ids": []}],
+              "heuristic": [{"term": "heat", "tolerance": 1, "weight": 1, "curve": "linear", "too_low": "Cold.", "too_high": "Hot.", "rationale": "r"}],
+              "aim": "Heat it right."}
+    coarse_issues = validate_draft({**coarse, "variables": [{**coarse["variables"][0], "step": 5}]}, "mix", 2)
+    check(any("step is too coarse" in i for i in coarse_issues) and any("source_ids must cite" in i for i in coarse_issues),
+          f"coarse step and unsourced optimum reported: {coarse_issues}")
+    heat = repair_draft(coarse, "mix")["variables"][0]
+    check(heat["step"] <= 0.4 and abs(round((47 - heat["min"]) / heat["step"]) * heat["step"] + heat["min"] - 47) < 0.2,
+          f"fallback step is fine enough to reach the optimum: {heat}")
+
     sources = [{"title": "one", "url": "https://one.example"}, {"title": "two", "url": "https://two.example"}]
     planned = {"id": "make-thing", "title": "Make thing", "summary": "s", "mechanic": "mix", "mechanic_rationale": "m"}
     task = to_research_task(planned, fixed, sources)
@@ -197,6 +218,35 @@ def test_normalize():
     fixed_sort = repair_draft(sort_draft, "sort")
     check(fixed_sort["variables"] == [] and all(i["correct_bin"] == "keep" for i in fixed_sort["sort_items"]), "sort repair")
     check(playable(fixed_sort, "sort"), "3 valid sort items remain playable")
+
+
+def test_grounding_retry():
+    import researcher.agent as agent_mod
+    from researcher.gemini_research import GroundedResult
+
+    calls = []
+    replies = []
+
+    def fake_grounded(client, prompt, system_instruction):
+        calls.append(prompt)
+        return replies.pop(0)
+
+    real = agent_mod.grounded
+    agent_mod.grounded = fake_grounded
+    try:
+        agent = agent_mod.ResearcherAgent(gemini_client=object())
+        planned = {"id": "task-a", "title": "Task A", "summary": "s", "mechanic": "mix", "research_focus": "f"}
+        empty = GroundedResult(text="uncited", sources=[], queries=[], thoughts=[])
+        replies[:] = [empty, empty]
+        check(agent._research_task("some job", planned) is None and len(calls) == 2,
+              "a task whose grounded research cites nothing is searched again, then dropped")
+        cited = GroundedResult(text="cited [1]", sources=[{"title": "one", "url": "https://one.example"}], queries=["q"], thoughts=[])
+        calls.clear()
+        replies[:] = [empty, cited]
+        check(agent._grounded("prompt", "plan") is cited and len(calls) == 2 and "Google Search" in calls[1],
+              "the cited retry replaces an uncited answer")
+    finally:
+        agent_mod.grounded = real
 
 
 def test_fixture():
@@ -214,7 +264,7 @@ def test_fixture():
         check(task["sources"] and {s["url"] for s in task["sources"]} <= urls, f"{tid}: task sources are cited")
         check(task["caveats"] and task["problems"], f"{tid}: caveats and problems")
         draft = {**task, "source_ids": [1]}
-        draft["optima"] = [{"target": None, "range": None, **o} for o in task["optima"]]
+        draft["optima"] = [{"target": None, "range": None, **o, "source_ids": [1] if o["source_urls"] else []} for o in task["optima"]]
         check(not validate_draft(draft, mech, n_sources=1), f"{tid}: passes C1 validation {validate_draft(draft, mech, 1)}")
         if mech in ("mix", "timing"):
             for opt in task["optima"]:
@@ -249,6 +299,7 @@ if __name__ == "__main__":
     with_fake_brain(test_push_and_load)
     test_fallback_without_brain()
     test_normalize()
+    test_grounding_retry()
     test_fixture()
     if "--live" in sys.argv:
         test_live()

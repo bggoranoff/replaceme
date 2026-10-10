@@ -164,8 +164,8 @@ class ReasoningTrace(BaseModel):
 
 class BrainRef(BaseModel):
     stored: bool = Field(..., description="True if traces were written to Entire Brain")
-    ids: List[str] = Field(default_factory=list, description="Entire Brain item ids")
-    query: Optional[str] = Field(None, description="Query that retrieves the traces")
+    ids: List[str] = Field(default_factory=list, description="Entire Brain fact ids, on brain branch game/<slug> (shared/brain.py)")
+    query: Optional[str] = Field(None, description="entire-brain recall query that retrieves this run's traces")
 
 
 class ResearchBrief(BaseModel):

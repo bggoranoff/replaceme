@@ -1,0 +1,1725 @@
+{
+  "version": 2,
+  "job": "beekeeper",
+  "slug": "beekeeper",
+  "title": "Meadowglen Apiary & Orchard",
+  "setting": "The sun-dappled hamlet of Meadowglen, featuring the Hive Terrace on a south-facing slope, the screen-doored Honey House workshop, the Feed & Equipment Shed, and the community Heritage Orchard & Village Green.",
+  "sources": [
+    {
+      "title": "honeyflow.com",
+      "url": "https://eu.honeyflow.com/blogs/livestreams/how-to-light-your-smoker-210210"
+    },
+    {
+      "title": "beewise.com.au",
+      "url": "https://www.beewise.com.au/news/index/view/id/29/how-to-use-a-bee-smoker"
+    },
+    {
+      "title": "thorne.co.uk",
+      "url": "https://www.thorne.co.uk/blog/ask-the-expert/the-complete-guide-to-bee-smokers"
+    },
+    {
+      "title": "norcalnectar.com",
+      "url": "https://norcalnectar.com/blog/honey-bee-nutrition-feeding-guide"
+    },
+    {
+      "title": "beesfordevelopment.org",
+      "url": "https://resources.beesfordevelopment.org/rc/extraction-equipment/"
+    },
+    {
+      "title": "wsu.edu",
+      "url": "https://pubs.extension.wsu.edu/product/oxalic-acid-options-for-controlling-varroa-destructor/"
+    },
+    {
+      "title": "invertobee.com",
+      "url": "https://www.invertobee.com/blog/Healthy-and-productive-beehives"
+    },
+    {
+      "title": "clemson.edu",
+      "url": "https://blogs.clemson.edu/clemsonpollinators/2021/11/16/cappings-newsletter-nov-dec-2021/"
+    },
+    {
+      "title": "cornell.edu",
+      "url": "https://cals.cornell.edu/pollinator-network/beekeeping/beekeeping-calendar-northeast"
+    },
+    {
+      "title": "betterbee.com",
+      "url": "https://www.betterbee.com/instructions-and-resources/the-when-what-and-how-of-fall-feeding.asp"
+    },
+    {
+      "title": "honeybeesuite.com",
+      "url": "https://www.honeybeesuite.com/hydroxymethylfurfural-in-sugar-syrup/"
+    },
+    {
+      "title": "ct.gov",
+      "url": "https://portal.ct.gov/-/media/caes/documents/bee/penn_state_beekeeping_basics_agrs93.pdf"
+    },
+    {
+      "title": "scientificbeekeeping.com",
+      "url": "https://scientificbeekeeping.com/fat-bees-part-3/"
+    },
+    {
+      "title": "kashmiril.com",
+      "url": "https://kashmiril.com/blogs/journal/is-heated-honey-toxic"
+    },
+    {
+      "title": "apiarytools.com",
+      "url": "https://apiarytools.com/tools/syrup"
+    },
+    {
+      "title": "nsw.gov.au",
+      "url": "https://www.dpi.nsw.gov.au/__data/assets/pdf_file/0018/532260/Feeding-sugar-to-honey-bees.pdf"
+    },
+    {
+      "title": "nih.gov",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9019825/"
+    },
+    {
+      "title": "acs.org",
+      "url": "https://pubs.acs.org/jafcau/article/61/49/11865/1466218/Hydroxymethylfurfural-A-Possible-Emergent-Cause-of"
+    },
+    {
+      "title": "windhamcountybeekeepers.com",
+      "url": "https://windhamcountybeekeepers.com/bee-educational-materials/"
+    },
+    {
+      "title": "facebook.com",
+      "url": "https://www.facebook.com/groups/187847621839399/posts/921257861831701/"
+    },
+    {
+      "title": "wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/Honey_extractor"
+    },
+    {
+      "title": "beekeepingforum.co.uk",
+      "url": "https://beekeepingforum.co.uk/threads/honey-extractors-rpm.40107/"
+    },
+    {
+      "title": "facebook.com",
+      "url": "https://www.facebook.com/groups/1734315350183239/posts/3156272194654207/"
+    },
+    {
+      "title": "youtube.com",
+      "url": "https://www.youtube.com/watch?v=z5iA_aLB9_A"
+    },
+    {
+      "title": "nationalbeeunit.com",
+      "url": "https://www.nationalbeeunit.com/assets/PDFs/3_Resources_for_beekeepers/Best_practice_guidelines/BPG_7a_Feeding_Bees_-_sugar.pdf"
+    },
+    {
+      "title": "jurassicbees.co.uk",
+      "url": "https://jurassicbees.co.uk/pages/thymol-recipe-beekeeping"
+    },
+    {
+      "title": "beefriendsfarm.com",
+      "url": "https://beefriendsfarm.com/blogs/the-beginners-checklist-for-keeping-bees-what-you-need-to-get-started/best-practices-for-feeding-bees-with-sugar-water"
+    },
+    {
+      "title": "honeybeesuite.com",
+      "url": "https://www.honeybeesuite.com/how-to-prevent-moldy-syrup-in-bee-feeders/"
+    },
+    {
+      "title": "scientificbeekeeping.com",
+      "url": "https://scientificbeekeeping.com/thymol-a-new-application-method-part-2/"
+    },
+    {
+      "title": "foxhoundbeecompany.com",
+      "url": "https://www.foxhoundbeecompany.com/blogs/feeding-bees/sugar-syrup-math-for-beekeepers"
+    },
+    {
+      "title": "reddit.com",
+      "url": "https://www.reddit.com/r/Beekeeping/comments/1broqvs/boiling_sugar_syrup/"
+    },
+    {
+      "title": "logar-trade.com",
+      "url": "https://www.logar-trade.com/honey-extractors/selfturning-extractors/"
+    },
+    {
+      "title": "carl-fritz.de",
+      "url": "https://www.carl-fritz.de/en/Services/FAQ/"
+    },
+    {
+      "title": "iamcountryside.com",
+      "url": "https://backyardbeekeeping.iamcountryside.com/hives-equipment/honey-extractors-explained/"
+    },
+    {
+      "title": "facebook.com",
+      "url": "https://www.facebook.com/groups/ribeekeepers/posts/7704145256378425/"
+    },
+    {
+      "title": "hivekeepergear.com",
+      "url": "https://hivekeepergear.com/how-to-use-a-honey-extractor/"
+    },
+    {
+      "title": "latiendadelapicultor.com",
+      "url": "https://www.latiendadelapicultor.com/blog/en/how-to-uncap-honey-tools-and-technique/"
+    },
+    {
+      "title": "beeculture.com",
+      "url": "https://beeculture.com/wp-content/uploads/2024/09/Aug-1991-Final-R.pdf"
+    },
+    {
+      "title": "hbrc.ca",
+      "url": "https://hbrc.ca/comb-management/"
+    },
+    {
+      "title": "theapiarist.org",
+      "url": "https://theapiarist.org/the-nucleus-method/"
+    },
+    {
+      "title": "beekeepingmadesimple.com",
+      "url": "https://www.beekeepingmadesimple.com/blog/clean-old-dark-comb"
+    },
+    {
+      "title": "urbanhivelife.works",
+      "url": "https://www.urbanhivelife.works/guides/american-foulbrood-testing-symptoms/"
+    },
+    {
+      "title": "betterbee.com",
+      "url": "https://www.betterbee.com/instructions-and-resources/methods-for-testing-for-american-foulbrood.asp"
+    },
+    {
+      "title": "agriculture.vic.gov.au",
+      "url": "https://agriculture.vic.gov.au/biosecurity/animal-diseases/honey-bee-pests-and-diseases/diagnosis-control-and-eradication-of-american-foulbrood-disease"
+    },
+    {
+      "title": "beeaware.org.au",
+      "url": "https://beeaware.org.au/archive-pest/american-foulbrood/"
+    },
+    {
+      "title": "albertabeekeepers.ca",
+      "url": "https://www.albertabeekeepers.ca/american-foulbrood-part-2-of-2/"
+    },
+    {
+      "title": "psu.edu",
+      "url": "https://extension.psu.edu/honey-bee-diseases-american-foulbrood"
+    },
+    {
+      "title": "alberta.ca",
+      "url": "https://open.alberta.ca/dataset/4b4d54b0-9ec7-461d-9374-6dbdaa12485b/resource/a15c4d1c-8c64-4185-b3b0-cbeb0fb27192/download/agi-american-foulbrood-guide-2025-02.pdf"
+    },
+    {
+      "title": "usu.edu",
+      "url": "https://extension.usu.edu/beekeeping/learn/behavior/splitting"
+    },
+    {
+      "title": "honeybeesuite.com",
+      "url": "https://www.honeybeesuite.com/how-to-make-a-swarm-control-split/"
+    },
+    {
+      "title": "beginner-beekeeping.co.uk",
+      "url": "https://beginner-beekeeping.co.uk/bee-split-method-sustainable-nucs/"
+    },
+    {
+      "title": "blythewoodbeecompany.com",
+      "url": "https://blythewoodbeecompany.com/blogs/news/beehive-swarm-cells"
+    },
+    {
+      "title": "thebeesupply.com",
+      "url": "https://thebeesupply.com/blogs/beekeepers-blog/when-how-to-throw-away-aging-frames-and-comb"
+    },
+    {
+      "title": "blythewoodbeecompany.com",
+      "url": "https://blythewoodbeecompany.com/blogs/news/comb-care-101-replacing-and-recycling-old-comb-for-a-healthier-hive"
+    },
+    {
+      "title": "honeybeesuite.com",
+      "url": "https://www.honeybeesuite.com/rotate-brood-combs-for-a-healthier-nursery/"
+    },
+    {
+      "title": "honeybeesuite.com",
+      "url": "https://www.honeybeesuite.com/whats-the-best-and-highest-use-for-dark-beeswax-combs/"
+    },
+    {
+      "title": "agriculture.institute",
+      "url": "https://agriculture.institute/honeybee-colonies-mgt/preventing-managing-robbing-honeybee-colonies-monsoon/"
+    },
+    {
+      "title": "harvestlane.com",
+      "url": "https://harvestlane.com/blogs/beehive-blog/mid-summer-beekeeping-managing-nectar-dearth-drought"
+    },
+    {
+      "title": "hbrc.ca",
+      "url": "https://hbrc.ca/robbing-prevention/"
+    },
+    {
+      "title": "honeybeesuite.com",
+      "url": "https://www.honeybeesuite.com/summer-nectar-dearth-honey-bee-management/"
+    },
+    {
+      "title": "reddit.com",
+      "url": "https://www.reddit.com/r/Beekeeping/comments/1b1dqij/new_beekeeper_how_much_honey_do_i_need_to_leave/"
+    },
+    {
+      "title": "honeybeesonline.com",
+      "url": "https://www.honeybeesonline.com/honey-super/"
+    },
+    {
+      "title": "kybees.org",
+      "url": "https://kybees.org/Phils-Observations/13152733"
+    },
+    {
+      "title": "americanbeejournal.com",
+      "url": "https://americanbeejournal.com/bees-robbing-honey-en-masse-and-how-to-avoid-it/"
+    },
+    {
+      "title": "youtube.com",
+      "url": "https://www.youtube.com/watch?v=sM8Rwv4ZPoE"
+    },
+    {
+      "title": "hbrc.ca",
+      "url": "https://hbrc.ca/entrance-reducers/"
+    },
+    {
+      "title": "facebook.com",
+      "url": "https://www.facebook.com/groups/1254979707869481/posts/24027705506836911/"
+    },
+    {
+      "title": "latiendadelapicultor.com",
+      "url": "https://www.latiendadelapicultor.com/blog/en/robbing-in-beehives-signs-and-prevention/"
+    },
+    {
+      "title": "foxhoundbeecompany.com",
+      "url": "https://www.foxhoundbeecompany.com/blogs/questions-and-answers/what-is-bee-robbing-how-to-protect-hives"
+    },
+    {
+      "title": "reddit.com",
+      "url": "https://www.reddit.com/r/Beekeeping/comments/1m2szxj/entrance_reducer/"
+    },
+    {
+      "title": "beecentrichive.com",
+      "url": "https://beecentrichive.com/beehive-entrances-according-to-honeybees/"
+    },
+    {
+      "title": "wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/Langstroth_hive"
+    },
+    {
+      "title": "apiarygenius.com",
+      "url": "https://apiarygenius.com/robbing-bees/"
+    },
+    {
+      "title": "ecrotek.com.au",
+      "url": "https://ecrotek.com.au/blogs/articles/beekeeping-101-how-to-stop-hive-robbing"
+    },
+    {
+      "title": "nsw.gov.au",
+      "url": "https://www.dpi.nsw.gov.au/__data/assets/pdf_file/0018/117108/bee-apple-pollination.pdf"
+    },
+    {
+      "title": "decisionaid.systems",
+      "url": "https://decisionaid.systems/articles/Factors_Affecting_Bee_Pollination_of_Tree_Fruits"
+    },
+    {
+      "title": "wsu.edu",
+      "url": "https://treefruit.wsu.edu/orchard-management/pollination/honey-bees/"
+    },
+    {
+      "title": "cornell.edu",
+      "url": "https://blogs.cornell.edu/jentsch/2020/05/11/apple-bloom-supporting-pollinators-managing-pests-may-11th-2020/"
+    },
+    {
+      "title": "missouri.edu",
+      "url": "https://extension.missouri.edu/publications/g6001"
+    },
+    {
+      "title": "usu.edu",
+      "url": "https://digitalcommons.usu.edu/cgi/viewcontent.cgi?article=2521&context=extension_histall"
+    },
+    {
+      "title": "galenafarms.com",
+      "url": "https://galenafarms.com/blogs/beekeeping/beehive-location"
+    },
+    {
+      "title": "thebfarm.com",
+      "url": "https://thebfarm.com/blogs/news/how-beekeepers-organize-and-arrange-their-hives"
+    },
+    {
+      "title": "wcba.co.za",
+      "url": "https://wcba.co.za/wp-content/uploads/2022/05/beepollinationpamphlet.pdf"
+    },
+    {
+      "title": "keepingbackyardbees.com",
+      "url": "https://www.keepingbackyardbees.com/8-proper-beehive-placement-tips/"
+    },
+    {
+      "title": "uvm.edu",
+      "url": "https://www.uvm.edu/~orchard/fruit/treefruit/tf_horticulture/AppleHortBasics/Readings/Pollination+and+Fruit+Set+of+Fruit+Crops.pdf"
+    },
+    {
+      "title": "utah.gov",
+      "url": "https://ag.utah.gov/wp-content/uploads/Ornamental-and-Turf-Manual.pdf"
+    },
+    {
+      "title": "msu.edu",
+      "url": "https://pollinators.msu.edu/sites/_pollinators/assets/File/ProtectPollinatorsInUrbanLandscape_FINAL-LowRes.pdf"
+    },
+    {
+      "title": "purdue.edu",
+      "url": "https://extension.entm.purdue.edu/neonicotinoids/PDF/Neonicotinoidinsecticidesandbeeswhatsallthebuzzabout.pdf"
+    },
+    {
+      "title": "prairierivers.org",
+      "url": "https://prairierivers.org/neonicotinoids_and_pollinators/"
+    },
+    {
+      "title": "ct.gov",
+      "url": "https://portal.ct.gov/-/media/caes/documents/publications/fact_sheets/valley_laboratory/useofneonicotinoidsinthehomelandscapecowlesmarch2015pdf.pdf?rev=2e8600be705c407294a2e749f48d3601&hash=6068C1E20AE94EB760B8C7062BFEA41E"
+    },
+    {
+      "title": "scialert.net",
+      "url": "https://scialert.net/fulltext/?doi=pjbs.2004.359.362"
+    },
+    {
+      "title": "capabees.com",
+      "url": "https://capabees.com/shared/2012/10/CAPAcroppollination.pdf"
+    },
+    {
+      "title": "beekeepinggear.com.au",
+      "url": "https://www.beekeepinggear.com.au/blogs/article/hive-placement-tips-for-healthy-bees"
+    },
+    {
+      "title": "amazonaws.com",
+      "url": "https://s3-us-west-1.amazonaws.com/agrian-cg-fs1-production/pdfs/Bee-Scent_(032108)_Technical_Bulletin.pdf"
+    }
+  ],
+  "rules": [
+    "Move with smooth, deliberate motions, avoiding crushing bees and using cool, white, clean smoke to mask alarm pheromones without singeing wings.",
+    "Maintain strict biosecurity against American Foulbrood and Varroa destructor; never transfer diseased combs between colonies and isolate/sterilize immediately.",
+    "Never feed sugar syrup while surplus honey supers are on the hive, and only harvest honey combs that are at least 80% wax-capped with water content below 18.6% to prevent fermentation.",
+    "Coordinate with growers to eliminate pesticide exposure by spraying strictly at dusk after foraging ceases and never on open blooms."
+  ],
+  "assumptions": [
+    "The apiary manages 15–30 production colonies using standard Langstroth 10-frame equipment and hygienic practices.",
+    "The setting is a temperate seasonal biome with spring buildup, summer flow, and a cold winter requiring overwinter stores of 30–35 kg (60–80 lbs).",
+    "Pests such as Varroa destructor and endemic foulbroods exist in the area, requiring integrated pest management."
+  ],
+  "tasks": [
+    {
+      "id": "formulate-syrup-feed",
+      "title": "Formulate Sugar Syrup Feed",
+      "summary": "Measures and blends granulated sucrose and clean water in the workshop kettle to exact ratios and temperatures while adding a mold inhibitor.",
+      "mechanic": "mix",
+      "mechanic_rationale": "The mix mechanic accurately models setting ingredient weights, liquid volumes, and heating temperatures where precision determines hive health and survival.",
+      "aim": "Formulate a stable, non-toxic supplementary sugar syrup feed by balancing sugar concentration, heating temperature, and mold inhibitor dosing.",
+      "variables": [
+        {
+          "id": "water_volume",
+          "label": "Clean Potable Water",
+          "unit": "L",
+          "min": 2.0,
+          "max": 8.0,
+          "step": 0.5,
+          "default": 7.0
+        },
+        {
+          "id": "sugar_mass",
+          "label": "White Granulated Sucrose",
+          "unit": "kg",
+          "min": 2.0,
+          "max": 10.0,
+          "step": 0.5,
+          "default": 4.0
+        },
+        {
+          "id": "water_temp",
+          "label": "Kettle Water Temperature",
+          "unit": "°C",
+          "min": 20.0,
+          "max": 85.0,
+          "step": 1.0,
+          "default": 25.0
+        },
+        {
+          "id": "inhibitor_vol",
+          "label": "Mold Inhibitor (Thymol / ACV)",
+          "unit": "mL",
+          "min": 0.0,
+          "max": 20.0,
+          "step": 0.5,
+          "default": 0.0
+        }
+      ],
+      "derived": [
+        {
+          "id": "sugar_ratio",
+          "label": "Sugar-to-Water Mass Ratio",
+          "expr": "sugar_mass / water_volume"
+        },
+        {
+          "id": "inhibitor_rate",
+          "label": "Inhibitor Inclusion Rate",
+          "expr": "inhibitor_vol / water_volume"
+        }
+      ],
+      "optima": [
+        {
+          "term": "water_volume",
+          "target": 4.0,
+          "rationale": "Standard workshop batch volume providing 4.0 L (equivalent to 4.0 kg mass) of clean base water.",
+          "source_urls": [
+            "https://jurassicbees.co.uk/pages/thymol-recipe-beekeeping"
+          ]
+        },
+        {
+          "term": "sugar_ratio",
+          "target": 1.0,
+          "rationale": "For spring stimulative feed, a 1:1 w/w ratio (4.0 kg sugar to 4.0 L water) stimulates brood rearing and wax production; autumn feeding requires 2:1 w/w (8.0 kg sugar to 4.0 L water).",
+          "source_urls": [
+            "https://www.dpi.nsw.gov.au/__data/assets/pdf_file/0018/532260/Feeding-sugar-to-honey-bees.pdf",
+            "https://www.nationalbeeunit.com/assets/PDFs/3_Resources_for_beekeepers/Best_practice_guidelines/BPG_7a_Feeding_Bees_-_sugar.pdf",
+            "https://beefriendsfarm.com/blogs/the-beginners-checklist-for-keeping-bees-what-you-need-to-get-started/best-practices-for-feeding-bees-with-sugar-water",
+            "https://www.foxhoundbeecompany.com/blogs/feeding-bees/sugar-syrup-math-for-beekeepers"
+          ]
+        },
+        {
+          "term": "water_temp",
+          "range": [
+            45.0,
+            50.0
+          ],
+          "rationale": "Warm water between 45°C and 50°C accelerates sucrose dissolution while remaining strictly below the 60°C threshold where toxic HMF formation accelerates.",
+          "source_urls": [
+            "https://www.nationalbeeunit.com/assets/PDFs/3_Resources_for_beekeepers/Best_practice_guidelines/BPG_7a_Feeding_Bees_-_sugar.pdf",
+            "https://www.honeybeesuite.com/hydroxymethylfurfural-in-sugar-syrup/",
+            "https://www.reddit.com/r/Beekeeping/comments/1broqvs/boiling_sugar_syrup/"
+          ]
+        },
+        {
+          "term": "inhibitor_rate",
+          "target": 1.25,
+          "rationale": "An inclusion rate of 1.25 mL per liter of water (5.0 mL per 4.0 L batch) suppresses mold and yeast without repelling worker bees.",
+          "source_urls": [
+            "https://jurassicbees.co.uk/pages/thymol-recipe-beekeeping",
+            "https://www.honeybeesuite.com/how-to-prevent-moldy-syrup-in-bee-feeders/",
+            "https://scientificbeekeeping.com/thymol-a-new-application-method-part-2/"
+          ]
+        }
+      ],
+      "heuristic": [
+        {
+          "term": "water_volume",
+          "tolerance": 1.0,
+          "weight": 1.0,
+          "curve": "linear",
+          "too_low": "Batch volume is unusually small, skewing equipment batch efficiency.",
+          "too_high": "Batch volume overfills standard batch vessel capacity.",
+          "rationale": "Maintaining standard 4.0 L base water ensures correct dosing ratios across batch formulations."
+        },
+        {
+          "term": "sugar_ratio",
+          "tolerance": 0.3,
+          "weight": 2.5,
+          "curve": "gaussian",
+          "too_low": "Syrup is very thin and watery, raising hive moisture burdens and risking condensation and chilling.",
+          "too_high": "Syrup is supersaturated, precipitating crystalline crusts that clog feeders and risk making combs honey-bound.",
+          "rationale": "Deviation beyond 0.3 from the target ratio disrupts bees' metabolic handling, comb space, and feeder mechanics."
+        },
+        {
+          "term": "water_temp",
+          "tolerance": 8.0,
+          "weight": 3.0,
+          "curve": "gaussian",
+          "too_low": "Granules clump into an undissolved gritty sludge on the kettle bottom, risking crystal formation in storage.",
+          "too_high": "Syrup darkens to amber with a caramel odor, forming toxic HMF that causes intestinal necrosis and bee mortality.",
+          "rationale": "Insufficient heat stalls dissolution while excessive heat above 60°C rapidly generates cellularly toxic HMF."
+        },
+        {
+          "term": "inhibitor_rate",
+          "tolerance": 0.5,
+          "weight": 2.0,
+          "curve": "linear",
+          "too_low": "Syrup ferments with yeast fizzing or develops floating surface mold mats in the feeder within days.",
+          "too_high": "Syrup gives off a pungent medicinal or vinegar stench, repelling bees and causing brood ejection or colony roaring.",
+          "rationale": "Under-dosing fails to prevent fermentation and spoilage, while overdosing irritates nurse bees and repels consumption."
+        }
+      ],
+      "sort_items": [],
+      "sort_bins": [],
+      "orders": [],
+      "dialogue": [],
+      "caveats": [
+        "Never add acid or mold inhibitors into boiling or hot water, as low pH and high heat synergistically accelerate the formation of toxic HMF.",
+        "Use only food-grade pure white granulated sucrose; unrefined brown sugar, molasses, and raw cane sugar contain indigestible ash and dextrins that cause fatal winter dysentery.",
+        "Always prepare a properly emulsified thymol master solution with soy lecithin before dosing; raw unemulsified thymol forms a caustic oily layer on the syrup surface.",
+        "Mix and store feed indoors in a honey-house and administer at dusk using internal feeders to avoid sparking frantic robbing behaviors."
+      ],
+      "problems": [
+        "Water too cold: Sucrose forms dense, gritty sludge on the container bottom and fails to dissolve without excessive agitation.",
+        "Water heated above 60°C: Syrup turns yellow or amber, giving off a caramel aroma as fructose dehydrates into lethal hydroxymethylfurfural (HMF).",
+        "Over-concentrated syrup (>2.1:1): Supersaturated solution precipitates solid crystals upon cooling, jamming feeder screens.",
+        "Under-dosed inhibitor (<2.0 mL per 4 L): Gray or black surface mold appears in warm hive feeders along with sour fermentation odors and gas bubbles.",
+        "Over-dosed inhibitor (>8.0 mL per 4 L): Pungent medicinal aroma repels foraging bees, prompting feeder avoidance and hive agitation."
+      ],
+      "sources": [
+        {
+          "title": "nsw.gov.au",
+          "url": "https://www.dpi.nsw.gov.au/__data/assets/pdf_file/0018/532260/Feeding-sugar-to-honey-bees.pdf"
+        },
+        {
+          "title": "nationalbeeunit.com",
+          "url": "https://www.nationalbeeunit.com/assets/PDFs/3_Resources_for_beekeepers/Best_practice_guidelines/BPG_7a_Feeding_Bees_-_sugar.pdf"
+        },
+        {
+          "title": "jurassicbees.co.uk",
+          "url": "https://jurassicbees.co.uk/pages/thymol-recipe-beekeeping"
+        },
+        {
+          "title": "beefriendsfarm.com",
+          "url": "https://beefriendsfarm.com/blogs/the-beginners-checklist-for-keeping-bees-what-you-need-to-get-started/best-practices-for-feeding-bees-with-sugar-water"
+        },
+        {
+          "title": "honeybeesuite.com",
+          "url": "https://www.honeybeesuite.com/hydroxymethylfurfural-in-sugar-syrup/"
+        },
+        {
+          "title": "honeybeesuite.com",
+          "url": "https://www.honeybeesuite.com/how-to-prevent-moldy-syrup-in-bee-feeders/"
+        },
+        {
+          "title": "scientificbeekeeping.com",
+          "url": "https://scientificbeekeeping.com/thymol-a-new-application-method-part-2/"
+        },
+        {
+          "title": "foxhoundbeecompany.com",
+          "url": "https://www.foxhoundbeecompany.com/blogs/feeding-bees/sugar-syrup-math-for-beekeepers"
+        },
+        {
+          "title": "reddit.com",
+          "url": "https://www.reddit.com/r/Beekeeping/comments/1broqvs/boiling_sugar_syrup/"
+        }
+      ]
+    },
+    {
+      "id": "spin-honey-extractor",
+      "title": "Spin Honey Extractor",
+      "summary": "Operates a centrifugal honey extractor with uncapped frames across two speed stages to empty honey without breaking comb.",
+      "mechanic": "timing",
+      "mechanic_rationale": "The timing mechanic simulates stopping or holding speed in target rotational zones, ramping up smoothly to prevent blowing out wax frames.",
+      "aim": "Operate a centrifugal honey extractor across low-speed evacuation and high-speed clearing phases to completely extract honey without damaging delicate wax honeycomb.",
+      "variables": [
+        {
+          "id": "low_speed_evacuation_duration",
+          "label": "Low-Speed Evacuation Duration",
+          "unit": "s",
+          "min": 0.0,
+          "max": 90.0,
+          "step": 1.0,
+          "default": 20.0
+        },
+        {
+          "id": "high_speed_clearing_duration",
+          "label": "High-Speed Clearing Duration",
+          "unit": "s",
+          "min": 0.0,
+          "max": 180.0,
+          "step": 1.0,
+          "default": 45.0
+        }
+      ],
+      "derived": [],
+      "optima": [
+        {
+          "term": "low_speed_evacuation_duration",
+          "range": [
+            45.0,
+            60.0
+          ],
+          "rationale": "Running between 45 and 60 s evacuates 30% to 50% of the heavy honey mass, lightening the fragile combs so they do not blow out or slump when transitioning to high rotational speeds.",
+          "source_urls": [
+            "https://beekeepingforum.co.uk/threads/honey-extractors-rpm.40107/",
+            "https://www.facebook.com/groups/1734315350183239/posts/3156272194654207/"
+          ]
+        },
+        {
+          "term": "high_speed_clearing_duration",
+          "range": [
+            90.0,
+            120.0
+          ],
+          "rationale": "Operating between 90 and 120 s clears viscous residual honey clinging to cell bottoms without subjecting wax to vibration fatigue or aerating the honey into cloudy foam.",
+          "source_urls": [
+            "https://beekeepingforum.co.uk/threads/honey-extractors-rpm.40107/",
+            "https://www.carl-fritz.de/en/Services/FAQ/",
+            "https://www.logar-trade.com/honey-extractors/selfturning-extractors/",
+            "https://backyardbeekeeping.iamcountryside.com/hives-equipment/honey-extractors-explained/"
+          ]
+        }
+      ],
+      "heuristic": [
+        {
+          "term": "low_speed_evacuation_duration",
+          "tolerance": 15.0,
+          "weight": 1.0,
+          "curve": "gaussian",
+          "too_low": "Heavy drum thrumming persists as dense honey hits the tank walls; frames remain heavily loaded with honey, causing comb blowouts and wax tears when speeding up.",
+          "too_high": "Splashing against drum walls fades to an occasional drip while spinning continues with no liquid discharge, stalling cycle throughput and heating the motor gearbox.",
+          "rationale": "Stopping under 40 s leaves excessive heavy honey mass that collapses comb midribs under high centrifugal forces, while exceeding 70 s yields diminishing returns due to cell surface tension."
+        },
+        {
+          "term": "high_speed_clearing_duration",
+          "tolerance": 25.0,
+          "weight": 1.0,
+          "curve": "gaussian",
+          "too_low": "Droplets continue hissing against the drum interior; lifted inspection lids reveal sticky, wet cell bases with pooled honey and noticeably heavy frames.",
+          "too_high": "Droplet spray ceases and an empty mechanical whine takes over; continued rotation whips honey into opaque white foam and subjects delicate wax combs to heat and fatigue.",
+          "rationale": "Stopping before 80 s leaves over 15–20% residual crop loss in cell bases, whereas exceeding 140 s incorporates micro-bubbles that clog gravity strainers and warms fragile wax."
+        }
+      ],
+      "sort_items": [],
+      "sort_bins": [],
+      "orders": [],
+      "dialogue": [],
+      "caveats": [
+        "Honeycomb cells slope upward at a 9° to 14° angle toward the mouth; in radial extractors, frames must be oriented with top bars facing outward against the drum wall to allow centrifugal discharge.",
+        "The lower honey gate valve must remain open and unobstructed during spinning to prevent pooled honey from submerging the rotor basket and inducing hydrodynamic drag.",
+        "The extraction room and honey supers must be maintained between 25°C and 35°C (77°F to 95°F); cold honey resists flow, while temperatures above 35°C soften beeswax and cause comb collapse.",
+        "Fresh, pale virgin wax or foundationless comb lacks reinforcement silk cocoon layers and requires operating at the lower end of the speed range."
+      ],
+      "problems": [
+        "Comb Blowout / Slumping: Wax tears or crumples against the basket mesh due to premature termination of Phase 1, ramping speed too abruptly, or honey supers exceeding 35°C.",
+        "Severe Drum Wobble ('Waltzing Extractor'): Extractor shakes violently or walks across the floor due to an unbalanced rotor caused by uneven frame weights or mismatched placement.",
+        "Motor Stall / Heavy Frothing: Motor bogs down under rotational drag and thick white foam rises inside the tank because the honey gate valve remained closed and submerged the basket.",
+        "Incomplete Honey Evacuation: Cells retain 15–30% honey mass due to a shortened Phase 2 run, room temperature below 22°C, or frames installed backward with top bars facing inward."
+      ],
+      "sources": [
+        {
+          "title": "beekeepingforum.co.uk",
+          "url": "https://beekeepingforum.co.uk/threads/honey-extractors-rpm.40107/"
+        },
+        {
+          "title": "facebook.com",
+          "url": "https://www.facebook.com/groups/1734315350183239/posts/3156272194654207/"
+        },
+        {
+          "title": "logar-trade.com",
+          "url": "https://www.logar-trade.com/honey-extractors/selfturning-extractors/"
+        },
+        {
+          "title": "carl-fritz.de",
+          "url": "https://www.carl-fritz.de/en/Services/FAQ/"
+        },
+        {
+          "title": "iamcountryside.com",
+          "url": "https://backyardbeekeeping.iamcountryside.com/hives-equipment/honey-extractors-explained/"
+        },
+        {
+          "title": "facebook.com",
+          "url": "https://www.facebook.com/groups/ribeekeepers/posts/7704145256378425/"
+        },
+        {
+          "title": "hivekeepergear.com",
+          "url": "https://hivekeepergear.com/how-to-use-a-honey-extractor/"
+        },
+        {
+          "title": "latiendadelapicultor.com",
+          "url": "https://www.latiendadelapicultor.com/blog/en/how-to-uncap-honey-tools-and-technique/"
+        },
+        {
+          "title": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Honey_extractor"
+        },
+        {
+          "title": "beeculture.com",
+          "url": "https://beeculture.com/wp-content/uploads/2024/09/Aug-1991-Final-R.pdf"
+        }
+      ]
+    },
+    {
+      "id": "brood-comb-inspection",
+      "title": "Brood Comb Inspection",
+      "summary": "Pulls Langstroth frames from the brood chamber, inspects comb pattern and contents, and routes each frame to the correct destination.",
+      "mechanic": "sort",
+      "mechanic_rationale": "The sort mechanic models diagnosing visual and pathological attributes across individual frames and routing them into five specific management streams.",
+      "aim": "Correctly triage and route inspected brood frames based on colony demographics, pathology, food stores, and comb viability.",
+      "variables": [],
+      "derived": [],
+      "optima": [],
+      "heuristic": [],
+      "sort_items": [
+        {
+          "label": "Frame with uniform, convex biscuit-brown cappings and pearly-white C-shaped larvae",
+          "correct_bin": "Active Brood Nest",
+          "feedback": "Healthy worker brood frames belong in the active brood nest to maintain colony population replacement."
+        },
+        {
+          "label": "Frame with dark, sunken, punctured cappings and larval remains roping out over 2 cm with putrid odor",
+          "correct_bin": "Biohazard Containment",
+          "feedback": "Symptoms indicate American Foulbrood; must be isolated in biohazard containment to prevent apiary-wide spore contamination."
+        },
+        {
+          "label": "Frame with solid pale beeswax cappings covering over 90% of cells and dehydrated nectar below 18.6% moisture",
+          "correct_bin": "Surplus Honey Super",
+          "feedback": "Fully capped, ripe honey belongs in the surplus honey super to prevent honey-binding in the brood nest."
+        },
+        {
+          "label": "Frame with 4 to 10 vertically oriented, peanut-shell textured queen cells along the bottom bar",
+          "correct_bin": "Nucleus Box",
+          "feedback": "Swarm queen cells belong in a nucleus box with nurse bees to form an artificial swarm split."
+        },
+        {
+          "label": "Frame with brittle, jet-black comb over 3 years old with thickened cell walls",
+          "correct_bin": "Solar Wax Melter",
+          "feedback": "Old, pesticide-laden, blackened comb should be culled into the solar wax melter for wax reclamation."
+        },
+        {
+          "label": "Frame packed with multicolored fermented bee bread directly adjacent to open brood",
+          "correct_bin": "Active Brood Nest",
+          "feedback": "Bee bread provides essential dietary protein and lipids for nurse bees and must stay in the brood nest."
+        },
+        {
+          "label": "Frame with bulging bullet cappings protruding over 3 mm heavily infested with Varroa mites",
+          "correct_bin": "Solar Wax Melter",
+          "feedback": "Sacrificial drone comb trapping Varroa mites must be culled and melted to eliminate phoretic mites."
+        }
+      ],
+      "sort_bins": [
+        "Active Brood Nest",
+        "Surplus Honey Super",
+        "Nucleus Box",
+        "Solar Wax Melter",
+        "Biohazard Containment"
+      ],
+      "orders": [],
+      "dialogue": [],
+      "caveats": [
+        "The AFB ropiness differentiation threshold: larval remains must rope out continuously at least 2 cm to indicate American Foulbrood, whereas European Foulbrood stretches under 1 cm before snapping.",
+        "Comb rotation math requires culling 2 frames per 10-frame box each year (20% to 33% replacement) so no comb exceeds 3 to 5 years.",
+        "Honey moisture content must remain below 18.6%; unripened nectar failing the shake test risks post-harvest fermentation by osmophilic yeasts.",
+        "Queen cell topography distinguishes swarm cells (clusters of 4 to 12 along bottom bars) from supersedure cells (1 to 3 in the comb center face, which must not be split away)."
+      ],
+      "problems": [
+        "The honey-bound brood nest: heavy nectar flows occupy brood cells and restrict queen laying below 500 eggs/day; fixed by moving 2 outer honey frames to supers and inserting drawn comb into positions 3 and 8.",
+        "The broken queen cell during triage: scraping delicate swarm cells damages nymph cocoons; fixed by excising damaged cells and ensuring 1 to 2 intact cells remain on the split frame.",
+        "False AFB scale vs. normal propolis/dirt: dark crusts on cell floors can cause false alarm; true AFB scale adheres tightly to the lower horizontal cell wall and cannot be pried loose without breaking comb."
+      ],
+      "sources": [
+        {
+          "title": "hbrc.ca",
+          "url": "https://hbrc.ca/comb-management/"
+        },
+        {
+          "title": "theapiarist.org",
+          "url": "https://theapiarist.org/the-nucleus-method/"
+        },
+        {
+          "title": "beekeepingmadesimple.com",
+          "url": "https://www.beekeepingmadesimple.com/blog/clean-old-dark-comb"
+        },
+        {
+          "title": "urbanhivelife.works",
+          "url": "https://www.urbanhivelife.works/guides/american-foulbrood-testing-symptoms/"
+        },
+        {
+          "title": "betterbee.com",
+          "url": "https://www.betterbee.com/instructions-and-resources/methods-for-testing-for-american-foulbrood.asp"
+        },
+        {
+          "title": "agriculture.vic.gov.au",
+          "url": "https://agriculture.vic.gov.au/biosecurity/animal-diseases/honey-bee-pests-and-diseases/diagnosis-control-and-eradication-of-american-foulbrood-disease"
+        },
+        {
+          "title": "beeaware.org.au",
+          "url": "https://beeaware.org.au/archive-pest/american-foulbrood/"
+        },
+        {
+          "title": "albertabeekeepers.ca",
+          "url": "https://www.albertabeekeepers.ca/american-foulbrood-part-2-of-2/"
+        },
+        {
+          "title": "psu.edu",
+          "url": "https://extension.psu.edu/honey-bee-diseases-american-foulbrood"
+        },
+        {
+          "title": "alberta.ca",
+          "url": "https://open.alberta.ca/dataset/4b4d54b0-9ec7-461d-9374-6dbdaa12485b/resource/a15c4d1c-8c64-4185-b3b0-cbeb0fb27192/download/agi-american-foulbrood-guide-2025-02.pdf"
+        },
+        {
+          "title": "usu.edu",
+          "url": "https://extension.usu.edu/beekeeping/learn/behavior/splitting"
+        },
+        {
+          "title": "honeybeesuite.com",
+          "url": "https://www.honeybeesuite.com/how-to-make-a-swarm-control-split/"
+        },
+        {
+          "title": "beginner-beekeeping.co.uk",
+          "url": "https://beginner-beekeeping.co.uk/bee-split-method-sustainable-nucs/"
+        },
+        {
+          "title": "blythewoodbeecompany.com",
+          "url": "https://blythewoodbeecompany.com/blogs/news/beehive-swarm-cells"
+        },
+        {
+          "title": "thebeesupply.com",
+          "url": "https://thebeesupply.com/blogs/beekeepers-blog/when-how-to-throw-away-aging-frames-and-comb"
+        },
+        {
+          "title": "blythewoodbeecompany.com",
+          "url": "https://blythewoodbeecompany.com/blogs/news/comb-care-101-replacing-and-recycling-old-comb-for-a-healthier-hive"
+        },
+        {
+          "title": "honeybeesuite.com",
+          "url": "https://www.honeybeesuite.com/rotate-brood-combs-for-a-healthier-nursery/"
+        },
+        {
+          "title": "honeybeesuite.com",
+          "url": "https://www.honeybeesuite.com/whats-the-best-and-highest-use-for-dark-beeswax-combs/"
+        }
+      ]
+    },
+    {
+      "id": "honey-super-haul",
+      "title": "Honey Super Haul",
+      "summary": "Hauls heavy harvested honey supers from the apiary into the Honey House within a par time and delivers entrance reducers to defend weaker hives.",
+      "mechanic": "deliver",
+      "mechanic_rationale": "The deliver mechanic simulates ergonomic load limits, transit paths between apiary stands and the workshop, and time pressure before robbing starts.",
+      "aim": "Transport harvested honey supers securely to the honey house and install an entrance reducer on vulnerable colonies before robbing starts.",
+      "variables": [],
+      "derived": [],
+      "optima": [],
+      "heuristic": [],
+      "sort_items": [],
+      "sort_bins": [],
+      "orders": [
+        {
+          "item": "Harvested Medium Honey Super (Illinois 6⅝″, 18–22 kg)",
+          "destination": "Honey House Warm Staging Room",
+          "note": "Carry solo against abdomen with upright spine; keep covered with bee-tight damp cloth, tarp, or escape lid; complete delivery within 90 seconds to prevent robber scout recruitment."
+        },
+        {
+          "item": "Solid Pine Entrance Reducer (37.5 cm × 1.9 cm × 1.9 cm)",
+          "destination": "Weak Colony Nuc / Split Stand 02",
+          "note": "Insert firmly into bottom board entrance rail with smallest notch (2.0 cm × 0.95 cm) facing forward; complete delivery within 90 seconds concurrently with harvest."
+        },
+        {
+          "item": "Harvested Deep Honey Super (Full Depth 9⅝″, 32–36 kg)",
+          "destination": "Honey House Staging Area",
+          "note": "Maximum single-person capacity; keep box strictly level (tilt < 15° to prevent warm comb sag or tearing); stack covered to prevent robbing."
+        }
+      ],
+      "dialogue": [],
+      "caveats": [
+        "According to NIOSH guidelines, the recommended weight limit under ideal conditions is 23 kg (51 lbs); full medium supers reach 18–22 kg and deep supers reach 32–36 kg, requiring elbows tucked into hips and pivoting with feet to prevent lumbar disc herniation.",
+        "Beeswax softens and loses structural integrity rapidly above 35°C (95°F); supers left sitting in mid-day sun can suffer comb collapse under their own weight.",
+        "Wild honeybee swarms naturally prefer cavity entrances measuring 10–15 cm²; standard unmodified 10-frame Langstroth entrances measure ~35.6 cm², which must be reduced to the 2.0 cm slot so guard bees can defend the bottleneck.",
+        "Robbing is a leading vector for apiary-wide transmission of American Foulbrood (Paenibacillus larvae) and Varroa destructor mites when colonies break down defenses."
+      ],
+      "problems": [
+        "Robbing Frenzy Outbreak: High-pitched erratic buzzing, bees probing hive cover cracks, wrestling/dead bees on landing board, shredded cappings; resolved by reducing entrance to 2 cm, draping a water-soaked sheet/burlap over the hive, and ceasing harvest operations.",
+        "Dead-Bee Entrance Blockage: Foragers clustering and fanning frantically outside, rising internal heat, undertakers unable to exit narrow 2 cm notch; cleared with hive tool or twig, or by orienting the notch upward.",
+        "Burr Comb Rupture & Dripping: Honey leaking from bottom rabbets and coating handles, bees licking handholds; managed by using a drip pan/cover during transport and spraying water to dissolve honey scent plumes.",
+        "Reducer Ejection / Loose Fit: Reducer vibrates loose or gets pushed out by shifting equipment; secured with a thumb tack, small wedge, or staple into the bottom board rail."
+      ],
+      "sources": [
+        {
+          "title": "agriculture.institute",
+          "url": "https://agriculture.institute/honeybee-colonies-mgt/preventing-managing-robbing-honeybee-colonies-monsoon/"
+        },
+        {
+          "title": "harvestlane.com",
+          "url": "https://harvestlane.com/blogs/beehive-blog/mid-summer-beekeeping-managing-nectar-dearth-drought"
+        },
+        {
+          "title": "hbrc.ca",
+          "url": "https://hbrc.ca/robbing-prevention/"
+        },
+        {
+          "title": "honeybeesuite.com",
+          "url": "https://www.honeybeesuite.com/summer-nectar-dearth-honey-bee-management/"
+        },
+        {
+          "title": "reddit.com",
+          "url": "https://www.reddit.com/r/Beekeeping/comments/1b1dqij/new_beekeeper_how_much_honey_do_i_need_to_leave/"
+        },
+        {
+          "title": "honeybeesonline.com",
+          "url": "https://www.honeybeesonline.com/honey-super/"
+        },
+        {
+          "title": "kybees.org",
+          "url": "https://kybees.org/Phils-Observations/13152733"
+        },
+        {
+          "title": "americanbeejournal.com",
+          "url": "https://americanbeejournal.com/bees-robbing-honey-en-masse-and-how-to-avoid-it/"
+        },
+        {
+          "title": "youtube.com",
+          "url": "https://www.youtube.com/watch?v=sM8Rwv4ZPoE"
+        },
+        {
+          "title": "hbrc.ca",
+          "url": "https://hbrc.ca/entrance-reducers/"
+        },
+        {
+          "title": "facebook.com",
+          "url": "https://www.facebook.com/groups/1254979707869481/posts/24027705506836911/"
+        },
+        {
+          "title": "latiendadelapicultor.com",
+          "url": "https://www.latiendadelapicultor.com/blog/en/robbing-in-beehives-signs-and-prevention/"
+        },
+        {
+          "title": "foxhoundbeecompany.com",
+          "url": "https://www.foxhoundbeecompany.com/blogs/questions-and-answers/what-is-bee-robbing-how-to-protect-hives"
+        },
+        {
+          "title": "reddit.com",
+          "url": "https://www.reddit.com/r/Beekeeping/comments/1m2szxj/entrance_reducer/"
+        },
+        {
+          "title": "beecentrichive.com",
+          "url": "https://beecentrichive.com/beehive-entrances-according-to-honeybees/"
+        },
+        {
+          "title": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Langstroth_hive"
+        },
+        {
+          "title": "apiarygenius.com",
+          "url": "https://apiarygenius.com/robbing-bees/"
+        },
+        {
+          "title": "ecrotek.com.au",
+          "url": "https://ecrotek.com.au/blogs/articles/beekeeping-101-how-to-stop-hive-robbing"
+        }
+      ]
+    },
+    {
+      "id": "orchard-pollination",
+      "title": "Orchard Pollination Consultation",
+      "summary": "Advises orchardist Bram on beehive stocking densities, placement, and pesticide application protocols for apple blossom pollination.",
+      "mechanic": "converse",
+      "mechanic_rationale": "The converse mechanic tests dialogue choices, technical diplomacy, and adherence to agricultural safety standards.",
+      "aim": "Advise an orchardist on stocking density, colony timing, hive placement, and pesticide safety protocols for commercial apple pollination.",
+      "variables": [],
+      "derived": [],
+      "optima": [],
+      "heuristic": [],
+      "sort_items": [],
+      "sort_bins": [],
+      "orders": [],
+      "dialogue": [
+        {
+          "npc_line": "The weather is warming up, and I want to get the bees in early to make sure they hit every single flower on my 20-acre block. When exactly should we drop the hives, and how many are you bringing?",
+          "options": [
+            {
+              "text": "We should stock 1.0 to 1.5 strong colonies per acre and bring them in at 10% to 15% king-bloom. If we move them in earlier, the scout bees will lock onto dandelion and maple forage outside the orchard; if we wait past 15%, the king blossoms will abort without pollination.",
+              "points": 1.0,
+              "feedback": "Excellent. Matches standard stocking rates and target phenology. King bloom produces the largest, highest-value fruit, while arriving too early results in flower constancy toward competing weed forage.",
+              "critical": false
+            },
+            {
+              "text": "Let’s deliver 0.5 colonies per acre at tight cluster before any blooms open so the bees can settle in and orient before bloom starts.",
+              "points": 0.2,
+              "feedback": "Suboptimal density and poor timing. A stocking rate of 0.5 hives/acre is insufficient for commercial cross-pollination during cold spring conditions. Bringing hives before bloom locks foragers onto off-target bloom.",
+              "critical": false
+            },
+            {
+              "text": "We’ll place 2.0 colonies per acre right around 20% bloom. That guarantees high bee density even if bad weather limits flight hours.",
+              "points": 0.7,
+              "feedback": "Adequate in bad weather, but 2.0 hives/acre is typically reserved for high-density trellis dwarfing rootstocks, and 20% bloom risks missing pollination on early king flowers.",
+              "critical": false
+            },
+            {
+              "text": "We can drop 3.0 colonies per acre at silver tip, three weeks before bloom, so they are hungry and wait for the trees.",
+              "points": 0.0,
+              "feedback": "Bringing colonies weeks before bloom forces bees to establish foraging routes on external wildflowers, requiring artificial feeding and failing to pollinate the target crop once bloom opens.",
+              "critical": true
+            }
+          ]
+        },
+        {
+          "npc_line": "I’ve got an open tractor staging lot on the north side behind the windbreak hedge, shaded all day. Can we just drop all twenty hives there on the ground to keep them out of my spraying rows?",
+          "options": [
+            {
+              "text": "No. The hives need early morning sun, facing south or southeast, elevated off wet soil, and clustered in groups placed no further than 100 meters from orchard blocks. Morning sun warms the entrance early so workers begin flight hours before midday.",
+              "points": 1.0,
+              "feedback": "Follows microclimate requirements. Solar radiation on south/southeast hive entrances initiates flight at lower ambient temperatures, and distributing groups within 100 m prevents foraging drop-off in cold spring air.",
+              "critical": false
+            },
+            {
+              "text": "We can keep them all in that north staging area as long as we face them west toward the road so they don't fly into your tractors.",
+              "points": 0.1,
+              "feedback": "Severe flight reduction. Shaded, north-facing hives stay cold well into the afternoon, delaying foraging by 2–4 hours during short spring pollination windows. Centralizing all hives at the perimeter also causes uneven pollination past 100 m.",
+              "critical": false
+            },
+            {
+              "text": "We can place them in groups of 4 to 8 around the sunny perimeter facing east, but some trees in the center will be roughly 150 meters out.",
+              "points": 0.65,
+              "feedback": "Acceptable cluster size and orientation, but in inclement or cold weather, honey bee flight distances shrink, resulting in poor set in the interior rows beyond 100 m.",
+              "critical": false
+            },
+            {
+              "text": "Deep shade on the ground is fine—bees regulate their own temperature and will fly miles into the wind anyway.",
+              "points": 0.0,
+              "feedback": "Placing hives in deep, damp shade on bare ground promotes moisture buildup, chalkbrood, and cold stupor. Honey bees avoid long flights when ambient temperatures hover near critical thresholds (12°C–15°C).",
+              "critical": true
+            }
+          ]
+        },
+        {
+          "npc_line": "Apple scab and fire blight don't wait. I have to apply a protective fungicide and streptomycin bactericide this week. Can I run the airblast sprayer during normal work hours?",
+          "options": [
+            {
+              "text": "You must restrict all spraying strictly to dusk-to-dawn hours when bees are inside the hive, and only apply non-toxic bloom fungicides or bactericides. Night application allows spray deposits to dry completely before foraging starts at dawn.",
+              "points": 1.0,
+              "feedback": "Follows safe pollination spray practices. Applying protectant fungicides or streptomycin between dusk and dawn ensures the liquid carrier dries before foraging begins, eliminating direct worker contact.",
+              "critical": false
+            },
+            {
+              "text": "You can spray in late afternoon if the sky is overcast, provided you tell me two hours before you start.",
+              "points": 0.3,
+              "feedback": "Bees often forage heavily on warm overcast afternoons if wind is low. Notification is good, but daytime spraying will coat active foragers with surfactant droplets, chilling them and causing homing failure.",
+              "critical": false
+            },
+            {
+              "text": "Go ahead and spray at midday as long as you use low pressure so the mist doesn't hit the hive boxes directly.",
+              "points": 0.1,
+              "feedback": "Airblast sprayers generate massive drift envelopes. Direct contact with wet chemicals destroys bee protective wax cuticle and contaminates nectar droplets being collected by active workers.",
+              "critical": false
+            },
+            {
+              "text": "Fungicides don't kill insects, so feel free to spray at midday during peak flight across the entire block.",
+              "points": 0.0,
+              "feedback": "Applying tank mixes with adjuvants during flight clogs spiracles, causes chemical foraging deterrence, and certain fungicides (e.g., ergosterol biosynthesis inhibitors) synergistically increase insecticide toxicity up to 1,000-fold.",
+              "critical": true
+            }
+          ]
+        },
+        {
+          "npc_line": "Aphids and tarnished plant bugs are creeping up. I'm thinking of adding a systemic neonicotinoid or broad-spectrum insecticide to the tank, and the dandelion floor is blooming nicely—can I leave the mowing for later?",
+          "options": [
+            {
+              "text": "Absolutely no systemic neonicotinoids or insecticides during bloom. You must also mow the orchard floor to knock down blooming dandelions and clover immediately before any night sprays, eliminating contaminated ground forage.",
+              "points": 1.0,
+              "feedback": "Complies with pesticide protection standards. Neonicotinoids express in nectar and pollen, causing severe neurotoxic sublethal effects. Mowing dandelions prevents bees from feeding on ground-level chemical residues beneath the tree canopy.",
+              "critical": false
+            },
+            {
+              "text": "Hold the insecticides until after petal fall and petal drop, but don't worry about mowing the dandelions since bees prefer apple blossoms anyway.",
+              "points": 0.5,
+              "feedback": "Correctly avoids insecticides during bloom, but wrong about ground cover. Dandelions produce abundant, highly competitive sugar-rich nectar and pollen; un-mown ground cover lures bees under spray zones.",
+              "critical": false
+            },
+            {
+              "text": "Use half the label rate of the neonicotinoid at dusk, and keep the dandelions tall so the bees have an alternative food source.",
+              "points": 0.1,
+              "feedback": "Systemic chemicals contaminate tree vascular tissues and persist in floral nectar/pollen. Tall weeds increase pesticide retention and attract bees to ground-level chemical drift.",
+              "critical": false
+            },
+            {
+              "text": "Go ahead with the neonicotinoid during the day. It targets chewing pests, not pollinators, and dandelions will distract the bees away from the trees.",
+              "points": 0.0,
+              "feedback": "Highly toxic. Neonicotinoids are systemic neurotoxins that devastate honey bee central nervous systems, cause acute apiary collapse, and violate pesticide safety labels.",
+              "critical": true
+            }
+          ]
+        }
+      ],
+      "caveats": [
+        "Standard and semi-dwarf apple plantings require 1.0 to 1.5 colonies per acre, whereas high-density trellised plantings require 2.0 to 2.5 colonies per acre due to high blossom counts.",
+        "Colonies must be introduced at 10% to 15% king-bloom; introducing them earlier causes irreversible foraging trails to competing external flora.",
+        "Hive groups should be placed no further than 100 meters (maximum 150 meters) from any tree row to prevent foraging drop-off in cold spring weather.",
+        "Hive entrances must face south or southeast and be elevated 15 to 30 cm off the ground on pallets or blocks to maximize morning sun exposure and reduce dampness.",
+        "Full honey bee foraging occurs only above 18.3°C (65°F) with solar irradiance over 60,000 lux and winds under 24 km/h (15 mph); foraging is marginal between 12.8°C and 15°C.",
+        "Systemic neonicotinoids are forbidden pre-bloom or in-bloom on blooming crops due to translocation into nectar and pollen.",
+        "Bloom sprays such as fungicides and bactericides must strictly occur from dusk to dawn, and ground weeds must be flail-mowed below 5 cm before spray operations."
+      ],
+      "problems": [
+        "Floral competition from weeds: Bees return with orange dandelion pollen instead of olive-green apple pollen and apple blossom counts drop below 20 bees per tree per minute; remedied by flail-mowing orchard sod or applying attractant pheromones.",
+        "Cold-morning stupor: Bees cluster at the hive entrance until late morning; remedied by re-orienting entrances southeast, elevating hives on pallets, and providing windbreaks.",
+        "Pesticide poisoning: Piles of trembling, paralyzed, or dead bees with extended probosces at entrances; remedied by closing entrances, moving colonies over 5 km away, cleaning bottom boards, and feeding clean water and 1:1 sugar syrup.",
+        "Sub-standard colony strength: Colony fails to provide adequate field force (fewer than 4 brood frames and fewer than 6 adult bee frames); remedied by replacing with inspected double-deep colonies.",
+        "Asymmetrical fruit set: Lopsided fruit with fewer than 5 viable seeds resulting from poor king-bloom pollination; remedied by correcting introduction timing to 10% king bloom, interplanting pollinizers within 15 m, and stocking at 1.5 hives per acre."
+      ],
+      "sources": [
+        {
+          "title": "nsw.gov.au",
+          "url": "https://www.dpi.nsw.gov.au/__data/assets/pdf_file/0018/117108/bee-apple-pollination.pdf"
+        },
+        {
+          "title": "nsw.gov.au",
+          "url": "https://www.dpi.nsw.gov.au/__data/assets/pdf_file/0018/117108/bee-apple-pollination.pdf"
+        },
+        {
+          "title": "decisionaid.systems",
+          "url": "https://decisionaid.systems/articles/Factors_Affecting_Bee_Pollination_of_Tree_Fruits"
+        },
+        {
+          "title": "wsu.edu",
+          "url": "https://treefruit.wsu.edu/orchard-management/pollination/honey-bees/"
+        },
+        {
+          "title": "cornell.edu",
+          "url": "https://blogs.cornell.edu/jentsch/2020/05/11/apple-bloom-supporting-pollinators-managing-pests-may-11th-2020/"
+        },
+        {
+          "title": "missouri.edu",
+          "url": "https://extension.missouri.edu/publications/g6001"
+        },
+        {
+          "title": "usu.edu",
+          "url": "https://digitalcommons.usu.edu/cgi/viewcontent.cgi?article=2521&context=extension_histall"
+        },
+        {
+          "title": "galenafarms.com",
+          "url": "https://galenafarms.com/blogs/beekeeping/beehive-location"
+        },
+        {
+          "title": "thebfarm.com",
+          "url": "https://thebfarm.com/blogs/news/how-beekeepers-organize-and-arrange-their-hives"
+        },
+        {
+          "title": "wcba.co.za",
+          "url": "https://wcba.co.za/wp-content/uploads/2022/05/beepollinationpamphlet.pdf"
+        },
+        {
+          "title": "keepingbackyardbees.com",
+          "url": "https://www.keepingbackyardbees.com/8-proper-beehive-placement-tips/"
+        },
+        {
+          "title": "uvm.edu",
+          "url": "https://www.uvm.edu/~orchard/fruit/treefruit/tf_horticulture/AppleHortBasics/Readings/Pollination+and+Fruit+Set+of+Fruit+Crops.pdf"
+        },
+        {
+          "title": "utah.gov",
+          "url": "https://ag.utah.gov/wp-content/uploads/Ornamental-and-Turf-Manual.pdf"
+        },
+        {
+          "title": "msu.edu",
+          "url": "https://pollinators.msu.edu/sites/_pollinators/assets/File/ProtectPollinatorsInUrbanLandscape_FINAL-LowRes.pdf"
+        },
+        {
+          "title": "purdue.edu",
+          "url": "https://extension.entm.purdue.edu/neonicotinoids/PDF/Neonicotinoidinsecticidesandbeeswhatsallthebuzzabout.pdf"
+        },
+        {
+          "title": "prairierivers.org",
+          "url": "https://prairierivers.org/neonicotinoids_and_pollinators/"
+        },
+        {
+          "title": "ct.gov",
+          "url": "https://portal.ct.gov/-/media/caes/documents/publications/fact_sheets/valley_laboratory/useofneonicotinoidsinthehomelandscapecowlesmarch2015pdf.pdf?rev=2e8600be705c407294a2e749f48d3601&hash=6068C1E20AE94EB760B8C7062BFEA41E"
+        },
+        {
+          "title": "scialert.net",
+          "url": "https://scialert.net/fulltext/?doi=pjbs.2004.359.362"
+        },
+        {
+          "title": "capabees.com",
+          "url": "https://capabees.com/shared/2012/10/CAPAcroppollination.pdf"
+        },
+        {
+          "title": "beekeepinggear.com.au",
+          "url": "https://www.beekeepinggear.com.au/blogs/article/hive-placement-tips-for-healthy-bees"
+        },
+        {
+          "title": "amazonaws.com",
+          "url": "https://s3-us-west-1.amazonaws.com/agrian-cg-fs1-production/pdfs/Bee-Scent_(032108)_Technical_Bulletin.pdf"
+        }
+      ]
+    }
+  ],
+  "reasoning_traces": [
+    {
+      "task_id": "formulate-syrup-feed",
+      "step": 1,
+      "thought": "Why chosen: Honey bees suffer nectar dearths in spring and autumn, and incorrect syrup concentrations cause metabolic strain or out-of-season laying, while overheating creates bee-toxic compounds. Mechanic mix: The mix mechanic accurately models setting ingredient weights, liquid volumes, and heating temperatures where precision determines hive health and survival.",
+      "evidence": [
+        "https://norcalnectar.com/blog/honey-bee-nutrition-feeding-guide",
+        "https://www.invertobee.com/blog/Healthy-and-productive-beehives",
+        "https://cals.cornell.edu/pollinator-network/beekeeping/beekeeping-calendar-northeast",
+        "https://www.betterbee.com/instructions-and-resources/the-when-what-and-how-of-fall-feeding.asp",
+        "https://www.honeybeesuite.com/hydroxymethylfurfural-in-sugar-syrup/",
+        "https://portal.ct.gov/-/media/caes/documents/bee/penn_state_beekeeping_basics_agrs93.pdf",
+        "https://scientificbeekeeping.com/fat-bees-part-3/",
+        "https://kashmiril.com/blogs/journal/is-heated-honey-toxic"
+      ]
+    },
+    {
+      "task_id": "spin-honey-extractor",
+      "step": 2,
+      "thought": "Why chosen: Bees consume 6 to 8 pounds of honey per pound of wax built, making it vital to spin out honey while keeping delicate comb structure intact to return frames for refilling. Mechanic timing: The timing mechanic simulates stopping or holding speed in target rotational zones, ramping up smoothly to prevent blowing out wax frames.",
+      "evidence": [
+        "https://resources.beesfordevelopment.org/rc/extraction-equipment/",
+        "https://en.wikipedia.org/wiki/Honey_extractor",
+        "https://beekeepingforum.co.uk/threads/honey-extractors-rpm.40107/",
+        "https://www.facebook.com/groups/1734315350183239/posts/3156272194654207/"
+      ]
+    },
+    {
+      "task_id": "brood-comb-inspection",
+      "step": 3,
+      "thought": "Why chosen: Inspection is the core diagnostic duty; missing brood diseases like American Foulbrood risks colony loss across the apiary, and missing swarm cells leads to losing half the workforce. Mechanic sort: The sort mechanic models diagnosing visual and pathological attributes across individual frames and routing them into five specific management streams.",
+      "evidence": [
+        "https://norcalnectar.com/blog/honey-bee-nutrition-feeding-guide",
+        "https://resources.beesfordevelopment.org/rc/extraction-equipment/",
+        "https://cals.cornell.edu/pollinator-network/beekeeping/beekeeping-calendar-northeast",
+        "https://scientificbeekeeping.com/fat-bees-part-3/",
+        "https://en.wikipedia.org/wiki/Honey_extractor"
+      ]
+    },
+    {
+      "task_id": "honey-super-haul",
+      "step": 4,
+      "thought": "Why chosen: Leaving harvested supers exposed during late summer dearth triggers robbing frenzies from foreign bees and wasps, slaughtering weak hives and spreading disease. Mechanic deliver: The deliver mechanic simulates ergonomic load limits, transit paths between apiary stands and the workshop, and time pressure before robbing starts.",
+      "evidence": [
+        "https://norcalnectar.com/blog/honey-bee-nutrition-feeding-guide",
+        "https://portal.ct.gov/-/media/caes/documents/bee/penn_state_beekeeping_basics_agrs93.pdf",
+        "https://www.youtube.com/watch?v=z5iA_aLB9_A"
+      ]
+    },
+    {
+      "task_id": "orchard-pollination",
+      "step": 5,
+      "thought": "Why chosen: Pollination agreements provide vital crop yields, but daytime insecticide applications on blooming orchards are a leading cause of colony poisonings. Mechanic converse: The converse mechanic tests dialogue choices, technical diplomacy, and adherence to agricultural safety standards.",
+      "evidence": [
+        "https://blogs.clemson.edu/clemsonpollinators/2021/11/16/cappings-newsletter-nov-dec-2021/"
+      ]
+    },
+    {
+      "task_id": null,
+      "step": 6,
+      "thought": "Assumptions: The apiary manages 15–30 production colonies using standard Langstroth 10-frame equipment and hygienic practices. The setting is a temperate seasonal biome with spring buildup, summer flow, and a cold winter requiring overwinter stores of 30–35 kg (60–80 lbs). Pests such as Varroa destructor and endemic foulbroods exist in the area, requiring integrated pest management.",
+      "evidence": []
+    },
+    {
+      "task_id": "formulate-syrup-feed",
+      "step": 7,
+      "thought": "Optimum for Clean Potable Water: 4 L. Standard workshop batch volume providing 4.0 L (equivalent to 4.0 kg mass) of clean base water. Scoring: tolerance 1, weight 1, linear curve because Maintaining standard 4.0 L base water ensures correct dosing ratios across batch formulations.",
+      "evidence": [
+        "https://jurassicbees.co.uk/pages/thymol-recipe-beekeeping"
+      ]
+    },
+    {
+      "task_id": "formulate-syrup-feed",
+      "step": 8,
+      "thought": "Optimum for Sugar-to-Water Mass Ratio: 1. For spring stimulative feed, a 1:1 w/w ratio (4.0 kg sugar to 4.0 L water) stimulates brood rearing and wax production; autumn feeding requires 2:1 w/w (8.0 kg sugar to 4.0 L water). Scoring: tolerance 0.3, weight 2.5, gaussian curve because Deviation beyond 0.3 from the target ratio disrupts bees' metabolic handling, comb space, and feeder mechanics.",
+      "evidence": [
+        "https://www.dpi.nsw.gov.au/__data/assets/pdf_file/0018/532260/Feeding-sugar-to-honey-bees.pdf",
+        "https://www.nationalbeeunit.com/assets/PDFs/3_Resources_for_beekeepers/Best_practice_guidelines/BPG_7a_Feeding_Bees_-_sugar.pdf",
+        "https://beefriendsfarm.com/blogs/the-beginners-checklist-for-keeping-bees-what-you-need-to-get-started/best-practices-for-feeding-bees-with-sugar-water",
+        "https://www.foxhoundbeecompany.com/blogs/feeding-bees/sugar-syrup-math-for-beekeepers"
+      ]
+    },
+    {
+      "task_id": "formulate-syrup-feed",
+      "step": 9,
+      "thought": "Optimum for Kettle Water Temperature: 45-50 °C. Warm water between 45°C and 50°C accelerates sucrose dissolution while remaining strictly below the 60°C threshold where toxic HMF formation accelerates. Scoring: tolerance 8, weight 3, gaussian curve because Insufficient heat stalls dissolution while excessive heat above 60°C rapidly generates cellularly toxic HMF.",
+      "evidence": [
+        "https://www.nationalbeeunit.com/assets/PDFs/3_Resources_for_beekeepers/Best_practice_guidelines/BPG_7a_Feeding_Bees_-_sugar.pdf",
+        "https://www.honeybeesuite.com/hydroxymethylfurfural-in-sugar-syrup/",
+        "https://www.reddit.com/r/Beekeeping/comments/1broqvs/boiling_sugar_syrup/"
+      ]
+    },
+    {
+      "task_id": "formulate-syrup-feed",
+      "step": 10,
+      "thought": "Optimum for Inhibitor Inclusion Rate: 1.25. An inclusion rate of 1.25 mL per liter of water (5.0 mL per 4.0 L batch) suppresses mold and yeast without repelling worker bees. Scoring: tolerance 0.5, weight 2, linear curve because Under-dosing fails to prevent fermentation and spoilage, while overdosing irritates nurse bees and repels consumption.",
+      "evidence": [
+        "https://jurassicbees.co.uk/pages/thymol-recipe-beekeeping",
+        "https://www.honeybeesuite.com/how-to-prevent-moldy-syrup-in-bee-feeders/",
+        "https://scientificbeekeeping.com/thymol-a-new-application-method-part-2/"
+      ]
+    },
+    {
+      "task_id": "formulate-syrup-feed",
+      "step": 11,
+      "thought": "Caveats: Never add acid or mold inhibitors into boiling or hot water, as low pH and high heat synergistically accelerate the formation of toxic HMF. Use only food-grade pure white granulated sucrose; unrefined brown sugar, molasses, and raw cane sugar contain indigestible ash and dextrins that cause fatal winter dysentery. Always prepare a properly emulsified thymol master solution with soy lecithin before dosing; raw unemulsified thymol forms a caustic oily layer on the syrup surface. Mix and store feed indoors in a honey-house and administer at dusk using internal feeders to avoid sparking frantic robbing behaviors. Problems: Water too cold: Sucrose forms dense, gritty sludge on the container bottom and fails to dissolve without excessive agitation. Water heated above 60°C: Syrup turns yellow or amber, giving off a caramel aroma as fructose dehydrates into lethal hydroxymethylfurfural (HMF). Over-concentrated syrup (>2.1:1): Supersaturated solution precipitates solid crystals upon cooling, jamming feeder screens. Under-dosed inhibitor (<2.0 mL per 4 L): Gray or black surface mold appears in warm hive feeders along with sour fermentation odors and gas bubbles. Over-dosed inhibitor (>8.0 mL per 4 L): Pungent medicinal aroma repels foraging bees, prompting feeder avoidance and hive agitation.",
+      "evidence": [
+        "https://www.dpi.nsw.gov.au/__data/assets/pdf_file/0018/532260/Feeding-sugar-to-honey-bees.pdf",
+        "https://www.nationalbeeunit.com/assets/PDFs/3_Resources_for_beekeepers/Best_practice_guidelines/BPG_7a_Feeding_Bees_-_sugar.pdf",
+        "https://jurassicbees.co.uk/pages/thymol-recipe-beekeeping",
+        "https://beefriendsfarm.com/blogs/the-beginners-checklist-for-keeping-bees-what-you-need-to-get-started/best-practices-for-feeding-bees-with-sugar-water",
+        "https://www.honeybeesuite.com/hydroxymethylfurfural-in-sugar-syrup/",
+        "https://www.honeybeesuite.com/how-to-prevent-moldy-syrup-in-bee-feeders/",
+        "https://scientificbeekeeping.com/thymol-a-new-application-method-part-2/",
+        "https://www.foxhoundbeecompany.com/blogs/feeding-bees/sugar-syrup-math-for-beekeepers"
+      ]
+    },
+    {
+      "task_id": "spin-honey-extractor",
+      "step": 12,
+      "thought": "Optimum for Low-Speed Evacuation Duration: 45-60 s. Running between 45 and 60 s evacuates 30% to 50% of the heavy honey mass, lightening the fragile combs so they do not blow out or slump when transitioning to high rotational speeds. Scoring: tolerance 15, weight 1, gaussian curve because Stopping under 40 s leaves excessive heavy honey mass that collapses comb midribs under high centrifugal forces, while exceeding 70 s yields diminishing returns due to cell surface tension.",
+      "evidence": [
+        "https://beekeepingforum.co.uk/threads/honey-extractors-rpm.40107/",
+        "https://www.facebook.com/groups/1734315350183239/posts/3156272194654207/"
+      ]
+    },
+    {
+      "task_id": "spin-honey-extractor",
+      "step": 13,
+      "thought": "Optimum for High-Speed Clearing Duration: 90-120 s. Operating between 90 and 120 s clears viscous residual honey clinging to cell bottoms without subjecting wax to vibration fatigue or aerating the honey into cloudy foam. Scoring: tolerance 25, weight 1, gaussian curve because Stopping before 80 s leaves over 15–20% residual crop loss in cell bases, whereas exceeding 140 s incorporates micro-bubbles that clog gravity strainers and warms fragile wax.",
+      "evidence": [
+        "https://beekeepingforum.co.uk/threads/honey-extractors-rpm.40107/",
+        "https://www.carl-fritz.de/en/Services/FAQ/",
+        "https://www.logar-trade.com/honey-extractors/selfturning-extractors/",
+        "https://backyardbeekeeping.iamcountryside.com/hives-equipment/honey-extractors-explained/"
+      ]
+    },
+    {
+      "task_id": "spin-honey-extractor",
+      "step": 14,
+      "thought": "Caveats: Honeycomb cells slope upward at a 9° to 14° angle toward the mouth; in radial extractors, frames must be oriented with top bars facing outward against the drum wall to allow centrifugal discharge. The lower honey gate valve must remain open and unobstructed during spinning to prevent pooled honey from submerging the rotor basket and inducing hydrodynamic drag. The extraction room and honey supers must be maintained between 25°C and 35°C (77°F to 95°F); cold honey resists flow, while temperatures above 35°C soften beeswax and cause comb collapse. Fresh, pale virgin wax or foundationless comb lacks reinforcement silk cocoon layers and requires operating at the lower end of the speed range. Problems: Comb Blowout / Slumping: Wax tears or crumples against the basket mesh due to premature termination of Phase 1, ramping speed too abruptly, or honey supers exceeding 35°C. Severe Drum Wobble ('Waltzing Extractor'): Extractor shakes violently or walks across the floor due to an unbalanced rotor caused by uneven frame weights or mismatched placement. Motor Stall / Heavy Frothing: Motor bogs down under rotational drag and thick white foam rises inside the tank because the honey gate valve remained closed and submerged the basket. Incomplete Honey Evacuation: Cells retain 15–30% honey mass due to a shortened Phase 2 run, room temperature below 22°C, or frames installed backward with top bars facing inward.",
+      "evidence": [
+        "https://beekeepingforum.co.uk/threads/honey-extractors-rpm.40107/",
+        "https://www.facebook.com/groups/1734315350183239/posts/3156272194654207/",
+        "https://www.logar-trade.com/honey-extractors/selfturning-extractors/",
+        "https://www.carl-fritz.de/en/Services/FAQ/",
+        "https://backyardbeekeeping.iamcountryside.com/hives-equipment/honey-extractors-explained/",
+        "https://www.facebook.com/groups/ribeekeepers/posts/7704145256378425/",
+        "https://hivekeepergear.com/how-to-use-a-honey-extractor/",
+        "https://www.latiendadelapicultor.com/blog/en/how-to-uncap-honey-tools-and-technique/"
+      ]
+    },
+    {
+      "task_id": "brood-comb-inspection",
+      "step": 15,
+      "thought": "Right destinations: Frame with uniform, convex biscuit-brown cappings and pearly-white C-shaped larvae -> Active Brood Nest (Healthy worker brood frames belong in the active brood nest to maintain colony population replacement.); Frame with dark, sunken, punctured cappings and larval remains roping out over 2 cm with putrid odor -> Biohazard Containment (Symptoms indicate American Foulbrood; must be isolated in biohazard containment to prevent apiary-wide spore contamination.); Frame with solid pale beeswax cappings covering over 90% of cells and dehydrated nectar below 18.6% moisture -> Surplus Honey Super (Fully capped, ripe honey belongs in the surplus honey super to prevent honey-binding in the brood nest.); Frame with 4 to 10 vertically oriented, peanut-shell textured queen cells along the bottom bar -> Nucleus Box (Swarm queen cells belong in a nucleus box with nurse bees to form an artificial swarm split.); Frame with brittle, jet-black comb over 3 years old with thickened cell walls -> Solar Wax Melter (Old, pesticide-laden, blackened comb should be culled into the solar wax melter for wax reclamation.); Frame packed with multicolored fermented bee bread directly adjacent to open brood -> Active Brood Nest (Bee bread provides essential dietary protein and lipids for nurse bees and must stay in the brood nest.); Frame with bulging bullet cappings protruding over 3 mm heavily infested with Varroa mites -> Solar Wax Melter (Sacrificial drone comb trapping Varroa mites...",
+      "evidence": []
+    },
+    {
+      "task_id": "brood-comb-inspection",
+      "step": 16,
+      "thought": "Caveats: The AFB ropiness differentiation threshold: larval remains must rope out continuously at least 2 cm to indicate American Foulbrood, whereas European Foulbrood stretches under 1 cm before snapping. Comb rotation math requires culling 2 frames per 10-frame box each year (20% to 33% replacement) so no comb exceeds 3 to 5 years. Honey moisture content must remain below 18.6%; unripened nectar failing the shake test risks post-harvest fermentation by osmophilic yeasts. Queen cell topography distinguishes swarm cells (clusters of 4 to 12 along bottom bars) from supersedure cells (1 to 3 in the comb center face, which must not be split away). Problems: The honey-bound brood nest: heavy nectar flows occupy brood cells and restrict queen laying below 500 eggs/day; fixed by moving 2 outer honey frames to supers and inserting drawn comb into positions 3 and 8. The broken queen cell during triage: scraping delicate swarm cells damages nymph cocoons; fixed by excising damaged cells and ensuring 1 to 2 intact cells remain on the split frame. False AFB scale vs. normal propolis/dirt: dark crusts on cell floors can cause false alarm; true AFB scale adheres tightly to the lower horizontal cell wall and cannot be pried loose without breaking comb.",
+      "evidence": [
+        "https://hbrc.ca/comb-management/",
+        "https://theapiarist.org/the-nucleus-method/",
+        "https://www.beekeepingmadesimple.com/blog/clean-old-dark-comb",
+        "https://www.urbanhivelife.works/guides/american-foulbrood-testing-symptoms/",
+        "https://www.betterbee.com/instructions-and-resources/methods-for-testing-for-american-foulbrood.asp",
+        "https://agriculture.vic.gov.au/biosecurity/animal-diseases/honey-bee-pests-and-diseases/diagnosis-control-and-eradication-of-american-foulbrood-disease",
+        "https://beeaware.org.au/archive-pest/american-foulbrood/",
+        "https://www.albertabeekeepers.ca/american-foulbrood-part-2-of-2/"
+      ]
+    },
+    {
+      "task_id": "honey-super-haul",
+      "step": 17,
+      "thought": "Orders and constraints: Harvested Medium Honey Super (Illinois 6⅝″, 18–22 kg) -> Honey House Warm Staging Room (Carry solo against abdomen with upright spine; keep covered with bee-tight damp cloth, tarp, or escape lid; complete delivery within 90 seconds to prevent robber scout recruitment.); Solid Pine Entrance Reducer (37.5 cm × 1.9 cm × 1.9 cm) -> Weak Colony Nuc / Split Stand 02 (Insert firmly into bottom board entrance rail with smallest notch (2.0 cm × 0.95 cm) facing forward; complete delivery within 90 seconds concurrently with harvest.); Harvested Deep Honey Super (Full Depth 9⅝″, 32–36 kg) -> Honey House Staging Area (Maximum single-person capacity; keep box strictly level (tilt < 15° to prevent warm comb sag or tearing); stack covered to prevent robbing.)",
+      "evidence": []
+    },
+    {
+      "task_id": "honey-super-haul",
+      "step": 18,
+      "thought": "Caveats: According to NIOSH guidelines, the recommended weight limit under ideal conditions is 23 kg (51 lbs); full medium supers reach 18–22 kg and deep supers reach 32–36 kg, requiring elbows tucked into hips and pivoting with feet to prevent lumbar disc herniation. Beeswax softens and loses structural integrity rapidly above 35°C (95°F); supers left sitting in mid-day sun can suffer comb collapse under their own weight. Wild honeybee swarms naturally prefer cavity entrances measuring 10–15 cm²; standard unmodified 10-frame Langstroth entrances measure ~35.6 cm², which must be reduced to the 2.0 cm slot so guard bees can defend the bottleneck. Robbing is a leading vector for apiary-wide transmission of American Foulbrood (Paenibacillus larvae) and Varroa destructor mites when colonies break down defenses. Problems: Robbing Frenzy Outbreak: High-pitched erratic buzzing, bees probing hive cover cracks, wrestling/dead bees on landing board, shredded cappings; resolved by reducing entrance to 2 cm, draping a water-soaked sheet/burlap over the hive, and ceasing harvest operations. Dead-Bee Entrance Blockage: Foragers clustering and fanning frantically outside, rising internal heat, undertakers unable to exit narrow 2 cm notch; cleared with hive tool or twig, or by orienting the notch upward. Burr Comb Rupture & Dripping: Honey leaking from bottom rabbets and coating handles, bees licking handholds; managed by using a drip pan/cover during transport and spraying water to disso...",
+      "evidence": [
+        "https://agriculture.institute/honeybee-colonies-mgt/preventing-managing-robbing-honeybee-colonies-monsoon/",
+        "https://harvestlane.com/blogs/beehive-blog/mid-summer-beekeeping-managing-nectar-dearth-drought",
+        "https://hbrc.ca/robbing-prevention/",
+        "https://www.honeybeesuite.com/summer-nectar-dearth-honey-bee-management/",
+        "https://www.reddit.com/r/Beekeeping/comments/1b1dqij/new_beekeeper_how_much_honey_do_i_need_to_leave/",
+        "https://www.honeybeesonline.com/honey-super/",
+        "https://kybees.org/Phils-Observations/13152733",
+        "https://americanbeejournal.com/bees-robbing-honey-en-masse-and-how-to-avoid-it/"
+      ]
+    },
+    {
+      "task_id": "orchard-pollination",
+      "step": 19,
+      "thought": "Conversation turn \"The weather is warming up, and I want to get the bees in early to make sure they hit every single flower on my 20-acre block. When exactly should we drop the hives, and how many are you bringing?\": best response \"We should stock 1.0 to 1.5 strong colonies per acre and bring them in at 10% to 15% king-bloom. If we move them in earlier, the scout bees will lock onto dandelion and maple forage outside the orchard; if we wait past 15%, the king blossoms will abort without pollination.\" because Excellent. Matches standard stocking rates and target phenology. King bloom produces the largest, highest-value fruit, while arriving too early results in flower constancy toward competing weed forage. Serious errors: We can drop 3.0 colonies per acre at silver tip, three weeks before bloom, so they are hungry and wait for the trees.",
+      "evidence": []
+    },
+    {
+      "task_id": "orchard-pollination",
+      "step": 20,
+      "thought": "Conversation turn \"I’ve got an open tractor staging lot on the north side behind the windbreak hedge, shaded all day. Can we just drop all twenty hives there on the ground to keep them out of my spraying rows?\": best response \"No. The hives need early morning sun, facing south or southeast, elevated off wet soil, and clustered in groups placed no further than 100 meters from orchard blocks. Morning sun warms the entrance early so workers begin flight hours before midday.\" because Follows microclimate requirements. Solar radiation on south/southeast hive entrances initiates flight at lower ambient temperatures, and distributing groups within 100 m prevents foraging drop-off in cold spring air. Serious errors: Deep shade on the ground is fine—bees regulate their own temperature and will fly miles into the wind anyway.",
+      "evidence": []
+    },
+    {
+      "task_id": "orchard-pollination",
+      "step": 21,
+      "thought": "Conversation turn \"Apple scab and fire blight don't wait. I have to apply a protective fungicide and streptomycin bactericide this week. Can I run the airblast sprayer during normal work hours?\": best response \"You must restrict all spraying strictly to dusk-to-dawn hours when bees are inside the hive, and only apply non-toxic bloom fungicides or bactericides. Night application allows spray deposits to dry completely before foraging starts at dawn.\" because Follows safe pollination spray practices. Applying protectant fungicides or streptomycin between dusk and dawn ensures the liquid carrier dries before foraging begins, eliminating direct worker contact. Serious errors: Fungicides don't kill insects, so feel free to spray at midday during peak flight across the entire block.",
+      "evidence": []
+    },
+    {
+      "task_id": "orchard-pollination",
+      "step": 22,
+      "thought": "Conversation turn \"Aphids and tarnished plant bugs are creeping up. I'm thinking of adding a systemic neonicotinoid or broad-spectrum insecticide to the tank, and the dandelion floor is blooming nicely—can I leave the mowing for later?\": best response \"Absolutely no systemic neonicotinoids or insecticides during bloom. You must also mow the orchard floor to knock down blooming dandelions and clover immediately before any night sprays, eliminating contaminated ground forage.\" because Complies with pesticide protection standards. Neonicotinoids express in nectar and pollen, causing severe neurotoxic sublethal effects. Mowing dandelions prevents bees from feeding on ground-level chemical residues beneath the tree canopy. Serious errors: Go ahead with the neonicotinoid during the day. It targets chewing pests, not pollinators, and dandelions will distract the bees away from the trees.",
+      "evidence": []
+    },
+    {
+      "task_id": "orchard-pollination",
+      "step": 23,
+      "thought": "Caveats: Standard and semi-dwarf apple plantings require 1.0 to 1.5 colonies per acre, whereas high-density trellised plantings require 2.0 to 2.5 colonies per acre due to high blossom counts. Colonies must be introduced at 10% to 15% king-bloom; introducing them earlier causes irreversible foraging trails to competing external flora. Hive groups should be placed no further than 100 meters (maximum 150 meters) from any tree row to prevent foraging drop-off in cold spring weather. Hive entrances must face south or southeast and be elevated 15 to 30 cm off the ground on pallets or blocks to maximize morning sun exposure and reduce dampness. Full honey bee foraging occurs only above 18.3°C (65°F) with solar irradiance over 60,000 lux and winds under 24 km/h (15 mph); foraging is marginal between 12.8°C and 15°C. Systemic neonicotinoids are forbidden pre-bloom or in-bloom on blooming crops due to translocation into nectar and pollen. Bloom sprays such as fungicides and bactericides must strictly occur from dusk to dawn, and ground weeds must be flail-mowed below 5 cm before spray operations. Problems: Floral competition from weeds: Bees return with orange dandelion pollen instead of olive-green apple pollen and apple blossom counts drop below 20 bees per tree per minute; remedied by flail-mowing orchard sod or applying attractant pheromones. Cold-morning stupor: Bees cluster at the hive entrance until late morning; remedied by re-orienting entrances southeast, elevating hives...",
+      "evidence": [
+        "https://www.dpi.nsw.gov.au/__data/assets/pdf_file/0018/117108/bee-apple-pollination.pdf",
+        "https://decisionaid.systems/articles/Factors_Affecting_Bee_Pollination_of_Tree_Fruits",
+        "https://treefruit.wsu.edu/orchard-management/pollination/honey-bees/",
+        "https://blogs.cornell.edu/jentsch/2020/05/11/apple-bloom-supporting-pollinators-managing-pests-may-11th-2020/",
+        "https://extension.missouri.edu/publications/g6001",
+        "https://digitalcommons.usu.edu/cgi/viewcontent.cgi?article=2521&context=extension_histall",
+        "https://galenafarms.com/blogs/beekeeping/beehive-location",
+        "https://thebfarm.com/blogs/news/how-beekeepers-organize-and-arrange-their-hives"
+      ]
+    },
+    {
+      "task_id": null,
+      "step": 24,
+      "thought": "Thinking (choosing tasks): **Beekeeping in ReplaceMe: A Task Breakdown** Okay, so I'm tasked with designing some game mechanics for a beekeeping aspect of this village life-sim, *ReplaceMe*. The goal is to create engaging, hands-on tasks that fit within the game's limited mechanic set: `mix`, `timing`, `sort`, `deliver`, and `converse`. I need to ensure these tasks are authentic, focusing on real-world beekeeping practices. The game uses the first four mechanics. I have to prioritize. I have to make the activities measurable and well-documented. Right, let's start with some research. Google Search time! I'll dive into what beekeepers *actually* do. Okay, let's see. A beekeeper's day isn't just about honey; it's a mix of hive management, pest control, feeding, and product harvesting. I'm seeing: smoker operation, hive inspections (looking for diseases, brood health), mixing sugar syrup, harvesting honey, and dealing with Varroa mites. Perfect. This gives me a nice range to work with. There are also tasks like swarm catching, equipment delivery, or advising others on bee-friendly practices. Now, let's select my five core tasks for the game. I want to make sure the first four have a nice mix of the mechanics. And, let's start with the important stuff. Here's my priority list: 1. **Mixing Spring Sugar Syrup (`mix` mechanic):** This is foundational. Beekeepers regularly mix sugar syrup to feed their bees, especially in the spring to build up the colony. I'll make this the first...",
+      "evidence": [
+        "search: oxalic acid vaporization dose grams per brood chamber USDA OR extension",
+        "search: honey extractor rpm speed timing honey bee extraction",
+        "search: \"sugar syrup\" \"1:1\" \"2:1\" beekeeping penn state extension OR \"honey bee\"",
+        "search: bee smoker fuel lighting cool white smoke temperature beekeeping"
+      ]
+    },
+    {
+      "task_id": null,
+      "step": 25,
+      "thought": "Thinking (choosing tasks): **My Beekeeping Task Selection Process** Alright, let's break this down systematically. My goal here is to identify and prioritize the most crucial, hands-on tasks in beekeeping, ensuring they align with the game mechanics and represent real-world beekeeping practices. I need to make sure I'm choosing tasks that showcase my knowledge and adherence to best practices. First, I assessed each mechanic: *Mix, Timing, Sort, Deliver, Converse*. I'm thinking about the village setting here - quaint, local, with farmers to assist. I want the players to have a deep understanding, and so, the first 4 tasks selected should use at least 3 distinct mechanics and involve measurable quantities rooted in reliable sources. I also need to make sure that the activities align with the game's focus on hands-on experiences. 1. **\"Formulate Supplemental Sugar Syrup Feed\" (Mix):** This is foundational. It highlights my understanding of beekeeping nutrition. During dearth periods, I'd mix specific quantities of sugar and water, controlling the temperature precisely. The target ratios are 1:1 for spring buildup, 2:1 for winter stores. The critical part is the water temperature – I need to keep it below 60°C to prevent HMF formation, which is detrimental to bee health. I'm thinking sources like Penn State Extension and Cornell CALS here – they offer precise guidelines. I could even add a natural acid for sucrose inversion. 2. **\"Spinning the Honey Extractor (Centrifugal Extr...",
+      "evidence": [
+        "search: \"hydroxymethylfurfural\" \"sugar syrup\" bees temperature celsius",
+        "search: \"HMF\" \"sugar syrup\" \"honey bees\" heating temperature toxic"
+      ]
+    },
+    {
+      "task_id": null,
+      "step": 26,
+      "thought": "Thinking (choosing tasks): **My Beekeeping Game Plan: A Deep Dive** Okay, so I'm putting together this beekeeping simulation, and I need to make sure it's realistic and engaging. First, the HMF thing – *that's* crucial. I need to emphasize that *any* temperature above 60°C (140°F) when heating sugar to make syrup is a hard no-go. We're talking toxic levels of hydroxymethylfurfural (HMF) that'll mess up the bees something fierce, causing dysentery and mortality at concentrations above 30 mg/kg. We’re aiming for warm, not hot (40-50°C/100-120°F). Now, let's break this down into sections: 1. **Setting is Key:** I envision \"Meadowglen Apiary & Village Orchards,\" a cozy spot. Picture it: a sun-drenched clearing with Langstroth hives, wildflowers, and bee flight paths. We'll have a Honey House (that's the workshop), a Feed & Medicine Shed, and the Orchard & Village Common, where villagers buy honey and ask questions. 2. **Core Principles:** This needs to be realistic. We're talking about bee welfare *first*. Gentle movements, calm smoke, respect for the bees! Then, strict biosecurity to combat diseases. Keep an eye on Varroa mite loads, and quarantine frames, especially if there's any sign of AFB! Honey purity is paramount; no adulteration, and we only harvest when the frames are ready (at least 80% capped, moisture below 18.6%). Worker safety and community harmony are a must – PPE, proper communication with neighbors to prevent pesticide drift. 3. **Five Concrete Tasks:** I'm g...",
+      "evidence": []
+    },
+    {
+      "task_id": null,
+      "step": 27,
+      "thought": "Sources considered for choosing tasks: honeyflow.com; beewise.com.au; thorne.co.uk; norcalnectar.com; beesfordevelopment.org; wsu.edu; invertobee.com; clemson.edu; cornell.edu; betterbee.com; honeybeesuite.com; ct.gov; scientificbeekeeping.com; kashmiril.com; apiarytools.com; nsw.gov.au; nih.gov; acs.org; windhamcountybeekeepers.com; facebook.com; wikipedia.org; beekeepingforum.co.uk; youtube.com",
+      "evidence": [
+        "https://eu.honeyflow.com/blogs/livestreams/how-to-light-your-smoker-210210",
+        "https://www.beewise.com.au/news/index/view/id/29/how-to-use-a-bee-smoker",
+        "https://www.thorne.co.uk/blog/ask-the-expert/the-complete-guide-to-bee-smokers",
+        "https://norcalnectar.com/blog/honey-bee-nutrition-feeding-guide",
+        "https://resources.beesfordevelopment.org/rc/extraction-equipment/",
+        "https://pubs.extension.wsu.edu/product/oxalic-acid-options-for-controlling-varroa-destructor/",
+        "https://www.invertobee.com/blog/Healthy-and-productive-beehives",
+        "https://blogs.clemson.edu/clemsonpollinators/2021/11/16/cappings-newsletter-nov-dec-2021/"
+      ]
+    },
+    {
+      "task_id": "formulate-syrup-feed",
+      "step": 28,
+      "thought": "Thinking: **Formulating Sugar Syrup Feed: A Beekeeper's Perspective** Okay, so I need to put together a practical report on formulating sugar syrup for beekeeping, specifically addressing the \"Formulate Sugar Syrup Feed\" task. I'm thinking about how a beekeeper would actually *do* this, so I need to focus on a \"mix\" mechanic. My approach will be to outline the key parameters, giving them realistic ranges and control mechanisms. I'm imagining 2-5 quantities the beekeeper will be adjusting, each with clear units, min/max ranges that make practical sense, steps for adjustment, a default or optimal setting, and crucially, any derived relations, like a sugar-to-water ratio. I’ll need to flag any potential deviations from these optimal values, and what the observable signs of too little or too much of each ingredient would look like. Of course, I'll need to include any pertinent caveats or potential problems they might encounter. Specifically, I need to make sure I cover: * **The Target Ratio:** This is foundational. Spring feed is generally a 1:1 sugar-to-water ratio (by weight or volume depending on the measurement, I need to clarify that) for stimulation, while autumn/winter feed requires a denser 2:1 ratio for building up winter stores. This is a critical point. * **Temperature Control:** Heating the water is important, but it needs to be strictly controlled. I need to emphasize a target range of 45°C–50°C, and *absolutely* below 60°C. Avoiding the formation of hydroxymethyl...",
+      "evidence": [
+        "search: beekeeping 1:1 2:1 sugar syrup heating water temperature HMF",
+        "search: beekeeping sugar syrup temperature HMF hydroxymethylfurfural 60 C",
+        "search: sugar syrup for bees thymol apple cider vinegar per liter or gallon mold inhibitor",
+        "search: feeding bees sugar syrup HMF toxicity temperature"
+      ]
+    },
+    {
+      "task_id": "formulate-syrup-feed",
+      "step": 29,
+      "thought": "Thinking: **Formulating Sugar Syrup Feed: A Beekeeping Expert's Guide** Alright, let's break this down. As a beekeeper, my primary task here is to get this sugar syrup feed right. This isn't just about mixing sugar and water; it's about the *precise* ratios, temperatures, and additions that determine the health and productivity of my colonies. I'm thinking, this needs to be spot on. Firstly, let's define the key variables and their ideal ranges, with units, minimums, maximums, increments, defaults, and optimal targets: 1. **Water Volume:** (Liters) - Range: 2.0 to 10.0 L, Step: 0.5 L, Default: 4.0 L. 2. **Sugar Mass:** (Kilograms) - Range: 2.0 to 12.0 kg, Step: 0.5 kg, Default: 4.0 kg (1:1), or 8.0 kg (2:1). 3. **Water Temperature:** (°C) - Range: 20 to 80 °C, Step: 1 °C, Default: 45 °C or 48 °C. Ideally, 45°C – 50°C, always *strictly* below 60°C. 4. **Mold Inhibitor:** (Milliliters) - Range: 0.0 to 20.0 mL, Step: 0.5 mL, Default: 5.0 mL. Target: 5.0 mL per 4.0 L batch, to be mixed in *after* cooling the water. Now, derived relations are crucial. The following is where careful attention must be paid: * **Sugar-to-Water Ratio:** (kg/L) - This is the heart of the matter. For spring stimulative feed, we want 1.0 (1:1 w/w). For autumn winter stores, 2.0 (2:1 w/w). * **Mold Inhibitor Dosing Concentration:** (mL/L of water) - We're aiming for 1.25 mL per liter of water (or syrup). * **Maximum Temperature Limit:** Absolutely below 60°C. This is to prevent the formation of hydroxy...",
+      "evidence": []
+    },
+    {
+      "task_id": "formulate-syrup-feed",
+      "step": 30,
+      "thought": "Sources considered: nsw.gov.au; nationalbeeunit.com; jurassicbees.co.uk; beefriendsfarm.com; honeybeesuite.com; honeybeepro.com; scientificbeekeeping.com; foxhoundbeecompany.com; reddit.com; youtube.com; sciencedaily.com; beekeepingforum.co.uk; sugar-energy.com; dave-cushman.net",
+      "evidence": [
+        "https://www.dpi.nsw.gov.au/__data/assets/pdf_file/0018/532260/Feeding-sugar-to-honey-bees.pdf",
+        "https://www.nationalbeeunit.com/assets/PDFs/3_Resources_for_beekeepers/Best_practice_guidelines/BPG_7a_Feeding_Bees_-_sugar.pdf",
+        "https://jurassicbees.co.uk/pages/thymol-recipe-beekeeping",
+        "https://beefriendsfarm.com/blogs/the-beginners-checklist-for-keeping-bees-what-you-need-to-get-started/best-practices-for-feeding-bees-with-sugar-water",
+        "https://www.honeybeesuite.com/hydroxymethylfurfural-in-sugar-syrup/",
+        "https://www.honeybeepro.com/en/what-is-hmf/",
+        "https://www.honeybeesuite.com/how-to-prevent-moldy-syrup-in-bee-feeders/",
+        "https://scientificbeekeeping.com/thymol-a-new-application-method-part-2/"
+      ]
+    },
+    {
+      "task_id": "spin-honey-extractor",
+      "step": 31,
+      "thought": "Thinking: **My Beekeeper's Brain: Deconstructing the Honey Extraction Task** Alright, let's break this down. My job is beekeeper, the task is operating a centrifugal honey extractor, the \"Spin Honey Extractor\" specifically, and the goal is to get that honey out of the frames without destroying the comb. Sounds straightforward, but it's all about precision. First, I need to focus on two key phases. Phase 1 is that gentle start, low speed (90–110 RPM) for around 45–60 seconds. This is critical to lighten the frames gradually, preventing any blowouts. Then, it's Phase 2, the high-speed clearing (250–280 RPM, with a hard maximum of 300 RPM) for 90–120 seconds. Now, I'm thinking about how this process fits within this \"timing\" mechanic, which seems to involve stopping or releasing at the correct time or within the correct zone. It's similar to other processes – steaming, pouring, kneading, heating – where the duration or speed matters. I need to be precise. The mechanic itself looks for a station ID and phases, each with a label, unit, minimum and maximum values, and a mode. I'm imagining it's all about hitting those sweet spots in speed and time. So, for this practitioner's report, it's about defining phases where my timing matters. I need to figure out exactly *how* to measure this. My instinct is that I'm going to want to report each phase as a quantity with a unit. The focus mentions specific durations (seconds) and RPMs, so it makes sense to go with the duration of the low...",
+      "evidence": [
+        "search: honey extraction speed rpm break comb blowout",
+        "search: honey extractor RPM speed tangential radial comb blowout",
+        "search: honey extractor rpm low speed high speed seconds minutes"
+      ]
+    },
+    {
+      "task_id": "spin-honey-extractor",
+      "step": 32,
+      "thought": "Thinking: **Honey Extraction Mechanic Analysis** Okay, let's break this down. We're building a mechanic for a beekeeping game focused on honey extraction using a centrifugal extractor. The core mechanic is \"timing,\" specifically the act of holding and releasing at the right moment within a moving or filling meter, which in this case represents the duration of the spin cycle and, implicitly, the RPM achieved. The prompt outlines a two-phase process: * **Phase 1: Low-Speed Evacuation.** This initial stage is crucial for lightening the frames and preventing \"blowouts,\" where the comb collapses under the force of the heavy honey. We're looking at a duration, measured in seconds (s), for this phase. The ideal range is 45-60 s at 90-110 RPM. Stopping the spin too early (less than 45 s) means the frame remains too heavy, risking comb damage in the next phase. Conversely, going too long (over 60 s) is inefficient. * **Phase 2: High-Speed Clearing.** Once the frames are lightened, this high-speed stage is to pull the remaining honey out of the cells. The duration is our focus here. The target is 90-120 s at 250-280 RPM (maximum 300 RPM). Stopping early (less than 90 s) will leave a significant amount of honey in the comb (typically >15–20% unharvested), and stopping too late (over 120 s) becomes a diminishing return and risking motor issues. Essentially, we have two distinct durations, measured in seconds, that define the \"timing\" aspect of the mechanic. These are crucial: * **Phas...",
+      "evidence": [
+        "search: honey extractor \"honey gate\" open drag basket",
+        "search: radial extractor cell slope angle upward \"top bar\""
+      ]
+    },
+    {
+      "task_id": "spin-honey-extractor",
+      "step": 33,
+      "thought": "Thinking: **Comprehensive Analysis of Honey Extraction Timing Mechanics** Okay, let's break this down. First, I'm defining the core mechanic: a timing-based system with phases, which means the worker needs to either stop a meter or hold and release at the correct time. The system parameters are clear, and the scoring will be keyed to each phase's \"stopped/released\" value. This aligns perfectly with the prompt's focus on \"stop a moving meter, or hold and release.\" My initial thought is to keep this streamlined with *two* phases, even if a third is technically allowed. The prompt clearly defines two stages: low-speed evacuation followed by high-speed clearing. Sticking to two phases maintains clarity and faithfulness to the prompt's explicit parameters, making the design more robust. I'm thinking through how to structure the phases themselves. Let’s do the specifics: **Phase 1: Low-Speed Evacuation Duration** * `id`: `phase_1_low_speed_duration` * `label`: \"Phase 1: Low-Speed Evacuation Duration\" * `unit`: `s` (seconds) * **Realistic Range**: 30-75 seconds * **Optimal Range**: 45-60 seconds * **Deviation Penalty**: Stopping too early (especially under 30 seconds) leaves a high honey load, causing blowouts during the next phase. Conversely, running too long (over 60 seconds) is just wasted time and can lead to motor heating. **Phase 2: High-Speed Clearing Duration** * `id`: `phase_2_high_speed_duration` * `label`: \"Phase 2: High-Speed Clearing Duration\" * `unit`: `s` (seconds...",
+      "evidence": []
+    },
+    {
+      "task_id": "spin-honey-extractor",
+      "step": 34,
+      "thought": "Sources considered: meridianbeekeepers.com; wikipedia.org; reddit.com; beekeepingforum.co.uk; facebook.com; logar-trade.com; carl-fritz.de; iamcountryside.com; beesfordevelopment.org; hivekeepergear.com; latiendadelapicultor.com; steemit.com; beeculture.com; blythewoodbeecompany.com; dave-cushman.net; honeyandthehive.com; konigin-trade.com",
+      "evidence": [
+        "https://meridianbeekeepers.com/2020/11/28/honey-extractors/",
+        "https://en.wikipedia.org/wiki/Honey_extractor",
+        "https://www.reddit.com/r/Beekeeping/comments/1gacgez/radial_or_tangential/",
+        "https://beekeepingforum.co.uk/threads/honey-extractors-rpm.40107/",
+        "https://www.facebook.com/groups/1254979707869481/posts/3352321994801898/",
+        "https://www.facebook.com/groups/1734315350183239/posts/3156272194654207/",
+        "https://www.logar-trade.com/honey-extractors/selfturning-extractors/",
+        "https://www.carl-fritz.de/en/Services/FAQ/"
+      ]
+    },
+    {
+      "task_id": "brood-comb-inspection",
+      "step": 35,
+      "thought": "Thinking: **Brood Comb Inspection: Practitioner's Report Thoughts** Okay, so I need to put together a practical report on Brood Comb Inspection, specifically tailored for a beekeeper. Let's think through this step-by-step. The core of this is about *sorting* and routing different brood comb conditions to the appropriate next action. First, the *healthy* worker brood needs to stay put – that's the heart of the *Brood Nest*. Straightforward. Now, we have a serious red flag: those dark, sunken, perforated caps with that foul odor and ropiness that's clearly larger than 2 centimeters, we're talking American Foulbrood, or AFB. *Immediate* biohazard containment is the only option here - Incineration or Quarantine. I'm well aware of the Paenibacillus larvae's role in this. Sealed capped honey? That goes into the *Surplus Honey Super*, or, if we're at that stage, it's straight to *Honey extraction* and then *Honey store*. Easy. Peanut-shaped swarm queen cells… those scream *Nucleus Box* and splitting for swarm management. That's a key sign of a potential swarm, we have to act accordingly. Finally, that *3-year-old blackened brittle comb* is done. That's *Solar Wax Melter* territory. Comb culling and wax rendering are critical for hive health. The age and condition means it's likely harboring pathogens and pesticides, so we need to get rid of it. Okay, now to solidify this. I need to delve into standard apiculture practices to ensure I'm up-to-date and consistent with my report. I’...",
+      "evidence": [
+        "search: comb rotation beekeeping 3 years blackened comb wax melter",
+        "search: American Foulbrood ropiness test cm foul odor sunken perforated caps",
+        "search: swarm cells nucleus colony split beekeeping"
+      ]
+    },
+    {
+      "task_id": "brood-comb-inspection",
+      "step": 36,
+      "thought": "Thinking: **Practitioner's Report: Brood Comb Inspection - My Working Thoughts** Okay, here's what I'm thinking in terms of this practitioner's report. My goal is to outline a realistic brood comb inspection scenario with clear routing instructions, potential problems, and solutions, keeping in mind the expert audience. I need to make this practical, actionable, and based on solid information. First, the task: “Brood Comb Inspection.” This involves pulling Langstroth frames, evaluating their contents, and sending them to the right location. I'll need to define 6-8 specific items to route and 5 distinct destinations, meeting the initial criteria. Here's how I envision the items and destinations: * **Destinations (bins):** 1. `brood_nest` (Active Brood Chamber/Brood Nest) - Center of the hive. 2. `honey_super` (Surplus Honey Super) - For honey extraction. 3. `nucleus_box` (Nucleus Colony/Nuc Box) - For queen rearing. 4. `solar_melter` (Solar Wax Melter/Wax Rendering) - For culling old comb. 5. `biohazard_containment` (Biohazard Containment/AFB Quarantine) - For disease eradication. * **Items to Route:** 1. **Healthy Sealed Worker Brood Frame:** This would have solid, biscuit-brown cappings, indicating healthy brood. I expect >85% laying density with pearly-white C-shaped larvae. Destination: **Brood Nest**. 2. **AFB-Symptomatic Frame:** This is my red flag. Dark, sunken, greasy, perforated cappings with a putrid odor, and larval remains with >2 cm ropiness. This goes to **Bi...",
+      "evidence": []
+    },
+    {
+      "task_id": "brood-comb-inspection",
+      "step": 37,
+      "thought": "Sources considered: hbrc.ca; theapiarist.org; beekeepingmadesimple.com; urbanhivelife.works; betterbee.com; agriculture.vic.gov.au; beeaware.org.au; albertabeekeepers.ca; psu.edu; alberta.ca; usu.edu; honeybeesuite.com; beginner-beekeeping.co.uk; blythewoodbeecompany.com; thebeesupply.com",
+      "evidence": [
+        "https://hbrc.ca/comb-management/",
+        "https://theapiarist.org/the-nucleus-method/",
+        "https://www.beekeepingmadesimple.com/blog/clean-old-dark-comb",
+        "https://www.urbanhivelife.works/guides/american-foulbrood-testing-symptoms/",
+        "https://www.betterbee.com/instructions-and-resources/methods-for-testing-for-american-foulbrood.asp",
+        "https://agriculture.vic.gov.au/biosecurity/animal-diseases/honey-bee-pests-and-diseases/diagnosis-control-and-eradication-of-american-foulbrood-disease",
+        "https://beeaware.org.au/archive-pest/american-foulbrood/",
+        "https://www.albertabeekeepers.ca/american-foulbrood-part-2-of-2/"
+      ]
+    },
+    {
+      "task_id": "honey-super-haul",
+      "step": 38,
+      "thought": "Thinking: **My Practitioner's Report: Honey Super Haul** Okay, here's what I'm thinking. The goal is to create a report specifically geared toward a beekeeper, focusing on the \"Honey Super Haul\" task. It needs to be practical, like a day-in-the-life guide, with real-world scenarios and actionable advice. This will be more than just a list; it will cover the details, the potential pitfalls, and the solutions a beekeeper needs to know. First, I need to nail down the specifics. The user is asking for: * **Realistic Orders:** Give examples of what they need to carry, where to take it, timing, and what happens if something goes wrong. I must consider things like priorities and handling. * **Caveats and Common Problems:** This is the practical knowledge – what to watch out for and how to fix it when problems arise. To be sure I'm thorough, I must confirm my understanding of the weights and dimensions. This includes Honey super weights: Medium supers range from about 18-23 kg, while deep supers can weigh up to 36-40 kg. And the entrance reducer is used to close a 37 cm gap down to 2 cm, or a bit more in the small opening. The core of the report must address \"Robbing Frenzy\" during the harvest, how to move them safely and safely. If honey supers are left outside during a late summer dearth, bees will pick up the scent and it can be a problem. That means protecting the supers when the harvest is in progress. The plan is to get them covered, then taken into a bee-tight extraction ro...",
+      "evidence": [
+        "search: weight of honey super medium deep kg lbs extension",
+        "search: langstroth entrance reducer dimensions cm inches",
+        "search: prevent robbing honey harvest entrance reducer nectar dearth"
+      ]
+    },
+    {
+      "task_id": "honey-super-haul",
+      "step": 39,
+      "thought": "Thinking: **Apiary Management: Honey Super & Entrance Reducer Logistics in the Face of Robbing** Okay, so here's the deal. I've been running through the process, and I'm ready to pull together this report. Let's see... we're focusing on honey super and entrance reducer logistics, especially when the late-summer dearth hits and robbing is a real threat. I need to make sure I get this right. We're dealing with substantial weights, critical timing, and potentially devastating consequences if we mess up. Let's make it easy to follow. First, let's break this down into realistic orders. We can look at this in terms of three key tasks: * **Order 1: Medium Super Harvest:** This is a routine job: Harvesting that honey super from Hive Stand Alpha. We're talking 18–20 kg here, Medium super. Priority? High, because time is of the essence. We must get this super to the Honey House Staging Area. Handling is key: keep it covered! A bee-tight damp cloth is a must. We can't let those scent plumes escape, attracting robbing bees. Keep it close to your torso with a straight back. The penalty for being late or doing it wrong is a scouting frenzy, and within minutes, we could see an apiary-wide robbing disaster. Remember, the par limit is 90 seconds. * **Order 2: Entrance Reducer Deployment:** This one's critical. We need to grab a wooden entrance reducer (that cleated pine block) from the Apiary Tool Cart/Shed and get it to Weak Colony Beta, maybe a 5-frame nuc or a struggling split. The prio...",
+      "evidence": []
+    },
+    {
+      "task_id": "honey-super-haul",
+      "step": 40,
+      "thought": "Sources considered: agriculture.institute; harvestlane.com; hbrc.ca; honeybeesuite.com; reddit.com; honeybeesonline.com; kybees.org; americanbeejournal.com; youtube.com; facebook.com; latiendadelapicultor.com; foxhoundbeecompany.com; beecentrichive.com; wikipedia.org; apiarygenius.com; ecrotek.com.au",
+      "evidence": [
+        "https://agriculture.institute/honeybee-colonies-mgt/preventing-managing-robbing-honeybee-colonies-monsoon/",
+        "https://harvestlane.com/blogs/beehive-blog/mid-summer-beekeeping-managing-nectar-dearth-drought",
+        "https://hbrc.ca/robbing-prevention/",
+        "https://www.honeybeesuite.com/summer-nectar-dearth-honey-bee-management/",
+        "https://www.reddit.com/r/Beekeeping/comments/1b1dqij/new_beekeeper_how_much_honey_do_i_need_to_leave/",
+        "https://www.honeybeesonline.com/honey-super/",
+        "https://kybees.org/Phils-Observations/13152733",
+        "https://americanbeejournal.com/bees-robbing-honey-en-masse-and-how-to-avoid-it/"
+      ]
+    },
+    {
+      "task_id": "orchard-pollination",
+      "step": 41,
+      "thought": "Thinking: **Orchard Pollination Consultation - My Thought Process** Alright, let's break this down. My goal is clear: I'm acting as a beekeeper providing an \"Orchard Pollination Consultation\" for an orchardist named Bram. The task is to advise him on beehive stocking densities, placement, and pesticide application protocols for his apple blossoms. It's a \"converse\" game mechanic, so I'll need to create a realistic conversation with options and scoring. I have to provide recommendations and also list common problems. I also need to make sure my numbers are backed up by solid sources. First, I need to make sure I'm solid on the pollination guidelines. I recall the typical stocking density for apple orchards is around **1 to 2 colonies per acre, with 1.0–1.5 colonies being the standard for standard/semi-dwarf or higher for high-density trellis**. Sources like Penn State, Cornell, and Michigan State extension guides are my go-to for these numbers. Timing is crucial: I need to introduce the hives when there's **10–15% king bloom**. Too early and the bees forage on other plants, too late and the king blooms are missed. Placement is also important: **South or southeast facing, early morning sun, elevated off the ground, clusters of 4–8 or 10–20 hives within 100-150 meters (300-500 feet) inside the orchard blocks.** I need to emphasize the importance of pesticide protocols: **Absolutely no spraying of insecticides during bloom. Systemic neonicotinoids are a big no-no. If unavoidab...",
+      "evidence": [
+        "search: beehive placement apple orchard morning sun south east distance meters",
+        "search: apple pollination stocking rate colonies per acre king bloom 10 15",
+        "search: apple orchard pollination pesticide dusk to dawn mow ground cover neonicotinoid"
+      ]
+    },
+    {
+      "task_id": "orchard-pollination",
+      "step": 42,
+      "thought": "Thinking: Okay, here's my take on those search ideas, distilled into my thought process: **Refining My Apple Pollination Search** Alright, I need to get more precise with this pollination research. I'm going to start by targeting the crucial timing: I'll focus on the \"10 to 15 percent king bloom\" or \"10-15% king bloom\" stage for apple pollination. I need to understand the relationship between this precise bloom percentage and optimal honey bee stocking rates in the orchard. I'm also interested in how hive placement impacts this, so I will focus on terms to ensure that this is captured in my search queries. Next, I need to look into how far honey bees travel to gather pollen and nectar. So, I will search for guidance on a specific distance, \"100 meters\" in relation to hive placement within the apple orchard. Finally, I'm thinking about broader orchard management practices and their indirect impact. I'll include terms like \"dusk to dawn\" mowing and \"dandelion pesticide\" during apple bloom. I want to see if there's any research on how these practices affect bee foraging behavior and overall pollination efficiency. I suspect that there will be some interesting data in this vein.",
+      "evidence": [
+        "search: \"king bloom\" apple pollination \"stocking\" rate OR density",
+        "search: \"king bloom\" \"10\" \"15\" apple pollination hive OR colonies",
+        "search: apple pollination \"100 meters\" OR \"100 m\" hive placement",
+        "search: apple orchard mowing dandelions pesticide \"dusk\" \"dawn\" bees"
+      ]
+    },
+    {
+      "task_id": "orchard-pollination",
+      "step": 43,
+      "thought": "Thinking: **My Apple Pollination Strategy** Okay, this is excellent information. Now, I need to solidify my plan with these facts in mind. 1. **Stocking Density and Timing:** I've got a good handle on this: I need 1.0 to 1.5 colonies per acre, or roughly 2.5 to 3.7 hives per hectare. For high-density orchards, maybe even up to 2 hives per acre. Crucially, timing is everything. Hives *must* be introduced at 10-15% king bloom. Any earlier, and the bees will wander off to competing forage like dandelions, clover or maples, and be hard to win back. Any later (past 20% bloom), and I'll miss that critical window for the king bloom – which is the biggest, best-shaped fruit with the highest calcium content, and highest market value! 2. **Placement:** Groups or clusters are best, 4-8 or 10-20 colonies together. Keep them within 100 meters, maybe up to 150 yards, of the target blocks or orchard edges. The orientation is critical; south or southeast facing. This morning sun exposure is key to warming the hive entrances, getting flight hours going earlier when stigmas are most receptive and nectar/pollen production is at its peak. And don't forget a windbreak! Bees don't do well in cold, so protection from prevailing winds is essential. 3. **Spray Protocols/Pesticide Restrictions:** This is non-negotiable. Absolutely NO systemic neonicotinoid sprays (imidacloprid, clothianidin, thiamethoxam, dinotefuran) before or during bloom. Those chemicals are lethal/sublethal to bees, causing all...",
+      "evidence": []
+    },
+    {
+      "task_id": "orchard-pollination",
+      "step": 44,
+      "thought": "Sources considered: nsw.gov.au; decisionaid.systems; wsu.edu; cornell.edu; missouri.edu; usu.edu; galenafarms.com; thebfarm.com; wcba.co.za; keepingbackyardbees.com; uvm.edu; utah.gov; msu.edu; purdue.edu; prairierivers.org; ct.gov; scialert.net; capabees.com; beekeepinggear.com.au; amazonaws.com",
+      "evidence": [
+        "https://www.dpi.nsw.gov.au/__data/assets/pdf_file/0018/117108/bee-apple-pollination.pdf",
+        "https://decisionaid.systems/articles/Factors_Affecting_Bee_Pollination_of_Tree_Fruits",
+        "https://treefruit.wsu.edu/orchard-management/pollination/honey-bees/",
+        "https://blogs.cornell.edu/jentsch/2020/05/11/apple-bloom-supporting-pollinators-managing-pests-may-11th-2020/",
+        "https://extension.missouri.edu/publications/g6001",
+        "https://digitalcommons.usu.edu/cgi/viewcontent.cgi?article=2521&context=extension_histall",
+        "https://galenafarms.com/blogs/beekeeping/beehive-location",
+        "https://thebfarm.com/blogs/news/how-beekeepers-organize-and-arrange-their-hives"
+      ]
+    }
+  ],
+  "brain": {
+    "stored": true,
+    "ids": [
+      "fact:57ab30aa99196b2814d148a5",
+      "fact:d6f365264b1d0ac563da9a04",
+      "fact:37c55933f41e73468a0bddaf",
+      "fact:91dcffe15c5812c8259137a9",
+      "fact:8dcd4280539ede63031e8a49",
+      "fact:a08c64b3c9f5e4c7aec87b55",
+      "fact:52127d4478ae9b4fa9e9accf",
+      "fact:2654ada9e6088b0b97ed9bc1",
+      "fact:a435ac38e828fb4751f6cbae",
+      "fact:02a81e090e679eb2d09d0ec3",
+      "fact:17eb5e9c6113ceb44d98da7a",
+      "fact:5f78f2e460abe4a8b2bf0a7c",
+      "fact:26ef9bac7dcb8baed44c2fdf",
+      "fact:54b1701ff8a1e7b25dadb7fa",
+      "fact:50da777f762c6d050bf56503",
+      "fact:1143b175c4c325ff586bc2f3",
+      "fact:920ecb413b3e744ea1ca45b8",
+      "fact:dc91f5cea9d267024d40c484",
+      "fact:b43c37a99d33c70c2476f230",
+      "fact:f726f778dede9383b7826a3b",
+      "fact:85c09ba171b1d6c7bd6a8719",
+      "fact:c8b5e2828f8eb6b5cfd2cf7f",
+      "fact:8511517036956b59c8cfd463",
+      "fact:03e2f0206b92cd8cc9bb55b2",
+      "fact:5c8576bc57c22ed7aed1293a",
+      "fact:73a5aa11d2ad2a1a437d3bba",
+      "fact:1d712de0ba1e759bd0ab0d01",
+      "fact:6da7f36cfee935a65a70e74a",
+      "fact:a83c83c204c4a4560cba9803",
+      "fact:2744de0ee1b0b24523975bb8",
+      "fact:274d208ea494d132e563a27a",
+      "fact:3084270f2be655a7a2ce5c77",
+      "fact:f523996330f4af351b7ef3ae",
+      "fact:096366aa29a0d61865f70616",
+      "fact:133ad7fce03e31ace489c20c",
+      "fact:178061f73de0aebcc9ab71e2",
+      "fact:32fed0b40dc58dddb0fc1a68",
+      "fact:e683629bc182cc84b4f16d24",
+      "fact:63eb48d5af010b838907b56e",
+      "fact:eb35f554e59369c26378b5d9",
+      "fact:33a0ba06cd51948673a1b5c0",
+      "fact:0456bb373260bba7318ef33a",
+      "fact:3345939e2f211a8a6675aa26",
+      "fact:9873af0f8cb53ae1898c9ea5"
+    ],
+    "query": "[replaceme research trace] run=beekeeper-1791645697787"
+  }
+}

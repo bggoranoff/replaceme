@@ -24,6 +24,7 @@ if str(WORKSPACE_ROOT) not in sys.path:
     sys.path.insert(0, str(WORKSPACE_ROOT))
 
 from shared.base_env import BaseLevelEnv, validate_level_contract
+from shared.brain import attach_reasoning
 from builder.gemini_client import GeminiClient
 from builder.graph_check import finalize_world
 
@@ -115,7 +116,8 @@ class BuilderAgent:
 
     def load_research_brief(self, brief_path: Path) -> Dict[str, Any]:
         with open(brief_path, "r", encoding="utf-8") as f:
-            return json.load(f)
+            # reasoning_traces come from Entire Brain first (research.json copy as fallback) for the generation prompts
+            return attach_reasoning(json.load(f))
 
     def build_world(self, brief: Dict[str, Any]) -> Dict[str, Any]:
         """
@@ -278,8 +280,7 @@ if __name__ == "__main__":
         brief_path = WORKSPACE_ROOT / "fixtures" / "barista-research.json"
 
     agent = BuilderAgent()
-    with open(brief_path, "r", encoding="utf-8") as f:
-        brief_data = json.load(f)
+    brief_data = agent.load_research_brief(brief_path)
 
     world = agent.build_world(brief_data)
     print(f"Builder Agent synthesized world for '{world.get('role')}' with {len(world.get('stations', []))} stations and {len(world.get('levels', []))} levels.")

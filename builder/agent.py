@@ -12,6 +12,7 @@ scenarios identified by the Researcher Agent into:
 import os
 import sys
 import json
+import pprint
 import re
 import importlib.util
 import subprocess
@@ -202,7 +203,8 @@ class LevelEnvironment(BaseLevelEnv):
         super().__init__(seed)
 
     def get_spec(self) -> Dict[str, Any]:
-        return {json.dumps({
+        # pformat emits Python literals (True/None); json.dumps would emit true/null and break the module
+        return {pprint.pformat({
             "level_id": lvl_id,
             "title": level_spec.get("title", lvl_id),
             "skill_name": level_spec.get("skill_name", lvl_id),
@@ -213,7 +215,7 @@ class LevelEnvironment(BaseLevelEnv):
             "telemetry": [
                 {"id": "score", "label": "Score", "unit": "%", "target_range": [80, 100]}
             ]
-        }, indent=8)}
+        }, indent=4, sort_dicts=False)}
 
     def reset(self, seed: int = None) -> Dict[str, Any]:
         if seed is not None:

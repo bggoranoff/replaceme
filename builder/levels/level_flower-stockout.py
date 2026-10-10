@@ -8,48 +8,31 @@ class LevelEnvironment(BaseLevelEnv):
         super().__init__(seed)
 
     def get_spec(self) -> Dict[str, Any]:
-        return {
-        "level_id": "flower-stockout",
-        "title": "Resolve Flower Shortage with Harmonious Substitute",
-        "skill_name": "Handle out-of-stock premium florals with botanical harmony",
-        "instruction": "Explain peony shortage to customer and substitute with open garden roses of matching blush palette",
-        "controls": [
-                {
-                        "id": "cooler_audit",
-                        "label": "Verify Peony Stock is 0",
-                        "type": "toggle",
-                        "default": true
-                },
-                {
-                        "id": "substitute_flower",
-                        "label": "Harmonious Palette Substitute",
-                        "type": "choice",
-                        "options": [
-                                "Blush David Austin Roses",
-                                "Carnations",
-                                "Dried Grasses"
-                        ],
-                        "default": "Blush David Austin Roses"
-                },
-                {
-                        "id": "seasonal_explanation",
-                        "label": "Explain Seasonal Blooming Window",
-                        "type": "toggle",
-                        "default": true
-                }
-        ],
-        "telemetry": [
-                {
-                        "id": "score",
-                        "label": "Score",
-                        "unit": "%",
-                        "target_range": [
-                                80,
-                                100
-                        ]
-                }
-        ]
-}
+        # pformat emits Python literals (True/None); json.dumps would emit true/null and break the module
+        return {   'level_id': 'flower-stockout',
+    'title': 'Resolve Flower Shortage with Harmonious Substitute',
+    'skill_name': 'Handle out-of-stock premium florals with botanical harmony',
+    'instruction': 'Explain peony shortage to customer and substitute with '
+                   'open garden roses of matching blush palette',
+    'controls': [   {   'id': 'cooler_audit',
+                        'label': 'Verify Peony Stock is 0',
+                        'type': 'toggle',
+                        'default': True},
+                    {   'id': 'substitute_flower',
+                        'label': 'Harmonious Palette Substitute',
+                        'type': 'choice',
+                        'options': [   'Blush David Austin Roses',
+                                       'Carnations',
+                                       'Dried Grasses'],
+                        'default': 'Blush David Austin Roses'},
+                    {   'id': 'seasonal_explanation',
+                        'label': 'Explain Seasonal Blooming Window',
+                        'type': 'toggle',
+                        'default': True}],
+    'telemetry': [   {   'id': 'score',
+                         'label': 'Score',
+                         'unit': '%',
+                         'target_range': [80, 100]}]}
 
     def reset(self, seed: int = None) -> Dict[str, Any]:
         if seed is not None:

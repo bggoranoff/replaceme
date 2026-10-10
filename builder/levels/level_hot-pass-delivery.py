@@ -8,54 +8,38 @@ class LevelEnvironment(BaseLevelEnv):
         super().__init__(seed)
 
     def get_spec(self) -> Dict[str, Any]:
-        return {
-        "level_id": "hot-pass-delivery",
-        "title": "Synchronized Hot Entr\u00e9e Delivery",
-        "skill_name": "Deliver multi-plate courses simultaneously without food cooling",
-        "instruction": "Pick up 2 hot main courses from kitchen pass and serve Table 1 from the left within 45 seconds",
-        "controls": [
-                {
-                        "id": "delivery_time_sec",
-                        "label": "Pass-to-Table Delivery Time",
-                        "type": "slider",
-                        "min": 10.0,
-                        "max": 90.0,
-                        "step": 5.0,
-                        "default": 35.0,
-                        "unit": "s",
-                        "targetMin": 15.0,
-                        "targetMax": 45.0
-                },
-                {
-                        "id": "serve_side",
-                        "label": "Serving Approach Side",
-                        "type": "choice",
-                        "options": [
-                                "Serve from Left (Correct)",
-                                "Serve from Right",
-                                "Reach Across Table"
-                        ],
-                        "default": "Serve from Left (Correct)"
-                },
-                {
-                        "id": "announce_dish",
-                        "label": "Announce Dish Name & Modifications",
-                        "type": "toggle",
-                        "default": true
-                }
-        ],
-        "telemetry": [
-                {
-                        "id": "score",
-                        "label": "Score",
-                        "unit": "%",
-                        "target_range": [
-                                80,
-                                100
-                        ]
-                }
-        ]
-}
+        # pformat emits Python literals (True/None); json.dumps would emit true/null and break the module
+        return {   'level_id': 'hot-pass-delivery',
+    'title': 'Synchronized Hot Entrée Delivery',
+    'skill_name': 'Deliver multi-plate courses simultaneously without food '
+                  'cooling',
+    'instruction': 'Pick up 2 hot main courses from kitchen pass and serve '
+                   'Table 1 from the left within 45 seconds',
+    'controls': [   {   'id': 'delivery_time_sec',
+                        'label': 'Pass-to-Table Delivery Time',
+                        'type': 'slider',
+                        'min': 10.0,
+                        'max': 90.0,
+                        'step': 5.0,
+                        'default': 35.0,
+                        'unit': 's',
+                        'targetMin': 15.0,
+                        'targetMax': 45.0},
+                    {   'id': 'serve_side',
+                        'label': 'Serving Approach Side',
+                        'type': 'choice',
+                        'options': [   'Serve from Left (Correct)',
+                                       'Serve from Right',
+                                       'Reach Across Table'],
+                        'default': 'Serve from Left (Correct)'},
+                    {   'id': 'announce_dish',
+                        'label': 'Announce Dish Name & Modifications',
+                        'type': 'toggle',
+                        'default': True}],
+    'telemetry': [   {   'id': 'score',
+                         'label': 'Score',
+                         'unit': '%',
+                         'target_range': [80, 100]}]}
 
     def reset(self, seed: int = None) -> Dict[str, Any]:
         if seed is not None:

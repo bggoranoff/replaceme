@@ -8,55 +8,40 @@ class LevelEnvironment(BaseLevelEnv):
         super().__init__(seed)
 
     def get_spec(self) -> Dict[str, Any]:
-        return {
-        "level_id": "stem-preparation",
-        "title": "Stem Trimming & 45\u00b0 Angle Cut",
-        "skill_name": "Condition fresh flower stems for maximum vase life",
-        "instruction": "Prune thorns and cut 5 garden rose stems strictly at a 45\u00b0 angle with clean floral shears",
-        "controls": [
-                {
-                        "id": "cut_angle_deg",
-                        "label": "Shears Cutting Angle",
-                        "type": "slider",
-                        "min": 0.0,
-                        "max": 90.0,
-                        "step": 5.0,
-                        "default": 45.0,
-                        "unit": "\u00b0",
-                        "targetMin": 40.0,
-                        "targetMax": 50.0
-                },
-                {
-                        "id": "strip_foliage_cm",
-                        "label": "Foliage Stripped From Bottom",
-                        "type": "slider",
-                        "min": 0.0,
-                        "max": 20.0,
-                        "step": 1.0,
-                        "default": 10.0,
-                        "unit": "cm",
-                        "targetMin": 8.0,
-                        "targetMax": 15.0
-                },
-                {
-                        "id": "crush_stem_check",
-                        "label": "Clean Razor Cut (No Stem Crushing)",
-                        "type": "toggle",
-                        "default": true
-                }
-        ],
-        "telemetry": [
-                {
-                        "id": "score",
-                        "label": "Score",
-                        "unit": "%",
-                        "target_range": [
-                                80,
-                                100
-                        ]
-                }
-        ]
-}
+        # pformat emits Python literals (True/None); json.dumps would emit true/null and break the module
+        return {   'level_id': 'stem-preparation',
+    'title': 'Stem Trimming & 45° Angle Cut',
+    'skill_name': 'Condition fresh flower stems for maximum vase life',
+    'instruction': 'Prune thorns and cut 5 garden rose stems strictly at a 45° '
+                   'angle with clean floral shears',
+    'controls': [   {   'id': 'cut_angle_deg',
+                        'label': 'Shears Cutting Angle',
+                        'type': 'slider',
+                        'min': 0.0,
+                        'max': 90.0,
+                        'step': 5.0,
+                        'default': 45.0,
+                        'unit': '°',
+                        'targetMin': 40.0,
+                        'targetMax': 50.0},
+                    {   'id': 'strip_foliage_cm',
+                        'label': 'Foliage Stripped From Bottom',
+                        'type': 'slider',
+                        'min': 0.0,
+                        'max': 20.0,
+                        'step': 1.0,
+                        'default': 10.0,
+                        'unit': 'cm',
+                        'targetMin': 8.0,
+                        'targetMax': 15.0},
+                    {   'id': 'crush_stem_check',
+                        'label': 'Clean Razor Cut (No Stem Crushing)',
+                        'type': 'toggle',
+                        'default': True}],
+    'telemetry': [   {   'id': 'score',
+                         'label': 'Score',
+                         'unit': '%',
+                         'target_range': [80, 100]}]}
 
     def reset(self, seed: int = None) -> Dict[str, Any]:
         if seed is not None:

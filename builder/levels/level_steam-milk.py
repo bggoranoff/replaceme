@@ -8,49 +8,34 @@ class LevelEnvironment(BaseLevelEnv):
         super().__init__(seed)
 
     def get_spec(self) -> Dict[str, Any]:
-        return {
-        "level_id": "steam-milk",
-        "title": "Milk Steaming & Microfoam Texturing",
-        "skill_name": "Steam milk to optimal silky microfoam",
-        "instruction": "Steam whole milk to 60\u201365\u00b0C with glossy microfoam suitable for latte art",
-        "controls": [
-                {
-                        "id": "purge_wand",
-                        "label": "Purge Condensation",
-                        "type": "toggle",
-                        "default": true
-                },
-                {
-                        "id": "temp_celsius",
-                        "label": "Target Steam Temperature",
-                        "type": "slider",
-                        "min": 40.0,
-                        "max": 80.0,
-                        "step": 1.0,
-                        "default": 63.0,
-                        "unit": "\u00b0C",
-                        "targetMin": 60.0,
-                        "targetMax": 65.0
-                },
-                {
-                        "id": "vortex_whirlpool",
-                        "label": "Whirlpool Vortex Roll",
-                        "type": "toggle",
-                        "default": true
-                }
-        ],
-        "telemetry": [
-                {
-                        "id": "score",
-                        "label": "Score",
-                        "unit": "%",
-                        "target_range": [
-                                80,
-                                100
-                        ]
-                }
-        ]
-}
+        # pformat emits Python literals (True/None); json.dumps would emit true/null and break the module
+        return {   'level_id': 'steam-milk',
+    'title': 'Milk Steaming & Microfoam Texturing',
+    'skill_name': 'Steam milk to optimal silky microfoam',
+    'instruction': 'Steam whole milk to 60–65°C with glossy microfoam suitable '
+                   'for latte art',
+    'controls': [   {   'id': 'purge_wand',
+                        'label': 'Purge Condensation',
+                        'type': 'toggle',
+                        'default': True},
+                    {   'id': 'temp_celsius',
+                        'label': 'Target Steam Temperature',
+                        'type': 'slider',
+                        'min': 40.0,
+                        'max': 80.0,
+                        'step': 1.0,
+                        'default': 63.0,
+                        'unit': '°C',
+                        'targetMin': 60.0,
+                        'targetMax': 65.0},
+                    {   'id': 'vortex_whirlpool',
+                        'label': 'Whirlpool Vortex Roll',
+                        'type': 'toggle',
+                        'default': True}],
+    'telemetry': [   {   'id': 'score',
+                         'label': 'Score',
+                         'unit': '%',
+                         'target_range': [80, 100]}]}
 
     def reset(self, seed: int = None) -> Dict[str, Any]:
         if seed is not None:

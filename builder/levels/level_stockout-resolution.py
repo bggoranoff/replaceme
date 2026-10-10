@@ -8,48 +8,32 @@ class LevelEnvironment(BaseLevelEnv):
         super().__init__(seed)
 
     def get_spec(self) -> Dict[str, Any]:
-        return {
-        "level_id": "stockout-resolution",
-        "title": "Handle Milk Stockout & Order Substitution",
-        "skill_name": "Resolve unavailable supplies with clear customer communication",
-        "instruction": "Verify oat milk shortage in fridge, offer almond alternative, and secure customer confirmation",
-        "controls": [
-                {
-                        "id": "fridge_check",
-                        "label": "Inspect Inventory Count",
-                        "type": "toggle",
-                        "default": true
-                },
-                {
-                        "id": "chosen_alternative",
-                        "label": "Offered Alternative Milk",
-                        "type": "choice",
-                        "options": [
-                                "Organic Almond Milk",
-                                "Soy Milk",
-                                "Lactose-Free Dairy"
-                        ],
-                        "default": "Organic Almond Milk"
-                },
-                {
-                        "id": "customer_confirmation",
-                        "label": "Obtain Explicit Customer Consent",
-                        "type": "toggle",
-                        "default": true
-                }
-        ],
-        "telemetry": [
-                {
-                        "id": "score",
-                        "label": "Score",
-                        "unit": "%",
-                        "target_range": [
-                                80,
-                                100
-                        ]
-                }
-        ]
-}
+        # pformat emits Python literals (True/None); json.dumps would emit true/null and break the module
+        return {   'level_id': 'stockout-resolution',
+    'title': 'Handle Milk Stockout & Order Substitution',
+    'skill_name': 'Resolve unavailable supplies with clear customer '
+                  'communication',
+    'instruction': 'Verify oat milk shortage in fridge, offer almond '
+                   'alternative, and secure customer confirmation',
+    'controls': [   {   'id': 'fridge_check',
+                        'label': 'Inspect Inventory Count',
+                        'type': 'toggle',
+                        'default': True},
+                    {   'id': 'chosen_alternative',
+                        'label': 'Offered Alternative Milk',
+                        'type': 'choice',
+                        'options': [   'Organic Almond Milk',
+                                       'Soy Milk',
+                                       'Lactose-Free Dairy'],
+                        'default': 'Organic Almond Milk'},
+                    {   'id': 'customer_confirmation',
+                        'label': 'Obtain Explicit Customer Consent',
+                        'type': 'toggle',
+                        'default': True}],
+    'telemetry': [   {   'id': 'score',
+                         'label': 'Score',
+                         'unit': '%',
+                         'target_range': [80, 100]}]}
 
     def reset(self, seed: int = None) -> Dict[str, Any]:
         if seed is not None:

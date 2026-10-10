@@ -8,47 +8,31 @@ class LevelEnvironment(BaseLevelEnv):
         super().__init__(seed)
 
     def get_spec(self) -> Dict[str, Any]:
-        return {
-        "level_id": "rush-workflow",
-        "title": "Multi-Order Barista Rush Prioritization",
-        "skill_name": "Parallel workflow and ticket sequencing during peak morning rush",
-        "instruction": "Queue and prepare 3 concurrent espresso tickets in under 120 seconds while keeping stations clean",
-        "controls": [
-                {
-                        "id": "sequence_order",
-                        "label": "Ticket Execution Order",
-                        "type": "choice",
-                        "options": [
-                                "Americano -> Cortado -> Latte",
-                                "Latte -> Americano -> Cortado"
-                        ],
-                        "default": "Americano -> Cortado -> Latte"
-                },
-                {
-                        "id": "parallel_steaming",
-                        "label": "Steam Milk During Extraction",
-                        "type": "toggle",
-                        "default": true
-                },
-                {
-                        "id": "station_wipe",
-                        "label": "Wipe Counter Between Drinks",
-                        "type": "toggle",
-                        "default": true
-                }
-        ],
-        "telemetry": [
-                {
-                        "id": "score",
-                        "label": "Score",
-                        "unit": "%",
-                        "target_range": [
-                                80,
-                                100
-                        ]
-                }
-        ]
-}
+        # pformat emits Python literals (True/None); json.dumps would emit true/null and break the module
+        return {   'level_id': 'rush-workflow',
+    'title': 'Multi-Order Barista Rush Prioritization',
+    'skill_name': 'Parallel workflow and ticket sequencing during peak morning '
+                  'rush',
+    'instruction': 'Queue and prepare 3 concurrent espresso tickets in under '
+                   '120 seconds while keeping stations clean',
+    'controls': [   {   'id': 'sequence_order',
+                        'label': 'Ticket Execution Order',
+                        'type': 'choice',
+                        'options': [   'Americano -> Cortado -> Latte',
+                                       'Latte -> Americano -> Cortado'],
+                        'default': 'Americano -> Cortado -> Latte'},
+                    {   'id': 'parallel_steaming',
+                        'label': 'Steam Milk During Extraction',
+                        'type': 'toggle',
+                        'default': True},
+                    {   'id': 'station_wipe',
+                        'label': 'Wipe Counter Between Drinks',
+                        'type': 'toggle',
+                        'default': True}],
+    'telemetry': [   {   'id': 'score',
+                         'label': 'Score',
+                         'unit': '%',
+                         'target_range': [80, 100]}]}
 
     def reset(self, seed: int = None) -> Dict[str, Any]:
         if seed is not None:

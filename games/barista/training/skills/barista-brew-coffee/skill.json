@@ -1,0 +1,1372 @@
+{
+  "version": 2,
+  "id": "barista-brew-coffee",
+  "name": "Brew coffee",
+  "description": "Brewing a balanced house cup of coffee requires balancing dry coffee dose, brew water volume, and extraction contact time to avoid under- or over-extraction. The target recipe achieves an optimal cup using an 18 g coffee dose, 300 ml of brew water, and 190 seconds of contact time.",
+  "job": "barista",
+  "level_id": "barista-brew-coffee",
+  "level_index": 1,
+  "mechanic": "mix",
+  "status": "learned",
+  "trained_attempts": 10,
+  "best_score": 100.0,
+  "final_score": 100.0,
+  "pass_threshold": 75.0,
+  "passed": true,
+  "learned_parameters": [
+    {
+      "variable": "dose_g",
+      "label": "Coffee",
+      "value": 18,
+      "unit": "g",
+      "rationale": "An 18 g dose achieves a perfect 100 sub-score (Attempt #3: 18 g -> score 100.0; Attempt #9 & #10: 18 g -> score 100.0). Deviating to 17 g caused thin and sour flow (Attempt #5: 17 g -> score 91.6, dose sub-score 71), while 19 g produced a bed packed too deep resulting in heavy bitterness (Attempt #4: 19 g -> score 91.3, dose sub-score 71). A 15.5 g dose severely underperformed (Attempt #1: 15.5 g -> score 38.1, dose sub-score 11). This aligns with SCA Golden Cup standards for a single 300 ml house mug. Measured: Best sub-score 100/100 at 18 g. Tried 15.5 g (sub-score 11) to 19 g (sub-score 71). Sub-score stayed at or above 80 between 18 g and 18 g. Too high (19 g): \"Heavy and bitter: the bed is packed too deep and the cup is too strong.\" Too low (17 g): \"Thin and sour: the shallow coffee bed let the water rush straight through.\"",
+      "evidence": [
+        {
+          "attempt": 1,
+          "value": 15.5,
+          "score": 38.1
+        },
+        {
+          "attempt": 2,
+          "value": 18.0,
+          "score": 78.7
+        },
+        {
+          "attempt": 3,
+          "value": 18.0,
+          "score": 100.0
+        },
+        {
+          "attempt": 4,
+          "value": 19.0,
+          "score": 91.3
+        },
+        {
+          "attempt": 5,
+          "value": 17.0,
+          "score": 91.6
+        },
+        {
+          "attempt": 6,
+          "value": 18.0,
+          "score": 93.7
+        },
+        {
+          "attempt": 7,
+          "value": 18.0,
+          "score": 88.7
+        },
+        {
+          "attempt": 8,
+          "value": 18.0,
+          "score": 98.5
+        },
+        {
+          "attempt": 9,
+          "value": 18.0,
+          "score": 100.0
+        },
+        {
+          "attempt": 10,
+          "value": 18.0,
+          "score": 100.0
+        }
+      ]
+    },
+    {
+      "variable": "water_ml",
+      "label": "Water",
+      "value": 300,
+      "unit": "ml",
+      "rationale": "A water volume of 300 ml provides an exact house serving and hits 100 on both water volume and brew ratio sub-scores (Attempt #3, #9, #10 -> score 100.0). Raising water to 330 ml or 350 ml causes cup overflow and weak taste (Attempt #6: 330 ml -> score 93.7, water sub-score 61; Attempt #2: 350 ml -> score 78.7, water sub-score 25). Dropping to 270 ml leaves the mug short of a full serving (Attempt #7: 270 ml -> score 88.7, water sub-score 61). Measured: Best sub-score 100/100 at 300 ml. Tried 270 ml (sub-score 61) to 350 ml (sub-score 25). Sub-score stayed at or above 80 between 300 ml and 320 ml. Too high (330 ml): \"Brew spills past the mug: more than a house serving.\" Too low (270 ml): \"The mug comes out short: not a full house serving.\"",
+      "evidence": [
+        {
+          "attempt": 1,
+          "value": 320.0,
+          "score": 38.1
+        },
+        {
+          "attempt": 2,
+          "value": 350.0,
+          "score": 78.7
+        },
+        {
+          "attempt": 3,
+          "value": 300.0,
+          "score": 100.0
+        },
+        {
+          "attempt": 4,
+          "value": 300.0,
+          "score": 91.3
+        },
+        {
+          "attempt": 5,
+          "value": 300.0,
+          "score": 91.6
+        },
+        {
+          "attempt": 6,
+          "value": 330.0,
+          "score": 93.7
+        },
+        {
+          "attempt": 7,
+          "value": 270.0,
+          "score": 88.7
+        },
+        {
+          "attempt": 8,
+          "value": 300.0,
+          "score": 98.5
+        },
+        {
+          "attempt": 9,
+          "value": 300.0,
+          "score": 100.0
+        },
+        {
+          "attempt": 10,
+          "value": 300.0,
+          "score": 100.0
+        }
+      ]
+    },
+    {
+      "variable": "contact_s",
+      "label": "Brew time",
+      "value": 190,
+      "unit": "s",
+      "rationale": "A contact time of 190 s yields a perfect 100 brew time sub-score (Attempt #3, #9, #10 -> score 100.0). Cutting contact time to 150 s caused severe under-extraction with sour and salty notes (Attempt #1: 150 s -> score 38.1, brew time sub-score 61). Extending time to 220 s caused minor over-extraction (Attempt #8: 220 s -> score 98.5, brew time sub-score 95). 190 s falls neatly in the standard ~3 minute extraction window for pour-over methods. Measured: Best sub-score 100/100 at 190 s. Tried 150 s (sub-score 61) to 220 s (sub-score 95). Sub-score stayed at or above 80 between 190 s and 220 s.",
+      "evidence": [
+        {
+          "attempt": 1,
+          "value": 150.0,
+          "score": 38.1
+        },
+        {
+          "attempt": 2,
+          "value": 190.0,
+          "score": 78.7
+        },
+        {
+          "attempt": 3,
+          "value": 190.0,
+          "score": 100.0
+        },
+        {
+          "attempt": 4,
+          "value": 190.0,
+          "score": 91.3
+        },
+        {
+          "attempt": 5,
+          "value": 190.0,
+          "score": 91.6
+        },
+        {
+          "attempt": 6,
+          "value": 190.0,
+          "score": 93.7
+        },
+        {
+          "attempt": 7,
+          "value": 190.0,
+          "score": 88.7
+        },
+        {
+          "attempt": 8,
+          "value": 220.0,
+          "score": 98.5
+        },
+        {
+          "attempt": 9,
+          "value": 190.0,
+          "score": 100.0
+        },
+        {
+          "attempt": 10,
+          "value": 190.0,
+          "score": 100.0
+        }
+      ]
+    }
+  ],
+  "control_effects": [
+    {
+      "variable": "dose_g",
+      "effect": "Controls coffee bed depth and cup strength. 18 g yields 100 sub-score (Attempts #3, #9, #10). 15.5 g yielded thin/sour under-extraction (Attempt #1 score 38.1), 17 g yielded bed too shallow (Attempt #5 score 91.6, sub-score 71), and 19 g yielded heavy/bitter over-strength (Attempt #4 score 91.3, sub-score 71). Measured: Best sub-score 100/100 at 18 g. Tried 15.5 g (sub-score 11) to 19 g (sub-score 71). Sub-score stayed at or above 80 between 18 g and 18 g. Too high (19 g): \"Heavy and bitter: the bed is packed too deep and the cup is too strong.\" Too low (17 g): \"Thin and sour: the shallow coffee bed let the water rush straight through.\"",
+      "evidence": [
+        {
+          "attempt": 1,
+          "value": 15.5,
+          "score": 38.1
+        },
+        {
+          "attempt": 2,
+          "value": 18.0,
+          "score": 78.7
+        },
+        {
+          "attempt": 3,
+          "value": 18.0,
+          "score": 100.0
+        },
+        {
+          "attempt": 4,
+          "value": 19.0,
+          "score": 91.3
+        },
+        {
+          "attempt": 5,
+          "value": 17.0,
+          "score": 91.6
+        },
+        {
+          "attempt": 6,
+          "value": 18.0,
+          "score": 93.7
+        },
+        {
+          "attempt": 7,
+          "value": 18.0,
+          "score": 88.7
+        },
+        {
+          "attempt": 8,
+          "value": 18.0,
+          "score": 98.5
+        },
+        {
+          "attempt": 9,
+          "value": 18.0,
+          "score": 100.0
+        },
+        {
+          "attempt": 10,
+          "value": 18.0,
+          "score": 100.0
+        }
+      ]
+    },
+    {
+      "variable": "water_ml",
+      "effect": "Controls final beverage yield and overall dilution. 300 ml achieves a full mug with sub-score 100 (Attempts #3, #9, #10). Values above 300 ml cause overflow and watery cups (Attempt #2 at 350 ml gave score 78.7; Attempt #6 at 330 ml gave score 93.7). Values below 300 ml produce a short pour (Attempt #7 at 270 ml gave score 88.7). Measured: Best sub-score 100/100 at 300 ml. Tried 270 ml (sub-score 61) to 350 ml (sub-score 25). Sub-score stayed at or above 80 between 300 ml and 320 ml. Too high (330 ml): \"Brew spills past the mug: more than a house serving.\" Too low (270 ml): \"The mug comes out short: not a full house serving.\"",
+      "evidence": [
+        {
+          "attempt": 1,
+          "value": 320.0,
+          "score": 38.1
+        },
+        {
+          "attempt": 2,
+          "value": 350.0,
+          "score": 78.7
+        },
+        {
+          "attempt": 3,
+          "value": 300.0,
+          "score": 100.0
+        },
+        {
+          "attempt": 4,
+          "value": 300.0,
+          "score": 91.3
+        },
+        {
+          "attempt": 5,
+          "value": 300.0,
+          "score": 91.6
+        },
+        {
+          "attempt": 6,
+          "value": 330.0,
+          "score": 93.7
+        },
+        {
+          "attempt": 7,
+          "value": 270.0,
+          "score": 88.7
+        },
+        {
+          "attempt": 8,
+          "value": 300.0,
+          "score": 98.5
+        },
+        {
+          "attempt": 9,
+          "value": 300.0,
+          "score": 100.0
+        },
+        {
+          "attempt": 10,
+          "value": 300.0,
+          "score": 100.0
+        }
+      ]
+    },
+    {
+      "variable": "contact_s",
+      "effect": "Controls extraction level. 190 s maximizes sweetness and balance with 100 sub-score (Attempts #3, #9, #10). 150 s leaves the coffee under-extracted, sour, and salty (Attempt #1 score 38.1), while 220 s slightly over-extracts, dropping sub-score to 95 (Attempt #8 score 98.5). Measured: Best sub-score 100/100 at 190 s. Tried 150 s (sub-score 61) to 220 s (sub-score 95). Sub-score stayed at or above 80 between 190 s and 220 s.",
+      "evidence": [
+        {
+          "attempt": 1,
+          "value": 150.0,
+          "score": 38.1
+        },
+        {
+          "attempt": 2,
+          "value": 190.0,
+          "score": 78.7
+        },
+        {
+          "attempt": 3,
+          "value": 190.0,
+          "score": 100.0
+        },
+        {
+          "attempt": 4,
+          "value": 190.0,
+          "score": 91.3
+        },
+        {
+          "attempt": 5,
+          "value": 190.0,
+          "score": 91.6
+        },
+        {
+          "attempt": 6,
+          "value": 190.0,
+          "score": 93.7
+        },
+        {
+          "attempt": 7,
+          "value": 190.0,
+          "score": 88.7
+        },
+        {
+          "attempt": 8,
+          "value": 220.0,
+          "score": 98.5
+        },
+        {
+          "attempt": 9,
+          "value": 190.0,
+          "score": 100.0
+        },
+        {
+          "attempt": 10,
+          "value": 190.0,
+          "score": 100.0
+        }
+      ]
+    },
+    {
+      "variable": "brew_ratio",
+      "effect": "Evaluated as 'Water per gram'. Pairing 300 ml water with 18 g coffee establishes a ~16.67:1 ratio, scoring 100 (Attempts #3, #8, #9, #10). Skewed ratios drop this term sharply (Attempt #1 at 320 ml / 15.5 g scored 21; Attempt #2 at 350 ml / 18 g scored 63; Attempt #7 at 270 ml / 18 g scored 80). Measured: Relation 'Water per gram' depends on several controls together; best sub-score 100/100.",
+      "evidence": [
+        {
+          "attempt": 1,
+          "value": 21,
+          "score": 38.1
+        },
+        {
+          "attempt": 2,
+          "value": 63,
+          "score": 78.7
+        },
+        {
+          "attempt": 3,
+          "value": 100,
+          "score": 100.0
+        },
+        {
+          "attempt": 4,
+          "value": 99,
+          "score": 91.3
+        },
+        {
+          "attempt": 5,
+          "value": 100,
+          "score": 91.6
+        },
+        {
+          "attempt": 6,
+          "value": 98,
+          "score": 93.7
+        },
+        {
+          "attempt": 7,
+          "value": 80,
+          "score": 88.7
+        },
+        {
+          "attempt": 8,
+          "value": 100,
+          "score": 98.5
+        },
+        {
+          "attempt": 9,
+          "value": 100,
+          "score": 100.0
+        },
+        {
+          "attempt": 10,
+          "value": 100,
+          "score": 100.0
+        }
+      ]
+    }
+  ],
+  "steps": [
+    "Weigh out precisely 18 g of ground coffee (dose_g) into the brew basket to ensure the proper bed depth.",
+    "Measure and heat 300 ml of water (water_ml) to fill a standard house serving mug without overflowing or coming up short.",
+    "Initiate brewing and maintain water contact with the coffee grounds for exactly 190 s (contact_s) to extract sweetness and body without bitterness or astringency."
+  ],
+  "caveats": [
+    "The 'Water per gram' sub-score is an interdependent relationship between water volume (water_ml) and coffee dose (dose_g); altering one without adjusting the other upsets the brew ratio.",
+    "A dose variation of even 1 g (17 g or 19 g) drops coffee bed sub-scores from 100 down to 71.",
+    "Increasing water beyond 300 ml causes the cup to spill past the mug and dilutes the cup, while dropping below 300 ml results in an incomplete house serving.",
+    "Contact times longer than 190 s begin over-extracting, while times near 150 s lead to sour, salty under-extraction.",
+    "'Water per gram' depends on several controls together, not one alone.",
+    "Water per gram depends on both water_ml and dose_g together.",
+    "Increasing dose will simultaneously improve coffee bed depth and reduce the water-to-coffee ratio.",
+    "Keep dose_g at 18.0 and contact_s at 190.0 as they are already perfected at 100.",
+    "The recipe is fully solved and optimal; do not alter any parameters.",
+    "If you see \"Heavy and bitter: the bed is packed too deep and the cup is too strong.\", lower Coffee.",
+    "Dose at 18.0 g, water at 300.0 ml, and contact time at 190.0 s produces the perfect 100.0 house cup.",
+    "Do not deviate from 18.0 g dose as both lower (<18 g) and higher (>18 g) reduce cup quality.",
+    "If you see \"Thin and sour: the shallow coffee bed let the water rush straight through.\", raise Coffee.",
+    "Dose of 18.0 g, water volume of 300.0 ml, and contact time of 190.0 s achieve 100.0 across all sub-scores.",
+    "If you see \"Brew spills past the mug: more than a house serving.\", lower Water.",
+    "The 100% optimal recipe is dose_g: 18.0, water_ml: 300, contact_s: 190.",
+    "Deviations above 300 ml for water lead to overflow feedback and lower water sub-scores.",
+    "If you see \"The mug comes out short: not a full house serving.\", raise Water.",
+    "A water volume of 300 ml is strictly required for the house serving size.",
+    "Probing contact time above 190 s will clarify how forgiving the upper extraction threshold is.",
+    "All three parameters (18.0 g dose, 300 ml water, 190 s brew time) are precisely calibrated and mutually satisfy all sub-scores at 100.",
+    "Final attempt: lock in the proven perfect settings (dose_g: 18.0, water_ml: 300, contact_s: 190)."
+  ],
+  "problems": [
+    {
+      "problem": "Thin and sour: the shallow coffee bed let the water rush straight through.",
+      "attempt": 1,
+      "fix": "Increase coffee dose up to 18 g to provide sufficient bed depth and resistance."
+    },
+    {
+      "problem": "Too weak: watery and hollow, too much water for the coffee.",
+      "attempt": 1,
+      "fix": "Rebalance brew ratio by keeping water at 300 ml and dose at 18 g (1:16.7 ratio)."
+    },
+    {
+      "problem": "Sour and salty: under-extracted, the water left the grounds too soon.",
+      "attempt": 1,
+      "fix": "Increase contact time to 190 s so water has adequate time to extract solubles from grounds."
+    },
+    {
+      "problem": "Coffee bed too shallow (dose too low)",
+      "attempt": 1,
+      "fix": "Apply the learned values."
+    },
+    {
+      "problem": "Contact time too short (under-extracted)",
+      "attempt": 1,
+      "fix": "Apply the learned values."
+    },
+    {
+      "problem": "Ratio too weak / watery (too much water per gram)",
+      "attempt": 1,
+      "fix": "Apply the learned values."
+    },
+    {
+      "problem": "Brew spills past the mug: more than a house serving.",
+      "attempt": 2,
+      "fix": "Reduce brew water volume down to 300 ml to match the house mug capacity."
+    },
+    {
+      "problem": "Water volume at 350 ml is too large for a standard mug and dilutes the brew.",
+      "attempt": 2,
+      "fix": "Apply the learned values."
+    },
+    {
+      "problem": "Heavy and bitter: the bed is packed too deep and the cup is too strong.",
+      "attempt": 4,
+      "fix": "Decrease coffee dose down to 18 g to prevent over-packing the brew bed."
+    },
+    {
+      "problem": "Dose of 19.0 g resulted in an over-packed coffee bed and a heavy/bitter brew.",
+      "attempt": 4,
+      "fix": "Apply the learned values."
+    },
+    {
+      "problem": "Dose 17.0 g is too low, yielding thin and sour coffee.",
+      "attempt": 5,
+      "fix": "Apply the learned values."
+    },
+    {
+      "problem": "Water volume at 330 ml exceeds house serving mug capacity and dilutes the cup slightly.",
+      "attempt": 6,
+      "fix": "Apply the learned values."
+    },
+    {
+      "problem": "The mug comes out short: not a full house serving.",
+      "attempt": 7,
+      "fix": "Increase brew water volume up to 300 ml to fill the house serving properly."
+    },
+    {
+      "problem": "Water volume at 270 ml comes out short of a full house serving.",
+      "attempt": 7,
+      "fix": "Increase brew water volume up to 300 ml to fill the house serving properly."
+    },
+    {
+      "problem": "Contact time of 220 s is slightly too long, causing minor over-extraction compared to 190 s.",
+      "attempt": 8,
+      "fix": "Apply the learned values."
+    }
+  ],
+  "score_history": [
+    {
+      "attempt": 1,
+      "score": 38.1,
+      "passed": false
+    },
+    {
+      "attempt": 2,
+      "score": 78.7,
+      "passed": true
+    },
+    {
+      "attempt": 3,
+      "score": 100.0,
+      "passed": true
+    },
+    {
+      "attempt": 4,
+      "score": 91.3,
+      "passed": true
+    },
+    {
+      "attempt": 5,
+      "score": 91.6,
+      "passed": true
+    },
+    {
+      "attempt": 6,
+      "score": 93.7,
+      "passed": true
+    },
+    {
+      "attempt": 7,
+      "score": 88.7,
+      "passed": true
+    },
+    {
+      "attempt": 8,
+      "score": 98.5,
+      "passed": true
+    },
+    {
+      "attempt": 9,
+      "score": 100.0,
+      "passed": true
+    },
+    {
+      "attempt": 10,
+      "score": 100.0,
+      "passed": true
+    }
+  ],
+  "attempts": [
+    {
+      "attempt": 1,
+      "run_id": "barista-1791649791121-l1-a01",
+      "inputs": {
+        "values": {
+          "dose_g": 15.5,
+          "water_ml": 320,
+          "contact_s": 150
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "interact",
+          "params": {}
+        }
+      ],
+      "score": 38.1,
+      "passed": false,
+      "feedback": [
+        "Thin and sour: the shallow coffee bed let the water rush straight through.",
+        "Too weak: watery and hollow, too much water for the coffee.",
+        "Sour and salty: under-extracted, the water left the grounds too soon."
+      ],
+      "breakdown": {
+        "dose_g": {
+          "label": "Coffee",
+          "score": 11
+        },
+        "water_ml": {
+          "label": "Water",
+          "score": 80
+        },
+        "contact_s": {
+          "label": "Brew time",
+          "score": 61
+        },
+        "brew_ratio": {
+          "label": "Water per gram",
+          "score": 21
+        }
+      },
+      "problems_found": [
+        "Thin and sour: the shallow coffee bed let the water rush straight through.",
+        "Too weak: watery and hollow, too much water for the coffee.",
+        "Sour and salty: under-extracted, the water left the grounds too soon.",
+        "Coffee bed too shallow (dose too low)",
+        "Contact time too short (under-extracted)",
+        "Ratio too weak / watery (too much water per gram)"
+      ],
+      "caveats": [
+        "'Water per gram' depends on several controls together, not one alone.",
+        "Water per gram depends on both water_ml and dose_g together.",
+        "Increasing dose will simultaneously improve coffee bed depth and reduce the water-to-coffee ratio."
+      ],
+      "hypothesis": "Testing the suggested baseline will establish our initial sub-scores and feedback on extraction, strength, and balance.",
+      "what_changed": "Initial attempt using standard baseline values: dose 15.5 g, water 320 ml, brew time 150 s."
+    },
+    {
+      "attempt": 2,
+      "run_id": "barista-1791649791121-l1-a02",
+      "inputs": {
+        "values": {
+          "dose_g": 18,
+          "water_ml": 350,
+          "contact_s": 190
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 400
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 200
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 300
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        }
+      ],
+      "score": 78.7,
+      "passed": true,
+      "feedback": [
+        "Brew spills past the mug: more than a house serving.",
+        "Too weak: watery and hollow, too much water for the coffee."
+      ],
+      "breakdown": {
+        "dose_g": {
+          "label": "Coffee",
+          "score": 100
+        },
+        "water_ml": {
+          "label": "Water",
+          "score": 25
+        },
+        "contact_s": {
+          "label": "Brew time",
+          "score": 100
+        },
+        "brew_ratio": {
+          "label": "Water per gram",
+          "score": 63
+        }
+      },
+      "problems_found": [
+        "Brew spills past the mug: more than a house serving.",
+        "Water volume at 350 ml is too large for a standard mug and dilutes the brew."
+      ],
+      "caveats": [
+        "'Water per gram' depends on several controls together, not one alone.",
+        "Keep dose_g at 18.0 and contact_s at 190.0 as they are already perfected at 100."
+      ],
+      "hypothesis": "Increasing dose_g to 18.0 g, water_ml to 350 ml, and contact_s to 190 s will increase the coffee sub-score, improve brew time extraction, and clarify the direction of the water curve.",
+      "what_changed": "Increased dose_g from 15.5 to 18.0, water_ml from 320 to 350, and contact_s from 150 to 190 per the systematic search suggestion and feedback requirements."
+    },
+    {
+      "attempt": 3,
+      "run_id": "barista-1791649791121-l1-a03",
+      "inputs": {
+        "values": {
+          "dose_g": 18,
+          "water_ml": 300,
+          "contact_s": 190
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 400
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_left",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 300
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        }
+      ],
+      "score": 100.0,
+      "passed": true,
+      "feedback": [
+        "Sweet and smooth, that's our house cup!"
+      ],
+      "breakdown": {
+        "dose_g": {
+          "label": "Coffee",
+          "score": 100
+        },
+        "water_ml": {
+          "label": "Water",
+          "score": 100
+        },
+        "contact_s": {
+          "label": "Brew time",
+          "score": 100
+        },
+        "brew_ratio": {
+          "label": "Water per gram",
+          "score": 100
+        }
+      },
+      "problems_found": [],
+      "caveats": [
+        "The recipe is fully solved and optimal; do not alter any parameters."
+      ],
+      "hypothesis": "Reducing water_ml to 300 ml while retaining dose_g=18.0 and contact_s=190.0 will bring water volume to mug capacity (~100 sub-score) and ratio to ~16.7:1 (~100 sub-score), achieving a near-perfect overall score.",
+      "what_changed": "Set water_ml to 300 (down from 350) while maintaining dose_g at 18 and contact_s at 190."
+    },
+    {
+      "attempt": 4,
+      "run_id": "barista-1791649791121-l1-a04",
+      "inputs": {
+        "values": {
+          "dose_g": 19,
+          "water_ml": 300,
+          "contact_s": 190
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 600
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_left",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 300
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        }
+      ],
+      "score": 91.3,
+      "passed": true,
+      "feedback": [
+        "Heavy and bitter: the bed is packed too deep and the cup is too strong."
+      ],
+      "breakdown": {
+        "dose_g": {
+          "label": "Coffee",
+          "score": 71
+        },
+        "water_ml": {
+          "label": "Water",
+          "score": 100
+        },
+        "contact_s": {
+          "label": "Brew time",
+          "score": 100
+        },
+        "brew_ratio": {
+          "label": "Water per gram",
+          "score": 99
+        }
+      },
+      "problems_found": [
+        "Heavy and bitter: the bed is packed too deep and the cup is too strong.",
+        "Dose of 19.0 g resulted in an over-packed coffee bed and a heavy/bitter brew."
+      ],
+      "caveats": [
+        "If you see \"Heavy and bitter: the bed is packed too deep and the cup is too strong.\", lower Coffee.",
+        "Dose at 18.0 g, water at 300.0 ml, and contact time at 190.0 s produces the perfect 100.0 house cup.",
+        "Do not deviate from 18.0 g dose as both lower (<18 g) and higher (>18 g) reduce cup quality."
+      ],
+      "hypothesis": "Probe Coffee above the best (19 g) to map the acceptable window and see what goes wrong there.",
+      "what_changed": "Coffee: 18 -> 19.0"
+    },
+    {
+      "attempt": 5,
+      "run_id": "barista-1791649791121-l1-a05",
+      "inputs": {
+        "values": {
+          "dose_g": 17,
+          "water_ml": 300,
+          "contact_s": 190
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 200
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_left",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 300
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        }
+      ],
+      "score": 91.6,
+      "passed": true,
+      "feedback": [
+        "Thin and sour: the shallow coffee bed let the water rush straight through."
+      ],
+      "breakdown": {
+        "dose_g": {
+          "label": "Coffee",
+          "score": 71
+        },
+        "water_ml": {
+          "label": "Water",
+          "score": 100
+        },
+        "contact_s": {
+          "label": "Brew time",
+          "score": 100
+        },
+        "brew_ratio": {
+          "label": "Water per gram",
+          "score": 100
+        }
+      },
+      "problems_found": [
+        "Dose 17.0 g is too low, yielding thin and sour coffee."
+      ],
+      "caveats": [
+        "If you see \"Thin and sour: the shallow coffee bed let the water rush straight through.\", raise Coffee.",
+        "Dose of 18.0 g, water volume of 300.0 ml, and contact time of 190.0 s achieve 100.0 across all sub-scores."
+      ],
+      "hypothesis": "Probe Coffee below the best (17 g) to map the acceptable window and see what goes wrong there.",
+      "what_changed": "Coffee: 19 -> 17.0"
+    },
+    {
+      "attempt": 6,
+      "run_id": "barista-1791649791121-l1-a06",
+      "inputs": {
+        "values": {
+          "dose_g": 18,
+          "water_ml": 330,
+          "contact_s": 190
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 400
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 300
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        }
+      ],
+      "score": 93.7,
+      "passed": true,
+      "feedback": [
+        "Brew spills past the mug: more than a house serving."
+      ],
+      "breakdown": {
+        "dose_g": {
+          "label": "Coffee",
+          "score": 100
+        },
+        "water_ml": {
+          "label": "Water",
+          "score": 61
+        },
+        "contact_s": {
+          "label": "Brew time",
+          "score": 100
+        },
+        "brew_ratio": {
+          "label": "Water per gram",
+          "score": 98
+        }
+      },
+      "problems_found": [
+        "Water volume at 330 ml exceeds house serving mug capacity and dilutes the cup slightly."
+      ],
+      "caveats": [
+        "If you see \"Brew spills past the mug: more than a house serving.\", lower Water.",
+        "The 100% optimal recipe is dose_g: 18.0, water_ml: 300, contact_s: 190.",
+        "Deviations above 300 ml for water lead to overflow feedback and lower water sub-scores."
+      ],
+      "hypothesis": "Probe Water above the best (330 ml) to map the acceptable window and see what goes wrong there.",
+      "what_changed": "Coffee: 17 -> 18.0; Water: 300 -> 330"
+    },
+    {
+      "attempt": 7,
+      "run_id": "barista-1791649791121-l1-a07",
+      "inputs": {
+        "values": {
+          "dose_g": 18,
+          "water_ml": 270,
+          "contact_s": 190
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 400
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_left",
+          "params": {
+            "hold_ms": 400
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 300
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        }
+      ],
+      "score": 88.7,
+      "passed": true,
+      "feedback": [
+        "The mug comes out short: not a full house serving."
+      ],
+      "breakdown": {
+        "dose_g": {
+          "label": "Coffee",
+          "score": 100
+        },
+        "water_ml": {
+          "label": "Water",
+          "score": 61
+        },
+        "contact_s": {
+          "label": "Brew time",
+          "score": 100
+        },
+        "brew_ratio": {
+          "label": "Water per gram",
+          "score": 80
+        }
+      },
+      "problems_found": [
+        "The mug comes out short: not a full house serving.",
+        "Water volume at 270 ml comes out short of a full house serving."
+      ],
+      "caveats": [
+        "If you see \"The mug comes out short: not a full house serving.\", raise Water.",
+        "A water volume of 300 ml is strictly required for the house serving size.",
+        "Probing contact time above 190 s will clarify how forgiving the upper extraction threshold is."
+      ],
+      "hypothesis": "Probing water_ml down to 270 ml at dose_g 18.0 and contact_s 190 will map the lower bound of water volume, revealing whether underfilling the mug triggers volume or ratio penalties.",
+      "what_changed": "Decreased water_ml from 330 ml to 270 ml to bracket the lower boundary of water volume as suggested."
+    },
+    {
+      "attempt": 8,
+      "run_id": "barista-1791649791121-l1-a08",
+      "inputs": {
+        "values": {
+          "dose_g": 18,
+          "water_ml": 300,
+          "contact_s": 220
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 400
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_left",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 600
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        }
+      ],
+      "score": 98.5,
+      "passed": true,
+      "feedback": [
+        "Sweet and smooth, that's our house cup!"
+      ],
+      "breakdown": {
+        "dose_g": {
+          "label": "Coffee",
+          "score": 100
+        },
+        "water_ml": {
+          "label": "Water",
+          "score": 100
+        },
+        "contact_s": {
+          "label": "Brew time",
+          "score": 95
+        },
+        "brew_ratio": {
+          "label": "Water per gram",
+          "score": 100
+        }
+      },
+      "problems_found": [
+        "Contact time of 220 s is slightly too long, causing minor over-extraction compared to 190 s."
+      ],
+      "caveats": [
+        "All three parameters (18.0 g dose, 300 ml water, 190 s brew time) are precisely calibrated and mutually satisfy all sub-scores at 100."
+      ],
+      "hypothesis": "Brew time of 220 s will test the upper boundary of contact time, likely showing slight over-extraction or bitterness while keeping dose and water optimal.",
+      "what_changed": "Increased contact_s from 190 s to 220 s while holding dose_g at 18.0 g and water_ml at 300 ml to probe the brew time upper window as recommended by the search suggestion."
+    },
+    {
+      "attempt": 9,
+      "run_id": "barista-1791649791121-l1-a09",
+      "inputs": {
+        "values": {
+          "dose_g": 18,
+          "water_ml": 300,
+          "contact_s": 190
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 400
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_left",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 300
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        }
+      ],
+      "score": 100.0,
+      "passed": true,
+      "feedback": [
+        "Sweet and smooth, that's our house cup!"
+      ],
+      "breakdown": {
+        "dose_g": {
+          "label": "Coffee",
+          "score": 100
+        },
+        "water_ml": {
+          "label": "Water",
+          "score": 100
+        },
+        "contact_s": {
+          "label": "Brew time",
+          "score": 100
+        },
+        "brew_ratio": {
+          "label": "Water per gram",
+          "score": 100
+        }
+      },
+      "problems_found": [],
+      "caveats": [
+        "Final attempt: lock in the proven perfect settings (dose_g: 18.0, water_ml: 300, contact_s: 190)."
+      ],
+      "hypothesis": "Exploit: replay the best settings found so far.",
+      "what_changed": "Brew time: 220 -> 190"
+    },
+    {
+      "attempt": 10,
+      "run_id": "barista-1791649791121-l1-a10",
+      "inputs": {
+        "values": {
+          "dose_g": 18,
+          "water_ml": 300,
+          "contact_s": 190
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 400
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_left",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 300
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        }
+      ],
+      "score": 100.0,
+      "passed": true,
+      "feedback": [
+        "Sweet and smooth, that's our house cup!"
+      ],
+      "breakdown": {
+        "dose_g": {
+          "label": "Coffee",
+          "score": 100
+        },
+        "water_ml": {
+          "label": "Water",
+          "score": 100
+        },
+        "contact_s": {
+          "label": "Brew time",
+          "score": 100
+        },
+        "brew_ratio": {
+          "label": "Water per gram",
+          "score": 100
+        }
+      },
+      "problems_found": [],
+      "caveats": [],
+      "hypothesis": "Final attempt: replay the best settings found.",
+      "what_changed": "No change: replay the same plan."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Coava Coffee - V60 brew method (20 g : 320 g, 3:00-3:30)",
+      "url": "https://coavacoffee.com/brew-methods/v60"
+    },
+    {
+      "title": "Gusto's Coffee - SCA Golden Cup standards (55 g/L +/-10%, 93 °C +/-3, contact times)",
+      "url": "https://www.gustoscoffeeco.com/how-to-make-better-coffee-sca-golden-cup-standards/"
+    },
+    {
+      "title": "Counter Culture Coffee - Coffee Basics: What is TDS?",
+      "url": "https://counterculturecoffee.com/blogs/counter-culture-coffee/coffee-basics"
+    },
+    {
+      "title": "SCAE Coffee Basics brochure - the brewing control chart (via Bunn)",
+      "url": "https://resource.bunn.com/library/eZine/coffee_basics_brochure_scae_english/files/basic-html/page4.html"
+    },
+    {
+      "title": "Moccamaster - Certified by the SCA: the Golden Cup standard (92-96 °C)",
+      "url": "https://us.moccamaster.com/blogs/blog/certified-by-the-sca-moccamaster-and-the-golden-cup-standard"
+    },
+    {
+      "title": "SCA - Fellow Aiden Precision Coffee Maker (programmable brew profiles)",
+      "url": "https://new.sca.coffee/entries/fellow-aiden-precision-coffee-maker"
+    }
+  ],
+  "user_context": [],
+  "updated_at": "2026-10-10T16:32:16.605Z"
+}

@@ -1,0 +1,1613 @@
+{
+  "version": 2,
+  "id": "barista-take-order",
+  "name": "Take an order",
+  "description": "This skill ensures accurate beverage order intake, upselling, and strict allergen cross-contact prevention when serving guests. By clarifying item specifications, explicitly flagging allergens with clean equipment protocols, suggesting complementary pairings, confirming the complete order, and providing personalized handoffs with clear wait times, baristas deliver exceptional hospitality and ensure customer safety.",
+  "job": "barista",
+  "level_id": "barista-take-order",
+  "level_index": 3,
+  "mechanic": "converse",
+  "status": "learned",
+  "trained_attempts": 10,
+  "best_score": 100.0,
+  "final_score": 100.0,
+  "pass_threshold": 75.0,
+  "passed": true,
+  "learned_parameters": [
+    {
+      "variable": "greet",
+      "label": "A big latte, not normal milk, plus something for my kid?",
+      "value": "Sure! Which milk: oat, soy or almond? And what for your kid?",
+      "unit": "",
+      "rationale": "Selecting 'Sure! Which milk: oat, soy or almond? And what for your kid?' achieved 100/100 across attempts #1, #2, #3, #6, #7, #8, #9, and #10. In contrast, assuming the milk with 'One large oat latte, coming right up!' scored 30/100 (attempt #4) and deflecting to the kiosk with 'You can order on the screen over there.' scored 0/100 (attempt #5). Measured: Tried: 'Sure! Which milk: oat, soy or almond? And what for your kid?' (100/100), 'One large oat latte, coming right up!' (30/100), 'You can order on the screen over there.' (0/100).",
+      "evidence": [
+        {
+          "attempt": 1,
+          "value": "Sure! Which milk: oat, soy or almond? And what for your kid?",
+          "score": 50.0
+        },
+        {
+          "attempt": 2,
+          "value": "Sure! Which milk: oat, soy or almond? And what for your kid?",
+          "score": 64.0
+        },
+        {
+          "attempt": 3,
+          "value": "Sure! Which milk: oat, soy or almond? And what for your kid?",
+          "score": 100.0
+        },
+        {
+          "attempt": 4,
+          "value": "One large oat latte, coming right up!",
+          "score": 86.0
+        },
+        {
+          "attempt": 5,
+          "value": "You can order on the screen over there.",
+          "score": 80.0
+        },
+        {
+          "attempt": 6,
+          "value": "Sure! Which milk: oat, soy or almond? And what for your kid?",
+          "score": 50.0
+        },
+        {
+          "attempt": 7,
+          "value": "Sure! Which milk: oat, soy or almond? And what for your kid?",
+          "score": 88.0
+        },
+        {
+          "attempt": 8,
+          "value": "Sure! Which milk: oat, soy or almond? And what for your kid?",
+          "score": 86.0
+        },
+        {
+          "attempt": 9,
+          "value": "Sure! Which milk: oat, soy or almond? And what for your kid?",
+          "score": 100.0
+        },
+        {
+          "attempt": 10,
+          "value": "Sure! Which milk: oat, soy or almond? And what for your kid?",
+          "score": 100.0
+        }
+      ]
+    },
+    {
+      "variable": "allergy",
+      "label": "Almond for me, and hot chocolate for her, she's allergic to nuts.",
+      "value": "Got it: nut allergy flagged, clean jug and clean wand for hers.",
+      "unit": "",
+      "rationale": "Selecting 'Got it: nut allergy flagged, clean jug and clean wand for hers.' achieved 100/100 in attempts #2, #3, #4, #5, #7, #8, #9, and #10. Sharing a jug ('No problem, I'll steam both in one jug to save time.') immediately ended the order with 0/100 in attempt #1, and falsely assuring nut-free status without verification scored 0/100 and ended the order in attempt #6. Measured: Tried: \"No problem, I'll steam both in one jug to save time.\" (0/100), 'Got it: nut allergy flagged, clean jug and clean wand for hers.' (100/100), \"Don't worry, our hot chocolate is nut-free.\" (0/100). Ends the level immediately: \"No problem, I'll steam both in one jug to save time.\", \"Don't worry, our hot chocolate is nut-free.\".",
+      "evidence": [
+        {
+          "attempt": 1,
+          "value": "No problem, I'll steam both in one jug to save time.",
+          "score": 50.0
+        },
+        {
+          "attempt": 2,
+          "value": "Got it: nut allergy flagged, clean jug and clean wand for hers.",
+          "score": 64.0
+        },
+        {
+          "attempt": 3,
+          "value": "Got it: nut allergy flagged, clean jug and clean wand for hers.",
+          "score": 100.0
+        },
+        {
+          "attempt": 4,
+          "value": "Got it: nut allergy flagged, clean jug and clean wand for hers.",
+          "score": 86.0
+        },
+        {
+          "attempt": 5,
+          "value": "Got it: nut allergy flagged, clean jug and clean wand for hers.",
+          "score": 80.0
+        },
+        {
+          "attempt": 6,
+          "value": "Don't worry, our hot chocolate is nut-free.",
+          "score": 50.0
+        },
+        {
+          "attempt": 7,
+          "value": "Got it: nut allergy flagged, clean jug and clean wand for hers.",
+          "score": 88.0
+        },
+        {
+          "attempt": 8,
+          "value": "Got it: nut allergy flagged, clean jug and clean wand for hers.",
+          "score": 86.0
+        },
+        {
+          "attempt": 9,
+          "value": "Got it: nut allergy flagged, clean jug and clean wand for hers.",
+          "score": 100.0
+        },
+        {
+          "attempt": 10,
+          "value": "Got it: nut allergy flagged, clean jug and clean wand for hers.",
+          "score": 100.0
+        }
+      ]
+    },
+    {
+      "variable": "suggest",
+      "label": "Thank you so much, I think that's everything.",
+      "value": "Vanilla is lovely with almond milk. Add a pump to yours?",
+      "unit": "",
+      "rationale": "Recommending 'Vanilla is lovely with almond milk. Add a pump to yours?' scored 100/100 in attempts #3, #4, #5, #8, #9, and #10. Bombarding the customer with multiple add-ons scored 20/100 in attempt #2, while offering no suggestion scored 40/100 in attempt #7. Measured: Tried: 'Muffin? Cookie? Extra shot? Syrup? Bigger size?' (20/100), 'Vanilla is lovely with almond milk. Add a pump to yours?' (100/100), \"Okay, that's everything then.\" (40/100).",
+      "evidence": [
+        {
+          "attempt": 2,
+          "value": "Muffin? Cookie? Extra shot? Syrup? Bigger size?",
+          "score": 64.0
+        },
+        {
+          "attempt": 3,
+          "value": "Vanilla is lovely with almond milk. Add a pump to yours?",
+          "score": 100.0
+        },
+        {
+          "attempt": 4,
+          "value": "Vanilla is lovely with almond milk. Add a pump to yours?",
+          "score": 86.0
+        },
+        {
+          "attempt": 5,
+          "value": "Vanilla is lovely with almond milk. Add a pump to yours?",
+          "score": 80.0
+        },
+        {
+          "attempt": 7,
+          "value": "Okay, that's everything then.",
+          "score": 88.0
+        },
+        {
+          "attempt": 8,
+          "value": "Vanilla is lovely with almond milk. Add a pump to yours?",
+          "score": 86.0
+        },
+        {
+          "attempt": 9,
+          "value": "Vanilla is lovely with almond milk. Add a pump to yours?",
+          "score": 100.0
+        },
+        {
+          "attempt": 10,
+          "value": "Vanilla is lovely with almond milk. Add a pump to yours?",
+          "score": 100.0
+        }
+      ]
+    },
+    {
+      "variable": "readback",
+      "label": "Ooh, yes please, one pump, that's it!",
+      "value": "So: large almond latte, one vanilla, kids' hot chocolate, nut allergy. Right?",
+      "unit": "",
+      "rationale": "Executing the complete confirmation 'So: large almond latte, one vanilla, kids' hot chocolate, nut allergy. Right?' scored 100/100 in attempts #2, #3, #4, #5, #7, #9, and #10. Skipping the read-back and jumping straight to payment dropped Reply 4 score to 30/100 in attempt #8. Measured: Tried: \"So: large almond latte, one vanilla, kids' hot chocolate, nut allergy. Right?\" (100/100), \"Great, that's nine forty. Tap when you're ready.\" (30/100).",
+      "evidence": [
+        {
+          "attempt": 2,
+          "value": "So: large almond latte, one vanilla, kids' hot chocolate, nut allergy. Right?",
+          "score": 64.0
+        },
+        {
+          "attempt": 3,
+          "value": "So: large almond latte, one vanilla, kids' hot chocolate, nut allergy. Right?",
+          "score": 100.0
+        },
+        {
+          "attempt": 4,
+          "value": "So: large almond latte, one vanilla, kids' hot chocolate, nut allergy. Right?",
+          "score": 86.0
+        },
+        {
+          "attempt": 5,
+          "value": "So: large almond latte, one vanilla, kids' hot chocolate, nut allergy. Right?",
+          "score": 80.0
+        },
+        {
+          "attempt": 7,
+          "value": "So: large almond latte, one vanilla, kids' hot chocolate, nut allergy. Right?",
+          "score": 88.0
+        },
+        {
+          "attempt": 8,
+          "value": "Great, that's nine forty. Tap when you're ready.",
+          "score": 86.0
+        },
+        {
+          "attempt": 9,
+          "value": "So: large almond latte, one vanilla, kids' hot chocolate, nut allergy. Right?",
+          "score": 100.0
+        },
+        {
+          "attempt": 10,
+          "value": "So: large almond latte, one vanilla, kids' hot chocolate, nut allergy. Right?",
+          "score": 100.0
+        }
+      ]
+    },
+    {
+      "variable": "close",
+      "label": "Yes, perfect, how long will it be?",
+      "value": "About five minutes. Your name? I'll bring hers over myself.",
+      "unit": "",
+      "rationale": "Providing 'About five minutes. Your name? I'll bring hers over myself.' scored 100/100 in attempts #3, #4, #5, #7, #8, #9, and #10. Offering no ETA or name intake with 'No idea, it's busy. Next!' scored 0/100 in attempt #2. Measured: Tried: \"No idea, it's busy. Next!\" (0/100), \"About five minutes. Your name? I'll bring hers over myself.\" (100/100).",
+      "evidence": [
+        {
+          "attempt": 2,
+          "value": "No idea, it's busy. Next!",
+          "score": 64.0
+        },
+        {
+          "attempt": 3,
+          "value": "About five minutes. Your name? I'll bring hers over myself.",
+          "score": 100.0
+        },
+        {
+          "attempt": 4,
+          "value": "About five minutes. Your name? I'll bring hers over myself.",
+          "score": 86.0
+        },
+        {
+          "attempt": 5,
+          "value": "About five minutes. Your name? I'll bring hers over myself.",
+          "score": 80.0
+        },
+        {
+          "attempt": 7,
+          "value": "About five minutes. Your name? I'll bring hers over myself.",
+          "score": 88.0
+        },
+        {
+          "attempt": 8,
+          "value": "About five minutes. Your name? I'll bring hers over myself.",
+          "score": 86.0
+        },
+        {
+          "attempt": 9,
+          "value": "About five minutes. Your name? I'll bring hers over myself.",
+          "score": 100.0
+        },
+        {
+          "attempt": 10,
+          "value": "About five minutes. Your name? I'll bring hers over myself.",
+          "score": 100.0
+        }
+      ]
+    }
+  ],
+  "control_effects": [
+    {
+      "variable": "greet",
+      "effect": "Tried: 'Sure! Which milk: oat, soy or almond? And what for your kid?' (100/100). Measured: Tried: 'Sure! Which milk: oat, soy or almond? And what for your kid?' (100/100), 'One large oat latte, coming right up!' (30/100), 'You can order on the screen over there.' (0/100).",
+      "evidence": [
+        {
+          "attempt": 1,
+          "value": "Sure! Which milk: oat, soy or almond? And what for your kid?",
+          "score": 50.0
+        },
+        {
+          "attempt": 2,
+          "value": "Sure! Which milk: oat, soy or almond? And what for your kid?",
+          "score": 64.0
+        },
+        {
+          "attempt": 3,
+          "value": "Sure! Which milk: oat, soy or almond? And what for your kid?",
+          "score": 100.0
+        },
+        {
+          "attempt": 4,
+          "value": "One large oat latte, coming right up!",
+          "score": 86.0
+        },
+        {
+          "attempt": 5,
+          "value": "You can order on the screen over there.",
+          "score": 80.0
+        },
+        {
+          "attempt": 6,
+          "value": "Sure! Which milk: oat, soy or almond? And what for your kid?",
+          "score": 50.0
+        },
+        {
+          "attempt": 7,
+          "value": "Sure! Which milk: oat, soy or almond? And what for your kid?",
+          "score": 88.0
+        },
+        {
+          "attempt": 8,
+          "value": "Sure! Which milk: oat, soy or almond? And what for your kid?",
+          "score": 86.0
+        },
+        {
+          "attempt": 9,
+          "value": "Sure! Which milk: oat, soy or almond? And what for your kid?",
+          "score": 100.0
+        },
+        {
+          "attempt": 10,
+          "value": "Sure! Which milk: oat, soy or almond? And what for your kid?",
+          "score": 100.0
+        }
+      ]
+    },
+    {
+      "variable": "allergy",
+      "effect": "Tried: \"No problem, I'll steam both in one jug to save time.\" (0/100). Ends the level immediately: \"No problem, I'll steam both in one jug to save time.\". Measured: Tried: \"No problem, I'll steam both in one jug to save time.\" (0/100), 'Got it: nut allergy flagged, clean jug and clean wand for hers.' (100/100), \"Don't worry, our hot chocolate is nut-free.\" (0/100). Ends the level immediately: \"No problem, I'll steam both in one jug to save time.\", \"Don't worry, our hot chocolate is nut-free.\".",
+      "evidence": [
+        {
+          "attempt": 1,
+          "value": "No problem, I'll steam both in one jug to save time.",
+          "score": 50.0
+        },
+        {
+          "attempt": 2,
+          "value": "Got it: nut allergy flagged, clean jug and clean wand for hers.",
+          "score": 64.0
+        },
+        {
+          "attempt": 3,
+          "value": "Got it: nut allergy flagged, clean jug and clean wand for hers.",
+          "score": 100.0
+        },
+        {
+          "attempt": 4,
+          "value": "Got it: nut allergy flagged, clean jug and clean wand for hers.",
+          "score": 86.0
+        },
+        {
+          "attempt": 5,
+          "value": "Got it: nut allergy flagged, clean jug and clean wand for hers.",
+          "score": 80.0
+        },
+        {
+          "attempt": 6,
+          "value": "Don't worry, our hot chocolate is nut-free.",
+          "score": 50.0
+        },
+        {
+          "attempt": 7,
+          "value": "Got it: nut allergy flagged, clean jug and clean wand for hers.",
+          "score": 88.0
+        },
+        {
+          "attempt": 8,
+          "value": "Got it: nut allergy flagged, clean jug and clean wand for hers.",
+          "score": 86.0
+        },
+        {
+          "attempt": 9,
+          "value": "Got it: nut allergy flagged, clean jug and clean wand for hers.",
+          "score": 100.0
+        },
+        {
+          "attempt": 10,
+          "value": "Got it: nut allergy flagged, clean jug and clean wand for hers.",
+          "score": 100.0
+        }
+      ]
+    },
+    {
+      "variable": "suggest",
+      "effect": "Tried: 'Muffin? Cookie? Extra shot? Syrup? Bigger size?' (20/100). Measured: Tried: 'Muffin? Cookie? Extra shot? Syrup? Bigger size?' (20/100), 'Vanilla is lovely with almond milk. Add a pump to yours?' (100/100), \"Okay, that's everything then.\" (40/100).",
+      "evidence": [
+        {
+          "attempt": 2,
+          "value": "Muffin? Cookie? Extra shot? Syrup? Bigger size?",
+          "score": 64.0
+        },
+        {
+          "attempt": 3,
+          "value": "Vanilla is lovely with almond milk. Add a pump to yours?",
+          "score": 100.0
+        },
+        {
+          "attempt": 4,
+          "value": "Vanilla is lovely with almond milk. Add a pump to yours?",
+          "score": 86.0
+        },
+        {
+          "attempt": 5,
+          "value": "Vanilla is lovely with almond milk. Add a pump to yours?",
+          "score": 80.0
+        },
+        {
+          "attempt": 7,
+          "value": "Okay, that's everything then.",
+          "score": 88.0
+        },
+        {
+          "attempt": 8,
+          "value": "Vanilla is lovely with almond milk. Add a pump to yours?",
+          "score": 86.0
+        },
+        {
+          "attempt": 9,
+          "value": "Vanilla is lovely with almond milk. Add a pump to yours?",
+          "score": 100.0
+        },
+        {
+          "attempt": 10,
+          "value": "Vanilla is lovely with almond milk. Add a pump to yours?",
+          "score": 100.0
+        }
+      ]
+    },
+    {
+      "variable": "readback",
+      "effect": "Tried: \"So: large almond latte, one vanilla, kids' hot chocolate, nut allergy. Right?\" (100/100). Measured: Tried: \"So: large almond latte, one vanilla, kids' hot chocolate, nut allergy. Right?\" (100/100), \"Great, that's nine forty. Tap when you're ready.\" (30/100).",
+      "evidence": [
+        {
+          "attempt": 2,
+          "value": "So: large almond latte, one vanilla, kids' hot chocolate, nut allergy. Right?",
+          "score": 64.0
+        },
+        {
+          "attempt": 3,
+          "value": "So: large almond latte, one vanilla, kids' hot chocolate, nut allergy. Right?",
+          "score": 100.0
+        },
+        {
+          "attempt": 4,
+          "value": "So: large almond latte, one vanilla, kids' hot chocolate, nut allergy. Right?",
+          "score": 86.0
+        },
+        {
+          "attempt": 5,
+          "value": "So: large almond latte, one vanilla, kids' hot chocolate, nut allergy. Right?",
+          "score": 80.0
+        },
+        {
+          "attempt": 7,
+          "value": "So: large almond latte, one vanilla, kids' hot chocolate, nut allergy. Right?",
+          "score": 88.0
+        },
+        {
+          "attempt": 8,
+          "value": "Great, that's nine forty. Tap when you're ready.",
+          "score": 86.0
+        },
+        {
+          "attempt": 9,
+          "value": "So: large almond latte, one vanilla, kids' hot chocolate, nut allergy. Right?",
+          "score": 100.0
+        },
+        {
+          "attempt": 10,
+          "value": "So: large almond latte, one vanilla, kids' hot chocolate, nut allergy. Right?",
+          "score": 100.0
+        }
+      ]
+    },
+    {
+      "variable": "close",
+      "effect": "Tried: \"No idea, it's busy. Next!\" (0/100). Measured: Tried: \"No idea, it's busy. Next!\" (0/100), \"About five minutes. Your name? I'll bring hers over myself.\" (100/100).",
+      "evidence": [
+        {
+          "attempt": 2,
+          "value": "No idea, it's busy. Next!",
+          "score": 64.0
+        },
+        {
+          "attempt": 3,
+          "value": "About five minutes. Your name? I'll bring hers over myself.",
+          "score": 100.0
+        },
+        {
+          "attempt": 4,
+          "value": "About five minutes. Your name? I'll bring hers over myself.",
+          "score": 86.0
+        },
+        {
+          "attempt": 5,
+          "value": "About five minutes. Your name? I'll bring hers over myself.",
+          "score": 80.0
+        },
+        {
+          "attempt": 7,
+          "value": "About five minutes. Your name? I'll bring hers over myself.",
+          "score": 88.0
+        },
+        {
+          "attempt": 8,
+          "value": "About five minutes. Your name? I'll bring hers over myself.",
+          "score": 86.0
+        },
+        {
+          "attempt": 9,
+          "value": "About five minutes. Your name? I'll bring hers over myself.",
+          "score": 100.0
+        },
+        {
+          "attempt": 10,
+          "value": "About five minutes. Your name? I'll bring hers over myself.",
+          "score": 100.0
+        }
+      ]
+    }
+  ],
+  "steps": [
+    "Greet the customer and ask clarifying questions for ambiguous requests instead of assuming: inquire specifically about the preferred milk option ('Which milk: oat, soy or almond?') and what beverage they would like for the accompanying guest/child.",
+    "When a nut allergy is identified, immediately confirm and state the safety protocol out loud: 'Got it: nut allergy flagged, clean jug and clean wand for hers.' Never share steaming jugs or steam wands across nut and non-nut drinks.",
+    "Offer a tasteful, relevant upsell suggestion rather than a generic barrage or remaining silent: suggest 'Vanilla is lovely with almond milk. Add a pump to yours?'.",
+    "Conduct a full read-back of all ordered items, modifications, and allergy flags before taking payment: 'So: large almond latte, one vanilla, kids' hot chocolate, nut allergy. Right?'.",
+    "Close the interaction by providing a clear time estimate, requesting the customer's name, and offering dedicated service: 'About five minutes. Your name? I'll bring hers over myself.'."
+  ],
+  "caveats": [
+    "Never steam regular/dairy or non-dairy milks in the same jug as almond milk when an allergy is present; cross-contact can trigger severe allergic reactions.",
+    "Never make unverified safety promises such as claiming hot chocolate is inherently nut-free without inspecting ingredients and shared preparation surfaces.",
+    "Never redirect an in-person, speaking customer to an order kiosk or screen.",
+    "Avoid overwhelming customers with long lists of upsell options (syrups, pastries, sizes all at once).",
+    "Do not skip the order read-back or omit allergy confirmations to save time.",
+    "Never conclude an order without providing an estimated wait time, collecting the customer's name, and ensuring safe drink handoff.",
+    "Never answer \"No problem, I'll steam both in one jug to save time.\".",
+    "Never cross-contaminate nut milk and an allergy order; always flag allergy and use clean equipment.",
+    "Always pair allergy safety with courteous service and order confirmation.",
+    "Do not list a barrage of upsells; suggest a specific, complementary pairing.",
+    "Take customer name and provide ETA so allergy orders are brought safely to the right person.",
+    "Exploit the optimal solution now that all turns have achieved 100/100 sub-scores.",
+    "Do not switch back to assuming milk types or omitting handoff details.",
+    "Never assume drinks or milk types; always clarify both drinks.",
+    "Stick strictly to the 100% verified sequence across all turns.",
+    "Never assume drinks or send customers away to screens; always clarify choices politely.",
+    "Always clean equipment and explicitly flag nut allergies to avoid cross-contact.",
+    "Recommend thoughtful single pairings rather than broad upsell lists.",
+    "Read back all items and allergies accurately.",
+    "Always provide wait time, request the name, and commit to personal handoff for allergy orders.",
+    "Do not deviate from the proven 100/100 solution; exploit the fully solved conversation path.",
+    "Never answer \"Don't worry, our hot chocolate is nut-free.\".",
+    "Never make unsupported safety claims like 'Don't worry, our hot chocolate is nut-free.' Always follow standard allergy cleaning procedures.",
+    "Ensure all turns maintain safety while evaluating alternative communication options.",
+    "Always offer a helpful, relevant recommendation rather than nothing or a pushy barrage.",
+    "Always maintain full allergy protocol: flag allergy, clean jug/wand, read back allergy, and deliver personally.",
+    "Always perform a full read-back including allergy and customizations to ensure accuracy and guest safety.",
+    "Exploit the proven 100/100 sequence across all turns.",
+    "Final attempt: lock in the proven perfect 100.0 plan without deviation."
+  ],
+  "problems": [
+    {
+      "problem": "One jug for almond milk and her drink is nut cross-contact. Never.",
+      "attempt": 1,
+      "fix": "Apply the learned values."
+    },
+    {
+      "problem": "Answering \"No problem, I'll steam both in one jug to save time.\" ended the conversation at once.",
+      "attempt": 1,
+      "fix": "Pick another answer for that line."
+    },
+    {
+      "problem": "Steaming both drinks in one jug causes cross-contact when one drink has almond milk and the customer has a nut allergy.",
+      "attempt": 1,
+      "fix": "Never use the same jug or wand for almond milk and allergy-flagged drinks; explicitly state that a clean jug and clean wand will be used for the allergy item."
+    },
+    {
+      "problem": "No wait time and no name: the order can get lost.",
+      "attempt": 2,
+      "fix": "Apply the learned values."
+    },
+    {
+      "problem": "A barrage of add-ons feels pushy and slows the queue.",
+      "attempt": 2,
+      "fix": "Apply the learned values."
+    },
+    {
+      "problem": "Turn 2 'upsell-barrage' is overly pushy and slows down service.",
+      "attempt": 2,
+      "fix": "Apply the learned values."
+    },
+    {
+      "problem": "Turn 4 'no-eta' provided neither wait time nor customer name.",
+      "attempt": 2,
+      "fix": "Apply the learned values."
+    },
+    {
+      "problem": "You guessed her milk and dropped half the order. Ask, don't assume.",
+      "attempt": 4,
+      "fix": "Apply the learned values."
+    },
+    {
+      "problem": "Assuming the customer's choice ('assume-oat') ignores the child's item and guesses milk incorrectly.",
+      "attempt": 4,
+      "fix": "Apply the learned values."
+    },
+    {
+      "problem": "Sending a speaking customer to a screen loses the order.",
+      "attempt": 5,
+      "fix": "Apply the learned values."
+    },
+    {
+      "problem": "Telling a speaking customer to order via the kiosk screen scores 0 and loses the order.",
+      "attempt": 5,
+      "fix": "Apply the learned values."
+    },
+    {
+      "problem": "Never promise nut-free without checking ingredients and shared equipment.",
+      "attempt": 6,
+      "fix": "Apply the learned values."
+    },
+    {
+      "problem": "Answering \"Don't worry, our hot chocolate is nut-free.\" ended the conversation at once.",
+      "attempt": 6,
+      "fix": "Pick another answer for that line."
+    },
+    {
+      "problem": "Promising that an item is nut-free without actively checking ingredients and preventing cross-contact violates food allergy safety protocols and fails the order.",
+      "attempt": 6,
+      "fix": "Apply the learned values."
+    },
+    {
+      "problem": "Polite, but you missed one easy, helpful suggestion.",
+      "attempt": 7,
+      "fix": "Apply the learned values."
+    },
+    {
+      "problem": "turn 2 'no-suggestion' misses the opportunity for a tasteful pairing recommendation (Reply 3 = 40).",
+      "attempt": 7,
+      "fix": "Apply the learned values."
+    },
+    {
+      "problem": "Skipping the read-back is how wrong drinks and allergy slips happen.",
+      "attempt": 8,
+      "fix": "Apply the learned values."
+    },
+    {
+      "problem": "Skipping the read-back fails to confirm order details and allergy precautions, lowering score to 86 (Reply 4 = 30).",
+      "attempt": 8,
+      "fix": "Apply the learned values."
+    }
+  ],
+  "score_history": [
+    {
+      "attempt": 1,
+      "score": 50.0,
+      "passed": false
+    },
+    {
+      "attempt": 2,
+      "score": 64.0,
+      "passed": false
+    },
+    {
+      "attempt": 3,
+      "score": 100.0,
+      "passed": true
+    },
+    {
+      "attempt": 4,
+      "score": 86.0,
+      "passed": true
+    },
+    {
+      "attempt": 5,
+      "score": 80.0,
+      "passed": true
+    },
+    {
+      "attempt": 6,
+      "score": 50.0,
+      "passed": false
+    },
+    {
+      "attempt": 7,
+      "score": 88.0,
+      "passed": true
+    },
+    {
+      "attempt": 8,
+      "score": 86.0,
+      "passed": true
+    },
+    {
+      "attempt": 9,
+      "score": 100.0,
+      "passed": true
+    },
+    {
+      "attempt": 10,
+      "score": 100.0,
+      "passed": true
+    }
+  ],
+  "attempts": [
+    {
+      "attempt": 1,
+      "run_id": "barista-1791649791121-l3-a01",
+      "inputs": {
+        "choices": {
+          "0": "ask-milk-and-kid",
+          "1": "one-jug"
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "interact",
+          "params": {}
+        }
+      ],
+      "score": 50.0,
+      "passed": false,
+      "feedback": [
+        "One jug for almond milk and her drink is nut cross-contact. Never."
+      ],
+      "breakdown": {
+        "greet": {
+          "label": "Reply 1",
+          "score": 100
+        },
+        "allergy": {
+          "label": "Reply 2",
+          "score": 0
+        }
+      },
+      "problems_found": [
+        "One jug for almond milk and her drink is nut cross-contact. Never.",
+        "Answering \"No problem, I'll steam both in one jug to save time.\" ended the conversation at once.",
+        "Steaming both drinks in one jug causes cross-contact when one drink has almond milk and the customer has a nut allergy."
+      ],
+      "caveats": [
+        "Never answer \"No problem, I'll steam both in one jug to save time.\".",
+        "Never cross-contaminate nut milk and an allergy order; always flag allergy and use clean equipment."
+      ],
+      "hypothesis": "Choosing 'ask-milk-and-kid' properly addresses both customer requests (milk preference and kid item) without making unsafe assumptions or turning the customer away.",
+      "what_changed": "Selecting 'ask-milk-and-kid' instead of assuming oat or pointing to the screen."
+    },
+    {
+      "attempt": 2,
+      "run_id": "barista-1791649791121-l3-a02",
+      "inputs": {
+        "choices": {
+          "0": "ask-milk-and-kid",
+          "1": "flag-allergy-clean-jug",
+          "2": "upsell-barrage",
+          "3": "full-readback",
+          "4": "no-eta"
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "interact",
+          "params": {}
+        }
+      ],
+      "score": 64.0,
+      "passed": false,
+      "feedback": [
+        "No wait time and no name: the order can get lost.",
+        "A barrage of add-ons feels pushy and slows the queue."
+      ],
+      "breakdown": {
+        "greet": {
+          "label": "Reply 1",
+          "score": 100
+        },
+        "allergy": {
+          "label": "Reply 2",
+          "score": 100
+        },
+        "suggest": {
+          "label": "Reply 3",
+          "score": 20
+        },
+        "readback": {
+          "label": "Reply 4",
+          "score": 100
+        },
+        "close": {
+          "label": "Reply 5",
+          "score": 0
+        }
+      },
+      "problems_found": [
+        "No wait time and no name: the order can get lost.",
+        "A barrage of add-ons feels pushy and slows the queue.",
+        "Turn 2 'upsell-barrage' is overly pushy and slows down service.",
+        "Turn 4 'no-eta' provided neither wait time nor customer name."
+      ],
+      "caveats": [
+        "Always pair allergy safety with courteous service and order confirmation.",
+        "Do not list a barrage of upsells; suggest a specific, complementary pairing.",
+        "Take customer name and provide ETA so allergy orders are brought safely to the right person."
+      ],
+      "hypothesis": "Choosing 'flag-allergy-clean-jug' will satisfy allergy safety protocols and score 100 on turn 1, achieving a perfect overall score.",
+      "what_changed": "Changed key 1 from 'one-jug' to 'flag-allergy-clean-jug' to avoid allergen cross-contact."
+    },
+    {
+      "attempt": 3,
+      "run_id": "barista-1791649791121-l3-a03",
+      "inputs": {
+        "choices": {
+          "0": "ask-milk-and-kid",
+          "1": "flag-allergy-clean-jug",
+          "2": "vanilla-pairing",
+          "3": "full-readback",
+          "4": "eta-name-handoff"
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        }
+      ],
+      "score": 100.0,
+      "passed": true,
+      "feedback": [
+        "Right order, safe allergy, happy Maya!"
+      ],
+      "breakdown": {
+        "greet": {
+          "label": "Reply 1",
+          "score": 100
+        },
+        "allergy": {
+          "label": "Reply 2",
+          "score": 100
+        },
+        "suggest": {
+          "label": "Reply 3",
+          "score": 100
+        },
+        "readback": {
+          "label": "Reply 4",
+          "score": 100
+        },
+        "close": {
+          "label": "Reply 5",
+          "score": 100
+        }
+      },
+      "problems_found": [],
+      "caveats": [
+        "Exploit the optimal solution now that all turns have achieved 100/100 sub-scores.",
+        "Do not switch back to assuming milk types or omitting handoff details."
+      ],
+      "hypothesis": "Choosing 'vanilla-pairing' at turn 2 and 'eta-name-handoff' at turn 4 will score 100 on every turn, giving an overall 100.",
+      "what_changed": "Changed turn 2 from 'upsell-barrage' to 'vanilla-pairing', and turn 4 from 'no-eta' to 'eta-name-handoff'."
+    },
+    {
+      "attempt": 4,
+      "run_id": "barista-1791649791121-l3-a04",
+      "inputs": {
+        "choices": {
+          "0": "assume-oat",
+          "1": "flag-allergy-clean-jug",
+          "2": "vanilla-pairing",
+          "3": "full-readback",
+          "4": "eta-name-handoff"
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        }
+      ],
+      "score": 86.0,
+      "passed": true,
+      "feedback": [
+        "You guessed her milk and dropped half the order. Ask, don't assume."
+      ],
+      "breakdown": {
+        "greet": {
+          "label": "Reply 1",
+          "score": 30
+        },
+        "allergy": {
+          "label": "Reply 2",
+          "score": 100
+        },
+        "suggest": {
+          "label": "Reply 3",
+          "score": 100
+        },
+        "readback": {
+          "label": "Reply 4",
+          "score": 100
+        },
+        "close": {
+          "label": "Reply 5",
+          "score": 100
+        }
+      },
+      "problems_found": [
+        "You guessed her milk and dropped half the order. Ask, don't assume.",
+        "Assuming the customer's choice ('assume-oat') ignores the child's item and guesses milk incorrectly."
+      ],
+      "caveats": [
+        "Never assume drinks or milk types; always clarify both drinks.",
+        "Stick strictly to the 100% verified sequence across all turns."
+      ],
+      "hypothesis": "Score is already perfect; check what goes wrong with another option: 'A big latte, not normal milk, plus something for my kid?' from 'Sure! Which milk: oat, soy or almond? And what for your kid?' to 'One large oat latte, coming right up!', keep the rest.",
+      "what_changed": "A big latte, not normal milk, plus something for my kid?: ask-milk-and-kid -> assume-oat"
+    },
+    {
+      "attempt": 5,
+      "run_id": "barista-1791649791121-l3-a05",
+      "inputs": {
+        "choices": {
+          "0": "point-to-screen",
+          "1": "flag-allergy-clean-jug",
+          "2": "vanilla-pairing",
+          "3": "full-readback",
+          "4": "eta-name-handoff"
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        }
+      ],
+      "score": 80.0,
+      "passed": true,
+      "feedback": [
+        "Sending a speaking customer to a screen loses the order."
+      ],
+      "breakdown": {
+        "greet": {
+          "label": "Reply 1",
+          "score": 0
+        },
+        "allergy": {
+          "label": "Reply 2",
+          "score": 100
+        },
+        "suggest": {
+          "label": "Reply 3",
+          "score": 100
+        },
+        "readback": {
+          "label": "Reply 4",
+          "score": 100
+        },
+        "close": {
+          "label": "Reply 5",
+          "score": 100
+        }
+      },
+      "problems_found": [
+        "Sending a speaking customer to a screen loses the order.",
+        "Telling a speaking customer to order via the kiosk screen scores 0 and loses the order."
+      ],
+      "caveats": [
+        "Never assume drinks or send customers away to screens; always clarify choices politely.",
+        "Always clean equipment and explicitly flag nut allergies to avoid cross-contact.",
+        "Recommend thoughtful single pairings rather than broad upsell lists.",
+        "Read back all items and allergies accurately.",
+        "Always provide wait time, request the name, and commit to personal handoff for allergy orders.",
+        "Do not deviate from the proven 100/100 solution; exploit the fully solved conversation path."
+      ],
+      "hypothesis": "Score is already perfect; check what goes wrong with another option: 'A big latte, not normal milk, plus something for my kid?' from 'Sure! Which milk: oat, soy or almond? And what for your kid?' to 'You can order on the screen over there.', keep the rest.",
+      "what_changed": "A big latte, not normal milk, plus something for my kid?: assume-oat -> point-to-screen"
+    },
+    {
+      "attempt": 6,
+      "run_id": "barista-1791649791121-l3-a06",
+      "inputs": {
+        "choices": {
+          "0": "ask-milk-and-kid",
+          "1": "promise-nut-free"
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        }
+      ],
+      "score": 50.0,
+      "passed": false,
+      "feedback": [
+        "Never promise nut-free without checking ingredients and shared equipment."
+      ],
+      "breakdown": {
+        "greet": {
+          "label": "Reply 1",
+          "score": 100
+        },
+        "allergy": {
+          "label": "Reply 2",
+          "score": 0
+        }
+      },
+      "problems_found": [
+        "Never promise nut-free without checking ingredients and shared equipment.",
+        "Answering \"Don't worry, our hot chocolate is nut-free.\" ended the conversation at once.",
+        "Promising that an item is nut-free without actively checking ingredients and preventing cross-contact violates food allergy safety protocols and fails the order."
+      ],
+      "caveats": [
+        "Never answer \"Don't worry, our hot chocolate is nut-free.\".",
+        "Never make unsupported safety claims like 'Don't worry, our hot chocolate is nut-free.' Always follow standard allergy cleaning procedures.",
+        "Ensure all turns maintain safety while evaluating alternative communication options."
+      ],
+      "hypothesis": "Score is already perfect; check what goes wrong with another option: \"Almond for me, and hot chocolate for her, she's allergic to nuts.\" from 'Got it: nut allergy flagged, clean jug and clean wand for hers.' to \"Don't worry, our hot chocolate is nut-free.\", keep the rest.",
+      "what_changed": "A big latte, not normal milk, plus something for my kid?: point-to-screen -> ask-milk-and-kid; Almond for me, and hot chocolate for her, she's allergic to nuts.: flag-allergy-clean-jug -> promise-nut-free"
+    },
+    {
+      "attempt": 7,
+      "run_id": "barista-1791649791121-l3-a07",
+      "inputs": {
+        "choices": {
+          "0": "ask-milk-and-kid",
+          "1": "flag-allergy-clean-jug",
+          "2": "no-suggestion",
+          "3": "full-readback",
+          "4": "eta-name-handoff"
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        }
+      ],
+      "score": 88.0,
+      "passed": true,
+      "feedback": [
+        "Polite, but you missed one easy, helpful suggestion."
+      ],
+      "breakdown": {
+        "greet": {
+          "label": "Reply 1",
+          "score": 100
+        },
+        "allergy": {
+          "label": "Reply 2",
+          "score": 100
+        },
+        "suggest": {
+          "label": "Reply 3",
+          "score": 40
+        },
+        "readback": {
+          "label": "Reply 4",
+          "score": 100
+        },
+        "close": {
+          "label": "Reply 5",
+          "score": 100
+        }
+      },
+      "problems_found": [
+        "Polite, but you missed one easy, helpful suggestion.",
+        "turn 2 'no-suggestion' misses the opportunity for a tasteful pairing recommendation (Reply 3 = 40)."
+      ],
+      "caveats": [
+        "Always offer a helpful, relevant recommendation rather than nothing or a pushy barrage.",
+        "Always maintain full allergy protocol: flag allergy, clean jug/wand, read back allergy, and deliver personally."
+      ],
+      "hypothesis": "Testing 'no-suggestion' on turn 2 will reveal whether omitting a pairing recommendation scores lower than a personalized pairing suggestion ('vanilla-pairing').",
+      "what_changed": "Testing 'no-suggestion' on turn 2 instead of 'vanilla-pairing', while keeping optimal choices for all other turns."
+    },
+    {
+      "attempt": 8,
+      "run_id": "barista-1791649791121-l3-a08",
+      "inputs": {
+        "choices": {
+          "0": "ask-milk-and-kid",
+          "1": "flag-allergy-clean-jug",
+          "2": "vanilla-pairing",
+          "3": "skip-readback",
+          "4": "eta-name-handoff"
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        }
+      ],
+      "score": 86.0,
+      "passed": true,
+      "feedback": [
+        "Skipping the read-back is how wrong drinks and allergy slips happen."
+      ],
+      "breakdown": {
+        "greet": {
+          "label": "Reply 1",
+          "score": 100
+        },
+        "allergy": {
+          "label": "Reply 2",
+          "score": 100
+        },
+        "suggest": {
+          "label": "Reply 3",
+          "score": 100
+        },
+        "readback": {
+          "label": "Reply 4",
+          "score": 30
+        },
+        "close": {
+          "label": "Reply 5",
+          "score": 100
+        }
+      },
+      "problems_found": [
+        "Skipping the read-back is how wrong drinks and allergy slips happen.",
+        "Skipping the read-back fails to confirm order details and allergy precautions, lowering score to 86 (Reply 4 = 30)."
+      ],
+      "caveats": [
+        "Always perform a full read-back including allergy and customizations to ensure accuracy and guest safety.",
+        "Exploit the proven 100/100 sequence across all turns."
+      ],
+      "hypothesis": "Testing 'skip-readback' on turn 3 will demonstrate the necessity of confirming order details and allergy notes back to the customer before charging.",
+      "what_changed": "Changed turn 3 from 'full-readback' to 'skip-readback' to evaluate the impact of skipping the confirmation step."
+    },
+    {
+      "attempt": 9,
+      "run_id": "barista-1791649791121-l3-a09",
+      "inputs": {
+        "choices": {
+          "0": "ask-milk-and-kid",
+          "1": "flag-allergy-clean-jug",
+          "2": "vanilla-pairing",
+          "3": "full-readback",
+          "4": "eta-name-handoff"
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        }
+      ],
+      "score": 100.0,
+      "passed": true,
+      "feedback": [
+        "Right order, safe allergy, happy Maya!"
+      ],
+      "breakdown": {
+        "greet": {
+          "label": "Reply 1",
+          "score": 100
+        },
+        "allergy": {
+          "label": "Reply 2",
+          "score": 100
+        },
+        "suggest": {
+          "label": "Reply 3",
+          "score": 100
+        },
+        "readback": {
+          "label": "Reply 4",
+          "score": 100
+        },
+        "close": {
+          "label": "Reply 5",
+          "score": 100
+        }
+      },
+      "problems_found": [],
+      "caveats": [
+        "Final attempt: lock in the proven perfect 100.0 plan without deviation."
+      ],
+      "hypothesis": "Every option was tried; exploit the best combination.",
+      "what_changed": "Ooh, yes please, one pump, that's it!: skip-readback -> full-readback"
+    },
+    {
+      "attempt": 10,
+      "run_id": "barista-1791649791121-l3-a10",
+      "inputs": {
+        "choices": {
+          "0": "ask-milk-and-kid",
+          "1": "flag-allergy-clean-jug",
+          "2": "vanilla-pairing",
+          "3": "full-readback",
+          "4": "eta-name-handoff"
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "interact",
+          "params": {}
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "interact",
+          "params": {}
+        }
+      ],
+      "score": 100.0,
+      "passed": true,
+      "feedback": [
+        "Right order, safe allergy, happy Maya!"
+      ],
+      "breakdown": {
+        "greet": {
+          "label": "Reply 1",
+          "score": 100
+        },
+        "allergy": {
+          "label": "Reply 2",
+          "score": 100
+        },
+        "suggest": {
+          "label": "Reply 3",
+          "score": 100
+        },
+        "readback": {
+          "label": "Reply 4",
+          "score": 100
+        },
+        "close": {
+          "label": "Reply 5",
+          "score": 100
+        }
+      },
+      "problems_found": [],
+      "caveats": [],
+      "hypothesis": "Final attempt: replay the best choices found.",
+      "what_changed": "No change: replay the same plan."
+    }
+  ],
+  "sources": [
+    {
+      "title": "GOV.UK / Food Standards Agency - Allergen guidance for food businesses",
+      "url": "https://www.gov.uk/government/publications/allergen-guidance-for-food-businesses/allergen-guidance-for-food-businesses"
+    },
+    {
+      "title": "Allergy & Asthma Network - Coffee, cross contact and food allergies",
+      "url": "https://allergyasthmanetwork.org/news/coffee-cross-contact-and-food-allergies/"
+    },
+    {
+      "title": "Lynn (Cornell, 2011) - Mega Tips 2: twenty tested techniques (repeat the order back)",
+      "url": "https://ecommons.cornell.edu/entities/publication/aaa79631-eff5-43eb-96ac-473e4ffea561"
+    },
+    {
+      "title": "Sauce - Suggestive selling techniques for restaurants",
+      "url": "https://www.getsauce.com/post/communicating-with-customers-suggestive-selling-techniques-to-raise-restaurant-revenue"
+    },
+    {
+      "title": "Gradium API - Speech-to-text (POST /api/post/speech/asr)",
+      "url": "https://docs.gradium.ai/api-reference/endpoint/stt-post"
+    },
+    {
+      "title": "Gradium API - Text-to-speech (POST /api/post/speech/tts)",
+      "url": "https://docs.gradium.ai/api-reference/endpoint/tts-post"
+    },
+    {
+      "title": "Square Orders API - CreateOrder (POST /v2/orders)",
+      "url": "https://developer.squareup.com/reference/square/orders-api/create-order"
+    }
+  ],
+  "user_context": [],
+  "updated_at": "2026-10-10T16:32:15.863Z"
+}

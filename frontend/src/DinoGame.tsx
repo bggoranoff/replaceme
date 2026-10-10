@@ -159,16 +159,20 @@ const CLOUD = sprite([
   '########################',
 ])
 const RESTART = sprite([
-  '....######....',
-  '..###....###..',
-  '.##........##.',
-  '##..........##',
-  '##.......#####',
-  '##........###.',
-  '##.........#..',
-  '.##...........',
-  '..###....###..',
-  '....######....',
+  '......#......',
+  '.....###.....',
+  '...######....',
+  '..######.....',
+  '.####.#......',
+  '.###.........',
+  '###.......###',
+  '###.......###',
+  '###.......###',
+  '.###.....###.',
+  '.####...####.',
+  '..#########..',
+  '...#######...',
+  '.....###.....',
 ])
 
 // 3x5 bitmap font (M, N, W wider) for the HUD.
@@ -277,10 +281,12 @@ export function DinoGame() {
       const cssW = box.clientWidth || MAX_W
       W = Math.round(Math.min(MAX_W, Math.max(MIN_W, cssW)))
       const dpr = window.devicePixelRatio || 1
+      const width = Math.round(cssW * dpr)
+      const height = Math.round(((cssW * H) / W) * dpr)
       el.style.aspectRatio = `${W} / ${H}`
-      el.width = Math.round(cssW * dpr)
-      el.height = Math.round(((cssW * H) / W) * dpr)
-      scale = el.width / W
+      if (el.width !== width) el.width = width
+      if (el.height !== height) el.height = height
+      scale = width / W
     }
     resize()
     const ro = new ResizeObserver(resize)
@@ -302,7 +308,7 @@ export function DinoGame() {
       overAt: 0,
       ground: 0,
       obstacles: [] as Obstacle[],
-      clouds: [{ x: 120, y: 40 }, { x: 420, y: 22 }] as Cloud[],
+      clouds: [{ x: 70, y: 40 }, { x: 330, y: 84 }] as Cloud[],
       nextGap: 0,
     }
 
@@ -408,7 +414,7 @@ export function DinoGame() {
       for (const c of g.clouds) c.x -= g.speed * 0.2 * dt
       g.clouds = g.clouds.filter((c) => c.x > -CLOUD.w * P)
       if (g.clouds.length < 3 && (g.clouds.length === 0 || g.clouds[g.clouds.length - 1].x < W - rand(160, 320))) {
-        g.clouds.push({ x: W + rand(0, 60), y: rand(14, 64) })
+        g.clouds.push({ x: W + rand(0, 60), y: rand(32, 72) })
       }
 
       const dino = dinoBody()
@@ -475,9 +481,9 @@ export function DinoGame() {
       if (g.state === 'ready') {
         text('PRESS SPACE OR TAP TO PLAY', W / 2, 62, 2, 'center')
       } else if (g.state === 'over') {
-        text('GAME OVER', W / 2, 44, 3, 'center')
-        blit(RESTART, W / 2 - (RESTART.w * P) / 2, 72)
-        text('SPACE OR TAP TO RETRY', W / 2, 104, 2, 'center')
+        text('GAME OVER', W / 2, 40, 3, 'center')
+        blit(RESTART, W / 2 - (RESTART.w * P) / 2, 66)
+        text('SPACE OR TAP TO RETRY', W / 2, 102, 2, 'center')
       }
     }
 

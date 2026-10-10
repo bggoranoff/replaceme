@@ -9,3 +9,5 @@ LearnedSkill: SKILL.md with unified yaml frontmatter
 
 A game adapter exposes reset(levelId, seed), observe(), step(action) and score().
 The UI consumes episode events. Scoring rules remain outside the actor's write access.
+
+v2 (current): see shared/game_contract.md, shared/actions.json, shared/schemas/world.schema.json, frontend/src/contract.ts

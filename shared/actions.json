@@ -1,0 +1,168 @@
+{
+  "version": 2,
+  "name": "replaceme-platform-rules",
+  "description": "Platform rules on main. Generated games (world.json on game/<slug> branches) may only use the controls, mechanics and scoring spec defined here. Humans and the actor use the SAME controls; the actor never invents values outside these actions. See shared/game_contract.md.",
+
+  "controls": {
+    "key_up":    { "input": "ArrowUp (also W)",    "params": { "hold_ms": { "type": "integer", "min": 0, "max": 5000, "default": 0 } } },
+    "key_down":  { "input": "ArrowDown (also S)",  "params": { "hold_ms": { "type": "integer", "min": 0, "max": 5000, "default": 0 } } },
+    "key_left":  { "input": "ArrowLeft (also A)",  "params": { "hold_ms": { "type": "integer", "min": 0, "max": 5000, "default": 0 } } },
+    "key_right": { "input": "ArrowRight (also D)", "params": { "hold_ms": { "type": "integer", "min": 0, "max": 5000, "default": 0 } } },
+    "mouse_click": { "input": "left click", "params": { "target_id": { "type": "string" }, "x": { "type": "number" }, "y": { "type": "number" } }, "require_one_of": [["target_id"], ["x", "y"]] },
+    "mouse_down":  { "input": "left button press (start hold)", "params": { "target_id": { "type": "string" }, "x": { "type": "number" }, "y": { "type": "number" } }, "require_one_of": [["target_id"], ["x", "y"]] },
+    "mouse_up":    { "input": "left button release (end hold)", "params": { "x": { "type": "number" }, "y": { "type": "number" } } },
+    "mouse_drag":  { "input": "press, move, release", "params": { "from": { "type": "point_or_target" }, "to": { "type": "point_or_target" }, "duration_ms": { "type": "integer", "min": 0, "max": 5000, "default": 200 } } },
+    "interact":    { "input": "Enter or E, or click on an NPC/station/submit target", "params": { "target_id": { "type": "string", "optional": true } } },
+    "wait":        { "input": "do nothing", "params": { "ms": { "type": "integer", "min": 0, "max": 10000 } } }
+  },
+
+  "control_semantics": {
+    "point_or_target": "either {\"target_id\": string} or {\"x\": number, \"y\": number}; x,y are in observation.viewport coordinates",
+    "key_press": "a key action with hold_ms=0 is one press = one step. hold_ms>0 repeats: steps = 1 + floor(hold_ms / 100). Human keyboard auto-repeat produces the same per-keydown steps",
+    "world_walk": "when no level is open, key_* moves the avatar one tile per step (blocked by map.solids); interact next to an NPC/location opens its quest or level",
+    "virtual_time": "in agent mode (?agent=1) game time advances ONLY through actions: key press 100 ms, key hold hold_ms, mouse_click 50 ms, mouse_drag duration_ms, wait ms, others 0 ms. Same action sequence -> same observations and score. Human mode uses real time",
+    "score_card": "when a level ends (pass or fail) a score card shows score 0-100, passed, qualitative feedback and per-term breakdown labels (never targets). interact or any click dismisses it; no extra buttons"
+  },
+
+  "observation": {
+    "description": "Structured state returned by window.__replaceme.observe() and act(). NEVER contains scoring targets, tolerances, correct answers or points.",
+    "fields": {
+      "level_id": "string | null (null = walking the world)",
+      "mechanic": "mix | timing | sort | deliver | converse | null",
+      "phase": "world | intro | playing | result",
+      "t_ms": "number, game time since level start",
+      "time_limit_ms": "number | null",
+      "time_left_ms": "number | null",
+      "aim": "string, what to achieve (not the answer)",
+      "controls_hint": "string, e.g. 'Up/Down choose, Left/Right adjust, Enter to brew'",
+      "viewport": "{ w, h } coordinate space for every x,y",
+      "avatar": "{ x, y, tile: [col,row], facing, carrying: string | null }",
+      "grid": "{ cols, rows, blocked: [[col,row], ...] } walkable grid (world phase and deliver)",
+      "targets": "[{ id, kind: slider|button|npc|location|item|bin|choice|meter|spot|submit, label, x, y, w, h, enabled }] every clickable/interactable thing with its position",
+      "focus": "string | null, target id of the current keyboard selection",
+      "mechanic_state": "per-mechanic object, see mechanics.<id>.observation",
+      "messages": "[{ speaker, npc_id, text, t_ms }] recent dialogue and hints",
+      "last_result": "null | { score, passed, feedback: [string], breakdown: { term_id: { label, score } } }",
+      "done": "boolean"
+    }
+  },
+
+  "mechanics": {
+    "mix": {
+      "title": "Mix / set amounts",
+      "description": "Set the amount or setting of each ingredient or process variable, then brew/stir/submit. Covers cooking, potion making, brewing, dosing, configuring.",
+      "controls": ["key_up", "key_down", "key_left", "key_right", "mouse_click", "mouse_drag", "interact"],
+      "input_mapping": "key_up/key_down select variable; key_left/key_right change selected value by -/+ step per press step; mouse_drag slider:<var_id> handle or mouse_click on slider:<var_id> track sets value at that position (snapped to step); mouse_click ingredient:<id> appends to add order (only if params.ingredients); interact or mouse_click submit scores",
+      "params": {
+        "station_id": "string, map location the level opens at",
+        "variables": "[{ id, label, unit, min, max, step, default }] (1-6)",
+        "ingredients": "optional [{ id, label }] for add-order",
+        "submit_label": "string, e.g. 'Brew'"
+      },
+      "observation": "{ variables: [{ id, label, unit, min, max, step, value }], selected_index, added_order: [ingredient_id] }",
+      "aim": "Produce the best result by choosing the right values.",
+      "scoring": "numeric spec: scoring.variables + scoring.derived (+ optional scoring.order)",
+      "fail_conditions": ["score < pass_threshold", "time_limit_ms elapsed before submit (score computed on current values)"],
+      "target_prefixes": ["slider:<var_id>", "ingredient:<id>", "submit"]
+    },
+    "timing": {
+      "title": "Timing / hold and release",
+      "description": "Stop a moving meter, or hold and release, inside the right zone. Covers steaming, pouring, kneading, heating, waiting for doneness.",
+      "controls": ["key_up", "mouse_down", "mouse_up", "mouse_click", "interact", "wait"],
+      "input_mapping": "phase.mode 'stop': the needle sweeps min->max->min with period_ms (triangle wave from min at phase start); interact, key_up or mouse_click meter stops it. phase.mode 'hold': value = min + fill_per_s * held_seconds (clamped to max); hold with mouse_down meter ... mouse_up, or key_up with hold_ms. Each phase ends when stopped/released; next phase starts",
+      "params": {
+        "station_id": "string",
+        "phases": "[{ id, label, unit, min, max, mode: stop|hold, period_ms?, fill_per_s? }] (1-3)"
+      },
+      "observation": "{ phase_index, phases_total, meter: { id, label, unit, min, max, value, moving, holding }, results: [{ id, value }] }",
+      "aim": "Stop or release at the right moment for each phase.",
+      "scoring": "numeric spec: scoring.variables keyed by phase id (value = stopped/released value)",
+      "fail_conditions": ["score < pass_threshold", "time_limit_ms elapsed (unfinished phases score 0)"],
+      "target_prefixes": ["meter"]
+    },
+    "sort": {
+      "title": "Sort / route",
+      "description": "Route each item to the correct bin or slot. Covers bussing tables, filing papers, restocking, triage.",
+      "controls": ["key_left", "key_right", "key_down", "mouse_drag", "mouse_click", "interact"],
+      "input_mapping": "items arrive one at a time in params order; key_left/key_right select bin; key_down or interact drops current item in the selected bin; mouse_drag item:<id> -> bin:<id>, or mouse_click bin:<id> drops the current item there",
+      "params": {
+        "station_id": "string",
+        "items": "[{ id, label, icon?, attributes?: { key: string } }] (3-12, fixed order)",
+        "bins": "[{ id, label }] (2-6)"
+      },
+      "observation": "{ current_item: { id, label, attributes } | null, queue_remaining, bins: [{ id, label }], selected_bin, placed: [{ item_id, bin_id }] }",
+      "aim": "Put every item where it belongs.",
+      "scoring": "scoring.correct { item_id: bin_id }, optional scoring.weights { item_id: w }, scoring.feedback { item_id: message when wrong }",
+      "fail_conditions": ["score < pass_threshold", "time_limit_ms elapsed (unplaced items count wrong)"],
+      "target_prefixes": ["item:<id>", "bin:<id>"]
+    },
+    "deliver": {
+      "title": "Deliver / carry",
+      "description": "Pick items up and carry them across the map to the right NPC, table or spot under time pressure. Covers serving, running food, couriering.",
+      "controls": ["key_up", "key_down", "key_left", "key_right", "interact", "mouse_click", "wait"],
+      "input_mapping": "arrows walk the avatar one tile per step on the world map (observation.grid); interact (or mouse_click on an adjacent target) picks up at a pickup spot or hands over at a destination; capacity items carried at once",
+      "params": {
+        "start_tile": "[col, row]",
+        "orders": "[{ id, item, label, from: target_id, to: target_id }] (1-5)",
+        "capacity": "integer >= 1",
+        "par_ms": "number, time for full time score"
+      },
+      "observation": "{ orders: [{ id, label, to_label, status: waiting|carrying|delivered|wrong }], carrying: [order_id] }",
+      "aim": "Deliver every order to the right place quickly.",
+      "scoring": "accuracy = sum(w correct deliveries)/sum(w); time_score = 1 if t <= par_ms, else linear to 0 at time_limit_ms; score = 100 * (weights.accuracy*accuracy + weights.time*time_score) / (weights.accuracy + weights.time). scoring.feedback { wrong_target, late, missed }",
+      "fail_conditions": ["score < pass_threshold", "time_limit_ms elapsed (undelivered orders count wrong)"],
+      "target_prefixes": ["spot:<id>", "npc:<id>", "location:<id>"]
+    },
+    "converse": {
+      "title": "Converse / transact",
+      "description": "Talk with an NPC and pick the right responses. Covers taking orders, settling a check, handling complaints, advising.",
+      "controls": ["key_up", "key_down", "interact", "mouse_click"],
+      "input_mapping": "each turn the NPC line appears (dialogue event); key_up/key_down select an option, interact confirms, or mouse_click choice:<option_id>; the NPC answers with the option's reply line",
+      "params": {
+        "npc_id": "string",
+        "turns": "[{ id, npc_line, options: [{ id, text, reply }] }] (2-6 turns, 2-4 options, linear order)"
+      },
+      "observation": "{ npc: { id, name }, turn_index, turns_total, line, options: [{ id, text }], selected_index, history: [{ turn_id, option_id }] }",
+      "aim": "Handle the conversation correctly.",
+      "scoring": "scoring.turns { turn_id: { option_id: { points: 0..1, feedback, critical?: bool } } }; score = 100 * mean(points of chosen options)",
+      "fail_conditions": ["score < pass_threshold", "a critical option chosen (level ends, score = min(score, pass_threshold - 1))", "time_limit_ms elapsed (unanswered turns score 0)"],
+      "target_prefixes": ["choice:<option_id>", "npc:<id>"]
+    }
+  },
+
+  "scoring_spec": {
+    "description": "Declarative, deterministic scoring stored in world.json levels[].scoring. No randomness: same inputs -> same score. The game (TS) and any Python checker implement exactly these formulas.",
+    "common": {
+      "pass_threshold": "number 0-100, default 70",
+      "time_limit_ms": "optional, on the level"
+    },
+    "numeric_term": {
+      "fields": {
+        "target": "number (use target OR range)",
+        "range": "[lo, hi] optimal interval; deviation d = 0 inside, else distance to the nearest bound",
+        "tolerance": "number > 0, deviation at which quality is clearly degraded",
+        "weight": "number > 0",
+        "curve": "gaussian | linear | step",
+        "feedback": "{ too_low: string, too_high: string } qualitative, must not state the target"
+      },
+      "curves": {
+        "gaussian": "s = exp(-0.5 * (d / tolerance)^2)",
+        "linear": "s = max(0, 1 - d / (2 * tolerance))",
+        "step": "s = d <= tolerance ? 1 : 0"
+      }
+    },
+    "variables": "{ var_id: numeric_term } for mix variables or timing phase ids",
+    "derived": "[{ id, label, expr, ...numeric_term }] expr uses only variable ids, numbers, + - * / ( ) and unary minus; division by zero -> s = 0",
+    "order": "optional (mix): { expected: [ingredient_id], weight, feedback: string } s = 1 if added_order equals expected else 0",
+    "total": "score = round(100 * sum(weight_i * s_i) / sum(weight_i), 1); passed = score >= pass_threshold",
+    "feedback_rule": "for each term with s < 0.8 emit feedback.too_low if value < target (or < range lo) else feedback.too_high; order by weight*(1-s) descending; at most 3 messages; if none, emit the level's success line",
+    "breakdown": "{ term_id: { label, score: round(100*s) } }",
+    "expr_grammar": "expr := term (('+'|'-') term)* ; term := factor (('*'|'/') factor)* ; factor := NUMBER | VAR_ID | '(' expr ')' | '-' factor ; VAR_ID := [a-z][a-z0-9_]*"
+  },
+
+  "limits": {
+    "levels_per_game": 4,
+    "attempts_per_level": 10,
+    "mechanic_ids": ["mix", "timing", "sort", "deliver", "converse"]
+  }
+}

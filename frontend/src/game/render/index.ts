@@ -4,7 +4,8 @@ import { TILE } from '../layout'
 import { DeliverMechanic } from '../mechanics/deliver'
 import type { MapLocation } from '../types'
 import { INK, WOOD_DARK, px, roundRect, text, wrap, type Ctx } from './pixel'
-import { drawDeliverHud, drawIntro, drawLevelPanel, drawScoreCard } from './panels'
+import { drawDeliverHud, drawIntro, drawLevelPanel } from './panels'
+import { drawScoreCard } from './scorecard'
 import { drawGround, drawLabel, drawLocation, drawMarker, drawPerson, drawRobot, drawWaterShimmer, npcColors } from './sprites'
 
 /** Per-view render state (visual smoothing and caches); one per canvas. */
@@ -164,9 +165,13 @@ export function drawFrame(ctx: Ctx, e: GameEngine, view: RenderView, scale: numb
   }
 
   if (delivering) drawDeliverHud(ctx, e)
+  const shake = e.juice.offset()
+  ctx.translate(shake.x, shake.y)
   if (e.phase === 'playing') drawLevelPanel(ctx, e, t)
   if (e.phase === 'intro') drawIntro(ctx, e, t)
   if (e.phase === 'result') drawScoreCard(ctx, e, t)
+  e.juice.draw(ctx)
+  ctx.translate(-shake.x, -shake.y)
 
   // world hint strip
   if (e.phase === 'world') {

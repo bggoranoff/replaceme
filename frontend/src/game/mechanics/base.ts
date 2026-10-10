@@ -1,4 +1,5 @@
 import type { ControlId, LevelResult, MechanicId, Target } from '../../contract'
+import type { Juice } from '../render/juice'
 import type { Level, World } from '../types'
 
 export type Dir = 'up' | 'down' | 'left' | 'right'
@@ -17,6 +18,8 @@ export interface MechanicCtx {
   /** World-walking helpers, used by the deliver mechanic. */
   walk(dir: Dir): void
   avatarTile(): [number, number]
+  /** Cosmetic feedback (particles, squash, pop text, reactions, sounds). See render/juice.ts. */
+  juice: Juice
 }
 
 export interface Mechanic {

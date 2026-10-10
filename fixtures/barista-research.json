@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "role": "barista",
+  "sources": [],
+  "rules": [
+    "Confirm substitutions before fulfilment"
+  ],
+  "assumptions": [
+    "Toy cafe menu and supplies; source research pending"
+  ],
+  "levels": [
+    {
+      "id": "stockout",
+      "goal": "Resolve an oat latte order when oat milk is unavailable",
+      "customerProfiles": [
+        "customer willing to choose an alternative"
+      ],
+      "initialSupplies": {
+        "oatMilk": 0,
+        "regularMilk": 3,
+        "coffee": 5
+      },
+      "actions": [
+        "checkStock",
+        "askCustomer",
+        "prepareDrink",
+        "serve",
+        "callCoworker"
+      ],
+      "successConditions": [
+        "Customer confirms available alternative or cancellation",
+        "No negative inventory",
+        "No unconfirmed substitution"
+      ]
+    }
+  ]
+}

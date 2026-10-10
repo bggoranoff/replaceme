@@ -5,7 +5,7 @@ import { DeliverMechanic } from '../mechanics/deliver'
 import type { MapLocation } from '../types'
 import { INK, WOOD_DARK, px, roundRect, text, wrap, type Ctx } from './pixel'
 import { drawDeliverHud, drawIntro, drawLevelPanel, drawScoreCard } from './panels'
-import { AVATAR_COLORS, drawGround, drawLabel, drawLocation, drawMarker, drawPerson, drawWaterShimmer, npcColors } from './sprites'
+import { drawGround, drawLabel, drawLocation, drawMarker, drawPerson, drawRobot, drawWaterShimmer, npcColors } from './sprites'
 
 /** Per-view render state (visual smoothing and caches); one per canvas. */
 export class RenderView {
@@ -100,7 +100,7 @@ export function drawFrame(ctx: Ctx, e: GameEngine, view: RenderView, scale: numb
     const bob = Math.floor((t / 650 + (npc.tile[0] % 3)) % 2)
     items.push([fy, () => drawPerson(ctx, fx, fy - bob * 0.5, npcColors(npc), 'down', 0)])
   }
-  items.push([view.ay, () => drawPerson(ctx, view.ax, view.ay, AVATAR_COLORS, e.avatar.facing, moving ? Math.floor(view.walked / 5) % 2 : 0, '#e2b84a')])
+  items.push([view.ay, () => drawRobot(ctx, view.ax, view.ay, e.avatar.facing, moving ? Math.floor(view.walked / 5) % 2 : 0)])
   items.sort((a, b) => a[0] - b[0]).forEach(([, draw]) => draw())
 
   // carried items

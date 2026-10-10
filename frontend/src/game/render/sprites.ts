@@ -471,7 +471,49 @@ export function drawPerson(
   }
 }
 
-export const AVATAR_COLORS = { shirt: '#5e8fc9', hair: '#7a4b2a', skin: '#f2c9a0' }
+/** The player bot (the original ReplaceMe robot with halo and antenna); (x, y) = feet centre. */
+export function drawRobot(ctx: Ctx, x: number, y: number, facing: 'up' | 'down' | 'left' | 'right', frame: number) {
+  const left = Math.round(x - 6)
+  const top = Math.round(y - 26)
+  const legShift = frame % 2 ? 1 : 0
+  shadow(ctx, x, y - 1, 12)
+  // legs
+  px(ctx, '#3a3046', left + 2, top + 21, 3, 5 - legShift)
+  px(ctx, '#3a3046', left + 7, top + 21, 3, 4 + legShift)
+  px(ctx, '#8e96a3', left + 2, top + 25 - legShift, 3, 1)
+  px(ctx, '#8e96a3', left + 7, top + 24 + legShift, 3, 1)
+  // body and arms
+  px(ctx, '#3a3046', left + 1, top + 13, 10, 9)
+  px(ctx, '#c9ced6', left - 1, top + 15 + legShift, 2, 5)
+  px(ctx, '#c9ced6', left + 11, top + 16 - legShift, 2, 5)
+  if (facing !== 'up') px(ctx, '#ff4a3a', left + 5, top + 15, 2, 2)
+  // boxy head
+  px(ctx, '#8e96a3', left + 5, top + 11, 2, 2)
+  px(ctx, '#c9ced6', left, top + 2, 12, 10)
+  px(ctx, '#8e96a3', left + 10, top + 2, 2, 10)
+  px(ctx, '#8e96a3', left, top + 11, 12, 1)
+  px(ctx, '#ffffff', left + 1, top + 3, 3, 1)
+  // visor
+  if (facing === 'down') {
+    px(ctx, '#14101c', left + 1, top + 5, 10, 3)
+    px(ctx, '#ff4a3a', left + 3, top + 6, 2, 1)
+    px(ctx, '#ff4a3a', left + 7, top + 6, 2, 1)
+  } else if (facing === 'left') {
+    px(ctx, '#14101c', left, top + 5, 6, 3)
+    px(ctx, '#ff4a3a', left + 1, top + 6, 2, 1)
+  } else if (facing === 'right') {
+    px(ctx, '#14101c', left + 6, top + 5, 6, 3)
+    px(ctx, '#ff4a3a', left + 9, top + 6, 2, 1)
+  } else {
+    px(ctx, '#8e96a3', left + 3, top + 6, 6, 1)
+  }
+  // halo and antenna
+  px(ctx, '#8e96a3', left + 5, top - 2, 1, 4)
+  px(ctx, '#ff4a3a', left + 4, top - 4, 3, 2)
+  px(ctx, '#e2b84a', left - 1, top - 6, 14, 1)
+  px(ctx, '#e2b84a', left - 2, top - 5, 1, 2)
+  px(ctx, '#e2b84a', left + 13, top - 5, 1, 2)
+}
 
 export function drawMarker(ctx: Ctx, x: number, y: number, kind: 'quest' | 'active' | 'done', t: number, label?: string) {
   const bob = Math.round(Math.sin(t / 220) * 1.5)

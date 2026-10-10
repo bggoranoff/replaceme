@@ -1,0 +1,10 @@
+{
+  "training_id": "barista-1791649791121",
+  "slug": "barista",
+  "levels": [
+    "barista-brew-coffee",
+    "barista-pour-latte-art",
+    "barista-take-order",
+    "barista-order-supplies"
+  ]
+}

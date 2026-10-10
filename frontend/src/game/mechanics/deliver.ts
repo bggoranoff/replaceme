@@ -1,6 +1,7 @@
 import type { Target } from '../../contract'
 import { scoreDeliver, type OrderStatus } from '../scoring'
 import type { DeliverParams } from '../types'
+import { TILE } from '../layout'
 import { resolveTarget, toTarget, type WorldTarget } from '../worldTargets'
 import type { Dir, Mechanic, MechanicCtx } from './base'
 
@@ -54,6 +55,8 @@ export class DeliverMechanic implements Mechanic {
       this.status[waiting.id] = 'carrying'
       this.carrying.push(waiting.id)
       this.ctx.emit('pickup', { order_id: waiting.id, item: waiting.item })
+      const [c, r] = this.ctx.avatarTile()
+      this.ctx.juice.collect(c * TILE + TILE / 2, r * TILE - 10, waiting.item)
       return
     }
     if (!this.params.orders.some((o) => o.to === targetId) || this.carrying.length === 0) return
@@ -62,6 +65,8 @@ export class DeliverMechanic implements Mechanic {
     this.carrying = this.carrying.filter((id) => id !== handed)
     this.status[handed] = right ? 'delivered' : 'wrong'
     this.ctx.emit('handover', { order_id: handed, to: targetId, status: this.status[handed] })
+    const [c, r] = this.ctx.avatarTile()
+    this.ctx.juice.verdict(c * TILE + TILE / 2, r * TILE - 10, !!right, right ? '✓ Delivered!' : '✗ Wrong place')
     if (this.params.orders.every((o) => this.status[o.id] === 'delivered' || this.status[o.id] === 'wrong')) {
       this.finishedAt = this.ctx.now()
       this.ctx.finish(scoreDeliver(this.ctx.level, this.status, this.finishedAt))

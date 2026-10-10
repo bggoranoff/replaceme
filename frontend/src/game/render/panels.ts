@@ -8,6 +8,7 @@ import { SortMechanic } from '../mechanics/sort'
 import { TimingMechanic } from '../mechanics/timing'
 import type { Rect } from '../types'
 import { GOLD, INK, INK_SOFT, PARCHMENT, PARCHMENT_DARK, WOOD_DARK, button, mix, px, roundRect, shade, text, textBlock, woodPanel, wrap, type Ctx } from './pixel'
+import { drawReaction } from './juice'
 import { drawPerson, npcColors } from './sprites'
 import { drawTiming } from './timingPanel'
 
@@ -153,6 +154,11 @@ function drawSort(ctx: Ctx, e: GameEngine, m: SortMechanic, t: number) {
   m.params.bins.forEach((b, i) => {
     const r = bins[i]
     const sel = i === m.selectedBin
+    const sq = e.juice.scaleOf(`bin:${b.id}`)
+    ctx.save()
+    ctx.translate(r.x + r.w / 2, r.y + r.h)
+    ctx.scale(sq.sx, sq.sy)
+    ctx.translate(-(r.x + r.w / 2), -(r.y + r.h))
     px(ctx, 'rgba(40,24,10,0.22)', r.x + 2, r.y + 4, r.w, r.h)
     px(ctx, WOOD_DARK, r.x, r.y + 14, r.w, r.h - 14)
     px(ctx, '#c58a4a', r.x + 2, r.y + 16, r.w - 4, r.h - 18)
@@ -176,6 +182,7 @@ function drawSort(ctx: Ctx, e: GameEngine, m: SortMechanic, t: number) {
       ctx.lineWidth = 1.5
       ctx.strokeRect(r.x - 1.5, r.y + 12.5, r.w + 3, r.h - 11)
     }
+    ctx.restore()
   })
   if (!cur) return
   if (m.drag) {
@@ -183,7 +190,8 @@ function drawSort(ctx: Ctx, e: GameEngine, m: SortMechanic, t: number) {
     px(ctx, 'rgba(91,58,30,0.15)', ir.x, ir.y, ir.w, ir.h)
     drawItemCard(ctx, r, cur.label, cur.attributes ?? {}, true)
   } else {
-    drawItemCard(ctx, ir, cur.label, cur.attributes ?? {}, false)
+    const bob = Math.round(Math.sin(t / 400))
+    e.juice.withScale(ctx, 'sort:item', ir.x + ir.w / 2, ir.y + ir.h / 2, () => drawItemCard(ctx, { ...ir, y: ir.y + bob }, cur.label, cur.attributes ?? {}, false))
   }
 }
 
@@ -196,11 +204,23 @@ function drawConverse(ctx: Ctx, e: GameEngine, m: ConverseMechanic, t: number) {
   px(ctx, WOOD_DARK, pr.x, pr.y, pr.w, pr.h)
   px(ctx, '#bfe3f5', pr.x + 2, pr.y + 2, pr.w - 4, pr.h - 4)
   px(ctx, '#8cc265', pr.x + 2, pr.y + pr.h - 12, pr.w - 4, 10)
+  const reaction = e.juice.reaction('converse')
   if (npc) {
+    // the customer hops when pleased and shakes their head when not
+    let ox = 0
+    let oy = 0
+    if (reaction && reaction.age < 1200) {
+      const a = reaction.age
+      if (reaction.tier >= 2) oy = -Math.abs(Math.sin(a / 90)) * (reaction.tier === 3 ? 4 : 2.5) * (1 - a / 1200)
+      else if (reaction.tier === 0) ox = Math.sin(a / 45) * 1.8 * (1 - a / 1200)
+    }
     ctx.save()
-    ctx.translate(pr.x + pr.w / 2, pr.y + pr.h - 2)
+    ctx.beginPath()
+    ctx.rect(pr.x + 2, pr.y + 2, pr.w - 4, pr.h - 4)
+    ctx.clip()
+    ctx.translate(pr.x + pr.w / 2 + ox, pr.y + pr.h - 2 + oy)
     ctx.scale(2, 2)
-    drawPerson(ctx, 0, 0, npcColors(npc), 'down', Math.floor(t / 600) % 2 ? 0 : 0)
+    drawPerson(ctx, 0, 0, npcColors(npc), 'down', 0)
     ctx.restore()
     text(ctx, npc.name, pr.x + pr.w / 2, pr.y + pr.h + 9, { size: 7, weight: 800, align: 'center', maxW: pr.w + 8 })
   }
@@ -213,11 +233,16 @@ function drawConverse(ctx: Ctx, e: GameEngine, m: ConverseMechanic, t: number) {
   }
   if (m.turn) textBlock(ctx, m.turn.npc_line, br.x + 8, y + 1, br.w - 16, { size: 8.5, weight: 800, maxLines: m.lastReply ? 2 : 3, lineH: 11 })
   text(ctx, `${Math.min(m.index + 1, m.params.turns.length)}/${m.params.turns.length}`, br.x + br.w - 6, br.y + br.h - 5, { size: 6.5, weight: 800, color: INK_SOFT, align: 'right' })
+  if (reaction) drawReaction(ctx, pr.x + pr.w - 3, pr.y + 3, 9, reaction.tier, reaction.k, t)
   const opts = m.turn?.options ?? []
   const rects = m.optionRects()
+  const ps = e.juice.scaleOf('converse:options')
   opts.forEach((o, i) => {
-    const r = rects[i]
+    const r0 = rects[i]
     const sel = i === m.selected
+    const sq = e.juice.scaleOf(`converse:option:${i}`)
+    const s = ps.sx * (sel ? Math.max(sq.sx, sq.sy) : 1)
+    const r = s === 1 ? r0 : { x: r0.x + (r0.w * (1 - s)) / 2, y: r0.y + (r0.h * (1 - s)) / 2, w: r0.w * s, h: r0.h * s }
     px(ctx, WOOD_DARK, r.x, r.y, r.w, r.h)
     px(ctx, sel ? '#fff1c4' : PARCHMENT, r.x + 1, r.y + 1, r.w - 2, r.h - 2)
     if (sel) selectArrow(ctx, r.x + 5, r.y + r.h / 2, t)
@@ -299,75 +324,3 @@ export function drawIntro(ctx: Ctx, e: GameEngine, t: number) {
   const blink = Math.floor(t / 600) % 2 === 0
   text(ctx, 'Press Enter or click to start', r.x + r.w / 2, r.y + r.h - 14, { size: 8, weight: 800, align: 'center', color: blink ? '#7a3f12' : INK_SOFT })
 }
-
-export function drawScoreCard(ctx: Ctx, e: GameEngine, t: number) {
-  const res = e.result
-  const level = e.level
-  if (!res || !level) return
-  ctx.fillStyle = 'rgba(30,22,12,0.5)'
-  ctx.fillRect(0, 0, e.W, e.H)
-  const r = cardRect(e.W, e.H)
-  woodPanel(ctx, r)
-  const color = res.passed ? '#8cc265' : '#f0a35d'
-  const ribbon = { x: r.x + 20, y: r.y + 10, w: r.w - 40, h: 18 }
-  px(ctx, WOOD_DARK, ribbon.x - 1, ribbon.y - 1, ribbon.w + 2, ribbon.h + 2)
-  px(ctx, color, ribbon.x, ribbon.y, ribbon.w, ribbon.h)
-  px(ctx, shade(color, 0.3), ribbon.x, ribbon.y, ribbon.w, 2)
-  text(ctx, res.passed ? 'Quest complete!' : 'Not quite yet', r.x + r.w / 2, ribbon.y + 13, { size: 9.5, weight: 800, align: 'center' })
-  // score + stars
-  text(ctx, fmtNum(res.score), r.x + 26, r.y + 60, { size: 26, weight: 800, color: res.passed ? '#3f6f2a' : '#9a4a1e' })
-  ctx.font = '800 26px Nunito, system-ui, sans-serif'
-  const sw = ctx.measureText(fmtNum(res.score)).width
-  text(ctx, '/100', r.x + 28 + sw, r.y + 60, { size: 9, weight: 800, color: INK_SOFT })
-  text(ctx, level.metric.name, r.x + 26, r.y + 72, { size: 7, weight: 800, color: INK_SOFT })
-  const stars = res.score >= 95 ? 3 : res.score >= 85 ? 2 : res.passed ? 1 : 0
-  for (let i = 0; i < 3; i++) {
-    const sx = r.x + r.w - 78 + i * 18
-    const sy = r.y + 44
-    const on = i < stars
-    const pop = on ? Math.max(0, 1 - Math.abs(((t / 400) % 3) - i) * 2) : 0
-    star(ctx, sx + 7, sy + 7 - pop, on ? GOLD : '#dcc9a2')
-  }
-  let y = r.y + 88
-  const line = level.dialogue?.find((d) => d.at === (res.passed ? 'pass' : 'fail'))
-  if (line) {
-    const npc = e.npc(line.npc_id)
-    y += textBlock(ctx, `${npc?.name ?? ''}: “${line.text}”`, r.x + 18, y, r.w - 36, { size: 7, weight: 700, italic: true, color: INK_SOFT, maxLines: 2, lineH: 9 }) + 3
-  }
-  for (const f of res.feedback.slice(0, 3)) {
-    y += textBlock(ctx, `• ${f}`, r.x + 18, y, r.w - 36, { size: 7.5, weight: 800, maxLines: 2, lineH: 9 }) + 1
-  }
-  // breakdown bars
-  const terms = Object.values(res.breakdown).slice(0, 6)
-  const cols = terms.length > 3 ? 2 : 1
-  const bw = (r.w - 36 - (cols - 1) * 10) / cols
-  const top = Math.max(y + 3, r.y + r.h - 30 - Math.ceil(terms.length / cols) * 11)
-  terms.forEach((b, i) => {
-    const bx = r.x + 18 + (i % cols) * (bw + 10)
-    const by = top + Math.floor(i / cols) * 11
-    text(ctx, b.label, bx, by + 6, { size: 6.5, weight: 800, maxW: bw * 0.5 })
-    const barX = bx + bw * 0.52
-    const barW = bw * 0.48 - 16
-    px(ctx, WOOD_DARK, barX, by, barW, 7)
-    px(ctx, PARCHMENT_DARK, barX + 1, by + 1, barW - 2, 5)
-    px(ctx, b.score >= 80 ? '#8cc265' : b.score >= 50 ? GOLD : '#f08a5d', barX + 1, by + 1, ((barW - 2) * b.score) / 100, 5)
-    text(ctx, String(b.score), bx + bw, by + 6, { size: 6.5, weight: 800, align: 'right' })
-  })
-  text(ctx, 'Enter or click to continue', r.x + r.w / 2, r.y + r.h - 12, { size: 7.5, weight: 800, align: 'center', color: INK_SOFT })
-}
-
-function star(ctx: Ctx, cx: number, cy: number, color: string) {
-  ctx.beginPath()
-  for (let i = 0; i < 10; i++) {
-    const a = -Math.PI / 2 + (i * Math.PI) / 5
-    const rr = i % 2 ? 3.2 : 7.5
-    ctx.lineTo(cx + Math.cos(a) * rr, cy + Math.sin(a) * rr)
-  }
-  ctx.closePath()
-  ctx.fillStyle = color
-  ctx.fill()
-  ctx.strokeStyle = WOOD_DARK
-  ctx.lineWidth = 1
-  ctx.stroke()
-}
-

@@ -136,6 +136,54 @@ def _optimum_values(draft: Dict[str, Any]) -> List[float]:
     return values
 
 
+def evaluate(expr: str, values: Dict[str, float]) -> Optional[float]:
+    """Value of a valid scoring expression, or None (invalid, unknown id, division by zero)."""
+    names = expr_identifiers(expr)
+    if names is None or not names <= set(values):
+        return None
+
+    def ev(node: ast.AST) -> float:
+        if isinstance(node, ast.Expression):
+            return ev(node.body)
+        if isinstance(node, ast.Constant):
+            return float(node.value)
+        if isinstance(node, ast.Name):
+            return float(values[node.id])
+        if isinstance(node, ast.UnaryOp):
+            return -ev(node.operand)
+        left, right = ev(node.left), ev(node.right)
+        if isinstance(node.op, ast.Add):
+            return left + right
+        if isinstance(node.op, ast.Sub):
+            return left - right
+        if isinstance(node.op, ast.Mult):
+            return left * right
+        return left / right
+
+    try:
+        return ev(ast.parse(expr, mode="eval"))
+    except ZeroDivisionError:
+        return None
+
+
+def _derived_mismatches(draft: Dict[str, Any]) -> Dict[str, float]:
+    """Derived terms whose optimum disagrees with the value implied by the variable optima: {term: implied value}."""
+    centers = {o["term"]: sum(_bounds(o)) / len(_bounds(o)) for o in draft.get("optima", [])
+               if (o.get("range") is None) != (o.get("target") is None) and _bounds(o)}
+    tolerance = {h["term"]: h["tolerance"] for h in draft.get("heuristic", [])}
+    mismatches = {}
+    for d in draft.get("derived", []):
+        opt = next((o for o in draft.get("optima", []) if o["term"] == d["id"] and d["id"] in centers), None)
+        implied = evaluate(d["expr"], centers) if opt else None
+        if implied is None:
+            continue
+        lo, hi = min(_bounds(opt)), max(_bounds(opt))
+        gap = max(lo - implied, implied - hi, 0.0)
+        if gap > tolerance.get(d["id"], abs(centers[d["id"]]) * 0.1 or 1e-9):
+            mismatches[d["id"]] = implied
+    return mismatches
+
+
 # ---------------------------------------------------------------------------
 # Validation (issues are fed back to Gemini for one repair round)
 # ---------------------------------------------------------------------------
@@ -191,6 +239,8 @@ def validate_draft(draft: Dict[str, Any], mechanic: str, n_sources: int) -> List
             if any(not v["min"] <= b <= v["max"] for b in _bounds(opt)):
                 issues.append(f"optimum {term} lies outside the variable's [min, max]; widen min/max or fix the optimum")
         optimum_terms.add(term)
+    for term, implied in _derived_mismatches(draft).items():
+        issues.append(f"optimum {term} disagrees with the variable optima, which imply about {implied:.4g}; make them consistent")
     covered: Set[str] = set()
     for h in draft.get("heuristic", []):
         if h["term"] not in optimum_terms:
@@ -323,6 +373,15 @@ def repair_draft(draft: Dict[str, Any], mechanic: str) -> Dict[str, Any]:
                        and (o.get("range") is None or (len(o["range"]) == 2 and o["range"][0] < o["range"][1]))]
     optimum_terms = {o["term"] for o in draft["optima"]}
     draft["heuristic"] = [h for h in draft.get("heuristic", []) if h["term"] in optimum_terms and h["tolerance"] > 0 and h["weight"] > 0]
+    mismatches = _derived_mismatches(draft)
+    for opt in draft["optima"]:  # the variable optima are researched directly; align derived terms to them
+        if opt["term"] in mismatches:
+            implied = round(mismatches[opt["term"]], 6)
+            if opt.get("range") is not None:
+                half = (opt["range"][1] - opt["range"][0]) / 2
+                opt["range"] = [round(implied - half, 6), round(implied + half, 6)]
+            else:
+                opt["target"] = implied
     values = _optimum_values(draft)
     draft["aim"] = _strip_leaks(draft.get("aim", ""), values)
     draft["heuristic"] = [{**h, "too_low": _strip_leaks(h["too_low"], values), "too_high": _strip_leaks(h["too_high"], values)}

@@ -12,7 +12,7 @@ Start with a barista game. Add waiter as a second demo. Physical movement and pr
 
 ## Start here
 
-This is a starter repo, not a working app yet. Each teammate owns one component directory. Shared input/output shapes and a small barista fixture are in `shared/` and `fixtures/`.
+This is a starter repo, not a working app yet. Shared input/output shapes and a small barista fixture are in `shared/` and `fixtures/`.
 
 Use Gemini for reasoning, Gradium for voice, and React/Phaser for the game. Keep model keys on the server. Suggested practice target is 100 rounds per level, but begin with small batches and respect workshop request limits.
 
@@ -21,7 +21,7 @@ Use Gemini for reasoning, Gradium for voice, and React/Phaser for the game. Keep
 Repository: https://entire.io/et/replaceme/replaceme
 
 Clone with `entire repo clone /et/replaceme/replaceme`.
-Entire project configuration and Codex hooks are enabled. On another machine run `entire enable --agent <your-agent>` in this repo. Use `entire status` to check setup. No prior session history was imported.
+Entire project configuration and Codex hooks are installed. Codex reports that the seven hooks need approval in its /hooks panel before session capture is active. On another machine run `entire enable --agent <your-agent>` in this repo. Use `entire status` to check setup. No prior session history was imported.
 
 ## Shared contract check
 

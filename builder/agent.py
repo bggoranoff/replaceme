@@ -25,6 +25,7 @@ if str(WORKSPACE_ROOT) not in sys.path:
 
 from shared.base_env import BaseLevelEnv, validate_level_contract
 from builder.gemini_client import GeminiClient
+from builder.graph_check import finalize_world
 
 SYSTEM_PROMPT = """
 You are the BUILDER AGENT in the ReplaceMe ecosystem.
@@ -168,6 +169,10 @@ class BuilderAgent:
             "rules": brief.get("rules", []),
             "entrypoint": "builder.levels"
         }
+
+        # Entire Graph check against main's rules: repairs, writes games/<slug>/graph_report.json and
+        # commits a passing v2 world on game/<slug>; raises GraphCheckError instead of committing a failing one
+        world_metadata = finalize_world(world_metadata, self.workspace_dir)
 
         # Save to root world.json and fixtures
         world_file = self.workspace_dir / "world.json"

@@ -28,35 +28,30 @@ export const hit = (r: Rect, x: number, y: number) => x >= r.x && x <= r.x + r.w
 
 export const center = (r: Rect) => ({ x: r.x + r.w / 2, y: r.y + r.h / 2 })
 
-// --- mix -------------------------------------------------------------------
+// --- mix (craft station) ----------------------------------------------------
 
-export const MIX_ART_W = 72
-
-export function mixRows(W: number, H: number, n: number) {
-  const c = contentRect(W, H)
-  const x = c.x + MIX_ART_W + 8
-  const w = c.w - MIX_ART_W - 8
-  const rowsH = c.h - 28
-  const rowH = Math.min(30, Math.floor(rowsH / Math.max(1, n)))
-  const top = c.y + Math.max(0, Math.floor((rowsH - rowH * n) / 2))
-  return Array.from({ length: n }, (_, i) => {
-    const y = top + i * rowH
-    return {
-      row: { x, y, w, h: rowH },
-      track: { x: x + 4, y: y + rowH - 13, w: w - 8, h: 12 },
-    }
-  })
-}
-
-export function mixSubmit(W: number, H: number): Rect {
-  const c = contentRect(W, H)
-  return { x: c.x + c.w - 84, y: c.y + c.h - 22, w: 84, h: 22 }
-}
-
-export function mixIngredients(W: number, H: number, n: number): Rect[] {
-  const c = contentRect(W, H)
-  const w = 52
-  return Array.from({ length: n }, (_, i) => ({ x: c.x + i * (w + 4), y: c.y + c.h - 22, w, h: 22 }))
+/** Craft station: a column of station items (Up/Down), the selected item's tool, the result + action button. */
+export function craftLayout(W: number, H: number, n: number, ingredients = 0) {
+  const full = contentRect(W, H)
+  // keep clear of the footer line (villager chatter bubble)
+  const c = { ...full, h: full.h - 4 }
+  const listW = 104
+  const resW = 84
+  const gap = 6
+  const rowGap = 2
+  const rowH = Math.min(34, Math.floor((c.h - rowGap * (n - 1)) / Math.max(1, n)))
+  const listTop = c.y + Math.max(0, Math.floor((c.h - (rowH * n + rowGap * (n - 1))) / 2))
+  const items: Rect[] = Array.from({ length: n }, (_, i) => ({ x: c.x, y: listTop + i * (rowH + rowGap), w: listW, h: rowH }))
+  const stage: Rect = { x: c.x + listW + gap, y: c.y, w: c.w - listW - resW - gap * 2, h: c.h }
+  const tool: Rect = { x: stage.x, y: stage.y, w: stage.w, h: stage.h - 24 }
+  const back: Rect = { x: stage.x, y: stage.y + stage.h - 20, w: 62, h: 20 }
+  const resX = stage.x + stage.w + gap
+  const submit: Rect = { x: resX, y: c.y + c.h - 24, w: resW, h: 24 }
+  const ingH = 16
+  const ing: Rect[] = Array.from({ length: ingredients }, (_, i) => ({ x: resX, y: submit.y - 4 - (ingredients - i) * (ingH + 3), w: resW, h: ingH }))
+  const resultBottom = (ing.length ? ing[0].y : submit.y) - 4
+  const result: Rect = { x: resX, y: c.y, w: resW, h: Math.max(30, resultBottom - c.y) }
+  return { items, stage, tool, back, result, submit, ingredients: ing }
 }
 
 // --- timing ----------------------------------------------------------------

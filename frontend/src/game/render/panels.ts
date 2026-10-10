@@ -7,7 +7,8 @@ import { MixMechanic } from '../mechanics/mix'
 import { SortMechanic } from '../mechanics/sort'
 import { TimingMechanic } from '../mechanics/timing'
 import type { Rect } from '../types'
-import { GOLD, INK, INK_SOFT, PARCHMENT, PARCHMENT_DARK, WOOD_DARK, button, mix, px, roundRect, shade, text, textBlock, woodPanel, wrap, type Ctx } from './pixel'
+import { GOLD, INK, INK_SOFT, PARCHMENT, PARCHMENT_DARK, WOOD_DARK, px, roundRect, shade, text, textBlock, woodPanel, wrap, type Ctx } from './pixel'
+import { craftHint, drawCraft } from './craftPanel'
 import { drawPerson, npcColors } from './sprites'
 
 export function fmtNum(v: number): string {
@@ -40,11 +41,22 @@ function header(ctx: Ctx, e: GameEngine, p: Rect) {
 }
 
 /** Footer: the controls hint, or a villager's line while their bubble is up (in-level chatter). */
+/** The level's controls hint; the craft station describes its own tools. */
+function controlsHint(e: GameEngine): string {
+  if (e.phase === 'playing' && e.mech instanceof MixMechanic) return craftHint(e.mech)
+  const level = e.level!
+  if (level.mechanic === 'mix') {
+    const submit = String((level.params as { submit_label?: string }).submit_label ?? 'finish')
+    return `Up/Down pick a tool · hold Right (or hold the mouse on it) to use it · Left to take back · Enter: ${submit}`
+  }
+  return level.controls_hint
+}
+
 function footer(ctx: Ctx, e: GameEngine, p: Rect) {
   const b = e.bubble
   const npc = b && e.t <= b.until && !(e.mech instanceof ConverseMechanic) ? e.npc(b.npcId) : undefined
   if (!b || !npc) {
-    text(ctx, e.level!.controls_hint, p.x + p.w / 2, p.y + p.h - 11, { size: 6.5, weight: 700, color: INK_SOFT, align: 'center', maxW: p.w - 24 })
+    text(ctx, controlsHint(e), p.x + p.w / 2, p.y + p.h - 11, { size: 6.5, weight: 700, color: INK_SOFT, align: 'center', maxW: p.w - 24 })
     return
   }
   const r = { x: p.x + 10, y: p.y + p.h - 25, w: p.w - 20, h: 19 }
@@ -66,67 +78,6 @@ function selectArrow(ctx: Ctx, x: number, y: number, t: number) {
   px(ctx, GOLD, x + o, y - 3, 2, 7)
   px(ctx, GOLD, x + 2 + o, y - 2, 2, 5)
   px(ctx, GOLD, x + 4 + o, y - 1, 2, 3)
-}
-
-// --- mix -----------------------------------------------------------------------
-
-function drawMix(ctx: Ctx, e: GameEngine, m: MixMechanic, t: number) {
-  const c = contentRect(e.W, e.H)
-  // the pot: colour drifts with the settings (purely decorative, says nothing about the answer)
-  const vars = m.params.variables
-  const fr = vars.map((v, i) => (m.values[i] - v.min) / (v.max - v.min || 1))
-  const hue = fr.length ? fr.reduce((a, b) => a + b, 0) / fr.length : 0.5
-  const liquid = mix('#8fc6ee', '#e8774a', hue)
-  const px0 = c.x + 8
-  const py0 = c.y + c.h / 2 - 22
-  px(ctx, 'rgba(40,24,10,0.2)', px0 + 4, py0 + 46, 48, 4)
-  px(ctx, '#2f2a2a', px0 + 2, py0 + 14, 52, 32)
-  px(ctx, '#2f2a2a', px0 + 6, py0 + 46, 44, 3)
-  px(ctx, '#4a4444', px0 + 6, py0 + 18, 44, 4)
-  px(ctx, liquid, px0 + 5, py0 + 12, 46, 6)
-  px(ctx, shade(liquid, 0.3), px0 + 8, py0 + 12, 18, 2)
-  for (let i = 0; i < 4; i++) {
-    const ph = ((t / 700 + i * 0.27) % 1) * 18
-    px(ctx, `rgba(255,255,255,${0.75 - ph / 26})`, px0 + 12 + i * 10, py0 + 10 - ph, 3, 3)
-  }
-  px(ctx, '#e8574a', px0 + 14, py0 + 50, 28, 3)
-  px(ctx, '#f2c14e', px0 + 18, py0 + 49, 6, 2)
-  px(ctx, '#f2c14e', px0 + 30, py0 + 49, 6, 2)
-
-  const rows = m.rows()
-  vars.forEach((v, i) => {
-    const { row, track } = rows[i]
-    const sel = i === m.selected
-    if (sel) {
-      px(ctx, 'rgba(242,193,78,0.28)', row.x - 4, row.y + 1, row.w + 8, row.h - 2)
-      selectArrow(ctx, row.x - 10, row.y + row.h / 2, t)
-    }
-    text(ctx, v.label, row.x + 2, row.y + 10, { size: 8, weight: 800, maxW: row.w - 70 })
-    text(ctx, `${fmtNum(m.values[i])} ${v.unit}`.trim(), row.x + row.w - 2, row.y + 10, { size: 8.5, weight: 800, align: 'right', color: sel ? '#7a3f12' : INK })
-    const gy = track.y + track.h / 2
-    px(ctx, WOOD_DARK, track.x - 1, gy - 3, track.w + 2, 6)
-    px(ctx, '#e9d2a6', track.x, gy - 2, track.w, 4)
-    const frac = (m.values[i] - v.min) / (v.max - v.min || 1)
-    px(ctx, sel ? '#e8a23c' : '#c9a36a', track.x, gy - 2, Math.round(track.w * frac), 4)
-    for (let k = 1; k < 10; k++) px(ctx, 'rgba(91,58,30,0.35)', track.x + Math.round((track.w * k) / 10), gy + 2, 1, 2)
-    const kx = track.x + track.w * frac
-    ctx.fillStyle = WOOD_DARK
-    ctx.beginPath()
-    ctx.arc(kx, gy, 5.5, 0, Math.PI * 2)
-    ctx.fill()
-    ctx.fillStyle = sel ? GOLD : '#f6e3bb'
-    ctx.beginPath()
-    ctx.arc(kx, gy, 4.2, 0, Math.PI * 2)
-    ctx.fill()
-    px(ctx, '#ffffff', kx - 2, gy - 3, 2, 1)
-  })
-  const ing = m.ingredientRects()
-  ;(m.params.ingredients ?? []).forEach((g, i) => {
-    button(ctx, ing[i], g.label, false, '#f6e3bb')
-    const n = m.added.filter((a) => a === g.id).length
-    if (n) text(ctx, `×${n}`, ing[i].x + ing[i].w - 3, ing[i].y + 7, { size: 6, weight: 800, align: 'right' })
-  })
-  button(ctx, m.submitRect(), `${m.params.submit_label} ⏎`, true, '#8cc265')
 }
 
 // --- timing --------------------------------------------------------------------
@@ -295,7 +246,7 @@ export function drawLevelPanel(ctx: Ctx, e: GameEngine, t: number) {
   const p = panelRect(e.W, e.H)
   woodPanel(ctx, p)
   header(ctx, e, p)
-  if (m instanceof MixMechanic) drawMix(ctx, e, m, t)
+  if (m instanceof MixMechanic) drawCraft(ctx, e, m, t)
   else if (m instanceof TimingMechanic) drawTiming(ctx, e, m)
   else if (m instanceof SortMechanic) drawSort(ctx, e, m, t)
   else if (m instanceof ConverseMechanic) drawConverse(ctx, e, m, t)
@@ -349,7 +300,7 @@ export function drawIntro(ctx: Ctx, e: GameEngine, t: number) {
   y += 8 + textBlock(ctx, level.metric.description, x, y + 16, w, { size: 7, weight: 700, color: INK_SOFT, maxLines: 2, lineH: 9 })
   if (level.time_limit_ms) text(ctx, `Time: ${fmtTime(level.time_limit_ms)}`, x + w, y - 2, { size: 7.5, weight: 800, align: 'right' })
   y += 14
-  textBlock(ctx, level.controls_hint, x, y, w, { size: 7, weight: 700, color: INK, maxLines: 3, lineH: 9 })
+  textBlock(ctx, controlsHint(e), x, y, w, { size: 7, weight: 700, color: INK, maxLines: 3, lineH: 9 })
   const blink = Math.floor(t / 600) % 2 === 0
   text(ctx, 'Press Enter or click to start', r.x + r.w / 2, r.y + r.h - 14, { size: 8, weight: 800, align: 'center', color: blink ? '#7a3f12' : INK_SOFT })
 }

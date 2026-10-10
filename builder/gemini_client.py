@@ -1,18 +1,11 @@
-"""
-Gemini API Client for Agentic Calls in ReplaceMe.
-Uses the standard Google Gemini REST API or SDK, requiring no complex external dependencies.
-"""
-
 import os
-import json
-import urllib.request
-import urllib.error
 from typing import Optional, Dict, Any
-
+from google import genai
+from google.genai import types
 
 class GeminiClient:
     """
-    Lightweight client for Google's Gemini models via official REST endpoint.
+    Lightweight client for Google's Gemini models via the official google-genai SDK.
     Reads GOOGLE_API_KEY or GEMINI_API_KEY from environment.
     """
 
@@ -21,54 +14,47 @@ class GeminiClient:
     def __init__(self, api_key: Optional[str] = None, model: Optional[str] = None):
         self.api_key = api_key or os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
         self.model = model or os.getenv("GEMINI_MODEL", self.DEFAULT_MODEL)
+        # Created lazily so callers can check is_configured() and fall back offline without a key
+        self._client: Optional[genai.Client] = None
+
+    @property
+    def client(self) -> genai.Client:
+        if self._client is None:
+            if not self.is_configured():
+                raise ValueError(
+                    "Gemini API key not found. Please set GOOGLE_API_KEY or GEMINI_API_KEY in your environment or .env file."
+                )
+            self._client = genai.Client(api_key=self.api_key)
+        return self._client
 
     def is_configured(self) -> bool:
         return bool(self.api_key and self.api_key.strip())
 
-    def generate(self, prompt: str, system_instruction: Optional[str] = None, temperature: float = 0.2) -> str:
+    def generate(self, prompt: str, system_instruction: Optional[str] = None, temperature: float = 0.3) -> str:
         """
-        Calls Gemini generateContent endpoint.
+        Backward compatible raw text generation.
         """
-        if not self.is_configured():
-            raise ValueError(
-                "Gemini API key not found. Please set GOOGLE_API_KEY or GEMINI_API_KEY in your environment or .env file."
-            )
-
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/{self.model}:generateContent?key={self.api_key}"
-
-        contents = [{"parts": [{"text": prompt}]}]
-        payload: Dict[str, Any] = {
-            "contents": contents,
-            "generationConfig": {
-                "temperature": temperature,
-                "topP": 0.95,
-            }
-        }
-
-        if system_instruction:
-            payload["systemInstruction"] = {
-                "parts": [{"text": system_instruction}]
-            }
-
-        data = json.dumps(payload).encode("utf-8")
-        req = urllib.request.Request(
-            url,
-            data=data,
-            headers={"Content-Type": "application/json"},
-            method="POST"
+        interaction = self.client.interactions.create(
+            model=self.model,
+            input=prompt,
+            system_instruction=system_instruction,
+            generation_config={"temperature": temperature}
         )
+        return interaction.output_text
 
-        try:
-            with urllib.request.urlopen(req, timeout=90) as response:
-                resp_json = json.loads(response.read().decode("utf-8"))
-                candidates = resp_json.get("candidates", [])
-                if not candidates:
-                    raise RuntimeError(f"No candidates returned from Gemini API: {resp_json}")
-                parts = candidates[0].get("content", {}).get("parts", [])
-                text_parts = [p.get("text", "") for p in parts]
-                return "".join(text_parts)
-        except urllib.error.HTTPError as http_err:
-            error_body = http_err.read().decode("utf-8")
-            raise RuntimeError(f"Gemini API HTTP Error {http_err.code}: {error_body}") from http_err
-        except Exception as exc:
-            raise RuntimeError(f"Gemini API request failed: {exc}") from exc
+    def generate_structured(self, prompt: str, schema: type, system_instruction: Optional[str] = None, temperature: float = 0.3) -> str:
+        """
+        New structured output generation for the Researcher.
+        """
+        interaction = self.client.interactions.create(
+            model=self.model,
+            input=prompt,
+            system_instruction=system_instruction,
+            generation_config={"temperature": temperature},
+            response_format={
+                "type": "text",
+                "mime_type": "application/json",
+                "schema": schema.model_json_schema()
+            }
+        )
+        return interaction.output_text

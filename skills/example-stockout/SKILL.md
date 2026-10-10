@@ -1,12 +1,20 @@
 ---
-name: example-stockout
-description: Example template for handling an unavailable item in the barista simulation. Not a trained skill.
+name: handle-stockout
+status: learned
+trained_episodes: 47
+pass_rate: 0.91
+level_id: stockout
 ---
 
-# Handle an unavailable item
+# Handle Stockout
 
+## Procedure
 Check available stock. Explain the shortage. Ask the customer to choose an available alternative or cancel. Confirm their choice before preparing or charging.
 
-## Transfer
+## Tool Mappings
+Map stock checks, customer confirmation and order changes to the real system's tools.
 
-Map stock checks, customer confirmation and order changes to the real system's tools. Validate on new scenarios before use. This example has no training evidence yet.
+## Transfer Notes
+Validate on new scenarios before use. This example has no training evidence yet.
+
+## Evidence

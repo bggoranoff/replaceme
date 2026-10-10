@@ -451,22 +451,24 @@ class ResearcherAgent:
         clean_prompt = prompt.strip()
         role_slug = re.sub(r"[^a-zA-Z0-9]+", "-", clean_prompt.lower()).strip("-")
 
-        # 1. If Gemini API key is configured, generate dynamic tailored curriculum
+        # 1. If Gemini API key is configured, generate dynamic tailored curriculum using Structured Output
         if self.client.is_configured():
             try:
+                from shared.schemas.research import Research
+
                 user_msg = (
                     f"User target job/task prompt: '{clean_prompt}'.\n"
                     f"Synthesize a 3 to 4 level training curriculum for this specific role. "
                     f"Include interactive stations (with x, y tile coords in a 20x13 room), clear 1-sentence goals, "
                     f"and actionable human controls (sliders, toggles)."
                 )
-                raw_response = self.client.generate(
+                raw_json = self.client.generate_structured(
                     prompt=user_msg,
+                    schema=Research,
                     system_instruction=RESEARCHER_SYSTEM_PROMPT,
                     temperature=0.3
                 )
-                clean_json = self._extract_json(raw_response)
-                curriculum = json.loads(clean_json)
+                curriculum = json.loads(raw_json)
                 if "levels" in curriculum and len(curriculum["levels"]) > 0:
                     self._save_brief(curriculum)
                     return curriculum

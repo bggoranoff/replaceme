@@ -1,0 +1,212 @@
+{
+  "version": 1,
+  "role": "barista",
+  "prompt": "Decompose the role 'barista' into a comprehensive flat list of discrete skills required for the job. All skills should have status 'stub' since they haven't been trained yet.",
+  "skills": [
+    {
+      "id": "espresso_dial_in",
+      "name": "Dialing In Espresso",
+      "description": "Adjust grind size, dose weight, and water yield to achieve target extraction time and flavor profile for specific coffee beans.",
+      "status": "stub",
+      "evaluation": null,
+      "procedure": null,
+      "tool_mappings": null,
+      "transfer_notes": null
+    },
+    {
+      "id": "espresso_dosing_distribution",
+      "name": "Dosing and Puck Preparation",
+      "description": "Accurately weigh dry coffee grinds, distribute evenly across the portafilter basket (e.g., using WDT), and tamp level with consistent pressure.",
+      "status": "stub",
+      "evaluation": null,
+      "procedure": null,
+      "tool_mappings": null,
+      "transfer_notes": null
+    },
+    {
+      "id": "espresso_extraction",
+      "name": "Espresso Shot Extraction",
+      "description": "Operate commercial espresso machine groups, monitor extraction flow, track yield and brew time, and identify signs of channeling or under/over-extraction.",
+      "status": "stub",
+      "evaluation": null,
+      "procedure": null,
+      "tool_mappings": null,
+      "transfer_notes": null
+    },
+    {
+      "id": "milk_steaming_texturing",
+      "name": "Milk Steaming and Microfoam Texturing",
+      "description": "Incorporate air and create uniform microfoam at proper temperatures for whole, skim, and non-dairy plant milks.",
+      "status": "stub",
+      "evaluation": null,
+      "procedure": null,
+      "tool_mappings": null,
+      "transfer_notes": null
+    },
+    {
+      "id": "latte_art_pouring",
+      "name": "Free-Pour Latte Art",
+      "description": "Pour textured milk into espresso to integrate crema and create standard visual patterns such as hearts, rosettas, and tulips.",
+      "status": "stub",
+      "evaluation": null,
+      "procedure": null,
+      "tool_mappings": null,
+      "transfer_notes": null
+    },
+    {
+      "id": "beverage_recipe_assembly",
+      "name": "Standard Beverage Recipe Assembly",
+      "description": "Construct standard hot and iced espresso-based beverages (macchiatos, cortados, flat whites, cappuccinos, lattes, Americanos, mochas) to exact proportions.",
+      "status": "stub",
+      "evaluation": null,
+      "procedure": null,
+      "tool_mappings": null,
+      "transfer_notes": null
+    },
+    {
+      "id": "batch_brew_preparation",
+      "name": "Batch Drip Brew Brewing",
+      "description": "Weigh, grind, and brew large-batch drip coffee according to brew ratios and cycle specifications, maintaining hot-holding urns.",
+      "status": "stub",
+      "evaluation": null,
+      "procedure": null,
+      "tool_mappings": null,
+      "transfer_notes": null
+    },
+    {
+      "id": "manual_pour_over_brewing",
+      "name": "Manual Pour-Over Brewing",
+      "description": "Execute single-cup manual brews (e.g., V60, Chemex, Aeropress) controlling water temperature, blooming phase, and pulse pouring technique.",
+      "status": "stub",
+      "evaluation": null,
+      "procedure": null,
+      "tool_mappings": null,
+      "transfer_notes": null
+    },
+    {
+      "id": "cold_brew_production",
+      "name": "Cold Brew Preparation and Dispensing",
+      "description": "Coarsely grind coffee, steep in immersion systems according to steep-time specifications, filter, dilute concentrate, and keg or dispense.",
+      "status": "stub",
+      "evaluation": null,
+      "procedure": null,
+      "tool_mappings": null,
+      "transfer_notes": null
+    },
+    {
+      "id": "tea_and_specialty_beverages",
+      "name": "Tea and Specialty Beverage Preparation",
+      "description": "Whisk matcha, steep loose-leaf and bag teas at correct water temperatures, prepare chai concentrates, and blend specialty cold drinks.",
+      "status": "stub",
+      "evaluation": null,
+      "procedure": null,
+      "tool_mappings": null,
+      "transfer_notes": null
+    },
+    {
+      "id": "pos_and_order_entry",
+      "name": "Point-of-Sale (POS) and Cash Handling",
+      "description": "Accurately input customer orders, process cash and card payments, calculate change, apply modifications, and issue receipts.",
+      "status": "stub",
+      "evaluation": null,
+      "procedure": null,
+      "tool_mappings": null,
+      "transfer_notes": null
+    },
+    {
+      "id": "customer_interaction_queue",
+      "name": "Customer Service and Line Management",
+      "description": "Greet patrons, answer menu and origin questions, manage expectations during rushes, and handle order inquiries or complaints courteously.",
+      "status": "stub",
+      "evaluation": null,
+      "procedure": null,
+      "tool_mappings": null,
+      "transfer_notes": null
+    },
+    {
+      "id": "allergen_cross_contamination_control",
+      "name": "Allergen Management and Cross-Contamination Prevention",
+      "description": "Isolate dairy and common allergens (tree nuts, soy, gluten) using dedicated steam pitchers, cloths, and sanitized preparation surfaces.",
+      "status": "stub",
+      "evaluation": null,
+      "procedure": null,
+      "tool_mappings": null,
+      "transfer_notes": null
+    },
+    {
+      "id": "espresso_machine_cleaning",
+      "name": "Espresso Machine Maintenance and Backflushing",
+      "description": "Perform daily and mid-shift chemical backflushing of group heads, soak and scrub portafilter baskets, and clean dispersion screens.",
+      "status": "stub",
+      "evaluation": null,
+      "procedure": null,
+      "tool_mappings": null,
+      "transfer_notes": null
+    },
+    {
+      "id": "steam_wand_sanitation",
+      "name": "Steam Wand Purging and Sanitization",
+      "description": "Purge and wipe steam wands immediately before and after every use; perform daily soaking in milk line cleaner to remove buildup.",
+      "status": "stub",
+      "evaluation": null,
+      "procedure": null,
+      "tool_mappings": null,
+      "transfer_notes": null
+    },
+    {
+      "id": "grinder_cleaning_maintenance",
+      "name": "Grinder Cleaning and Burr Maintenance",
+      "description": "Empty and clean bean hoppers, purge retained grounds, and brush or vacuum grinder burrs to prevent oil accumulation and rancidity.",
+      "status": "stub",
+      "evaluation": null,
+      "procedure": null,
+      "tool_mappings": null,
+      "transfer_notes": null
+    },
+    {
+      "id": "station_sanitation_dishwashing",
+      "name": "Bar Sanitation and Warewashing",
+      "description": "Sanitize countertops, rinse knockboxes and pitchers, operate commercial dishwashers, and keep 3-compartment sink sanitized per health code.",
+      "status": "stub",
+      "evaluation": null,
+      "procedure": null,
+      "tool_mappings": null,
+      "transfer_notes": null
+    },
+    {
+      "id": "inventory_restocking_fifo",
+      "name": "Inventory Restocking and FIFO Rotation",
+      "description": "Restock beans, syrups, cups, lids, and milks according to First-In, First-Out (FIFO) standards and verify refrigerator holding temperatures.",
+      "status": "stub",
+      "evaluation": null,
+      "procedure": null,
+      "tool_mappings": null,
+      "transfer_notes": null
+    },
+    {
+      "id": "pastry_case_food_service",
+      "name": "Food and Pastry Handling",
+      "description": "Handle, display, and heat food items and baked goods using tongs, parchment, or gloves in compliance with food safety regulations.",
+      "status": "stub",
+      "evaluation": null,
+      "procedure": null,
+      "tool_mappings": null,
+      "transfer_notes": null
+    },
+    {
+      "id": "opening_closing_procedures",
+      "name": "Opening and Closing Checklists",
+      "description": "Execute open/close protocols including equipment warmup, cash drawer balancing, station breakdown, trash removal, and lockup.",
+      "status": "stub",
+      "evaluation": null,
+      "procedure": null,
+      "tool_mappings": null,
+      "transfer_notes": null
+    }
+  ],
+  "metadata": {
+    "total_skills": 20,
+    "domain": "hospitality_and_food_service",
+    "specialty": "coffee_and_espresso"
+  }
+}

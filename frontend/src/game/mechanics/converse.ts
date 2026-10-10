@@ -1,5 +1,6 @@
 import type { Target } from '../../contract'
-import { converseOptions, hit } from '../layout'
+import { conversePortrait, converseOptions, hit } from '../layout'
+import { tierOfPoints } from '../render/juice'
 import { scoreConverse } from '../scoring'
 import type { ConverseParams } from '../types'
 import type { Dir, Mechanic, MechanicCtx } from './base'
@@ -55,6 +56,7 @@ export class ConverseMechanic implements Mechanic {
     this.lastReply = opt.reply
     this.ctx.say(this.params.npc_id, opt.reply)
     const spec = this.ctx.level.scoring.turns?.[t.id]?.[opt.id]
+    this.react(spec?.critical ? 0 : tierOfPoints(spec?.points ?? 0.5))
     if (spec?.critical) {
       this.ended = true
       this.ctx.finish(scoreConverse(this.ctx.level, this.chosen(), 'critical'))
@@ -68,12 +70,25 @@ export class ConverseMechanic implements Mechanic {
       return
     }
     this.ctx.say(this.params.npc_id, this.turn.npc_line)
+    this.ctx.juice.pop('converse:options', 300)
+  }
+
+  /** Cosmetic: the customer's face reacts to the answer (display only, never observed). */
+  private react(tier: 0 | 1 | 2 | 3) {
+    const fx = this.ctx.juice
+    const pr = conversePortrait(this.ctx.W, this.ctx.H)
+    fx.react('converse', tier, 2400)
+    fx.reactSound(tier)
+    if (tier === 3) fx.burst(pr.x + pr.w / 2, pr.y + 10, { colors: ['#f2c14e', '#fff0a8', '#ffffff'], count: 16, speed: 70, gravity: 60, shape: 'star', up: true })
+    if (tier === 0) fx.shake(1.5, 200)
   }
 
   dir(d: Dir) {
     const n = this.turn?.options.length ?? 0
+    const before = this.selected
     if (d === 'up') this.selected = Math.max(0, this.selected - 1)
     else if (d === 'down') this.selected = Math.min(Math.max(0, n - 1), this.selected + 1)
+    if (this.selected !== before) this.ctx.juice.select(`converse:option:${this.selected}`)
   }
 
   holdStart() {

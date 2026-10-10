@@ -276,7 +276,23 @@ export const routes: Route[] = [
       const prompt = parse(body).prompt
       const game = enabled(ctx) && typeof prompt === 'string' ? prebuiltGame(ctx.repoRoot, slugify(prompt.trim())) : null
       if (!game) return fallthrough(worldRoutes, 'POST', '/api/research')(replayRequest(req, body), res, ctx, params)
-      await new Promise((r) => setTimeout(r, delayMs(ctx, 'PREBUILT_DELAY_MS', 2500)))
+      // Walk the loading screen through every step (progress.ts reads artifact mtimes):
+      // research found -> world built -> rules checked -> saved, over PREBUILT_DELAY_MS.
+      const total = delayMs(ctx, 'PREBUILT_DELAY_MS', 9000)
+      const dir = path.join(gamesDir(ctx.repoRoot), game.slug)
+      const stages: [string, number][] = [['research.json', 0.3], ['world.json', 0.6], ['graph_report.json', 0.8]]
+      let at = 0
+      for (const [name, frac] of stages) {
+        await new Promise((r) => setTimeout(r, total * frac - at))
+        at = total * frac
+        const now = new Date()
+        try {
+          fs.utimesSync(path.join(dir, name), now, now)
+        } catch {
+          // read-only image: the screen just skips that step
+        }
+      }
+      await new Promise((r) => setTimeout(r, total - at))
       sendJson(res, 200, { ...game, prebuilt: true })
     },
   },

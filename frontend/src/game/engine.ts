@@ -9,6 +9,7 @@ import { DeliverMechanic } from './mechanics/deliver'
 import { MixMechanic } from './mechanics/mix'
 import { SortMechanic } from './mechanics/sort'
 import { TimingMechanic } from './mechanics/timing'
+import { Juice } from './render/juice'
 import type { DialogueLine, Level, MapLocation, Npc, World } from './types'
 import { Grid, inFootprint, locationTargetId, resolveTarget, tileDistance, toTarget, type WorldTarget } from './worldTargets'
 
@@ -70,6 +71,8 @@ export class GameEngine {
   readonly W: number
   readonly H: number
   readonly grid: Grid
+  /** Cosmetic effects and sounds; never read by game logic. Sounds only for human play. */
+  readonly juice: Juice
   t = 0
   phase: Phase = 'world'
   avatar: { col: number; row: number; facing: Dir }
@@ -93,6 +96,7 @@ export class GameEngine {
     this.W = world.map.cols * TILE
     this.H = world.map.rows * TILE
     this.grid = new Grid(world)
+    this.juice = new Juice(mode === 'play')
     this.blockedCache = this.grid.blockedList()
     this.avatar = { col: world.map.spawn[0], row: world.map.spawn[1], facing: 'down' }
     for (const l of world.levels) {
@@ -284,6 +288,7 @@ export class GameEngine {
       finish: (r) => this.finishLevel(r),
       walk: (d) => this.walk(d),
       avatarTile: () => this.avatarTile(),
+      juice: this.juice,
     }
     switch (level.mechanic) {
       case 'mix':
@@ -339,6 +344,7 @@ export class GameEngine {
     this.phase = 'result'
     this.result = result
     this.chatter = []
+    this.juice.stopAll()
     const prev = this.best[level.id]
     this.best[level.id] = prev === null ? result.score : Math.max(prev, result.score)
     if (result.passed) this.quests[level.id] = 'done'
@@ -348,6 +354,7 @@ export class GameEngine {
   }
 
   private dismiss() {
+    this.juice.stopAll()
     this.phase = 'world'
     this.level = null
     this.mech = null

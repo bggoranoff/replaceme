@@ -187,7 +187,8 @@ export interface World {
   slug: string
   title: string
   branch: string
-  theme: { name: string; palette: Palette }
+  /** environment: builder/environments.py id (cafe, kitchen, ...); absent or 'village' for the outdoor map */
+  theme: { name: string; environment?: string; palette: Palette }
   map: WorldMap
   npcs: Npc[]
   levels: Level[]

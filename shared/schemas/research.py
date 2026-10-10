@@ -173,7 +173,7 @@ class ResearchBrief(BaseModel):
     job: str = Field(..., description="Job exactly as entered by the user")
     slug: str = Field(..., description="kebab-case job slug")
     title: str = Field(..., description="World title")
-    setting: str = Field(..., description="Cozy village setting and the places where the job happens")
+    setting: str = Field(..., description="The real workplace of the job (indoors when the work is done indoors) and the places in it where the job happens")
     sources: List[Source] = Field(..., description="All cited sources")
     rules: List[str] = Field(..., description="Core domain rules")
     assumptions: List[str] = Field(..., description="Operational assumptions")

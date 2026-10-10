@@ -28,42 +28,40 @@ export const hit = (r: Rect, x: number, y: number) => x >= r.x && x <= r.x + r.w
 
 export const center = (r: Rect) => ({ x: r.x + r.w / 2, y: r.y + r.h / 2 })
 
-// --- mix -------------------------------------------------------------------
+// --- mix (craft station) ----------------------------------------------------
 
-export const MIX_ART_W = 72
-
-export function mixRows(W: number, H: number, n: number) {
-  const c = contentRect(W, H)
-  const x = c.x + MIX_ART_W + 8
-  const w = c.w - MIX_ART_W - 8
-  const rowsH = c.h - 28
-  const rowH = Math.min(30, Math.floor(rowsH / Math.max(1, n)))
-  const top = c.y + Math.max(0, Math.floor((rowsH - rowH * n) / 2))
-  return Array.from({ length: n }, (_, i) => {
-    const y = top + i * rowH
-    return {
-      row: { x, y, w, h: rowH },
-      track: { x: x + 4, y: y + rowH - 13, w: w - 8, h: 12 },
-    }
-  })
-}
-
-export function mixSubmit(W: number, H: number): Rect {
-  const c = contentRect(W, H)
-  return { x: c.x + c.w - 84, y: c.y + c.h - 22, w: 84, h: 22 }
-}
-
-export function mixIngredients(W: number, H: number, n: number): Rect[] {
-  const c = contentRect(W, H)
-  const w = 52
-  return Array.from({ length: n }, (_, i) => ({ x: c.x + i * (w + 4), y: c.y + c.h - 22, w, h: 22 }))
+/** Craft station: a column of station items (Up/Down) with gauges, the selected item's tool, the result + action button. */
+export function craftLayout(W: number, H: number, n: number, ingredients = 0) {
+  const full = contentRect(W, H)
+  // keep clear of the footer line (villager chatter bubble)
+  const c = { ...full, h: full.h - 4 }
+  const listW = 104
+  const resW = 84
+  const gap = 6
+  const rowGap = 2
+  const rowH = Math.min(34, Math.floor((c.h - rowGap * (n - 1)) / Math.max(1, n)))
+  const listTop = c.y + Math.max(0, Math.floor((c.h - (rowH * n + rowGap * (n - 1))) / 2))
+  const items: Rect[] = Array.from({ length: n }, (_, i) => ({ x: c.x, y: listTop + i * (rowH + rowGap), w: listW, h: rowH }))
+  // each station's gauge: a thin track along the bottom of its row (slider:<var_id>)
+  const gauges: Rect[] = items.map((r) => ({ x: r.x + 22, y: r.y + Math.min(r.h - 7, Math.floor(Math.max(0, r.h - 28) / 2) + 21), w: r.w - 28, h: 4 }))
+  const stage: Rect = { x: c.x + listW + gap, y: c.y, w: c.w - listW - resW - gap * 2, h: c.h }
+  const tool: Rect = { x: stage.x, y: stage.y, w: stage.w, h: stage.h - 24 }
+  const back: Rect = { x: stage.x, y: stage.y + stage.h - 20, w: 62, h: 20 }
+  const resX = stage.x + stage.w + gap
+  const submit: Rect = { x: resX, y: c.y + c.h - 24, w: resW, h: 24 }
+  const ingH = 16
+  const ing: Rect[] = Array.from({ length: ingredients }, (_, i) => ({ x: resX, y: submit.y - 4 - (ingredients - i) * (ingH + 3), w: resW, h: ingH }))
+  const resultBottom = (ing.length ? ing[0].y : submit.y) - 4
+  const result: Rect = { x: resX, y: c.y, w: resW, h: Math.max(30, resultBottom - c.y) }
+  return { items, gauges, stage, tool, back, result, submit, ingredients: ing }
 }
 
 // --- timing ----------------------------------------------------------------
 
+/** The whole minigame stage (scene + meter): press or hold anywhere on it. */
 export function timingMeter(W: number, H: number): Rect {
   const c = contentRect(W, H)
-  return { x: c.x + 18, y: c.y + 44, w: c.w - 36, h: 30 }
+  return { x: c.x, y: c.y + 26, w: c.w, h: c.h - 26 - 22 }
 }
 
 // --- sort ------------------------------------------------------------------
@@ -87,18 +85,21 @@ export function sortBins(W: number, H: number, n: number): Rect[] {
 
 export function conversePortrait(W: number, H: number): Rect {
   const c = contentRect(W, H)
-  return { x: c.x, y: c.y + 2, w: 52, h: 52 }
+  return { x: c.x, y: c.y, w: 62, h: 62 }
 }
 
 export function converseBubble(W: number, H: number): Rect {
   const c = contentRect(W, H)
-  return { x: c.x + 62, y: c.y, w: c.w - 62, h: 58 }
+  return { x: c.x + 72, y: c.y, w: c.w - 72, h: 62 }
 }
 
+/** Answer cards below the portrait and bubble, centred in the space that is left. */
 export function converseOptions(W: number, H: number, n: number): Rect[] {
   const c = contentRect(W, H)
-  const top = c.y + 66
-  const gap = 4
-  const h = Math.min(34, Math.floor((c.h - 66 - gap * (n - 1)) / Math.max(1, n)))
-  return Array.from({ length: n }, (_, i) => ({ x: c.x, y: top + i * (h + gap), w: c.w, h }))
+  const top = c.y + 70
+  const gap = 5
+  const room = c.y + c.h - top
+  const h = Math.min(32, Math.floor((room - gap * (n - 1)) / Math.max(1, n)))
+  const y0 = top + Math.max(0, Math.floor((room - (h * n + gap * (n - 1))) / 2))
+  return Array.from({ length: n }, (_, i) => ({ x: c.x, y: y0 + i * (h + gap), w: c.w, h }))
 }

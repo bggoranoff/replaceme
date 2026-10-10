@@ -20,6 +20,8 @@ export interface MechanicCtx {
   avatarTile(): [number, number]
   /** Cosmetic feedback (particles, squash, pop text, reactions, sounds). See render/juice.ts. */
   juice: Juice
+  /** A human is playing ('play' engine). Agent runs and replays are not interactive. */
+  interactive: boolean
 }
 
 export interface Mechanic {

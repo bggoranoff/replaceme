@@ -1,7 +1,7 @@
 """
 World v2 generation: research.json v2 (ResearchBrief) -> world.json v2.
 
-Turns the researcher's tasks into one cozy top-down village map with 4 quest levels.
+Turns the researcher's tasks into one cozy top-down map of the workplace (builder/environments.py) with 4 quest levels.
 Every level uses one of the 5 platform mechanics from shared/actions.json and carries a
 declarative, deterministic scoring spec built from the researched variables, optima and
 heuristic. Nothing here knows about any particular job.
@@ -14,6 +14,7 @@ import re
 from collections import deque
 from typing import Any, Dict, Iterable, List, Optional, Set, Tuple
 
+from builder.environments import ENVIRONMENTS, ICON_SIZE, resolve_environment
 from builder.scoring import (
     ExprError,
     eval_expr,
@@ -585,11 +586,71 @@ ROOFS = ["#c8553d", "#b4563f", "#8f5bb5", "#3f7fb4", "#c27a2c", "#4f8f5a"]
 GRASSES = ["#7fbf5a", "#86c45e", "#78b85a", "#8bc766"]
 
 
-def _palette(rng: random.Random) -> Dict[str, str]:
+def _palette(rng: random.Random, env: Optional[Dict[str, Any]] = None) -> Dict[str, str]:
     p = dict(BASE_PALETTE)
     p["grass"] = rng.choice(GRASSES)
     p["roof"] = rng.choice(ROOFS)
+    ep = (env or {}).get("palette") or {}
+    if ep:
+        p["floor"] = rng.choice(ep["floors"])
+        p["wall"] = rng.choice(ep["walls"])
+        p["trim"] = ep["trim"]
+        p["accent"] = ep["accent"]
     return p
+
+
+def _walls(mb: "MapBuilder", spawn: Tuple[int, int]) -> None:
+    """Interior shell: a two-tile back wall (windows go there), thin side walls and a front wall with a door."""
+    door = spawn[0]
+    for wid, x, y, w, h in (("wall-back", 0, 0, COLS, 2), ("wall-left", 0, 2, 1, ROWS - 3), ("wall-right", COLS - 1, 2, 1, ROWS - 3),
+                            ("wall-front-left", 0, ROWS - 1, door, 1), ("wall-front-right", door + 1, ROWS - 1, COLS - door - 1, 1)):
+        mb.add({"id": wid, "name": "Wall", "kind": "decor", "icon": "wall", "tile": [x, y], "w": w, "h": h})
+    mb.add({"id": "door", "name": "Door", "kind": "decor", "icon": "door", "tile": [door, ROWS - 1], "w": 1, "h": 1})
+
+
+def _furniture(env: Dict[str, Any], mech: str, wanted: Optional[str], used: Set[str]) -> Tuple[str, str]:
+    """Quest furniture for an interior: the flavor's icon if this room has it, else the mechanic's first unused piece."""
+    opts = env["kinds"].get(mech) or [MECH_DEFAULT_KIND[mech]]
+    every = [o for lst in env["kinds"].values() for o in lst]
+    if wanted and wanted not in used:
+        own = [o for o in opts if o[1] == wanted] or ([o for o in every if o[1] == wanted] if mech != "deliver" else [])
+        if own:
+            return own[0]
+    return next((o for o in opts if o[1] not in used), opts[0])
+
+
+def _touches_wall(x: int, y: int, w: int, h: int, wall: Any = True) -> bool:
+    if wall == "back":
+        return y == 2
+    return y == 2 or x == 1 or x + w == COLS - 1 or y + h == ROWS - 1
+
+
+def _furnish(mb: "MapBuilder", env: Dict[str, Any], spawn: Tuple[int, int], rng: random.Random) -> None:
+    """Fills an interior with the template's props, keeping every quest spot reachable."""
+    for spec in env["props"]:
+        w, h, cap = spec["w"], spec["h"], spec["cap"]
+        solid = spec.get("solid", True)
+        wall = spec.get("wall", False)
+        spots = [(x, y) for y in range(2, ROWS - h) for x in range(1, COLS - w)]
+        rng.shuffle(spots)
+        n = 0
+        for (x, y) in spots:
+            if n >= cap:
+                break
+            if bool(wall) != _touches_wall(x, y, w, h, wall):
+                continue
+            if not mb.rect_free(x, y, w, h, margin=0 if (wall or not solid) else 1):
+                continue
+            loc = {"id": f"{spec['icon'].replace('_', '-')}-{x}-{y}", "name": spec["icon"].replace("_", " ").capitalize(),
+                   "kind": "decor", "icon": spec["icon"], "tile": [x, y], "w": w, "h": h}
+            mb.add(loc, solid=solid)
+            if solid and not mb.all_reachable(spawn):
+                _undo_last(mb, loc)
+                continue
+            for yy in range(y, y + h):
+                for xx in range(x, x + w):
+                    mb.reserve(xx, yy)
+            n += 1
 
 
 def _hint_for(mech: str, params: Dict[str, Any]) -> str:
@@ -638,11 +699,18 @@ def build_world(brief: Dict[str, Any], flavor: Dict[str, Any], rules_version: in
     picked = select_tasks(brief["tasks"])
     lf_by_task = {lf.get("task_id"): lf for lf in flavor.get("levels", [])}
 
+    env_id = resolve_environment(flavor.get("environment"), brief)
+    env = ENVIRONMENTS[env_id]
+    interior = bool(env["interior"])
     mb = MapBuilder(rng)
-    # Tree line around the village.
-    for x, y, w, h in ((0, 0, COLS, 1), (0, ROWS - 1, COLS, 1), (0, 1, 1, ROWS - 2), (COLS - 1, 1, 1, ROWS - 2)):
-        mb.add({"id": f"trees-{x}-{y}", "name": "Trees", "kind": "decor", "icon": "trees", "tile": [x, y], "w": w, "h": h})
     spawn = (COLS // 2, ROWS // 2)
+    if interior:
+        mb.ground = [["f"] * COLS for _ in range(ROWS)]
+        _walls(mb, spawn)
+    else:
+        # Tree line around the village.
+        for x, y, w, h in ((0, 0, COLS, 1), (0, ROWS - 1, COLS, 1), (0, 1, 1, ROWS - 2), (COLS - 1, 1, 1, ROWS - 2)):
+            mb.add({"id": f"trees-{x}-{y}", "name": "Trees", "kind": "decor", "icon": "trees", "tile": [x, y], "w": w, "h": h})
     # Main paths: a cross through the square.
     for x in range(2, COLS - 2):
         mb.ground[spawn[1]][x] = "p"
@@ -650,6 +718,10 @@ def build_world(brief: Dict[str, Any], flavor: Dict[str, Any], rules_version: in
     for y in range(2, ROWS - 2):
         mb.ground[y][spawn[0]] = "p"
         mb.reserve(spawn[0], y)
+    if interior:
+        # The lane runs on to the door in the bottom wall.
+        mb.ground[ROWS - 2][spawn[0]] = "p"
+        mb.reserve(spawn[0], ROWS - 2)
     mb.required.add(spawn)
 
     # One quest location per level, one per quadrant.
@@ -658,11 +730,15 @@ def build_world(brief: Dict[str, Any], flavor: Dict[str, Any], rules_version: in
     levels_ctx = []
     for i, (task, mech) in enumerate(picked):
         lf = lf_by_task.get(task["id"], {})
-        kind = lf.get("location_kind") if lf.get("location_kind") in LOCATION_KINDS else MECH_DEFAULT_KIND[mech][0]
-        if mech == "deliver" and kind in ("field", "building"):
-            kind = "stall"
-        icon = lf.get("icon") if lf.get("icon") in ICONS else MECH_DEFAULT_KIND[mech][1]
-        w, h = KIND_SIZE[kind]
+        if interior:
+            kind, icon = _furniture(env, mech, lf.get("icon"), {c["loc"]["icon"] for c in levels_ctx})
+            w, h = ICON_SIZE.get(icon, KIND_SIZE[kind])
+        else:
+            kind = lf.get("location_kind") if lf.get("location_kind") in LOCATION_KINDS else MECH_DEFAULT_KIND[mech][0]
+            if mech == "deliver" and kind in ("field", "building"):
+                kind = "stall"
+            icon = lf.get("icon") if lf.get("icon") in ICONS else MECH_DEFAULT_KIND[mech][1]
+            w, h = KIND_SIZE[kind]
         vert, horiz = slots[i]
         y_opts = list(range(2, 7 - h)) if vert == "top" else list(range(spawn[1] + 2, ROWS - 2 - h))
         x_opts = list(range(2, spawn[0] - 1 - w)) if horiz == "left" else list(range(spawn[0] + 2, COLS - 1 - w))
@@ -691,15 +767,21 @@ def build_world(brief: Dict[str, Any], flavor: Dict[str, Any], rules_version: in
     used_names: Set[str] = set()
     for i, ctx in enumerate(levels_ctx):
         fx, fy = ctx["front"]
-        spot = None
+        spot, reach = None, None
         for dx, dy in ((2, 0), (-2, 0), (3, 0), (-3, 0), (2, 1), (-2, 1), (1, 1), (-1, 1), (0, 2)):
             tx, ty = fx + dx, fy + dy
-            if mb.interior(tx, ty) and not mb.solid[ty][tx] and not mb.reserved[ty][tx] and (tx, ty) not in mb.npc_tiles:
+            if not mb.interior(tx, ty) or mb.solid[ty][tx] or mb.reserved[ty][tx] or (tx, ty) in mb.npc_tiles:
+                continue
+            # The giver must not wall anything off, and must be reachable from a side (not only diagonally).
+            mb.npc_tiles.add((tx, ty))
+            seen = mb.bfs(spawn)
+            reach = next((n for n in ((tx, ty + 1), (tx - 1, ty), (tx + 1, ty), (tx, ty - 1)) if n in seen), None)
+            if reach and all(t in seen for t in mb.required):
                 spot = (tx, ty)
                 break
-        if not spot:
+            mb.npc_tiles.discard((tx, ty))
+        if not spot or not reach:
             raise BuildError("no room for a quest giver")
-        mb.npc_tiles.add(spot)
         nf = ctx["lf"].get("npc") or {}
         name = clip(nf.get("name"), 18) or f"Villager {i + 1}"
         while name in used_names:
@@ -712,8 +794,7 @@ def build_world(brief: Dict[str, Any], flavor: Dict[str, Any], rules_version: in
                "palette": NPC_COLORS[i % len(NPC_COLORS)]}
         npcs.append(npc)
         ctx["npc"] = npc
-        for t in mb.adjacent_walkable(spot[0], spot[1], 1, 1)[:1]:
-            mb.required.add(t)
+        mb.required.add(reach)
 
     # Destinations for deliver levels.
     for ctx in levels_ctx:
@@ -746,7 +827,7 @@ def build_world(brief: Dict[str, Any], flavor: Dict[str, Any], rules_version: in
             sid = slugify(dn, "spot")
             while sid in {l["id"] for l in mb.locations}:
                 sid += "-2"
-            loc = mb.add({"id": sid, "name": dn, "kind": "spot", "icon": "sign", "tile": [x, y], "w": 1, "h": 1})
+            loc = mb.add({"id": sid, "name": dn, "kind": "spot", "icon": env["spot"], "tile": [x, y], "w": 1, "h": 1})
             mb.reserve(x, y + 1)
             mb.required.add((x, y + 1))
             dests[dn.lower()] = loc
@@ -760,8 +841,10 @@ def build_world(brief: Dict[str, Any], flavor: Dict[str, Any], rules_version: in
     if not mb.all_reachable(spawn):
         raise BuildError("map is not fully reachable")
 
-    # A pond, a couple of cottages and greenery wherever there is room.
-    for (w, h) in ((4, 3), (3, 2)):
+    if interior:
+        _furnish(mb, env, spawn, rng)
+    # Outdoors: a pond, a couple of cottages and greenery wherever there is room.
+    for (w, h) in (() if interior else ((4, 3), (3, 2))):
         spots = [(x, y) for y in range(2, ROWS - 2 - h) for x in range(2, COLS - 1 - w)]
         rng.shuffle(spots)
         done = False
@@ -784,7 +867,7 @@ def build_world(brief: Dict[str, Any], flavor: Dict[str, Any], rules_version: in
     cottage = 0
     spots = [(x, y) for y in range(2, ROWS - 4) for x in range(2, COLS - 6)]
     rng.shuffle(spots)
-    for margin in (1, 0):
+    for margin in (() if interior else (1, 0)):
         for (x, y) in spots:
             if cottage == 2:
                 break
@@ -798,7 +881,7 @@ def build_world(brief: Dict[str, Any], flavor: Dict[str, Any], rules_version: in
     rng.shuffle(free)
     counts = {"tree": 0, "bush": 0, "flowers": 0, "rock": 0, "lamp": 0}
     caps = {"tree": 14, "bush": 7, "flowers": 12, "rock": 3, "lamp": 2}
-    for (x, y) in free:
+    for (x, y) in ([] if interior else free):
         if not mb.rect_free(x, y, 1, 1):
             continue
         near_path = any(mb.ground[y + dy][x + dx] == "p" for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)) if mb.interior(x + dx, y + dy))
@@ -835,7 +918,8 @@ def build_world(brief: Dict[str, Any], flavor: Dict[str, Any], rules_version: in
         "slug": slug,
         "title": clip(flavor.get("title") or brief.get("title") or slug.replace("-", " ").title(), 40),
         "branch": f"game/{slug}",
-        "theme": {"name": clip(flavor.get("theme_name") or brief.get("title") or slug, 40), "palette": _palette(rng)},
+        "theme": {"name": clip(flavor.get("theme_name") or brief.get("title") or slug, 40), "environment": env_id,
+                  "palette": _palette(rng, env)},
         "map": {"cols": COLS, "rows": ROWS, "tile": TILE, "spawn": list(spawn), "ground": mb.ground_rows(),
                 "locations": mb.locations, "solids": mb.solids},
         "npcs": npcs,

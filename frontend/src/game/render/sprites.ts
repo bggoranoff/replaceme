@@ -1,6 +1,7 @@
 // Procedural pixel-art sprites for the village map. No external assets.
 import { TILE } from '../layout'
 import type { MapLocation, Npc, Palette, World } from '../types'
+import { drawEnvLocation, drawInteriorGround, envOf } from './environments'
 import { GOLD, INK, WOOD_DARK, hash, px, seedOf, shade, text, type Ctx } from './pixel'
 
 export const DEFAULT_PALETTE: Palette = { grass: '#7fbf5a', path: '#dcb983', water: '#6fb3d9', wood: '#9a6a3f', roof: '#c8553d', accent: '#f2c14e' }
@@ -17,6 +18,7 @@ export function groundAt(world: World, x: number, y: number): string {
 
 export function drawGround(ctx: Ctx, world: World) {
   const pal = paletteOf(world)
+  if (envOf(world)) return drawInteriorGround(ctx, world, pal)
   const seed = seedOf(world.slug)
   const { cols, rows } = world.map
   for (let y = 0; y < rows; y++) {
@@ -367,6 +369,7 @@ export function drawLocation(ctx: Ctx, world: World, loc: MapLocation, t: number
   const x = loc.tile[0] * TILE
   const y = loc.tile[1] * TILE
   const seed = seedOf(loc.id)
+  if (envOf(world) && drawEnvLocation(ctx, world, loc, pal, t)) return
   if (loc.kind === 'decor') {
     switch (loc.icon) {
       case 'trees': {

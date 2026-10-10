@@ -154,20 +154,25 @@ def load_traces(brief: Dict[str, Any]) -> Tuple[List[Dict[str, Any]], str]:
     """
     ref = brief.get("brain") or {}
     slug = brief.get("slug")
+    fallback = sorted([dict(t) for t in brief.get("reasoning_traces") or []], key=lambda t: t.get("step", 0))
     exe = brain_bin()
     if ref.get("stored") and slug and exe:
         query = ref.get("query") or ""
         run_match = _QUERY_RUN_RE.search(query)
         run_id = run_match.group(1) if run_match else None
+        ids = list(ref.get("ids") or [])
         traces = []
-        if ref.get("ids"):
-            traces = _fetch_by_ids(exe, branch_for(slug), list(ref["ids"]), run_id)
+        if ids:
+            traces = _fetch_by_ids(exe, branch_for(slug), ids, run_id)
         if not traces and query:
             traces = _fetch_by_query(exe, branch_for(slug), query, run_id)
         if traces:
+            if len(traces) < len(ids):
+                # Some facts are gone from the brain (retracted, gc'd, cut off by recall --k): fill those steps from the copy.
+                have = {t["step"] for t in traces}
+                traces += [t for t in fallback if t.get("step") not in have]
             return sorted(traces, key=lambda t: t["step"]), "entire-brain"
-    fallback = [dict(t) for t in brief.get("reasoning_traces") or []]
-    return sorted(fallback, key=lambda t: t.get("step", 0)), ("research.json" if fallback else "none")
+    return fallback, ("research.json" if fallback else "none")
 
 
 def attach_reasoning(brief: Dict[str, Any]) -> Dict[str, Any]:

@@ -85,8 +85,11 @@ class Allowlist:
                 raise ActionRejected(f"'{name}' needs one of {groups}")
             keep = set(satisfied[0])  # target_id wins over x,y when both are given
             params = {k: v for k, v in params.items() if k in keep or k not in grouped}
+        if ("x" in params) != ("y" in params):
+            raise ActionRejected(f"'{name}' needs both x and y")
         for pname, pspec in spec.get("params", {}).items():
-            if pname in params or pname in grouped or pspec.get("optional") or "default" in pspec:
+            # x,y outside a require_one_of group are an optional point (mouse_up {x?, y?} in game_contract.md)
+            if pname in params or pname in grouped or pname in ("x", "y") or pspec.get("optional") or "default" in pspec:
                 continue
             raise ActionRejected(f"'{name}' is missing required param '{pname}'")
         return {"action": name, "params": params}

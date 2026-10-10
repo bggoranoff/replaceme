@@ -234,6 +234,7 @@ class LevelLearner:
         else:
             result = {"score": float(last_score or 0.0), "passed": False,
                       "feedback": ["The attempt did not finish."], "breakdown": {}}
+        self.strategy.register(result_obs)  # the final observation names the last converse turn
         inputs = driver.inputs(result_obs)
         notes = self._record_strategy(attempt, inputs, result, driver, result_obs)
         prev = self.attempts[-1] if self.attempts else None
@@ -333,9 +334,15 @@ class ActorAgent:
         for e in knowledge["control_effects"]:
             said = effects_text.get(e["variable"]) or learner.memory["control_effects"].get(e["variable"])
             effects.append({**e, "effect": f"{said} Measured: {e['effect']}" if said and said != e["effect"] else e["effect"]})
-        fixes = {f["problem"].strip().lower(): f["fix"] for f in w.get("problem_fixes") or []}
+        fixes = [(f["problem"], f["fix"]) for f in w.get("problem_fixes") or [] if f.get("fix")]
+
+        def fix_for(problem: str) -> Optional[str]:  # the write-up may reword the problem it fixes
+            scored = [(similarity(problem, text), fix) for text, fix in fixes]
+            best = max(scored, key=lambda sf: sf[0], default=(0.0, None))
+            return best[1] if best[0] >= 0.6 else None
+
         problems = [{"problem": p["problem"], "attempt": p["attempt"],
-                     "fix": fixes.get(p["problem"].strip().lower()) or p.get("fix") or "Apply the learned values."}
+                     "fix": fix_for(p["problem"]) or p.get("fix") or "Apply the learned values."}
                     for p in learner.memory["problems"]]
         caveats: List[str] = []
         for c in [*(w.get("caveats") or []), *learner.memory["caveats"]]:

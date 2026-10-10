@@ -38,10 +38,18 @@ class PageBridge:
         return await self.page.evaluate("() => window.__replaceme.observe()")
 
     async def act(self, action: Dict[str, Any]) -> Dict[str, Any]:
-        return await self.page.evaluate("(a) => window.__replaceme.act(a)", action)
+        return await self._settle(self.page.evaluate("(a) => window.__replaceme.act(a)", action), "act")
 
     async def reset_level(self, level_id: str) -> Dict[str, Any]:
-        return await self.page.evaluate("(id) => window.__replaceme.resetLevel(id)", level_id)
+        return await self._settle(self.page.evaluate("(id) => window.__replaceme.resetLevel(id)", level_id), "resetLevel")
+
+    @staticmethod
+    async def _settle(call, what: str) -> Dict[str, Any]:
+        """A bridge promise that never resolves fails the level instead of hanging the training."""
+        try:
+            return await asyncio.wait_for(call, PAGE_TIMEOUT_MS / 1000)
+        except asyncio.TimeoutError:
+            raise RuntimeError(f"__replaceme.{what}() did not resolve within {PAGE_TIMEOUT_MS} ms")
 
 
 def load_world(slug: str, world_path: Optional[str]) -> Optional[Dict[str, Any]]:
@@ -137,13 +145,15 @@ async def train(slug: str, training_id: str, base_url: str, game_url: str, attem
         if world is None:
             res = await api.get(f"/api/world?slug={slug}")
             world = await res.json() if res.ok else None
-        levels = [lvl for lvl in (world or {}).get("levels", []) if not level_ids or lvl["id"] in level_ids]
+        levels = [lvl for lvl in (world or {}).get("levels") or []  # v2 levels only (a legacy world has none)
+                  if isinstance(lvl, dict) and lvl.get("id") and "index" in lvl and lvl.get("mechanic") in agent.allowlist.mechanics
+                  and (not level_ids or lvl["id"] in level_ids)]
         trainer = Trainer(agent, world or {}, slug, training_id, attempts, api, game_url)
         trainer.status["levels"] = [{"level_id": lvl["id"], "level_title": lvl.get("title", lvl["id"]), "attempts_done": 0,
                                      "attempts_total": attempts, "best_score": None, "status": "queued"} for lvl in levels]
         write_json(agent.runs_dir / "latest.json", {"training_id": training_id, "slug": slug})
         if not levels:
-            trainer.status.update(status="error", error=f"No world with levels found for slug '{slug}'")
+            trainer.status.update(status="error", error=f"No v2 world with levels found for slug '{slug}'")
             trainer.save_status()
             await api.dispose()
             return {**trainer.status, "skills": []}

@@ -108,6 +108,12 @@ def test_allowlist():
         raise AssertionError("wait.ms is required")
     except ActionRejected:
         pass
+    assert RULES.validate({"action": "mouse_up"}, timing)["params"] == {}, "mouse_up {x?, y?}"
+    try:
+        RULES.validate({"action": "mouse_up", "params": {"x": 4}}, timing)
+        raise AssertionError("a point needs both x and y")
+    except ActionRejected:
+        pass
 
 
 def test_mix_converges_and_is_deterministic():
@@ -183,6 +189,58 @@ def test_skill_md_frontmatter():
     for key in ("name", "description", "status", "level_id", "mechanic", "trained_attempts", "best_score", "updated_at"):
         assert re.search(rf"^{key}: ", head, re.M), key
     assert '"D: with colon"' in head and "3 g" in md and "#1: 2 g -> 40.0" in md
+
+
+def test_timing_waits_longer_than_one_wait_action():
+    """A stop or release more than 10 s away (the wait action's max) is reached with several waits."""
+    from actor.drivers import TimingDriver
+
+    for mode in ("stop", "hold"):
+        clock = {"t": 0, "held": None}
+
+        def obs():
+            t = clock["t"]
+            if mode == "stop":
+                k, half = t % 60000, 30000  # needle sweeps 0 -> 100 in 30 s
+                value = 100 * (k / half if k <= half else 2 - k / half)
+            else:  # fills 2 %/s: 40 s to reach 80
+                value = 0 if clock["held"] is None else min(100, 2 * (t - clock["held"]) / 1000)
+            meter = {"id": "p", "label": "P", "unit": "%", "min": 0, "max": 100, "value": value, "mode": mode,
+                     "moving": mode == "stop", "holding": clock["held"] is not None}
+            return {"phase": "playing", "t_ms": t, "viewport": {"w": 512, "h": 320},
+                    "targets": [{"id": "meter", "x": 100, "y": 100, "w": 200, "h": 20, "enabled": True}],
+                    "mechanic_state": {"phase_index": 0, "phases_total": 1, "meter": meter, "results": []}}
+
+        strategy = NumericStrategy("timing")
+        strategy.register(obs())
+        driver = TimingDriver(strategy, {"values": {"p": 80}})
+        for _ in range(30):
+            a = driver.next_action(obs())
+            if a["action"] == "wait":
+                assert a["params"]["ms"] <= 10000
+                clock["t"] += a["params"]["ms"]
+            elif a["action"] == "mouse_down":
+                clock["held"] = clock["t"]
+            else:
+                assert a["action"] == ("interact" if mode == "stop" else "mouse_up"), a
+                break
+        value = obs()["mechanic_state"]["meter"]["value"]
+        assert abs(value - 80) <= 1, (mode, value)
+
+
+def test_deliver_picks_up_at_the_pickup_place():
+    """Pickup goes to the order's listed place, never to a destination whose name is in the order label."""
+    from actor.drivers import DeliverDriver
+    from actor.explore import DeliverStrategy
+
+    targets = [{"id": "location:counter", "kind": "location", "label": "Counter", "x": 32, "y": 32, "w": 16, "h": 16, "enabled": True},
+               {"id": "spot:table-a", "kind": "spot", "label": "Ada", "x": 96, "y": 32, "w": 16, "h": 16, "enabled": True}]
+    order = {"id": "order-1", "label": "Parcel for Ada", "to_label": "Ada", "status": "waiting"}
+    obs = {"targets": targets, "mechanic_state": {"orders": [order], "carrying": []}}
+    driver = DeliverDriver(DeliverStrategy(), {"policy": "listed", "batch": 1})
+    assert driver._pickup_target(obs, order)["id"] == "location:counter"
+    listed = dict(order, **{"from": "location:counter", "to": "spot:table-a"})
+    assert driver._pickup_target(dict(obs, mechanic_state={"orders": [listed], "carrying": []}), listed)["id"] == "location:counter"
 
 
 if __name__ == "__main__":

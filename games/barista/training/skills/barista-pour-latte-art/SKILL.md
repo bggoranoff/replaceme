@@ -1,6 +1,6 @@
 ---
 name: "Pour latte art"
-description: "Steam milk to optimal temperature and texture, then execute a precise pour to create a crisp rosetta latte art design. Key learned target values are heating milk to 65 °C (or between 58.4 °C and 65 °C), starting the pour at a height of 9 cm, and dropping in to draw the design at 50.3% cup fill."
+description: "A step-by-step rosetta pour that a robot barista arm or a trainee can follow: stop steaming at 65 °C (window 57-65 °C), pour the base from 9 cm so the milk dives under the crema, drop the spout close to the surface at 50.3% full, wiggle while backing up, then lift and pull through at about three-quarters full."
 status: "learned"
 level_id: "barista-pour-latte-art"
 mechanic: "timing"
@@ -11,7 +11,7 @@ updated_at: "2026-10-10T16:32:26.235Z"
 
 # Pour latte art
 
-Steam milk to optimal temperature and texture, then execute a precise pour to create a crisp rosetta latte art design. Key learned target values are heating milk to 65 °C (or between 58.4 °C and 65 °C), starting the pour at a height of 9 cm, and dropping in to draw the design at 50.3% cup fill.
+A step-by-step rosetta pour that a robot barista arm or a trainee can follow: stop steaming at 65 °C (window 57-65 °C), pour the base from 9 cm so the milk dives under the crema, drop the spout close to the surface at 50.3% full, wiggle while backing up, then lift and pull through at about three-quarters full.
 
 Job: barista · Level 2 (timing) · 10 attempts · best 100.0 · final 100.0 · pass at 70.0 · passed
 
@@ -35,9 +35,10 @@ Job: barista · Level 2 (timing) · 10 attempts · best 100.0 · final 100.0 · 
 
 ## Steps
 
-1. Steam the milk to a target temperature of 65 °C (or within the acceptable sweet spot of 58.4 °C to 65 °C) to ensure a sweet, glossy microfoam without scalding.
-2. Begin integrating the milk into the espresso base from an initial pour height of 9 cm to dive under the crema without splashing or washing it out.
-3. When the cup reaches 50.3% fill, lower the pitcher tip close to the surface ('drop in') and initiate the side-to-side wiggle to draw the rosetta leaf pattern before finishing with a pull-through.
+1. Tools: steam wand + milk probe (stop at 57-65 °C), pitcher on a robot arm or in hand, cup fill sensor (load cell or camera) to trigger the drop-in at about 50% and the pull-through at about 75%.
+2. Steam the milk to a target temperature of 65 °C (or within the acceptable sweet spot of 58.4 °C to 65 °C) to ensure a sweet, glossy microfoam without scalding.
+3. Begin integrating the milk into the espresso base from an initial pour height of 9 cm to dive under the crema without splashing or washing it out.
+4. When the cup reaches 50.3% fill, lower the pitcher tip close to the surface ('drop in') and initiate the side-to-side wiggle to draw the rosetta leaf pattern before finishing with a pull-through.
 
 ## Caveats
 
@@ -113,3 +114,15 @@ Job: barista · Level 2 (timing) · 10 attempts · best 100.0 · final 100.0 · 
 ## User context
 
 - None yet.
+
+## Tool mappings
+
+- `milk_thermometer_or_probe`: {"action": "stop steaming", "params": {"stop_at_c": "65", "window_c": [57, 65]}}
+- `robot_arm.pour_base`: {"action": "pour from height", "params": {"spout_height_cm": "9", "flow": "steady"}}
+- `cup_fill_sensor`: {"action": "trigger the drop-in", "params": {"fill_pct": "50.3", "source": "load cell or vision"}}
+- `robot_arm.design`: {"action": "drop spout to 1-2 cm, wiggle side to side while backing up", "params": {"wiggle": "small and slow", "keep_flow": true}}
+- `robot_arm.pull_through`: {"action": "lift slightly and pull through the centre", "params": {"at_fill_pct": 75}}
+
+## Transfer
+
+Maps to waypoints and triggers for a robotic arm (milk probe temperature, spout height, cup fill from a load cell or camera) or to a one-page training card.

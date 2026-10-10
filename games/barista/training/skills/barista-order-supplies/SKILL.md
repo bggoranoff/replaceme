@@ -1,6 +1,6 @@
 ---
 name: "Order supplies"
-description: "Order weekly cafe inventory to prevent stockouts while eliminating product spoilage and minimizing holding costs. Optimal operations require ordering 31 kg of espresso beans with a 10.5 kg reorder point, 50 L of dairy milk per delivery, 68 L of oat milk, and 950 paper cups."
+description: "Par levels and a reorder point that a purchasing bot or a spreadsheet can order from, for about 200 drinks a day: beans 31 kg weekly with a top-up when 10.5 kg are left, whole milk 50 L per every-other-day delivery, oat milk 68 L and 950 takeaway cups weekly, keeping stock value under $1,300 so nothing runs out and nothing spoils."
 status: "learned"
 level_id: "barista-order-supplies"
 mechanic: "mix"
@@ -11,7 +11,7 @@ updated_at: "2026-10-10T16:32:41.636Z"
 
 # Order supplies
 
-Order weekly cafe inventory to prevent stockouts while eliminating product spoilage and minimizing holding costs. Optimal operations require ordering 31 kg of espresso beans with a 10.5 kg reorder point, 50 L of dairy milk per delivery, 68 L of oat milk, and 950 paper cups.
+Par levels and a reorder point that a purchasing bot or a spreadsheet can order from, for about 200 drinks a day: beans 31 kg weekly with a top-up when 10.5 kg are left, whole milk 50 L per every-other-day delivery, oat milk 68 L and 950 takeaway cups weekly, keeping stock value under $1,300 so nothing runs out and nothing spoils.
 
 Job: barista · Level 4 (mix) · 10 attempts · best 100.0 · final 100.0 · pass at 75.0 · passed
 
@@ -44,12 +44,13 @@ Job: barista · Level 4 (mix) · 10 attempts · best 100.0 · final 100.0 · pas
 
 ## Steps
 
-1. Set weekly espresso bean inventory (beans_kg) to 31 kg.
-2. Set the bean reorder point trigger (beans_rop_kg) to 10.5 kg.
-3. Set the dairy milk delivery batch size (milk_l) to 50 L per delivery.
-4. Set weekly oat milk inventory (oat_l) to 68 L.
-5. Set weekly paper cup stock (cups) to 950 cups.
-6. Submit the weekly supply order.
+1. Tools: an inventory sheet of on-hand counts, a standing order per supplier (roaster weekly, dairy every 2 days, oat milk and cups weekly) sent by email or supplier API, and a bean reorder trigger at the learned reorder point.
+2. Set weekly espresso bean inventory (beans_kg) to 31 kg.
+3. Set the bean reorder point trigger (beans_rop_kg) to 10.5 kg.
+4. Set the dairy milk delivery batch size (milk_l) to 50 L per delivery.
+5. Set weekly oat milk inventory (oat_l) to 68 L.
+6. Set weekly paper cup stock (cups) to 950 cups.
+7. Submit the weekly supply order.
 
 ## Caveats
 
@@ -125,3 +126,15 @@ Job: barista · Level 4 (mix) · 10 attempts · best 100.0 · final 100.0 · pas
 ## User context
 
 - None yet.
+
+## Tool mappings
+
+- `inventory_sheet`: {"action": "read on-hand counts", "params": {"columns": ["item", "on_hand", "par", "reorder_point", "supplier", "cadence"]}}
+- `standing_order`: {"action": "order up to par each cycle", "params": {"beans_kg": "31 weekly", "milk_l": "50 per dairy delivery (every 2 days)", "oat_l": "68 weekly", "cups": "950 weekly (sleeves of 50)"}}
+- `reorder_trigger`: {"action": "send a bean top-up when on hand <= reorder point", "params": {"reorder_point_kg": "10.5", "lead_time_days": 2}}
+- `supplier_message`: {"action": "email or supplier API order", "params": {"to": "<supplier>", "body": "item, quantity, delivery date"}}
+- `budget_guard`: {"action": "block orders that push stock value over the cap", "params": {"max_stock_value_usd": 1300}}
+
+## Transfer
+
+Par = (usage per cycle + 25% safety) / deliveries and reorder point = daily use x lead time + safety; plug in your own sales and prices and the same rules drive standing orders by email or supplier API.

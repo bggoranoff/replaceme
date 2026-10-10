@@ -1,6 +1,6 @@
 ---
 name: "Brew coffee"
-description: "Brewing a balanced house cup of coffee requires balancing dry coffee dose, brew water volume, and extraction contact time to avoid under- or over-extraction. The target recipe achieves an optimal cup using an 18 g coffee dose, 300 ml of brew water, and 190 seconds of contact time."
+description: "A dialed-in house pour-over recipe that a grinder + scale + kettle, or a programmable brewer, can run tomorrow: 18 g of coffee to 300 ml of 93 °C water (1:16.7), about 190 s total brew time (window 3:00-3:30), with a taste-to-fix map: sour = too fast, bitter = too slow, weak or heavy = fix the water per gram."
 status: "learned"
 level_id: "barista-brew-coffee"
 mechanic: "mix"
@@ -11,7 +11,7 @@ updated_at: "2026-10-10T16:32:16.605Z"
 
 # Brew coffee
 
-Brewing a balanced house cup of coffee requires balancing dry coffee dose, brew water volume, and extraction contact time to avoid under- or over-extraction. The target recipe achieves an optimal cup using an 18 g coffee dose, 300 ml of brew water, and 190 seconds of contact time.
+A dialed-in house pour-over recipe that a grinder + scale + kettle, or a programmable brewer, can run tomorrow: 18 g of coffee to 300 ml of 93 °C water (1:16.7), about 190 s total brew time (window 3:00-3:30), with a taste-to-fix map: sour = too fast, bitter = too slow, weak or heavy = fix the water per gram.
 
 Job: barista · Level 1 (mix) · 10 attempts · best 100.0 · final 100.0 · pass at 75.0 · passed
 
@@ -36,9 +36,10 @@ Job: barista · Level 1 (mix) · 10 attempts · best 100.0 · final 100.0 · pas
 
 ## Steps
 
-1. Weigh out precisely 18 g of ground coffee (dose_g) into the brew basket to ensure the proper bed depth.
-2. Measure and heat 300 ml of water (water_ml) to fill a standard house serving mug without overflowing or coming up short.
-3. Initiate brewing and maintain water contact with the coffee grounds for exactly 190 s (contact_s) to extract sweetness and body without bitterness or astringency.
+1. Tools: scale (dose 18 g, tare), grinder (house medium-fine), kettle (93 °C), brewer or smart brewer profile (300 ml, 1:16.7, finish 3:00-3:30).
+2. Weigh out precisely 18 g of ground coffee (dose_g) into the brew basket to ensure the proper bed depth.
+3. Measure and heat 300 ml of water (water_ml) to fill a standard house serving mug without overflowing or coming up short.
+4. Initiate brewing and maintain water contact with the coffee grounds for exactly 190 s (contact_s) to extract sweetness and body without bitterness or astringency.
 
 ## Caveats
 
@@ -123,3 +124,15 @@ Job: barista · Level 1 (mix) · 10 attempts · best 100.0 · final 100.0 · pas
 ## User context
 
 - None yet.
+
+## Tool mappings
+
+- `scale`: {"action": "tare, then dose coffee", "params": {"coffee_g": "18", "tolerance_g": 0.2}}
+- `grinder`: {"action": "grind at the house medium-fine setting", "params": {"setting": "medium-fine", "adjust_if": "brew time outside 180-210 s"}}
+- `kettle`: {"action": "heat brew water", "params": {"temperature_c": 93}}
+- `brewer_profile`: {"action": "save as a programmable brewer profile (e.g. Fellow Aiden app)", "params": {"ratio": "1:16.7", "water_ml": "300", "temperature_c": 93, "bloom_s": 30, "target_time_s": "190"}}
+- `feedback_loop`: {"action": "taste and correct", "params": {"sour_or_thin": "grind finer / longer contact", "bitter_or_dry": "grind coarser / shorter contact", "weak": "less water per gram", "heavy": "more water per gram"}}
+
+## Transfer
+
+Runs unchanged on a smart brewer profile (ratio, temperature, bloom) or as a barista routine; re-dial the grind, never the dose, when the brew time drifts.

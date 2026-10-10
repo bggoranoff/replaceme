@@ -1,6 +1,6 @@
 ---
 name: "Take an order"
-description: "This skill ensures accurate beverage order intake, upselling, and strict allergen cross-contact prevention when serving guests. By clarifying item specifications, explicitly flagging allergens with clean equipment protocols, suggesting complementary pairings, confirming the complete order, and providing personalized handoffs with clear wait times, baristas deliver exceptional hospitality and ensure customer safety."
+description: "A voice ordering agent policy for a counter or drive-through: greet, clarify every vague slot (milk, size, second drink), flag any allergy with clean-equipment handling and never promise 'free from' unchecked, make one relevant suggestion at the natural pause, read the whole order back including the allergy, then give a wait time and take a name."
 status: "learned"
 level_id: "barista-take-order"
 mechanic: "converse"
@@ -11,7 +11,7 @@ updated_at: "2026-10-10T16:32:15.863Z"
 
 # Take an order
 
-This skill ensures accurate beverage order intake, upselling, and strict allergen cross-contact prevention when serving guests. By clarifying item specifications, explicitly flagging allergens with clean equipment protocols, suggesting complementary pairings, confirming the complete order, and providing personalized handoffs with clear wait times, baristas deliver exceptional hospitality and ensure customer safety.
+A voice ordering agent policy for a counter or drive-through: greet, clarify every vague slot (milk, size, second drink), flag any allergy with clean-equipment handling and never promise 'free from' unchecked, make one relevant suggestion at the natural pause, read the whole order back including the allergy, then give a wait time and take a name.
 
 Job: barista · Level 3 (converse) · 10 attempts · best 100.0 · final 100.0 · pass at 75.0 · passed
 
@@ -43,11 +43,12 @@ Job: barista · Level 3 (converse) · 10 attempts · best 100.0 · final 100.0 �
 
 ## Steps
 
-1. Greet the customer and ask clarifying questions for ambiguous requests instead of assuming: inquire specifically about the preferred milk option ('Which milk: oat, soy or almond?') and what beverage they would like for the accompanying guest/child.
-2. When a nut allergy is identified, immediately confirm and state the safety protocol out loud: 'Got it: nut allergy flagged, clean jug and clean wand for hers.' Never share steaming jugs or steam wands across nut and non-nut drinks.
-3. Offer a tasteful, relevant upsell suggestion rather than a generic barrage or remaining silent: suggest 'Vanilla is lovely with almond milk. Add a pump to yours?'.
-4. Conduct a full read-back of all ordered items, modifications, and allergy flags before taking payment: 'So: large almond latte, one vanilla, kids' hot chocolate, nut allergy. Right?'.
-5. Close the interaction by providing a clear time estimate, requesting the customer's name, and offering dedicated service: 'About five minutes. Your name? I'll bring hers over myself.'.
+1. Tools: Gradium STT (POST /api/post/speech/asr) for what the customer says, Gradium TTS (POST /api/post/speech/tts) for every reply, POS CreateOrder (e.g. Square POST /v2/orders) only after the read-back is confirmed, with the allergy on the ticket.
+2. Greet the customer and ask clarifying questions for ambiguous requests instead of assuming: inquire specifically about the preferred milk option ('Which milk: oat, soy or almond?') and what beverage they would like for the accompanying guest/child.
+3. When a nut allergy is identified, immediately confirm and state the safety protocol out loud: 'Got it: nut allergy flagged, clean jug and clean wand for hers.' Never share steaming jugs or steam wands across nut and non-nut drinks.
+4. Offer a tasteful, relevant upsell suggestion rather than a generic barrage or remaining silent: suggest 'Vanilla is lovely with almond milk. Add a pump to yours?'.
+5. Conduct a full read-back of all ordered items, modifications, and allergy flags before taking payment: 'So: large almond latte, one vanilla, kids' hot chocolate, nut allergy. Right?'.
+6. Close the interaction by providing a clear time estimate, requesting the customer's name, and offering dedicated service: 'About five minutes. Your name? I'll bring hers over myself.'.
 
 ## Caveats
 
@@ -143,3 +144,16 @@ Job: barista · Level 3 (converse) · 10 attempts · best 100.0 · final 100.0 �
 ## User context
 
 - None yet.
+
+## Tool mappings
+
+- `speech_to_text`: {"api": "Gradium STT", "endpoint": "POST https://api.gradium.ai/api/post/speech/asr", "params": {"json_config": {"language": "en"}, "content_type": "audio/wav"}}
+- `text_to_speech`: {"api": "Gradium TTS", "endpoint": "POST https://api.gradium.ai/api/post/speech/tts", "params": {"voice_id": "<voice>", "output_format": "wav", "only_audio": true}}
+- `order_slots`: {"required": ["drink", "size", "milk", "extras", "allergies", "name"], "rule": "ask for any missing slot before pricing"}
+- `allergy_guard`: {"on_allergy": ["flag ticket ALLERGY", "clean jug + purged wand", "never claim allergen-free without checking ingredients and shared equipment"], "critical": true}
+- `upsell_rule`: {"max_suggestions": 1, "when": "after the order and any allergy are settled", "match": "pairs with the ordered drink"}
+- `pos_create_order`: {"api": "Square Orders API", "endpoint": "POST /v2/orders", "params": {"idempotency_key": "<uuid>", "order.line_items": "[{name, quantity, modifiers}]", "note": "ALLERGY: tree nuts"}, "gate": "only after the customer confirms the read-back"}
+
+## Transfer
+
+Runs as a voice agent: Gradium speech-to-text -> this policy (slots + confirmation gate) -> Gradium text-to-speech, and the confirmed order goes to the POS (e.g. Square Orders API) with the allergy on the ticket.

@@ -696,3 +696,132 @@ h3 {
 .hal-iris {
   transition: transform 0.25s ease-out;
 }
+
+/* Agentic Badges & Training Overlay */
+
+.job-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: var(--cream-2);
+  box-shadow: var(--px);
+  font-size: 14px;
+}
+
+.job-badge span {
+  color: var(--ink-soft);
+}
+
+.job-badge strong {
+  text-transform: capitalize;
+}
+
+.agent-status-tag {
+  padding: 2px 8px;
+  background: var(--mint);
+  box-shadow: 0 0 0 2px var(--ink);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.agent-status-tag.pulsing {
+  background: var(--gold);
+  animation: tagPulse 1.2s infinite ease-in-out;
+}
+
+@keyframes tagPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(0.96); }
+}
+
+.skill-count-badge {
+  padding: 4px 12px;
+  background: var(--mint);
+  box-shadow: var(--px);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.training-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(90, 70, 54, 0.75);
+  backdrop-filter: blur(2px);
+  z-index: 10;
+  padding: 20px;
+}
+
+.training-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 440px;
+  padding: 24px;
+  background: var(--cream);
+  box-shadow: var(--px), 0 12px 0 0 var(--drop);
+  text-align: center;
+}
+
+.training-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
+  color: var(--ink);
+}
+
+.training-modal p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.training-spinner {
+  display: flex;
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.training-spinner span {
+  width: 12px;
+  height: 12px;
+  background: var(--lavender);
+  box-shadow: 0 0 0 2px var(--ink);
+  animation: spinnerBounce 0.8s infinite ease-in-out alternate;
+}
+
+.training-spinner span:nth-child(2) {
+  background: var(--mint);
+  animation-delay: 0.2s;
+}
+
+.training-spinner span:nth-child(3) {
+  background: var(--gold);
+  animation-delay: 0.4s;
+}
+
+@keyframes spinnerBounce {
+  from { transform: translateY(0); }
+  to { transform: translateY(-10px); }
+}
+
+.training-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  padding: 10px;
+  background: var(--cream-2);
+  box-shadow: inset 0 0 0 2px var(--ink);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink);
+}
+

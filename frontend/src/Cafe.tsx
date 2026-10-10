@@ -206,7 +206,16 @@ function blocked(x: number, y: number) {
   )
 }
 
-export function Cafe({ onBack, onTrain }: { onBack: () => void; onTrain: () => void }) {
+interface CafeProps {
+  job: string
+  isTraining?: boolean
+  isResearching?: boolean
+  levelsCount?: number
+  onBack: () => void
+  onTrain: () => void
+}
+
+export function Cafe({ job, isTraining, isResearching, levelsCount = 4, onBack, onTrain }: CafeProps) {
   const canvas = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
@@ -285,21 +294,51 @@ export function Cafe({ onBack, onTrain }: { onBack: () => void; onTrain: () => v
         <button type="button" className="back" onClick={onBack}>
           ← New prompt
         </button>
+        <div className="job-badge">
+          <span>Target role:</span>
+          <strong>{job}</strong>
+          {isResearching ? (
+            <span className="agent-status-tag pulsing">Researcher active…</span>
+          ) : (
+            <span className="agent-status-tag">{levelsCount} levels ready</span>
+          )}
+        </div>
       </div>
 
       <div className="modes">
         <button type="button" className="active">
           <PlayIcon /> Play
         </button>
-        <button type="button" onClick={onTrain}>
-          <BotIcon /> Train agent
+        <button type="button" onClick={onTrain} disabled={isTraining || isResearching}>
+          <BotIcon /> {isTraining ? 'Training in progress…' : 'Train agent'}
         </button>
       </div>
 
       <div className="arena">
         <canvas ref={canvas} width={W} height={H} aria-label="Café; walk the robot with arrow keys or WASD" />
+
+        {isTraining && (
+          <div className="training-overlay" aria-live="polite">
+            <div className="training-modal">
+              <div className="training-head">
+                <BotIcon />
+                <strong>Actor Agent Training</strong>
+              </div>
+              <p>Simulating 100+ headless trials across {levelsCount} levels for <em>{job}</em>…</p>
+              <div className="training-spinner">
+                <span />
+                <span />
+                <span />
+              </div>
+              <div className="training-stats">
+                <span>Stochastic policy rollouts</span>
+                <span>Extracting procedural SKILL.md specs</span>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
-      <p className="hint">Arrow keys / WASD</p>
+      <p className="hint">Arrow keys / WASD to test controls; click "Train agent" to start autonomous actor trials</p>
     </section>
   )
 }

@@ -276,13 +276,16 @@ export class Juice {
   }
 
   /** Something drops into a container: card flies, container squashes, sparkles, snap + pop. */
-  snapInto(from: Rect, to: Rect, key: string, label = '', colors = ['#fff6e0', '#f2c14e', '#c98e4f']) {
+  snapInto(from: Rect, to: Rect, key: string, label = '', colors = ['#ffffff', '#f2c14e', '#fff0a8', '#8cc265']) {
     this.sfx('whoosh', { volume: 0.5 })
     this.fly(from, to, {
       label,
       onLand: () => {
         this.squash(key, 0.28, 360)
-        this.burst(to.x + to.w / 2, to.y + Math.min(18, to.h / 3), { colors, count: 14, speed: 75, gravity: 180, up: true })
+        const cx = to.x + to.w / 2
+        const cy = to.y + Math.min(18, to.h / 3)
+        this.burst(cx, cy, { colors, count: 16, speed: 95, gravity: 170, up: true, shape: 'star', size: 2.8, life: 750 })
+        this.burst(cx, cy, { colors: ['#ffffff'], count: 6, speed: 50, gravity: 0, shape: 'spark', size: 1.4, life: 350 })
         this.sfx('snap', { volume: 0.7 })
         this.sfx('pop', { pitch: 0.9 + Math.random() * 0.25 })
       },
@@ -518,8 +521,9 @@ export function drawFace(ctx: Ctx, x: number, y: number, r: number, tier: Tier, 
       ctx.arc(x + s * ex, ey + r * 0.05, r * 0.11, 0, Math.PI * 2)
       ctx.fill()
       ctx.beginPath()
-      ctx.moveTo(x + s * ex - r * 0.2, ey - r * 0.32 + (s > 0 ? -r * 0.1 : r * 0.0))
-      ctx.lineTo(x + s * ex + r * 0.2, ey - r * 0.32 + (s > 0 ? r * 0.0 : -r * 0.1))
+      // worried brows slope up toward the middle
+      ctx.moveTo(x + s * ex - r * 0.2, ey - r * 0.32 - (s > 0 ? r * 0.1 : 0))
+      ctx.lineTo(x + s * ex + r * 0.2, ey - r * 0.32 - (s > 0 ? 0 : r * 0.1))
       ctx.stroke()
     }
     ctx.beginPath()

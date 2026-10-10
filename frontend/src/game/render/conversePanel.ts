@@ -101,7 +101,7 @@ export function drawConverse(ctx: Ctx, e: GameEngine, m: ConverseMechanic, t: nu
   drawPortrait(ctx, e, m, pr, t)
   drawBubble(ctx, m, converseBubble(e.W, e.H))
   const reaction = e.juice.reaction('converse')
-  if (reaction) drawReaction(ctx, pr.x + pr.w - 3, pr.y + 3, 9, reaction.tier, reaction.k, t)
+  if (reaction) drawReaction(ctx, pr.x + pr.w - 12, pr.y + 15, 9, reaction.tier, reaction.k, t)
   const opts = m.turn?.options ?? []
   const rects = m.optionRects()
   const ps = e.juice.scaleOf('converse:options')

@@ -7,7 +7,7 @@ export type ObjectKind = 'jar' | 'bottle' | 'sack' | 'box' | 'parcel' | 'flowers
 const KINDS: [RegExp, ObjectKind][] = [
   [/\b(jar|jars|honey|jam|preserve|pot|tin|can|cream)\b/i, 'jar'],
   [/\b(bottle|oil|liquid|vinegar|wine|chemical|solvent|spray|syrup|sauce|lube|lubricant|fluid|degreaser|cleaner|wax|milk|juice)/i, 'bottle'],
-  [/\b(sack|bag|flour|grain|rice|seeds?|beans?|sugar|meal|powder|soil|compost|feed|coffee|salt)\b/i, 'sack'],
+  [/\b(sacks?|bags?|flours?|grains?|wheat|rye|spelt|barley|oats?|corn|maize|malt|rice|seeds?|beans?|sugar|meal|powder|soil|compost|feed|coffee|salt)\b/i, 'sack'],
   [/\b(flowers?|roses?|tulips?|stems?|bouquets?|blooms?|lil(y|ies)|plants?|herbs?|leaves|leaf|peon(y|ies)|daisy|daisies|daffodils?|narcissus|orchids?|anthuriums?|peas|carnations?|hydrangeas?|sunflowers?|lavender|wreaths?|posy|posies|fresh-cut)\b/i, 'flowers'],
   [/\b(bread|loaf|loaves|rolls?|buns?|cakes?|pastry|pastries|croissants?|baguettes?|boules?|brioche|batards?|sourdough|cookies?|pies?)\b/i, 'loaf'],
   [/\b(bolts?|screws?|nuts?|parts?|chains?|tools?|springs?|gears?|bearings?|cables?|spindles?|cups?|rotors?|pads?|calipers?|hubs?|valves?|pipes?)\b/i, 'part'],

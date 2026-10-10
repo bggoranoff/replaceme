@@ -1,7 +1,7 @@
 export type Skill = {
   id: string
   level: number
-  clears: number
+  clears?: number
   title: string
   description: string
   goal: string

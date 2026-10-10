@@ -778,3 +778,50 @@ h3 {
 .hal-iris {
   transition: transform 0.25s ease-out;
 }
+
+/* Agentic Badges & Training Overlay */
+
+.job-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: var(--cream-2);
+  box-shadow: var(--px);
+  font-size: 14px;
+}
+
+.job-badge span {
+  color: var(--ink-soft);
+}
+
+.job-badge strong {
+  text-transform: capitalize;
+}
+
+.agent-status-tag {
+  padding: 2px 8px;
+  background: var(--mint);
+  box-shadow: 0 0 0 2px var(--ink);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.agent-status-tag.pulsing {
+  background: var(--gold);
+  animation: tagPulse 1.2s infinite ease-in-out;
+}
+
+@keyframes tagPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(0.96); }
+}
+
+.skill-count-badge {
+  padding: 4px 12px;
+  background: var(--mint);
+  box-shadow: var(--px);
+  font-size: 13px;
+  font-weight: 800;
+}

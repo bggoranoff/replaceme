@@ -234,7 +234,16 @@ function blocked(x: number, y: number) {
   )
 }
 
-export function Cafe({ onBack, onTrain }: { onBack: () => void; onTrain: () => void }) {
+interface CafeProps {
+  job: string
+  isResearching?: boolean
+  levelsCount?: number
+  onBack: () => void
+  onTrain: () => Promise<void>
+  onTrained: () => void
+}
+
+export function Cafe({ job, isResearching, levelsCount = 4, onBack, onTrain, onTrained }: CafeProps) {
   const canvas = useRef<HTMLCanvasElement>(null)
   const [training, setTraining] = useState(false)
   const [done, setDone] = useState(false)
@@ -249,16 +258,23 @@ export function Cafe({ onBack, onTrain }: { onBack: () => void; onTrain: () => v
 
   const onTrainRef = useRef(onTrain)
   onTrainRef.current = onTrain
+  const onTrainedRef = useRef(onTrained)
+  onTrainedRef.current = onTrained
 
+  // Walk the café while the actor trains; finish once both the walk and the API call are done.
   useEffect(() => {
     if (!training) return
-    const finish = setTimeout(() => {
+    let cancelled = false
+    let leave: ReturnType<typeof setTimeout>
+    const walk = new Promise((resolve) => setTimeout(resolve, TRAIN_MS))
+    Promise.all([walk, onTrainRef.current().catch(() => undefined)]).then(() => {
+      if (cancelled) return
       trainingRef.current = false
       setDone(true)
-    }, TRAIN_MS)
-    const leave = setTimeout(() => onTrainRef.current(), TRAIN_MS + DONE_MS)
+      leave = setTimeout(() => onTrainedRef.current(), DONE_MS)
+    })
     return () => {
-      clearTimeout(finish)
+      cancelled = true
       clearTimeout(leave)
     }
   }, [training])
@@ -365,10 +381,19 @@ export function Cafe({ onBack, onTrain }: { onBack: () => void; onTrain: () => v
         <button type="button" className="back" onClick={onBack}>
           ← New prompt
         </button>
+        <div className="job-badge">
+          <span>Target role:</span>
+          <strong>{job}</strong>
+          {isResearching ? (
+            <span className="agent-status-tag pulsing">Researcher active…</span>
+          ) : (
+            <span className="agent-status-tag">{levelsCount} levels ready</span>
+          )}
+        </div>
       </div>
 
       <div className="modes">
-        <button type="button" onClick={startTraining} disabled={training}>
+        <button type="button" onClick={startTraining} disabled={training || isResearching}>
           <BotIcon /> {done ? 'Trained' : training ? 'Training…' : 'Train agent'}
         </button>
       </div>

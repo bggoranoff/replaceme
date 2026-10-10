@@ -1,6 +1,15 @@
 import { DEMO_SKILLS, type Skill } from './skillData'
 
-export function Skills({ onBack, onOpen }: { onBack: () => void; onOpen: (skill: Skill) => void }) {
+interface SkillsProps {
+  skills?: Skill[]
+  job?: string
+  onBack: () => void
+  onOpen: (skill: Skill) => void
+}
+
+export function Skills({ skills, job, onBack, onOpen }: SkillsProps) {
+  const displaySkills = skills && skills.length > 0 ? skills : DEMO_SKILLS
+
   return (
     <section className="skills">
       <div className="game-top">
@@ -10,11 +19,12 @@ export function Skills({ onBack, onOpen }: { onBack: () => void; onOpen: (skill:
       </div>
 
       <div className="skills-head">
-        <h2>Skills learned</h2>
+        <h2>Skills learned {job ? `for ${job}` : ''}</h2>
+        <span className="skill-count-badge">{displaySkills.length} mastered</span>
       </div>
 
       <ul className="skill-list">
-        {DEMO_SKILLS.map((skill) => (
+        {displaySkills.map((skill) => (
           <li key={skill.id}>
             <button type="button" className="skill-card" onClick={() => onOpen(skill)}>
               <span className="level-badge">L{skill.level}</span>
@@ -22,7 +32,7 @@ export function Skills({ onBack, onOpen }: { onBack: () => void; onOpen: (skill:
                 <span className="skill-file">{skill.id}/SKILL.md</span>
                 <strong>{skill.title}</strong>
                 <span className="skill-goal">
-                  Learned from {skill.clears} clears of level {skill.level}
+                  {skill.clears ? `Learned from ${skill.clears} clears of level ${skill.level}` : `Learned from level ${skill.level}`}
                 </span>
               </span>
               <span className="chevron" aria-hidden>

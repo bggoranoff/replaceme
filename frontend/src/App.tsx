@@ -100,11 +100,48 @@ function App() {
   const [job, setJob] = useState<string | null>(null)
   const [view, setView] = useState<'game' | 'skills'>('game')
   const [skill, setSkill] = useState<Skill | null>(null)
+  const [skills, setSkills] = useState<Skill[]>([])
+  const [researchData, setResearchData] = useState<{ role?: string; levels?: unknown[] } | null>(null)
+  const [isResearching, setIsResearching] = useState(false)
 
-  const start = (next: string) => {
+  const start = async (next: string) => {
     setJob(next)
     setView('game')
     setSkill(null)
+    setIsResearching(true)
+    try {
+      const res = await fetch('/api/research', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt: next }),
+      })
+      if (res.ok) {
+        const data = await res.json()
+        setResearchData(data)
+      }
+    } catch (err) {
+      console.warn('Research request failed:', err)
+    } finally {
+      setIsResearching(false)
+    }
+  }
+
+  const handleTrain = async () => {
+    try {
+      const res = await fetch('/api/train', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt: job, brief: researchData }),
+      })
+      if (res.ok) {
+        const data = await res.json()
+        if (Array.isArray(data.skills) && data.skills.length > 0) {
+          setSkills(data.skills)
+        }
+      }
+    } catch (err) {
+      console.warn('Train request failed:', err)
+    }
   }
 
   const screen = !job ? (
@@ -112,9 +149,16 @@ function App() {
   ) : skill ? (
     <SkillView skill={skill} job={job} onBack={() => setSkill(null)} />
   ) : view === 'skills' ? (
-    <Skills onBack={() => setView('game')} onOpen={setSkill} />
+    <Skills skills={skills} job={job} onBack={() => setView('game')} onOpen={setSkill} />
   ) : (
-    <Cafe onBack={() => setJob(null)} onTrain={() => setView('skills')} />
+    <Cafe
+      job={job}
+      isResearching={isResearching}
+      levelsCount={researchData?.levels?.length ?? 4}
+      onBack={() => setJob(null)}
+      onTrain={handleTrain}
+      onTrained={() => setView('skills')}
+    />
   )
 
   return (

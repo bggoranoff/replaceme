@@ -61,7 +61,7 @@ export function SkillView({ skill, job, onBack }: { skill: Skill; job: string; o
           <div className="goal">
             <span>Learned from</span>
             <strong>
-              {skill.clears} clears of level {skill.level} · {skill.goal}
+              {skill.clears ? `${skill.clears} clears of level ${skill.level}` : `Level ${skill.level}`} · {skill.goal}
             </strong>
           </div>
 

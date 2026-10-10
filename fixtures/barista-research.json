@@ -1,36 +1,189 @@
 {
   "version": 1,
   "role": "barista",
-  "sources": [],
+  "sources": [
+    "Specialty Coffee Association (SCA) Barista Skills Standards",
+    "World Barista Championship Rules"
+  ],
   "rules": [
-    "Confirm substitutions before fulfilment"
+    "Always purge steam wand before and after steaming",
+    "Steam milk to 60-65\u00b0C (140-150\u00b0F); never exceed 70\u00b0C to avoid scorching",
+    "Confirm alternative milks or decaf substitutions before preparing"
   ],
   "assumptions": [
-    "Toy cafe menu and supplies; source research pending"
+    "Commercial dual-boiler espresso machine, calibrated conical grinder, fresh dairy and plant milks"
   ],
   "levels": [
     {
-      "id": "stockout",
-      "goal": "Resolve an oat latte order when oat milk is unavailable",
+      "id": "steam-milk",
+      "level": 1,
+      "title": "Milk Steaming & Microfoam Texturing",
+      "skill_name": "Steam milk to optimal silky microfoam",
+      "goal": "Steam whole milk to 60\u201365\u00b0C with glossy microfoam suitable for latte art",
+      "description": "Master aeration, whirlpool vortex texturing, and precise thermal cutoff to create silky microfoam without large bubbles.",
       "customerProfiles": [
-        "customer willing to choose an alternative"
+        "Flat white enthusiast who inspects foam density and temperature"
       ],
       "initialSupplies": {
-        "oatMilk": 0,
-        "regularMilk": 3,
-        "coffee": 5
+        "coldWholeMilk_ml": 250,
+        "pitcher": 1,
+        "steamWand": 1,
+        "thermometer": 1
+      },
+      "actions": [
+        "purgeWand",
+        "insertWandTip",
+        "tiltPitcher15deg",
+        "openSteamValve",
+        "rollVortex",
+        "stopAt65C",
+        "wipeAndPurge"
+      ],
+      "successConditions": [
+        "Milk temperature finishes strictly between 60\u00b0C and 65\u00b0C",
+        "Velvety wet-paint microfoam texture with zero large bubbles",
+        "Steam wand wiped and purged immediately after steaming"
+      ],
+      "steps": [
+        "Purge steam wand for 1 second over drip tray to clear condensation",
+        "Submerge wand tip 1cm below surface and tilt pitcher 15 degrees to establish whirlpool",
+        "Open steam valve fully; introduce air gently until pitcher reaches body temp (37\u00b0C)",
+        "Submerge wand slightly deeper to incorporate microfoam in a silent rolling vortex",
+        "Shut off steam valve as thermometer passes 60\u00b0C so thermal momentum settles at 62-65\u00b0C",
+        "Wipe wand thoroughly with damp cloth and purge steam immediately"
+      ],
+      "checks": [
+        "Final temperature between 60\u00b0C and 65\u00b0C",
+        "Glossy microfoam with micro-bubbles < 0.5mm",
+        "Steam wand clean and purged"
+      ]
+    },
+    {
+      "id": "dial-espresso",
+      "level": 2,
+      "title": "Dial in Espresso Extraction",
+      "skill_name": "Calibrate grind size, dose, and extraction ratio",
+      "goal": "Extract a 1:2 ratio espresso (18g in, 36g out) in 27\u201330 seconds with rich crema",
+      "description": "Adjust grind setting and distribution to eliminate channeling, achieving balanced sweetness and acidity.",
+      "customerProfiles": [
+        "Espresso purist sensitive to under-extracted sourness or over-extracted bitterness"
+      ],
+      "initialSupplies": {
+        "beans_g": 250,
+        "portafilter": 1,
+        "tamper": 1,
+        "scale": 1,
+        "timer": 1
+      },
+      "actions": [
+        "weighDose18g",
+        "distributeGrounds",
+        "tampLevel15kg",
+        "flushGroupHead",
+        "lockPortafilter",
+        "startShot",
+        "stopAt36g"
+      ],
+      "successConditions": [
+        "Yield strictly 36g (+/- 1g) from 18g dose",
+        "Extraction time between 27 and 30 seconds",
+        "Thick hazelnut crema without pale blonding or channeling"
+      ],
+      "steps": [
+        "Dose exactly 18.0g of coffee beans and grind into dry portafilter basket",
+        "Use WDT needle tool or tap to distribute grounds evenly without clumps",
+        "Tamp firmly and level with 15kg pressure",
+        "Flush group head for 2 seconds to stabilize brew temperature at 93\u00b0C",
+        "Insert and lock portafilter; immediately tare cup and scale under spouts",
+        "Engage 9-bar brew pump and stop shot at 36g yield (target: 28 seconds)"
+      ],
+      "checks": [
+        "Dose 18g, yield 36g (1:2 ratio)",
+        "Shot run time 27-30 seconds",
+        "Balanced TDS and rich crema"
+      ]
+    },
+    {
+      "id": "stockout-resolution",
+      "level": 3,
+      "title": "Handle Milk Stockout & Order Substitution",
+      "skill_name": "Resolve unavailable supplies with clear customer communication",
+      "goal": "Politely resolve an oat milk latte order when oat milk is out of stock without delaying queue",
+      "description": "Check inventory, communicate shortage courteously, present delicious alternatives (almond/soy/dairy), and confirm choice before preparing.",
+      "customerProfiles": [
+        "Busy morning commuter with dietary preference willing to accept alternative if offered kindly"
+      ],
+      "initialSupplies": {
+        "oatMilk_cartons": 0,
+        "almondMilk_cartons": 3,
+        "wholeMilk_cartons": 6,
+        "coffeeBeans_g": 500
       },
       "actions": [
         "checkStock",
-        "askCustomer",
+        "explainShortage",
+        "offerAlmondOrSoy",
+        "confirmChoice",
         "prepareDrink",
-        "serve",
-        "callCoworker"
+        "serveWithApology"
       ],
       "successConditions": [
-        "Customer confirms available alternative or cancellation",
-        "No negative inventory",
-        "No unconfirmed substitution"
+        "Customer explicitly confirms acceptable alternative or cancellation",
+        "No unauthorized substitution prepared",
+        "Transaction resolved within 45 seconds"
+      ],
+      "steps": [
+        "Check milk fridge and verify oat milk supply is at 0 cartons",
+        "Politely notify customer: 'I apologize, we are out of oat milk this morning'",
+        "Offer immediate alternatives: 'We have fresh almond milk or organic soy which pair great with this roast'",
+        "Wait for customer agreement before steaming",
+        "Prepare selected alternative and serve with a warm smile and discount token"
+      ],
+      "checks": [
+        "Shortage detected before pulling shot",
+        "Customer consent explicitly received",
+        "No negative inventory allowed"
+      ]
+    },
+    {
+      "id": "rush-workflow",
+      "level": 4,
+      "title": "Multi-Order Barista Rush Prioritization",
+      "skill_name": "Parallel workflow and ticket sequencing during peak morning rush",
+      "goal": "Queue and prepare 3 concurrent espresso drinks in under 120 seconds while maintaining standards",
+      "description": "Interleave grinding, milk steaming, and espresso extraction so that milk and espresso finish simultaneously for each cup.",
+      "customerProfiles": [
+        "Queue of 3 office workers ordering Americano, Latte, and Cortado"
+      ],
+      "initialSupplies": {
+        "coffee_g": 500,
+        "milk_ml": 1000,
+        "cups": 3
+      },
+      "actions": [
+        "grindNextDose",
+        "steamMilk",
+        "pourSimultaneously",
+        "rinsePitcher",
+        "cleanPortafilter",
+        "handOffDrink"
+      ],
+      "successConditions": [
+        "All 3 drinks served at peak temperature within 120 seconds",
+        "Zero cross-contamination between dairy and allergen pitchers",
+        "Bar station maintained clean and wiped between tickets"
+      ],
+      "steps": [
+        "Review ticket sequence: Americano (hot water first), then Cortado, then Latte",
+        "Dose and lock espresso for drink 1; while shot extracts, steam milk for drink 2",
+        "Pour drink 1, rinse pitcher immediately, and stage cup 2",
+        "Grind dose 2, start extraction, and steam milk for drink 3",
+        "Serve all completed drinks and wipe steam wand and prep counter"
+      ],
+      "checks": [
+        "Total time under 120 seconds",
+        "Clean workstation between drinks",
+        "All drinks served hot and fresh"
       ]
     }
   ]

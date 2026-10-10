@@ -20,6 +20,8 @@ export interface MechanicCtx {
   avatarTile(): [number, number]
   /** Cosmetic feedback (particles, squash, pop text, reactions, sounds). See render/juice.ts. */
   juice: Juice
+  /** A human is playing ('play' engine). Agent runs and replays are not interactive. */
+  interactive: boolean
 }
 
 export interface Mechanic {
@@ -62,11 +64,11 @@ export const MECHANIC_CONTROLS: Record<MechanicId, ControlInfo[]> = {
   ],
   timing: [
     { action: 'key_up', description: "stop mode: stop the needle now. hold mode: hold for hold_ms then release (value = min + fill_per_s * hold_ms / 1000)" },
-    { action: 'mouse_down', description: 'hold mode: start holding on the meter. stop mode: stop the needle now' },
+    { action: 'mouse_down', description: 'hold mode: start holding on the meter' },
     { action: 'mouse_up', description: 'hold mode: release (ends the phase)' },
     { action: 'mouse_click', description: 'stop mode: click the meter to stop the needle' },
     { action: 'interact', description: 'stop mode: stop the needle now' },
-    { action: 'wait', description: 'let time pass (the needle keeps moving, a held meter keeps filling; after each phase the meter pauses for mechanic_state.pause_ms)' },
+    { action: 'wait', description: 'let time pass (the needle keeps moving, a held meter keeps filling)' },
   ],
   sort: [
     { action: 'key_left', description: 'select the previous bin' },

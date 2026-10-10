@@ -1,5 +1,7 @@
 import type { Target } from '../../contract'
 import { hit, timingMeter } from '../layout'
+import { tierOfPoints, type Tier } from '../render/juice'
+import { sceneOf } from '../render/timingScene'
 import { curveScore, deviation, scoreTiming } from '../scoring'
 import type { NumericTerm, TimingParams, TimingPhase } from '../types'
 import type { Dir, Mechanic, MechanicCtx } from './base'
@@ -13,52 +15,26 @@ export function needleValue(p: TimingPhase, elapsedMs: number): number {
 }
 
 export function fillValue(p: TimingPhase, heldMs: number): number {
-  return Math.min(p.max, p.min + (fillRate(p) * heldMs) / 1000)
-}
-
-export function fillRate(p: TimingPhase): number {
-  return p.fill_per_s && p.fill_per_s > 0 ? p.fill_per_s : (p.max - p.min) / 4
-}
-
-/** Pause after each phase so the reaction can be seen; the next phase starts (and the needle moves) after it. */
-export const PHASE_BEAT_MS = 900
-
-export type Tier = 'perfect' | 'great' | 'good' | 'miss'
-
-export interface Reaction {
-  phase: TimingPhase
-  value: number
-  tier: Tier | null
-  /** -1 under the good range, 1 over it, 0 inside. */
-  dir: -1 | 0 | 1
-  at: number
-}
-
-export function tierOf(s: number): Tier {
-  return s >= 0.92 ? 'perfect' : s >= 0.7 ? 'great' : s >= 0.4 ? 'good' : 'miss'
-}
-
-/** Small deterministic hash in [0, 1) from a string. */
-function unit(s: string): number {
-  let h = 2166136261
-  for (let i = 0; i < s.length; i++) h = Math.imul(h ^ s.charCodeAt(i), 16777619)
-  h = Math.imul(h ^ (h >>> 13), 1274126177)
-  return ((h ^ (h >>> 16)) >>> 0) / 4294967296
+  const rate = p.fill_per_s && p.fill_per_s > 0 ? p.fill_per_s : (p.max - p.min) / 4
+  return Math.min(p.max, p.min + (rate * heldMs) / 1000)
 }
 
 /**
- * The gold "sweet zone" drawn on the meter. It is honest but never the answer: it spans the good range
- * plus two tolerances, and the good range sits off-centre inside it (offset seeded per level and phase),
- * so landing in the zone passes and finding the perfect spot still takes practice. Rendering only:
- * never part of observations.
+ * Human play only: after each phase the meter rests this long so its reaction can be seen, and the
+ * next needle starts after it. Agent runs and replays have no beat, so their timing is unchanged.
  */
-export function sweetZone(levelId: string, p: TimingPhase, term: NumericTerm | undefined): [number, number] | null {
-  if (!term || !(term.tolerance > 0)) return null
-  const [lo, hi] = term.range ?? [term.target ?? 0, term.target ?? 0]
-  const a = 0.35 + 1.3 * unit(`${levelId}:${p.id}`)
-  const z0 = Math.max(p.min, lo - a * term.tolerance)
-  const z1 = Math.min(p.max, hi + (2 - a) * term.tolerance)
-  return z1 > z0 ? [z0, z1] : null
+export const PHASE_BEAT_MS = 900
+
+/** How a finished phase went, for display only (never observed). */
+export interface Reaction {
+  phase: TimingPhase
+  value: number
+  /** 0 way off .. 3 perfect (juice tiers); null when the phase is not scored. */
+  tier: Tier | null
+  /** -1 under the good range, 1 over it, 0 inside. */
+  dir: -1 | 0 | 1
+  /** Level time of the stop / release. */
+  at: number
 }
 
 const round = (x: number) => Math.round(x * 1000) / 1000
@@ -73,35 +49,29 @@ export class TimingMechanic implements Mechanic {
   results: Record<string, number> = {}
   reactions: Record<string, Reaction> = {}
   last: Reaction | null = null
-  /** All phases played (inputs closed); the score card follows after the last reaction beat. */
+  /** All phases played; the level finishes now (agents) or after the last beat (human play). */
   done = false
   private finished = false
   private pauseUntil = 0
   private downStopped = false
+  private readonly beatMs: number
   private ctx: MechanicCtx
 
   constructor(ctx: MechanicCtx) {
     this.ctx = ctx
     this.params = ctx.level.params as unknown as TimingParams
+    this.beatMs = ctx.interactive ? PHASE_BEAT_MS : 0
   }
 
   get phase(): TimingPhase | undefined {
     return this.params.phases[this.index]
   }
 
-  term(p: TimingPhase): NumericTerm | undefined {
-    return this.ctx.level.scoring.variables?.[p.id]
-  }
-
-  zone(p: TimingPhase): [number, number] | null {
-    return sweetZone(this.ctx.level.id, p, this.term(p))
-  }
-
   now(): number {
     return this.ctx.now()
   }
 
-  /** ms left in the reaction beat between phases (0 when the current phase is live). */
+  /** ms left in the beat after a phase (always 0 outside human play). */
   pauseLeft(): number {
     return Math.max(0, this.pauseUntil - this.ctx.now())
   }
@@ -137,15 +107,29 @@ export class TimingMechanic implements Mechanic {
   }
 
   private react(p: TimingPhase, value: number): Reaction {
-    const term = this.term(p)
+    const term: NumericTerm | undefined = this.ctx.level.scoring.variables?.[p.id]
     let tier: Tier | null = null
     let dir: -1 | 0 | 1 = 0
     if (term) {
-      tier = tierOf(curveScore(term, deviation(term, value)))
+      tier = tierOfPoints(curveScore(term, deviation(term, value)))
       const [lo, hi] = term.range ?? [term.target ?? 0, term.target ?? 0]
       dir = value < lo ? -1 : value > hi ? 1 : 0
     }
     return { phase: p, value, tier, dir, at: this.ctx.now() }
+  }
+
+  /** Cosmetic: sound and sparkles for a finished phase (silent and unseen in agent runs). */
+  private celebrate(r: Reaction) {
+    const fx = this.ctx.juice
+    fx.loop('timing', null)
+    if (r.tier === null) return
+    fx.reactSound(r.tier)
+    const m = this.meterRect()
+    const x = m.x + (m.w - 132) / 2
+    const y = m.y + 34
+    if (r.tier === 3) fx.burst(x, y, { colors: ['#f2c14e', '#fff0a8', '#ffffff'], count: 18, speed: 85, gravity: 90, shape: 'star', up: true })
+    else if (r.tier === 2) fx.burst(x, y, { colors: ['#9fd36f', '#fff0a8', '#ffffff'], count: 10, speed: 65, gravity: 90, shape: 'star', up: true })
+    else if (r.tier === 0) fx.shake(1.5, 200)
   }
 
   private endPhase(value: number) {
@@ -157,11 +141,21 @@ export class TimingMechanic implements Mechanic {
     const r = this.react(p, v)
     this.reactions[p.id] = r
     this.last = r
-    this.ctx.emit('phase_end', { phase_id: p.id, value: v, reaction: r.tier })
+    this.celebrate(r)
+    this.ctx.emit('phase_end', { phase_id: p.id, value: v })
     this.index += 1
-    this.pauseUntil = this.ctx.now() + PHASE_BEAT_MS
+    this.pauseUntil = this.ctx.now() + this.beatMs
     this.phaseT0 = this.pauseUntil
-    if (this.index >= this.params.phases.length) this.done = true
+    if (this.index >= this.params.phases.length) {
+      this.done = true
+      if (this.beatMs === 0) this.finish()
+    }
+  }
+
+  private finish() {
+    if (this.finished) return
+    this.finished = true
+    this.ctx.finish(scoreTiming(this.ctx.level, this.results))
   }
 
   stop() {
@@ -179,6 +173,8 @@ export class TimingMechanic implements Mechanic {
     if (!this.holding) {
       this.holding = true
       this.holdT0 = this.ctx.now()
+      const scene = sceneOf(p)
+      this.ctx.juice.loop('timing', scene === 'pour' || scene === 'dip' ? 'pour' : 'hum', { volume: 0.5 })
     }
     return true
   }
@@ -202,8 +198,8 @@ export class TimingMechanic implements Mechanic {
   down(x: number, y: number) {
     this.downStopped = false
     if (!hit(this.meterRect(), x, y)) return
-    if (this.phase?.mode === 'stop') {
-      // a press stops the needle at once (no click lag); the click that follows the press is swallowed
+    if (this.ctx.interactive && this.phase?.mode === 'stop') {
+      // a human press stops the needle at once (no click lag); the click that follows it is swallowed
       const before = this.index
       this.stop()
       this.downStopped = this.index !== before
@@ -219,15 +215,7 @@ export class TimingMechanic implements Mechanic {
   }
 
   advance() {
-    const p = this.phase
-    // spilling over: a hold that reaches the top of the meter ends there
-    if (p && this.holding && p.mode === 'hold' && this.ctx.now() - this.holdT0 >= ((p.max - p.min) / fillRate(p)) * 1000) {
-      this.endPhase(p.max)
-    }
-    if (this.done && !this.finished && this.pauseLeft() <= 0) {
-      this.finished = true
-      this.ctx.finish(scoreTiming(this.ctx.level, this.results))
-    }
+    if (this.done && this.pauseLeft() <= 0) this.finish()
   }
 
   observe() {
@@ -238,12 +226,12 @@ export class TimingMechanic implements Mechanic {
       meter: p
         ? { id: p.id, label: p.label, unit: p.unit, min: p.min, max: p.max, mode: p.mode, value: round(this.value()), moving: p.mode === 'stop', holding: this.holding }
         : null,
-      pause_ms: Math.round(this.pauseLeft()),
-      results: Object.entries(this.results).map(([id, value]) => ({ id, value, reaction: this.reactions[id]?.tier ?? null })),
+      results: Object.entries(this.results).map(([id, value]) => ({ id, value })),
     }
   }
 
   timeout() {
+    this.ctx.juice.loop('timing', null)
     return scoreTiming(this.ctx.level, this.results)
   }
 }

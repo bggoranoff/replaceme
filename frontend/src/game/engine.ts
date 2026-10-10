@@ -289,6 +289,7 @@ export class GameEngine {
       walk: (d) => this.walk(d),
       avatarTile: () => this.avatarTile(),
       juice: this.juice,
+      interactive: this.mode === 'play',
     }
     switch (level.mechanic) {
       case 'mix':

@@ -279,8 +279,8 @@ def term_score(value: Optional[float], term: Dict[str, Any]) -> float:
 
 def numeric_score(scoring: Dict[str, Any], values: Dict[str, float]) -> float:
     """scoring_spec.total over variables + derived (order excluded)."""
-    parts = [(t["weight"], term_score(values.get(vid), t)) for vid, t in scoring.get("variables", {}).items()]
-    for d in scoring.get("derived", []):
+    parts = [(t["weight"], term_score(values.get(vid), t)) for vid, t in _dict(scoring.get("variables")).items()]
+    for d in _list(scoring.get("derived")):
         ast, err, _ = parse_expr(d["expr"])
         parts.append((d["weight"], 0.0 if err else term_score(eval_expr(ast, values), d)))
     total_w = sum(w for w, _ in parts)
@@ -299,10 +299,10 @@ def best_numeric_score(controls: List[Dict[str, Any]], scoring: Dict[str, Any]) 
     values: Dict[str, float] = {}
     for c in controls:
         term = scoring.get("variables", {}).get(c["id"])
-        goal = (sum(term["range"]) / 2 if "range" in term else term["target"]) if term else float(c.get("default", c["min"]))
+        goal = (sum(term["range"]) / 2 if "range" in term else term["target"]) if term else float(c["default"] if _num(c.get("default")) else c["min"])
         values[c["id"]] = min(grids[c["id"]], key=lambda v: abs(v - goal))
     best = numeric_score(scoring, values)
-    for _ in range(8):
+    for _ in range(50):
         improved = False
         for vid, options in grids.items():
             for v in options:
@@ -397,17 +397,37 @@ _FORBIDDEN_INPUTS = re.compile(
     r"cmd|command key|meta|right[- ]click|scroll(?: wheel)?|mouse wheel|f\d{1,2}|numpad|page up|page down|home key|end key)\b",
     re.IGNORECASE,
 )
-_LETTER_KEY = re.compile(r"\b(?i:press|hit|tap|hold)\s+([A-Z0-9])\b|\b([A-Z0-9])\s+(?i:key)\b")
+# a single letter/digit key; "hold 3 seconds" or "tap 2 times" is a duration or count, not a key
+_LETTER_KEY = re.compile(r"\b(?i:press|hit|tap|hold)\s+([A-Z0-9])\b(?!\s*(?i:s|secs?|seconds?|ms|times?|x)\b)|\b([A-Z0-9])\s+(?i:key)\b")
 _NUMBER = re.compile(r"(?<![\w.])(-?\d+(?:\.\d+)?)(\s*)([A-Za-z°%µ]+)?")
 _RATIO = re.compile(r"(?<![\w.])(\d+(?:\.\d+)?)\s*:\s*(\d+(?:\.\d+)?)(?![\w.])")
+_SCORE_SCALE = re.compile(r"(?<![\w.])0\s*(?:-|\u2013|to)\s*100(?![\w.])")  # "0-100" names the score scale, not a target
 
 
 def _ids(items: Any) -> List[str]:
-    return [x.get("id") for x in items if isinstance(x, dict)] if isinstance(items, list) else []
+    """String ids of a list of objects; anything else is reported by the schema check."""
+    return [x["id"] for x in items if isinstance(x, dict) and isinstance(x.get("id"), str)] if isinstance(items, list) else []
 
 
 def _num(x: Any) -> bool:
     return isinstance(x, (int, float)) and not isinstance(x, bool)
+
+
+def _list(x: Any) -> list:
+    return x if isinstance(x, list) else []
+
+
+def _dict(x: Any) -> dict:
+    return x if isinstance(x, dict) else {}
+
+
+def _key(x: Any) -> Any:
+    """A hashable stand-in for any JSON value, so malformed LLM output is reported instead of crashing."""
+    return x if x is None or isinstance(x, (str, int, float, bool)) else json.dumps(x, sort_keys=True, default=str)
+
+
+def _tile(x: Any) -> Optional[Tuple[int, int]]:
+    return (x[0], x[1]) if isinstance(x, list) and len(x) == 2 and all(isinstance(t, int) and not isinstance(t, bool) for t in x) else None
 
 
 def _resolve_target(ref: Any, prefixes: List[str], npcs: set, locations: set) -> bool:
@@ -422,11 +442,12 @@ def _resolve_target(ref: Any, prefixes: List[str], npcs: set, locations: set) ->
 
 def _secret_values(level: Dict[str, Any]) -> List[Tuple[float, Optional[str]]]:
     """(value, unit) pairs a player must not be told: numeric targets and range bounds."""
-    params, scoring = level.get("params") or {}, level.get("scoring") or {}
-    units = {c.get("id"): c.get("unit") for c in (params.get("variables") or params.get("phases") or []) if isinstance(c, dict)}
+    params, scoring = _dict(level.get("params")), _dict(level.get("scoring"))
+    units = {_key(c.get("id")): c.get("unit") if isinstance(c.get("unit"), str) else None
+             for c in _list(params.get("variables")) + _list(params.get("phases")) if isinstance(c, dict)}
     out: List[Tuple[float, Optional[str]]] = []
-    terms = [(vid, t) for vid, t in (scoring.get("variables") or {}).items() if isinstance(t, dict)]
-    terms += [(None, t) for t in (scoring.get("derived") or []) if isinstance(t, dict)]
+    terms = [(vid, t) for vid, t in _dict(scoring.get("variables")).items() if isinstance(t, dict)]
+    terms += [(None, t) for t in _list(scoring.get("derived")) if isinstance(t, dict)]
     for vid, t in terms:
         unit = units.get(vid) if vid else None
         if _num(t.get("target")):
@@ -439,6 +460,7 @@ def _secret_values(level: Dict[str, Any]) -> List[Tuple[float, Optional[str]]]:
 def find_leaks(text: str, secrets: List[Tuple[float, Optional[str]]]) -> List[Tuple[int, int]]:
     """Spans of text that reveal a secret value: a number with its unit, any number >= 10 or fractional, or a 1:N ratio."""
     spans: List[Tuple[int, int]] = []
+    scale = [(m.start(), m.end()) for m in _SCORE_SCALE.finditer(text)]
     for m in _RATIO.finditer(text):
         a, b = float(m.group(1)), float(m.group(2))
         for value, _ in secrets:
@@ -446,7 +468,7 @@ def find_leaks(text: str, secrets: List[Tuple[float, Optional[str]]]) -> List[Tu
                 spans.append((m.start(), m.end()))
                 break
     for m in _NUMBER.finditer(text):
-        if any(s <= m.start() < e for s, e in spans):
+        if any(s <= m.start() < e for s, e in spans + scale):
             continue
         n, word = float(m.group(1)), m.group(3) or ""
         for value, unit in secrets:
@@ -537,7 +559,7 @@ class _Checker:
             self.bad("levels", "levels.count", f"levels must be a list of exactly {n_levels}")
             levels = []
         if len(levels) > n_levels:
-            keep = [lvl for lvl in levels if isinstance(lvl, dict) and lvl.get("mechanic") in mechanic_ids][:n_levels]
+            keep = [lvl for lvl in levels if isinstance(lvl, dict) and _key(lvl.get("mechanic")) in mechanic_ids][:n_levels]
             if len(keep) == n_levels:
                 self.issue("levels", "levels.count", f"{len(levels)} levels, exactly {n_levels} allowed",
                            lambda: w.__setitem__("levels", keep), f"kept the first {n_levels} with allowed mechanics")
@@ -547,18 +569,18 @@ class _Checker:
         elif len(levels) < n_levels:
             self.bad("levels", "levels.count", f"{len(levels)} levels, exactly {n_levels} required")
 
-        tasks = [lvl.get("task_id") for lvl in levels if isinstance(lvl, dict)]
+        tasks = [_key(lvl.get("task_id")) for lvl in levels if isinstance(lvl, dict)]
         if len(set(tasks)) != len(tasks):
             self.bad("levels", "levels.distinct_tasks", "each level must implement a different research task (task_id)")
-        ids = [lvl.get("id") for lvl in levels if isinstance(lvl, dict)]
+        ids = [_key(lvl.get("id")) for lvl in levels if isinstance(lvl, dict)]
         if len(set(ids)) != len(ids):
             self.bad("levels", "levels.distinct_ids", "level ids must be unique")
 
         self.npcs = set(_ids(w.get("npcs")))
-        self.locations = set(_ids((w.get("map") or {}).get("locations")))
+        self.locations = set(_ids(_dict(w.get("map")).get("locations")))
         if len(self.npcs) != len(_ids(w.get("npcs"))):
             self.bad("npcs", "world.ids", "npc ids must be unique")
-        if len(self.locations) != len(_ids((w.get("map") or {}).get("locations"))):
+        if len(self.locations) != len(_ids(_dict(w.get("map")).get("locations"))):
             self.bad("map.locations", "world.ids", "location ids must be unique")
         self.walkable = self._walkable()
 
@@ -569,34 +591,38 @@ class _Checker:
             if lvl.get("index") != i + 1:
                 self.issue(f"levels[{i}].index", "level.index", f"index must be {i + 1}",
                            lambda lvl=lvl, i=i: lvl.__setitem__("index", i + 1), f"set to {i + 1}")
-            self.level(i, lvl, mechanic_ids)
+            try:
+                self.level(i, lvl, mechanic_ids)
+            except (TypeError, ValueError, AttributeError, KeyError, IndexError, OverflowError) as exc:
+                # last-resort guard: malformed builder output must become a violation, never a crash
+                self.bad(f"levels[{i}]", "level.shape", f"malformed level ({type(exc).__name__}: {exc})")
 
         if self.rules.get("schema"):
-            known = [v["path"] for v in self.violations]
+            known = [v["path"] for v in self.violations if v["rule"] != "level.shape"]
             for path, msg in schema_errors(w, self.rules["schema"], self.rules["schema"]):
                 # skip schema errors already explained by a rule violation on the same path
                 if not any(path == k or path.startswith((k + ".", k + "[")) or k.startswith((path + ".", path + "[")) for k in known):
                     self.bad(path, "schema", f"{msg} (world.schema.json on main)")
 
     def _walkable(self) -> Optional[set]:
-        m = self.world.get("map") or {}
+        m = _dict(self.world.get("map"))
         cols, rows = m.get("cols"), m.get("rows")
-        if not (isinstance(cols, int) and isinstance(rows, int)):
+        if not (isinstance(cols, int) and isinstance(rows, int)) or isinstance(cols, bool) or isinstance(rows, bool) or cols > 1000 or rows > 1000:
             return None
         blocked = set()
-        for s in m.get("solids") or []:
-            if all(_num(s.get(k)) for k in ("x", "y", "w", "h")):
-                blocked |= {(x, y) for x in range(int(s["x"]), int(s["x"] + s["w"])) for y in range(int(s["y"]), int(s["y"] + s["h"]))}
-        blocked |= {tuple(n["tile"]) for n in self.world.get("npcs") or [] if isinstance(n, dict) and isinstance(n.get("tile"), list)}
-        spawn = m.get("spawn")
-        if not (isinstance(spawn, list) and len(spawn) == 2 and all(isinstance(t, int) for t in spawn)
-                and 0 <= spawn[0] < cols and 0 <= spawn[1] < rows):
+        for s in _list(m.get("solids")):
+            if isinstance(s, dict) and all(isinstance(s.get(k), int) and not isinstance(s.get(k), bool) for k in ("x", "y", "w", "h")):
+                x0, y0 = max(s["x"], 0), max(s["y"], 0)
+                blocked |= {(x, y) for x in range(x0, min(s["x"] + s["w"], cols)) for y in range(y0, min(s["y"] + s["h"], rows))}
+        blocked |= {_tile(n.get("tile")) for n in _list(self.world.get("npcs")) if isinstance(n, dict) and _tile(n.get("tile"))}
+        spawn = _tile(m.get("spawn"))
+        if not (spawn and 0 <= spawn[0] < cols and 0 <= spawn[1] < rows):
             self.bad("map.spawn", "world.spawn", "spawn must be a tile inside the map")
             return None
-        if tuple(spawn) in blocked:
+        if spawn in blocked:
             self.bad("map.spawn", "world.spawn", "spawn is on a solid tile")
             return None
-        seen, queue = {tuple(spawn)}, [tuple(spawn)]
+        seen, queue = {spawn}, [spawn]
         while queue:
             x, y = queue.pop()
             for nx, ny in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)):
@@ -614,7 +640,7 @@ class _Checker:
     def level(self, i: int, lvl: Dict[str, Any], mechanic_ids: set) -> None:
         p, actions = f"levels[{i}]", self.actions
         mech = lvl.get("mechanic")
-        if mech not in mechanic_ids:
+        if not isinstance(mech, str) or mech not in mechanic_ids:
             self.bad(f"{p}.mechanic", "mechanic.allowlist", f"unknown mechanic {mech!r}; allowed: {sorted(mechanic_ids)}")
             return
         rule = actions["mechanics"][mech]
@@ -654,23 +680,24 @@ class _Checker:
                 self.issue(f"{p}.controls", "controls.allowlist", f"controls {bad} are not allowed for {mech}; allowed: {rule['controls']}",
                            lambda: lvl.__setitem__("controls", [c for c in declared if c in rule["controls"]]), "removed them")
 
-        quest = lvl.get("quest") if isinstance(lvl.get("quest"), dict) else {}
-        if quest.get("npc_id") not in self.npcs:
+        quest = _dict(lvl.get("quest"))
+        if _key(quest.get("npc_id")) not in self.npcs:
             self.bad(f"{p}.quest.npc_id", "level.quest", f"quest npc {quest.get('npc_id')!r} is not in npcs")
-        if quest.get("location_id") not in self.locations:
+        if _key(quest.get("location_id")) not in self.locations:
             self.bad(f"{p}.quest.location_id", "level.quest", f"quest location {quest.get('location_id')!r} is not in map.locations")
-        npc_tiles = {n["id"]: n.get("tile") for n in self.world.get("npcs") or [] if isinstance(n, dict) and "id" in n}
-        locs = {loc["id"]: loc for loc in (self.world.get("map") or {}).get("locations") or [] if isinstance(loc, dict) and "id" in loc}
-        npc_tile = npc_tiles.get(quest.get("npc_id"))
-        if isinstance(npc_tile, list) and len(npc_tile) == 2 and not self._reachable([tuple(npc_tile)]):
+        npc_tiles = {n["id"]: _tile(n.get("tile")) for n in _list(self.world.get("npcs")) if isinstance(n, dict) and isinstance(n.get("id"), str)}
+        locs = {loc["id"]: loc for loc in _list(_dict(self.world.get("map")).get("locations")) if isinstance(loc, dict) and isinstance(loc.get("id"), str)}
+        npc_tile = npc_tiles.get(_key(quest.get("npc_id")))
+        if npc_tile and not self._reachable([npc_tile]):
             self.bad(f"{p}.quest.npc_id", "level.reachable", "the quest NPC cannot be reached by walking from spawn")
-        loc = locs.get(quest.get("location_id"))
-        if loc and isinstance(loc.get("tile"), list) and len(loc["tile"]) == 2:
-            tx, ty = loc["tile"]
-            if not self._reachable([(tx + dx, ty + dy) for dx in range(int(loc.get("w", 1))) for dy in range(int(loc.get("h", 1)))]):
+        loc = locs.get(_key(quest.get("location_id")))
+        if loc and _tile(loc.get("tile")):
+            (tx, ty), lw, lh = _tile(loc["tile"]), loc.get("w", 1), loc.get("h", 1)
+            lw, lh = (min(v, 64) if isinstance(v, int) and not isinstance(v, bool) and v > 0 else 1 for v in (lw, lh))
+            if not self._reachable([(tx + dx, ty + dy) for dx in range(lw) for dy in range(lh)]):
                 self.bad(f"{p}.quest.location_id", "level.reachable", "the quest location cannot be reached by walking from spawn")
-        for j, line in enumerate(lvl.get("dialogue") or []):
-            if isinstance(line, dict) and line.get("npc_id") not in self.npcs:
+        for j, line in enumerate(_list(lvl.get("dialogue"))):
+            if isinstance(line, dict) and _key(line.get("npc_id")) not in self.npcs:
                 self.bad(f"{p}.dialogue[{j}].npc_id", "level.dialogue", f"dialogue npc {line.get('npc_id')!r} is not in npcs")
 
         params = lvl.get("params")
@@ -697,15 +724,15 @@ class _Checker:
                 self.bad(f"{p}.params.{name}", "params.value", f"params.{name} must be an integer >= {spec['integer_min']}")
             if spec["fields"] is not None:
                 self._items(f"{p}.params.{name}", name, value, spec["fields"], spec["bounds"])
-        if "station_id" in rule["params"] and params.get("station_id") not in self.locations:
+        if "station_id" in rule["params"] and _key(params.get("station_id")) not in self.locations:
             self.bad(f"{p}.params.station_id", "params.ref", f"station {params.get('station_id')!r} is not in map.locations")
-        if mech == "converse" and params.get("npc_id") not in self.npcs:
+        if mech == "converse" and _key(params.get("npc_id")) not in self.npcs:
             self.bad(f"{p}.params.npc_id", "params.ref", f"npc {params.get('npc_id')!r} is not in npcs")
         for key in ("variables", "phases", "items", "bins", "orders", "turns", "ingredients"):
             ids = _ids(params.get(key))
             if len(set(ids)) != len(ids):
                 self.bad(f"{p}.params.{key}", "params.ids", f"params.{key} ids must be unique")
-        for j, c in enumerate(params.get("variables") or params.get("phases") or []):
+        for j, c in enumerate(_list(params.get("variables" if mech == "mix" else "phases"))):
             if not isinstance(c, dict) or not all(_num(c.get(k)) for k in ("min", "max")):
                 continue
             q = f"{p}.params.{'variables' if mech == 'mix' else 'phases'}[{j}]"
@@ -724,13 +751,13 @@ class _Checker:
                 if c.get("mode") == "hold" and not (_num(c.get("fill_per_s")) and c["fill_per_s"] > 0):
                     self.bad(f"{q}.fill_per_s", "params.value", "hold phases need fill_per_s > 0")
         if mech == "deliver":
-            m = self.world.get("map") or {}
-            tile = params.get("start_tile")
-            if not (isinstance(tile, list) and len(tile) == 2 and all(isinstance(t, int) for t in tile)
-                    and 0 <= tile[0] < m.get("cols", 0) and 0 <= tile[1] < m.get("rows", 0)):
+            m = _dict(self.world.get("map"))
+            cols, rows = (v if _num(v) else 0 for v in (m.get("cols"), m.get("rows")))
+            tile = _tile(params.get("start_tile"))
+            if not (tile and 0 <= tile[0] < cols and 0 <= tile[1] < rows):
                 self.bad(f"{p}.params.start_tile", "params.value", "start_tile must be [col, row] inside the map")
             prefixes = rule.get("target_prefixes", [])
-            for j, order in enumerate(params.get("orders") or []):
+            for j, order in enumerate(_list(params.get("orders"))):
                 for end in ("from", "to"):
                     if isinstance(order, dict) and not _resolve_target(order.get(end), prefixes, self.npcs, self.locations):
                         self.bad(f"{p}.params.orders[{j}].{end}", "params.ref", f"order {end} {order.get(end)!r} is not an npc/location target")
@@ -767,13 +794,13 @@ class _Checker:
 
         if mech in ("mix", "timing"):
             key = "variables" if mech == "mix" else "phases"
-            controls = [c for c in params.get(key) or [] if isinstance(c, dict) and "id" in c]
+            controls = [c for c in _list(params.get(key)) if isinstance(c, dict) and isinstance(c.get("id"), str)]
             by_id = {c["id"]: c for c in controls}
             terms = scoring.get("variables") if isinstance(scoring.get("variables"), dict) else {}
             for vid in [v for v in terms if v not in by_id]:
                 self.issue(f"{q}.variables.{vid}", "scoring.terms", f"scoring term {vid!r} has no matching {key[:-1]}",
                            lambda vid=vid: terms.pop(vid), "removed the term")
-            in_derived = {i for d in scoring.get("derived") or [] if isinstance(d, dict) and isinstance(d.get("expr"), str) for i in parse_expr(d["expr"])[2]}
+            in_derived = {i for d in _list(scoring.get("derived")) if isinstance(d, dict) and isinstance(d.get("expr"), str) for i in parse_expr(d["expr"])[2]}
             unscored = [vid for vid in by_id if vid not in terms and vid not in in_derived]
             for vid in unscored:
                 def drop(vid=vid):
@@ -784,7 +811,9 @@ class _Checker:
             for vid, term in terms.items():
                 self._term(f"{q}.variables.{vid}", term, curves, by_id.get(vid))
             names = set(by_id)
-            for j, d in enumerate(scoring.get("derived") or []):
+            if "derived" in scoring and not isinstance(scoring["derived"], list):
+                self.bad(f"{q}.derived", "scoring.derived", "derived must be a list of terms")
+            for j, d in enumerate(_list(scoring.get("derived"))):
                 dp = f"{q}.derived[{j}]"
                 if not isinstance(d, dict) or not all(isinstance(d.get(k), str) and d[k] for k in ("id", "label", "expr")):
                     self.bad(dp, "scoring.derived", "derived terms need id, label and expr")
@@ -800,37 +829,39 @@ class _Checker:
                 self._term(dp, d, curves, None)
             order = scoring.get("order")
             if isinstance(order, dict):
-                if set(order.get("expected") or []) - set(_ids(params.get("ingredients"))):
+                if not isinstance(order.get("expected"), list) or {_key(x) for x in order["expected"]} - set(_ids(params.get("ingredients"))):
                     self.bad(f"{q}.order.expected", "scoring.terms", "order.expected uses unknown ingredients")
-            if not any(v["path"].startswith(q) or v["path"].startswith(f"{p}.params") for v in self.violations) and terms and controls and _num(scoring.get("pass_threshold")):
+            numeric_controls = all(_num(c.get("min")) and _num(c.get("max")) and c["min"] < c["max"]
+                                   and (mech != "mix" or (_num(c.get("step")) and c["step"] > 0)) for c in controls)
+            if (numeric_controls and terms and controls and _num(scoring.get("pass_threshold"))
+                    and not any(v["path"].startswith(q) or v["path"].startswith(f"{p}.params") for v in self.violations)):
                 ctrl = controls if mech == "mix" else [{**c, "step": (c["max"] - c["min"]) / 400} for c in controls]
-                best = best_numeric_score(ctrl, scoring)
-                if best < scoring["pass_threshold"]:
-                    self.bad(q, "scoring.reachable", f"best reachable score {best} is below pass_threshold {scoring['pass_threshold']}")
+                self._reachable_threshold(q, scoring, best_numeric_score(ctrl, scoring))
 
         elif mech == "sort":
             items, bins = set(_ids(params.get("items"))), set(_ids(params.get("bins")))
-            correct = scoring.get("correct") if isinstance(scoring.get("correct"), dict) else {}
+            correct = _dict(scoring.get("correct"))
             if set(correct) != items:
                 self.bad(f"{q}.correct", "scoring.terms", "scoring.correct must map every item id, and only item ids")
-            if set(correct.values()) - bins:
-                self.bad(f"{q}.correct", "scoring.terms", f"scoring.correct uses unknown bins {sorted(set(correct.values()) - bins)}")
+            unknown_bins = {_key(b) for b in correct.values()} - bins
+            if unknown_bins:
+                self.bad(f"{q}.correct", "scoring.terms", f"scoring.correct uses unknown bins {sorted(map(str, unknown_bins))}")
             for key in ("weights", "feedback"):
-                extra = set(scoring.get(key) or {}) - items
+                extra = set(_dict(scoring.get(key))) - items
                 if extra:
                     self.bad(f"{q}.{key}", "scoring.terms", f"scoring.{key} has unknown items {sorted(extra)}")
-            for iid, wt in (scoring.get("weights") or {}).items():
+            for iid, wt in _dict(scoring.get("weights")).items():
                 if not _num(wt) or wt <= 0:
                     self.bad(f"{q}.weights.{iid}", "scoring.value", "weights must be > 0")
 
         elif mech == "deliver":
-            weights = scoring.get("weights") if isinstance(scoring.get("weights"), dict) else {}
+            weights = _dict(scoring.get("weights"))
             for k in ("accuracy", "time"):
                 if not _num(weights.get(k)) or weights[k] < 0:
                     self.bad(f"{q}.weights.{k}", "scoring.terms", f"deliver scoring needs weights.{k} >= 0")
             if _num(weights.get("accuracy")) and _num(weights.get("time")) and weights["accuracy"] + weights["time"] <= 0:
                 self.bad(f"{q}.weights", "scoring.terms", "deliver weights must not sum to 0")
-            missing = [k for k in ("wrong_target", "late", "missed") if k not in (scoring.get("feedback") or {})]
+            missing = [k for k in ("wrong_target", "late", "missed") if k not in _dict(scoring.get("feedback"))]
             if missing:
                 self.bad(f"{q}.feedback", "scoring.terms", f"deliver feedback needs {missing}")
             par = params.get("par_ms")
@@ -844,21 +875,33 @@ class _Checker:
                 self.bad(f"{p}.params.par_ms", "params.value", "par_ms must be below time_limit_ms")
 
         elif mech == "converse":
-            turns = {t.get("id"): t for t in params.get("turns") or [] if isinstance(t, dict)}
-            spec = scoring.get("turns") if isinstance(scoring.get("turns"), dict) else {}
+            turns = {t["id"]: t for t in _list(params.get("turns")) if isinstance(t, dict) and isinstance(t.get("id"), str)}
+            spec = _dict(scoring.get("turns"))
             if set(spec) != set(turns):
                 self.bad(f"{q}.turns", "scoring.terms", "scoring.turns must cover every turn id, and only turn ids")
             best = []
             for tid, turn in turns.items():
-                opts, scored = set(_ids(turn.get("options"))), spec.get(tid) or {}
+                opts, scored = set(_ids(turn.get("options"))), _dict(spec.get(tid))
                 if set(scored) != opts:
                     self.bad(f"{q}.turns.{tid}", "scoring.terms", "scoring must cover every option of the turn, and only those")
                 pts = [o.get("points") for o in scored.values() if isinstance(o, dict)]
                 if any(not _num(x) or not 0 <= x <= 1 for x in pts):
                     self.bad(f"{q}.turns.{tid}", "scoring.value", "points must be 0..1")
-                best.append(max([x for x in pts if _num(x)] or [0]))
-            if best and _num(scoring.get("pass_threshold")) and 100 * sum(best) / len(best) < scoring["pass_threshold"]:
-                self.bad(q, "scoring.reachable", "the best answers cannot reach pass_threshold")
+                # choosing a critical option fails the level, so only non-critical options count towards the best score
+                safe = [o.get("points") for o in scored.values() if isinstance(o, dict) and o.get("critical") is not True and _num(o.get("points"))]
+                if scored and not safe:
+                    self.bad(f"{q}.turns.{tid}", "scoring.reachable", "every option of the turn is critical, so the level cannot be passed")
+                best.append(max(safe or [0]))
+            if best and _num(scoring.get("pass_threshold")) and not any(v["path"].startswith(q) for v in self.violations):
+                self._reachable_threshold(q, scoring, round(100 * sum(best) / len(best), 1))
+
+    def _reachable_threshold(self, q: str, scoring: Dict[str, Any], best: float) -> None:
+        """A level must be passable: lower pass_threshold to the best reachable score; a flat 0 cannot be learned from."""
+        if best >= scoring["pass_threshold"]:
+            return
+        lowered = math.floor(best)
+        self.issue(f"{q}.pass_threshold", "scoring.reachable", f"best reachable score {best} is below pass_threshold {scoring['pass_threshold']}",
+                   (lambda: scoring.__setitem__("pass_threshold", lowered)) if lowered >= 1 else None, f"lowered pass_threshold to {lowered}")
 
     def _term(self, path: str, term: Any, curves: set, control: Optional[Dict[str, Any]]) -> None:
         if not isinstance(term, dict):
@@ -873,13 +916,13 @@ class _Checker:
         for k in ("tolerance", "weight"):
             if not _num(term.get(k)) or term[k] <= 0:
                 self.bad(f"{path}.{k}", "scoring.term", f"{k} must be > 0")
-        if term.get("curve") not in curves:
+        if _key(term.get("curve")) not in curves:
             self.bad(f"{path}.curve", "scoring.term", f"curve must be one of {sorted(curves)}")
         fb = term.get("feedback")
         if not isinstance(fb, dict) or not all(isinstance(fb.get(k), str) and fb[k].strip() for k in ("too_low", "too_high")):
             self.bad(f"{path}.feedback", "scoring.term", "feedback needs too_low and too_high messages")
         if control and _num(control.get("min")) and _num(control.get("max")):
-            bounds = [term["target"]] if _num(term.get("target")) else [x for x in term.get("range") or [] if _num(x)]
+            bounds = [term["target"]] if _num(term.get("target")) else [x for x in _list(term.get("range")) if _num(x)]
             if bounds and (min(bounds) < control["min"] or max(bounds) > control["max"]):
                 lo, hi = min(control["min"], min(bounds)), max(control["max"], max(bounds))
 
@@ -893,8 +936,14 @@ class _Checker:
         secrets = _secret_values(lvl)
         if not secrets:
             return
-        spots = [(f"{p}.{k}", lvl, k) for k in ("aim", "controls_hint") if isinstance(lvl.get(k), str)]
+        # aim, hint, feedback (success_line is the feedback when nothing is off), and dialogue,
+        # which reaches observation.messages (actions.json: the observation never contains targets)
+        spots = [(f"{p}.{k}", lvl, k) for k in ("aim", "controls_hint", "success_line") if isinstance(lvl.get(k), str)]
+        if isinstance(lvl.get("metric"), dict) and isinstance(lvl["metric"].get("description"), str):
+            spots.append((f"{p}.metric.description", lvl["metric"], "description"))
         spots += list(_feedback_strings(lvl.get("scoring") or {}, f"{p}.scoring"))
+        spots += [(f"{p}.dialogue[{j}].text", line, "text") for j, line in enumerate(_list(lvl.get("dialogue")))
+                  if isinstance(line, dict) and isinstance(line.get("text"), str)]
         for path, container, key in spots:
             spans = find_leaks(container[key], secrets)
             if spans:
@@ -1037,7 +1086,7 @@ def query_rules_graph(world: Dict[str, Any], actions: Dict[str, Any], manifest: 
         elif not any(e["kind"] == kind and e["name"] == name for e in evidence):
             evidence.append({"kind": kind, "name": name, "at": f"{RULES_PATH}:{line}"})
 
-    for i, lvl in enumerate(world.get("levels") or []):
+    for i, lvl in enumerate(_list(world.get("levels"))):
         if not isinstance(lvl, dict):
             continue
         mech = lvl.get("mechanic")
@@ -1046,14 +1095,14 @@ def query_rules_graph(world: Dict[str, Any], actions: Dict[str, Any], manifest: 
         if not block:
             continue
         rule = actions["mechanics"].get(mech, {})
-        for ctrl in list(rule.get("controls", [])) + [c for c in lvl.get("controls") or [] if isinstance(c, str)]:
+        for ctrl in list(rule.get("controls", [])) + [c for c in _list(lvl.get("controls")) if isinstance(c, str)]:
             resolve("control", ctrl, controls_section, f"levels[{i}].controls", "controls")
         # The graph keeps one symbol per JSON key name, so a param resolves within the mechanics
         # section; the local validator checks params per mechanic.
-        for name in (lvl.get("params") or {}):
+        for name in _dict(lvl.get("params")):
             resolve("param", name, graph.sections.get("mechanics"), f"levels[{i}].params.{name}", "mechanics.*.params")
-        scoring = lvl.get("scoring") or {}
-        terms = list((scoring.get("variables") or {}).values()) + list(scoring.get("derived") or [])
+        scoring = _dict(lvl.get("scoring"))
+        terms = list(_dict(scoring.get("variables")).values()) + _list(scoring.get("derived"))
         for term in terms:
             if isinstance(term, dict) and isinstance(term.get("curve"), str):
                 resolve("curve", term["curve"], curves_section, f"levels[{i}].scoring", "scoring_spec.numeric_term.curves")
@@ -1179,7 +1228,7 @@ def finalize_world(world: Dict[str, Any], repo_root: Path = WORKSPACE_ROOT, *, r
         return world
     rules = load_rules(repo_root, ref)
     world = copy.deepcopy(world)
-    first = check_world(world, repo_root, ref=ref, repair=True, rules=rules)
+    first = check_world(world, repo_root, ref=ref, repair=True, use_graph=False, rules=rules)  # repairs are local; the graph checks the result
     report = check_world(world, repo_root, ref=ref, rules=rules)
     report["repairs"] = first["repairs"]
     if not (isinstance(world.get("slug"), str) and re.fullmatch(r"[a-z0-9]+(-[a-z0-9]+)*", world["slug"])):
@@ -1190,7 +1239,13 @@ def finalize_world(world: Dict[str, Any], repo_root: Path = WORKSPACE_ROOT, *, r
     if not report["ok"]:
         raise GraphCheckError(report)
     if commit:
-        recorded = commit_game_branch(world, report, repo_root)
+        try:
+            recorded = commit_game_branch(world, report, repo_root)
+        except (subprocess.CalledProcessError, FileNotFoundError, OSError) as exc:
+            # e.g. the deploy image has no .git or no main: the checked world is still served from games/<slug>/
+            detail = (getattr(exc, "stderr", "") or str(exc)).strip()[:300]
+            print(f"[graph_check] warning: game/{world['slug']} not committed ({detail}); games/{world['slug']}/world.json is kept")
+            return world
         scope = recorded.get("graph_branch_scope")
         print(f"[graph_check] committed {recorded['branch']} {recorded['commit'][:10]}"
               + (f"; graph branch scope ok={scope['ok']} ({scope['entities']} entities)" if scope else ""))
@@ -1201,6 +1256,8 @@ def finalize_world(world: Dict[str, Any], repo_root: Path = WORKSPACE_ROOT, *, r
 
 def check_branch(branch: str, repo_root: Path = WORKSPACE_ROOT, ref: str = RULES_REF) -> Dict[str, Any]:
     """Re-check a committed game branch: its world against main's rules, plus the graph diff scope."""
+    if not re.fullmatch(r"game/[a-z0-9]+(-[a-z0-9]+)*", branch):
+        raise ValueError(f"expected a game/<slug> branch, got {branch!r}")
     slug = branch.split("/", 1)[1]
     world = json.loads(_git(Path(repo_root), "show", f"{branch}:games/{slug}/world.json"))
     report = check_world(world, repo_root, ref=ref)
@@ -1227,6 +1284,8 @@ if __name__ == "__main__":
     args = parser.parse_args()
     if not args.world and not args.branch:
         parser.error("give a world.json path or --branch game/<slug>")
+    if args.branch and not re.fullmatch(r"game/[a-z0-9]+(-[a-z0-9]+)*", args.branch):
+        parser.error(f"--branch must be game/<slug>, got {args.branch!r}")
 
     if args.branch:
         result = check_branch(args.branch, WORKSPACE_ROOT, args.ref)

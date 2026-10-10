@@ -324,9 +324,9 @@ def test_game_branch():
         assert git(tmp, "status", "--porcelain") == "", "builder left changes in the main working tree"
         assert len(git(tmp, "worktree", "list").splitlines()) == 1, "temporary worktree left behind"
         assert git(tmp, "merge-base", "--is-ancestor", "main", f"game/{slug}") == ""
-        first = git(tmp, "rev-parse", f"game/{slug}")
-        agent.build_world(brief)  # rebuild: same content, branch reused, nothing new to commit
-        assert git(tmp, "rev-parse", f"game/{slug}") == first
+        agent.build_world(brief)  # rebuild: graph_check re-validates and records a fresh commit on game/<slug>
+        assert json.loads(git(tmp, "show", f"game/{slug}:games/{slug}/world.json")) == world
+        assert git(tmp, "rev-parse", f"game/{slug}^") == git(tmp, "rev-parse", "main"), "game branch should sit directly on main"
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 

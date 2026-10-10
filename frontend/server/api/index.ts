@@ -4,10 +4,11 @@ import { routes as runsRoutes } from './runs.ts'
 import { routes as skillsRoutes } from './skills.ts'
 import { routes as trainRoutes } from './train.ts'
 import { routes as voiceRoutes } from './voice.ts'
+import { routes as worldRoutes } from './world.ts'
 
 // Each feature owns one file in this folder exporting `routes: Route[]`; edit only your file.
 // A new file adds ONE import and ONE spread here. See shared/game_contract.md section j.
-export const routes: Route[] = [...trainRoutes, ...runsRoutes, ...skillsRoutes, ...voiceRoutes]
+export const routes: Route[] = [...trainRoutes, ...runsRoutes, ...skillsRoutes, ...voiceRoutes, ...worldRoutes]
 
 function match(pattern: string, pathname: string): Record<string, string> | null {
   const a = pattern.split('/')

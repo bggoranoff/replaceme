@@ -1,0 +1,482 @@
+{
+  "job": "florist",
+  "slug": "florist",
+  "title": "The Village Florist",
+  "setting": "The cozy botanical studio of Wildflower Lane, nestled between the village riverbank and the cobblestone market square, featuring a cool damp cellar, a bright conditioning bench, and an open sunlit counter.",
+  "sources": [
+    {
+      "title": "University of Massachusetts Amherst Extension: Care and Handling of Cut Flowers",
+      "url": "https://ag.umass.edu/greenhouse-crops-floriculture/fact-sheets/care-handling-of-cut-flowers"
+    },
+    {
+      "title": "Floralife Postharvest Flower Care Guidelines",
+      "url": "https://floralife.com/flower-library/"
+    },
+    {
+      "title": "Chrysal Professional Flower Care: Hydration and Dosing Instructions",
+      "url": "https://www.chrysal.com/en-us/products/chrysal-professional-2"
+    },
+    {
+      "title": "American Institute of Floral Designers (AIFD): The AIFD Guide to Floral Design",
+      "url": "https://aifd.org/"
+    }
+  ],
+  "rules": [
+    "Cut flowers require specific osmotic pressure and water acidity (pH 3.5–4.5) to clear xylem air embolisms and prevent vascular blockage.",
+    "Commercial preservative solutions must be dosed strictly according to manufacturer ratios; underdosing starves stems while overdosing burns vascular tissue with salt toxicity.",
+    "Tropical genera (such as Anthurium and Vanda orchids) suffer chilling injury below 10°C, whereas temperate cut flowers require storage between 1.5°C and 4°C.",
+    "Freshly cut Narcissus (daffodil) stems secrete mucilage poisonous to other cut stems and must be isolated in fresh water for several hours before mixed arranging.",
+    "Ethylene-producing fruits and extreme heat sources degrade petal longevity rapidly and cause premature bud drop."
+  ],
+  "assumptions": [
+    "The village florist receives daily stem harvests from local meadow growers and highland glasshouses.",
+    "The studio maintains dedicated buckets, clean floral snips disinfected with quaternary ammonium, and temperature-controlled storage chambers.",
+    "Client consultations prioritize stem durability, seasonability, botanical safety, and aesthetic harmony."
+  ],
+  "tasks": [
+    {
+      "id": "conditioning-flower-food",
+      "title": "Conditioning Solution Preparation",
+      "summary": "Calculate and blend water, commercial cut-flower food concentrate, and temperature to formulate an optimal hydration solution for newly arrived temperate stems.",
+      "mechanic": "mix",
+      "mechanic_rationale": "Preparing flower preservative requires balancing water volume, solute powder mass, and water temperature to establish ideal hydration without osmotic shock.",
+      "aim": "Mix the solution to reach the ideal nutrient concentration and temperature for vase uptake.",
+      "variables": [
+        {
+          "id": "water_volume",
+          "label": "Water Volume",
+          "unit": "ml",
+          "min": 500,
+          "max": 2500,
+          "step": 50,
+          "default": 800
+        },
+        {
+          "id": "food_powder",
+          "label": "Flower Food Powder",
+          "unit": "g",
+          "min": 2,
+          "max": 35,
+          "step": 1,
+          "default": 4
+        },
+        {
+          "id": "water_temp",
+          "label": "Water Temperature",
+          "unit": "°C",
+          "min": 10,
+          "max": 60,
+          "step": 1,
+          "default": 16
+        }
+      ],
+      "derived": [
+        {
+          "id": "solution_concentration",
+          "label": "Preservative Concentration",
+          "expr": "food_powder / (water_volume / 1000)"
+        }
+      ],
+      "optima": [
+        {
+          "term": "solution_concentration",
+          "rationale": "Standard commercial universal cut flower food packets specify 10 grams of powder per 1000 ml (10 g/L) of water to maintain 1-2% sugars, acidifiers for pH 3.5–4.5, and stem bactericides without burning foliage.",
+          "source_urls": [
+            "https://ag.umass.edu/greenhouse-crops-floriculture/fact-sheets/care-handling-of-cut-flowers",
+            "https://floralife.com/flower-library/"
+          ],
+          "range": null,
+          "target": 10
+        },
+        {
+          "term": "water_temp",
+          "rationale": "Lukewarm water between 38°C and 43°C contains fewer dissolved air bubbles and moves more rapidly up the xylem vessels during initial conditioning than frigid tap water.",
+          "source_urls": [
+            "https://ag.umass.edu/greenhouse-crops-floriculture/fact-sheets/care-handling-of-cut-flowers"
+          ],
+          "range": [
+            38,
+            43
+          ],
+          "target": null
+        }
+      ],
+      "heuristic": [
+        {
+          "term": "solution_concentration",
+          "tolerance": 2.5,
+          "weight": 1.5,
+          "curve": "gaussian",
+          "too_low": "The nutrient solution is too dilute; bacteria thrive while the opening blossoms starve of carbohydrates.",
+          "too_high": "The chemical solution is overly concentrated; excessive salts draw water backward out of the stems, scorching petal margins.",
+          "rationale": "Accurate carbohydrate and biocide concentration dictates water uptake efficiency and longevity."
+        },
+        {
+          "term": "water_temp",
+          "tolerance": 5,
+          "weight": 1.0,
+          "curve": "gaussian",
+          "too_low": "The water is too cold; viscous water and trapped air embolisms delay stem rehydration.",
+          "too_high": "The water is dangerously hot; tender stem vascular tissues are scalded and collapse.",
+          "rationale": "Optimal warmth reduces water viscosity and dissolves trapped gas without thermally damaging tissues."
+        }
+      ],
+      "sort_items": [],
+      "sort_bins": [],
+      "orders": [],
+      "dialogue": [],
+      "caveats": [
+        "Never guess powder quantity by eye; inadequate biocide promotes rapid bacterial slime.",
+        "Softened water containing sodium must never be used because salt ions poison cut stems."
+      ],
+      "problems": [
+        "Bent neck in roses caused by vascular blockage when water uptake cannot keep pace with leaf transpiration.",
+        "Cloudy, foul-smelling bucket water indicating rampant bacterial bloom from insufficient antimicrobial concentration."
+      ],
+      "sources": [
+        {
+          "title": "University of Massachusetts Amherst Extension: Care and Handling of Cut Flowers",
+          "url": "https://ag.umass.edu/greenhouse-crops-floriculture/fact-sheets/care-handling-of-cut-flowers"
+        },
+        {
+          "title": "Floralife Research: Flower Food Dosing",
+          "url": "https://floralife.com/flower-library/"
+        }
+      ]
+    },
+    {
+      "id": "stem-hydration-quick-dip",
+      "title": "Quick-Dip Hydration Pulse",
+      "summary": "Time the immersion of freshly cut woody and thirsty stems into a concentrated acidifying hydration agent, then immediately transfer them into fresh holding buckets.",
+      "mechanic": "timing",
+      "mechanic_rationale": "Chemical hydration dip treatments (such as Floralife Quick Dip) require strict multi-second immersion windows; staying in too long burns the stem, while cutting it short fails to dissolve vascular air locks.",
+      "aim": "Time the quick-dip immersion duration precisely within the manufacturer's active window before plunging into holding water.",
+      "variables": [
+        {
+          "id": "dip_duration",
+          "label": "Immersion Duration",
+          "unit": "s",
+          "min": 0.2,
+          "max": 8,
+          "step": 0.1,
+          "default": 5.5
+        }
+      ],
+      "derived": [],
+      "optima": [
+        {
+          "term": "dip_duration",
+          "rationale": "Commercial quick-dip hydration solutions instruct florists to immerse stem bases for exactly 1 to 2 seconds before immediately placing them into holding solution.",
+          "source_urls": [
+            "https://floralife.com/flower-library/"
+          ],
+          "range": [
+            1,
+            2
+          ],
+          "target": null
+        }
+      ],
+      "heuristic": [
+        {
+          "term": "dip_duration",
+          "tolerance": 0.8,
+          "weight": 1.5,
+          "curve": "gaussian",
+          "too_low": "The dip was instantaneous; the concentrated surfactant could not coat the cut stem base or clear the vascular air lock.",
+          "too_high": "The stems remained submerged far too long; concentrated citric acid burned the delicate cambium layer at the base.",
+          "rationale": "Precise contact time maximizes capillary draw without causing chemical phytotoxicity."
+        }
+      ],
+      "sort_items": [],
+      "sort_bins": [],
+      "orders": [],
+      "dialogue": [],
+      "caveats": [
+        "Quick Dip is ready-to-use and should never be diluted with water.",
+        "Stems must be freshly recut at a 45-degree angle immediately prior to dipping."
+      ],
+      "problems": [
+        "Vascular chemical burn showing as blackened, mushy stem tips when left submerged too long.",
+        "Persistent air embolism resulting in drooping rose heads when dip time is insufficient."
+      ],
+      "sources": [
+        {
+          "title": "Floralife Quick Dip 100 Usage Guide",
+          "url": "https://floralife.com/flower-library/"
+        }
+      ]
+    },
+    {
+      "id": "flower-storage-sorting",
+      "title": "Postharvest Cold & Ambient Sorting",
+      "summary": "Route incoming floral varieties to their appropriate storage chambers based on temperature requirements and biochemical incompatibilities.",
+      "mechanic": "sort",
+      "mechanic_rationale": "Florists manage distinct microclimates to avoid chilling injury in tropicals and prevent toxic sap from contaminating neighboring cut flowers.",
+      "aim": "Sort each flower delivery item into its correct environmental chamber or isolation area.",
+      "variables": [],
+      "derived": [],
+      "optima": [],
+      "heuristic": [],
+      "sort_items": [
+        {
+          "label": "Freedom Red Roses (Rosa)",
+          "correct_bin": "Floral Cooler (2°C–4°C)",
+          "feedback": "Temperate garden flowers like roses must be held near freezing to slow respiration and halt rapid blossom opening."
+        },
+        {
+          "label": "Dutch White Lilies (Lilium orientalis)",
+          "correct_bin": "Floral Cooler (2°C–4°C)",
+          "feedback": "Lilies preserve petal firmness and bud life best in standard high-humidity refrigerated storage."
+        },
+        {
+          "label": "Anthurium Blooms",
+          "correct_bin": "Ambient Tropical Bench (13°C–18°C)",
+          "feedback": "Anthuriums suffer irreversible black chilling spots and petal necrosis if placed below 10°C."
+        },
+        {
+          "label": "Vanda Orchids",
+          "correct_bin": "Ambient Tropical Bench (13°C–18°C)",
+          "feedback": "Tropical orchids drop florets and experience rapid chilling damage inside a standard floral cooler."
+        },
+        {
+          "label": "Fresh-cut Golden Daffodils (Narcissus)",
+          "correct_bin": "Narcissus Isolation Vessel",
+          "feedback": "Daffodils discharge a toxic mucilage from cut stem ends that clogs water channels and wilts other flowers."
+        },
+        {
+          "label": "Paperwhite Jonquils (Narcissus tazetta)",
+          "correct_bin": "Narcissus Isolation Vessel",
+          "feedback": "Paperwhites release sap containing lycorine alkaloid; they must condition in isolated water for 12 hours before sharing vases."
+        },
+        {
+          "label": "Eucalyptus Foliage Bunches",
+          "correct_bin": "Floral Cooler (2°C–4°C)",
+          "feedback": "Hardy greens and temperate cut foliage stay crisp and dormant inside the refrigerated cooler."
+        }
+      ],
+      "sort_bins": [
+        "Floral Cooler (2°C–4°C)",
+        "Ambient Tropical Bench (13°C–18°C)",
+        "Narcissus Isolation Vessel"
+      ],
+      "orders": [],
+      "dialogue": [],
+      "caveats": [
+        "Never place fruit bowls or ripening tomatoes near floral bins due to high ethylene emissions.",
+        "After 6–12 hours of isolated soaking, Narcissus stems can be used in mixed arrangements if their stems are not recut."
+      ],
+      "problems": [
+        "Petal chilling injury turning tropical spathes translucent gray or black.",
+        "Premature wilting of mixed bucket flowers caused by co-mingling freshly cut daffodil stems."
+      ],
+      "sources": [
+        {
+          "title": "University of Massachusetts Amherst Extension: Care and Handling of Cut Flowers",
+          "url": "https://ag.umass.edu/greenhouse-crops-floriculture/fact-sheets/care-handling-of-cut-flowers"
+        },
+        {
+          "title": "AIFD Guide to Floral Design: Postharvest Science",
+          "url": "https://aifd.org/"
+        }
+      ]
+    },
+    {
+      "id": "village-floral-deliveries",
+      "title": "Special Event Floral Dispatch",
+      "summary": "Organize and dispatch custom arrangements to diverse village venues with exact handling, temperature, and environmental safeguards.",
+      "mechanic": "deliver",
+      "mechanic_rationale": "Arrangements are physically fragile perishable goods requiring route planning that respects timing, draft prevention, and environmental hazards.",
+      "aim": "Deliver delicate floral creations to their village destinations without mechanical bruising, spills, or temperature degradation.",
+      "variables": [],
+      "derived": [],
+      "optima": [],
+      "heuristic": [],
+      "sort_items": [],
+      "sort_bins": [],
+      "orders": [
+        {
+          "item": "Cascading Altar Pedestal of Delphiniums and White Roses",
+          "destination": "St. Jude Village Chapel",
+          "note": "Transport strapped upright with wet reservoir blocks; position in the shaded chancel away from sunny stained glass windows."
+        },
+        {
+          "item": "Bridal Hand-Tied Bouquet of Peonies and Sweet Peas",
+          "destination": "The Old Mill Bridal Suite",
+          "note": "Deliver upright in chilled hydro-transport box; stems must be kept submerged in cold water until photography begins."
+        },
+        {
+          "item": "Low Herb & Lavender Table Posies (Set of 6)",
+          "destination": "The Riverside Bakery Cafe",
+          "note": "Place on shaded patio tables; ensure vessels sit far away from bread baking ovens and open fruit pastry displays."
+        },
+        {
+          "item": "Standing Sympathy Wreath on Wooden Easel",
+          "destination": "Meadowview Memorial Hall",
+          "note": "Deliver through service door; mist foliage lightly upon setup and check water levels in the round foam base."
+        }
+      ],
+      "dialogue": [],
+      "caveats": [
+        "Floral transport vans must never direct heated cabin air into the cargo bay.",
+        "Always verify that foam-based arrangements have been soaked by gravitational immersion rather than forced under running tap water."
+      ],
+      "problems": [
+        "Water spillage in vehicle turns cardboard boxes soggy and collapses structural bases.",
+        "Petal bruising on delicate garden sweet peas and gardenias from jostling against delivery walls."
+      ],
+      "sources": [
+        {
+          "title": "American Institute of Floral Designers: Handling and Transporting Floral Arrangements",
+          "url": "https://aifd.org/"
+        }
+      ]
+    },
+    {
+      "id": "bridal-consultation",
+      "title": "Bespoke Wedding Consultation",
+      "summary": "Conduct a design consultation with an anxious bride-to-be, balancing her aesthetic dreams with seasonality, dress protection, and environmental durability.",
+      "mechanic": "converse",
+      "mechanic_rationale": "Client consultations require active listening, educating customers on botanical realities, and navigating emotional expectations with professional diplomacy.",
+      "aim": "Guide the bride toward an elegant, seasonally viable floral palette while avoiding catastrophic botanical errors.",
+      "variables": [],
+      "derived": [],
+      "optima": [],
+      "heuristic": [],
+      "sort_items": [],
+      "sort_bins": [],
+      "orders": [],
+      "dialogue": [
+        {
+          "npc_line": "I saw this dream bouquet online with huge open white lilies, but my wedding is outdoors in the July heat and I am terrified of ruining my heirloom silk gown!",
+          "options": [
+            {
+              "text": "Lilies are gorgeous, but their dark pollen anthers produce indelible stains on silk. We will remove all anthers upon opening and use heat-resilient garden roses and lisianthus to withstand the July afternoon.",
+              "points": 1.0,
+              "feedback": "Expertly addresses both the botanical staining risk and heat endurance while maintaining her aesthetic concept.",
+              "critical": false
+            },
+            {
+              "text": "We will provide standard open Asiatic lilies as requested without alteration; just make sure your bridesmaids hold the stems slightly tilted away from you.",
+              "points": 0.0,
+              "feedback": "Severe oversight: lily pollen powder will permanently ruin an antique silk gown at the slightest brush.",
+              "critical": true
+            },
+            {
+              "text": "Lilies are impossible in summer. You should replace all fresh flowers with artificial silk stems to eliminate any risk of staining.",
+              "points": 0.4,
+              "feedback": "Dismissive and fails to offer professional floral artistry solutions.",
+              "critical": false
+            }
+          ]
+        },
+        {
+          "npc_line": "Can we also include freshly picked Lily of the Valley and delicate garden Sweet Peas for the outdoor banquet table centerpieces in the afternoon sun?",
+          "options": [
+            {
+              "text": "Sweet peas and Lily of the Valley are very soft-stemmed spring blooms that wilt rapidly in direct summer heat. Let's showcase them in your personal bouquet, while using hearty blooms like dahlias, lisianthus, and olive branches on the tables.",
+              "points": 1.0,
+              "feedback": "Demonstrates deep knowledge of blossom transpiration and preserves delicate treasures in water sources.",
+              "critical": false
+            },
+            {
+              "text": "Sure, we can insert them into dry oasis foam runners across the tables so they stay perfectly in line under the afternoon sun.",
+              "points": 0.0,
+              "feedback": "Placing soft-stemmed spring blooms in dry foam under hot sun causes irreversible limp wilt within twenty minutes.",
+              "critical": false
+            },
+            {
+              "text": "We can put them on the tables, but you will need to assign a wedding guest to mist them with water spray bottles every ten minutes.",
+              "points": 0.2,
+              "feedback": "Unrealistic client burden and water droplet spotting will damage delicate petals in sunlight.",
+              "critical": false
+            }
+          ]
+        },
+        {
+          "npc_line": "My mother insists on adding baby's breath into every arrangement, but I really wanted an airy, natural garden feel rather than a 1980s cloud. How can we compromise?",
+          "options": [
+            {
+              "text": "We can incorporate delicate textures like Astrantia, Astilbe, and Queen Anne's lace instead; they provide the soft, frothy texture your mother loves while creating an elegant wildflower meadow look.",
+              "points": 1.0,
+              "feedback": "Splendid floral diplomacy: honors the tactile essence of the mother's wish while elevating modern design aesthetic.",
+              "critical": false
+            },
+            {
+              "text": "It is your wedding, so let's flatly tell your mother that baby's breath is outdated and ban it from the floral contract entirely.",
+              "points": 0.3,
+              "feedback": "Unprofessional client mediation that exacerbates family tension during wedding planning.",
+              "critical": false
+            },
+            {
+              "text": "We will just hide tight balls of baby's breath deep in the center of every arrangement so neither of you will notice it.",
+              "points": 0.2,
+              "feedback": "Poor design execution that adds visual clutter and wastes the floral budget.",
+              "critical": false
+            }
+          ]
+        }
+      ],
+      "caveats": [
+        "Never promise specific out-of-season blooms without explaining auction market price fluctuations and potential weather disruptions.",
+        "Always document bride's dress fabric and allergy concerns before finalizing botanical selection."
+      ],
+      "problems": [
+        "Unremoved lily pollen staining bridal gowns with bright orange stains that cannot be washed out with water.",
+        "Soft spring stems collapsing within hours when exposed to direct summer wedding conditions."
+      ],
+      "sources": [
+        {
+          "title": "American Institute of Floral Designers: Wedding Floral Consultation & Design Principles",
+          "url": "https://aifd.org/"
+        }
+      ]
+    }
+  ],
+  "brain": null,
+  "reasoning_traces": [
+    {
+      "step": 1,
+      "thought": "Reviewed the 5 requested platform mechanics: mix, timing, sort, deliver, converse. Designed 5 tasks for the florist job mapping to all 5 distinct mechanics: 1) conditioning-flower-food (mix with 3 variables and 1 derived ratio), 2) stem-hydration-quick-dip (timing with immersion duration), 3) flower-storage-sorting (sort 7 items across 3 bins), 4) village-floral-deliveries (deliver 4 orders with real constraints), 5) bridal-consultation (converse with 3 turns, 3 options each, and a critical bad choice).",
+      "evidence": [
+        "https://ag.umass.edu/greenhouse-crops-floriculture/fact-sheets/care-handling-of-cut-flowers",
+        "https://floralife.com/flower-library/"
+      ],
+      "task_id": null
+    },
+    {
+      "step": 2,
+      "thought": "Researched commercial flower food dosage: standard universal sachet / bulk powder recommends 10g per 1000ml water (10 g/L). Lukewarm water temperature between 38°C and 43°C (100°F–110°F) promotes quick capillary uptake and dissolves air bubbles. Configured defaults away from optimum and defined clear Gaussian tolerance curves.",
+      "evidence": [
+        "https://ag.umass.edu/greenhouse-crops-floriculture/fact-sheets/care-handling-of-cut-flowers"
+      ],
+      "task_id": "conditioning-flower-food"
+    },
+    {
+      "step": 3,
+      "thought": "Researched Quick Dip protocol: Floralife Quick Dip 100 specifies a 1-to-2 second immersion for freshly cut stems before placing them into holding water. Anything longer than a few seconds leads to chemical burn on cut cambium tissue.",
+      "evidence": [
+        "https://floralife.com/flower-library/"
+      ],
+      "task_id": "stem-hydration-quick-dip"
+    },
+    {
+      "step": 4,
+      "thought": "Formulated sorting bins based on biological postharvest requirements: standard floral cooler (2°C–4°C) for temperate cut flowers, ambient room temperature (13°C–18°C) for tropicals (Anthurium, Vanda orchids) vulnerable to chilling injury, and isolation bins for Narcissus varieties secreting toxic mucilage.",
+      "evidence": [
+        "https://ag.umass.edu/greenhouse-crops-floriculture/fact-sheets/care-handling-of-cut-flowers",
+        "https://aifd.org/"
+      ],
+      "task_id": "flower-storage-sorting"
+    },
+    {
+      "step": 5,
+      "thought": "Formulated bridal consultation dialogue reflecting classic florist pitfalls: lily pollen anther staining on silk gowns (critical error), outdoor heat-sensitive blooms wilt risk, and alternative texturing plants (Astrantia, Astilbe) to navigate bridal-maternal aesthetic conflicts.",
+      "evidence": [
+        "https://aifd.org/"
+      ],
+      "task_id": "bridal-consultation"
+    }
+  ],
+  "version": 2
+}

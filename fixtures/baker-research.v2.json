@@ -1,0 +1,532 @@
+{
+  "job": "baker",
+  "slug": "baker",
+  "title": "Hearth & Harvest Village Bakery",
+  "setting": "The stone-arched hearth kitchen, flour pantry, and cobblestone delivery lanes of Oakhaven Village, where wood-fired deck ovens operate from dawn to dusk.",
+  "sources": [
+    {
+      "title": "King Arthur Baking - Baker's Percentage",
+      "url": "https://www.kingarthurbaking.com/pro/reference/bakers-percentage"
+    },
+    {
+      "title": "The Perfect Loaf - Sourdough Hydration Guide",
+      "url": "https://www.theperfectloaf.com/bakers-percentages-and-sourdough-hydration/"
+    },
+    {
+      "title": "King Arthur Baking - Sourdough Baking with Steam",
+      "url": "https://www.kingarthurbaking.com/blog/2017/02/28/baking-with-steam"
+    },
+    {
+      "title": "Serious Eats - Guide to Flours",
+      "url": "https://www.seriouseats.com/bread-flour-all-purpose-flour-cake-flour-types-of-flour"
+    },
+    {
+      "title": "King Arthur Baking - How to Store Bread",
+      "url": "https://www.kingarthurbaking.com/blog/2020/09/24/how-to-store-bread"
+    }
+  ],
+  "rules": [
+    "Baker's percentages standardize all ingredient weights relative to total flour weight at 100%.",
+    "Proper gluten network formation requires adequate hydration and mechanical or autolyse agitation.",
+    "Steam must be retained during early baking to delay crust gelatinization, enabling oven spring before dry baking.",
+    "Gluten-containing and gluten-free items must maintain strict segregation to prevent cross-contamination.",
+    "Bread crumb staling accelerates fastest at refrigerator temperatures between 2°C and 6°C due to retrogradation."
+  ],
+  "assumptions": [
+    "The village bakery operates a heavy stone deck oven heated with seasoned hardwood and a steam-injection chamber.",
+    "Flour varieties are sourced locally from the village watermill with documented protein content.",
+    "Deliveries are executed via handcart or wicker pack lined with natural linen to preserve crust crispness."
+  ],
+  "tasks": [
+    {
+      "id": "country-loaf-mix",
+      "title": "Country Loaf Dough Formulation",
+      "summary": "Calculate and scale the flour, water, and salt quantities to achieve an open crumb and balanced salinity in an artisanal sourdough country loaf.",
+      "mechanic": "mix",
+      "mechanic_rationale": "Ingredient scaling directly dictates dough hydration and salt concentration, which mathematically control gluten structure, fermentation kinetics, and crust color.",
+      "aim": "Balance dough hydration and salinity to achieve an open, aerated crumb structure without slack spreading.",
+      "variables": [
+        {
+          "id": "flour_mass",
+          "label": "Strong Bread Flour",
+          "unit": "g",
+          "min": 400,
+          "max": 600,
+          "step": 10,
+          "default": 500
+        },
+        {
+          "id": "water_mass",
+          "label": "Filtered Spring Water",
+          "unit": "g",
+          "min": 250,
+          "max": 450,
+          "step": 5,
+          "default": 290
+        },
+        {
+          "id": "salt_mass",
+          "label": "Fine Sea Salt",
+          "unit": "g",
+          "min": 2,
+          "max": 20,
+          "step": 0.5,
+          "default": 4
+        }
+      ],
+      "derived": [
+        {
+          "id": "hydration_percent",
+          "label": "Hydration Ratio",
+          "expr": "(water_mass / flour_mass) * 100"
+        }
+      ],
+      "optima": [
+        {
+          "term": "flour_mass",
+          "rationale": "A standard village hearth banneton is sized precisely for a 500 g flour base.",
+          "source_urls": [
+            "https://www.theperfectloaf.com/bakers-percentages-and-sourdough-hydration/"
+          ],
+          "range": [
+            490,
+            510
+          ],
+          "target": 500
+        },
+        {
+          "term": "salt_mass",
+          "rationale": "Standard artisan bread dough requires exactly 2.0% salt relative to flour (10 g salt per 500 g flour) to regulate yeast fermentation and tighten gluten.",
+          "source_urls": [
+            "https://www.kingarthurbaking.com/pro/reference/bakers-percentage"
+          ],
+          "range": [
+            9.5,
+            10.5
+          ],
+          "target": 10
+        },
+        {
+          "term": "hydration_percent",
+          "rationale": "A classic country boule achieves an open crumb and shape stability at 72% to 76% hydration.",
+          "source_urls": [
+            "https://www.theperfectloaf.com/bakers-percentages-and-sourdough-hydration/"
+          ],
+          "range": [
+            72,
+            76
+          ],
+          "target": 74
+        }
+      ],
+      "heuristic": [
+        {
+          "term": "flour_mass",
+          "tolerance": 25,
+          "weight": 1,
+          "curve": "gaussian",
+          "too_low": "The batch volume is too meager for the proofing baskets, resulting in a squat loaf.",
+          "too_high": "The dough overflows the banneton and spills over the hearth stones.",
+          "rationale": "Bannetons and oven deck allocations require consistent base dough volumes."
+        },
+        {
+          "term": "salt_mass",
+          "tolerance": 1.5,
+          "weight": 1.5,
+          "curve": "gaussian",
+          "too_low": "The crumb lacks structural resilience and the flavor is flat and bland.",
+          "too_high": "The yeast fermentation is stunted, leaving the bread pale, dense, and unpleasantly salty.",
+          "rationale": "Salt stabilizes gluten bonding and curbs proteolytic enzymatic activity."
+        },
+        {
+          "term": "hydration_percent",
+          "tolerance": 3,
+          "weight": 2,
+          "curve": "gaussian",
+          "too_low": "The dough feels stiff and tight, producing a compact sandwich crumb rather than an open artisan interior.",
+          "too_high": "The dough lacks sufficient surface tension and puddles into a flat disc upon scoring.",
+          "rationale": "Hydration determines starch swelling, enzymatic access, and gluten extensibility."
+        }
+      ],
+      "sort_items": [],
+      "sort_bins": [],
+      "orders": [],
+      "dialogue": [],
+      "caveats": [
+        "Flour ambient moisture and protein content change throughout the seasons, altering water absorption capacity.",
+        "Salt should be dissolved or integrated evenly to avoid localized yeast inhibition."
+      ],
+      "problems": [
+        "Extremely wet dough sticking tenaciously to hands and bench scrapers without building an outer skin.",
+        "Under-salted dough fermenting unpredictably fast and collapsing during scoring."
+      ],
+      "sources": [
+        {
+          "title": "The Perfect Loaf - Sourdough Hydration Guide",
+          "url": "https://www.theperfectloaf.com/bakers-percentages-and-sourdough-hydration/"
+        },
+        {
+          "title": "King Arthur Baking - Baker's Percentage",
+          "url": "https://www.kingarthurbaking.com/pro/reference/bakers-percentage"
+        }
+      ]
+    },
+    {
+      "id": "deck-oven-steam-bake",
+      "title": "Deck Oven Crust & Bake Timing",
+      "summary": "Operate the deck oven steam valve and bake duration to ensure full loaf expansion before setting a deep caramelized crust.",
+      "mechanic": "timing",
+      "mechanic_rationale": "Baking requires sequential, time-critical interventions: maintaining high-humidity steam while the loaf expands, then venting the flue for dry Maillard browning.",
+      "aim": "Trap steam long enough for maximum oven spring, then vent and bake until the crust reaches deep mahogany caramelization.",
+      "variables": [
+        {
+          "id": "steam_retention_minutes",
+          "label": "Steam Chamber Retention Phase",
+          "unit": "min",
+          "min": 5,
+          "max": 30,
+          "step": 1,
+          "default": 8
+        },
+        {
+          "id": "dry_bake_minutes",
+          "label": "Vented Dry Bake Phase",
+          "unit": "min",
+          "min": 10,
+          "max": 35,
+          "step": 1,
+          "default": 14
+        }
+      ],
+      "derived": [],
+      "optima": [
+        {
+          "term": "steam_retention_minutes",
+          "rationale": "Steam must surround the loaf for the first 18 to 22 minutes to prevent premature crust setting and maximize loaf expansion.",
+          "source_urls": [
+            "https://www.kingarthurbaking.com/blog/2017/02/28/baking-with-steam"
+          ],
+          "range": [
+            18,
+            22
+          ],
+          "target": 20
+        },
+        {
+          "term": "dry_bake_minutes",
+          "rationale": "After venting steam, artisan loaves require 20 to 24 minutes of dry heat at deck temperature to gelatinize starches, drive off interior moisture, and develop blistered, mahogany crusts.",
+          "source_urls": [
+            "https://www.theperfectloaf.com/bakers-percentages-and-sourdough-hydration/"
+          ],
+          "range": [
+            20,
+            24
+          ],
+          "target": 22
+        }
+      ],
+      "heuristic": [
+        {
+          "term": "steam_retention_minutes",
+          "tolerance": 3,
+          "weight": 1.5,
+          "curve": "gaussian",
+          "too_low": "The crust formed prematurely, strangling the loaf ear and producing a dull, thick rind.",
+          "too_high": "The crust remained rubbery and waterlogged, causing the loaf walls to collapse inward upon cooling.",
+          "rationale": "Steam keeps the outer dough extensible and starches moist during early thermal expansion."
+        },
+        {
+          "term": "dry_bake_minutes",
+          "tolerance": 2.5,
+          "weight": 1.5,
+          "curve": "gaussian",
+          "too_low": "The crumb retains a gummy raw core and the crust turns soggy within an hour of resting.",
+          "too_high": "The outer crust is scorched and bitter, masking the delicate fermented aromas of the crumb.",
+          "rationale": "Dry baking drives core temperature past 98°C and creates Maillard browning."
+        }
+      ],
+      "sort_items": [],
+      "sort_bins": [],
+      "orders": [],
+      "dialogue": [],
+      "caveats": [
+        "Opening the oven door repeatedly releases radiant stone heat and vents humidity prematurely.",
+        "Darker crusts seal in moisture, keeping the interior tender while the shell stays crisp."
+      ],
+      "problems": [
+        "Pale, leathery crust with torn wild ruptures instead of clean scored expansion.",
+        "Sunken bottom crust caused by thermal shock from premature venting."
+      ],
+      "sources": [
+        {
+          "title": "King Arthur Baking - Sourdough Baking with Steam",
+          "url": "https://www.kingarthurbaking.com/blog/2017/02/28/baking-with-steam"
+        }
+      ]
+    },
+    {
+      "id": "flour-mill-sorting",
+      "title": "Mill Sack Grain & Flour Sorting",
+      "summary": "Inspect and sort fresh mill deliveries into the proper storage bins based on gluten potential, milling extraction, and dietary safety.",
+      "mechanic": "sort",
+      "mechanic_rationale": "Bakers must accurately route flours according to protein concentration and allergen status to avoid recipe failures or allergen cross-contact.",
+      "aim": "Route milled flours into Bread Flour, Pastry Flour, or Gluten-Free Specialty bins without cross-contamination.",
+      "variables": [],
+      "derived": [],
+      "optima": [],
+      "heuristic": [],
+      "sort_items": [
+        {
+          "label": "Hard Red Winter Wheat (13.5% Protein)",
+          "correct_bin": "High-Gluten Bread Bin",
+          "feedback": "Hard winter wheat contains high protein necessary for strong gluten networks in hearth breads."
+        },
+        {
+          "label": "Soft White Wheat (8.5% Protein)",
+          "correct_bin": "Low-Gluten Pastry Bin",
+          "feedback": "Soft low-protein wheat belongs in the pastry bin to yield tender biscuits and cakes."
+        },
+        {
+          "label": "Stoneground Buckwheat Groat Flour",
+          "correct_bin": "Gluten-Free Specialty Bin",
+          "feedback": "Buckwheat is a pseudocereal containing zero gluten proteins, requiring dedicated allergen isolation."
+        },
+        {
+          "label": "High-Extraction Durum Semolina (14% Protein)",
+          "correct_bin": "High-Gluten Bread Bin",
+          "feedback": "Durum has tenacious protein structure ideal for rustic loaves and hearth breads."
+        },
+        {
+          "label": "Chlorinated Cake Flour (7.5% Protein)",
+          "correct_bin": "Low-Gluten Pastry Bin",
+          "feedback": "Weak gluten and fine milling make this suited exclusively for delicate, aerated pastries."
+        },
+        {
+          "label": "Finely Milled Sweet White Rice Flour",
+          "correct_bin": "Gluten-Free Specialty Bin",
+          "feedback": "Rice flour lacks prolamins and must be kept in the sealed gluten-free bin to avoid cross-contact."
+        }
+      ],
+      "sort_bins": [
+        "High-Gluten Bread Bin",
+        "Low-Gluten Pastry Bin",
+        "Gluten-Free Specialty Bin"
+      ],
+      "orders": [],
+      "dialogue": [],
+      "caveats": [
+        "Protein percentage is not synonymous with gluten quality; damaged starches also skew dough absorption.",
+        "Airborne flour dust can contaminate open gluten-free bins in communal storage spaces."
+      ],
+      "problems": [
+        "Baking sandwich cakes with strong bread flour results in a tough, rubbery crumb.",
+        "Accidental contamination of gluten-free bins triggers severe allergen exposure."
+      ],
+      "sources": [
+        {
+          "title": "Serious Eats - Guide to Flours",
+          "url": "https://www.seriouseats.com/bread-flour-all-purpose-flour-cake-flour-types-of-flour"
+        }
+      ]
+    },
+    {
+      "id": "morning-hearth-delivery",
+      "title": "Village Morning Bread Delivery",
+      "summary": "Pack and transport fresh morning breads across Oakhaven Village, observing ventilation and thermal preservation protocols.",
+      "mechanic": "deliver",
+      "mechanic_rationale": "Artisan breads undergo crumb structure stabilization during transport, demanding distinct ventilation, stacking, and moisture controls per loaf variety.",
+      "aim": "Deliver hot and fragile breads to the village destinations without softening crisp crusts or crushing delicate crumb.",
+      "variables": [],
+      "derived": [],
+      "optima": [],
+      "heuristic": [],
+      "sort_items": [],
+      "sort_bins": [],
+      "orders": [
+        {
+          "item": "Crusty Dark Rye Boules (Fresh from Oven)",
+          "destination": "The Boar & Barrel Tavern",
+          "note": "Transport in open-slat wooden crates lined with breathable linen; sealing in bags will trap steam and turn the crust soggy."
+        },
+        {
+          "item": "Braided Butter Brioche Loaves",
+          "destination": "Herbalist's Manor Breakfast Table",
+          "note": "Shield completely from damp river mist with wax-paper wraps; high fat crumb softens rapidly if exposed to damp air."
+        },
+        {
+          "item": "Seeded Sourdough Batards",
+          "destination": "Oakhaven Millhouse Commissary",
+          "note": "Heavy loaves must rest on the bottom rack; keep vertical air gaps between loaves to preserve side blister crusts."
+        },
+        {
+          "item": "Featherlight Milk Rolls",
+          "destination": "Meadowview Day Nursery",
+          "note": "Top-tier load only; fragile crumb structure will collapse if stacked beneath dense sourdough loaves."
+        }
+      ],
+      "dialogue": [],
+      "caveats": [
+        "Hot bread continues to expel steam for up to two hours post-bake; impermeable wrapping is fatal to crust crispness.",
+        "Stacking warm loaves causes moisture from the bottom loaf to condense into the base of the loaf above."
+      ],
+      "problems": [
+        "Tavern rye arriving with wrinkled, leathery crusts due to plastic transport wraps.",
+        "Flattened rolls resulting from improper crate stacking weight distribution."
+      ],
+      "sources": [
+        {
+          "title": "King Arthur Baking - How to Store Bread",
+          "url": "https://www.kingarthurbaking.com/blog/2020/09/24/how-to-store-bread"
+        }
+      ]
+    },
+    {
+      "id": "village-bread-consultation",
+      "title": "Village Bakery Counter Consultation",
+      "summary": "Advise village patrons on crumb preservation, sourdough digestion, and dietary accommodations over the bakery counter.",
+      "mechanic": "converse",
+      "mechanic_rationale": "Counter service requires nuanced food science knowledge to prevent food waste, demystify fermentation, and protect patrons with celiac disease.",
+      "aim": "Provide accurate bread preservation guidance and uphold strict allergen safety advice.",
+      "variables": [],
+      "derived": [],
+      "optima": [],
+      "heuristic": [],
+      "sort_items": [],
+      "sort_bins": [],
+      "orders": [],
+      "dialogue": [
+        {
+          "npc_line": "My sourdough boule loses its crispness by day two! I was thinking of keeping it in my cold cellar larder or ice chest. Will that keep it fresh longer?",
+          "options": [
+            {
+              "text": "Refrigeration actually accelerates starch retrogradation, making bread go stale up to six times faster. Store it cut-side down on a wooden board or in a breathable paper bag at room temperature.",
+              "points": 1,
+              "feedback": "Scientifically accurate; retrogradation occurs fastest near refrigeration temperatures (2°C - 6°C).",
+              "critical": false
+            },
+            {
+              "text": "Yes, sealing it tightly in an airtight glass container in the cold cellar keeps moisture trapped inside the crust.",
+              "points": 0.2,
+              "feedback": "Trapping moisture makes the crust rubbery and encourages rapid mold growth in humid conditions.",
+              "critical": false
+            },
+            {
+              "text": "Just slice it all up now and leave the slices open on the kitchen table so they stay dry.",
+              "points": 0,
+              "feedback": "Pre-slicing completely dries out the crumb within a few hours.",
+              "critical": false
+            }
+          ]
+        },
+        {
+          "npc_line": "My niece has medically diagnosed celiac disease. Since your sourdough undergoes a long 36-hour wild yeast fermentation, that means the gluten is completely broken down and safe for her, right?",
+          "options": [
+            {
+              "text": "Yes, long sourdough fermentation digests 100% of the gluten proteins, so anyone with celiac disease can eat our wheat loaves without worry!",
+              "points": 0,
+              "feedback": "Dangerous falsehood. Fermentation reduces some gluten fragments, but wheat sourdough remains toxic to individuals with celiac disease.",
+              "critical": true
+            },
+            {
+              "text": "While long fermentation partially hydrolyzes some gluten, residual gluten peptides remain far above safety limits. She must strictly avoid all wheat, barley, and rye breads.",
+              "points": 1,
+              "feedback": "Essential allergen safety communication that protects celiac customers from life-threatening intestinal damage.",
+              "critical": false
+            },
+            {
+              "text": "She can eat the crust because the oven heat burns off all the proteins, but she should avoid the inner crumb.",
+              "points": 0,
+              "feedback": "Nonsensical advice that endangers the customer's health.",
+              "critical": true
+            }
+          ]
+        },
+        {
+          "npc_line": "I love a tangy, sour profile in my morning bread, but last week's batch tasted very mild. How do your bakers naturally coax that rich tang out of the starter?",
+          "options": [
+            {
+              "text": "We just dump half a cup of village cider vinegar directly into the mixer during the final stretch and fold.",
+              "points": 0,
+              "feedback": "Vinegar mimics acidity artificially but destroys authentic wild fermentation complexity.",
+              "critical": false
+            },
+            {
+              "text": "A long, cold retarding phase in the dough proof allows lactic and acetic acid bacteria to produce complex acids while yeast activity slows down.",
+              "points": 1,
+              "feedback": "Accurately reflects the microbiology of sourdough: cool temperatures favor bacterial acid production over yeast gas production.",
+              "critical": false
+            },
+            {
+              "text": "We shorten the bulk proofing time to under an hour so the wild yeasts don't consume all the sugar.",
+              "points": 0.1,
+              "feedback": "Shortening proofing produces under-fermented, sweet, and bland dough with no acidity.",
+              "critical": false
+            }
+          ]
+        }
+      ],
+      "caveats": [
+        "Never conflate mild wheat sensitivity with celiac disease; always err on the side of strict allergen safety.",
+        "Customer satisfaction relies on clear, demystified explanations of starch chemistry and fermentation."
+      ],
+      "problems": [
+        "Customers refrigerating high-end loaves and complaining about premature crumb staling.",
+        "Misunderstandings regarding sourdough fermentation causing allergen safety violations."
+      ],
+      "sources": [
+        {
+          "title": "King Arthur Baking - How to Store Bread",
+          "url": "https://www.kingarthurbaking.com/blog/2020/09/24/how-to-store-bread"
+        },
+        {
+          "title": "The Perfect Loaf - Sourdough Hydration Guide",
+          "url": "https://www.theperfectloaf.com/bakers-percentages-and-sourdough-hydration/"
+        }
+      ]
+    }
+  ],
+  "brain": null,
+  "reasoning_traces": [
+    {
+      "step": 1,
+      "thought": "Selected the cozy village setting of Oakhaven Hearth Bakery with 5 distinct tasks across all 5 mechanics: mix, timing, sort, deliver, converse.",
+      "evidence": [
+        "https://www.kingarthurbaking.com/pro/reference/bakers-percentage"
+      ],
+      "task_id": null
+    },
+    {
+      "step": 2,
+      "thought": "Designed the mix task around baker's percentages with strong flour, spring water, and fine sea salt, featuring derived hydration percentage with realistic artisan ranges.",
+      "evidence": [
+        "https://www.theperfectloaf.com/bakers-percentages-and-sourdough-hydration/"
+      ],
+      "task_id": "country-loaf-mix"
+    },
+    {
+      "step": 3,
+      "thought": "Designed the timing task around the critical two-stage bake cycle: steam retention for loaf expansion, followed by dry venting for Maillard crust development.",
+      "evidence": [
+        "https://www.kingarthurbaking.com/blog/2017/02/28/baking-with-steam"
+      ],
+      "task_id": "deck-oven-steam-bake"
+    },
+    {
+      "step": 4,
+      "thought": "Structured grain sorting to categorize flours into high-gluten, low-gluten, and gluten-free bins based on real protein fractions and allergen cross-contact concerns.",
+      "evidence": [
+        "https://www.seriouseats.com/bread-flour-all-purpose-flour-cake-flour-types-of-flour"
+      ],
+      "task_id": "flour-mill-sorting"
+    },
+    {
+      "step": 5,
+      "thought": "Crafted delivery and counter dialogue tasks that address moisture control during hot bread transport, retrogradation in bread storage, and critical celiac allergen warnings.",
+      "evidence": [
+        "https://www.kingarthurbaking.com/blog/2020/09/24/how-to-store-bread"
+      ],
+      "task_id": "village-bread-consultation"
+    }
+  ],
+  "version": 2
+}

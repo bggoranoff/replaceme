@@ -1,0 +1,600 @@
+{
+  "job": "bike mechanic",
+  "slug": "bike-mechanic",
+  "title": "The Spoke & Cog Workshop of Oakhaven",
+  "setting": "A sunlit, cobblestone bicycle cooperative nestled between the village green and the old canal towpath in Oakhaven. The workshop features timber workbenches, heavy cast-iron Park Tool repair stands, truing stations with dial indicators, acoustic parts washers, and rows of neatly labeled drawers holding bearings, cables, and brass nipples.",
+  "sources": [
+    {
+      "title": "Park Tool Repair Help & Bicycle Education",
+      "url": "https://www.parktool.com/en-us/blog/repair-help"
+    },
+    {
+      "title": "Sheldon Brown's Bicycle Technical Information",
+      "url": "https://www.sheldonbrown.com/"
+    },
+    {
+      "title": "Shimano Official Technical Service Documents (Dealer Manuals)",
+      "url": "https://si.shimano.com/"
+    },
+    {
+      "title": "Zero Friction Cycling Lubricant Research & Chain Waxing Protocols",
+      "url": "https://zerofrictioncycling.com.au/"
+    },
+    {
+      "title": "Silca Chain Optimization and Drivetrain Friction Science",
+      "url": "https://silca.cc/blogs/silca/chain-waxing-explained"
+    }
+  ],
+  "rules": [
+    "Never cross-thread fasteners; always initiate threading by hand before applying mechanical leverage.",
+    "Brake pads and rotors must remain strictly free of petroleum hydrocarbons, silicone, and skin oils.",
+    "Derailleur hanger alignment is the absolute mechanical baseline for indexed shifting reliability.",
+    "Fasteners threaded into magnesium, titanium, carbon, or aluminum require specific thread prep and calibrated torque.",
+    "Chain wear beyond 0.5% elongation mandates replacement to prevent premature cassette and chainring cog erosion."
+  ],
+  "assumptions": [
+    "The village workshop services a diverse fleet ranging from traditional 3-speed internal gear hubs to modern 12-speed hydraulic gravel and mountain bikes.",
+    "Precision tools, calibrated torque wrenches, ultrasonic cleaners, and dial indicators are accessible and maintained.",
+    "Proper workshop health and safety protocols (ventilation, eye protection, chemical containment) are strictly observed."
+  ],
+  "tasks": [
+    {
+      "id": "chain-hot-wax-blend",
+      "title": "Custom Chain Hot-Wax Formulation",
+      "summary": "Formulate a custom hot-melt chain wax immersion bath by balancing refined paraffin wax, micronized PTFE friction modifier powder, and pure liquid paraffin softening oil to maximize drivetrain longevity and minimize wattage loss.",
+      "mechanic": "mix",
+      "mechanic_rationale": "Hot-melt chain waxing requires precisely measured proportions of solid carrier, solid lubricant friction modifiers, and plasticizing oil; adjusting these simultaneous parameters models the platform mix mechanic.",
+      "aim": "Mix the optimal proportion of paraffin wax, micronized PTFE powder, and liquid paraffin oil to create a flexible, ultra-low-friction solid chain wax bath that will not flake off or attract road grime.",
+      "variables": [
+        {
+          "id": "paraffin_wax",
+          "label": "Fully Refined Paraffin Wax",
+          "unit": "g",
+          "min": 250,
+          "max": 750,
+          "step": 25,
+          "default": 300
+        },
+        {
+          "id": "ptfe_powder",
+          "label": "Sub-Micron PTFE Powder",
+          "unit": "g",
+          "min": 10,
+          "max": 90,
+          "step": 5,
+          "default": 15
+        },
+        {
+          "id": "paraffin_oil",
+          "label": "Liquid Paraffin (Mineral Oil)",
+          "unit": "ml",
+          "min": 5,
+          "max": 75,
+          "step": 5,
+          "default": 60
+        }
+      ],
+      "derived": [
+        {
+          "id": "additive_to_wax_ratio",
+          "label": "Additive-to-Wax Mass Ratio",
+          "expr": "(ptfe_powder + paraffin_oil) / paraffin_wax"
+        }
+      ],
+      "optima": [
+        {
+          "term": "paraffin_wax",
+          "rationale": "500 grams of food-grade highly refined paraffin provides the ideal thermal thermal reservoir volume in a standard 0.65L slow cooker to fully submerge a 116-link chain without overflowing.",
+          "source_urls": [
+            "https://zerofrictioncycling.com.au/",
+            "https://silca.cc/blogs/silca/chain-waxing-explained"
+          ],
+          "range": [
+            475,
+            525
+          ],
+          "target": 500
+        },
+        {
+          "term": "ptfe_powder",
+          "rationale": "50 grams of sub-micron PTFE powder provides optimal boundary lubrication saturation (10% of wax carrier weight) without dropping out of suspension during cooling.",
+          "source_urls": [
+            "https://zerofrictioncycling.com.au/",
+            "https://silca.cc/blogs/silca/chain-waxing-explained"
+          ],
+          "range": [
+            45,
+            55
+          ],
+          "target": 50
+        },
+        {
+          "term": "paraffin_oil",
+          "rationale": "25 ml of pharmaceutical-grade liquid paraffin plasticizes the crystalline paraffin structure, preventing brittle flaking in ambient village temperatures without creating a tacky dust magnet.",
+          "source_urls": [
+            "https://zerofrictioncycling.com.au/",
+            "https://silca.cc/blogs/silca/chain-waxing-explained"
+          ],
+          "range": [
+            20,
+            30
+          ],
+          "target": 25
+        },
+        {
+          "term": "additive_to_wax_ratio",
+          "rationale": "An additive-to-base ratio of 0.15 (15% total modifiers by mass) preserves solid-state cleanliness while achieving maximum durability and sub-4-watt friction losses.",
+          "source_urls": [
+            "https://zerofrictioncycling.com.au/",
+            "https://silca.cc/blogs/silca/chain-waxing-explained"
+          ],
+          "range": [
+            0.13,
+            0.17
+          ],
+          "target": 0.15
+        }
+      ],
+      "heuristic": [
+        {
+          "term": "paraffin_wax",
+          "tolerance": 50,
+          "weight": 1,
+          "curve": "gaussian",
+          "too_low": "The wax bath volume is insufficient to fully submerge the chain links during thermal immersion.",
+          "too_high": "Excessive wax mass wastes crockpot heating energy and dilutes thermal transfer to the chain pins.",
+          "rationale": "Accurate base wax volume ensures full immersion of all inner bushings and rollers."
+        },
+        {
+          "term": "ptfe_powder",
+          "tolerance": 10,
+          "weight": 1.2,
+          "curve": "gaussian",
+          "too_low": "Boundary lubrication is inadequate; friction testing shows increased metal-on-metal wear under high wattage.",
+          "too_high": "Excess modifier agglomerates into sludge at the bottom of the melting vessel and leaves powdery surface buildup.",
+          "rationale": "PTFE particles must achieve dense coverage inside roller clearances without clumping."
+        },
+        {
+          "term": "paraffin_oil",
+          "tolerance": 8,
+          "weight": 1.1,
+          "curve": "gaussian",
+          "too_low": "Wax matrix is too brittle, causing the dried film to shatter and flake off the inner link plates immediately.",
+          "too_high": "Wax blend remains soft and tacky, attracting road dust and grit like wet oil.",
+          "rationale": "Plasticizer concentration determines the balance between film flexibility and dirt rejection."
+        },
+        {
+          "term": "additive_to_wax_ratio",
+          "tolerance": 0.03,
+          "weight": 1.3,
+          "curve": "gaussian",
+          "too_low": "The additive concentration is too weak relative to the wax carrier, compromising low-friction boundary coating.",
+          "too_high": "Additive saturation destabilizes the crystalline paraffin structure, resulting in premature wash-off and chain noise.",
+          "rationale": "The proportional ratio dictates physical stability and mechanical boundary lubrication."
+        }
+      ],
+      "sort_items": [],
+      "sort_bins": [],
+      "orders": [],
+      "dialogue": [],
+      "caveats": [
+        "Chains must be 100% factory-grease-free via mineral spirits and denatured alcohol baths before entering wax.",
+        "Melt temperature must stay between 85°C and 95°C to avoid thermal decomposition of additives."
+      ],
+      "problems": [
+        "Rapid chain squeaking within 50 km indicates wax was applied to a cold chain without thermal soaking.",
+        "Black greasy accumulation indicates the chain retained petroleum residues prior to immersion."
+      ],
+      "sources": [
+        {
+          "title": "Zero Friction Cycling Lubricant Research",
+          "url": "https://zerofrictioncycling.com.au/"
+        },
+        {
+          "title": "Silca Chain Waxing Explained",
+          "url": "https://silca.cc/blogs/silca/chain-waxing-explained"
+        }
+      ]
+    },
+    {
+      "id": "hydraulic-brake-bleed-timing",
+      "title": "Hydraulic Disc Brake Bleeding & Degassing",
+      "summary": "Conduct a two-phase hydraulic bleed procedure on a spongy disc brake system: first timing the vacuum degassing stroke at the caliper, then timing the pressurized fluid displacement and lever burp stroke.",
+      "mechanic": "timing",
+      "mechanic_rationale": "Bleeding hydraulic brakes relies on precise durations for vacuum extraction of trapped microbubbles and controlled fluid transit without cavitating fluid or pulling air past piston seals.",
+      "aim": "Time the caliper negative-pressure vacuum draw and the lever burp flushing stroke to purge all trapped air without damaging internal diaphragm seals.",
+      "variables": [
+        {
+          "id": "caliper_vacuum_draw_duration",
+          "label": "Caliper Vacuum Degassing Duration",
+          "unit": "s",
+          "min": 5,
+          "max": 35,
+          "step": 1,
+          "default": 8
+        },
+        {
+          "id": "lever_pressure_purge_duration",
+          "label": "Lever Burp & Pressurized Flush Duration",
+          "unit": "s",
+          "min": 4,
+          "max": 30,
+          "step": 1,
+          "default": 6
+        }
+      ],
+      "derived": [],
+      "optima": [
+        {
+          "term": "caliper_vacuum_draw_duration",
+          "rationale": "Holding gentle negative pressure with the syringe for 18 to 22 seconds allows microscopic dissolved air bubbles in the caliper cavity to expand, coalesce, and migrate out into the bleed hose without drawing ambient air past the caliper piston quad-rings.",
+          "source_urls": [
+            "https://www.parktool.com/en-us/blog/repair-help",
+            "https://si.shimano.com/"
+          ],
+          "range": [
+            18,
+            22
+          ],
+          "target": 20
+        },
+        {
+          "term": "lever_pressure_purge_duration",
+          "rationale": "A smooth 12 to 16 second fluid transit with periodic lever flicking allows fluid to sweep the master cylinder chamber and exit through the bleed funnel without creating fluid turbulence or blowing the lever bladder seal.",
+          "source_urls": [
+            "https://www.parktool.com/en-us/blog/repair-help",
+            "https://si.shimano.com/"
+          ],
+          "range": [
+            12,
+            16
+          ],
+          "target": 14
+        }
+      ],
+      "heuristic": [
+        {
+          "term": "caliper_vacuum_draw_duration",
+          "tolerance": 4,
+          "weight": 1.2,
+          "curve": "gaussian",
+          "too_low": "Vacuum stroke was stopped prematurely; stubborn microbubbles remain trapped behind the caliper slave pistons.",
+          "too_high": "Excessive negative pressure held too long pulled ambient air past the piston quad-ring seals into the caliper bore.",
+          "rationale": "Bubble coalescence requires sustained negative pressure without exceeding the elastic sealing limit of the piston seals."
+        },
+        {
+          "term": "lever_pressure_purge_duration",
+          "tolerance": 3,
+          "weight": 1,
+          "curve": "gaussian",
+          "too_low": "Fluid transit was rushed, causing turbulence that suspended microbubbles in the master cylinder reservoir.",
+          "too_high": "Protracted high-pressure fluid injection risks pressurizing the lever bladder seal and leads to hydraulic fluid seepage.",
+          "rationale": "Laminar displacement sweeps bubbles upward; rushing induces turbulent emulsification."
+        }
+      ],
+      "sort_items": [],
+      "sort_bins": [],
+      "orders": [],
+      "dialogue": [],
+      "caveats": [
+        "Always insert the proper bleed block between caliper pistons; never bleed against organic brake pads.",
+        "DOT fluid and mineral oil must never cross-contaminate tools, syringes, or seals."
+      ],
+      "problems": [
+        "Brake lever pulling completely to the handlebar grip indicates remaining compressibility from trapped air in the master cylinder.",
+        "Sluggish caliper piston retraction points to dirt contamination on piston skirts or swollen quad-rings."
+      ],
+      "sources": [
+        {
+          "title": "Park Tool: How to Bleed Shimano Hydraulic Disc Brakes",
+          "url": "https://www.parktool.com/en-us/blog/repair-help"
+        },
+        {
+          "title": "Shimano Hydraulic Disc Brake Dealer Manual",
+          "url": "https://si.shimano.com/"
+        }
+      ]
+    },
+    {
+      "id": "workshop-compound-routing",
+      "title": "Workshop Assembly Compounds & Chemical Routing",
+      "summary": "Direct workshop components, fasteners, and interface surfaces to their strictly required mechanical chemicals and assembly compounds to prevent galvanic corrosion, component slipping, or fastener loosening.",
+      "mechanic": "sort",
+      "mechanic_rationale": "A core competency of bicycle mechanics is matching specific metallurgical interfaces to the correct assembly compound (anti-seize, threadlocker, bearing grease, or carbon paste); this is a classic item-to-bin routing problem.",
+      "aim": "Route 8 workshop assembly scenarios into their correct chemical application categories.",
+      "variables": [],
+      "derived": [],
+      "optima": [],
+      "heuristic": [],
+      "sort_items": [
+        {
+          "label": "Carbon fiber seatpost inserted into carbon gravel frame seat tube",
+          "correct_bin": "Carbon Friction Paste",
+          "feedback": "Carbon paste contains microscopic silica beads that generate friction, preventing slippage at reduced clamp torque to safeguard delicate composite walls."
+        },
+        {
+          "label": "Disc brake rotor Torx T25 mounting bolts threading into hub shell",
+          "correct_bin": "Medium Threadlocker (Blue / Loctite 242)",
+          "feedback": "Brake rotor bolts endure severe rotational braking harmonics; anaerobic threadlocker prevents backing out under vibration."
+        },
+        {
+          "label": "Titanium pedal spindles threading into forged aluminum crank arms",
+          "correct_bin": "Anti-Seize Compound",
+          "feedback": "Dissimilar metals under high galvanic potential and pressure require anti-seize to prevent permanent cold-welding and galling."
+        },
+        {
+          "label": "Open ball bearings and internal cup races of an unsealed cup-and-cone hub",
+          "correct_bin": "High-Tack Bearing Grease",
+          "feedback": "Rolling elements demand high-shear-stability water-resistant bearing grease to mitigate friction and corrosion."
+        },
+        {
+          "label": "Carbon aero drop handlebar clamping inside aluminum stem faceplate",
+          "correct_bin": "Carbon Friction Paste",
+          "feedback": "Smooth carbon cockpits rotate under road shock unless mated with carbon assembly compound; never use standard grease on carbon interfaces."
+        },
+        {
+          "label": "Steel external bottom bracket cups threading into a titanium frame shell",
+          "correct_bin": "Anti-Seize Compound",
+          "feedback": "Steel-on-titanium threading in bottom brackets is notorious for galvanic corrosion and chronic creaking; anti-seize is mandatory."
+        },
+        {
+          "label": "Flat-mount disc brake caliper frame mounting screws",
+          "correct_bin": "Medium Threadlocker (Blue / Loctite 242)",
+          "feedback": "Caliper mounting bolts must resist road vibration and thermal cycling; medium-strength removable threadlocker is required by manufacturers."
+        },
+        {
+          "label": "Rear freehub body pawls, drive ratchet teeth, and ratchet ring splines",
+          "correct_bin": "High-Tack Bearing Grease",
+          "feedback": "Pawl pivot springs and ratchet teeth require specific light-to-medium tack grease to ensure instant engagement without sticking open."
+        }
+      ],
+      "sort_bins": [
+        "High-Tack Bearing Grease",
+        "Medium Threadlocker (Blue / Loctite 242)",
+        "Anti-Seize Compound",
+        "Carbon Friction Paste"
+      ],
+      "orders": [],
+      "dialogue": [],
+      "caveats": [
+        "Never apply grease or oil to friction-dependent carbon fiber clamping zones.",
+        "Threadlocker requires oil-free, solvent-cleaned threads to cure anaerobically."
+      ],
+      "problems": [
+        "Cracked carbon seat masts frequently result from overtorquing unlubricated or greased carbon posts.",
+        "Frozen pedals permanently fused to crank arms are the direct consequence of omitting anti-seize compound."
+      ],
+      "sources": [
+        {
+          "title": "Park Tool: Thread Prep & Assembly Compounds",
+          "url": "https://www.parktool.com/en-us/blog/repair-help"
+        },
+        {
+          "title": "Sheldon Brown: Bicycle Lubrication & Thread Prep",
+          "url": "https://www.sheldonbrown.com/"
+        }
+      ]
+    },
+    {
+      "id": "village-fleet-service-dispatch",
+      "title": "Village Bicycle Fleet Dispatch & Delivery",
+      "summary": "Deliver 4 fully overhauled, purpose-built bicycles and critical technical assemblies to distinct village residents across Oakhaven, adhering to specific mechanical constraints.",
+      "mechanic": "deliver",
+      "mechanic_rationale": "Completing bespoke workshop work requires fulfilling distinct delivery orders to specific locations while adhering to operational cargo and destination constraints.",
+      "aim": "Safely carry and hand over 4 serviced bicycles and mechanical equipment to village destinations according to specific tuning notes.",
+      "variables": [],
+      "derived": [],
+      "optima": [],
+      "heuristic": [],
+      "sort_items": [],
+      "sort_bins": [],
+      "orders": [
+        {
+          "item": "Restored Dutch 3-Speed Utility Roadster with Coaster Brake",
+          "destination": "Baker Martha at the Village Windmill Bakery",
+          "note": "Chain slack dialed to 12 mm deflection; front basket struts torqued to 6 Nm to carry heavy sourdough sacks."
+        },
+        {
+          "item": "Tuned Hardtail Trail Bike with Fresh 50-Hour Fork Damper Service",
+          "destination": "Forest Ranger Silas at the Bramblewood Watchtower",
+          "note": "Suspension air spring set to 85 psi with rebound damper 6 clicks out from closed for rocky forest patrol routes."
+        },
+        {
+          "item": "Box of Pre-Stretched Tubular Track Tires & Cured Rim Mastic",
+          "destination": "Coach Julian at the Village Velodrome",
+          "note": "Handle in dry container without folding; inspected base tape clean for high-banked timber track trials."
+        },
+        {
+          "item": "Heavy-Duty Cargo Trike with Reinforced 36-Hole 13-Gauge Wheels",
+          "destination": "Miller Hugo at the Old River Gristmill",
+          "note": "Rear internal hub drum brake cables burnished; tire beads seated evenly at 55 psi for maximum milling payloads."
+        }
+      ],
+      "dialogue": [],
+      "caveats": [
+        "Transporting fresh-glued tubular tires requires preventing all moisture and dust contamination.",
+        "Always confirm coaster brake torque arm retention strap is secure before handing over roadster."
+      ],
+      "problems": [
+        "Delivering a suspension bike without checking rider sag causes harsh bottoming-out on trails.",
+        "Loose cargo basket struts result in violent steering oscillation (speed wobble) under load."
+      ],
+      "sources": [
+        {
+          "title": "Park Tool: Utility & Cargo Bike Maintenance",
+          "url": "https://www.parktool.com/en-us/blog/repair-help"
+        },
+        {
+          "title": "Sheldon Brown: Internal-Gear Hubs & Coaster Brakes",
+          "url": "https://www.sheldonbrown.com/"
+        }
+      ]
+    },
+    {
+      "id": "diagnostic-customer-intake",
+      "title": "Diagnostic Intake: The Courier's Creaking Rig",
+      "summary": "Interview Gillian the Traveling Courier to diagnose mysterious drivetrain creaks, contaminated brakes, and ghost shifting before she sets out over the village mountain pass.",
+      "mechanic": "converse",
+      "mechanic_rationale": "Mechanical troubleshooting requires structured customer diagnostic dialogue, active listening, symptom isolation, and steering riders away from dangerous home-mechanic blunders.",
+      "aim": "Conduct a 3-turn diagnostic intake interview, providing expert advice and avoiding dangerous or destructive maintenance practices.",
+      "variables": [],
+      "derived": [],
+      "optima": [],
+      "heuristic": [],
+      "sort_items": [],
+      "sort_bins": [],
+      "orders": [],
+      "dialogue": [
+        {
+          "npc_line": "Whenever I stomp on the pedals climbing the steep hill up from the valley, I get this nasty, rhythmic clicking sound on every pedal stroke. Could my bottom bracket be cracked?",
+          "options": [
+            {
+              "text": "Let's isolate it systematically: we'll check pedal spindle tightness, chainring bolts, and crank arm splines first, as rhythmic pedaling clicks often radiate from unlubed threads rather than a ruined bottom bracket.",
+              "points": 1,
+              "feedback": "Outstanding diagnostic method. Pedals, crank interfaces, and chainring bolts are far more common sources of cadenced creaks than damaged bottom bracket shells.",
+              "critical": false
+            },
+            {
+              "text": "It's definitely the bottom bracket bearings. We should press out the cups immediately and replace them without testing anything else.",
+              "points": 0.4,
+              "feedback": "Replacing parts without isolating the noise risks wasting money when the creak could simply be a dry pedal thread or loose chainring bolt.",
+              "critical": false
+            },
+            {
+              "text": "Rhythmic clicks under load always mean the frame has a terminal structural fracture; you must discard the bicycle immediately.",
+              "points": 0,
+              "feedback": "Alarmist and mechanically unsound. Harmonic clicking under pedaling torque is routine and almost always resolved by cleaning and torquing threaded interfaces.",
+              "critical": true
+            }
+          ]
+        },
+        {
+          "npc_line": "To quiet down some drivetrain squeaking yesterday, I sprayed a generous mist of household penetrating oil (WD-40) directly over the cassette and rear brake rotor. But now my brakes scream and won't stop the bike!",
+          "options": [
+            {
+              "text": "Penetrating oil aerosol severely contaminates porous disc brake pads. We must replace the contaminated pads, scrub the rotor with pure isopropyl alcohol, and burnish a fresh set.",
+              "points": 1,
+              "feedback": "Exact safety protocol. Organic and metallic brake pads absorb petroleum distillates and cannot be reliably rescued; the metal rotor must be decontaminated.",
+              "critical": false
+            },
+            {
+              "text": "Just drag your rear brake while riding hard down the steepest hill to bake and vaporize the oil off the pads.",
+              "points": 0.3,
+              "feedback": "Hazardous advice. Heating oil-soaked pads causes sudden brake fade, pad glazing, and severe loss of vehicle control.",
+              "critical": false
+            },
+            {
+              "text": "Spray automotive solvent degreaser directly onto the hot brake pads while riding to wash out the oil on the fly.",
+              "points": 0,
+              "feedback": "Extremely dangerous. Applying volatile solvents to moving brake assemblies risks vehicle fire, pad delamination, and total brake failure.",
+              "critical": true
+            }
+          ]
+        },
+        {
+          "npc_line": "My chain also skips when I shift down into the smallest rear cogs. Should I just twist the barrel adjuster out ten whole turns and clamp the cable as tight as humanly possible with pliers?",
+          "options": [
+            {
+              "text": "Skipping in high gears (small cogs) usually indicates excessive cable tension, a bent derailleur hanger, or worn cassette teeth. Let's inspect hanger alignment with the alignment gauge before altering cable tension.",
+              "points": 1,
+              "feedback": "Accurate mechanical understanding. Hanger alignment is the absolute prerequisite for indexed shifting; arbitrary barrel turns usually compound mis-shifting.",
+              "critical": false
+            },
+            {
+              "text": "Turn the high limit screw all the way in until the chain is forced to stay on the smallest cog.",
+              "points": 0.5,
+              "feedback": "Incorrect use of limit screws. High and low limit screws set physical travel boundaries; cranking the H-screw inward will lock the derailleur out of the small cog entirely.",
+              "critical": false
+            },
+            {
+              "text": "Take a crescent wrench, bend the derailleur cage outward by hand until it looks straight, and clamp the cable with maximum force.",
+              "points": 0,
+              "feedback": "Disastrous practice. Never bend derailleur cages by hand; cage twisting ruins pulley parallelism and risks shifting the derailleur into the wheel spokes.",
+              "critical": true
+            }
+          ]
+        }
+      ],
+      "caveats": [
+        "Acoustic noise travels through hollow bicycle frames; a creak that sounds like a bottom bracket often originates in the seatpost or headset.",
+        "Never use oil or aerosol solvents anywhere near disc brake rotors or calipers."
+      ],
+      "problems": [
+        "Bending a rear derailleur cage instead of aligning the derailleur hanger leads to catastrophic wheel spoke strikes.",
+        "Over-tightened barrel adjusters cause multi-gear overshifting across the cassette."
+      ],
+      "sources": [
+        {
+          "title": "Park Tool: Diagnosing Bicycle Creaks and Clicks",
+          "url": "https://www.parktool.com/en-us/blog/repair-help"
+        },
+        {
+          "title": "Sheldon Brown: Creaks, Clicks, and Clunks Troubleshooting",
+          "url": "https://www.sheldonbrown.com/"
+        }
+      ]
+    }
+  ],
+  "brain": {
+    "stored": false,
+    "ids": [],
+    "query": null
+  },
+  "reasoning_traces": [
+    {
+      "step": 1,
+      "thought": "Establish authentic workshop requirements for bicycle mechanics based on Park Tool, Sheldon Brown, Shimano, Silca, and Zero Friction Cycling research.",
+      "evidence": [
+        "https://www.parktool.com/en-us/blog/repair-help",
+        "https://zerofrictioncycling.com.au/"
+      ],
+      "task_id": null
+    },
+    {
+      "step": 2,
+      "thought": "Structure Task 1 (mix) as hot-melt chain wax immersion formulation with 3 realistic variables (paraffin wax, PTFE powder, paraffin oil) and a derived additive-to-wax ratio.",
+      "evidence": [
+        "https://zerofrictioncycling.com.au/",
+        "https://silca.cc/blogs/silca/chain-waxing-explained"
+      ],
+      "task_id": "chain-hot-wax-blend"
+    },
+    {
+      "step": 3,
+      "thought": "Structure Task 2 (timing) around hydraulic brake bleeding with two sequential timing phases: caliper vacuum degassing and lever pressure flushing.",
+      "evidence": [
+        "https://www.parktool.com/en-us/blog/repair-help",
+        "https://si.shimano.com/"
+      ],
+      "task_id": "hydraulic-brake-bleed-timing"
+    },
+    {
+      "step": 4,
+      "thought": "Structure Task 3 (sort) around workshop chemical and assembly compound routing across 4 distinct bins and 8 realistic mechanical interfaces.",
+      "evidence": [
+        "https://www.parktool.com/en-us/blog/repair-help",
+        "https://www.sheldonbrown.com/"
+      ],
+      "task_id": "workshop-compound-routing"
+    },
+    {
+      "step": 5,
+      "thought": "Structure Task 4 (deliver) as village fleet dispatch with 4 specific bicycle/component delivery orders and technical handling constraints.",
+      "evidence": [
+        "https://www.parktool.com/en-us/blog/repair-help",
+        "https://www.sheldonbrown.com/"
+      ],
+      "task_id": "village-fleet-service-dispatch"
+    },
+    {
+      "step": 6,
+      "thought": "Structure Task 5 (converse) as customer diagnostic intake with 3 dialogue turns, scoring 0..1, and critical failure options for dangerous home-mechanic advice.",
+      "evidence": [
+        "https://www.parktool.com/en-us/blog/repair-help",
+        "https://www.sheldonbrown.com/"
+      ],
+      "task_id": "diagnostic-customer-intake"
+    }
+  ],
+  "version": 2
+}

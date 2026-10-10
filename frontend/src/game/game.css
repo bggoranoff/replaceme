@@ -1,0 +1,108 @@
+/* Game screen: the world, centred, and a single "Train agent" button. */
+
+.game-screen {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 24px 16px 8px;
+}
+
+.game-stage {
+  /* fits the viewport height: header (~62px) + button row (~84px) + gutters */
+  width: min(100%, calc((100vh - 190px) * var(--aspect, 1.625)));
+  min-width: 0;
+  padding: 8px;
+  background: var(--cream-2);
+  box-shadow: var(--px), 0 10px 0 0 var(--drop);
+}
+
+.game-view {
+  position: relative;
+  width: 100%;
+  box-shadow: 0 0 0 3px var(--ink);
+  background: #7fbf5a;
+  touch-action: none;
+  user-select: none;
+}
+
+.game-view canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+  outline: none;
+}
+
+.train-agent {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  border: 0;
+  background: var(--mint);
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: 800;
+  box-shadow: var(--px), 0 7px 0 0 var(--drop);
+  transition: transform 0.08s, box-shadow 0.08s, filter 0.15s;
+}
+
+.train-agent:hover:not(:disabled) {
+  filter: brightness(1.04);
+  transform: translateY(-2px);
+  box-shadow: var(--px), 0 9px 0 0 var(--drop);
+}
+
+.train-agent:active:not(:disabled) {
+  transform: translateY(4px);
+  box-shadow: var(--px), 0 3px 0 0 var(--drop);
+}
+
+.train-agent:disabled {
+  cursor: progress;
+  opacity: 0.8;
+}
+
+.game-error {
+  margin: 0;
+  color: #9a4a1e;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .game-screen {
+    gap: 16px;
+    padding-top: 16px;
+  }
+
+  .game-stage {
+    width: 100%;
+    padding: 4px;
+  }
+}
+
+.world-error {
+  margin: 48px auto 0;
+  padding: 0 16px;
+}
+
+/* Agent mode: the game alone, filling the window. */
+.agent-page {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: 8px;
+  background: #3a2a1e;
+}
+
+.agent-page .game-view {
+  width: min(100%, calc((100vh - 16px) * var(--aspect, 1.625)));
+}

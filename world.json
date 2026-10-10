@@ -1,471 +1,1439 @@
 {
-  "version": 1,
-  "researchVersion": 1,
-  "role": "waitress",
-  "title": "Bistro Floor & Dining Room Service",
+  "version": 2,
+  "rulesVersion": 2,
+  "researchVersion": 2,
+  "job": "florist",
+  "slug": "florist",
+  "title": "The Village Florist",
+  "branch": "game/florist",
   "theme": {
-    "name": "Cozy French Brasserie",
-    "floorType": "herringbone-parquet",
-    "floorColor1": "#5c3a21",
-    "floorColor2": "#472c19",
-    "wallColor": "#243229",
-    "wallpaperColor": "#2f4035",
-    "trimColor": "#d4af37",
-    "accentColor": "#b8860b"
-  },
-  "dimensions": {
-    "cols": 20,
-    "rows": 13,
-    "tile": 16
-  },
-  "solids": [
-    {
-      "x": 0,
-      "y": 0,
-      "w": 20,
-      "h": 2
-    },
-    {
-      "x": 0,
-      "y": 0,
-      "w": 1,
-      "h": 13
-    },
-    {
-      "x": 19,
-      "y": 0,
-      "w": 1,
-      "h": 13
-    },
-    {
-      "x": 0,
-      "y": 12,
-      "w": 20,
-      "h": 1
-    },
-    {
-      "x": 8,
-      "y": 1,
-      "w": 4,
-      "h": 2
-    },
-    {
-      "x": 2,
-      "y": 9,
-      "w": 2,
-      "h": 2
-    },
-    {
-      "x": 6,
-      "y": 6,
-      "w": 3,
-      "h": 2
-    },
-    {
-      "x": 15,
-      "y": 9,
-      "w": 3,
-      "h": 2
+    "name": "Wildflower Lane Studio",
+    "palette": {
+      "grass": "#78b85a",
+      "path": "#dcb983",
+      "water": "#6fb3d9",
+      "wood": "#9a6a3f",
+      "roof": "#3f7fb4",
+      "accent": "#f2c14e"
     }
-  ],
-  "stations": [
+  },
+  "map": {
+    "cols": 26,
+    "rows": 16,
+    "tile": 16,
+    "spawn": [
+      13,
+      8
+    ],
+    "ground": [
+      "gggggggggggggggggggggggggg",
+      "gggggggggggggggggggggggggg",
+      "gggggggggggggpggggggpppppg",
+      "ggppppgggggggpppggggpgggpg",
+      "gggggpggwwwwgpggggggpgggpg",
+      "gggggppgwwwwgpggggggpppggg",
+      "gggpggpgwwwwgpggggggggpggg",
+      "gggpggpggggggpggggggggpggg",
+      "ggppppppppppppppppppppppgg",
+      "gggggggggggggpggggggpggggg",
+      "gggggggggggggpggggggpggggg",
+      "gggggggggggggpggggggppgggg",
+      "gggggggggppggpggggggpggggg",
+      "gggggggppgppppppppgggggggg",
+      "ggggggggpppggggggggggggggg",
+      "gggggggggggggggggggggggggg"
+    ],
+    "locations": [
+      {
+        "id": "trees-0-0",
+        "name": "Trees",
+        "kind": "decor",
+        "icon": "trees",
+        "tile": [
+          0,
+          0
+        ],
+        "w": 26,
+        "h": 1
+      },
+      {
+        "id": "trees-0-15",
+        "name": "Trees",
+        "kind": "decor",
+        "icon": "trees",
+        "tile": [
+          0,
+          15
+        ],
+        "w": 26,
+        "h": 1
+      },
+      {
+        "id": "trees-0-1",
+        "name": "Trees",
+        "kind": "decor",
+        "icon": "trees",
+        "tile": [
+          0,
+          1
+        ],
+        "w": 1,
+        "h": 14
+      },
+      {
+        "id": "trees-25-1",
+        "name": "Trees",
+        "kind": "decor",
+        "icon": "trees",
+        "tile": [
+          25,
+          1
+        ],
+        "w": 1,
+        "h": 14
+      },
+      {
+        "id": "conditioning-bench",
+        "name": "Conditioning Bench",
+        "kind": "station",
+        "icon": "bench",
+        "tile": [
+          2,
+          4
+        ],
+        "w": 3,
+        "h": 2
+      },
+      {
+        "id": "dipping-basin",
+        "name": "Dipping Basin",
+        "kind": "table",
+        "icon": "pot",
+        "tile": [
+          21,
+          3
+        ],
+        "w": 3,
+        "h": 2
+      },
+      {
+        "id": "cellar-walk-in",
+        "name": "Cellar Walk-In",
+        "kind": "building",
+        "icon": "shelf",
+        "tile": [
+          15,
+          10
+        ],
+        "w": 5,
+        "h": 3
+      },
+      {
+        "id": "market-cart-stand",
+        "name": "Market Cart Stand",
+        "kind": "stall",
+        "icon": "cart",
+        "tile": [
+          5,
+          11
+        ],
+        "w": 4,
+        "h": 2
+      },
+      {
+        "id": "st-jude-village",
+        "name": "St. Jude Village",
+        "kind": "spot",
+        "icon": "sign",
+        "tile": [
+          21,
+          10
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "the-old-mill-bridal",
+        "name": "The Old Mill Bridal",
+        "kind": "spot",
+        "icon": "sign",
+        "tile": [
+          2,
+          2
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "the-riverside-bakery",
+        "name": "The Riverside Bakery",
+        "kind": "spot",
+        "icon": "sign",
+        "tile": [
+          15,
+          2
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "meadowview-memorial",
+        "name": "Meadowview Memorial",
+        "kind": "spot",
+        "icon": "sign",
+        "tile": [
+          11,
+          12
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "cottage-1",
+        "name": "Cottage",
+        "kind": "decor",
+        "icon": "cottage",
+        "tile": [
+          15,
+          4
+        ],
+        "w": 4,
+        "h": 3
+      },
+      {
+        "id": "cottage-2",
+        "name": "Cottage",
+        "kind": "decor",
+        "icon": "cottage",
+        "tile": [
+          9,
+          9
+        ],
+        "w": 4,
+        "h": 3
+      },
+      {
+        "id": "flowers-24-1",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          24,
+          1
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "bush-7-10",
+        "name": "Bush",
+        "kind": "decor",
+        "icon": "bush",
+        "tile": [
+          7,
+          10
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "bush-22-1",
+        "name": "Bush",
+        "kind": "decor",
+        "icon": "bush",
+        "tile": [
+          22,
+          1
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-22-12",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          22,
+          12
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "bush-24-7",
+        "name": "Bush",
+        "kind": "decor",
+        "icon": "bush",
+        "tile": [
+          24,
+          7
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-22-11",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          22,
+          11
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-15-14",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          15,
+          14
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "rock-16-7",
+        "name": "Rock",
+        "kind": "decor",
+        "icon": "rock",
+        "tile": [
+          16,
+          7
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-23-10",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          23,
+          10
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-2-14",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          2,
+          14
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-22-13",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          22,
+          13
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "rock-4-1",
+        "name": "Rock",
+        "kind": "decor",
+        "icon": "rock",
+        "tile": [
+          4,
+          1
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "bush-4-14",
+        "name": "Bush",
+        "kind": "decor",
+        "icon": "bush",
+        "tile": [
+          4,
+          14
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-3-13",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          3,
+          13
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-12-6",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          12,
+          6
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-2-12",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          2,
+          12
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-18-7",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          18,
+          7
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "rock-23-6",
+        "name": "Rock",
+        "kind": "decor",
+        "icon": "rock",
+        "tile": [
+          23,
+          6
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-21-14",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          21,
+          14
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-4-9",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          4,
+          9
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-3-11",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          3,
+          11
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-6-1",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          6,
+          1
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-10-7",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          10,
+          7
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "bush-1-1",
+        "name": "Bush",
+        "kind": "decor",
+        "icon": "bush",
+        "tile": [
+          1,
+          1
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-2-1",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          2,
+          1
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-15-7",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          15,
+          7
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-19-7",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          19,
+          7
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-3-1",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          3,
+          1
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-5-13",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          5,
+          13
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-16-14",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          16,
+          14
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-24-14",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          24,
+          14
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "bush-12-7",
+        "name": "Bush",
+        "kind": "decor",
+        "icon": "bush",
+        "tile": [
+          12,
+          7
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-19-2",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          19,
+          2
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "bush-2-11",
+        "name": "Bush",
+        "kind": "decor",
+        "icon": "bush",
+        "tile": [
+          2,
+          11
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "lamp-24-8",
+        "name": "Lamp",
+        "kind": "decor",
+        "icon": "lamp",
+        "tile": [
+          24,
+          8
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-11-3",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          11,
+          3
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-8-3",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          8,
+          3
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "lamp-6-13",
+        "name": "Lamp",
+        "kind": "decor",
+        "icon": "lamp",
+        "tile": [
+          6,
+          13
+        ],
+        "w": 1,
+        "h": 1
+      }
+    ],
+    "solids": [
+      {
+        "x": 0,
+        "y": 0,
+        "w": 26,
+        "h": 1
+      },
+      {
+        "x": 0,
+        "y": 15,
+        "w": 26,
+        "h": 1
+      },
+      {
+        "x": 0,
+        "y": 1,
+        "w": 1,
+        "h": 14
+      },
+      {
+        "x": 25,
+        "y": 1,
+        "w": 1,
+        "h": 14
+      },
+      {
+        "x": 2,
+        "y": 4,
+        "w": 3,
+        "h": 2
+      },
+      {
+        "x": 21,
+        "y": 3,
+        "w": 3,
+        "h": 2
+      },
+      {
+        "x": 15,
+        "y": 10,
+        "w": 5,
+        "h": 3
+      },
+      {
+        "x": 5,
+        "y": 11,
+        "w": 4,
+        "h": 2
+      },
+      {
+        "x": 21,
+        "y": 10,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 2,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 15,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 11,
+        "y": 12,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 8,
+        "y": 4,
+        "w": 4,
+        "h": 3
+      },
+      {
+        "x": 15,
+        "y": 4,
+        "w": 4,
+        "h": 3
+      },
+      {
+        "x": 9,
+        "y": 9,
+        "w": 4,
+        "h": 3
+      },
+      {
+        "x": 7,
+        "y": 10,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 22,
+        "y": 1,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 24,
+        "y": 7,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 22,
+        "y": 11,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 15,
+        "y": 14,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 16,
+        "y": 7,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 4,
+        "y": 1,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 4,
+        "y": 14,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 12,
+        "y": 6,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 2,
+        "y": 12,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 23,
+        "y": 6,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 21,
+        "y": 14,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 6,
+        "y": 1,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 10,
+        "y": 7,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 1,
+        "y": 1,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 2,
+        "y": 1,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 15,
+        "y": 7,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 19,
+        "y": 7,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 5,
+        "y": 13,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 12,
+        "y": 7,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 19,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 2,
+        "y": 11,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 24,
+        "y": 8,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 8,
+        "y": 3,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 6,
+        "y": 13,
+        "w": 1,
+        "h": 1
+      }
+    ]
+  },
+  "npcs": [
     {
-      "id": "station-kitchen-pass",
-      "name": "Kitchen Pass & Heat Lamps",
-      "icon": "kitchen",
+      "id": "flora",
+      "name": "Flora",
+      "role": "Head Florist",
       "tile": [
-        8,
-        1
-      ],
-      "w": 4,
-      "h": 2,
-      "color": "#8b263e",
-      "accent": "#f59e0b",
-      "description": "Inspect completed dishes under heat lamps, garnish plates, and load serving trays."
-    },
-    {
-      "id": "station-pos",
-      "name": "POS Terminal Station",
-      "icon": "register",
-      "tile": [
-        2,
-        9
-      ],
-      "w": 2,
-      "h": 2,
-      "color": "#1f2937",
-      "accent": "#10b981",
-      "description": "Input orders, apply allergen modifiers, fire courses, and process payments."
-    },
-    {
-      "id": "station-table-one",
-      "name": "Booth Table 1",
-      "icon": "table",
-      "tile": [
-        6,
+        5,
         6
       ],
-      "w": 3,
-      "h": 2,
-      "color": "#4a2810",
-      "accent": "#d4af37",
-      "description": "Four-top leather booth where guests dine, require water refills, and receive service."
+      "palette": {
+        "shirt": "#d9734e",
+        "hair": "#5b3a29",
+        "skin": "#f2c9a0"
+      }
     },
     {
-      "id": "station-service-station",
-      "name": "Side Service Station",
-      "icon": "busser",
+      "id": "bramble",
+      "name": "Bramble",
+      "role": "Florist Apprentice",
       "tile": [
-        15,
-        9
+        24,
+        5
       ],
-      "w": 3,
-      "h": 2,
-      "color": "#334155",
-      "accent": "#94a3b8",
-      "description": "Store clean cutlery, restock ice water carafes, scrape dirty dishes, and stow bus tubs."
+      "palette": {
+        "shirt": "#5e8fc9",
+        "hair": "#2f2a2a",
+        "skin": "#e8b48a"
+      }
+    },
+    {
+      "id": "marigold",
+      "name": "Marigold",
+      "role": "Cellar Keeper",
+      "tile": [
+        19,
+        13
+      ],
+      "palette": {
+        "shirt": "#8cbf5a",
+        "hair": "#c9873e",
+        "skin": "#f6d3b0"
+      }
+    },
+    {
+      "id": "rowan",
+      "name": "Rowan",
+      "role": "Village Courier",
+      "tile": [
+        9,
+        13
+      ],
+      "palette": {
+        "shirt": "#b56fc2",
+        "hair": "#e3d9c6",
+        "skin": "#c98e64"
+      }
     }
   ],
   "levels": [
     {
-      "id": "take-order",
-      "level": 1,
-      "title": "Pivot Order & Allergy Tagging",
-      "skill_name": "Order Taking & POS Entry",
-      "goal": "Record Table 1's entree selections with the requested gluten allergy modifier and transmit the order at the POS Terminal.",
-      "instruction": "Walk to the POS Terminal, enter the meals for Seat 1 and Seat 2, tag the gluten-free modifier, and press Send Ticket.",
-      "targetStationId": "station-pos",
-      "customerProfiles": [
-        "Seat 1: Guest with celiac disease ordering Pan-Seared Salmon.",
-        "Seat 2: Guest ordering Ribeye Steak cooked Medium-Rare."
-      ],
-      "initialSupplies": {
-        "order_pads": 10,
-        "pos_receipt_rolls": 2
+      "id": "florist-conditioning-flower-food",
+      "index": 1,
+      "title": "Brewing the Bloom Tonic",
+      "task_id": "conditioning-flower-food",
+      "skill_name": "Cut Flower Food Preparation",
+      "mechanic": "mix",
+      "quest": {
+        "npc_id": "flora",
+        "location_id": "conditioning-bench",
+        "title": "Prepare Fresh Hydration Water"
       },
-      "actions": [
-        "Select Seat 1 Entree",
-        "Tag Allergy Alert",
-        "Select Seat 2 Entree and Temp",
-        "Send Ticket to Kitchen"
-      ],
-      "controls": [
+      "aim": "Mix the solution to reach the ideal nutrient concentration and temperature for vase uptake.",
+      "controls_hint": "Up/Down pick a setting, Left/Right adjust it, Enter to Blend. Or drag a slider and click Blend.",
+      "metric": {
+        "name": "Hydration Balance",
+        "description": "0-100 from how close water temperature, preservative concentration are to good practice"
+      },
+      "time_limit_ms": null,
+      "success_line": "Sparkling clear water and happily perked rose petals!",
+      "dialogue": [
         {
-          "id": "seat_1_entree",
-          "label": "Seat 1 Entree",
-          "type": "choice",
-          "default": "Pan-Seared Salmon",
-          "options": [
-            "Pan-Seared Salmon",
-            "Ribeye Steak",
-            "Wild Mushroom Risotto"
-          ],
-          "unit": null
+          "at": "quest",
+          "npc_id": "flora",
+          "text": "Our morning harvest looks parched from the wagon ride. Could you blend a lukewarm bucket bath with the right amount of flower food so they drink easily?"
         },
         {
-          "id": "allergy_gluten_free",
-          "label": "Celiac / Gluten Allergy Flag",
-          "type": "toggle",
-          "default": false,
-          "unit": null
+          "at": "start",
+          "npc_id": "bramble",
+          "text": "If the water is too chilly the stems tighten up, but too hot and you will stew them."
         },
         {
-          "id": "seat_2_entree",
-          "label": "Seat 2 Entree",
-          "type": "choice",
-          "default": "Ribeye Steak",
-          "options": [
-            "Pan-Seared Salmon",
-            "Ribeye Steak",
-            "Duck Confit"
-          ],
-          "unit": null
+          "at": "start",
+          "npc_id": "flora",
+          "text": "A pinch too little food lets murky bacteria blossom, while the right balance keeps vase water sparkling clean."
         },
         {
-          "id": "steak_doneness",
-          "label": "Steak Doneness",
-          "type": "choice",
-          "default": "Medium",
-          "options": [
-            "Rare",
-            "Medium-Rare",
-            "Medium",
-            "Well-Done"
-          ],
-          "unit": null
+          "at": "pass",
+          "npc_id": "flora",
+          "text": "The solution feels soothingly warm, and the roses will drink deeply without drooping."
         },
         {
-          "id": "send_to_kitchen",
-          "label": "Transmit Kitchen Ticket",
-          "type": "toggle",
-          "default": false,
-          "unit": null
+          "at": "fail",
+          "npc_id": "flora",
+          "text": "The bucket looks a bit off. Make sure the water is temperate and has enough flower food to keep bacteria away."
         }
       ],
-      "successConditions": [
-        "Seat 1 entree is set to Pan-Seared Salmon.",
-        "Gluten allergy toggle is activated for the kitchen line.",
-        "Seat 2 steak doneness is set to Medium-Rare.",
-        "Kitchen ticket transmission is toggled to true."
-      ],
-      "steps": [
-        "Review diner order specifications for Table 1.",
-        "Select the correct entrees matching seat pivot points.",
-        "Toggle the gluten-free warning to avoid kitchen cross-contamination.",
-        "Set Ribeye doneness to Medium-Rare.",
-        "Send the order ticket to the kitchen pass."
-      ],
-      "checks": [
-        "seat_1_entree == 'Pan-Seared Salmon'",
-        "allergy_gluten_free == true",
-        "seat_2_entree == 'Ribeye Steak'",
-        "steak_doneness == 'Medium-Rare'",
-        "send_to_kitchen == true"
+      "params": {
+        "station_id": "conditioning-bench",
+        "variables": [
+          {
+            "id": "water_volume",
+            "label": "Water Volume",
+            "unit": "ml",
+            "min": 500,
+            "max": 2500,
+            "step": 50,
+            "default": 800
+          },
+          {
+            "id": "food_powder",
+            "label": "Flower Food Powder",
+            "unit": "g",
+            "min": 2,
+            "max": 35,
+            "step": 1,
+            "default": 4
+          },
+          {
+            "id": "water_temp",
+            "label": "Water Temperature",
+            "unit": "°C",
+            "min": 10,
+            "max": 60,
+            "step": 1,
+            "default": 16
+          }
+        ],
+        "submit_label": "Blend"
+      },
+      "scoring": {
+        "pass_threshold": 70,
+        "variables": {
+          "water_temp": {
+            "range": [
+              38,
+              43
+            ],
+            "tolerance": 5,
+            "weight": 1,
+            "curve": "gaussian",
+            "feedback": {
+              "too_low": "The water is too cold; viscous water and trapped air embolisms delay stem rehydration.",
+              "too_high": "The water is dangerously hot; tender stem vascular tissues are scalded and collapse."
+            }
+          }
+        },
+        "derived": [
+          {
+            "id": "solution_concentration",
+            "label": "Preservative Concentration",
+            "expr": "food_powder / (water_volume / 1000)",
+            "target": 10,
+            "tolerance": 2.5,
+            "weight": 1.5,
+            "curve": "gaussian",
+            "feedback": {
+              "too_low": "The nutrient solution is too dilute; bacteria thrive while the opening blossoms starve of carbohydrates.",
+              "too_high": "The chemical solution is overly concentrated; excessive salts draw water backward out of the stems, scorching petal margins."
+            }
+          }
+        ]
+      },
+      "sources": [
+        {
+          "title": "University of Massachusetts Amherst Extension: Care and Handling of Cut Flowers",
+          "url": "https://ag.umass.edu/greenhouse-crops-floriculture/fact-sheets/care-handling-of-cut-flowers"
+        },
+        {
+          "title": "Floralife Research: Flower Food Dosing",
+          "url": "https://floralife.com/flower-library/"
+        }
       ]
     },
     {
-      "id": "deliver-entrees",
-      "level": 2,
-      "title": "Tray Balancing & Pivot Delivery",
-      "skill_name": "Food Carrying & Silent Delivery",
-      "goal": "Pick up plated dinners from the Kitchen Pass and deliver them to Table 1 without spills or auctioning food.",
-      "instruction": "Walk to Table 1, ensure tray stability is at least 85%, and deliver Seat 1's meal from the guest's left side.",
-      "targetStationId": "station-table-one",
-      "customerProfiles": [
-        "Table 1: Waiting for two entrees, observant of formal service etiquette."
-      ],
-      "initialSupplies": {
-        "entrees_on_pass": 2,
-        "tray_jacks": 2
+      "id": "florist-stem-hydration-quick-dip",
+      "index": 2,
+      "title": "The Quick Dip Pulse",
+      "task_id": "stem-hydration-quick-dip",
+      "skill_name": "Stem Hydration Pulsing",
+      "mechanic": "timing",
+      "quest": {
+        "npc_id": "bramble",
+        "location_id": "dipping-basin",
+        "title": "Unblock Thirsty Woody Stems"
       },
-      "actions": [
-        "Adjust Tray Balance",
-        "Approach Table 1",
-        "Position Service Stance",
-        "Place Seat 1 Dish"
-      ],
-      "controls": [
+      "aim": "Time the quick-dip immersion duration precisely within the manufacturer's active window before plunging into holding water.",
+      "controls_hint": "Hold Up, or hold the mouse on the gauge, and release to stop.",
+      "metric": {
+        "name": "Stem Vitality",
+        "description": "0-100 from how well you judged immersion duration"
+      },
+      "time_limit_ms": 30000,
+      "success_line": "Perky heads and healthy, unblemished green stems!",
+      "dialogue": [
         {
-          "id": "tray_stability_pct",
-          "label": "Tray Balance & Grip Stability",
-          "type": "slider",
-          "default": 65,
-          "min": 40,
-          "step": 1,
-          "targetMin": 85,
-          "unit": "%"
+          "at": "quest",
+          "npc_id": "bramble",
+          "text": "Stubborn air pockets are trapped inside these cut stems. Give their ends a swift pulse in the acid dip before plunging them straight into holding buckets."
         },
         {
-          "id": "service_side",
-          "label": "Service Approach Angle",
-          "type": "choice",
-          "default": "Guest's Right",
-          "options": [
-            "Guest's Left",
-            "Guest's Right",
-            "Across Center of Table"
-          ],
-          "unit": null
+          "at": "start",
+          "npc_id": "marigold",
+          "text": "Count steady in your mind—linger too long in the dip and you will scorch their stem ends."
         },
         {
-          "id": "auction_food_query",
-          "label": "Ask 'Who ordered the Salmon?'",
-          "type": "toggle",
-          "default": true,
-          "unit": null
+          "at": "start",
+          "npc_id": "bramble",
+          "text": "A swift plunge clears the air blockage, but pulling them out too quickly leaves the stem gasping."
         },
         {
-          "id": "confirm_plates_placed",
-          "label": "Set Dishes at Designated Seats",
-          "type": "toggle",
-          "default": false,
-          "unit": null
+          "at": "pass",
+          "npc_id": "bramble",
+          "text": "Nimble work! You cleared the air pockets without singeing a single cut edge."
+        },
+        {
+          "at": "fail",
+          "npc_id": "bramble",
+          "text": "A few stem ends turned black or stayed limp. Remember, it needs just a brief, measured splash."
         }
       ],
-      "successConditions": [
-        "Tray stability is maintained between 85% and 100%.",
-        "Approach is executed from the guest's left.",
-        "Food auctioning question is switched off.",
-        "Plates placed toggle is confirmed."
-      ],
-      "steps": [
-        "Lift the heavy oval banquet tray with both hot plates.",
-        "Raise tray balance stability slider above 85%.",
-        "Approach Seat 1 from the guest's left side without reaching over diner space.",
-        "Ensure food is not auctioned off by keeping silent pivot memory.",
-        "Confirm delivery of both plates."
-      ],
-      "checks": [
-        "tray_stability_pct >= 85",
-        "service_side == \"Guest's Left\"",
-        "auction_food_query == false",
-        "confirm_plates_placed == true"
+      "params": {
+        "station_id": "dipping-basin",
+        "phases": [
+          {
+            "id": "dip_duration",
+            "label": "Immersion Duration",
+            "unit": "s",
+            "min": 0.2,
+            "max": 8,
+            "mode": "hold",
+            "fill_per_s": 1.95
+          }
+        ]
+      },
+      "scoring": {
+        "pass_threshold": 70,
+        "variables": {
+          "dip_duration": {
+            "range": [
+              1,
+              2
+            ],
+            "tolerance": 0.8,
+            "weight": 1.5,
+            "curve": "gaussian",
+            "feedback": {
+              "too_low": "The dip was instantaneous; the concentrated surfactant could not coat the cut stem base or clear the vascular air lock.",
+              "too_high": "The stems remained submerged far too long; concentrated citric acid burned the delicate cambium layer at the base."
+            }
+          }
+        }
+      },
+      "sources": [
+        {
+          "title": "Floralife Quick Dip 100 Usage Guide",
+          "url": "https://floralife.com/flower-library/"
+        }
       ]
     },
     {
-      "id": "clear-and-bus",
-      "level": 3,
-      "title": "Pre-Bussing & Table Maintenance",
-      "skill_name": "Table Bussing & Station Sanitation",
-      "goal": "Clear finished plates and used silverware from Table 1, then scrape and sort ware into the Side Service Station bus tub.",
-      "instruction": "Walk to the Side Service Station, configure plate stacking between 2 and 4, scrape scraps, and separate silverware.",
-      "targetStationId": "station-service-station",
-      "customerProfiles": [
-        "Table 1: Both diners have laid cutlery in the 4:20 position signaling completion."
-      ],
-      "initialSupplies": {
-        "bus_tubs_empty": 1,
-        "clean_sanitizer_towels": 4
+      "id": "florist-flower-storage-sorting",
+      "index": 3,
+      "title": "Chamber and Cellar Sorting",
+      "task_id": "flower-storage-sorting",
+      "skill_name": "Postharvest Storage Sorting",
+      "mechanic": "sort",
+      "quest": {
+        "npc_id": "marigold",
+        "location_id": "cellar-walk-in",
+        "title": "Sort the Morning Harvest"
       },
-      "actions": [
-        "Stack Cleared Plates",
-        "Scrape Food Scraps",
-        "Separate Cutlery",
-        "Offer Dessert & Coffee"
-      ],
-      "controls": [
+      "aim": "Sort each flower delivery item into its correct environmental chamber or isolation area.",
+      "controls_hint": "Left/Right pick a spot, Down or Enter to place. Or drag the item onto a spot.",
+      "metric": {
+        "name": "Storage Care",
+        "description": "0-100 share of items put in the right place"
+      },
+      "time_limit_ms": 57000,
+      "success_line": "Every single stem rests in its perfect climate!",
+      "dialogue": [
         {
-          "id": "stacked_plate_count",
-          "label": "Stacked Plates Carried",
-          "type": "slider",
-          "default": 1,
-          "min": 1,
-          "step": 1,
-          "targetMin": 2,
-          "unit": "plates"
+          "at": "quest",
+          "npc_id": "marigold",
+          "text": "Every blossom likes its own cozy corner. Help me tuck the cold-lovers away, keep the tropicals out of the chill, and isolate those drippy daffodils."
         },
         {
-          "id": "scrape_food_remnants",
-          "label": "Scrape Scraps into Trash Chute",
-          "type": "toggle",
-          "default": false,
-          "unit": null
+          "at": "start",
+          "npc_id": "rowan",
+          "text": "Orchids and anthuriums catch a terrible chill in the frost room, turning translucent and bruised."
         },
         {
-          "id": "separate_flatware",
-          "label": "Sort Cutlery in Soak Cylinders",
-          "type": "toggle",
-          "default": false,
-          "unit": null
+          "at": "start",
+          "npc_id": "marigold",
+          "text": "Keep daffodils in their own bucket until their toxic sap clears, or they will choke their neighbors."
         },
         {
-          "id": "crumb_table_cleared",
-          "label": "Crumb Table and Reset Linens",
-          "type": "toggle",
-          "default": false,
-          "unit": null
+          "at": "pass",
+          "npc_id": "marigold",
+          "text": "Every blossom is tucked into its favorite spot, comfortable and sound."
+        },
+        {
+          "at": "fail",
+          "npc_id": "marigold",
+          "text": "Brrr, some delicate tropicals are shivering, and the daffodil slime is spreading. Let us sort them anew."
         }
       ],
-      "successConditions": [
-        "Stacked plates carried is between 2 and 4.",
-        "Food scraps are scraped into the compost/trash receptacle.",
-        "Flatware is sorted separately from china.",
-        "Table crumber is used and reset confirmed."
-      ],
-      "steps": [
-        "Clear empty dishware using the three-plate clearing technique.",
-        "Carry between 2 and 4 plates safely to the Side Service Station.",
-        "Scrape remaining food debris before nesting plates.",
-        "Separate knives and forks into dedicated soak cups.",
-        "Mark the table as crumbed and ready for dessert or billing."
-      ],
-      "checks": [
-        "stacked_plate_count >= 2",
-        "stacked_plate_count <= 4",
-        "scrape_food_remnants == true",
-        "separate_flatware == true",
-        "crumb_table_cleared == true"
+      "params": {
+        "station_id": "cellar-walk-in",
+        "items": [
+          {
+            "id": "dutch-white-lilies-lilium-orientalis",
+            "label": "Dutch White Lilies (Lilium orientalis)"
+          },
+          {
+            "id": "paperwhite-jonquils-narcissus-tazetta",
+            "label": "Paperwhite Jonquils (Narcissus tazetta)"
+          },
+          {
+            "id": "fresh-cut-golden-daffodils-narcissus",
+            "label": "Fresh-cut Golden Daffodils (Narcissus)"
+          },
+          {
+            "id": "freedom-red-roses-rosa",
+            "label": "Freedom Red Roses (Rosa)"
+          },
+          {
+            "id": "anthurium-blooms",
+            "label": "Anthurium Blooms"
+          },
+          {
+            "id": "eucalyptus-foliage-bunches",
+            "label": "Eucalyptus Foliage Bunches"
+          },
+          {
+            "id": "vanda-orchids",
+            "label": "Vanda Orchids"
+          }
+        ],
+        "bins": [
+          {
+            "id": "floral-cooler-2-c-4-c",
+            "label": "Floral Cooler (2°C–4°C)"
+          },
+          {
+            "id": "ambient-tropical-bench-13-c-18-c",
+            "label": "Ambient Tropical Bench"
+          },
+          {
+            "id": "narcissus-isolation-vessel",
+            "label": "Narcissus Isolation Vessel"
+          }
+        ]
+      },
+      "scoring": {
+        "pass_threshold": 70,
+        "correct": {
+          "freedom-red-roses-rosa": "floral-cooler-2-c-4-c",
+          "dutch-white-lilies-lilium-orientalis": "floral-cooler-2-c-4-c",
+          "anthurium-blooms": "ambient-tropical-bench-13-c-18-c",
+          "vanda-orchids": "ambient-tropical-bench-13-c-18-c",
+          "fresh-cut-golden-daffodils-narcissus": "narcissus-isolation-vessel",
+          "paperwhite-jonquils-narcissus-tazetta": "narcissus-isolation-vessel",
+          "eucalyptus-foliage-bunches": "floral-cooler-2-c-4-c"
+        },
+        "feedback": {
+          "freedom-red-roses-rosa": "Temperate garden flowers like roses must be held near freezing to slow respiration and halt rapid blossom opening.",
+          "dutch-white-lilies-lilium-orientalis": "Lilies preserve petal firmness and bud life best in standard high-humidity refrigerated storage.",
+          "anthurium-blooms": "Anthuriums suffer irreversible black chilling spots and petal necrosis if placed below 10°C.",
+          "vanda-orchids": "Tropical orchids drop florets and experience rapid chilling damage inside a standard floral cooler.",
+          "fresh-cut-golden-daffodils-narcissus": "Daffodils discharge a toxic mucilage from cut stem ends that clogs water channels and wilts other flowers.",
+          "paperwhite-jonquils-narcissus-tazetta": "Paperwhites release sap containing lycorine alkaloid; they must condition in isolated water for 12 hours before sharing vases.",
+          "eucalyptus-foliage-bunches": "Hardy greens and temperate cut foliage stay crisp and dormant inside the refrigerated cooler."
+        }
+      },
+      "sources": [
+        {
+          "title": "University of Massachusetts Amherst Extension: Care and Handling of Cut Flowers",
+          "url": "https://ag.umass.edu/greenhouse-crops-floriculture/fact-sheets/care-handling-of-cut-flowers"
+        },
+        {
+          "title": "AIFD Guide to Floral Design: Postharvest Science",
+          "url": "https://aifd.org/"
+        }
       ]
     },
     {
-      "id": "settle-check",
-      "level": 4,
-      "title": "Check Splitting & Payment Settlement",
-      "skill_name": "Tender Processing & Shift Closeout",
-      "goal": "Split Table 1's final tab evenly between 2 cards, apply the requested 20% gratuity, and print customer merchant copies.",
-      "instruction": "Walk to the POS Terminal, split the check across 2 covers, apply a 20% tip, and finalize transaction.",
-      "targetStationId": "station-pos",
-      "customerProfiles": [
-        "Table 1: Couples requesting an even split across two credit cards with a 20% tip."
-      ],
-      "initialSupplies": {
-        "bill_presenters": 2,
-        "merchant_pens": 4
+      "id": "florist-village-floral-deliveries",
+      "index": 4,
+      "title": "Cobblestone Floral Dispatch",
+      "task_id": "village-floral-deliveries",
+      "skill_name": "Floral Transport and Packing",
+      "mechanic": "deliver",
+      "quest": {
+        "npc_id": "rowan",
+        "location_id": "market-cart-stand",
+        "title": "Dispatch the Village Arrangements"
       },
-      "actions": [
-        "Split Tab by Seat",
-        "Select Payment Method",
-        "Apply Gratuity Percentage",
-        "Finalize POS Closeout"
-      ],
-      "controls": [
+      "aim": "Deliver delicate floral creations to their village destinations without mechanical bruising, spills, or temperature degradation.",
+      "controls_hint": "Arrows to walk. Enter next to the counter picks up, Enter next to a destination hands over. Or click where to go.",
+      "metric": {
+        "name": "Delivery State",
+        "description": "0-100 from right deliveries and speed"
+      },
+      "time_limit_ms": 40000,
+      "success_line": "Flawless arrivals across the village in pristine garden splendor!",
+      "dialogue": [
         {
-          "id": "split_covers",
-          "label": "Split Evenly Across Covers",
-          "type": "slider",
-          "default": 1,
-          "min": 1,
-          "step": 1,
-          "targetMin": 2,
-          "unit": "guests"
+          "at": "quest",
+          "npc_id": "rowan",
+          "text": "We have garden centerpieces heading across town. Pack and cradle each vase securely so the cobblestones do not jostle petals or spill water into the boxes."
         },
         {
-          "id": "payment_type",
-          "label": "Tender Type",
-          "type": "choice",
-          "default": "Cash",
-          "options": [
-            "Cash",
-            "Split Credit Card",
-            "House Account",
-            "Gift Voucher"
-          ],
-          "unit": null
+          "at": "start",
+          "npc_id": "flora",
+          "text": "A sudden bump on the stone lane will turn a damp cardboard bottom right into mush."
         },
         {
-          "id": "gratuity_pct",
-          "label": "Tip Percentage Applied",
-          "type": "slider",
-          "default": 15,
-          "min": 0,
-          "step": 1,
-          "targetMin": 20,
-          "unit": "%"
+          "at": "start",
+          "npc_id": "rowan",
+          "text": "Delicate sweet peas bruise if they scrape the box sides; brace them with soft cushions."
         },
         {
-          "id": "print_receipts_and_close",
-          "label": "Print Merchant Vouchers & Close Table",
-          "type": "toggle",
-          "default": false,
-          "unit": null
+          "at": "pass",
+          "npc_id": "rowan",
+          "text": "Every centerpiece reached the square without losing a single drop of water or bruising a petal."
+        },
+        {
+          "at": "fail",
+          "npc_id": "rowan",
+          "text": "A soggy box gave way and crushed some silky blooms along the cobbles. Cushion them closer next time."
         }
       ],
-      "successConditions": [
-        "Split covers slider is set to 2.",
-        "Payment type is set to Split Credit Card.",
-        "Tip percentage is set to 20%.",
-        "Receipt print and table closeout toggle is true."
-      ],
-      "steps": [
-        "Open Table 1 ticket on the POS screen.",
-        "Divide total balance evenly across 2 diners.",
-        "Select Split Credit Card processing.",
-        "Enter exactly 20% gratuity.",
-        "Print customer receipts and close the table session."
-      ],
-      "checks": [
-        "split_covers == 2",
-        "payment_type == 'Split Credit Card'",
-        "gratuity_pct == 20",
-        "print_receipts_and_close == true"
+      "params": {
+        "start_tile": [
+          7,
+          13
+        ],
+        "orders": [
+          {
+            "id": "order-1",
+            "item": "Cascading Altar Pedestal",
+            "label": "Cascading Altar Pedestal for St. Jude Village",
+            "from": "location:market-cart-stand",
+            "to": "spot:st-jude-village"
+          },
+          {
+            "id": "order-2",
+            "item": "Bridal Hand-Tied Bouquet",
+            "label": "Bridal Hand-Tied Bouquet for The Old Mill Bridal",
+            "from": "location:market-cart-stand",
+            "to": "spot:the-old-mill-bridal"
+          },
+          {
+            "id": "order-3",
+            "item": "Low Herb & Lavender",
+            "label": "Low Herb & Lavender for The Riverside Bakery",
+            "from": "location:market-cart-stand",
+            "to": "spot:the-riverside-bakery"
+          },
+          {
+            "id": "order-4",
+            "item": "Standing Sympathy Wreath",
+            "label": "Standing Sympathy Wreath for Meadowview Memorial",
+            "from": "location:market-cart-stand",
+            "to": "spot:meadowview-memorial"
+          }
+        ],
+        "capacity": 2,
+        "par_ms": 20000
+      },
+      "scoring": {
+        "pass_threshold": 70,
+        "weights": {
+          "accuracy": 2,
+          "time": 1
+        },
+        "feedback": {
+          "wrong_target": "Someone got an order that was not theirs.",
+          "late": "The orders took too long to arrive.",
+          "missed": "Some orders never reached their destination."
+        }
+      },
+      "sources": [
+        {
+          "title": "American Institute of Floral Designers: Handling and Transporting Floral Arrangements",
+          "url": "https://aifd.org/"
+        }
       ]
     }
   ],
-  "rules": [
-    "Never auction food at the table; track seat numbers (pivot points) systematically.",
-    "Serve food from the guest's left whenever structurally possible, and clear plates from the guest's right.",
-    "Critical allergens must be flagged explicitly before transmitting tickets to the kitchen.",
-    "Maintain tray center of gravity above 80% to avoid spills in high-traffic floor pathways."
-  ],
-  "entrypoint": "builder.levels"
+  "sources": [
+    {
+      "title": "University of Massachusetts Amherst Extension: Care and Handling of Cut Flowers",
+      "url": "https://ag.umass.edu/greenhouse-crops-floriculture/fact-sheets/care-handling-of-cut-flowers"
+    },
+    {
+      "title": "Floralife Research: Flower Food Dosing",
+      "url": "https://floralife.com/flower-library/"
+    },
+    {
+      "title": "AIFD Guide to Floral Design: Postharvest Science",
+      "url": "https://aifd.org/"
+    },
+    {
+      "title": "Chrysal Professional Flower Care: Hydration and Dosing Instructions",
+      "url": "https://www.chrysal.com/en-us/products/chrysal-professional-2"
+    }
+  ]
 }

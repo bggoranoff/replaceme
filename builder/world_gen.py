@@ -607,11 +607,21 @@ def _metric(mech: str, labels: List[str], name: Optional[str]) -> Dict[str, str]
     return {"name": clip(name or default_name, 24), "description": desc.format(terms=terms)}
 
 
+MAX_LINE_WORDS = 16  # speech bubbles stay one short, readable sentence
+
+
+def short_line(line: Any) -> str:
+    """First sentence without parentheticals, or "" if it is still too long for a speech bubble."""
+    line = re.sub(r"\s*\([^)]*\)", "", str(line or "")).strip()
+    first = re.split(r"(?<=[.!?])\s+|;\s*", line, maxsplit=1)[0].strip()
+    return first if 0 < len(first.split()) <= MAX_LINE_WORDS else ""
+
+
 def _safe_lines(lines: Iterable[str], secrets: Set[float], limit: int) -> List[str]:
     out = []
     for line in lines:
-        line = str(line or "").strip()
-        if line and not reveals(line, secrets) and len(line) <= 220:
+        line = short_line(line)
+        if line and not reveals(line, secrets):
             out.append(line)
         if len(out) == limit:
             break
@@ -959,7 +969,7 @@ def make_level(slug: str, index: int, ctx: Dict[str, Any], helper: Dict[str, Any
         if reveals(msg, secrets):
             scoring["feedback"][k] = "That did not belong there."
 
-    aim = str(task.get("aim") or "").strip()
+    aim = (_safe_lines([lf.get("aim")], secrets, 1) or [str(task.get("aim") or "").strip()])[0]
     if not aim or reveals(aim, secrets) or len(aim) > 200:
         aim = f"{task.get('title') or title}: {MECH_AIM[mech]}"
         notes.append("aim replaced (empty, too long or stated a target)")
@@ -969,8 +979,7 @@ def make_level(slug: str, index: int, ctx: Dict[str, Any], helper: Dict[str, Any
     chatter = _safe_lines(lf.get("chatter") or [], secrets, 2) or caveat_lines
     quest_line = _safe_lines([lf.get("quest_line")], secrets, 1)
     if not quest_line:
-        summary = _safe_lines([task.get("summary")], secrets, 1)
-        quest_line = [f"Could you help me with {str(task.get('title') or title).lower()}?" + (f" {summary[0]}" if summary else "")]
+        quest_line = [f"Could you give me a hand with {str(task.get('title') or title).lower()}?"]
     dialogue = [{"at": "quest", "npc_id": npc["id"], "text": quest_line[0]}]
     speakers = [helper["id"], npc["id"]]
     for k, line in enumerate(chatter):

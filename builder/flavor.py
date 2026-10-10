@@ -36,11 +36,12 @@ class LevelFlavor(BaseModel):
     icon: str = Field(..., description="Map icon, one of: " + ", ".join(ICONS))
     npc: NpcFlavor = Field(..., description="The villager who gives this quest")
     quest_title: str = Field(..., description="Quest title shown in the journal, max 7 words")
-    quest_line: str = Field(..., description="What the NPC says when giving the quest, 1-2 warm sentences, no numbers")
-    chatter: List[str] = Field(..., description="2 short lines coworkers say during the level: tips or banter about common problems, no numbers, never the answer")
-    pass_line: str = Field(..., description="NPC line after a passed attempt")
-    fail_line: str = Field(..., description="NPC line after a failed attempt, encouraging")
-    success_line: str = Field(..., description="Short line shown on a perfect result")
+    aim: str = Field(..., description="The level goal shown to the player, plain everyday words, max 12 words: what to achieve, never how much or the answer")
+    quest_line: str = Field(..., description="What the NPC says when giving the quest: ONE short sentence, max 14 words, everyday words (what they need and why), no numbers")
+    chatter: List[str] = Field(..., description="2 tips coworkers say during the level, max 10 words each, everyday words, about a common mistake; no numbers, never the answer")
+    pass_line: str = Field(..., description="NPC line after a passed attempt, max 8 words")
+    fail_line: str = Field(..., description="NPC line after a failed attempt, encouraging, max 8 words")
+    success_line: str = Field(..., description="Line shown on a perfect result, max 6 words")
     submit_label: str = Field(..., description="1-2 word verb for the finish action, e.g. Bake, Send, Mix")
     metric_name: str = Field(..., description="1-2 word name of the score, e.g. Quality, Freshness")
     replies: List[List[str]] = Field(..., description="converse levels only: for each dialogue turn, the NPC's reply to each option in the given order; empty list otherwise")
@@ -55,7 +56,8 @@ class WorldFlavor(BaseModel):
 SYSTEM = (
     "You write the flavor text for a cozy, Stardew Valley style village game that teaches a real job. "
     "The game has one top-down village map. Each task happens at a place on the map and is given as a quest by a villager. "
-    "Write warm, short, natural lines. Never state numbers, amounts, settings or the correct answer: the player must discover them."
+    "Write warm, short, natural lines in plain everyday words a 12-year-old understands: no jargon, no technical or Latin terms, "
+    "one sentence per line, the shorter the better. Never state numbers, amounts, settings or the correct answer: the player must discover them."
 )
 
 
@@ -111,6 +113,7 @@ def fallback_flavor(brief: Dict[str, Any], picked: List[Any]) -> Dict[str, Any]:
             "icon": None,
             "npc": {"name": names[i], "role": ROLES[mech]},
             "quest_title": f"{names[i]} needs a hand",
+            "aim": None,
             "quest_line": None,
             "chatter": [],
             "pass_line": None,

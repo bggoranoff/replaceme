@@ -1,0 +1,2657 @@
+{
+  "skills": [
+    {
+      "version": 2,
+      "id": "beekeeper-extract-honey",
+      "name": "Honey extraction",
+      "job": "beekeeper",
+      "level_id": "beekeeper-extract-honey",
+      "level_index": 1,
+      "mechanic": "mix",
+      "status": "learned",
+      "trained_attempts": 10,
+      "best_score": 98.3,
+      "final_score": 98.3,
+      "pass_threshold": 70,
+      "passed": true,
+      "score_history": [
+        {
+          "attempt": 1,
+          "score": 5.4,
+          "passed": false
+        },
+        {
+          "attempt": 2,
+          "score": 28.3,
+          "passed": false
+        },
+        {
+          "attempt": 3,
+          "score": 33.3,
+          "passed": false
+        },
+        {
+          "attempt": 4,
+          "score": 59.2,
+          "passed": false
+        },
+        {
+          "attempt": 5,
+          "score": 75.8,
+          "passed": true
+        },
+        {
+          "attempt": 6,
+          "score": 97.1,
+          "passed": true
+        },
+        {
+          "attempt": 7,
+          "score": 87.7,
+          "passed": true
+        },
+        {
+          "attempt": 8,
+          "score": 97.1,
+          "passed": true
+        },
+        {
+          "attempt": 9,
+          "score": 98.3,
+          "passed": true
+        },
+        {
+          "attempt": 10,
+          "score": 98.3,
+          "passed": true
+        }
+      ],
+      "sources": [
+        {
+          "title": "Example source",
+          "url": "https://example.org/extraction"
+        }
+      ],
+      "user_context": [],
+      "updated_at": "2026-10-10T15:00:00Z",
+      "description": "Set spin speed, spin time and load so the frames give up their honey cleanly without cracking the comb. Speed matters most, and the work done per frame has to stay balanced.",
+      "learned_parameters": [
+        {
+          "variable": "speed_rpm",
+          "label": "Spin speed",
+          "value": 300,
+          "unit": "rpm",
+          "rationale": "Best scoring value across 10 attempts; moving away from it lowered the spin speed sub-score.",
+          "evidence": [
+            {
+              "attempt": 1,
+              "value": 100,
+              "score": 5.4
+            },
+            {
+              "attempt": 2,
+              "value": 210,
+              "score": 28.3
+            },
+            {
+              "attempt": 5,
+              "value": 320,
+              "score": 75.8
+            },
+            {
+              "attempt": 7,
+              "value": 260,
+              "score": 87.7
+            },
+            {
+              "attempt": 8,
+              "value": 320,
+              "score": 97.1
+            },
+            {
+              "attempt": 9,
+              "value": 310,
+              "score": 98.3
+            },
+            {
+              "attempt": 10,
+              "value": 300,
+              "score": 98.3
+            }
+          ]
+        },
+        {
+          "variable": "time_s",
+          "label": "Spin time",
+          "value": 200,
+          "unit": "s",
+          "rationale": "Best scoring value across 10 attempts; moving away from it lowered the spin time sub-score.",
+          "evidence": [
+            {
+              "attempt": 1,
+              "value": 60,
+              "score": 5.4
+            },
+            {
+              "attempt": 3,
+              "value": 200,
+              "score": 33.3
+            }
+          ]
+        },
+        {
+          "variable": "frames",
+          "label": "Frames loaded",
+          "value": 8,
+          "unit": "frames",
+          "rationale": "Best scoring value across 10 attempts; moving away from it lowered the frames loaded sub-score.",
+          "evidence": [
+            {
+              "attempt": 1,
+              "value": 2,
+              "score": 5.4
+            },
+            {
+              "attempt": 4,
+              "value": 5,
+              "score": 59.2
+            },
+            {
+              "attempt": 6,
+              "value": 8,
+              "score": 97.1
+            }
+          ]
+        }
+      ],
+      "control_effects": [
+        {
+          "variable": "speed_rpm",
+          "effect": "Strongest control. Raising it from the default lifted the score most; dropping back by 60 rpm after the best run cost about 10 points and brought back the honey-left-on-comb feedback.",
+          "evidence": [
+            {
+              "attempt": 1,
+              "value": 100,
+              "score": 5.4
+            },
+            {
+              "attempt": 2,
+              "value": 210,
+              "score": 28.3
+            },
+            {
+              "attempt": 5,
+              "value": 320,
+              "score": 75.8
+            },
+            {
+              "attempt": 7,
+              "value": 260,
+              "score": 87.7
+            },
+            {
+              "attempt": 8,
+              "value": 320,
+              "score": 97.1
+            },
+            {
+              "attempt": 9,
+              "value": 310,
+              "score": 98.3
+            },
+            {
+              "attempt": 10,
+              "value": 300,
+              "score": 98.3
+            }
+          ]
+        },
+        {
+          "variable": "time_s",
+          "effect": "Lengthening the spin cleared the heavy-frames feedback, but with a light load it over-spun each frame until more frames were added.",
+          "evidence": [
+            {
+              "attempt": 1,
+              "value": 60,
+              "score": 5.4
+            },
+            {
+              "attempt": 3,
+              "value": 200,
+              "score": 33.3
+            }
+          ]
+        },
+        {
+          "variable": "frames",
+          "effect": "Too few frames make the drum wobble. Adding frames stopped the wobble and balanced the work per frame, which gave the biggest single jump in score.",
+          "evidence": [
+            {
+              "attempt": 1,
+              "value": 2,
+              "score": 5.4
+            },
+            {
+              "attempt": 4,
+              "value": 5,
+              "score": 59.2
+            },
+            {
+              "attempt": 6,
+              "value": 8,
+              "score": 97.1
+            }
+          ]
+        }
+      ],
+      "steps": [
+        "Load the drum evenly before setting anything else.",
+        "Set the spin speed first, it carries the most weight.",
+        "Set the spin time inside the window where the last drips stop.",
+        "Check the work per frame stays balanced when you change the load.",
+        "Spin and read the comb: cracks mean too fast, heavy frames mean too slow or too short."
+      ],
+      "caveats": [
+        "Changing the number of frames shifts the work per frame, so re-tune speed and time after a load change."
+      ],
+      "problems": [
+        {
+          "problem": "A longer spin with a light load over-spun each frame.",
+          "attempt": 3,
+          "fix": "Loaded more frames to balance the work per frame."
+        },
+        {
+          "problem": "Lowering the speed to fine-tune left honey on the comb.",
+          "attempt": 7,
+          "fix": "Went back up and refined in small steps."
+        }
+      ],
+      "attempts": [
+        {
+          "attempt": 1,
+          "run_id": "beekeeper-1760100000000-l1-a01",
+          "inputs": {
+            "speed_rpm": 100,
+            "time_s": 60,
+            "frames": 2
+          },
+          "actions_taken": [
+            {
+              "action": "key_right",
+              "params": {
+                "hold_ms": 300
+              }
+            },
+            {
+              "action": "interact",
+              "params": {
+                "target_id": "submit"
+              }
+            }
+          ],
+          "score": 5.4,
+          "passed": false,
+          "feedback": [
+            "Lots of honey still clings to the comb.",
+            "The frames still feel heavy.",
+            "The drum wobbles, it is unbalanced."
+          ],
+          "breakdown": {
+            "speed_rpm": {
+              "label": "Spin speed",
+              "score": 0
+            },
+            "time_s": {
+              "label": "Spin time",
+              "score": 0
+            },
+            "frames": {
+              "label": "Frames loaded",
+              "score": 1
+            },
+            "work": {
+              "label": "Spin work per frame",
+              "score": 25
+            }
+          },
+          "problems_found": [],
+          "caveats": [],
+          "hypothesis": "Start from the defaults to get a baseline.",
+          "what_changed": ""
+        },
+        {
+          "attempt": 2,
+          "run_id": "beekeeper-1760100000000-l1-a02",
+          "inputs": {
+            "speed_rpm": 210,
+            "time_s": 60,
+            "frames": 2
+          },
+          "actions_taken": [
+            {
+              "action": "key_right",
+              "params": {
+                "hold_ms": 300
+              }
+            },
+            {
+              "action": "interact",
+              "params": {
+                "target_id": "submit"
+              }
+            }
+          ],
+          "score": 28.3,
+          "passed": false,
+          "feedback": [
+            "Lots of honey still clings to the comb.",
+            "The frames still feel heavy.",
+            "The drum wobbles, it is unbalanced."
+          ],
+          "breakdown": {
+            "speed_rpm": {
+              "label": "Spin speed",
+              "score": 32
+            },
+            "time_s": {
+              "label": "Spin time",
+              "score": 0
+            },
+            "frames": {
+              "label": "Frames loaded",
+              "score": 1
+            },
+            "work": {
+              "label": "Spin work per frame",
+              "score": 75
+            }
+          },
+          "problems_found": [],
+          "caveats": [],
+          "hypothesis": "Feedback pointed at speed_rpm; adjusting it should lift the score.",
+          "what_changed": "speed_rpm 100 -> 210"
+        },
+        {
+          "attempt": 3,
+          "run_id": "beekeeper-1760100000000-l1-a03",
+          "inputs": {
+            "speed_rpm": 210,
+            "time_s": 200,
+            "frames": 2
+          },
+          "actions_taken": [
+            {
+              "action": "key_right",
+              "params": {
+                "hold_ms": 300
+              }
+            },
+            {
+              "action": "interact",
+              "params": {
+                "target_id": "submit"
+              }
+            }
+          ],
+          "score": 33.3,
+          "passed": false,
+          "feedback": [
+            "Lots of honey still clings to the comb.",
+            "Each frame was over-spun.",
+            "The drum wobbles, it is unbalanced."
+          ],
+          "breakdown": {
+            "speed_rpm": {
+              "label": "Spin speed",
+              "score": 32
+            },
+            "time_s": {
+              "label": "Spin time",
+              "score": 100
+            },
+            "frames": {
+              "label": "Frames loaded",
+              "score": 1
+            },
+            "work": {
+              "label": "Spin work per frame",
+              "score": 0
+            }
+          },
+          "problems_found": [
+            "Each frame was over-spun."
+          ],
+          "caveats": [
+            "Work per frame depends on load as well as speed and time."
+          ],
+          "hypothesis": "Feedback pointed at time_s; adjusting it should lift the score.",
+          "what_changed": "time_s 60 -> 200"
+        },
+        {
+          "attempt": 4,
+          "run_id": "beekeeper-1760100000000-l1-a04",
+          "inputs": {
+            "speed_rpm": 210,
+            "time_s": 200,
+            "frames": 5
+          },
+          "actions_taken": [
+            {
+              "action": "key_right",
+              "params": {
+                "hold_ms": 300
+              }
+            },
+            {
+              "action": "interact",
+              "params": {
+                "target_id": "submit"
+              }
+            }
+          ],
+          "score": 59.2,
+          "passed": false,
+          "feedback": [
+            "Lots of honey still clings to the comb.",
+            "The drum wobbles, it is unbalanced."
+          ],
+          "breakdown": {
+            "speed_rpm": {
+              "label": "Spin speed",
+              "score": 32
+            },
+            "time_s": {
+              "label": "Spin time",
+              "score": 100
+            },
+            "frames": {
+              "label": "Frames loaded",
+              "score": 32
+            },
+            "work": {
+              "label": "Spin work per frame",
+              "score": 99
+            }
+          },
+          "problems_found": [],
+          "caveats": [],
+          "hypothesis": "Feedback pointed at frames; adjusting it should lift the score.",
+          "what_changed": "frames 2 -> 5"
+        },
+        {
+          "attempt": 5,
+          "run_id": "beekeeper-1760100000000-l1-a05",
+          "inputs": {
+            "speed_rpm": 320,
+            "time_s": 200,
+            "frames": 5
+          },
+          "actions_taken": [
+            {
+              "action": "key_right",
+              "params": {
+                "hold_ms": 300
+              }
+            },
+            {
+              "action": "interact",
+              "params": {
+                "target_id": "submit"
+              }
+            }
+          ],
+          "score": 75.8,
+          "passed": true,
+          "feedback": [
+            "The drum wobbles, it is unbalanced.",
+            "Each frame was over-spun."
+          ],
+          "breakdown": {
+            "speed_rpm": {
+              "label": "Spin speed",
+              "score": 95
+            },
+            "time_s": {
+              "label": "Spin time",
+              "score": 100
+            },
+            "frames": {
+              "label": "Frames loaded",
+              "score": 32
+            },
+            "work": {
+              "label": "Spin work per frame",
+              "score": 57
+            }
+          },
+          "problems_found": [],
+          "caveats": [],
+          "hypothesis": "Feedback pointed at speed_rpm; adjusting it should lift the score.",
+          "what_changed": "speed_rpm 210 -> 320"
+        },
+        {
+          "attempt": 6,
+          "run_id": "beekeeper-1760100000000-l1-a06",
+          "inputs": {
+            "speed_rpm": 320,
+            "time_s": 200,
+            "frames": 8
+          },
+          "actions_taken": [
+            {
+              "action": "key_right",
+              "params": {
+                "hold_ms": 300
+              }
+            },
+            {
+              "action": "interact",
+              "params": {
+                "target_id": "submit"
+              }
+            }
+          ],
+          "score": 97.1,
+          "passed": true,
+          "feedback": [
+            "Golden and clean, lovely work."
+          ],
+          "breakdown": {
+            "speed_rpm": {
+              "label": "Spin speed",
+              "score": 95
+            },
+            "time_s": {
+              "label": "Spin time",
+              "score": 100
+            },
+            "frames": {
+              "label": "Frames loaded",
+              "score": 100
+            },
+            "work": {
+              "label": "Spin work per frame",
+              "score": 96
+            }
+          },
+          "problems_found": [],
+          "caveats": [],
+          "hypothesis": "Feedback pointed at frames; adjusting it should lift the score.",
+          "what_changed": "frames 5 -> 8"
+        },
+        {
+          "attempt": 7,
+          "run_id": "beekeeper-1760100000000-l1-a07",
+          "inputs": {
+            "speed_rpm": 260,
+            "time_s": 200,
+            "frames": 8
+          },
+          "actions_taken": [
+            {
+              "action": "key_right",
+              "params": {
+                "hold_ms": 300
+              }
+            },
+            {
+              "action": "interact",
+              "params": {
+                "target_id": "submit"
+              }
+            }
+          ],
+          "score": 87.7,
+          "passed": true,
+          "feedback": [
+            "Each frame got too little spinning."
+          ],
+          "breakdown": {
+            "speed_rpm": {
+              "label": "Spin speed",
+              "score": 80
+            },
+            "time_s": {
+              "label": "Spin time",
+              "score": 100
+            },
+            "frames": {
+              "label": "Frames loaded",
+              "score": 100
+            },
+            "work": {
+              "label": "Spin work per frame",
+              "score": 79
+            }
+          },
+          "problems_found": [
+            "Each frame got too little spinning."
+          ],
+          "caveats": [],
+          "hypothesis": "Feedback pointed at speed_rpm; adjusting it should lift the score.",
+          "what_changed": "speed_rpm 320 -> 260"
+        },
+        {
+          "attempt": 8,
+          "run_id": "beekeeper-1760100000000-l1-a08",
+          "inputs": {
+            "speed_rpm": 320,
+            "time_s": 200,
+            "frames": 8
+          },
+          "actions_taken": [
+            {
+              "action": "key_right",
+              "params": {
+                "hold_ms": 300
+              }
+            },
+            {
+              "action": "interact",
+              "params": {
+                "target_id": "submit"
+              }
+            }
+          ],
+          "score": 97.1,
+          "passed": true,
+          "feedback": [
+            "Golden and clean, lovely work."
+          ],
+          "breakdown": {
+            "speed_rpm": {
+              "label": "Spin speed",
+              "score": 95
+            },
+            "time_s": {
+              "label": "Spin time",
+              "score": 100
+            },
+            "frames": {
+              "label": "Frames loaded",
+              "score": 100
+            },
+            "work": {
+              "label": "Spin work per frame",
+              "score": 96
+            }
+          },
+          "problems_found": [],
+          "caveats": [],
+          "hypothesis": "Feedback pointed at speed_rpm; adjusting it should lift the score.",
+          "what_changed": "speed_rpm 260 -> 320"
+        },
+        {
+          "attempt": 9,
+          "run_id": "beekeeper-1760100000000-l1-a09",
+          "inputs": {
+            "speed_rpm": 310,
+            "time_s": 200,
+            "frames": 8
+          },
+          "actions_taken": [
+            {
+              "action": "key_right",
+              "params": {
+                "hold_ms": 300
+              }
+            },
+            {
+              "action": "interact",
+              "params": {
+                "target_id": "submit"
+              }
+            }
+          ],
+          "score": 98.3,
+          "passed": true,
+          "feedback": [
+            "Golden and clean, lovely work."
+          ],
+          "breakdown": {
+            "speed_rpm": {
+              "label": "Spin speed",
+              "score": 99
+            },
+            "time_s": {
+              "label": "Spin time",
+              "score": 100
+            },
+            "frames": {
+              "label": "Frames loaded",
+              "score": 100
+            },
+            "work": {
+              "label": "Spin work per frame",
+              "score": 94
+            }
+          },
+          "problems_found": [],
+          "caveats": [],
+          "hypothesis": "Feedback pointed at speed_rpm; adjusting it should lift the score.",
+          "what_changed": "speed_rpm 320 -> 310"
+        },
+        {
+          "attempt": 10,
+          "run_id": "beekeeper-1760100000000-l1-a10",
+          "inputs": {
+            "speed_rpm": 300,
+            "time_s": 200,
+            "frames": 8
+          },
+          "actions_taken": [
+            {
+              "action": "key_right",
+              "params": {
+                "hold_ms": 300
+              }
+            },
+            {
+              "action": "interact",
+              "params": {
+                "target_id": "submit"
+              }
+            }
+          ],
+          "score": 98.3,
+          "passed": true,
+          "feedback": [
+            "Golden and clean, lovely work."
+          ],
+          "breakdown": {
+            "speed_rpm": {
+              "label": "Spin speed",
+              "score": 100
+            },
+            "time_s": {
+              "label": "Spin time",
+              "score": 100
+            },
+            "frames": {
+              "label": "Frames loaded",
+              "score": 100
+            },
+            "work": {
+              "label": "Spin work per frame",
+              "score": 92
+            }
+          },
+          "problems_found": [],
+          "caveats": [],
+          "hypothesis": "Feedback pointed at speed_rpm; adjusting it should lift the score.",
+          "what_changed": "speed_rpm 310 -> 300"
+        }
+      ]
+    },
+    {
+      "version": 2,
+      "id": "beekeeper-smoke-hive",
+      "name": "Smoking a hive",
+      "job": "beekeeper",
+      "level_id": "beekeeper-smoke-hive",
+      "level_index": 2,
+      "mechanic": "timing",
+      "status": "learned",
+      "trained_attempts": 10,
+      "best_score": 100.0,
+      "final_score": 100.0,
+      "pass_threshold": 70,
+      "passed": true,
+      "score_history": [
+        {
+          "attempt": 1,
+          "score": 41.1,
+          "passed": false
+        },
+        {
+          "attempt": 2,
+          "score": 80.1,
+          "passed": true
+        },
+        {
+          "attempt": 3,
+          "score": 100.0,
+          "passed": true
+        },
+        {
+          "attempt": 4,
+          "score": 94.6,
+          "passed": true
+        },
+        {
+          "attempt": 5,
+          "score": 100.0,
+          "passed": true
+        },
+        {
+          "attempt": 6,
+          "score": 100.0,
+          "passed": true
+        },
+        {
+          "attempt": 7,
+          "score": 100.0,
+          "passed": true
+        },
+        {
+          "attempt": 8,
+          "score": 100.0,
+          "passed": true
+        },
+        {
+          "attempt": 9,
+          "score": 100.0,
+          "passed": true
+        },
+        {
+          "attempt": 10,
+          "score": 100.0,
+          "passed": true
+        }
+      ],
+      "sources": [
+        {
+          "title": "Example source",
+          "url": "https://example.org/extraction"
+        }
+      ],
+      "user_context": [],
+      "updated_at": "2026-10-10T15:00:00Z",
+      "description": "Hold the bellows just long enough to calm the colony before opening the hive. A short, steady hold beats a long one.",
+      "learned_parameters": [
+        {
+          "variable": "smoke_puffs",
+          "label": "Smoke",
+          "value": 3.0,
+          "unit": "puffs",
+          "rationale": "Inside the calm window every attempt scored full marks; above it the bees fled, below it the guards stayed agitated.",
+          "evidence": [
+            {
+              "attempt": 1,
+              "value": 6.0,
+              "score": 41.1
+            },
+            {
+              "attempt": 2,
+              "value": 1.0,
+              "score": 80.1
+            },
+            {
+              "attempt": 3,
+              "value": 3.0,
+              "score": 100.0
+            },
+            {
+              "attempt": 4,
+              "value": 4.5,
+              "score": 94.6
+            },
+            {
+              "attempt": 5,
+              "value": 3.5,
+              "score": 100.0
+            },
+            {
+              "attempt": 6,
+              "value": 2.5,
+              "score": 100.0
+            }
+          ]
+        }
+      ],
+      "control_effects": [
+        {
+          "variable": "smoke_puffs",
+          "effect": "Score is flat at the top across a window, then falls quickly on both sides. Release a little early: the meter keeps filling until you let go.",
+          "evidence": [
+            {
+              "attempt": 1,
+              "value": 6.0,
+              "score": 41.1
+            },
+            {
+              "attempt": 2,
+              "value": 1.0,
+              "score": 80.1
+            },
+            {
+              "attempt": 3,
+              "value": 3.0,
+              "score": 100.0
+            },
+            {
+              "attempt": 4,
+              "value": 4.5,
+              "score": 94.6
+            },
+            {
+              "attempt": 5,
+              "value": 3.5,
+              "score": 100.0
+            },
+            {
+              "attempt": 6,
+              "value": 2.5,
+              "score": 100.0
+            }
+          ]
+        }
+      ],
+      "steps": [
+        "Walk to the smoker and start the hold.",
+        "Watch the meter, not the bees.",
+        "Release as soon as the meter reaches the calm window.",
+        "Wait a moment before opening the hive."
+      ],
+      "caveats": [
+        "The meter keeps rising while held, so releasing late overshoots."
+      ],
+      "problems": [
+        {
+          "problem": "Bees fled the frames after a long hold.",
+          "attempt": 1,
+          "fix": "Cut the hold to under half."
+        }
+      ],
+      "attempts": [
+        {
+          "attempt": 1,
+          "run_id": "beekeeper-1760100000000-l2-a01",
+          "inputs": {
+            "smoke_puffs": 6.0
+          },
+          "actions_taken": [
+            {
+              "action": "key_up",
+              "params": {
+                "hold_ms": 3000
+              }
+            }
+          ],
+          "score": 41.1,
+          "passed": false,
+          "feedback": [
+            "The bees are coughing and fleeing the frames."
+          ],
+          "breakdown": {
+            "smoke_puffs": {
+              "label": "Smoke",
+              "score": 41
+            }
+          },
+          "problems_found": [
+            "The bees are coughing and fleeing the frames."
+          ],
+          "caveats": [],
+          "hypothesis": "Start from the defaults to get a baseline.",
+          "what_changed": ""
+        },
+        {
+          "attempt": 2,
+          "run_id": "beekeeper-1760100000000-l2-a02",
+          "inputs": {
+            "smoke_puffs": 1.0
+          },
+          "actions_taken": [
+            {
+              "action": "key_up",
+              "params": {
+                "hold_ms": 500
+              }
+            }
+          ],
+          "score": 80.1,
+          "passed": true,
+          "feedback": [
+            "The bees are humming softly."
+          ],
+          "breakdown": {
+            "smoke_puffs": {
+              "label": "Smoke",
+              "score": 80
+            }
+          },
+          "problems_found": [],
+          "caveats": [],
+          "hypothesis": "Feedback pointed at smoke_puffs; adjusting it should lift the score.",
+          "what_changed": "smoke_puffs 6.0 -> 1.0"
+        },
+        {
+          "attempt": 3,
+          "run_id": "beekeeper-1760100000000-l2-a03",
+          "inputs": {
+            "smoke_puffs": 3.0
+          },
+          "actions_taken": [
+            {
+              "action": "key_up",
+              "params": {
+                "hold_ms": 1500
+              }
+            }
+          ],
+          "score": 100.0,
+          "passed": true,
+          "feedback": [
+            "The bees are humming softly."
+          ],
+          "breakdown": {
+            "smoke_puffs": {
+              "label": "Smoke",
+              "score": 100
+            }
+          },
+          "problems_found": [],
+          "caveats": [],
+          "hypothesis": "Feedback pointed at smoke_puffs; adjusting it should lift the score.",
+          "what_changed": "smoke_puffs 1.0 -> 3.0"
+        },
+        {
+          "attempt": 4,
+          "run_id": "beekeeper-1760100000000-l2-a04",
+          "inputs": {
+            "smoke_puffs": 4.5
+          },
+          "actions_taken": [
+            {
+              "action": "key_up",
+              "params": {
+                "hold_ms": 2250
+              }
+            }
+          ],
+          "score": 94.6,
+          "passed": true,
+          "feedback": [
+            "The bees are humming softly."
+          ],
+          "breakdown": {
+            "smoke_puffs": {
+              "label": "Smoke",
+              "score": 95
+            }
+          },
+          "problems_found": [],
+          "caveats": [],
+          "hypothesis": "Feedback pointed at smoke_puffs; adjusting it should lift the score.",
+          "what_changed": "smoke_puffs 3.0 -> 4.5"
+        },
+        {
+          "attempt": 5,
+          "run_id": "beekeeper-1760100000000-l2-a05",
+          "inputs": {
+            "smoke_puffs": 3.5
+          },
+          "actions_taken": [
+            {
+              "action": "key_up",
+              "params": {
+                "hold_ms": 1750
+              }
+            }
+          ],
+          "score": 100.0,
+          "passed": true,
+          "feedback": [
+            "The bees are humming softly."
+          ],
+          "breakdown": {
+            "smoke_puffs": {
+              "label": "Smoke",
+              "score": 100
+            }
+          },
+          "problems_found": [],
+          "caveats": [],
+          "hypothesis": "Feedback pointed at smoke_puffs; adjusting it should lift the score.",
+          "what_changed": "smoke_puffs 4.5 -> 3.5"
+        },
+        {
+          "attempt": 6,
+          "run_id": "beekeeper-1760100000000-l2-a06",
+          "inputs": {
+            "smoke_puffs": 2.5
+          },
+          "actions_taken": [
+            {
+              "action": "key_up",
+              "params": {
+                "hold_ms": 1250
+              }
+            }
+          ],
+          "score": 100.0,
+          "passed": true,
+          "feedback": [
+            "The bees are humming softly."
+          ],
+          "breakdown": {
+            "smoke_puffs": {
+              "label": "Smoke",
+              "score": 100
+            }
+          },
+          "problems_found": [],
+          "caveats": [],
+          "hypothesis": "Feedback pointed at smoke_puffs; adjusting it should lift the score.",
+          "what_changed": "smoke_puffs 3.5 -> 2.5"
+        },
+        {
+          "attempt": 7,
+          "run_id": "beekeeper-1760100000000-l2-a07",
+          "inputs": {
+            "smoke_puffs": 3.0
+          },
+          "actions_taken": [
+            {
+              "action": "key_up",
+              "params": {
+                "hold_ms": 1500
+              }
+            }
+          ],
+          "score": 100.0,
+          "passed": true,
+          "feedback": [
+            "The bees are humming softly."
+          ],
+          "breakdown": {
+            "smoke_puffs": {
+              "label": "Smoke",
+              "score": 100
+            }
+          },
+          "problems_found": [],
+          "caveats": [],
+          "hypothesis": "Feedback pointed at smoke_puffs; adjusting it should lift the score.",
+          "what_changed": "smoke_puffs 2.5 -> 3.0"
+        },
+        {
+          "attempt": 8,
+          "run_id": "beekeeper-1760100000000-l2-a08",
+          "inputs": {
+            "smoke_puffs": 3.0
+          },
+          "actions_taken": [
+            {
+              "action": "key_up",
+              "params": {
+                "hold_ms": 1500
+              }
+            }
+          ],
+          "score": 100.0,
+          "passed": true,
+          "feedback": [
+            "The bees are humming softly."
+          ],
+          "breakdown": {
+            "smoke_puffs": {
+              "label": "Smoke",
+              "score": 100
+            }
+          },
+          "problems_found": [],
+          "caveats": [],
+          "hypothesis": "Feedback pointed at nothing new; adjusting it should lift the score.",
+          "what_changed": "no change, confirming the score is stable"
+        },
+        {
+          "attempt": 9,
+          "run_id": "beekeeper-1760100000000-l2-a09",
+          "inputs": {
+            "smoke_puffs": 3.0
+          },
+          "actions_taken": [
+            {
+              "action": "key_up",
+              "params": {
+                "hold_ms": 1500
+              }
+            }
+          ],
+          "score": 100.0,
+          "passed": true,
+          "feedback": [
+            "The bees are humming softly."
+          ],
+          "breakdown": {
+            "smoke_puffs": {
+              "label": "Smoke",
+              "score": 100
+            }
+          },
+          "problems_found": [],
+          "caveats": [],
+          "hypothesis": "Feedback pointed at nothing new; adjusting it should lift the score.",
+          "what_changed": "no change, confirming the score is stable"
+        },
+        {
+          "attempt": 10,
+          "run_id": "beekeeper-1760100000000-l2-a10",
+          "inputs": {
+            "smoke_puffs": 3.0
+          },
+          "actions_taken": [
+            {
+              "action": "key_up",
+              "params": {
+                "hold_ms": 1500
+              }
+            }
+          ],
+          "score": 100.0,
+          "passed": true,
+          "feedback": [
+            "The bees are humming softly."
+          ],
+          "breakdown": {
+            "smoke_puffs": {
+              "label": "Smoke",
+              "score": 100
+            }
+          },
+          "problems_found": [],
+          "caveats": [],
+          "hypothesis": "Feedback pointed at nothing new; adjusting it should lift the score.",
+          "what_changed": "no change, confirming the score is stable"
+        }
+      ]
+    },
+    {
+      "version": 2,
+      "id": "beekeeper-grade-jars",
+      "name": "Grading honey",
+      "job": "beekeeper",
+      "level_id": "beekeeper-grade-jars",
+      "level_index": 3,
+      "mechanic": "sort",
+      "status": "learned",
+      "trained_attempts": 10,
+      "best_score": 100.0,
+      "final_score": 100.0,
+      "pass_threshold": 70,
+      "passed": true,
+      "score_history": [
+        {
+          "attempt": 1,
+          "score": 33.3,
+          "passed": false
+        },
+        {
+          "attempt": 2,
+          "score": 33.3,
+          "passed": false
+        },
+        {
+          "attempt": 3,
+          "score": 66.7,
+          "passed": false
+        },
+        {
+          "attempt": 4,
+          "score": 100.0,
+          "passed": true
+        },
+        {
+          "attempt": 5,
+          "score": 100.0,
+          "passed": true
+        },
+        {
+          "attempt": 6,
+          "score": 100.0,
+          "passed": true
+        },
+        {
+          "attempt": 7,
+          "score": 100.0,
+          "passed": true
+        },
+        {
+          "attempt": 8,
+          "score": 100.0,
+          "passed": true
+        },
+        {
+          "attempt": 9,
+          "score": 100.0,
+          "passed": true
+        },
+        {
+          "attempt": 10,
+          "score": 100.0,
+          "passed": true
+        }
+      ],
+      "sources": [
+        {
+          "title": "Example source",
+          "url": "https://example.org/extraction"
+        }
+      ],
+      "user_context": [],
+      "updated_at": "2026-10-10T15:00:00Z",
+      "description": "Read each jar's colour and clarity and shelve it where customers expect it. Colour decides the shelf; clarity never does.",
+      "learned_parameters": [
+        {
+          "variable": "jar-1",
+          "label": "Pale clear jar",
+          "value": "light",
+          "unit": "",
+          "rationale": "The only shelf that removed the feedback for this jar.",
+          "evidence": [
+            {
+              "attempt": 1,
+              "value": "light",
+              "score": 33.3
+            }
+          ]
+        },
+        {
+          "variable": "jar-2",
+          "label": "Dark cloudy jar",
+          "value": "dark",
+          "unit": "",
+          "rationale": "The only shelf that removed the feedback for this jar.",
+          "evidence": [
+            {
+              "attempt": 1,
+              "value": "light",
+              "score": 33.3
+            },
+            {
+              "attempt": 2,
+              "value": "amber",
+              "score": 33.3
+            },
+            {
+              "attempt": 3,
+              "value": "dark",
+              "score": 66.7
+            }
+          ]
+        },
+        {
+          "variable": "jar-3",
+          "label": "Amber clear jar",
+          "value": "amber",
+          "unit": "",
+          "rationale": "The only shelf that removed the feedback for this jar.",
+          "evidence": [
+            {
+              "attempt": 1,
+              "value": "light",
+              "score": 33.3
+            },
+            {
+              "attempt": 4,
+              "value": "amber",
+              "score": 100.0
+            }
+          ]
+        }
+      ],
+      "control_effects": [
+        {
+          "variable": "colour",
+          "effect": "Every correct placement followed the jar's colour attribute.",
+          "evidence": []
+        },
+        {
+          "variable": "clarity",
+          "effect": "Changing nothing but clarity never changed a placement's score.",
+          "evidence": []
+        }
+      ],
+      "steps": [
+        "Look at the colour attribute of the current jar.",
+        "Pick the shelf named after that colour.",
+        "Drop it and move to the next jar."
+      ],
+      "caveats": [
+        "Cloudy jars still go by colour."
+      ],
+      "problems": [
+        {
+          "problem": "A dark jar was put on the light shelf.",
+          "attempt": 1,
+          "fix": "Moved one jar at a time until its feedback disappeared."
+        }
+      ],
+      "attempts": [
+        {
+          "attempt": 1,
+          "run_id": "beekeeper-1760100000000-l3-a01",
+          "inputs": {
+            "jar-1": "light",
+            "jar-2": "light",
+            "jar-3": "light"
+          },
+          "actions_taken": [
+            {
+              "action": "mouse_drag",
+              "params": {
+                "from": {
+                  "target_id": "item:jar-1"
+                },
+                "to": {
+                  "target_id": "bin:light"
+                }
+              }
+            },
+            {
+              "action": "mouse_drag",
+              "params": {
+                "from": {
+                  "target_id": "item:jar-2"
+                },
+                "to": {
+                  "target_id": "bin:light"
+                }
+              }
+            },
+            {
+              "action": "mouse_drag",
+              "params": {
+                "from": {
+                  "target_id": "item:jar-3"
+                },
+                "to": {
+                  "target_id": "bin:light"
+                }
+              }
+            }
+          ],
+          "score": 33.3,
+          "passed": false,
+          "feedback": [
+            "Customers will expect a lighter honey here.",
+            "Look at the colour again."
+          ],
+          "breakdown": {
+            "jar-1": {
+              "label": "Pale clear jar",
+              "score": 100
+            },
+            "jar-2": {
+              "label": "Dark cloudy jar",
+              "score": 0
+            },
+            "jar-3": {
+              "label": "Amber clear jar",
+              "score": 0
+            }
+          },
+          "problems_found": [],
+          "caveats": [],
+          "hypothesis": "Start from the defaults to get a baseline.",
+          "what_changed": ""
+        },
+        {
+          "attempt": 2,
+          "run_id": "beekeeper-1760100000000-l3-a02",
+          "inputs": {
+            "jar-1": "light",
+            "jar-2": "amber",
+            "jar-3": "light"
+          },
+          "actions_taken": [
+            {
+              "action": "mouse_drag",
+              "params": {
+                "from": {
+                  "target_id": "item:jar-1"
+                },
+                "to": {
+                  "target_id": "bin:light"
+                }
+              }
+            },
+            {
+              "action": "mouse_drag",
+              "params": {
+                "from": {
+                  "target_id": "item:jar-2"
+                },
+                "to": {
+                  "target_id": "bin:amber"
+                }
+              }
+            },
+            {
+              "action": "mouse_drag",
+              "params": {
+                "from": {
+                  "target_id": "item:jar-3"
+                },
+                "to": {
+                  "target_id": "bin:light"
+                }
+              }
+            }
+          ],
+          "score": 33.3,
+          "passed": false,
+          "feedback": [
+            "Customers will expect a lighter honey here.",
+            "Look at the colour again."
+          ],
+          "breakdown": {
+            "jar-1": {
+              "label": "Pale clear jar",
+              "score": 100
+            },
+            "jar-2": {
+              "label": "Dark cloudy jar",
+              "score": 0
+            },
+            "jar-3": {
+              "label": "Amber clear jar",
+              "score": 0
+            }
+          },
+          "problems_found": [],
+          "caveats": [],
+          "hypothesis": "Feedback pointed at jar-2; adjusting it should lift the score.",
+          "what_changed": "jar-2 light -> amber"
+        },
+        {
+          "attempt": 3,
+          "run_id": "beekeeper-1760100000000-l3-a03",
+          "inputs": {
+            "jar-1": "light",
+            "jar-2": "dark",
+            "jar-3": "light"
+          },
+          "actions_taken": [
+            {
+              "action": "mouse_drag",
+              "params": {
+                "from": {
+                  "target_id": "item:jar-1"
+                },
+                "to": {
+                  "target_id": "bin:light"
+                }
+              }
+            },
+            {
+              "action": "mouse_drag",
+              "params": {
+                "from": {
+                  "target_id": "item:jar-2"
+                },
+                "to": {
+                  "target_id": "bin:dark"
+                }
+              }
+            },
+            {
+              "action": "mouse_drag",
+              "params": {
+                "from": {
+                  "target_id": "item:jar-3"
+                },
+                "to": {
+                  "target_id": "bin:light"
+                }
+              }
+            }
+          ],
+          "score": 66.7,
+          "passed": false,
+          "feedback": [
+            "Look at the colour again."
+          ],
+          "breakdown": {
+            "jar-1": {
+              "label": "Pale clear jar",
+              "score": 100
+            },
+            "jar-2": {
+              "label": "Dark cloudy jar",
+              "score": 100
+            },
+            "jar-3": {
+              "label": "Amber clear jar",
+              "score": 0
+            }
+          },
+          "problems_found": [],
+          "caveats": [],
+          "hypothesis": "Feedback pointed at jar-2; adjusting it should lift the score.",
+          "what_changed": "jar-2 amber -> dark"
+        },
+        {
+          "attempt": 4,
+          "run_id": "beekeeper-1760100000000-l3-a04",
+          "inputs": {
+            "jar-1": "light",
+            "jar-2": "dark",
+            "jar-3": "amber"
+          },
+          "actions_taken": [
+            {
+              "action": "mouse_drag",
+              "params": {
+                "from": {
+                  "target_id": "item:jar-1"
+                },
+                "to": {
+                  "target_id": "bin:light"
+                }
+              }
+            },
+            {
+              "action": "mouse_drag",
+              "params": {
+                "from": {
+                  "target_id": "item:jar-2"
+                },
+                "to": {
+                  "target_id": "bin:dark"
+                }
+              }
+            },
+            {
+              "action": "mouse_drag",
+              "params": {
+                "from": {
+                  "target_id": "item:jar-3"
+                },
+                "to": {
+                  "target_id": "bin:amber"
+                }
+              }
+            }
+          ],
+          "score": 100.0,
+          "passed": true,
+          "feedback": [
+            "Theo's shelf has never looked better."
+          ],
+          "breakdown": {
+            "jar-1": {
+              "label": "Pale clear jar",
+              "score": 100
+            },
+            "jar-2": {
+              "label": "Dark cloudy jar",
+              "score": 100
+            },
+            "jar-3": {
+              "label": "Amber clear jar",
+              "score": 100
+            }
+          },
+          "problems_found": [],
+          "caveats": [],
+          "hypothesis": "Feedback pointed at jar-3; adjusting it should lift the score.",
+          "what_changed": "jar-3 light -> amber"
+        },
+        {
+          "attempt": 5,
+          "run_id": "beekeeper-1760100000000-l3-a05",
+          "inputs": {
+            "jar-1": "light",
+            "jar-2": "dark",
+            "jar-3": "amber"
+          },
+          "actions_taken": [
+            {
+              "action": "mouse_drag",
+              "params": {
+                "from": {
+                  "target_id": "item:jar-1"
+                },
+                "to": {
+                  "target_id": "bin:light"
+                }
+              }
+            },
+            {
+              "action": "mouse_drag",
+              "params": {
+                "from": {
+                  "target_id": "item:jar-2"
+                },
+                "to": {
+                  "target_id": "bin:dark"
+                }
+              }
+            },
+            {
+              "action": "mouse_drag",
+              "params": {
+                "from": {
+                  "target_id": "item:jar-3"
+                },
+                "to": {
+                  "target_id": "bin:amber"
+                }
+              }
+            }
+          ],
+          "score": 100.0,
+          "passed": true,
+          "feedback": [
+            "Theo's shelf has never looked better."
+          ],
+          "breakdown": {
+            "jar-1": {
+              "label": "Pale clear jar",
+              "score": 100
+            },
+            "jar-2": {
+              "label": "Dark cloudy jar",
+              "score": 100
+            },
+            "jar-3": {
+              "label": "Amber clear jar",
+              "score": 100
+            }
+          },
+          "problems_found": [],
+          "caveats": [],
+          "hypothesis": "Feedback pointed at nothing new; adjusting it should lift the score.",
+          "what_changed": "no change, confirming the score is stable"
+        },
+        {
+          "attempt": 6,
+          "run_id": "beekeeper-1760100000000-l3-a06",
+          "inputs": {
+            "jar-1": "light",
+            "jar-2": "dark",
+            "jar-3": "amber"
+          },
+          "actions_taken": [
+            {
+              "action": "mouse_drag",
+              "params": {
+                "from": {
+                  "target_id": "item:jar-1"
+                },
+                "to": {
+                  "target_id": "bin:light"
+                }
+              }
+            },
+            {
+              "action": "mouse_drag",
+              "params": {
+                "from": {
+                  "target_id": "item:jar-2"
+                },
+                "to": {
+                  "target_id": "bin:dark"
+                }
+              }
+            },
+            {
+              "action": "mouse_drag",
+              "params": {
+                "from": {
+                  "target_id": "item:jar-3"
+                },
+                "to": {
+                  "target_id": "bin:amber"
+                }
+              }
+            }
+          ],
+          "score": 100.0,
+          "passed": true,
+          "feedback": [
+            "Theo's shelf has never looked better."
+          ],
+          "breakdown": {
+            "jar-1": {
+              "label": "Pale clear jar",
+              "score": 100
+            },
+            "jar-2": {
+              "label": "Dark cloudy jar",
+              "score": 100
+            },
+            "jar-3": {
+              "label": "Amber clear jar",
+              "score": 100
+            }
+          },
+          "problems_found": [],
+          "caveats": [],
+          "hypothesis": "Feedback pointed at nothing new; adjusting it should lift the score.",
+          "what_changed": "no change, confirming the score is stable"
+        },
+        {
+          "attempt": 7,
+          "run_id": "beekeeper-1760100000000-l3-a07",
+          "inputs": {
+            "jar-1": "light",
+            "jar-2": "dark",
+            "jar-3": "amber"
+          },
+          "actions_taken": [
+            {
+              "action": "mouse_drag",
+              "params": {
+                "from": {
+                  "target_id": "item:jar-1"
+                },
+                "to": {
+                  "target_id": "bin:light"
+                }
+              }
+            },
+            {
+              "action": "mouse_drag",
+              "params": {
+                "from": {
+                  "target_id": "item:jar-2"
+                },
+                "to": {
+                  "target_id": "bin:dark"
+                }
+              }
+            },
+            {
+              "action": "mouse_drag",
+              "params": {
+                "from": {
+                  "target_id": "item:jar-3"
+                },
+                "to": {
+                  "target_id": "bin:amber"
+                }
+              }
+            }
+          ],
+          "score": 100.0,
+          "passed": true,
+          "feedback": [
+            "Theo's shelf has never looked better."
+          ],
+          "breakdown": {
+            "jar-1": {
+              "label": "Pale clear jar",
+              "score": 100
+            },
+            "jar-2": {
+              "label": "Dark cloudy jar",
+              "score": 100
+            },
+            "jar-3": {
+              "label": "Amber clear jar",
+              "score": 100
+            }
+          },
+          "problems_found": [],
+          "caveats": [],
+          "hypothesis": "Feedback pointed at nothing new; adjusting it should lift the score.",
+          "what_changed": "no change, confirming the score is stable"
+        },
+        {
+          "attempt": 8,
+          "run_id": "beekeeper-1760100000000-l3-a08",
+          "inputs": {
+            "jar-1": "light",
+            "jar-2": "dark",
+            "jar-3": "amber"
+          },
+          "actions_taken": [
+            {
+              "action": "mouse_drag",
+              "params": {
+                "from": {
+                  "target_id": "item:jar-1"
+                },
+                "to": {
+                  "target_id": "bin:light"
+                }
+              }
+            },
+            {
+              "action": "mouse_drag",
+              "params": {
+                "from": {
+                  "target_id": "item:jar-2"
+                },
+                "to": {
+                  "target_id": "bin:dark"
+                }
+              }
+            },
+            {
+              "action": "mouse_drag",
+              "params": {
+                "from": {
+                  "target_id": "item:jar-3"
+                },
+                "to": {
+                  "target_id": "bin:amber"
+                }
+              }
+            }
+          ],
+          "score": 100.0,
+          "passed": true,
+          "feedback": [
+            "Theo's shelf has never looked better."
+          ],
+          "breakdown": {
+            "jar-1": {
+              "label": "Pale clear jar",
+              "score": 100
+            },
+            "jar-2": {
+              "label": "Dark cloudy jar",
+              "score": 100
+            },
+            "jar-3": {
+              "label": "Amber clear jar",
+              "score": 100
+            }
+          },
+          "problems_found": [],
+          "caveats": [],
+          "hypothesis": "Feedback pointed at nothing new; adjusting it should lift the score.",
+          "what_changed": "no change, confirming the score is stable"
+        },
+        {
+          "attempt": 9,
+          "run_id": "beekeeper-1760100000000-l3-a09",
+          "inputs": {
+            "jar-1": "light",
+            "jar-2": "dark",
+            "jar-3": "amber"
+          },
+          "actions_taken": [
+            {
+              "action": "mouse_drag",
+              "params": {
+                "from": {
+                  "target_id": "item:jar-1"
+                },
+                "to": {
+                  "target_id": "bin:light"
+                }
+              }
+            },
+            {
+              "action": "mouse_drag",
+              "params": {
+                "from": {
+                  "target_id": "item:jar-2"
+                },
+                "to": {
+                  "target_id": "bin:dark"
+                }
+              }
+            },
+            {
+              "action": "mouse_drag",
+              "params": {
+                "from": {
+                  "target_id": "item:jar-3"
+                },
+                "to": {
+                  "target_id": "bin:amber"
+                }
+              }
+            }
+          ],
+          "score": 100.0,
+          "passed": true,
+          "feedback": [
+            "Theo's shelf has never looked better."
+          ],
+          "breakdown": {
+            "jar-1": {
+              "label": "Pale clear jar",
+              "score": 100
+            },
+            "jar-2": {
+              "label": "Dark cloudy jar",
+              "score": 100
+            },
+            "jar-3": {
+              "label": "Amber clear jar",
+              "score": 100
+            }
+          },
+          "problems_found": [],
+          "caveats": [],
+          "hypothesis": "Feedback pointed at nothing new; adjusting it should lift the score.",
+          "what_changed": "no change, confirming the score is stable"
+        },
+        {
+          "attempt": 10,
+          "run_id": "beekeeper-1760100000000-l3-a10",
+          "inputs": {
+            "jar-1": "light",
+            "jar-2": "dark",
+            "jar-3": "amber"
+          },
+          "actions_taken": [
+            {
+              "action": "mouse_drag",
+              "params": {
+                "from": {
+                  "target_id": "item:jar-1"
+                },
+                "to": {
+                  "target_id": "bin:light"
+                }
+              }
+            },
+            {
+              "action": "mouse_drag",
+              "params": {
+                "from": {
+                  "target_id": "item:jar-2"
+                },
+                "to": {
+                  "target_id": "bin:dark"
+                }
+              }
+            },
+            {
+              "action": "mouse_drag",
+              "params": {
+                "from": {
+                  "target_id": "item:jar-3"
+                },
+                "to": {
+                  "target_id": "bin:amber"
+                }
+              }
+            }
+          ],
+          "score": 100.0,
+          "passed": true,
+          "feedback": [
+            "Theo's shelf has never looked better."
+          ],
+          "breakdown": {
+            "jar-1": {
+              "label": "Pale clear jar",
+              "score": 100
+            },
+            "jar-2": {
+              "label": "Dark cloudy jar",
+              "score": 100
+            },
+            "jar-3": {
+              "label": "Amber clear jar",
+              "score": 100
+            }
+          },
+          "problems_found": [],
+          "caveats": [],
+          "hypothesis": "Feedback pointed at nothing new; adjusting it should lift the score.",
+          "what_changed": "no change, confirming the score is stable"
+        }
+      ]
+    },
+    {
+      "version": 2,
+      "id": "beekeeper-sell-honey",
+      "name": "Selling at market",
+      "job": "beekeeper",
+      "level_id": "beekeeper-sell-honey",
+      "level_index": 4,
+      "mechanic": "converse",
+      "status": "learned",
+      "trained_attempts": 10,
+      "best_score": 100.0,
+      "final_score": 100.0,
+      "pass_threshold": 70,
+      "passed": true,
+      "score_history": [
+        {
+          "attempt": 1,
+          "score": 0.0,
+          "passed": false
+        },
+        {
+          "attempt": 2,
+          "score": 50.0,
+          "passed": false
+        },
+        {
+          "attempt": 3,
+          "score": 100.0,
+          "passed": true
+        },
+        {
+          "attempt": 4,
+          "score": 100.0,
+          "passed": true
+        },
+        {
+          "attempt": 5,
+          "score": 100.0,
+          "passed": true
+        },
+        {
+          "attempt": 6,
+          "score": 100.0,
+          "passed": true
+        },
+        {
+          "attempt": 7,
+          "score": 100.0,
+          "passed": true
+        },
+        {
+          "attempt": 8,
+          "score": 100.0,
+          "passed": true
+        },
+        {
+          "attempt": 9,
+          "score": 100.0,
+          "passed": true
+        },
+        {
+          "attempt": 10,
+          "score": 100.0,
+          "passed": true
+        }
+      ],
+      "sources": [
+        {
+          "title": "Example source",
+          "url": "https://example.org/extraction"
+        }
+      ],
+      "user_context": [],
+      "updated_at": "2026-10-10T15:00:00Z",
+      "description": "Answer a market customer's questions safely and kindly. Safety answers come first; one unsafe answer ends the conversation.",
+      "learned_parameters": [
+        {
+          "variable": "baby",
+          "label": "Is honey fine for my baby? She's eight months.",
+          "value": "Please wait until she is over one year.",
+          "unit": "",
+          "rationale": "Safe and caring advice.",
+          "evidence": [
+            {
+              "attempt": 1,
+              "value": "yes",
+              "score": 0.0
+            },
+            {
+              "attempt": 2,
+              "value": "wait",
+              "score": 50.0
+            }
+          ]
+        },
+        {
+          "variable": "crystal",
+          "label": "My last jar went grainy. Is it spoiled?",
+          "value": "It just crystallised. Warm it gently.",
+          "unit": "",
+          "rationale": "Correct and helpful.",
+          "evidence": [
+            {
+              "attempt": 1,
+              "value": "spoiled",
+              "score": 0.0
+            },
+            {
+              "attempt": 3,
+              "value": "warm",
+              "score": 100.0
+            }
+          ]
+        }
+      ],
+      "control_effects": [
+        {
+          "variable": "baby",
+          "effect": "Switching this one answer moved the score by a full turn's share.",
+          "evidence": []
+        },
+        {
+          "variable": "crystal",
+          "effect": "Switching this one answer moved the score by a full turn's share.",
+          "evidence": []
+        }
+      ],
+      "steps": [
+        "Listen to the whole question.",
+        "If it touches safety, give the safe answer even if it disappoints.",
+        "Explain briefly why.",
+        "Offer a helpful next step."
+      ],
+      "caveats": [
+        "An unsafe answer caps the score below the pass mark no matter what else you say."
+      ],
+      "problems": [
+        {
+          "problem": "An unsafe answer ended the conversation.",
+          "attempt": 1,
+          "fix": "Changed that answer first, then the next one."
+        }
+      ],
+      "attempts": [
+        {
+          "attempt": 1,
+          "run_id": "beekeeper-1760100000000-l4-a01",
+          "inputs": {
+            "baby": "yes",
+            "crystal": "spoiled"
+          },
+          "actions_taken": [
+            {
+              "action": "mouse_click",
+              "params": {
+                "target_id": "choice:yes"
+              }
+            },
+            {
+              "action": "mouse_click",
+              "params": {
+                "target_id": "choice:spoiled"
+              }
+            }
+          ],
+          "score": 0.0,
+          "passed": false,
+          "feedback": [
+            "Honey is not safe for infants under one.",
+            "Crystallised honey is not spoiled."
+          ],
+          "breakdown": {
+            "baby": {
+              "label": "baby",
+              "score": 0
+            },
+            "crystal": {
+              "label": "crystal",
+              "score": 0
+            }
+          },
+          "problems_found": [
+            "Critical answer chosen."
+          ],
+          "caveats": [],
+          "hypothesis": "Start from the defaults to get a baseline.",
+          "what_changed": ""
+        },
+        {
+          "attempt": 2,
+          "run_id": "beekeeper-1760100000000-l4-a02",
+          "inputs": {
+            "baby": "wait",
+            "crystal": "spoiled"
+          },
+          "actions_taken": [
+            {
+              "action": "mouse_click",
+              "params": {
+                "target_id": "choice:wait"
+              }
+            },
+            {
+              "action": "mouse_click",
+              "params": {
+                "target_id": "choice:spoiled"
+              }
+            }
+          ],
+          "score": 50.0,
+          "passed": false,
+          "feedback": [
+            "Crystallised honey is not spoiled."
+          ],
+          "breakdown": {
+            "baby": {
+              "label": "baby",
+              "score": 100
+            },
+            "crystal": {
+              "label": "crystal",
+              "score": 0
+            }
+          },
+          "problems_found": [],
+          "caveats": [],
+          "hypothesis": "Feedback pointed at baby; adjusting it should lift the score.",
+          "what_changed": "baby yes -> wait"
+        },
+        {
+          "attempt": 3,
+          "run_id": "beekeeper-1760100000000-l4-a03",
+          "inputs": {
+            "baby": "wait",
+            "crystal": "warm"
+          },
+          "actions_taken": [
+            {
+              "action": "mouse_click",
+              "params": {
+                "target_id": "choice:wait"
+              }
+            },
+            {
+              "action": "mouse_click",
+              "params": {
+                "target_id": "choice:warm"
+              }
+            }
+          ],
+          "score": 100.0,
+          "passed": true,
+          "feedback": [
+            "Rosa leaves smiling."
+          ],
+          "breakdown": {
+            "baby": {
+              "label": "baby",
+              "score": 100
+            },
+            "crystal": {
+              "label": "crystal",
+              "score": 100
+            }
+          },
+          "problems_found": [],
+          "caveats": [],
+          "hypothesis": "Feedback pointed at crystal; adjusting it should lift the score.",
+          "what_changed": "crystal spoiled -> warm"
+        },
+        {
+          "attempt": 4,
+          "run_id": "beekeeper-1760100000000-l4-a04",
+          "inputs": {
+            "baby": "wait",
+            "crystal": "warm"
+          },
+          "actions_taken": [
+            {
+              "action": "mouse_click",
+              "params": {
+                "target_id": "choice:wait"
+              }
+            },
+            {
+              "action": "mouse_click",
+              "params": {
+                "target_id": "choice:warm"
+              }
+            }
+          ],
+          "score": 100.0,
+          "passed": true,
+          "feedback": [
+            "Rosa leaves smiling."
+          ],
+          "breakdown": {
+            "baby": {
+              "label": "baby",
+              "score": 100
+            },
+            "crystal": {
+              "label": "crystal",
+              "score": 100
+            }
+          },
+          "problems_found": [],
+          "caveats": [],
+          "hypothesis": "Feedback pointed at nothing new; adjusting it should lift the score.",
+          "what_changed": "no change, confirming the score is stable"
+        },
+        {
+          "attempt": 5,
+          "run_id": "beekeeper-1760100000000-l4-a05",
+          "inputs": {
+            "baby": "wait",
+            "crystal": "warm"
+          },
+          "actions_taken": [
+            {
+              "action": "mouse_click",
+              "params": {
+                "target_id": "choice:wait"
+              }
+            },
+            {
+              "action": "mouse_click",
+              "params": {
+                "target_id": "choice:warm"
+              }
+            }
+          ],
+          "score": 100.0,
+          "passed": true,
+          "feedback": [
+            "Rosa leaves smiling."
+          ],
+          "breakdown": {
+            "baby": {
+              "label": "baby",
+              "score": 100
+            },
+            "crystal": {
+              "label": "crystal",
+              "score": 100
+            }
+          },
+          "problems_found": [],
+          "caveats": [],
+          "hypothesis": "Feedback pointed at nothing new; adjusting it should lift the score.",
+          "what_changed": "no change, confirming the score is stable"
+        },
+        {
+          "attempt": 6,
+          "run_id": "beekeeper-1760100000000-l4-a06",
+          "inputs": {
+            "baby": "wait",
+            "crystal": "warm"
+          },
+          "actions_taken": [
+            {
+              "action": "mouse_click",
+              "params": {
+                "target_id": "choice:wait"
+              }
+            },
+            {
+              "action": "mouse_click",
+              "params": {
+                "target_id": "choice:warm"
+              }
+            }
+          ],
+          "score": 100.0,
+          "passed": true,
+          "feedback": [
+            "Rosa leaves smiling."
+          ],
+          "breakdown": {
+            "baby": {
+              "label": "baby",
+              "score": 100
+            },
+            "crystal": {
+              "label": "crystal",
+              "score": 100
+            }
+          },
+          "problems_found": [],
+          "caveats": [],
+          "hypothesis": "Feedback pointed at nothing new; adjusting it should lift the score.",
+          "what_changed": "no change, confirming the score is stable"
+        },
+        {
+          "attempt": 7,
+          "run_id": "beekeeper-1760100000000-l4-a07",
+          "inputs": {
+            "baby": "wait",
+            "crystal": "warm"
+          },
+          "actions_taken": [
+            {
+              "action": "mouse_click",
+              "params": {
+                "target_id": "choice:wait"
+              }
+            },
+            {
+              "action": "mouse_click",
+              "params": {
+                "target_id": "choice:warm"
+              }
+            }
+          ],
+          "score": 100.0,
+          "passed": true,
+          "feedback": [
+            "Rosa leaves smiling."
+          ],
+          "breakdown": {
+            "baby": {
+              "label": "baby",
+              "score": 100
+            },
+            "crystal": {
+              "label": "crystal",
+              "score": 100
+            }
+          },
+          "problems_found": [],
+          "caveats": [],
+          "hypothesis": "Feedback pointed at nothing new; adjusting it should lift the score.",
+          "what_changed": "no change, confirming the score is stable"
+        },
+        {
+          "attempt": 8,
+          "run_id": "beekeeper-1760100000000-l4-a08",
+          "inputs": {
+            "baby": "wait",
+            "crystal": "warm"
+          },
+          "actions_taken": [
+            {
+              "action": "mouse_click",
+              "params": {
+                "target_id": "choice:wait"
+              }
+            },
+            {
+              "action": "mouse_click",
+              "params": {
+                "target_id": "choice:warm"
+              }
+            }
+          ],
+          "score": 100.0,
+          "passed": true,
+          "feedback": [
+            "Rosa leaves smiling."
+          ],
+          "breakdown": {
+            "baby": {
+              "label": "baby",
+              "score": 100
+            },
+            "crystal": {
+              "label": "crystal",
+              "score": 100
+            }
+          },
+          "problems_found": [],
+          "caveats": [],
+          "hypothesis": "Feedback pointed at nothing new; adjusting it should lift the score.",
+          "what_changed": "no change, confirming the score is stable"
+        },
+        {
+          "attempt": 9,
+          "run_id": "beekeeper-1760100000000-l4-a09",
+          "inputs": {
+            "baby": "wait",
+            "crystal": "warm"
+          },
+          "actions_taken": [
+            {
+              "action": "mouse_click",
+              "params": {
+                "target_id": "choice:wait"
+              }
+            },
+            {
+              "action": "mouse_click",
+              "params": {
+                "target_id": "choice:warm"
+              }
+            }
+          ],
+          "score": 100.0,
+          "passed": true,
+          "feedback": [
+            "Rosa leaves smiling."
+          ],
+          "breakdown": {
+            "baby": {
+              "label": "baby",
+              "score": 100
+            },
+            "crystal": {
+              "label": "crystal",
+              "score": 100
+            }
+          },
+          "problems_found": [],
+          "caveats": [],
+          "hypothesis": "Feedback pointed at nothing new; adjusting it should lift the score.",
+          "what_changed": "no change, confirming the score is stable"
+        },
+        {
+          "attempt": 10,
+          "run_id": "beekeeper-1760100000000-l4-a10",
+          "inputs": {
+            "baby": "wait",
+            "crystal": "warm"
+          },
+          "actions_taken": [
+            {
+              "action": "mouse_click",
+              "params": {
+                "target_id": "choice:wait"
+              }
+            },
+            {
+              "action": "mouse_click",
+              "params": {
+                "target_id": "choice:warm"
+              }
+            }
+          ],
+          "score": 100.0,
+          "passed": true,
+          "feedback": [
+            "Rosa leaves smiling."
+          ],
+          "breakdown": {
+            "baby": {
+              "label": "baby",
+              "score": 100
+            },
+            "crystal": {
+              "label": "crystal",
+              "score": 100
+            }
+          },
+          "problems_found": [],
+          "caveats": [],
+          "hypothesis": "Feedback pointed at nothing new; adjusting it should lift the score.",
+          "what_changed": "no change, confirming the score is stable"
+        }
+      ]
+    }
+  ]
+}

@@ -168,10 +168,8 @@ class TimingDriver(Driver):
                     wait = (want - value) / speed if want >= value else ((hi - value) + (hi - want)) / speed
                 else:
                     wait = (value - want) / speed if want <= value else ((value - lo) + (want - lo)) / speed
-                st["stage"] = "stop"
-                if wait >= 1:
-                    return {"action": "wait", "params": {"ms": int(round(min(wait, 10000)))}}
-            return self._stop(obs)
+                st.update(stage="stop", until=t + wait)
+            return self._wait_until(st, t) or self._stop(obs)
         # hold mode
         if not meter.get("holding") and st["stage"] == "start":
             st["stage"] = "pressed"
@@ -181,12 +179,17 @@ class TimingDriver(Driver):
             return {"action": "wait", "params": {"ms": CALIBRATE_MS}}
         if st["stage"] == "calibrate":
             rate = (value - st["v0"]) / max(1e-6, t - st["t0"])
-            st["stage"] = "release"
-            if rate > 0 and want > value:
-                wait = (want - value) / rate
-                if wait >= 1:
-                    return {"action": "wait", "params": {"ms": int(round(min(wait, 10000)))}}
-        return {"action": "mouse_up", "params": centre}
+            st.update(stage="release", until=t + (want - value) / rate if rate > 0 and want > value else t)
+        return self._wait_until(st, t) or {"action": "mouse_up", "params": centre}
+
+    @staticmethod
+    def _wait_until(st, t):
+        """Waits (in chunks of at most 10 s, the wait action's max) until the planned stop or release time."""
+        left = st.get("until", t) - t
+        if left < 1 or st.get("waited_at") == t:  # done, or the clock did not move on the last wait
+            return None
+        st["waited_at"] = t
+        return {"action": "wait", "params": {"ms": int(round(min(left, 10000)))}}
 
     def _centre(self, obs):
         m = find_target(obs, "meter")
@@ -277,7 +280,8 @@ class ConverseDriver(Driver):
 
     def ended_early(self, obs) -> bool:
         hist = (obs.get("mechanic_state") or {}).get("history") or self.history
-        return bool(self.turns_total) and len(hist) < int(self.turns_total) and (obs.get("time_left_ms") or 1) > 0
+        timed_out = obs.get("time_left_ms") is not None and obs["time_left_ms"] <= 0
+        return bool(self.turns_total) and len(hist) < int(self.turns_total) and not timed_out
 
 
 class DeliverDriver(Driver):
@@ -383,8 +387,10 @@ class DeliverDriver(Driver):
         if carrying and (len(carrying) >= batch or not waiting):
             oid = self._first(carrying)
             order = next(o for o in orders if o["id"] == oid)
-            target = self._match(obs, order.get("to_label", ""), ("npc", "location", "spot"),
-                                 [*avoid.get(oid, []), *self.bad_targets.get(oid, ())])
+            skip = [*avoid.get(oid, []), *self.bad_targets.get(oid, ())]
+            named = find_target(obs, order["to"]) if order.get("to") else None  # the ticket's place, when the page lists it
+            target = named if named and named["id"] not in skip else \
+                self._match(obs, order.get("to_label", ""), ("npc", "location", "spot"), skip)
             kind = "handover"
         else:
             order = self._pick_next(obs, waiting)
@@ -428,12 +434,18 @@ class DeliverDriver(Driver):
         return waiting[0]
 
     def _pickup_target(self, obs, order) -> Optional[Dict[str, Any]]:
-        """The order's own spot if the page shows one, else the best label match."""
+        """The order's own spot or its listed pickup place if the page shows one, else the best label match
+        among places that are not some order's destination."""
         bad = self.bad_targets.get(order["id"], set())
-        own = find_target(obs, f"spot:{order['id']}")
-        if own and own["id"] not in bad:
-            return own
-        return self._match(obs, order.get("label", ""), ("spot", "item", "location"), list(bad))
+        for tid in (f"spot:{order['id']}", order.get("from")):
+            own = find_target(obs, tid) if tid else None
+            if own and own["id"] not in bad:
+                return own
+        orders = (obs.get("mechanic_state") or {}).get("orders") or []
+        dests = [t["id"] for t in obs.get("targets") or []
+                 if any(o.get("to") == t["id"] or (o.get("to_label") and o["to_label"] == t.get("label")) for o in orders)]
+        return self._match(obs, order.get("label", ""), ("spot", "item", "location"), [*bad, *dests]) or \
+            self._match(obs, order.get("label", ""), ("spot", "item", "location"), list(bad))
 
     def no_effect(self, action, before, after):
         name = action["action"]

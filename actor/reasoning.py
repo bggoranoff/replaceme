@@ -218,7 +218,7 @@ def deterministic_reflection(attempt: Dict[str, Any], prev: Optional[Dict[str, A
     if crit:
         caveats.append(f"Never answer {crit['text']!r}.")
     for k, v in weak:
-        if k not in labels:
+        if k in notes.get("relations", ()):
             caveats.append(f"'{v.get('label', k)}' depends on several controls together, not one alone.")
     reflection = f"Attempt {attempt['attempt']} scored {attempt['score']}"
     if prev:

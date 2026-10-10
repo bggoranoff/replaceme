@@ -154,6 +154,9 @@ def main() -> None:
             LearnedSkill.model_validate(skill)
             assert skill["trained_attempts"] == ATTEMPTS and len(skill["score_history"]) == ATTEMPTS
             assert skill["learned_parameters"] and all(p["evidence"] for p in skill["learned_parameters"])
+            if level["mechanic"] == "converse":  # every answered turn, keyed by its turn id (also the last one)
+                assert {p["variable"] for p in skill["learned_parameters"]} == {t["id"] for t in level["params"]["turns"]}, \
+                    skill["learned_parameters"]
             md = (skills_dir / level["id"] / "SKILL.md").read_text()
             assert md.startswith("---\nname: ") and "## Learned parameters" in md
         print(f"ok  {len(runs)} runs, {actions} actions all allowlisted, 4 skills exported, viewer switching and SSE work")

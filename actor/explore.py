@@ -438,6 +438,7 @@ class NumericStrategy:
             d["last_best"] = next((s for a, s in d["scores"] if a == best["attempt"]), 1.0) or 0.0
         self._pattern_feedback(total)
         notes = self._attribute_feedback(attempt, values, result)
+        notes["relations"] = list(self.derived)  # terms that combine several controls (derived expressions)
         if self.pending_probe:
             vid, side, x = self.pending_probe
             self.probes.append((vid, side, x))
@@ -473,6 +474,10 @@ class NumericStrategy:
             parts = []
             if b and b["s"] is not None:
                 parts.append(f"Best sub-score {round(b['s'] * 100)}/100 at {fmt(v.snap(b['x']), v.unit)}.")
+                if self.history and abs(float(value) - b["x"]) >= v.step / 2:
+                    why = "the relation terms depend on it too" if self.derived else "of how it combined with the other controls"
+                    parts.append(f"Keep {fmt(value, v.unit)}: with it the total score was best ({self.best_attempt()['total']}), "
+                                 f"because {why}.")
             pts = v.points()
             if len(pts) >= 2:
                 lo_pt, hi_pt = pts[0], pts[-1]

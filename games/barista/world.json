@@ -1,0 +1,1580 @@
+{
+  "version": 2,
+  "rulesVersion": 2,
+  "researchVersion": 2,
+  "job": "barista",
+  "slug": "barista",
+  "title": "Bean & Bloom Cafe",
+  "branch": "game/barista",
+  "theme": {
+    "name": "Bean & Bloom village",
+    "palette": {
+      "grass": "#86c45e",
+      "path": "#dcb983",
+      "water": "#6fb3d9",
+      "wood": "#9a6a3f",
+      "roof": "#b4563f",
+      "accent": "#f2c14e"
+    }
+  },
+  "map": {
+    "cols": 26,
+    "rows": 16,
+    "tile": 16,
+    "spawn": [
+      13,
+      8
+    ],
+    "ground": [
+      "gggggggggggggggggggggggggg",
+      "gggggggggggggggggggggggggg",
+      "gggggggggggggggggggggggggg",
+      "gggggggggggggggggggggggggg",
+      "gggffffffffffpfffffffffggg",
+      "gggffffffffffpfffffffffggg",
+      "gggffffffffffpfffffffffggg",
+      "gggffffffffffpfffffffffggg",
+      "gppppppppppppppppppppppppg",
+      "gggggpgggggggpggggggpggggg",
+      "gggggpgggggggpggggggpggggg",
+      "gggggpgggggggpggggggpggggg",
+      "ggppppppppppppppppppppppgg",
+      "ggggggggwwwggpgggggggggggg",
+      "ggggggggwwwggpgggggggggggg",
+      "gggggggggggggggggggggggggg"
+    ],
+    "locations": [
+      {
+        "id": "trees-0-0",
+        "name": "Trees",
+        "kind": "decor",
+        "icon": "trees",
+        "tile": [
+          0,
+          0
+        ],
+        "w": 26,
+        "h": 1
+      },
+      {
+        "id": "trees-0-15",
+        "name": "Trees",
+        "kind": "decor",
+        "icon": "trees",
+        "tile": [
+          0,
+          15
+        ],
+        "w": 26,
+        "h": 1
+      },
+      {
+        "id": "trees-0-1",
+        "name": "Trees",
+        "kind": "decor",
+        "icon": "trees",
+        "tile": [
+          0,
+          1
+        ],
+        "w": 1,
+        "h": 14
+      },
+      {
+        "id": "trees-25-1",
+        "name": "Trees",
+        "kind": "decor",
+        "icon": "trees",
+        "tile": [
+          25,
+          1
+        ],
+        "w": 1,
+        "h": 14
+      },
+      {
+        "id": "cafe",
+        "name": "Cafe",
+        "kind": "building",
+        "icon": "shop",
+        "tile": [
+          8,
+          1
+        ],
+        "w": 10,
+        "h": 3
+      },
+      {
+        "id": "coffee-bar",
+        "name": "Coffee bar",
+        "kind": "station",
+        "icon": "pot",
+        "tile": [
+          6,
+          4
+        ],
+        "w": 3,
+        "h": 2
+      },
+      {
+        "id": "milk-bar",
+        "name": "Milk bar",
+        "kind": "station",
+        "icon": "tub",
+        "tile": [
+          17,
+          4
+        ],
+        "w": 3,
+        "h": 2
+      },
+      {
+        "id": "counter",
+        "name": "Counter",
+        "kind": "stall",
+        "icon": "counter",
+        "tile": [
+          3,
+          9
+        ],
+        "w": 4,
+        "h": 2
+      },
+      {
+        "id": "back-room",
+        "name": "Back room",
+        "kind": "stall",
+        "icon": "crate",
+        "tile": [
+          19,
+          9
+        ],
+        "w": 4,
+        "h": 2
+      },
+      {
+        "id": "van",
+        "name": "Van",
+        "kind": "stall",
+        "icon": "cart",
+        "tile": [
+          15,
+          13
+        ],
+        "w": 3,
+        "h": 2
+      },
+      {
+        "id": "tables",
+        "name": "Tables",
+        "kind": "table",
+        "icon": "counter",
+        "tile": [
+          10,
+          5
+        ],
+        "w": 2,
+        "h": 2
+      },
+      {
+        "id": "tables-2",
+        "name": "Tables",
+        "kind": "table",
+        "icon": "counter",
+        "tile": [
+          15,
+          5
+        ],
+        "w": 2,
+        "h": 2
+      },
+      {
+        "id": "lamp-12-9",
+        "name": "Lamp",
+        "kind": "decor",
+        "icon": "lamp",
+        "tile": [
+          12,
+          9
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "lamp-14-11",
+        "name": "Lamp",
+        "kind": "decor",
+        "icon": "lamp",
+        "tile": [
+          14,
+          11
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-2-2",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          2,
+          2
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-4-2",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          4,
+          2
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-21-2",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          21,
+          2
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-23-3",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          23,
+          3
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-2-13",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          2,
+          13
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-23-13",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          23,
+          13
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "tree-6-14",
+        "name": "Tree",
+        "kind": "decor",
+        "icon": "tree",
+        "tile": [
+          6,
+          14
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "bush-2-6",
+        "name": "Bush",
+        "kind": "decor",
+        "icon": "bush",
+        "tile": [
+          2,
+          6
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "bush-23-6",
+        "name": "Bush",
+        "kind": "decor",
+        "icon": "bush",
+        "tile": [
+          23,
+          6
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "bush-19-2",
+        "name": "Bush",
+        "kind": "decor",
+        "icon": "bush",
+        "tile": [
+          19,
+          2
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "bush-6-2",
+        "name": "Bush",
+        "kind": "decor",
+        "icon": "bush",
+        "tile": [
+          6,
+          2
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-3-3",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          3,
+          3
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-22-3",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          22,
+          3
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-2-10",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          2,
+          10
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-24-10",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          24,
+          10
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-11-10",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          11,
+          10
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-8-9",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          8,
+          9
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-17-9",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          17,
+          9
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "rock-11-14",
+        "name": "Rock",
+        "kind": "decor",
+        "icon": "rock",
+        "tile": [
+          11,
+          14
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "flowers-19-14",
+        "name": "Flowers",
+        "kind": "decor",
+        "icon": "flowers",
+        "tile": [
+          19,
+          14
+        ],
+        "w": 1,
+        "h": 1
+      },
+      {
+        "id": "bush-24-13",
+        "name": "Bush",
+        "kind": "decor",
+        "icon": "bush",
+        "tile": [
+          24,
+          13
+        ],
+        "w": 1,
+        "h": 1
+      }
+    ],
+    "solids": [
+      {
+        "x": 0,
+        "y": 0,
+        "w": 26,
+        "h": 1
+      },
+      {
+        "x": 0,
+        "y": 15,
+        "w": 26,
+        "h": 1
+      },
+      {
+        "x": 0,
+        "y": 1,
+        "w": 1,
+        "h": 14
+      },
+      {
+        "x": 25,
+        "y": 1,
+        "w": 1,
+        "h": 14
+      },
+      {
+        "x": 8,
+        "y": 13,
+        "w": 3,
+        "h": 2
+      },
+      {
+        "x": 8,
+        "y": 1,
+        "w": 10,
+        "h": 3
+      },
+      {
+        "x": 6,
+        "y": 4,
+        "w": 3,
+        "h": 2
+      },
+      {
+        "x": 17,
+        "y": 4,
+        "w": 3,
+        "h": 2
+      },
+      {
+        "x": 3,
+        "y": 9,
+        "w": 4,
+        "h": 2
+      },
+      {
+        "x": 19,
+        "y": 9,
+        "w": 4,
+        "h": 2
+      },
+      {
+        "x": 15,
+        "y": 13,
+        "w": 3,
+        "h": 2
+      },
+      {
+        "x": 10,
+        "y": 5,
+        "w": 2,
+        "h": 2
+      },
+      {
+        "x": 15,
+        "y": 5,
+        "w": 2,
+        "h": 2
+      },
+      {
+        "x": 12,
+        "y": 9,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 14,
+        "y": 11,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 2,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 4,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 21,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 23,
+        "y": 3,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 2,
+        "y": 13,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 23,
+        "y": 13,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 6,
+        "y": 14,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 2,
+        "y": 6,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 23,
+        "y": 6,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 19,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 6,
+        "y": 2,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 11,
+        "y": 14,
+        "w": 1,
+        "h": 1
+      },
+      {
+        "x": 24,
+        "y": 13,
+        "w": 1,
+        "h": 1
+      }
+    ]
+  },
+  "npcs": [
+    {
+      "id": "juniper",
+      "name": "Juniper",
+      "role": "head barista",
+      "tile": [
+        5,
+        5
+      ],
+      "voice": "NbpkqMVS3CJeq2j8",
+      "palette": {
+        "shirt": "#4fa59a",
+        "hair": "#a33f2f",
+        "skin": "#f0c4a0"
+      }
+    },
+    {
+      "id": "luca",
+      "name": "Luca",
+      "role": "latte art champ",
+      "tile": [
+        21,
+        5
+      ],
+      "voice": "r2sIQdqqoqgRJuXw",
+      "palette": {
+        "shirt": "#d9734e",
+        "hair": "#2f2a2a",
+        "skin": "#c98e64"
+      }
+    },
+    {
+      "id": "maya",
+      "name": "Maya",
+      "role": "regular customer",
+      "tile": [
+        8,
+        10
+      ],
+      "voice": "YVzbrdWnnu9FgRn5",
+      "palette": {
+        "shirt": "#b56fc2",
+        "hair": "#5b3a29",
+        "skin": "#8d5a3b"
+      }
+    },
+    {
+      "id": "bram",
+      "name": "Bram",
+      "role": "cafe owner",
+      "tile": [
+        17,
+        10
+      ],
+      "voice": "POBHtemksfWQbng0",
+      "palette": {
+        "shirt": "#5e8fc9",
+        "hair": "#e3d9c6",
+        "skin": "#f2c9a0"
+      }
+    }
+  ],
+  "levels": [
+    {
+      "id": "barista-brew-coffee",
+      "index": 1,
+      "title": "Brew coffee",
+      "task_id": "brew-coffee",
+      "skill_name": "Brew coffee",
+      "mechanic": "mix",
+      "quest": {
+        "npc_id": "juniper",
+        "location_id": "coffee-bar",
+        "title": "Fix the coffee"
+      },
+      "aim": "Brew a sweet, balanced mug: not sour, bitter or weak.",
+      "controls_hint": "Up/Down pick a setting, Left/Right adjust it, Enter to Brew. Or drag a slider and click Brew.",
+      "metric": {
+        "name": "Taste",
+        "description": "0-100 from coffee, water, brew time and their balance"
+      },
+      "time_limit_ms": null,
+      "success_line": "Sweet and smooth, that's our house cup!",
+      "dialogue": [
+        {
+          "at": "quest",
+          "npc_id": "juniper",
+          "text": "Our coffee tastes funny, can you fix it at the coffee bar?"
+        },
+        {
+          "at": "start",
+          "npc_id": "luca",
+          "text": "Sour means it ran too fast, bitter means too slow."
+        },
+        {
+          "at": "start",
+          "npc_id": "juniper",
+          "text": "Weak or strong is all about water versus coffee."
+        },
+        {
+          "at": "pass",
+          "npc_id": "juniper",
+          "text": "Yum, write that recipe on the board!"
+        },
+        {
+          "at": "fail",
+          "npc_id": "juniper",
+          "text": "Taste it again, the cup tells you where to go."
+        }
+      ],
+      "params": {
+        "station_id": "coffee-bar",
+        "variables": [
+          {
+            "id": "dose_g",
+            "label": "Coffee",
+            "unit": "g",
+            "min": 10,
+            "max": 30,
+            "step": 0.5,
+            "default": 15.5
+          },
+          {
+            "id": "water_ml",
+            "label": "Water",
+            "unit": "ml",
+            "min": 200,
+            "max": 450,
+            "step": 10,
+            "default": 320
+          },
+          {
+            "id": "contact_s",
+            "label": "Brew time",
+            "unit": "s",
+            "min": 60,
+            "max": 360,
+            "step": 10,
+            "default": 150
+          }
+        ],
+        "submit_label": "Brew"
+      },
+      "scoring": {
+        "pass_threshold": 75,
+        "variables": {
+          "dose_g": {
+            "target": 18,
+            "tolerance": 1.2,
+            "weight": 2,
+            "curve": "gaussian",
+            "feedback": {
+              "too_low": "Thin and sour: the shallow coffee bed let the water rush straight through.",
+              "too_high": "Heavy and bitter: the bed is packed too deep and the cup is too strong."
+            }
+          },
+          "water_ml": {
+            "target": 300,
+            "tolerance": 30,
+            "weight": 1,
+            "curve": "gaussian",
+            "feedback": {
+              "too_low": "The mug comes out short: not a full house serving.",
+              "too_high": "Brew spills past the mug: more than a house serving."
+            }
+          },
+          "contact_s": {
+            "range": [
+              180,
+              210
+            ],
+            "tolerance": 30,
+            "weight": 2,
+            "curve": "gaussian",
+            "feedback": {
+              "too_low": "Sour and salty: under-extracted, the water left the grounds too soon.",
+              "too_high": "Bitter, drying finish: over-extracted, the grounds steeped too long."
+            }
+          }
+        },
+        "derived": [
+          {
+            "id": "brew_ratio",
+            "label": "Water per gram",
+            "expr": "water_ml / dose_g",
+            "range": [
+              16,
+              18
+            ],
+            "tolerance": 1.5,
+            "weight": 2,
+            "curve": "gaussian",
+            "feedback": {
+              "too_low": "Too strong: intense and heavy, too little water for this much coffee.",
+              "too_high": "Too weak: watery and hollow, too much water for the coffee."
+            }
+          }
+        ]
+      },
+      "sources": [
+        {
+          "title": "Coava Coffee - V60 brew method (20 g : 320 g, 3:00-3:30)",
+          "url": "https://coavacoffee.com/brew-methods/v60"
+        },
+        {
+          "title": "Gusto's Coffee - SCA Golden Cup standards (55 g/L +/-10%, 93 \u00b0C +/-3, contact times)",
+          "url": "https://www.gustoscoffeeco.com/how-to-make-better-coffee-sca-golden-cup-standards/"
+        },
+        {
+          "title": "Counter Culture Coffee - Coffee Basics: What is TDS?",
+          "url": "https://counterculturecoffee.com/blogs/counter-culture-coffee/coffee-basics"
+        },
+        {
+          "title": "SCAE Coffee Basics brochure - the brewing control chart (via Bunn)",
+          "url": "https://resource.bunn.com/library/eZine/coffee_basics_brochure_scae_english/files/basic-html/page4.html"
+        },
+        {
+          "title": "Moccamaster - Certified by the SCA: the Golden Cup standard (92-96 \u00b0C)",
+          "url": "https://us.moccamaster.com/blogs/blog/certified-by-the-sca-moccamaster-and-the-golden-cup-standard"
+        },
+        {
+          "title": "SCA - Fellow Aiden Precision Coffee Maker (programmable brew profiles)",
+          "url": "https://new.sca.coffee/entries/fellow-aiden-precision-coffee-maker"
+        }
+      ]
+    },
+    {
+      "id": "barista-pour-latte-art",
+      "index": 2,
+      "title": "Pour latte art",
+      "task_id": "pour-latte-art",
+      "skill_name": "Pour latte art",
+      "mechanic": "timing",
+      "quest": {
+        "npc_id": "luca",
+        "location_id": "milk-bar",
+        "title": "Learn latte art"
+      },
+      "aim": "Steam the milk just right, then pour a leaf pattern.",
+      "controls_hint": "Heat: hold Up or the mouse, let go to stop. Pour: press Up or Enter to stop the needle.",
+      "metric": {
+        "name": "Pour",
+        "description": "0-100 from milk heat, pour height and when you drop in"
+      },
+      "time_limit_ms": 50000,
+      "success_line": "Pretty leaves, that one goes on our wall!",
+      "dialogue": [
+        {
+          "at": "quest",
+          "npc_id": "luca",
+          "text": "Come to the milk bar and I'll teach you latte art!"
+        },
+        {
+          "at": "start",
+          "npc_id": "juniper",
+          "text": "Hot to touch is good, too hot to hold is burnt."
+        },
+        {
+          "at": "start",
+          "npc_id": "luca",
+          "text": "Pour high first, then drop low and let the white bloom."
+        },
+        {
+          "at": "pass",
+          "npc_id": "luca",
+          "text": "Look at those leaves, you're a natural!"
+        },
+        {
+          "at": "fail",
+          "npc_id": "luca",
+          "text": "So close, watch the milk heat and your drop."
+        }
+      ],
+      "params": {
+        "station_id": "milk-bar",
+        "phases": [
+          {
+            "id": "milk_temp_c",
+            "label": "Heat the milk",
+            "unit": "\u00b0C",
+            "min": 20,
+            "max": 80,
+            "mode": "hold",
+            "fill_per_s": 12
+          },
+          {
+            "id": "pour_height_cm",
+            "label": "Pour height",
+            "unit": "cm",
+            "min": 2,
+            "max": 22,
+            "mode": "stop",
+            "period_ms": 4000
+          },
+          {
+            "id": "design_fill_pct",
+            "label": "When to drop in",
+            "unit": "% full",
+            "min": 30,
+            "max": 100,
+            "mode": "stop",
+            "period_ms": 4000
+          }
+        ]
+      },
+      "scoring": {
+        "pass_threshold": 70,
+        "variables": {
+          "milk_temp_c": {
+            "range": [
+              57,
+              65
+            ],
+            "tolerance": 5,
+            "weight": 2,
+            "curve": "gaussian",
+            "feedback": {
+              "too_low": "Lukewarm milk: flat, barely sweet, and the foam never turned glossy.",
+              "too_high": "Scalded milk: cooked taste, sweetness gone, foam dry and stiff."
+            }
+          },
+          "pour_height_cm": {
+            "range": [
+              8,
+              10
+            ],
+            "tolerance": 2,
+            "weight": 1.5,
+            "curve": "gaussian",
+            "feedback": {
+              "too_low": "Poured too close too early: white foam spread over the crema, no canvas left.",
+              "too_high": "Poured from too high: the stream splashed and broke up the crema."
+            }
+          },
+          "design_fill_pct": {
+            "range": [
+              45,
+              55
+            ],
+            "tolerance": 8,
+            "weight": 1.5,
+            "curve": "gaussian",
+            "feedback": {
+              "too_low": "Dropped in too early: the pattern sank and blurred into a muddy blob.",
+              "too_high": "Dropped in too late: no room left, the rosetta came out cramped and tiny."
+            }
+          }
+        }
+      },
+      "sources": [
+        {
+          "title": "Verve Coffee - How to steam milk (135-150 F)",
+          "url": "https://vervecoffee.com/blogs/the-verve-blog/how-to-steam-milk"
+        },
+        {
+          "title": "Verve Coffee - How to pour rosetta latte art",
+          "url": "https://www.vervecoffee.com/blogs/the-verve-blog/how-to-pour-rosetta-latte-art"
+        },
+        {
+          "title": "Complete Home Barista - How to pour a rosetta latte art pattern",
+          "url": "https://completehomebarista.com/faqs/milk-latte-art/how-to-make-rosetta-latte-art/"
+        },
+        {
+          "title": "Yanko Design - Artly robots learn latte art from barista demonstrations (CES 2026)",
+          "url": "https://www.yankodesign.com/2026/01/07/artly-robots-master-latte-art-and-drinks-for-ces-2026-debut/"
+        }
+      ]
+    },
+    {
+      "id": "barista-take-order",
+      "index": 3,
+      "title": "Take an order",
+      "task_id": "take-order",
+      "skill_name": "Take an order",
+      "mechanic": "converse",
+      "quest": {
+        "npc_id": "maya",
+        "location_id": "counter",
+        "title": "Serve Maya"
+      },
+      "aim": "Take the order right and keep the allergy safe.",
+      "controls_hint": "Up/Down choose what to say, Enter to answer. Or click an answer.",
+      "metric": {
+        "name": "Order",
+        "description": "0-100 average quality of your replies; an allergy slip ends it"
+      },
+      "time_limit_ms": null,
+      "success_line": "Right order, safe allergy, happy Maya!",
+      "dialogue": [
+        {
+          "at": "quest",
+          "npc_id": "maya",
+          "text": "Can I order at the counter for me and my kid?"
+        },
+        {
+          "at": "pass",
+          "npc_id": "maya",
+          "text": "You got every detail, see you tomorrow!"
+        },
+        {
+          "at": "fail",
+          "npc_id": "maya",
+          "text": "Hmm, I'm not sure that's safe for her."
+        }
+      ],
+      "params": {
+        "npc_id": "maya",
+        "turns": [
+          {
+            "id": "greet",
+            "npc_line": "A big latte, not normal milk, plus something for my kid?",
+            "options": [
+              {
+                "id": "assume-oat",
+                "text": "One large oat latte, coming right up!",
+                "reply": "Oh, um, okay then."
+              },
+              {
+                "id": "ask-milk-and-kid",
+                "text": "Sure! Which milk: oat, soy or almond? And what for your kid?",
+                "reply": "Ooh, let me think!"
+              },
+              {
+                "id": "point-to-screen",
+                "text": "You can order on the screen over there.",
+                "reply": "But I'm standing right here."
+              }
+            ]
+          },
+          {
+            "id": "allergy",
+            "npc_line": "Almond for me, and hot chocolate for her, she's allergic to nuts.",
+            "options": [
+              {
+                "id": "one-jug",
+                "text": "No problem, I'll steam both in one jug to save time.",
+                "reply": "Wait, not the same jug!"
+              },
+              {
+                "id": "flag-allergy-clean-jug",
+                "text": "Got it: nut allergy flagged, clean jug and clean wand for hers.",
+                "reply": "Thank you, that means a lot."
+              },
+              {
+                "id": "promise-nut-free",
+                "text": "Don't worry, our hot chocolate is nut-free.",
+                "reply": "Are you sure? She reacts badly."
+              }
+            ]
+          },
+          {
+            "id": "suggest",
+            "npc_line": "Thank you so much, I think that's everything.",
+            "options": [
+              {
+                "id": "upsell-barrage",
+                "text": "Muffin? Cookie? Extra shot? Syrup? Bigger size?",
+                "reply": "Er, no thanks."
+              },
+              {
+                "id": "no-suggestion",
+                "text": "Okay, that's everything then.",
+                "reply": "Okay!"
+              },
+              {
+                "id": "vanilla-pairing",
+                "text": "Vanilla is lovely with almond milk. Add a pump to yours?",
+                "reply": "Ooh, yes!"
+              }
+            ]
+          },
+          {
+            "id": "readback",
+            "npc_line": "Ooh, yes please, one pump, that's it!",
+            "options": [
+              {
+                "id": "full-readback",
+                "text": "So: large almond latte, one vanilla, kids' hot chocolate, nut allergy. Right?",
+                "reply": "Yes, exactly right!"
+              },
+              {
+                "id": "skip-readback",
+                "text": "Great, that's nine forty. Tap when you're ready.",
+                "reply": "Um, okay."
+              },
+              {
+                "id": "wrong-readback",
+                "text": "So, a large oat latte and a hot chocolate?",
+                "reply": "No, almond! And her allergy?"
+              }
+            ]
+          },
+          {
+            "id": "close",
+            "npc_line": "Yes, perfect, how long will it be?",
+            "options": [
+              {
+                "id": "no-eta",
+                "text": "No idea, it's busy. Next!",
+                "reply": "Oh, right."
+              },
+              {
+                "id": "eta-only",
+                "text": "About five minutes. Next, please!",
+                "reply": "Okay."
+              },
+              {
+                "id": "eta-name-handoff",
+                "text": "About five minutes. Your name? I'll bring hers over myself.",
+                "reply": "I'm Maya, thanks so much!"
+              }
+            ]
+          }
+        ]
+      },
+      "scoring": {
+        "pass_threshold": 75,
+        "turns": {
+          "greet": {
+            "assume-oat": {
+              "points": 0.3,
+              "feedback": "You guessed her milk and dropped half the order. Ask, don't assume."
+            },
+            "ask-milk-and-kid": {
+              "points": 1.0,
+              "feedback": "Clarified the milk and the second drink before ringing anything up."
+            },
+            "point-to-screen": {
+              "points": 0.0,
+              "feedback": "Sending a speaking customer to a screen loses the order."
+            }
+          },
+          "allergy": {
+            "one-jug": {
+              "points": 0.0,
+              "feedback": "One jug for almond milk and her drink is nut cross-contact. Never.",
+              "critical": true
+            },
+            "flag-allergy-clean-jug": {
+              "points": 1.0,
+              "feedback": "Flagged the allergy and named the cross-contact controls out loud."
+            },
+            "promise-nut-free": {
+              "points": 0.0,
+              "feedback": "Never promise nut-free without checking ingredients and shared equipment.",
+              "critical": true
+            }
+          },
+          "suggest": {
+            "upsell-barrage": {
+              "points": 0.2,
+              "feedback": "A barrage of add-ons feels pushy and slows the queue."
+            },
+            "no-suggestion": {
+              "points": 0.4,
+              "feedback": "Polite, but you missed one easy, helpful suggestion."
+            },
+            "vanilla-pairing": {
+              "points": 1.0,
+              "feedback": "One relevant pairing at the natural pause, offered as a choice."
+            }
+          },
+          "readback": {
+            "full-readback": {
+              "points": 1.0,
+              "feedback": "Full read-back with the allergy: she can catch any mistake now."
+            },
+            "skip-readback": {
+              "points": 0.3,
+              "feedback": "Skipping the read-back is how wrong drinks and allergy slips happen."
+            },
+            "wrong-readback": {
+              "points": 0.1,
+              "feedback": "Wrong milk and no allergy in the read-back: the ticket is wrong."
+            }
+          },
+          "close": {
+            "no-eta": {
+              "points": 0.0,
+              "feedback": "No wait time and no name: the order can get lost."
+            },
+            "eta-only": {
+              "points": 0.5,
+              "feedback": "Good wait time, but no name and no safe hand-off for the allergy drink."
+            },
+            "eta-name-handoff": {
+              "points": 1.0,
+              "feedback": "Clear wait, a name on the cups and a safe hand-off for the allergy drink."
+            }
+          }
+        }
+      },
+      "sources": [
+        {
+          "title": "GOV.UK / Food Standards Agency - Allergen guidance for food businesses",
+          "url": "https://www.gov.uk/government/publications/allergen-guidance-for-food-businesses/allergen-guidance-for-food-businesses"
+        },
+        {
+          "title": "Allergy & Asthma Network - Coffee, cross contact and food allergies",
+          "url": "https://allergyasthmanetwork.org/news/coffee-cross-contact-and-food-allergies/"
+        },
+        {
+          "title": "Lynn (Cornell, 2011) - Mega Tips 2: twenty tested techniques (repeat the order back)",
+          "url": "https://ecommons.cornell.edu/entities/publication/aaa79631-eff5-43eb-96ac-473e4ffea561"
+        },
+        {
+          "title": "Sauce - Suggestive selling techniques for restaurants",
+          "url": "https://www.getsauce.com/post/communicating-with-customers-suggestive-selling-techniques-to-raise-restaurant-revenue"
+        },
+        {
+          "title": "Gradium API - Speech-to-text (POST /api/post/speech/asr)",
+          "url": "https://docs.gradium.ai/api-reference/endpoint/stt-post"
+        },
+        {
+          "title": "Gradium API - Text-to-speech (POST /api/post/speech/tts)",
+          "url": "https://docs.gradium.ai/api-reference/endpoint/tts-post"
+        },
+        {
+          "title": "Square Orders API - CreateOrder (POST /v2/orders)",
+          "url": "https://developer.squareup.com/reference/square/orders-api/create-order"
+        }
+      ]
+    },
+    {
+      "id": "barista-order-supplies",
+      "index": 4,
+      "title": "Order supplies",
+      "task_id": "order-supplies",
+      "skill_name": "Order supplies",
+      "mechanic": "mix",
+      "quest": {
+        "npc_id": "bram",
+        "location_id": "back-room",
+        "title": "Order the supplies"
+      },
+      "aim": "Order a week of stock: nothing runs out, nothing goes bad.",
+      "controls_hint": "Up/Down pick an item, Left/Right adjust it, Enter to Send. Or drag a slider and click Send.",
+      "metric": {
+        "name": "Stock",
+        "description": "0-100 from stockouts, spoiled stock and cash stuck on shelves"
+      },
+      "time_limit_ms": null,
+      "success_line": "Nothing ran out and nothing went to waste!",
+      "dialogue": [
+        {
+          "at": "quest",
+          "npc_id": "bram",
+          "text": "Help me order this week's supplies in the back room?"
+        },
+        {
+          "at": "start",
+          "npc_id": "bram",
+          "text": "We sell 200 drinks a day, over half in paper cups."
+        },
+        {
+          "at": "start",
+          "npc_id": "juniper",
+          "text": "A kilo of beans makes about 55 drinks."
+        },
+        {
+          "at": "start",
+          "npc_id": "bram",
+          "text": "Seven in ten get 0.2 litres of milk, and a third want oat."
+        },
+        {
+          "at": "start",
+          "npc_id": "juniper",
+          "text": "Milk comes every two days, the roaster needs two days' notice."
+        },
+        {
+          "at": "pass",
+          "npc_id": "bram",
+          "text": "Perfect, that's our standing order from now on!"
+        },
+        {
+          "at": "fail",
+          "npc_id": "bram",
+          "text": "Hmm, check what ran out and what went to waste."
+        }
+      ],
+      "params": {
+        "station_id": "back-room",
+        "variables": [
+          {
+            "id": "beans_kg",
+            "label": "Beans",
+            "unit": "kg",
+            "min": 5,
+            "max": 60,
+            "step": 1,
+            "default": 24
+          },
+          {
+            "id": "beans_rop_kg",
+            "label": "Reorder beans at",
+            "unit": "kg",
+            "min": 0,
+            "max": 30,
+            "step": 0.5,
+            "default": 6
+          },
+          {
+            "id": "milk_l",
+            "label": "Milk per delivery",
+            "unit": "L",
+            "min": 10,
+            "max": 120,
+            "step": 2,
+            "default": 36
+          },
+          {
+            "id": "oat_l",
+            "label": "Oat milk",
+            "unit": "L",
+            "min": 0,
+            "max": 150,
+            "step": 2,
+            "default": 50
+          },
+          {
+            "id": "cups",
+            "label": "Paper cups",
+            "unit": "cups",
+            "min": 0,
+            "max": 2000,
+            "step": 50,
+            "default": 700
+          }
+        ],
+        "submit_label": "Send"
+      },
+      "scoring": {
+        "pass_threshold": 75,
+        "variables": {
+          "beans_kg": {
+            "range": [
+              31,
+              35
+            ],
+            "tolerance": 4,
+            "weight": 2,
+            "curve": "gaussian",
+            "feedback": {
+              "too_low": "Ran out of espresso beans on Saturday: the grinder ran dry mid-rush.",
+              "too_high": "Bags piled up past their best: shots tasted flat and stale by week's end."
+            }
+          },
+          "beans_rop_kg": {
+            "range": [
+              10.5,
+              12.5
+            ],
+            "tolerance": 2,
+            "weight": 1.5,
+            "curve": "gaussian",
+            "feedback": {
+              "too_low": "Top-up ordered too late: the roaster's van arrived after the hopper ran dry.",
+              "too_high": "Top-ups fired every other day: fresh bags stacked up while older ones went stale."
+            }
+          },
+          "milk_l": {
+            "range": [
+              46,
+              52
+            ],
+            "tolerance": 5,
+            "weight": 2,
+            "curve": "gaussian",
+            "feedback": {
+              "too_low": "Ran out of milk on Thursday: lattes came off the menu by lunchtime.",
+              "too_high": "12 L of milk went sour in the fridge before anyone could use it."
+            }
+          },
+          "oat_l": {
+            "range": [
+              68,
+              78
+            ],
+            "tolerance": 8,
+            "weight": 1.5,
+            "curve": "gaussian",
+            "feedback": {
+              "too_low": "Ran out of oat milk on Thursday: a third of milk drinkers left unhappy.",
+              "too_high": "Oat cartons crowd the dry store: cash sitting on shelves for weeks."
+            }
+          },
+          "cups": {
+            "range": [
+              900,
+              1050
+            ],
+            "tolerance": 120,
+            "weight": 1,
+            "curve": "gaussian",
+            "feedback": {
+              "too_low": "Out of takeaway cups by Sunday: to-go orders turned away at the door.",
+              "too_high": "Cup boxes stacked in the corridor: no room left and cash tied up."
+            }
+          }
+        },
+        "derived": [
+          {
+            "id": "stock_value",
+            "label": "Cash on shelves",
+            "expr": "beans_kg * 24 + milk_l * 1.2 + oat_l * 3 + cups * 0.12",
+            "range": [
+              0,
+              1300
+            ],
+            "tolerance": 150,
+            "weight": 1,
+            "curve": "gaussian",
+            "feedback": {
+              "too_low": "Spending looks very low: check nothing is missing from the order.",
+              "too_high": "Over budget: too much cash is tied up in stock on the shelves."
+            }
+          }
+        ]
+      },
+      "sources": [
+        {
+          "title": "FastCasual - What is par level and how to calculate it",
+          "url": "https://www.fastcasual.com/blogs/what-is-par-level-how-to-calculate-your-par-levels-in-your-restaurant/"
+        },
+        {
+          "title": "Sculpture Hospitality - How to calculate bar or restaurant reorder points",
+          "url": "https://sculpturehospitality.com/blog/optimize-inventory-how-to-calculate-bar-or-restaurant-reorder-points"
+        },
+        {
+          "title": "George Howell Coffee - Roast dates and the right time to brew",
+          "url": "https://georgehowellcoffee.com/blogs/notes-from-george/issue-no-5"
+        },
+        {
+          "title": "The Barn - After we roast (resting and freshness)",
+          "url": "https://thebarn.de/blogs/the-barn-blog/after-we-roast"
+        },
+        {
+          "title": "Healthline - How long is milk good after the expiration date?",
+          "url": "https://www.healthline.com/nutrition/how-long-is-milk-good-after-expiration-date"
+        },
+        {
+          "title": "Brakes - Oatly Oat Drink Barista Edition 6 x 1 L (once opened, use within 5 days)",
+          "url": "https://www.brake.co.uk/dairy/milk/uht/milk-alternatives/oatly-oat-drink-barista-editn-6x1ltr/p/128306"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": "Coava Coffee - V60 brew method (20 g : 320 g, 3:00-3:30)",
+      "url": "https://coavacoffee.com/brew-methods/v60"
+    },
+    {
+      "title": "Gusto's Coffee - SCA Golden Cup standards (55 g/L +/-10%, 93 \u00b0C +/-3, contact times)",
+      "url": "https://www.gustoscoffeeco.com/how-to-make-better-coffee-sca-golden-cup-standards/"
+    },
+    {
+      "title": "Counter Culture Coffee - Coffee Basics: What is TDS?",
+      "url": "https://counterculturecoffee.com/blogs/counter-culture-coffee/coffee-basics"
+    },
+    {
+      "title": "SCAE Coffee Basics brochure - the brewing control chart (via Bunn)",
+      "url": "https://resource.bunn.com/library/eZine/coffee_basics_brochure_scae_english/files/basic-html/page4.html"
+    },
+    {
+      "title": "Moccamaster - Certified by the SCA: the Golden Cup standard (92-96 \u00b0C)",
+      "url": "https://us.moccamaster.com/blogs/blog/certified-by-the-sca-moccamaster-and-the-golden-cup-standard"
+    },
+    {
+      "title": "SCA - Fellow Aiden Precision Coffee Maker (programmable brew profiles)",
+      "url": "https://new.sca.coffee/entries/fellow-aiden-precision-coffee-maker"
+    },
+    {
+      "title": "Verve Coffee - How to steam milk (135-150 F)",
+      "url": "https://vervecoffee.com/blogs/the-verve-blog/how-to-steam-milk"
+    },
+    {
+      "title": "Verve Coffee - How to pour rosetta latte art",
+      "url": "https://www.vervecoffee.com/blogs/the-verve-blog/how-to-pour-rosetta-latte-art"
+    },
+    {
+      "title": "Complete Home Barista - How to pour a rosetta latte art pattern",
+      "url": "https://completehomebarista.com/faqs/milk-latte-art/how-to-make-rosetta-latte-art/"
+    },
+    {
+      "title": "Yanko Design - Artly robots learn latte art from barista demonstrations (CES 2026)",
+      "url": "https://www.yankodesign.com/2026/01/07/artly-robots-master-latte-art-and-drinks-for-ces-2026-debut/"
+    },
+    {
+      "title": "GOV.UK / Food Standards Agency - Allergen guidance for food businesses",
+      "url": "https://www.gov.uk/government/publications/allergen-guidance-for-food-businesses/allergen-guidance-for-food-businesses"
+    },
+    {
+      "title": "Allergy & Asthma Network - Coffee, cross contact and food allergies",
+      "url": "https://allergyasthmanetwork.org/news/coffee-cross-contact-and-food-allergies/"
+    },
+    {
+      "title": "Lynn (Cornell, 2011) - Mega Tips 2: twenty tested techniques (repeat the order back)",
+      "url": "https://ecommons.cornell.edu/entities/publication/aaa79631-eff5-43eb-96ac-473e4ffea561"
+    },
+    {
+      "title": "Sauce - Suggestive selling techniques for restaurants",
+      "url": "https://www.getsauce.com/post/communicating-with-customers-suggestive-selling-techniques-to-raise-restaurant-revenue"
+    },
+    {
+      "title": "Gradium API - Speech-to-text (POST /api/post/speech/asr)",
+      "url": "https://docs.gradium.ai/api-reference/endpoint/stt-post"
+    },
+    {
+      "title": "Gradium API - Text-to-speech (POST /api/post/speech/tts)",
+      "url": "https://docs.gradium.ai/api-reference/endpoint/tts-post"
+    },
+    {
+      "title": "Square Orders API - CreateOrder (POST /v2/orders)",
+      "url": "https://developer.squareup.com/reference/square/orders-api/create-order"
+    },
+    {
+      "title": "FastCasual - What is par level and how to calculate it",
+      "url": "https://www.fastcasual.com/blogs/what-is-par-level-how-to-calculate-your-par-levels-in-your-restaurant/"
+    },
+    {
+      "title": "Sculpture Hospitality - How to calculate bar or restaurant reorder points",
+      "url": "https://sculpturehospitality.com/blog/optimize-inventory-how-to-calculate-bar-or-restaurant-reorder-points"
+    },
+    {
+      "title": "George Howell Coffee - Roast dates and the right time to brew",
+      "url": "https://georgehowellcoffee.com/blogs/notes-from-george/issue-no-5"
+    },
+    {
+      "title": "The Barn - After we roast (resting and freshness)",
+      "url": "https://thebarn.de/blogs/the-barn-blog/after-we-roast"
+    },
+    {
+      "title": "Healthline - How long is milk good after the expiration date?",
+      "url": "https://www.healthline.com/nutrition/how-long-is-milk-good-after-expiration-date"
+    },
+    {
+      "title": "Brakes - Oatly Oat Drink Barista Edition 6 x 1 L (once opened, use within 5 days)",
+      "url": "https://www.brake.co.uk/dairy/milk/uht/milk-alternatives/oatly-oat-drink-barista-editn-6x1ltr/p/128306"
+    }
+  ]
+}

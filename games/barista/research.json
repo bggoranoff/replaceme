@@ -1,0 +1,1078 @@
+{
+  "version": 2,
+  "job": "barista",
+  "slug": "barista",
+  "title": "Bean & Bloom Cafe",
+  "setting": "A cozy village square around the Bean & Bloom Cafe: a sunny terrace with a pour-over brew bar and an espresso-and-milk bar, an order window where neighbours queue, a stock room fed by the roaster's van and the dairy cart, and a little pond with benches.",
+  "sources": [
+    {
+      "title": "Coava Coffee - V60 brew method (20 g : 320 g, 3:00-3:30)",
+      "url": "https://coavacoffee.com/brew-methods/v60"
+    },
+    {
+      "title": "Gusto's Coffee - SCA Golden Cup standards (55 g/L +/-10%, 93 °C +/-3, contact times)",
+      "url": "https://www.gustoscoffeeco.com/how-to-make-better-coffee-sca-golden-cup-standards/"
+    },
+    {
+      "title": "Counter Culture Coffee - Coffee Basics: What is TDS?",
+      "url": "https://counterculturecoffee.com/blogs/counter-culture-coffee/coffee-basics"
+    },
+    {
+      "title": "SCAE Coffee Basics brochure - the brewing control chart (via Bunn)",
+      "url": "https://resource.bunn.com/library/eZine/coffee_basics_brochure_scae_english/files/basic-html/page4.html"
+    },
+    {
+      "title": "Moccamaster - Certified by the SCA: the Golden Cup standard (92-96 °C)",
+      "url": "https://us.moccamaster.com/blogs/blog/certified-by-the-sca-moccamaster-and-the-golden-cup-standard"
+    },
+    {
+      "title": "SCA - Fellow Aiden Precision Coffee Maker (programmable brew profiles)",
+      "url": "https://new.sca.coffee/entries/fellow-aiden-precision-coffee-maker"
+    },
+    {
+      "title": "Verve Coffee - How to steam milk (135-150 F)",
+      "url": "https://vervecoffee.com/blogs/the-verve-blog/how-to-steam-milk"
+    },
+    {
+      "title": "Verve Coffee - How to pour rosetta latte art",
+      "url": "https://www.vervecoffee.com/blogs/the-verve-blog/how-to-pour-rosetta-latte-art"
+    },
+    {
+      "title": "Complete Home Barista - How to pour a rosetta latte art pattern",
+      "url": "https://completehomebarista.com/faqs/milk-latte-art/how-to-make-rosetta-latte-art/"
+    },
+    {
+      "title": "Yanko Design - Artly robots learn latte art from barista demonstrations (CES 2026)",
+      "url": "https://www.yankodesign.com/2026/01/07/artly-robots-master-latte-art-and-drinks-for-ces-2026-debut/"
+    },
+    {
+      "title": "GOV.UK / Food Standards Agency - Allergen guidance for food businesses",
+      "url": "https://www.gov.uk/government/publications/allergen-guidance-for-food-businesses/allergen-guidance-for-food-businesses"
+    },
+    {
+      "title": "Allergy & Asthma Network - Coffee, cross contact and food allergies",
+      "url": "https://allergyasthmanetwork.org/news/coffee-cross-contact-and-food-allergies/"
+    },
+    {
+      "title": "Lynn (Cornell, 2011) - Mega Tips 2: twenty tested techniques (repeat the order back)",
+      "url": "https://ecommons.cornell.edu/entities/publication/aaa79631-eff5-43eb-96ac-473e4ffea561"
+    },
+    {
+      "title": "Sauce - Suggestive selling techniques for restaurants",
+      "url": "https://www.getsauce.com/post/communicating-with-customers-suggestive-selling-techniques-to-raise-restaurant-revenue"
+    },
+    {
+      "title": "Gradium API - Speech-to-text (POST /api/post/speech/asr)",
+      "url": "https://docs.gradium.ai/api-reference/endpoint/stt-post"
+    },
+    {
+      "title": "Gradium API - Text-to-speech (POST /api/post/speech/tts)",
+      "url": "https://docs.gradium.ai/api-reference/endpoint/tts-post"
+    },
+    {
+      "title": "Square Orders API - CreateOrder (POST /v2/orders)",
+      "url": "https://developer.squareup.com/reference/square/orders-api/create-order"
+    },
+    {
+      "title": "FastCasual - What is par level and how to calculate it",
+      "url": "https://www.fastcasual.com/blogs/what-is-par-level-how-to-calculate-your-par-levels-in-your-restaurant/"
+    },
+    {
+      "title": "Sculpture Hospitality - How to calculate bar or restaurant reorder points",
+      "url": "https://sculpturehospitality.com/blog/optimize-inventory-how-to-calculate-bar-or-restaurant-reorder-points"
+    },
+    {
+      "title": "George Howell Coffee - Roast dates and the right time to brew",
+      "url": "https://georgehowellcoffee.com/blogs/notes-from-george/issue-no-5"
+    },
+    {
+      "title": "The Barn - After we roast (resting and freshness)",
+      "url": "https://thebarn.de/blogs/the-barn-blog/after-we-roast"
+    },
+    {
+      "title": "Healthline - How long is milk good after the expiration date?",
+      "url": "https://www.healthline.com/nutrition/how-long-is-milk-good-after-expiration-date"
+    },
+    {
+      "title": "Brakes - Oatly Oat Drink Barista Edition 6 x 1 L (once opened, use within 5 days)",
+      "url": "https://www.brake.co.uk/dairy/milk/uht/milk-alternatives/oatly-oat-drink-barista-editn-6x1ltr/p/128306"
+    }
+  ],
+  "rules": [
+    "Weigh coffee and water; brew to the brewing control chart: 18-22% extraction and 1.15-1.35% TDS strength.",
+    "Brew water at 92-96 °C where it meets the coffee.",
+    "Steam milk to drinking temperature and never scald it.",
+    "Every allergy is flagged, said back and handled with clean equipment; never promise 'free from' without checking.",
+    "Read every order back before taking payment.",
+    "Order to par: (usage per cycle + safety stock) / deliveries; reorder at daily use x lead time + safety stock."
+  ],
+  "assumptions": [
+    "The cafe sells about 200 drinks a day, seven days a week; 70% contain milk, 30% of those use oat milk, and 55% go out in takeaway cups.",
+    "Every drink uses an 18 g dose (double shot or brew); 5% extra beans go to dialing in.",
+    "House pour-over: medium-fine grind, kettle at 93 °C, house mug filled by 300 ml of brew water.",
+    "Supplier cadence: roaster weekly with a 2-day lead time for top-ups, dairy every two days, oat milk and cups weekly.",
+    "Illustrative wholesale prices: beans $24/kg, whole milk $1.20/L, oat milk $3/L, cup with lid $0.12; the owner caps stock value at $1,300."
+  ],
+  "tasks": [
+    {
+      "id": "brew-coffee",
+      "title": "Brew coffee",
+      "summary": "Every morning the barista dials in the house pour-over: weigh the coffee dose, set the brew water for the house mug and control the total contact time so the cup lands in the brewing control chart's ideal box (18-22% extraction, 1.15-1.35% TDS strength). Tasting drives every correction: sour or thin means under-extracted, bitter or drying means over-extracted, watery means too much water per gram, heavy means too little.",
+      "mechanic": "mix",
+      "mechanic_rationale": "A brew recipe is a handful of continuous settings (dose, water, contact time) whose combination decides the cup: the mix mechanic. A derived water-to-coffee ratio term captures the brew-ratio relationship the control chart is built on, so changing the dose without the water (or the reverse) is penalised the way it is in the cup.",
+      "aim": "Brew a sweet, balanced mug: not sour, bitter or weak.",
+      "variables": [
+        {
+          "id": "dose_g",
+          "label": "Coffee",
+          "unit": "g",
+          "min": 10.0,
+          "max": 30.0,
+          "step": 0.5,
+          "default": 15.5
+        },
+        {
+          "id": "water_ml",
+          "label": "Water",
+          "unit": "ml",
+          "min": 200.0,
+          "max": 450.0,
+          "step": 10.0,
+          "default": 320.0
+        },
+        {
+          "id": "contact_s",
+          "label": "Brew time",
+          "unit": "s",
+          "min": 60.0,
+          "max": 360.0,
+          "step": 10.0,
+          "default": 150.0
+        }
+      ],
+      "derived": [
+        {
+          "id": "brew_ratio",
+          "label": "Water per gram",
+          "expr": "water_ml / dose_g"
+        }
+      ],
+      "optima": [
+        {
+          "term": "dose_g",
+          "target": 18.0,
+          "rationale": "The house mug takes 300 ml of brew water. A 1:16-1:18 brew ratio then calls for 16.7-18.75 g, and 18 g puts the ratio at 1:16.7 (60 g/L): inside the SCA Golden Cup band of 55 g/L +/-10% and next to Coava's 20 g : 320 g (1:16) V60 recipe. Fewer grams make a shallow, fast-draining bed (thin, sour); more grams pack a deep, slow bed and push strength above 1.35% TDS (heavy, bitter).",
+          "source_urls": [
+            "https://www.gustoscoffeeco.com/how-to-make-better-coffee-sca-golden-cup-standards/",
+            "https://coavacoffee.com/brew-methods/v60",
+            "https://counterculturecoffee.com/blogs/counter-culture-coffee/coffee-basics",
+            "https://resource.bunn.com/library/eZine/coffee_basics_brochure_scae_english/files/basic-html/page4.html"
+          ]
+        },
+        {
+          "term": "water_ml",
+          "target": 300.0,
+          "rationale": "Assumption: the cafe's house mug is filled by 300 ml of brew water (the same scale as Coava's 320 g V60 recipe). Serving size is a house standard; the dose and ratio are scaled to it.",
+          "source_urls": [
+            "https://coavacoffee.com/brew-methods/v60"
+          ]
+        },
+        {
+          "term": "contact_s",
+          "range": [
+            180.0,
+            210.0
+          ],
+          "rationale": "Coava's V60 (20 g, 320 g, medium-fine grind) finishes in 3:00-3:30. The SCA contact-time guide gives 1-4 min for fine and 4-6 min for drip grinds, so 3:00-3:30 fits a medium-fine pour-over. Shorter contact under-extracts (sour, astringent), longer over-extracts (bitter, long aftertaste).",
+          "source_urls": [
+            "https://coavacoffee.com/brew-methods/v60",
+            "https://www.gustoscoffeeco.com/how-to-make-better-coffee-sca-golden-cup-standards/",
+            "https://counterculturecoffee.com/blogs/counter-culture-coffee/coffee-basics"
+          ]
+        },
+        {
+          "term": "brew_ratio",
+          "range": [
+            16.0,
+            18.0
+          ],
+          "rationale": "Coava's V60 brews at 1:16 and the SCA Golden Cup centre of 55 g/L is about 1:18. Inside 16-18 ml per gram the cup stays in the 1.15-1.35% TDS strength box; below it the cup is intense and heavy, above it weak and watery (Counter Culture).",
+          "source_urls": [
+            "https://coavacoffee.com/brew-methods/v60",
+            "https://www.gustoscoffeeco.com/how-to-make-better-coffee-sca-golden-cup-standards/",
+            "https://counterculturecoffee.com/blogs/counter-culture-coffee/coffee-basics",
+            "https://resource.bunn.com/library/eZine/coffee_basics_brochure_scae_english/files/basic-html/page4.html"
+          ]
+        }
+      ],
+      "heuristic": [
+        {
+          "term": "dose_g",
+          "tolerance": 1.2,
+          "weight": 2.0,
+          "curve": "gaussian",
+          "too_low": "Thin and sour: the shallow coffee bed let the water rush straight through.",
+          "too_high": "Heavy and bitter: the bed is packed too deep and the cup is too strong.",
+          "rationale": "Dose moves strength and extraction together; 1.2 g moves a 300 ml brew by about one ratio point."
+        },
+        {
+          "term": "water_ml",
+          "tolerance": 30.0,
+          "weight": 1.0,
+          "curve": "gaussian",
+          "too_low": "The mug comes out short: not a full house serving.",
+          "too_high": "Brew spills past the mug: more than a house serving.",
+          "rationale": "Serving size is fixed; 30 ml is a visibly short or overfull mug."
+        },
+        {
+          "term": "contact_s",
+          "tolerance": 30.0,
+          "weight": 2.0,
+          "curve": "gaussian",
+          "too_low": "Sour and salty: under-extracted, the water left the grounds too soon.",
+          "too_high": "Bitter, drying finish: over-extracted, the grounds steeped too long.",
+          "rationale": "Under-extracted coffee tastes sour and astringent, over-extracted bitter (Counter Culture); 30 s outside the window is a clear shift."
+        },
+        {
+          "term": "brew_ratio",
+          "tolerance": 1.5,
+          "weight": 2.0,
+          "curve": "gaussian",
+          "too_low": "Too strong: intense and heavy, too little water for this much coffee.",
+          "too_high": "Too weak: watery and hollow, too much water for the coffee.",
+          "rationale": "The ratio is the strength axis of the brewing control chart; 1.5 ml per gram leaves the ideal strength box."
+        }
+      ],
+      "sort_items": [],
+      "sort_bins": [],
+      "orders": [],
+      "dialogue": [],
+      "caveats": [
+        "Grind is held at the house medium-fine setting. If the grinder drifts, contact time drifts with it: re-dial the grind to bring time back, never fix it with the dose.",
+        "Weigh coffee and water on a 0.1 g scale; scoops vary with roast level and bean density.",
+        "Brew water should be 92-96 °C at contact (SCA Golden Cup); colder water under-extracts even at the right time.",
+        "The 18-22% extraction and 1.15-1.35% TDS targets are a guide; taste has the final word for a given coffee."
+      ],
+      "problems": [
+        "Sour, thin cup although the timer says three minutes: grind too coarse or water too cool. Check the kettle before touching the recipe.",
+        "Brew stalls far past the target time: fines clog the filter or the dose is too big for the cone.",
+        "Cup tastes clean but weak: water was scaled up without scaling the dose. Keep the ratio, not the volume."
+      ],
+      "sources": [
+        {
+          "title": "Coava Coffee - V60 brew method (20 g : 320 g, 3:00-3:30)",
+          "url": "https://coavacoffee.com/brew-methods/v60"
+        },
+        {
+          "title": "Gusto's Coffee - SCA Golden Cup standards (55 g/L +/-10%, 93 °C +/-3, contact times)",
+          "url": "https://www.gustoscoffeeco.com/how-to-make-better-coffee-sca-golden-cup-standards/"
+        },
+        {
+          "title": "Counter Culture Coffee - Coffee Basics: What is TDS?",
+          "url": "https://counterculturecoffee.com/blogs/counter-culture-coffee/coffee-basics"
+        },
+        {
+          "title": "SCAE Coffee Basics brochure - the brewing control chart (via Bunn)",
+          "url": "https://resource.bunn.com/library/eZine/coffee_basics_brochure_scae_english/files/basic-html/page4.html"
+        },
+        {
+          "title": "Moccamaster - Certified by the SCA: the Golden Cup standard (92-96 °C)",
+          "url": "https://us.moccamaster.com/blogs/blog/certified-by-the-sca-moccamaster-and-the-golden-cup-standard"
+        },
+        {
+          "title": "SCA - Fellow Aiden Precision Coffee Maker (programmable brew profiles)",
+          "url": "https://new.sca.coffee/entries/fellow-aiden-precision-coffee-maker"
+        }
+      ]
+    },
+    {
+      "id": "pour-latte-art",
+      "title": "Pour latte art",
+      "summary": "Steam the milk to a glossy microfoam at drinking temperature, pour the base from height so the milk dives under the crema and integrates, drop the spout close to the surface at about half full so the white foam surfaces, wiggle side to side while backing up, and pull through the centre at about three-quarters full to draw the rosetta's stem.",
+      "mechanic": "timing",
+      "mechanic_rationale": "Steaming is hold-and-release (stop at the right temperature) and the pour is a sequence of moments (how high to pour, when to drop in): the timing mechanic, with one phase per decision scored on where the player stopped.",
+      "aim": "Steam the milk just right, then pour a leaf pattern.",
+      "variables": [
+        {
+          "id": "milk_temp_c",
+          "label": "Heat the milk",
+          "unit": "°C",
+          "min": 20.0,
+          "max": 80.0,
+          "step": 1.0,
+          "default": 50.0
+        },
+        {
+          "id": "pour_height_cm",
+          "label": "Pour height",
+          "unit": "cm",
+          "min": 2.0,
+          "max": 22.0,
+          "step": 0.5,
+          "default": 12.0
+        },
+        {
+          "id": "design_fill_pct",
+          "label": "When to drop in",
+          "unit": "% full",
+          "min": 30.0,
+          "max": 100.0,
+          "step": 1.0,
+          "default": 65.0
+        }
+      ],
+      "derived": [],
+      "optima": [
+        {
+          "term": "milk_temp_c",
+          "range": [
+            57.0,
+            65.0
+          ],
+          "rationale": "Verve: steam to 135-150 F (57-66 °C), where the milk's sweetness peaks; at 160 F (71 °C) and above sugars and proteins overheat into a browning reaction with an unappealing texture and flavour.",
+          "source_urls": [
+            "https://vervecoffee.com/blogs/the-verve-blog/how-to-steam-milk"
+          ]
+        },
+        {
+          "term": "pour_height_cm",
+          "range": [
+            8.0,
+            10.0
+          ],
+          "rationale": "Complete Home Barista: pour the base from 8-10 cm above the cup to mix the milk into the crema for the first half of the fill. Verve: the further the pitcher is from the cup, the deeper the milk dives.",
+          "source_urls": [
+            "https://completehomebarista.com/faqs/milk-latte-art/how-to-make-rosetta-latte-art/",
+            "https://www.vervecoffee.com/blogs/the-verve-blog/how-to-pour-rosetta-latte-art"
+          ]
+        },
+        {
+          "term": "design_fill_pct",
+          "range": [
+            45.0,
+            55.0
+          ],
+          "rationale": "Complete Home Barista: keep integrating until the cup is about halfway full before starting the pattern; starting the waggle earlier compresses and skews the rosetta, later leaves no room for the leaves and stem.",
+          "source_urls": [
+            "https://completehomebarista.com/faqs/milk-latte-art/how-to-make-rosetta-latte-art/"
+          ]
+        }
+      ],
+      "heuristic": [
+        {
+          "term": "milk_temp_c",
+          "tolerance": 5.0,
+          "weight": 2.0,
+          "curve": "gaussian",
+          "too_low": "Lukewarm milk: flat, barely sweet, and the foam never turned glossy.",
+          "too_high": "Scalded milk: cooked taste, sweetness gone, foam dry and stiff.",
+          "rationale": "Sweetness and texture change within a few degrees; 5 °C is the gap between lukewarm and scalded."
+        },
+        {
+          "term": "pour_height_cm",
+          "tolerance": 2.0,
+          "weight": 1.5,
+          "curve": "gaussian",
+          "too_low": "Poured too close too early: white foam spread over the crema, no canvas left.",
+          "too_high": "Poured from too high: the stream splashed and broke up the crema.",
+          "rationale": "Height decides how deep the milk dives; a couple of centimetres changes integration visibly."
+        },
+        {
+          "term": "design_fill_pct",
+          "tolerance": 8.0,
+          "weight": 1.5,
+          "curve": "gaussian",
+          "too_low": "Dropped in too early: the pattern sank and blurred into a muddy blob.",
+          "too_high": "Dropped in too late: no room left, the rosetta came out cramped and tiny.",
+          "rationale": "The rosetta needs the second half of the cup; dropping in a tenth of a cup off-target squeezes or drowns it."
+        }
+      ],
+      "sort_items": [],
+      "sort_bins": [],
+      "orders": [],
+      "dialogue": [],
+      "caveats": [
+        "Stretch (add air) early while the milk is cold, then only heat it; stretching late gives big, grainy bubbles (Verve).",
+        "Do not slow the pour when you drop in: keep the flow up so the white foam surfaces (Verve).",
+        "Pull through at about three-quarters full and ease off so the stream thins; too early leaves no room for the stem, too late overflows (Complete Home Barista).",
+        "Wiggle small and slow for wide, open leaves; fast waggling makes tight, cramped leaves (Complete Home Barista).",
+        "Oat and other plant milks foam differently; re-check the temperature window for each milk."
+      ],
+      "problems": [
+        "A white blob and no pattern: the base was poured too low, so foam surfaced before the design.",
+        "The pattern sinks and vanishes: milk too thin or too hot, or the pitcher was still too high when dropping in.",
+        "A lopsided rosetta: the pitcher backed up faster than the cup filled."
+      ],
+      "sources": [
+        {
+          "title": "Verve Coffee - How to steam milk (135-150 F)",
+          "url": "https://vervecoffee.com/blogs/the-verve-blog/how-to-steam-milk"
+        },
+        {
+          "title": "Verve Coffee - How to pour rosetta latte art",
+          "url": "https://www.vervecoffee.com/blogs/the-verve-blog/how-to-pour-rosetta-latte-art"
+        },
+        {
+          "title": "Complete Home Barista - How to pour a rosetta latte art pattern",
+          "url": "https://completehomebarista.com/faqs/milk-latte-art/how-to-make-rosetta-latte-art/"
+        },
+        {
+          "title": "Yanko Design - Artly robots learn latte art from barista demonstrations (CES 2026)",
+          "url": "https://www.yankodesign.com/2026/01/07/artly-robots-master-latte-art-and-drinks-for-ces-2026-debut/"
+        }
+      ]
+    },
+    {
+      "id": "take-order",
+      "title": "Take an order",
+      "summary": "A customer speaks a vague, multi-part order. The barista clarifies what is missing (the milk, the second drink), catches and acts on an allergy (flag it, clean jug and purged wand, no unchecked 'nut-free' promises), makes one relevant suggestion at the natural pause, reads the whole order back including the allergy, then closes with a wait time, a name and a safe hand-off.",
+      "mechanic": "converse",
+      "mechanic_rationale": "Order taking is a turn-by-turn spoken conversation where each reply is a choice with consequences, and an allergy mistake is a hard failure: the converse mechanic with critical options.",
+      "aim": "Take the order right and keep the allergy safe.",
+      "variables": [],
+      "derived": [],
+      "optima": [],
+      "heuristic": [],
+      "sort_items": [],
+      "sort_bins": [],
+      "orders": [],
+      "dialogue": [
+        {
+          "npc_line": "A big latte, not normal milk, plus something for my kid?",
+          "options": [
+            {
+              "text": "One large oat latte, coming right up!",
+              "points": 0.3,
+              "feedback": "You guessed her milk and dropped half the order. Ask, don't assume.",
+              "critical": false
+            },
+            {
+              "text": "Sure! Which milk: oat, soy or almond? And what for your kid?",
+              "points": 1.0,
+              "feedback": "Clarified the milk and the second drink before ringing anything up.",
+              "critical": false
+            },
+            {
+              "text": "You can order on the screen over there.",
+              "points": 0.0,
+              "feedback": "Sending a speaking customer to a screen loses the order.",
+              "critical": false
+            }
+          ]
+        },
+        {
+          "npc_line": "Almond for me, and hot chocolate for her, she's allergic to nuts.",
+          "options": [
+            {
+              "text": "No problem, I'll steam both in one jug to save time.",
+              "points": 0.0,
+              "feedback": "One jug for almond milk and her drink is nut cross-contact. Never.",
+              "critical": true
+            },
+            {
+              "text": "Got it: nut allergy flagged, clean jug and clean wand for hers.",
+              "points": 1.0,
+              "feedback": "Flagged the allergy and named the cross-contact controls out loud.",
+              "critical": false
+            },
+            {
+              "text": "Don't worry, our hot chocolate is nut-free.",
+              "points": 0.0,
+              "feedback": "Never promise nut-free without checking ingredients and shared equipment.",
+              "critical": true
+            }
+          ]
+        },
+        {
+          "npc_line": "Thank you so much, I think that's everything.",
+          "options": [
+            {
+              "text": "Muffin? Cookie? Extra shot? Syrup? Bigger size?",
+              "points": 0.2,
+              "feedback": "A barrage of add-ons feels pushy and slows the queue.",
+              "critical": false
+            },
+            {
+              "text": "Okay, that's everything then.",
+              "points": 0.4,
+              "feedback": "Polite, but you missed one easy, helpful suggestion.",
+              "critical": false
+            },
+            {
+              "text": "Vanilla is lovely with almond milk. Add a pump to yours?",
+              "points": 1.0,
+              "feedback": "One relevant pairing at the natural pause, offered as a choice.",
+              "critical": false
+            }
+          ]
+        },
+        {
+          "npc_line": "Ooh, yes please, one pump, that's it!",
+          "options": [
+            {
+              "text": "So: large almond latte, one vanilla, kids' hot chocolate, nut allergy. Right?",
+              "points": 1.0,
+              "feedback": "Full read-back with the allergy: she can catch any mistake now.",
+              "critical": false
+            },
+            {
+              "text": "Great, that's nine forty. Tap when you're ready.",
+              "points": 0.3,
+              "feedback": "Skipping the read-back is how wrong drinks and allergy slips happen.",
+              "critical": false
+            },
+            {
+              "text": "So, a large oat latte and a hot chocolate?",
+              "points": 0.1,
+              "feedback": "Wrong milk and no allergy in the read-back: the ticket is wrong.",
+              "critical": false
+            }
+          ]
+        },
+        {
+          "npc_line": "Yes, perfect, how long will it be?",
+          "options": [
+            {
+              "text": "No idea, it's busy. Next!",
+              "points": 0.0,
+              "feedback": "No wait time and no name: the order can get lost.",
+              "critical": false
+            },
+            {
+              "text": "About five minutes. Next, please!",
+              "points": 0.5,
+              "feedback": "Good wait time, but no name and no safe hand-off for the allergy drink.",
+              "critical": false
+            },
+            {
+              "text": "About five minutes. Your name? I'll bring hers over myself.",
+              "points": 1.0,
+              "feedback": "Clear wait, a name on the cups and a safe hand-off for the allergy drink.",
+              "critical": false
+            }
+          ]
+        }
+      ],
+      "caveats": [
+        "Never promise an item is free from an allergen unless the ingredients and the shared equipment were checked; if cross-contact cannot be avoided, tell the customer (FSA).",
+        "Steam wands, pitchers and cloths carry milk residue between drinks; an allergy order needs a clean jug and a purged, wiped wand (Allergy & Asthma Network).",
+        "Written allergen information supported by a conversation works best: flag the allergy on the ticket and say it in the read-back (FSA).",
+        "One suggestion, matched to the order, at the natural pause; never before the core order and any allergy are settled."
+      ],
+      "problems": [
+        "The customer says 'not normal milk' and the barista guesses oat: wrong drink, remake, slower line.",
+        "An allergy mentioned in passing gets lost between the till and the bar: the read-back and a cup flag are the safety net.",
+        "An upsell barrage slows the queue and annoys regulars."
+      ],
+      "sources": [
+        {
+          "title": "GOV.UK / Food Standards Agency - Allergen guidance for food businesses",
+          "url": "https://www.gov.uk/government/publications/allergen-guidance-for-food-businesses/allergen-guidance-for-food-businesses"
+        },
+        {
+          "title": "Allergy & Asthma Network - Coffee, cross contact and food allergies",
+          "url": "https://allergyasthmanetwork.org/news/coffee-cross-contact-and-food-allergies/"
+        },
+        {
+          "title": "Lynn (Cornell, 2011) - Mega Tips 2: twenty tested techniques (repeat the order back)",
+          "url": "https://ecommons.cornell.edu/entities/publication/aaa79631-eff5-43eb-96ac-473e4ffea561"
+        },
+        {
+          "title": "Sauce - Suggestive selling techniques for restaurants",
+          "url": "https://www.getsauce.com/post/communicating-with-customers-suggestive-selling-techniques-to-raise-restaurant-revenue"
+        },
+        {
+          "title": "Gradium API - Speech-to-text (POST /api/post/speech/asr)",
+          "url": "https://docs.gradium.ai/api-reference/endpoint/stt-post"
+        },
+        {
+          "title": "Gradium API - Text-to-speech (POST /api/post/speech/tts)",
+          "url": "https://docs.gradium.ai/api-reference/endpoint/tts-post"
+        },
+        {
+          "title": "Square Orders API - CreateOrder (POST /v2/orders)",
+          "url": "https://developer.squareup.com/reference/square/orders-api/create-order"
+        }
+      ]
+    },
+    {
+      "id": "order-supplies",
+      "title": "Order supplies",
+      "summary": "Every week the barista or manager sets the standing orders: espresso beans from the roaster, whole milk from the dairy, shelf-stable oat milk from the distributor and takeaway cups from the packaging supplier, plus a bean reorder point that triggers a mid-week top-up. Each par = (usage per delivery cycle + safety stock) / deliveries, kept inside shelf life and storage space, so the cafe neither runs dry nor throws stock away.",
+      "mechanic": "mix",
+      "mechanic_rationale": "Ordering is setting a handful of quantities whose right values follow from the demand profile, lead times and shelf life: the mix mechanic, with one derived term for the cash tied up in stock.",
+      "aim": "Order a week of stock: nothing runs out, nothing goes bad.",
+      "variables": [
+        {
+          "id": "beans_kg",
+          "label": "Beans",
+          "unit": "kg",
+          "min": 5.0,
+          "max": 60.0,
+          "step": 1.0,
+          "default": 24.0
+        },
+        {
+          "id": "beans_rop_kg",
+          "label": "Reorder beans at",
+          "unit": "kg",
+          "min": 0.0,
+          "max": 30.0,
+          "step": 0.5,
+          "default": 6.0
+        },
+        {
+          "id": "milk_l",
+          "label": "Milk per delivery",
+          "unit": "L",
+          "min": 10.0,
+          "max": 120.0,
+          "step": 2.0,
+          "default": 36.0
+        },
+        {
+          "id": "oat_l",
+          "label": "Oat milk",
+          "unit": "L",
+          "min": 0.0,
+          "max": 150.0,
+          "step": 2.0,
+          "default": 50.0
+        },
+        {
+          "id": "cups",
+          "label": "Paper cups",
+          "unit": "cups",
+          "min": 0.0,
+          "max": 2000.0,
+          "step": 50.0,
+          "default": 700.0
+        }
+      ],
+      "derived": [
+        {
+          "id": "stock_value",
+          "label": "Cash on shelves",
+          "expr": "beans_kg * 24 + milk_l * 1.2 + oat_l * 3 + cups * 0.12"
+        }
+      ],
+      "optima": [
+        {
+          "term": "beans_kg",
+          "range": [
+            31.0,
+            35.0
+          ],
+          "rationale": "Demand assumption: 200 drinks a day x 18 g + 5% for dialing in = 3.78 kg/day = 26.5 kg/week. Par = (weekly use + 25% safety stock) / 1 weekly delivery = 33 kg (FastCasual par formula and its 25% safety example). Beans stay at peak about three weeks after roasting (George Howell), so the buffer does not go stale.",
+          "source_urls": [
+            "https://www.fastcasual.com/blogs/what-is-par-level-how-to-calculate-your-par-levels-in-your-restaurant/",
+            "https://georgehowellcoffee.com/blogs/notes-from-george/issue-no-5",
+            "https://thebarn.de/blogs/the-barn-blog/after-we-roast"
+          ]
+        },
+        {
+          "term": "beans_rop_kg",
+          "range": [
+            10.5,
+            12.5
+          ],
+          "rationale": "Reorder point = average daily usage x lead time + safety stock (Sculpture Hospitality): 3.78 kg x 2-day roaster lead time + 1 day of safety = 11.3 kg.",
+          "source_urls": [
+            "https://sculpturehospitality.com/blog/optimize-inventory-how-to-calculate-bar-or-restaurant-reorder-points"
+          ]
+        },
+        {
+          "term": "milk_l",
+          "range": [
+            46.0,
+            52.0
+          ],
+          "rationale": "Dairy delivers every two days (3.5 deliveries/week). Whole milk = 200 drinks x 70% with milk x 70% dairy x 0.2 L = 19.6 L/day = 137 L/week; par = (137 + 25%) / 3.5 = 49 L per delivery. Fresh milk keeps only days (Healthline: about 5-6 days past the date unopened, kept at 3-4 °C), so a bigger par spoils.",
+          "source_urls": [
+            "https://www.fastcasual.com/blogs/what-is-par-level-how-to-calculate-your-par-levels-in-your-restaurant/",
+            "https://www.healthline.com/nutrition/how-long-is-milk-good-after-expiration-date"
+          ]
+        },
+        {
+          "term": "oat_l",
+          "range": [
+            68.0,
+            78.0
+          ],
+          "rationale": "Oat = 200 x 70% x 30% x 0.2 L = 8.4 L/day = 58.8 L/week; one weekly delivery, so par = 58.8 x 1.25 = 73.5 L. Unopened barista oat milk is shelf-stable; once opened use it within 5 days (Brakes product listing).",
+          "source_urls": [
+            "https://www.fastcasual.com/blogs/what-is-par-level-how-to-calculate-your-par-levels-in-your-restaurant/",
+            "https://www.brake.co.uk/dairy/milk/uht/milk-alternatives/oatly-oat-drink-barista-editn-6x1ltr/p/128306"
+          ]
+        },
+        {
+          "term": "cups",
+          "range": [
+            900.0,
+            1050.0
+          ],
+          "rationale": "Takeaway = 55% of 200 = 110 cups/day = 770/week; par = 770 x 1.25 = 962, ordered in sleeves of 50.",
+          "source_urls": [
+            "https://www.fastcasual.com/blogs/what-is-par-level-how-to-calculate-your-par-levels-in-your-restaurant/"
+          ]
+        },
+        {
+          "term": "stock_value",
+          "range": [
+            0.0,
+            1300.0
+          ],
+          "rationale": "Assumed wholesale prices: beans $24/kg, whole milk $1.20/L, oat milk $3/L, cup with lid $0.12. At par the stock on hand is worth about $1,190; the owner caps cash tied up in stock at $1,300.",
+          "source_urls": [
+            "https://www.fastcasual.com/blogs/what-is-par-level-how-to-calculate-your-par-levels-in-your-restaurant/"
+          ]
+        }
+      ],
+      "heuristic": [
+        {
+          "term": "beans_kg",
+          "tolerance": 4.0,
+          "weight": 2.0,
+          "curve": "gaussian",
+          "too_low": "Ran out of espresso beans on Saturday: the grinder ran dry mid-rush.",
+          "too_high": "Bags piled up past their best: shots tasted flat and stale by week's end.",
+          "rationale": "Four kilos is about a day of beans: a day short is a stockout, a day long is stale stock."
+        },
+        {
+          "term": "beans_rop_kg",
+          "tolerance": 2.0,
+          "weight": 1.5,
+          "curve": "gaussian",
+          "too_low": "Top-up ordered too late: the roaster's van arrived after the hopper ran dry.",
+          "too_high": "Top-ups fired every other day: fresh bags stacked up while older ones went stale.",
+          "rationale": "Two kilos is about half a day of lead-time cover."
+        },
+        {
+          "term": "milk_l",
+          "tolerance": 5.0,
+          "weight": 2.0,
+          "curve": "gaussian",
+          "too_low": "Ran out of milk on Thursday: lattes came off the menu by lunchtime.",
+          "too_high": "12 L of milk went sour in the fridge before anyone could use it.",
+          "rationale": "Five litres is about a quarter day of milk; milk is the item most likely to spoil."
+        },
+        {
+          "term": "oat_l",
+          "tolerance": 8.0,
+          "weight": 1.5,
+          "curve": "gaussian",
+          "too_low": "Ran out of oat milk on Thursday: a third of milk drinkers left unhappy.",
+          "too_high": "Oat cartons crowd the dry store: cash sitting on shelves for weeks.",
+          "rationale": "Eight litres is about a day of oat milk."
+        },
+        {
+          "term": "cups",
+          "tolerance": 120.0,
+          "weight": 1.0,
+          "curve": "gaussian",
+          "too_low": "Out of takeaway cups by Sunday: to-go orders turned away at the door.",
+          "too_high": "Cup boxes stacked in the corridor: no room left and cash tied up.",
+          "rationale": "120 cups is about a day of takeaway."
+        },
+        {
+          "term": "stock_value",
+          "tolerance": 150.0,
+          "weight": 1.0,
+          "curve": "gaussian",
+          "too_low": "Spending looks very low: check nothing is missing from the order.",
+          "too_high": "Over budget: too much cash is tied up in stock on the shelves.",
+          "rationale": "Cash tied up in stock is the cost side of overbuying."
+        }
+      ],
+      "sort_items": [],
+      "sort_bins": [],
+      "orders": [],
+      "dialogue": [],
+      "caveats": [
+        "Par levels assume steady demand: recalculate after promotions, holidays or a weather change, and recalculate reorder points as often as you can (Sculpture Hospitality).",
+        "The 25% safety stock is a rule of thumb from the par-level guide's worked example; for volatile items size safety stock from demand variability instead.",
+        "Milk par must stay inside shelf life: rotate first in, first out and keep the fridge at 3-4 °C (Healthline).",
+        "Beans need about a week of rest for filter and 12-14 days for espresso (The Barn); time roaster orders so delivered beans are ready when needed.",
+        "Demand and prices in this level are illustrative assumptions: plug in your own sales data and supplier prices."
+      ],
+      "problems": [
+        "Ran out of oat milk on Thursday: the oat share was underestimated when ordering by habit.",
+        "Milk spoiling on Fridays: the par was set for the busiest day, not the average cycle.",
+        "Cash crunch: cups ordered quarterly 'to save on delivery' tie up money and corridor space."
+      ],
+      "sources": [
+        {
+          "title": "FastCasual - What is par level and how to calculate it",
+          "url": "https://www.fastcasual.com/blogs/what-is-par-level-how-to-calculate-your-par-levels-in-your-restaurant/"
+        },
+        {
+          "title": "Sculpture Hospitality - How to calculate bar or restaurant reorder points",
+          "url": "https://sculpturehospitality.com/blog/optimize-inventory-how-to-calculate-bar-or-restaurant-reorder-points"
+        },
+        {
+          "title": "George Howell Coffee - Roast dates and the right time to brew",
+          "url": "https://georgehowellcoffee.com/blogs/notes-from-george/issue-no-5"
+        },
+        {
+          "title": "The Barn - After we roast (resting and freshness)",
+          "url": "https://thebarn.de/blogs/the-barn-blog/after-we-roast"
+        },
+        {
+          "title": "Healthline - How long is milk good after the expiration date?",
+          "url": "https://www.healthline.com/nutrition/how-long-is-milk-good-after-expiration-date"
+        },
+        {
+          "title": "Brakes - Oatly Oat Drink Barista Edition 6 x 1 L (once opened, use within 5 days)",
+          "url": "https://www.brake.co.uk/dairy/milk/uht/milk-alternatives/oatly-oat-drink-barista-editn-6x1ltr/p/128306"
+        }
+      ]
+    }
+  ],
+  "reasoning_traces": [
+    {
+      "task_id": null,
+      "step": 1,
+      "thought": "Why these four tasks: a barista's day is brewing, milk drinks, taking orders and keeping the bar stocked. I picked one task from each with a skill that transfers straight to a real tool tomorrow: a brew recipe a programmable brewer can run, a pour technique a robot arm or a trainee can follow, a voice-ordering policy an agent can run on speech-to-text, text-to-speech and a POS API, and par levels a purchasing bot can order from. Mechanics: mix, timing, converse, mix.",
+      "evidence": [
+        "https://coavacoffee.com/brew-methods/v60",
+        "https://completehomebarista.com/faqs/milk-latte-art/how-to-make-rosetta-latte-art/",
+        "https://www.gov.uk/government/publications/allergen-guidance-for-food-businesses/allergen-guidance-for-food-businesses",
+        "https://www.fastcasual.com/blogs/what-is-par-level-how-to-calculate-your-par-levels-in-your-restaurant/"
+      ]
+    },
+    {
+      "task_id": "brew-coffee",
+      "step": 2,
+      "thought": "Why chosen: dialing in is the first job of every shift and the whole cup depends on three numbers. Mechanic mix: dose, water and contact time are continuous settings, and a derived water/dose ratio term reproduces the brew-ratio axis of the brewing control chart.",
+      "evidence": [
+        "https://resource.bunn.com/library/eZine/coffee_basics_brochure_scae_english/files/basic-html/page4.html",
+        "https://counterculturecoffee.com/blogs/counter-culture-coffee/coffee-basics"
+      ]
+    },
+    {
+      "task_id": "brew-coffee",
+      "step": 3,
+      "thought": "Optimum dose 18 g. Weighed: SCA Golden Cup 55 g/L +/-10% (about 1:16.5-1:20), Coava's V60 at 1:16 (62.5 g/L), and Counter Culture's 1.15-1.35% TDS strength target. With the house mug at 300 ml of brew water, 18 g gives 1:16.7 = 60 g/L: at the strong edge of the SCA band and right next to the roaster recipe, which suits a cafe mug with milk on the side. 16 g (1:18.75) drifts weak, 20 g (1:15) drifts strong. Optimum 18 g, tolerance 1.2 g, so even 19 g already reads heavy.",
+      "evidence": [
+        "https://www.gustoscoffeeco.com/how-to-make-better-coffee-sca-golden-cup-standards/",
+        "https://coavacoffee.com/brew-methods/v60",
+        "https://counterculturecoffee.com/blogs/counter-culture-coffee/coffee-basics"
+      ]
+    },
+    {
+      "task_id": "brew-coffee",
+      "step": 4,
+      "thought": "Contact time 180-210 s: Coava's medium-fine V60 finishes in 3:00-3:30, consistent with the SCA contact-time guide (1-4 min fine, 4-6 min drip). Feedback mapping from Counter Culture: under-extracted = sour and astringent (too short), over-extracted = bitter with a long aftertaste (too long).",
+      "evidence": [
+        "https://coavacoffee.com/brew-methods/v60",
+        "https://www.gustoscoffeeco.com/how-to-make-better-coffee-sca-golden-cup-standards/",
+        "https://counterculturecoffee.com/blogs/counter-culture-coffee/coffee-basics"
+      ]
+    },
+    {
+      "task_id": "brew-coffee",
+      "step": 5,
+      "thought": "Ratio term 16-18 ml/g: derived as water_ml / dose_g so the player learns the relation, not just three numbers. Too low = too strong (intense, heavy, 'muddy' in Counter Culture's words); too high = weak, watery. Scoring check I want to hold: at 300 ml and 3:15, 22 g must score clearly lower than 18 g and say 'heavy, bitter, too strong' because both the dose term (too high) and the ratio term (too low) fire.",
+      "evidence": [
+        "https://counterculturecoffee.com/blogs/counter-culture-coffee/coffee-basics",
+        "https://coavacoffee.com/brew-methods/v60"
+      ]
+    },
+    {
+      "task_id": "brew-coffee",
+      "step": 6,
+      "thought": "Transfer: the learned recipe maps one-to-one onto a programmable brewer profile (the SCA-listed Fellow Aiden exposes ratio, temperature and bloom settings and app-shareable profiles), or onto a grinder + scale + kettle routine: dose 18 g at medium-fine, pour to 300 g at 93 °C, finish 3:00-3:30, taste-correct with the feedback map.",
+      "evidence": [
+        "https://new.sca.coffee/entries/fellow-aiden-precision-coffee-maker",
+        "https://coavacoffee.com/brew-methods/v60",
+        "https://us.moccamaster.com/blogs/blog/certified-by-the-sca-moccamaster-and-the-golden-cup-standard"
+      ]
+    },
+    {
+      "task_id": "brew-coffee",
+      "step": 7,
+      "thought": "Caveat: grind is fixed in the level; in real life grind drift shows up as contact-time drift, so re-dial grind, not dose. Water temperature 92-96 °C at contact is assumed (SCA).",
+      "evidence": [
+        "https://us.moccamaster.com/blogs/blog/certified-by-the-sca-moccamaster-and-the-golden-cup-standard",
+        "https://www.gustoscoffeeco.com/how-to-make-better-coffee-sca-golden-cup-standards/"
+      ]
+    },
+    {
+      "task_id": "pour-latte-art",
+      "step": 8,
+      "thought": "Why chosen: latte art is the most visible barista skill and the one people pay to learn. Mechanic timing: steaming is hold-and-release on temperature, and the pour is two moments (base pour height, when to drop in), three phases.",
+      "evidence": [
+        "https://completehomebarista.com/faqs/milk-latte-art/how-to-make-rosetta-latte-art/",
+        "https://vervecoffee.com/blogs/the-verve-blog/how-to-steam-milk"
+      ]
+    },
+    {
+      "task_id": "pour-latte-art",
+      "step": 9,
+      "thought": "Milk temperature 57-65 °C from Verve (135-150 F, sweetness peaks; 160 F+ overheats into browning). I discarded mirror-site articles claiming 65-71 C (duplicated text on unrelated domains) and kept the roaster's guide.",
+      "evidence": [
+        "https://vervecoffee.com/blogs/the-verve-blog/how-to-steam-milk"
+      ]
+    },
+    {
+      "task_id": "pour-latte-art",
+      "step": 10,
+      "thought": "Pour height 8-10 cm for the base and drop-in at about half full from Complete Home Barista; Verve agrees on the mechanism (the further the pitcher, the deeper the milk dives) and on dropping close to the surface for the design. They describe different stages, not a conflict. Pull-through at about three-quarters full goes into the steps rather than a scored phase (the timing mechanic allows three phases).",
+      "evidence": [
+        "https://completehomebarista.com/faqs/milk-latte-art/how-to-make-rosetta-latte-art/",
+        "https://www.vervecoffee.com/blogs/the-verve-blog/how-to-pour-rosetta-latte-art"
+      ]
+    },
+    {
+      "task_id": "pour-latte-art",
+      "step": 11,
+      "thought": "Transfer: robot baristas already learn pours from barista demonstrations and split them into reusable motion skills (Artly). The learned values become waypoints and triggers: stop steaming at 57-65 °C (probe), spout at 8-10 cm for the base, trigger the drop to 1-2 cm at about 50% fill (cup weight or vision), wiggle while backing up, lift and pull through at about 75% fill.",
+      "evidence": [
+        "https://www.yankodesign.com/2026/01/07/artly-robots-master-latte-art-and-drinks-for-ces-2026-debut/",
+        "https://completehomebarista.com/faqs/milk-latte-art/how-to-make-rosetta-latte-art/"
+      ]
+    },
+    {
+      "task_id": "pour-latte-art",
+      "step": 12,
+      "thought": "Caveat: plant milks foam and break differently, so the temperature window must be re-learned per milk; stretch early while cold (Verve).",
+      "evidence": [
+        "https://vervecoffee.com/blogs/the-verve-blog/how-to-steam-milk"
+      ]
+    },
+    {
+      "task_id": "take-order",
+      "step": 13,
+      "thought": "Why chosen: taking a spoken order is where most cafe mistakes start, and it is exactly what a voice agent would do at a counter or a drive-through. Mechanic converse: five turns, each a choice; allergy mistakes are critical and end the level.",
+      "evidence": [
+        "https://www.gov.uk/government/publications/allergen-guidance-for-food-businesses/allergen-guidance-for-food-businesses",
+        "https://allergyasthmanetwork.org/news/coffee-cross-contact-and-food-allergies/"
+      ]
+    },
+    {
+      "task_id": "take-order",
+      "step": 14,
+      "thought": "Turn design: (1) clarify the vague parts before ringing up; (2) allergy: flag it, clean jug and purged wand, never promise nut-free unchecked (FSA cross-contamination guidance; Allergy & Asthma Network names wands and pitchers as cross-contact routes), both unsafe answers critical; (3) one relevant suggestion at the pause (Sauce: genuine, perceptive suggestions); (4) full read-back including the allergy (Lynn's tested techniques include repeating the order back; FSA: written info backed by conversation works best); (5) wait time, name, safe hand-off.",
+      "evidence": [
+        "https://www.gov.uk/government/publications/allergen-guidance-for-food-businesses/allergen-guidance-for-food-businesses",
+        "https://allergyasthmanetwork.org/news/coffee-cross-contact-and-food-allergies/",
+        "https://www.getsauce.com/post/communicating-with-customers-suggestive-selling-techniques-to-raise-restaurant-revenue",
+        "https://ecommons.cornell.edu/entities/publication/aaa79631-eff5-43eb-96ac-473e4ffea561"
+      ]
+    },
+    {
+      "task_id": "take-order",
+      "step": 15,
+      "thought": "Correct answers sit in different positions per turn so the agent has to learn them, and the first answer of the allergy turn is the unsafe 'one jug' shortcut: a first naive attempt fails on the allergy, which is the lesson.",
+      "evidence": []
+    },
+    {
+      "task_id": "take-order",
+      "step": 16,
+      "thought": "Transfer: a voice ordering agent = Gradium STT (POST /api/post/speech/asr, streamed text) -> this policy (slots: drink, size, milk, extras, allergies; confirm before charging) -> Gradium TTS (POST /api/post/speech/tts with a voice_id) -> Square CreateOrder (POST /v2/orders with line_items, modifiers and an idempotency_key; allergy carried on the ticket).",
+      "evidence": [
+        "https://docs.gradium.ai/api-reference/endpoint/stt-post",
+        "https://docs.gradium.ai/api-reference/endpoint/tts-post",
+        "https://developer.squareup.com/reference/square/orders-api/create-order"
+      ]
+    },
+    {
+      "task_id": "take-order",
+      "step": 17,
+      "thought": "Caveat: the level has one customer script (the platform has no per-attempt scenario variation for converse); the policy generalises, the exact lines do not.",
+      "evidence": []
+    },
+    {
+      "task_id": "order-supplies",
+      "step": 18,
+      "thought": "Why chosen: stockouts and spoiled milk are the two most common, most costly back-of-house failures in a small cafe, and ordering is fully automatable. Mechanic mix: five order quantities plus a derived 'cash tied up in stock' term for cost.",
+      "evidence": [
+        "https://www.fastcasual.com/blogs/what-is-par-level-how-to-calculate-your-par-levels-in-your-restaurant/",
+        "https://sculpturehospitality.com/blog/optimize-inventory-how-to-calculate-bar-or-restaurant-reorder-points"
+      ]
+    },
+    {
+      "task_id": "order-supplies",
+      "step": 19,
+      "thought": "Demand model (assumption, stated to the player in the quest): 200 drinks/day, 18 g each + 5% dial-in waste, 70% with milk at 0.2 L, 30% of those oat, 55% takeaway. Cadence: roaster weekly (2-day lead for top-ups), dairy every two days, oat and cups weekly.",
+      "evidence": []
+    },
+    {
+      "task_id": "order-supplies",
+      "step": 20,
+      "thought": "Par = (usage per cycle + 25% safety) / deliveries (FastCasual): beans 26.5 kg/wk -> 33 kg; milk 137 L/wk over 3.5 deliveries -> 49 L per delivery; oat 58.8 L/wk -> 73.5 L; cups 770/wk -> 962. Reorder point = daily use x lead time + safety (Sculpture Hospitality): 3.78 kg x 2 days + 1 day = 11.3 kg.",
+      "evidence": [
+        "https://www.fastcasual.com/blogs/what-is-par-level-how-to-calculate-your-par-levels-in-your-restaurant/",
+        "https://sculpturehospitality.com/blog/optimize-inventory-how-to-calculate-bar-or-restaurant-reorder-points"
+      ]
+    },
+    {
+      "task_id": "order-supplies",
+      "step": 21,
+      "thought": "Waste side: fresh milk keeps only days (Healthline), opened barista oat milk 5 days (Brakes listing), beans at peak about three weeks after roast (George Howell) and need a week of rest for filter (The Barn). These cap the pars and drive the too_high feedback ('12 L of milk went sour', 'stale beans').",
+      "evidence": [
+        "https://www.healthline.com/nutrition/how-long-is-milk-good-after-expiration-date",
+        "https://www.brake.co.uk/dairy/milk/uht/milk-alternatives/oatly-oat-drink-barista-editn-6x1ltr/p/128306",
+        "https://georgehowellcoffee.com/blogs/notes-from-george/issue-no-5",
+        "https://thebarn.de/blogs/the-barn-blog/after-we-roast"
+      ]
+    },
+    {
+      "task_id": "order-supplies",
+      "step": 22,
+      "thought": "Transfer: the learned pars and reorder point become a standing-order sheet or a purchasing bot: every Monday order beans up to par, every dairy run top milk up to par, trigger a bean top-up at the reorder point, send as a supplier email or API call from a spreadsheet of on-hand counts.",
+      "evidence": [
+        "https://www.fastcasual.com/blogs/what-is-par-level-how-to-calculate-your-par-levels-in-your-restaurant/",
+        "https://sculpturehospitality.com/blog/optimize-inventory-how-to-calculate-bar-or-restaurant-reorder-points"
+      ]
+    },
+    {
+      "task_id": "order-supplies",
+      "step": 23,
+      "thought": "Caveat: the 25% safety stock is a rule of thumb; demand and prices are illustrative assumptions to be replaced with the cafe's own sales data.",
+      "evidence": [
+        "https://www.fastcasual.com/blogs/what-is-par-level-how-to-calculate-your-par-levels-in-your-restaurant/"
+      ]
+    },
+    {
+      "task_id": null,
+      "step": 24,
+      "thought": "Sources weighed: kept primary or practitioner sources (roaster brew guides, SCA-derived standards, FSA guidance, API references). Dropped calculator sites that disagree on the Golden Cup ratio (some say 1:16, the 55 g/L standard is about 1:18) and duplicated mirror articles on milk temperature. Where sources disagree I used ranges, not single numbers.",
+      "evidence": [
+        "https://www.gustoscoffeeco.com/how-to-make-better-coffee-sca-golden-cup-standards/",
+        "https://coavacoffee.com/brew-methods/v60",
+        "https://vervecoffee.com/blogs/the-verve-blog/how-to-steam-milk"
+      ]
+    }
+  ],
+  "brain": {
+    "stored": true,
+    "ids": [
+      "fact:cc6b779155f2a24bd20373f5",
+      "fact:b399ece5f8b83283e611a324",
+      "fact:bdc22fa29f2c109afafaa3e6",
+      "fact:8f97e1a3907089bb0f2bc795",
+      "fact:3530589abbda6638eb5bb7e5",
+      "fact:e704f2e238f1a004695b56e7",
+      "fact:86339b6260a032ff4f574186",
+      "fact:a763ae789755f39643f5d587",
+      "fact:fb0cdfb613736f8a9b5b4496",
+      "fact:19345eb79507349071880737",
+      "fact:119a25d7e6c67695b388e701",
+      "fact:421729bce95a1ca2f46571ee",
+      "fact:e2571fb024edabf72fd2503e",
+      "fact:754787d09230bb2eb47e52c4",
+      "fact:5dad0d4aaac4d2848246c1c0",
+      "fact:1dbfae85699ea956be713a7b",
+      "fact:3645cb6246f751ba2c74405d",
+      "fact:0b579127185612a5141eaba8",
+      "fact:5ccceaefe1a77d4a53bbc8f5",
+      "fact:0a857c83c9c7a2f845afc553",
+      "fact:cede09c939409f0bc84a8879",
+      "fact:d34aec66e1e6409a6d23053c",
+      "fact:c383b8431ce1e483b13b8cd3",
+      "fact:1c9bf44055f31962f31c6ddf"
+    ],
+    "query": "[replaceme research trace] run=barista-1791649383872"
+  }
+}

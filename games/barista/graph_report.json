@@ -1,0 +1,121 @@
+{
+  "ok": true,
+  "rules_version": 2,
+  "rules_commit": "cfdc6f74c3c1b715e900c878847afb206d63c752",
+  "rules_source": "git show main:shared/actions.json",
+  "slug": "barista",
+  "branch": "game/barista",
+  "violations": [],
+  "repairs": [],
+  "graph": {
+    "status": "pass",
+    "provider": "entire-graph",
+    "provider_version": "v0.4.0",
+    "rules_graph_commit": "1eaf31fa00999652b62614ebd8ae1eb77122102f",
+    "rule_symbols": 171,
+    "resolved": 20,
+    "evidence": [
+      {
+        "kind": "mechanic",
+        "name": "mix",
+        "at": "shared/actions.json:51"
+      },
+      {
+        "kind": "control",
+        "name": "key_up",
+        "at": "shared/actions.json:7"
+      },
+      {
+        "kind": "control",
+        "name": "key_down",
+        "at": "shared/actions.json:8"
+      },
+      {
+        "kind": "control",
+        "name": "key_left",
+        "at": "shared/actions.json:9"
+      },
+      {
+        "kind": "control",
+        "name": "key_right",
+        "at": "shared/actions.json:10"
+      },
+      {
+        "kind": "control",
+        "name": "mouse_click",
+        "at": "shared/actions.json:11"
+      },
+      {
+        "kind": "control",
+        "name": "mouse_drag",
+        "at": "shared/actions.json:14"
+      },
+      {
+        "kind": "control",
+        "name": "interact",
+        "at": "shared/actions.json:15"
+      },
+      {
+        "kind": "param",
+        "name": "station_id",
+        "at": "shared/actions.json:57"
+      },
+      {
+        "kind": "param",
+        "name": "variables",
+        "at": "shared/actions.json:58"
+      },
+      {
+        "kind": "param",
+        "name": "submit_label",
+        "at": "shared/actions.json:60"
+      },
+      {
+        "kind": "curve",
+        "name": "gaussian",
+        "at": "shared/actions.json:149"
+      },
+      {
+        "kind": "mechanic",
+        "name": "timing",
+        "at": "shared/actions.json:68"
+      },
+      {
+        "kind": "control",
+        "name": "mouse_down",
+        "at": "shared/actions.json:12"
+      },
+      {
+        "kind": "control",
+        "name": "mouse_up",
+        "at": "shared/actions.json:13"
+      },
+      {
+        "kind": "control",
+        "name": "wait",
+        "at": "shared/actions.json:16"
+      },
+      {
+        "kind": "param",
+        "name": "phases",
+        "at": "shared/actions.json:75"
+      },
+      {
+        "kind": "mechanic",
+        "name": "converse",
+        "at": "shared/actions.json:116"
+      },
+      {
+        "kind": "param",
+        "name": "npc_id",
+        "at": "shared/actions.json:122"
+      },
+      {
+        "kind": "param",
+        "name": "turns",
+        "at": "shared/actions.json:123"
+      }
+    ]
+  },
+  "checked_at": "2026-10-10T16:24:38Z"
+}

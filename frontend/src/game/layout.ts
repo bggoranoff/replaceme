@@ -30,7 +30,7 @@ export const center = (r: Rect) => ({ x: r.x + r.w / 2, y: r.y + r.h / 2 })
 
 // --- mix (craft station) ----------------------------------------------------
 
-/** Craft station: a column of station items (Up/Down), the selected item's tool, the result + action button. */
+/** Craft station: a column of station items (Up/Down) with gauges, the selected item's tool, the result + action button. */
 export function craftLayout(W: number, H: number, n: number, ingredients = 0) {
   const full = contentRect(W, H)
   // keep clear of the footer line (villager chatter bubble)
@@ -42,6 +42,8 @@ export function craftLayout(W: number, H: number, n: number, ingredients = 0) {
   const rowH = Math.min(34, Math.floor((c.h - rowGap * (n - 1)) / Math.max(1, n)))
   const listTop = c.y + Math.max(0, Math.floor((c.h - (rowH * n + rowGap * (n - 1))) / 2))
   const items: Rect[] = Array.from({ length: n }, (_, i) => ({ x: c.x, y: listTop + i * (rowH + rowGap), w: listW, h: rowH }))
+  // each station's gauge: a thin track along the bottom of its row (slider:<var_id>)
+  const gauges: Rect[] = items.map((r) => ({ x: r.x + 22, y: r.y + Math.min(r.h - 7, Math.floor(Math.max(0, r.h - 28) / 2) + 21), w: r.w - 28, h: 4 }))
   const stage: Rect = { x: c.x + listW + gap, y: c.y, w: c.w - listW - resW - gap * 2, h: c.h }
   const tool: Rect = { x: stage.x, y: stage.y, w: stage.w, h: stage.h - 24 }
   const back: Rect = { x: stage.x, y: stage.y + stage.h - 20, w: 62, h: 20 }
@@ -51,7 +53,7 @@ export function craftLayout(W: number, H: number, n: number, ingredients = 0) {
   const ing: Rect[] = Array.from({ length: ingredients }, (_, i) => ({ x: resX, y: submit.y - 4 - (ingredients - i) * (ingH + 3), w: resW, h: ingH }))
   const resultBottom = (ing.length ? ing[0].y : submit.y) - 4
   const result: Rect = { x: resX, y: c.y, w: resW, h: Math.max(30, resultBottom - c.y) }
-  return { items, stage, tool, back, result, submit, ingredients: ing }
+  return { items, gauges, stage, tool, back, result, submit, ingredients: ing }
 }
 
 // --- timing ----------------------------------------------------------------

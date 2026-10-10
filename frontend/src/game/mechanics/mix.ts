@@ -1,6 +1,7 @@
 // Craft station: every variable is a physical tool whose verb is picked from its unit, label and range
 // (never from the job). The value <-> control mapping stays step based and deterministic:
-// one key press step, one click, or 100 ms of mouse hold on a tool = one variable step.
+// one key press step, one click, or 100 ms of mouse hold on a tool = one variable step; clicking or
+// dragging a station's gauge (slider:<var_id>) sets the value at that position, snapped to the step.
 import type { Target } from '../../contract'
 import { craftLayout, hit, STEP_MS } from '../layout'
 import { scoreMix } from '../scoring'
@@ -67,14 +68,15 @@ export class MixMechanic implements Mechanic {
   fx: ToolFx[]
   /** Mouse hold on the tool (+1) or the take-back button (-1): one step per 100 ms held. */
   hold: { index: number; sign: 1 | -1; at: number; done: number } | null = null
+  /** Variable whose gauge is being dragged. */
+  dragging: number | null = null
   private ctx: MechanicCtx
 
   constructor(ctx: MechanicCtx) {
     this.ctx = ctx
     this.params = ctx.level.params as unknown as MixParams
     this.verbs = this.params.variables.map(verbFor)
-    // Every tool starts empty (its minimum): you build the result up yourself.
-    this.values = this.params.variables.map((v) => snapTo(v, v.min))
+    this.values = this.params.variables.map((v) => snapTo(v, v.default))
     this.fx = this.params.variables.map(() => ({ at: -1e9, dir: 1, streak: 0 }))
   }
 
@@ -88,7 +90,10 @@ export class MixMechanic implements Mechanic {
 
   targets(): Target[] {
     const l = this.layout()
-    const out: Target[] = this.params.variables.map((v, i) => ({ id: `item:${v.id}`, kind: 'item', label: v.label, ...l.items[i], enabled: true }))
+    const out: Target[] = this.params.variables.flatMap((v, i): Target[] => [
+      { id: `slider:${v.id}`, kind: 'slider', label: v.label, ...l.gauges[i], enabled: true },
+      { id: `item:${v.id}`, kind: 'item', label: v.label, ...l.items[i], enabled: true },
+    ])
     const v = this.params.variables[this.selected]
     const words = VERB_WORDS[this.verbs[this.selected]]
     out.push({ id: `tool:${v.id}`, kind: 'button', label: `${words.act} ${v.label}`, ...l.tool, enabled: true })
@@ -113,12 +118,43 @@ export class MixMechanic implements Mechanic {
     const f = this.fx[i]
     const chained = f.dir === sign && now - f.at <= STEP_MS * 1.6
     this.fx[i] = { at: now, dir: sign, streak: chained ? f.streak + 1 : 1 }
+    const juice = this.ctx.juice
+    if (this.values[i] === before) {
+      // already empty / full: a dull knock instead of a tick
+      if (!chained) {
+        juice.squash(`craft:tool:${v.id}`, 0.12, 240)
+        juice.sfx('tap', { pitch: 0.55, volume: 0.6 })
+      }
+      return
+    }
+    // a ratchet tick that climbs as the amount grows
+    const frac = (this.values[i] - v.min) / (v.max - v.min || 1)
+    juice.sfx('tick', { pitch: 0.75 + frac * 0.9, volume: sign > 0 ? 0.5 : 0.35 })
+  }
+
+  private setFromX(i: number, x: number) {
+    const v = this.params.variables[i]
+    const g = this.layout().gauges[i]
+    const frac = Math.min(1, Math.max(0, (x - g.x) / g.w))
+    const before = this.values[i]
+    this.values[i] = snapTo(v, v.min + frac * (v.max - v.min))
+    if (this.values[i] !== before) {
+      this.fx[i] = { at: this.ctx.now(), dir: this.values[i] > before ? 1 : -1, streak: 1 }
+      this.ctx.juice.sfx('tick', { pitch: 0.75 + frac * 0.9, volume: 0.35 })
+    }
+    this.select(i)
+  }
+
+  /** The gauge under (x, y), with a few pixels of slack so it is easy to grab. */
+  private gaugeAt(x: number, y: number) {
+    return this.layout().gauges.findIndex((g) => hit({ x: g.x - 3, y: g.y - 3, w: g.w + 6, h: g.h + 6 }, x, y))
   }
 
   private select(i: number) {
     if (i === this.selected) return
     this.selected = i
     this.hold = null
+    this.ctx.juice.select(`craft:item:${this.params.variables[i].id}`)
   }
 
   dir(d: Dir) {
@@ -140,6 +176,8 @@ export class MixMechanic implements Mechanic {
 
   click(x: number, y: number) {
     const l = this.layout()
+    const gauge = this.gaugeAt(x, y)
+    if (gauge >= 0) return this.setFromX(gauge, x)
     const item = l.items.findIndex((r) => hit(r, x, y))
     if (item >= 0) return this.select(item)
     if (hit(l.back, x, y)) return this.nudge(this.selected, -1)
@@ -153,14 +191,27 @@ export class MixMechanic implements Mechanic {
   }
 
   down(x: number, y: number) {
+    const gauge = this.gaugeAt(x, y)
+    if (gauge >= 0) {
+      this.dragging = gauge
+      this.hold = null
+      return this.setFromX(gauge, x)
+    }
     const l = this.layout()
     const sign = hit(l.back, x, y) ? -1 : hit(l.tool, x, y) ? 1 : 0
     this.hold = sign ? { index: this.selected, sign, at: this.ctx.now(), done: 0 } : null
   }
 
-  move() {}
+  move(x: number) {
+    if (this.dragging !== null) this.setFromX(this.dragging, x)
+  }
 
-  up() {
+  up(x: number) {
+    if (this.dragging !== null) {
+      this.setFromX(this.dragging, x)
+      this.dragging = null
+      return
+    }
     this.advance()
     this.hold = null
   }

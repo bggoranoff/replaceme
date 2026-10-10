@@ -41,18 +41,18 @@ function header(ctx: Ctx, e: GameEngine, p: Rect) {
   px(ctx, shade(PARCHMENT, -0.12), p.x + 12, p.y + 46, p.w - 24, 1)
 }
 
-/** Footer: the controls hint, or a villager's line while their bubble is up (in-level chatter). */
 /** The level's controls hint; the craft station describes its own tools. */
 function controlsHint(e: GameEngine): string {
   if (e.phase === 'playing' && e.mech instanceof MixMechanic) return craftHint(e.mech)
   const level = e.level!
   if (level.mechanic === 'mix') {
     const submit = String((level.params as { submit_label?: string }).submit_label ?? 'finish')
-    return `Up/Down pick a tool · hold Right (or hold the mouse on it) to use it · Left to take back · Enter: ${submit}`
+    return `Up/Down pick a tool · hold Right (or hold the mouse on it) to use it · Left to take back · or drag its gauge · Enter: ${submit}`
   }
   return level.controls_hint
 }
 
+/** Footer: the controls hint, or a villager's line while their bubble is up (in-level chatter). */
 function footer(ctx: Ctx, e: GameEngine, p: Rect) {
   const b = e.bubble
   const npc = b && e.t <= b.until && !(e.mech instanceof ConverseMechanic) ? e.npc(b.npcId) : undefined

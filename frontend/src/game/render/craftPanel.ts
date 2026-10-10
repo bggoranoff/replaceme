@@ -1,7 +1,6 @@
 // Craft station panel (mix mechanic): physical tools instead of sliders. Visuals come only from the
 // level params (labels, units, ranges); nothing here knows about a job, and no scoring target is drawn.
 import type { GameEngine } from '../engine'
-import { contentRect } from '../layout'
 import { VERB_WORDS, type MixMechanic, type ToolFx, type Verb } from '../mechanics/mix'
 import type { Rect, Variable } from '../types'
 import { GOLD, INK, INK_SOFT, PARCHMENT, PARCHMENT_DARK, WOOD, WOOD_DARK, WOOD_LIGHT, button, mix, px, roundRect, seedOf, shade, text, type Ctx } from './pixel'
@@ -25,9 +24,14 @@ const TINTS: [RegExp, string][] = [
 ]
 const FALLBACK = ['#b4563f', '#3f7fb4', '#8a5ab4', '#c98e4f', '#4f8f3a', '#d0743c']
 
-export function tintFor(label: string): string {
+/** The colour a label names (coffee, milk, oil...), or null. */
+function namedTint(label: string): string | null {
   for (const [re, c] of TINTS) if (re.test(label)) return c
-  return FALLBACK[seedOf(label) % FALLBACK.length]
+  return null
+}
+
+export function tintFor(label: string): string {
+  return namedTint(label) ?? FALLBACK[seedOf(label) % FALLBACK.length]
 }
 
 const clamp01 = (v: number) => Math.max(0, Math.min(1, v))
@@ -71,6 +75,8 @@ function glyph(ctx: Ctx, verb: Verb, x: number, y: number, tint: string) {
       break
     case 'scoop':
       px(ctx, WOOD_DARK, x, y + 9, 12, 3)
+      px(ctx, shade(tint, -0.35), x + 1, y + 4, 10, 5)
+      px(ctx, shade(tint, -0.35), x + 3, y + 2, 6, 2)
       px(ctx, tint, x + 2, y + 5, 8, 4)
       px(ctx, tint, x + 4, y + 3, 4, 2)
       px(ctx, shade(tint, -0.25), x + 3, y + 8, 6, 1)
@@ -130,7 +136,7 @@ function drawPour(o: ToolCtx) {
   if (level > 0) {
     const ly = vy + vh - 1 - level
     px(ctx, o.liquid, vx + 1, ly, vw - 2, level)
-    px(ctx, shade(o.liquid, 0.35), vx + 1, ly + wobble * 0, vw - 2, 2)
+    px(ctx, shade(o.liquid, 0.35), vx + 1, ly, vw - 2, 2)
     px(ctx, shade(o.liquid, 0.5), vx + 4, ly + 1 + wobble, 10, 1)
     px(ctx, shade(o.liquid, -0.12), vx + 1, vy + vh - 3, vw - 2, 2)
   }
@@ -204,7 +210,7 @@ function fmtShort(v: number): string {
 }
 
 function drawScoop(o: ToolCtx) {
-  const { ctx, r, f, t, since, fx } = o
+  const { ctx, r, f, since, fx } = o
   const sw = 74
   const sx = Math.round(r.x + r.w / 2 - sw / 2)
   const sy = o.floorY - 16
@@ -222,25 +228,40 @@ function drawScoop(o: ToolCtx) {
   const cx = sx + sw / 2
   const base = sy - 3
   if (count) {
-    const n = Math.round(f * 18) + (o.v.min > 0 ? 1 : 0)
+    // small whole counts are shown one for one; bigger ones scale to at most 21 pieces
+    const value = valueOf(o)
+    const exact = o.v.step >= 1 && o.v.max <= 21
+    const n = exact ? Math.max(0, Math.round(value)) : Math.round(f * 20) + (o.v.min > 0 ? 1 : 0)
+    // a neat pyramid on the scale plate: 6 on the bottom row, one fewer per row up
+    let row = 0
+    let inRow = 0
     for (let i = 0; i < n; i++) {
-      const row = Math.floor(Math.sqrt(i * 2))
-      const col = i - (row * (row + 1)) / 2
-      const x = cx - 26 + col * 9 + row * 4.5
-      const y = base - 8 - (5 - Math.min(5, row)) * 0 - row * 0 - Math.floor(i / 6) * 7
+      const cap = Math.max(1, 6 - row)
+      const rowCount = Math.min(cap, n - (i - inRow))
+      const x = cx - ((rowCount - 1) * 9) / 2 + inRow * 9
+      const y = base - 5 - row * 7.5
+      const lift = exact && i === n - 1 && fx.dir === 1 && since < 220 ? Math.round(12 * (1 - since / 220)) : 0
       ctx.fillStyle = WOOD_DARK
       ctx.beginPath()
-      ctx.arc(x + (i % 6) * 0, y, 4.2, 0, TAU)
+      ctx.arc(x, y - lift, 4.4, 0, TAU)
       ctx.fill()
       ctx.fillStyle = o.tint
       ctx.beginPath()
-      ctx.arc(x, y, 3.3, 0, TAU)
+      ctx.arc(x, y - lift, 3.4, 0, TAU)
       ctx.fill()
+      px(ctx, shade(o.tint, 0.35), x - 2, y - lift - 2, 2, 1)
+      if (++inRow >= cap) {
+        row++
+        inRow = 0
+      }
     }
   } else {
+    const edge = shade(o.tint, isPale(o.tint) ? -0.3 : -0.25)
     for (let k = 0; k < ph; k++) {
       const w = Math.round(pw * Math.sqrt(1 - k / ph))
       px(ctx, k % 3 === 0 ? shade(o.tint, -0.12) : o.tint, cx - w / 2, base - 1 - k, w, 1)
+      px(ctx, edge, cx - w / 2 - 1, base - 1 - k, 1, 1)
+      px(ctx, edge, cx + w / 2, base - 1 - k, 1, 1)
     }
     for (let i = 0; i < 8; i++) {
       const gx = cx - pw / 2 + ((seedOf(`${i}`) % 100) / 100) * pw
@@ -268,7 +289,6 @@ function drawScoop(o: ToolCtx) {
       px(ctx, o.tint, spx - 8 + (i % 3) * 3, spy + 2 + g * (base - ph - spy), 2, 2)
     }
   }
-  void t
 }
 
 function valueOf(o: ToolCtx) {
@@ -280,9 +300,11 @@ function drawSteep(o: ToolCtx) {
   // brewing pot: colour deepens as time passes
   const bw = 50
   const bh = 52
-  const bx = Math.round(r.x + 10)
+  const cr = 21
+  const bx = Math.round(r.x + (r.w - (bw + 10 + cr * 2 + 4)) / 2)
   const by = o.floorY - bh
-  const brew = mix(shade(o.liquid, 0.25), o.tint === o.liquid ? shade(o.tint, -0.7) : o.tint, Math.min(1, 0.15 + f * 0.95))
+  const from = o.tint === o.liquid ? shade(o.liquid, 0.25) : mix(shade(o.liquid, 0.25), shade(o.tint, 0.6), 0.75)
+  const brew = mix(from, o.tint === o.liquid ? shade(o.tint, -0.7) : o.tint, Math.min(1, 0.15 + f * 0.95))
   const deep = f > 0.8 ? shade(brew, -(f - 0.8) * 2.2) : brew
   px(ctx, 'rgba(40,24,10,0.18)', bx + 3, o.floorY - 2, bw, 4)
   px(ctx, WOOD_DARK, bx - 1, by - 1, bw + 2, bh + 2)
@@ -305,8 +327,7 @@ function drawSteep(o: ToolCtx) {
     px(ctx, `rgba(255,255,255,${0.7 - ph * 0.7})`, bx + 12 + i * 12 + Math.round(Math.sin(t / 300 + i) * 2), by - 20 - ph * 16, 3, 3)
   }
   // clock: the hand sweeps with every step, the ring shows how far through the range you are
-  const cr = 24
-  const cx = bx + bw + 14 + cr
+  const cx = bx + bw + 12 + cr
   const cy = by + 6
   ctx.fillStyle = WOOD_DARK
   ctx.beginPath()
@@ -457,8 +478,7 @@ function drawStack(o: ToolCtx) {
     px(ctx, 'rgba(91,58,30,0.5)', cx + cw - 22, y, bw, bh)
   }
   // chalk tag with the amount
-  const tag = { x: cx + cw - 30, y: r.y + 24, w: 44, h: 15 }
-  px(ctx, WOOD_DARK, tag.x + tag.w / 2, cy - 20 - 0, 1, 0)
+  const tag = { x: Math.round(r.x + r.w - 52), y: Math.round(r.y + 20), w: 46, h: 15 }
   roundRect(ctx, tag, 2, '#3c4a3f', WOOD_DARK, 1)
   text(ctx, fmtAmount(o.v, valueOf(o)), tag.x + tag.w / 2, tag.y + 10.5, { size: 7.5, weight: 800, color: '#f4f1e4', align: 'center', maxW: tag.w - 4 })
 }
@@ -520,7 +540,9 @@ function resultTint(m: MixMechanic, liquid: string) {
   const s = n ? strength / n : 0
   if (!n) return liquid
   const dark = tint ? (isPale(tint) ? shade(tint, -0.05) : shade(tint, -0.1)) : shade(liquid, -0.6)
-  return mix(liquid, dark, Math.min(1, 0.3 + s * 0.9))
+  // weak results are a pale version of the same colour (mixing toward the water colour turns grey)
+  const light = tint ? shade(dark, 0.6) : liquid
+  return mix(light, dark, Math.min(1, 0.25 + s * 0.9))
 }
 
 function isPale(hex: string) {
@@ -602,6 +624,18 @@ function drawResult(ctx: Ctx, m: MixMechanic, r: Rect, t: number, liquid: string
 
 // --- panel ------------------------------------------------------------------------------
 
+/** A station's gauge: a thin track filled to the current amount, with a grip you can drag. */
+function drawGauge(ctx: Ctx, g: Rect, f: number, active: boolean) {
+  px(ctx, WOOD_DARK, g.x - 1, g.y - 1, g.w + 2, g.h + 2)
+  px(ctx, PARCHMENT_DARK, g.x, g.y, g.w, g.h)
+  const fill = Math.round(g.w * f)
+  px(ctx, active ? '#e8a23c' : '#c9a36a', g.x, g.y, fill, g.h)
+  px(ctx, active ? '#f6c66a' : '#dcbb85', g.x, g.y, fill, 1)
+  const kx = Math.round(g.x + fill)
+  px(ctx, WOOD_DARK, kx - 2, g.y - 2, 4, g.h + 4)
+  px(ctx, active ? GOLD : '#f6e3bb', kx - 1, g.y - 1, 2, g.h + 2)
+}
+
 function selectArrow(ctx: Ctx, x: number, y: number, t: number) {
   const o = Math.round(Math.sin(t / 150))
   px(ctx, GOLD, x + o, y - 3, 2, 7)
@@ -612,7 +646,7 @@ function selectArrow(ctx: Ctx, x: number, y: number, t: number) {
 /** One-line controls hint built from the tools on this station (overrides a stale level hint). */
 export function craftHint(m: MixMechanic): string {
   const verb = VERB_WORDS[m.verbs[m.selected]]
-  return `Up/Down pick · hold Right or the ${verb.act.toLowerCase()} area to ${verb.act.toLowerCase()} · Left to ${verb.back.toLowerCase()} · Enter: ${m.params.submit_label}`
+  return `Up/Down pick · hold Right (or the tool) to ${verb.act.toLowerCase()} · Left to ${verb.back.toLowerCase()} · or drag a gauge · Enter: ${m.params.submit_label}`
 }
 
 export function drawCraft(ctx: Ctx, e: GameEngine, m: MixMechanic, t: number) {
@@ -620,30 +654,26 @@ export function drawCraft(ctx: Ctx, e: GameEngine, m: MixMechanic, t: number) {
   const now = e.levelTime()
   const vars = m.params.variables
   const liquid = shade(e.world.theme.palette.water ?? '#6fb3d9', 0.45)
-  void contentRect
 
-  // station items (Up/Down)
+  // station items (Up/Down), each with its gauge (click or drag to set)
   vars.forEach((v, i) => {
     const r = l.items[i]
+    const g = l.gauges[i]
     const sel = i === m.selected
     const fx = m.fx[i]
     const bump = now - fx.at < 140 ? 1 : 0
-    px(ctx, WOOD_DARK, r.x, r.y, r.w, r.h)
-    px(ctx, sel ? '#fff1c4' : PARCHMENT, r.x + 1, r.y + 1, r.w - 2, r.h - 2)
-    if (sel) {
-      px(ctx, GOLD, r.x + 1, r.y + 1, 3, r.h - 2)
-      selectArrow(ctx, r.x - 9, r.y + r.h / 2, t)
-    }
-    const tint = tintFor(v.label)
-    glyph(ctx, m.verbs[i], r.x + 6, r.y + Math.round(r.h / 2) - 7, tint)
-    const two = r.h >= 24
-    if (two) {
-      text(ctx, v.label, r.x + 22, r.y + r.h / 2 - 2, { size: 6.5, weight: 800, color: sel ? INK : INK_SOFT, maxW: r.w - 26 })
-      text(ctx, fmtAmount(v, m.values[i]), r.x + 22, r.y + r.h / 2 + 8 - bump, { size: 8.5 + bump, weight: 800, color: sel ? '#7a3f12' : INK, maxW: r.w - 26 })
-    } else {
-      text(ctx, v.label, r.x + 22, r.y + r.h / 2 + 2.5, { size: 6.5, weight: 800, maxW: r.w - 64 })
-      text(ctx, fmtAmount(v, m.values[i]), r.x + r.w - 4, r.y + r.h / 2 + 3 - bump, { size: 7.5, weight: 800, align: 'right', color: sel ? '#7a3f12' : INK })
-    }
+    e.juice.withScale(ctx, `craft:item:${v.id}`, r.x + r.w / 2, r.y + r.h / 2, () => {
+      px(ctx, WOOD_DARK, r.x, r.y, r.w, r.h)
+      px(ctx, sel ? '#fff1c4' : PARCHMENT, r.x + 1, r.y + 1, r.w - 2, r.h - 2)
+      if (sel) px(ctx, GOLD, r.x + 1, r.y + 1, 3, r.h - 2)
+      const valueY = g.y - 4
+      const tight = r.h < 28
+      glyph(ctx, m.verbs[i], r.x + 6, Math.round(valueY - (tight ? 11 : 12)), tintFor(v.label))
+      text(ctx, v.label, r.x + 22, valueY - (tight ? 8.5 : 10), { size: tight ? 6 : 6.5, weight: 800, color: sel ? INK : INK_SOFT, maxW: r.w - 26 })
+      text(ctx, fmtAmount(v, m.values[i]), r.x + 22, valueY - bump, { size: 8.5 + bump, weight: 800, color: sel ? '#7a3f12' : INK, maxW: r.w - 26 })
+      drawGauge(ctx, g, fracOf(v, m.values[i]), sel || m.dragging === i)
+    })
+    if (sel) selectArrow(ctx, r.x - 9, r.y + r.h / 2, t)
   })
 
   // the selected tool
@@ -672,11 +702,13 @@ export function drawCraft(ctx: Ctx, e: GameEngine, m: MixMechanic, t: number) {
   ctx.rect(st.x + 1, st.y + 15, st.w - 2, tool.h - 16)
   ctx.clip()
   // tools are drawn a little larger than 1:1 so they read at a glance
-  const S = 1.22
+  const S = 1.12
   ctx.translate(tool.x + tool.w / 2, floorY)
   ctx.scale(S, S)
   const r = { x: -tool.w / (2 * S), y: (tool.y - floorY) / S, w: tool.w / S, h: tool.h / S }
-  TOOLS[verb]({ ctx, r, v, f: fracOf(v, m.values[i]), fx, since, pouring, t, liquid, tint: toolTint, floorY: 0 })
+  e.juice.withScale(ctx, `craft:tool:${v.id}`, 0, 0, () =>
+    TOOLS[verb]({ ctx, r, v, f: fracOf(v, m.values[i]), fx, since, pouring, t, liquid: verb === 'pour' ? (namedTint(v.label) ?? liquid) : liquid, tint: toolTint, floorY: 0 }),
+  )
   ctx.restore()
   text(ctx, `hold ▶ to ${words.act.toLowerCase()}`, st.x + st.w / 2, floorY + 9.5, { size: 6.5, weight: 800, color: '#fff3d6', align: 'center' })
   // take back + action
@@ -688,8 +720,8 @@ export function drawCraft(ctx: Ctx, e: GameEngine, m: MixMechanic, t: number) {
   })
   text(ctx, `${i + 1}/${vars.length}`, st.x + st.w - 4, st.y + st.h - 6, { size: 6.5, weight: 800, color: INK_SOFT, align: 'right' })
 
-  drawResult(ctx, m, l.result, t, liquid)
+  const firstPour = vars.findIndex((_, k) => m.verbs[k] === 'pour')
+  drawResult(ctx, m, l.result, t, (firstPour >= 0 ? namedTint(vars[firstPour].label) : null) ?? liquid)
   const pulse = Math.floor(t / 500) % 2 === 0
   button(ctx, l.submit, `${m.params.submit_label} ⏎`, pulse, '#8cc265')
-  void INK
 }

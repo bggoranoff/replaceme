@@ -11,6 +11,7 @@ import { GOLD, INK, INK_SOFT, PARCHMENT, PARCHMENT_DARK, WOOD_DARK, px, roundRec
 import { craftHint, drawCraft } from './craftPanel'
 import { drawReaction } from './juice'
 import { drawPerson, npcColors } from './sprites'
+import { drawTiming } from './timingPanel'
 
 export function fmtNum(v: number): string {
   if (!Number.isFinite(v)) return '-'
@@ -79,61 +80,6 @@ function selectArrow(ctx: Ctx, x: number, y: number, t: number) {
   px(ctx, GOLD, x + o, y - 3, 2, 7)
   px(ctx, GOLD, x + 2 + o, y - 2, 2, 5)
   px(ctx, GOLD, x + 4 + o, y - 1, 2, 3)
-}
-
-// --- timing --------------------------------------------------------------------
-
-function drawTiming(ctx: Ctx, e: GameEngine, m: TimingMechanic) {
-  const c = contentRect(e.W, e.H)
-  const p = m.phase
-  const r = m.meterRect()
-  const n = m.params.phases.length
-  // phase pips
-  for (let i = 0; i < n; i++) {
-    const done = i < m.index
-    px(ctx, WOOD_DARK, c.x + 18 + i * 14, c.y + 6, 10, 10)
-    px(ctx, done ? '#8cc265' : i === m.index ? GOLD : PARCHMENT_DARK, c.x + 19 + i * 14, c.y + 7, 8, 8)
-  }
-  if (p) {
-    text(ctx, `Step ${m.index + 1} of ${n}: ${p.label}`, c.x + 22 + n * 14, c.y + 14, { size: 9, weight: 800, maxW: c.w - 40 - n * 14 })
-    text(ctx, p.mode === 'hold' ? 'Hold, then let go at the right moment' : 'Stop the needle at the right moment', c.x + 18, c.y + 32, { size: 7.5, weight: 700, color: INK_SOFT })
-  }
-  // gauge
-  px(ctx, 'rgba(40,24,10,0.25)', r.x + 2, r.y + 3, r.w, r.h)
-  px(ctx, WOOD_DARK, r.x - 2, r.y - 2, r.w + 4, r.h + 4)
-  const grad = ctx.createLinearGradient(r.x, 0, r.x + r.w, 0)
-  grad.addColorStop(0, '#9fd3f0')
-  grad.addColorStop(0.5, '#f6e3a0')
-  grad.addColorStop(1, '#f08a5d')
-  ctx.fillStyle = grad
-  ctx.fillRect(r.x, r.y, r.w, r.h)
-  for (let k = 0; k <= 20; k++) {
-    const tx = r.x + Math.round((r.w * k) / 20)
-    px(ctx, 'rgba(74,52,36,0.55)', tx, r.y + r.h - (k % 5 === 0 ? 9 : 5), 1, k % 5 === 0 ? 9 : 5)
-  }
-  if (p) {
-    const v = m.value()
-    const frac = Math.max(0, Math.min(1, (v - p.min) / (p.max - p.min || 1)))
-    const x = r.x + r.w * frac
-    if (p.mode === 'hold') {
-      px(ctx, 'rgba(232,87,74,0.35)', r.x, r.y, r.w * frac, r.h)
-      if (m.holding) px(ctx, 'rgba(255,255,255,0.5)', r.x, r.y + 3, r.w * frac, 2)
-    }
-    px(ctx, INK, x - 1, r.y - 6, 3, r.h + 10)
-    px(ctx, WOOD_DARK, x - 4, r.y - 9, 9, 4)
-    px(ctx, WOOD_DARK, x - 2, r.y - 5, 5, 2)
-    text(ctx, `${fmtNum(p.min)} ${p.unit}`.trim(), r.x, r.y + r.h + 13, { size: 7, weight: 800, color: INK_SOFT })
-    text(ctx, `${fmtNum(p.max)} ${p.unit}`.trim(), r.x + r.w, r.y + r.h + 13, { size: 7, weight: 800, color: INK_SOFT, align: 'right' })
-    text(ctx, `${fmtNum(v)} ${p.unit}`.trim(), r.x + r.w / 2, r.y + r.h + 14, { size: 10, weight: 800, align: 'center' })
-  }
-  // finished phases
-  const res = Object.entries(m.results)
-  res.forEach(([id, v], i) => {
-    const ph = m.params.phases.find((x) => x.id === id)
-    const label = `${ph?.label ?? id}: ${fmtNum(v)} ${ph?.unit ?? ''}`.trim()
-    roundRect(ctx, { x: c.x + 18 + i * 110, y: c.y + c.h - 20, w: 104, h: 16 }, 3, '#e6f2d6', WOOD_DARK)
-    text(ctx, `✓ ${label}`, c.x + 24 + i * 110, c.y + c.h - 9, { size: 7, weight: 800, maxW: 96 })
-  })
 }
 
 // --- sort ----------------------------------------------------------------------

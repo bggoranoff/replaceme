@@ -108,6 +108,8 @@ function App() {
     setJob(next)
     setView('game')
     setSkill(null)
+    setSkills([])
+    setResearchData(null)
     setIsResearching(true)
     try {
       const res = await fetch('/api/research', {
@@ -126,22 +128,18 @@ function App() {
     }
   }
 
+  // Rejects when training fails or yields no skills, so the café never reports a fake success.
   const handleTrain = async () => {
-    try {
-      const res = await fetch('/api/train', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt: job, brief: researchData }),
-      })
-      if (res.ok) {
-        const data = await res.json()
-        if (Array.isArray(data.skills) && data.skills.length > 0) {
-          setSkills(data.skills)
-        }
-      }
-    } catch (err) {
-      console.warn('Train request failed:', err)
+    const res = await fetch('/api/train', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt: job, brief: researchData }),
+    })
+    const data = await res.json().catch(() => ({}))
+    if (!res.ok || !Array.isArray(data.skills) || data.skills.length === 0) {
+      throw new Error(data.error ?? `Training failed (${res.status})`)
     }
+    setSkills(data.skills)
   }
 
   const screen = !job ? (

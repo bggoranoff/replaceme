@@ -247,12 +247,14 @@ export function Cafe({ job, isResearching, levelsCount = 4, onBack, onTrain, onT
   const canvas = useRef<HTMLCanvasElement>(null)
   const [training, setTraining] = useState(false)
   const [done, setDone] = useState(false)
+  const [failed, setFailed] = useState<string | null>(null)
   const [botAt, setBotAt] = useState<{ x: number; y: number }>()
   const trainingRef = useRef(false)
 
   const startTraining = () => {
     if (trainingRef.current) return
     trainingRef.current = true
+    setFailed(null)
     setTraining(true)
   }
 
@@ -267,12 +269,20 @@ export function Cafe({ job, isResearching, levelsCount = 4, onBack, onTrain, onT
     let cancelled = false
     let leave: ReturnType<typeof setTimeout>
     const walk = new Promise((resolve) => setTimeout(resolve, TRAIN_MS))
-    Promise.all([walk, onTrainRef.current().catch(() => undefined)]).then(() => {
-      if (cancelled) return
-      trainingRef.current = false
-      setDone(true)
-      leave = setTimeout(() => onTrainedRef.current(), DONE_MS)
-    })
+    Promise.all([walk, onTrainRef.current()]).then(
+      () => {
+        if (cancelled) return
+        trainingRef.current = false
+        setDone(true)
+        leave = setTimeout(() => onTrainedRef.current(), DONE_MS)
+      },
+      (err: unknown) => {
+        if (cancelled) return
+        trainingRef.current = false
+        setTraining(false)
+        setFailed(err instanceof Error ? err.message : 'Training failed')
+      },
+    )
     return () => {
       cancelled = true
       clearTimeout(leave)
@@ -402,7 +412,9 @@ export function Cafe({ job, isResearching, levelsCount = 4, onBack, onTrain, onT
         <canvas ref={canvas} width={W} height={H} aria-label="Café; walk the robot with arrow keys or WASD" />
         {training && <HalEye className="watcher" target={botAt} reach={26} done={done} />}
       </div>
-      <p className="hint">{done ? 'Training complete' : training ? 'The agent is exploring the café' : 'Arrow keys / WASD'}</p>
+      <p className="hint">
+        {done ? 'Training complete' : training ? 'The agent is exploring the café' : failed ? `${failed}. Try again.` : 'Arrow keys / WASD'}
+      </p>
     </section>
   )
 }

@@ -1,6 +1,7 @@
 import type { IncomingMessage, ServerResponse } from 'node:http'
 import path from 'node:path'
 import fs from 'node:fs'
+import os from 'node:os'
 import { execFile } from 'node:child_process'
 import { promisify } from 'node:util'
 import { loadEnv, type Connect, type Plugin } from 'vite'
@@ -117,10 +118,11 @@ function fallbackGroundedReply(skillMd: string, userQuestion: string): string {
 
   // Procedure / Steps
   if (q.includes('step') || q.includes('how to') || q.includes('procedure') || q.includes('do i')) {
-    const procIndex = skillMd.indexOf('## Procedure')
-    if (procIndex !== -1) {
-      const nextSection = skillMd.indexOf('##', procIndex + 12)
-      const procText = (nextSection !== -1 ? skillMd.slice(procIndex + 12, nextSection) : skillMd.slice(procIndex + 12)).trim()
+    const heading = skillMd.match(/^##\s+(?:Learned\s+)?Procedure\s*$/im)
+    if (heading?.index !== undefined) {
+      const start = heading.index + heading[0].length
+      const nextSection = skillMd.indexOf('##', start)
+      const procText = (nextSection !== -1 ? skillMd.slice(start, nextSection) : skillMd.slice(start)).trim()
       return `Here is the trained procedure step-by-step:\n\n${procText}`
     }
   }
@@ -241,49 +243,39 @@ function createHandler(getEnv: () => Record<string, string>, getRepoRoot: () => 
       void (async () => {
         try {
           const repoRoot = getRepoRoot()
+          const parsedBody = JSON.parse((await readBody(req)) || '{}')
 
-          // Run actor agent training
+          // Train on the brief this client researched; fall back to the shared research.json.
+          let briefPath = 'research.json'
+          let tempDir: string | undefined
+          const brief = parsedBody.brief
+          if (brief && typeof brief === 'object' && Array.isArray(brief.levels) && brief.levels.length > 0) {
+            tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'replaceme-brief-'))
+            briefPath = path.join(tempDir, 'research.json')
+            fs.writeFileSync(briefPath, JSON.stringify(brief))
+          }
+
+          // Run actor agent training; a failed run is an error, never stale or placeholder skills.
           try {
-            const { stdout } = await execFileAsync('python3', ['-m', 'actor.agent', '--brief', 'research.json', '--episodes', '20'], {
+            const { stdout } = await execFileAsync('python3', ['-m', 'actor.agent', '--brief', briefPath, '--episodes', '20'], {
               cwd: repoRoot,
               env: { ...process.env, ...getEnv() },
             })
-            // Parse actor agent JSON output if available
             const lines = stdout.trim().split('\n')
             const jsonStart = lines.findIndex((l) => l.trim().startsWith('{'))
-            if (jsonStart !== -1) {
-              const parsedJson = JSON.parse(lines.slice(jsonStart).join('\n'))
-              sendJson(res, 200, parsedJson)
-              return
+            const result = jsonStart !== -1 ? JSON.parse(lines.slice(jsonStart).join('\n')) : null
+            if (!result || !Array.isArray(result.skills) || result.skills.length === 0) {
+              throw new HttpError(502, 'Actor agent produced no skills')
             }
+            sendJson(res, 200, result)
           } catch (pyErr) {
             console.warn('[Server] python3 -m actor.agent error:', pyErr)
+            sendJson(res, pyErr instanceof HttpError ? pyErr.status : 502, {
+              error: pyErr instanceof HttpError ? pyErr.message : 'Actor agent failed',
+            })
+          } finally {
+            if (tempDir) fs.rmSync(tempDir, { recursive: true, force: true })
           }
-
-          // Fallback: Read skills directory
-          const skillsDir = path.resolve(repoRoot, 'skills')
-          const skillFolders = fs.existsSync(skillsDir)
-            ? fs.readdirSync(skillsDir).filter((f) => fs.statSync(path.join(skillsDir, f)).isDirectory())
-            : []
-
-          const skills = skillFolders.map((id, index) => {
-            const mdPath = path.join(skillsDir, id, 'SKILL.md')
-            const content = fs.existsSync(mdPath) ? fs.readFileSync(mdPath, 'utf8') : ''
-            const titleMatch = content.match(/^#\s+(.+)$/m)
-            const goalMatch = content.match(/Goal:\s*(.+)$/m)
-            return {
-              id,
-              level: index + 1,
-              title: titleMatch ? titleMatch[1].trim() : id,
-              description: `Learned skill for ${id}`,
-              goal: goalMatch ? goalMatch[1].trim() : 'Complete level',
-              steps: ['Inspect environment', 'Execute trained actions', 'Verify success conditions'],
-              checks: ['Zero defects', 'Goal satisfied'],
-              actions: ['action1', 'action2'],
-            }
-          })
-
-          sendJson(res, 200, { role: 'trained-role', skills })
         } catch (err) {
           sendJson(res, 500, { error: (err as Error).message ?? 'Training failed' })
         }

@@ -104,7 +104,11 @@ interface Flyer {
   ms: number
   onLand?: () => void
   landed: boolean
+  /** Draws the flying thing centred at (x, y) at scale s instead of a card. */
+  art?: FlyArt
 }
+
+export type FlyArt = (ctx: Ctx, x: number, y: number, s: number) => void
 interface Scale {
   kind: 'squash' | 'pop'
   amount: number
@@ -237,8 +241,8 @@ export class Juice {
 
   // --- flying cards --------------------------------------------------------------
 
-  fly(from: Rect, to: Rect, o: { label?: string; color?: string; ms?: number; onLand?: () => void } = {}) {
-    this.flyers.push({ from, to, label: o.label ?? '', color: o.color ?? '#fff8e8', at: this.now(), ms: o.ms ?? 240, onLand: o.onLand, landed: false })
+  fly(from: Rect, to: Rect, o: { label?: string; color?: string; ms?: number; onLand?: () => void; art?: FlyArt } = {}) {
+    this.flyers.push({ from, to, label: o.label ?? '', color: o.color ?? '#fff8e8', at: this.now(), ms: o.ms ?? 240, onLand: o.onLand, landed: false, art: o.art })
   }
 
   // --- reactions -----------------------------------------------------------------
@@ -276,10 +280,11 @@ export class Juice {
   }
 
   /** Something drops into a container: card flies, container squashes, sparkles, snap + pop. */
-  snapInto(from: Rect, to: Rect, key: string, label = '', colors = ['#ffffff', '#f2c14e', '#fff0a8', '#8cc265']) {
+  snapInto(from: Rect, to: Rect, key: string, label = '', colors = ['#ffffff', '#f2c14e', '#fff0a8', '#8cc265'], art?: FlyArt) {
     this.sfx('whoosh', { volume: 0.5 })
     this.fly(from, to, {
       label,
+      art,
       onLand: () => {
         this.squash(key, 0.28, 360)
         const cx = to.x + to.w / 2
@@ -369,9 +374,12 @@ export class Juice {
       const h = f.from.h * s
       ctx.save()
       ctx.globalAlpha = 1 - Math.max(0, k - 0.85) * 6
-      px(ctx, WOOD_DARK, x - w / 2, y - h / 2, w, h)
-      px(ctx, f.color, x - w / 2 + 1.5, y - h / 2 + 1.5, w - 3, h - 3)
-      if (f.label && s > 0.45) text(ctx, f.label, x, y + 3, { size: 8 * s + 1, weight: 800, align: 'center', color: INK, maxW: w - 6 })
+      if (f.art) f.art(ctx, x, y, s)
+      else {
+        px(ctx, WOOD_DARK, x - w / 2, y - h / 2, w, h)
+        px(ctx, f.color, x - w / 2 + 1.5, y - h / 2 + 1.5, w - 3, h - 3)
+        if (f.label && s > 0.45) text(ctx, f.label, x, y + 3, { size: 8 * s + 1, weight: 800, align: 'center', color: INK, maxW: w - 6 })
+      }
       ctx.restore()
       if (k >= 1 && !f.landed) {
         f.landed = true

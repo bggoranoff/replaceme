@@ -1,5 +1,6 @@
 import type { Target } from '../../contract'
 import { hit, sortBins, sortItem } from '../layout'
+import { drawSortObject } from '../render/sortPanel'
 import { scoreSort } from '../scoring'
 import type { SortParams } from '../types'
 import type { Dir, Mechanic, MechanicCtx } from './base'
@@ -51,7 +52,12 @@ export class SortMechanic implements Mechanic {
     const bin = this.params.bins[binIndex]
     this.selectedBin = binIndex
     const ir = this.itemRect()
-    this.ctx.juice.snapInto(from ? { ...ir, ...from } : ir, this.binRects()[binIndex], `bin:${bin.id}`, cur.label)
+    const start = from ? { ...ir, ...from } : ir
+    // the object itself flies from where it stood (left of its tag) into the crate
+    const objFrom = { x: start.x, y: start.y, w: 44, h: start.h }
+    this.ctx.juice.snapInto(objFrom, this.binRects()[binIndex], `bin:${bin.id}`, cur.label, undefined, (g, x, y, s) =>
+      drawSortObject(g, cur, x, y + 20 * s, 2.5 * s + 0.6),
+    )
     this.ctx.juice.pop('sort:item', 280)
     this.placed.push({ item_id: cur.id, bin_id: bin.id })
     this.ctx.emit('placed', { item_id: cur.id, bin_id: bin.id })

@@ -1,230 +1,423 @@
 {
   "version": 1,
-  "role": "waiter",
-  "title": "Fine Dining Bistro Floor",
+  "role": "waitress",
+  "title": "Bistro Floor & Dining Room Service",
   "theme": {
-    "name": "Bistro Floor",
-    "floorType": "tile",
-    "floorColor1": "#f5ece1",
-    "floorColor2": "#ebd8c4",
-    "wallColor": "#faf4eb",
-    "wallpaperColor": "#edd9c0",
-    "trimColor": "#7a5035",
-    "accentColor": "#54331e"
+    "name": "Cozy French Brasserie",
+    "floorType": "herringbone-parquet",
+    "floorColor1": "#5c3a21",
+    "floorColor2": "#472c19",
+    "wallColor": "#243229",
+    "wallpaperColor": "#2f4035",
+    "trimColor": "#d4af37",
+    "accentColor": "#b8860b"
   },
   "sources": [
-    "Michelin Guide Service Standards",
-    "WSET Hospitality Service Guidelines"
+    "The Professional Server: A Guide to Concept-Driven Service (Prentice Hall)",
+    "Culinary Institute of America: Remarkable Service Guidelines",
+    "ServSafe Food Handler Dining Room Safety Standards"
   ],
   "rules": [
-    "Serve food from the left and clear from the right",
-    "Verify all guest dietary allergies prior to ringing order",
-    "Deliver hot dishes within 60 seconds of kitchen pass bell"
+    "Never auction food at the table; track seat numbers (pivot points) systematically.",
+    "Serve food from the guest's left whenever structurally possible, and clear plates from the guest's right.",
+    "Critical allergens must be flagged explicitly before transmitting tickets to the kitchen.",
+    "Maintain tray center of gravity above 80% to avoid spills in high-traffic floor pathways."
   ],
   "assumptions": [
-    "Active kitchen pass, POS order entry terminal, 4 dining tables with reserved parties"
+    "Shift takes place during peak dinner service at a 40-seat boutique bistro.",
+    "The dining room uses a 4-point pivot system with Seat 1 facing the entrance.",
+    "Tickets are transmitted via digital POS directly to kitchen line printers."
   ],
   "stations": [
     {
-      "id": "station-kitchen",
-      "name": "Kitchen Pickup Pass",
-      "icon": "dish",
+      "id": "station-kitchen-pass",
+      "name": "Kitchen Pass & Heat Lamps",
+      "icon": "kitchen",
       "tile": [
-        3,
-        2
+        8,
+        1
       ],
       "w": 4,
-      "h": 1,
-      "color": "#7a8a9e",
-      "accent": "#ffd877",
-      "description": "Inspect and collect piping hot plated entrees."
+      "h": 2,
+      "color": "#8b263e",
+      "accent": "#f59e0b",
+      "description": "Inspect completed dishes under heat lamps, garnish plates, and load serving trays."
     },
     {
       "id": "station-pos",
-      "name": "POS Terminal",
+      "name": "POS Terminal Station",
       "icon": "register",
       "tile": [
-        8,
-        2
+        2,
+        9
       ],
       "w": 2,
-      "h": 1,
-      "color": "#4a5a6e",
-      "accent": "#9fdfc4",
-      "description": "Enter table orders, special modifications, and allergy alerts."
+      "h": 2,
+      "color": "#1f2937",
+      "accent": "#10b981",
+      "description": "Input orders, apply allergen modifiers, fire courses, and process payments."
     },
     {
-      "id": "station-table-1",
-      "name": "Table 1 (Booth)",
+      "id": "station-table-one",
+      "name": "Booth Table 1",
       "icon": "table",
       "tile": [
-        12,
-        5
+        6,
+        6
       ],
-      "w": 2,
+      "w": 3,
       "h": 2,
-      "color": "#c48b5f",
-      "accent": "#fff8e8",
-      "description": "Party of 2: Anniversary dinner."
+      "color": "#4a2810",
+      "accent": "#d4af37",
+      "description": "Four-top leather booth where guests dine, require water refills, and receive service."
     },
     {
-      "id": "station-table-2",
-      "name": "Table 2 (Window)",
-      "icon": "table",
+      "id": "station-service-station",
+      "name": "Side Service Station",
+      "icon": "busser",
       "tile": [
-        16,
-        5
+        15,
+        9
       ],
-      "w": 2,
+      "w": 3,
       "h": 2,
-      "color": "#c48b5f",
-      "accent": "#fff8e8",
-      "description": "Party of 4: Business lunch with shellfish allergy."
-    },
-    {
-      "id": "station-bussing",
-      "name": "Bussing & Glassware Station",
-      "icon": "water",
-      "tile": [
-        1,
-        7
-      ],
-      "w": 2,
-      "h": 2,
-      "color": "#8fc6ee",
-      "accent": "#d9b48a",
-      "description": "Tray staging, clean cutlery, and sparkling water carafe."
+      "color": "#334155",
+      "accent": "#94a3b8",
+      "description": "Store clean cutlery, restock ice water carafes, scrape dirty dishes, and stow bus tubs."
     }
   ],
   "levels": [
     {
-      "id": "order-allergy",
+      "id": "take-order",
       "level": 1,
-      "title": "Allergy Verification & Order Entry",
-      "skill_name": "Inquire, flag, and route dietary restrictions safely",
-      "goal": "Verify shellfish allergy at Table 2 and enter modified order into POS terminal with kitchen allergy alert",
-      "instruction": "Walk to Table 2 (Window), take the guest's order, then walk to the POS Terminal to enter the allergy alert.",
-      "targetStationId": "station-table-2",
+      "title": "Pivot Order & Allergy Tagging",
+      "skill_name": "Order Taking & POS Entry",
+      "goal": "Record Table 1's entree selections with the requested gluten allergy modifier and transmit the order at the POS Terminal.",
+      "instruction": "Walk to the POS Terminal, enter the meals for Seat 1 and Seat 2, tag the gluten-free modifier, and press Send Ticket.",
+      "targetStationId": "station-pos",
       "customerProfiles": [
-        "Guest with severe shellfish anaphylaxis dining with business associates"
+        "Seat 1: Guest with celiac disease ordering Pan-Seared Salmon.",
+        "Seat 2: Guest ordering Ribeye Steak cooked Medium-Rare."
       ],
       "initialSupplies": {
-        "orderPad": 1,
-        "pen": 1
+        "order_pads": 10,
+        "pos_receipt_rolls": 2
       },
       "actions": [
-        "askDietaryRestrictions",
-        "enterPosTicket",
-        "flagAllergyToChef"
+        "Select Seat 1 Entree",
+        "Tag Allergy Alert",
+        "Select Seat 2 Entree and Temp",
+        "Send Ticket to Kitchen"
       ],
       "controls": [
         {
-          "id": "allergy_prompt",
-          "label": "Ask Dietary & Allergy Question",
-          "type": "toggle",
-          "default": true
-        },
-        {
-          "id": "flagged_allergen",
-          "label": "POS Allergen Modifier",
+          "id": "seat_1_entree",
+          "label": "Seat 1 Entree",
           "type": "choice",
+          "default": "Pan-Seared Salmon",
           "options": [
-            "SEVERE SHELLFISH ALLERGY",
-            "Gluten-Free",
-            "Vegan"
+            "Pan-Seared Salmon",
+            "Ribeye Steak",
+            "Wild Mushroom Risotto"
           ],
-          "default": "SEVERE SHELLFISH ALLERGY"
+          "unit": null
         },
         {
-          "id": "verbal_chef_check",
-          "label": "Verbal Kitchen Pass Confirmation",
+          "id": "allergy_gluten_free",
+          "label": "Celiac / Gluten Allergy Flag",
           "type": "toggle",
-          "default": true
+          "default": false,
+          "unit": null
+        },
+        {
+          "id": "seat_2_entree",
+          "label": "Seat 2 Entree",
+          "type": "choice",
+          "default": "Ribeye Steak",
+          "options": [
+            "Pan-Seared Salmon",
+            "Ribeye Steak",
+            "Duck Confit"
+          ],
+          "unit": null
+        },
+        {
+          "id": "steak_doneness",
+          "label": "Steak Doneness",
+          "type": "choice",
+          "default": "Medium",
+          "options": [
+            "Rare",
+            "Medium-Rare",
+            "Medium",
+            "Well-Done"
+          ],
+          "unit": null
+        },
+        {
+          "id": "send_to_kitchen",
+          "label": "Transmit Kitchen Ticket",
+          "type": "toggle",
+          "default": false,
+          "unit": null
         }
       ],
       "successConditions": [
-        "Allergy recorded and highlighted in red on kitchen ticket",
-        "Verbal confirmation received from head chef",
-        "Table marked with allergen alert token"
+        "Seat 1 entree is set to Pan-Seared Salmon.",
+        "Gluten allergy toggle is activated for the kitchen line.",
+        "Seat 2 steak doneness is set to Medium-Rare.",
+        "Kitchen ticket transmission is toggled to true."
       ],
       "steps": [
-        "Approach Table 2 with a warm professional greeting",
-        "Ask: 'Are there any allergies or dietary preferences we should accommodate today?'",
-        "Note severe shellfish allergy clearly on pad",
-        "Walk to POS Terminal and input order with SEVERE ALLERGY red modifier"
+        "Review diner order specifications for Table 1.",
+        "Select the correct entrees matching seat pivot points.",
+        "Toggle the gluten-free warning to avoid kitchen cross-contamination.",
+        "Set Ribeye doneness to Medium-Rare.",
+        "Send the order ticket to the kitchen pass."
       ],
       "checks": [
-        "Allergy question asked prior to menu finalization",
-        "POS kitchen ticket flagged",
-        "Chef acknowledgment verified"
+        "seat_1_entree == 'Pan-Seared Salmon'",
+        "allergy_gluten_free == true",
+        "seat_2_entree == 'Ribeye Steak'",
+        "steak_doneness == 'Medium-Rare'",
+        "send_to_kitchen == true"
       ]
     },
     {
-      "id": "hot-pass-delivery",
+      "id": "deliver-entrees",
       "level": 2,
-      "title": "Synchronized Hot Entr\u00e9e Delivery",
-      "skill_name": "Deliver multi-plate courses simultaneously without food cooling",
-      "goal": "Pick up 2 hot main courses from kitchen pass and serve Table 1 from the left within 45 seconds",
-      "instruction": "Walk to Kitchen Pickup Pass, check temperature and garnishes, then deliver to Table 1 from the guest's left.",
-      "targetStationId": "station-kitchen",
+      "title": "Tray Balancing & Pivot Delivery",
+      "skill_name": "Food Carrying & Silent Delivery",
+      "goal": "Pick up plated dinners from the Kitchen Pass and deliver them to Table 1 without spills or auctioning food.",
+      "instruction": "Walk to Table 1, ensure tray stability is at least 85%, and deliver Seat 1's meal from the guest's left side.",
+      "targetStationId": "station-table-one",
       "customerProfiles": [
-        "Anniversary couple expecting synchronized service"
+        "Table 1: Waiting for two entrees, observant of formal service etiquette."
       ],
       "initialSupplies": {
-        "hotPlates": 2,
-        "tray": 1
+        "entrees_on_pass": 2,
+        "tray_jacks": 2
       },
       "actions": [
-        "inspectPlateGarnish",
-        "carryTwoPlatesBalanced",
-        "serveFromLeft"
+        "Adjust Tray Balance",
+        "Approach Table 1",
+        "Position Service Stance",
+        "Place Seat 1 Dish"
       ],
       "controls": [
         {
-          "id": "delivery_time_sec",
-          "label": "Pass-to-Table Delivery Time",
+          "id": "tray_stability_pct",
+          "label": "Tray Balance & Grip Stability",
           "type": "slider",
-          "min": 10.0,
-          "max": 90.0,
-          "step": 5.0,
-          "default": 35.0,
-          "unit": "s",
-          "targetMin": 15.0,
-          "targetMax": 45.0
+          "default": 65,
+          "min": 40,
+          "step": 1,
+          "targetMin": 85,
+          "unit": "%"
         },
         {
-          "id": "serve_side",
-          "label": "Serving Approach Side",
+          "id": "service_side",
+          "label": "Service Approach Angle",
           "type": "choice",
+          "default": "Guest's Right",
           "options": [
-            "Serve from Left (Correct)",
-            "Serve from Right",
-            "Reach Across Table"
+            "Guest's Left",
+            "Guest's Right",
+            "Across Center of Table"
           ],
-          "default": "Serve from Left (Correct)"
+          "unit": null
         },
         {
-          "id": "announce_dish",
-          "label": "Announce Dish Name & Modifications",
+          "id": "auction_food_query",
+          "label": "Ask 'Who ordered the Salmon?'",
           "type": "toggle",
-          "default": true
+          "default": true,
+          "unit": null
+        },
+        {
+          "id": "confirm_plates_placed",
+          "label": "Set Dishes at Designated Seats",
+          "type": "toggle",
+          "default": false,
+          "unit": null
         }
       ],
       "successConditions": [
-        "Food served hot at table within 45 seconds of pickup",
-        "Plates placed from the guest's left side quietly",
-        "Entr\u00e9es described accurately with sauce drizzle facing guest"
+        "Tray stability is maintained between 85% and 100%.",
+        "Approach is executed from the guest's left.",
+        "Food auctioning question is switched off.",
+        "Plates placed toggle is confirmed."
       ],
       "steps": [
-        "Hear pass bell and immediately approach Kitchen Pass",
-        "Inspect plate rim cleanliness and sauce placement",
-        "Balance plates and proceed smoothly to Table 1",
-        "Serve each guest from their left side, stating dish name"
+        "Lift the heavy oval banquet tray with both hot plates.",
+        "Raise tray balance stability slider above 85%.",
+        "Approach Seat 1 from the guest's left side without reaching over diner space.",
+        "Ensure food is not auctioned off by keeping silent pivot memory.",
+        "Confirm delivery of both plates."
       ],
       "checks": [
-        "Delivery time under 45 seconds",
-        "Correct left-side approach",
-        "Plates clean with zero spills"
+        "tray_stability_pct >= 85",
+        "service_side == \"Guest's Left\"",
+        "auction_food_query == false",
+        "confirm_plates_placed == true"
+      ]
+    },
+    {
+      "id": "clear-and-bus",
+      "level": 3,
+      "title": "Pre-Bussing & Table Maintenance",
+      "skill_name": "Table Bussing & Station Sanitation",
+      "goal": "Clear finished plates and used silverware from Table 1, then scrape and sort ware into the Side Service Station bus tub.",
+      "instruction": "Walk to the Side Service Station, configure plate stacking between 2 and 4, scrape scraps, and separate silverware.",
+      "targetStationId": "station-service-station",
+      "customerProfiles": [
+        "Table 1: Both diners have laid cutlery in the 4:20 position signaling completion."
+      ],
+      "initialSupplies": {
+        "bus_tubs_empty": 1,
+        "clean_sanitizer_towels": 4
+      },
+      "actions": [
+        "Stack Cleared Plates",
+        "Scrape Food Scraps",
+        "Separate Cutlery",
+        "Offer Dessert & Coffee"
+      ],
+      "controls": [
+        {
+          "id": "stacked_plate_count",
+          "label": "Stacked Plates Carried",
+          "type": "slider",
+          "default": 1,
+          "min": 1,
+          "step": 1,
+          "targetMin": 2,
+          "unit": "plates"
+        },
+        {
+          "id": "scrape_food_remnants",
+          "label": "Scrape Scraps into Trash Chute",
+          "type": "toggle",
+          "default": false,
+          "unit": null
+        },
+        {
+          "id": "separate_flatware",
+          "label": "Sort Cutlery in Soak Cylinders",
+          "type": "toggle",
+          "default": false,
+          "unit": null
+        },
+        {
+          "id": "crumb_table_cleared",
+          "label": "Crumb Table and Reset Linens",
+          "type": "toggle",
+          "default": false,
+          "unit": null
+        }
+      ],
+      "successConditions": [
+        "Stacked plates carried is between 2 and 4.",
+        "Food scraps are scraped into the compost/trash receptacle.",
+        "Flatware is sorted separately from china.",
+        "Table crumber is used and reset confirmed."
+      ],
+      "steps": [
+        "Clear empty dishware using the three-plate clearing technique.",
+        "Carry between 2 and 4 plates safely to the Side Service Station.",
+        "Scrape remaining food debris before nesting plates.",
+        "Separate knives and forks into dedicated soak cups.",
+        "Mark the table as crumbed and ready for dessert or billing."
+      ],
+      "checks": [
+        "stacked_plate_count >= 2",
+        "stacked_plate_count <= 4",
+        "scrape_food_remnants == true",
+        "separate_flatware == true",
+        "crumb_table_cleared == true"
+      ]
+    },
+    {
+      "id": "settle-check",
+      "level": 4,
+      "title": "Check Splitting & Payment Settlement",
+      "skill_name": "Tender Processing & Shift Closeout",
+      "goal": "Split Table 1's final tab evenly between 2 cards, apply the requested 20% gratuity, and print customer merchant copies.",
+      "instruction": "Walk to the POS Terminal, split the check across 2 covers, apply a 20% tip, and finalize transaction.",
+      "targetStationId": "station-pos",
+      "customerProfiles": [
+        "Table 1: Couples requesting an even split across two credit cards with a 20% tip."
+      ],
+      "initialSupplies": {
+        "bill_presenters": 2,
+        "merchant_pens": 4
+      },
+      "actions": [
+        "Split Tab by Seat",
+        "Select Payment Method",
+        "Apply Gratuity Percentage",
+        "Finalize POS Closeout"
+      ],
+      "controls": [
+        {
+          "id": "split_covers",
+          "label": "Split Evenly Across Covers",
+          "type": "slider",
+          "default": 1,
+          "min": 1,
+          "step": 1,
+          "targetMin": 2,
+          "unit": "guests"
+        },
+        {
+          "id": "payment_type",
+          "label": "Tender Type",
+          "type": "choice",
+          "default": "Cash",
+          "options": [
+            "Cash",
+            "Split Credit Card",
+            "House Account",
+            "Gift Voucher"
+          ],
+          "unit": null
+        },
+        {
+          "id": "gratuity_pct",
+          "label": "Tip Percentage Applied",
+          "type": "slider",
+          "default": 15,
+          "min": 0,
+          "step": 1,
+          "targetMin": 20,
+          "unit": "%"
+        },
+        {
+          "id": "print_receipts_and_close",
+          "label": "Print Merchant Vouchers & Close Table",
+          "type": "toggle",
+          "default": false,
+          "unit": null
+        }
+      ],
+      "successConditions": [
+        "Split covers slider is set to 2.",
+        "Payment type is set to Split Credit Card.",
+        "Tip percentage is set to 20%.",
+        "Receipt print and table closeout toggle is true."
+      ],
+      "steps": [
+        "Open Table 1 ticket on the POS screen.",
+        "Divide total balance evenly across 2 diners.",
+        "Select Split Credit Card processing.",
+        "Enter exactly 20% gratuity.",
+        "Print customer receipts and close the table session."
+      ],
+      "checks": [
+        "split_covers == 2",
+        "payment_type == 'Split Credit Card'",
+        "gratuity_pct == 20",
+        "print_receipts_and_close == true"
       ]
     }
   ]

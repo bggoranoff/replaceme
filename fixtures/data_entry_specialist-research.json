@@ -1,0 +1,182 @@
+{
+  "version": 1,
+  "role": "data_entry_specialist",
+  "sources": [
+    "National Center for O*NET Development - Data Entry Keyers (Standard Occupational Classification 43-9021.00)",
+    "AHIMA (American Health Information Management Association) Data Quality and Integrity Guidelines",
+    "ISO 8000-61:2016 Data Quality Management Processes"
+  ],
+  "rules": [
+    "Raw input strings and alphanumeric records must match source documents with zero tolerance for undetected transcription errors.",
+    "Corrupted, ambiguous, or gibberish input strings must be flagged and routed to exception quarantine rather than blindly committed.",
+    "Data throughput must maintain a minimum target of 60 Net Words Per Minute (WPM) or 10,000 Keystrokes Per Hour (KPH) at 99.8% accuracy."
+  ],
+  "assumptions": [
+    "The operator uses an ergonomic mechanical QWERTY keyboard with standard 10-key numeric pad.",
+    "Input documents include mixed alphanumeric strings, dirty scans, and distorted OCR output requiring manual sanitization.",
+    "The target terminal runs a validated relational database entry form with real-time field validation hooks."
+  ],
+  "levels": [
+    {
+      "id": "home-row-alphanumeric-transcription",
+      "level": 1,
+      "title": "Alphanumeric Transcription & Noise Filtering",
+      "skill_name": "Touch Typing & Keystroke Verification",
+      "goal": "Accurately transcribe raw, noisy alphanumeric strings and identify unverified character artifacts with 100% precision.",
+      "description": "Operators master high-speed transcription of non-dictionary alphanumeric strings and identify unintentional keystrokes or noise bursts before committing records.",
+      "customerProfiles": [
+        "Records supervisor auditing raw catalog intake batches where misspelled identifiers break downstream lookups."
+      ],
+      "initialSupplies": {
+        "raw_string_batches": 15,
+        "transcription_templates": 15,
+        "exception_log_sheets": 5
+      },
+      "actions": [
+        "inspect_source_string",
+        "key_in_transcription",
+        "verify_character_parity",
+        "commit_batch_record",
+        "flag_unparseable_token"
+      ],
+      "successConditions": [
+        "Transcribe all 15 alphanumeric batches with >= 99.8% character accuracy",
+        "Zero unflagged garbage strings committed to the main index",
+        "Average entry pace of >= 8,000 keystrokes per hour"
+      ],
+      "steps": [
+        "Position hands on home row (A-S-D-F / J-K-L-;) and align source sheet in document clip",
+        "Transcribe string token character by character without glancing at keyboard",
+        "Compare entered token against source string using terminal hash verification",
+        "Flag corrupted tokens (e.g. non-ASCII artifacts or random keyboard mash) using shortcut Alt+Q",
+        "Submit validated batch and verify terminal confirms zero validation warnings"
+      ],
+      "checks": [
+        "Gross accuracy rate >= 99.8%",
+        "All flagged exceptions logged with exact line number and timestamp",
+        "No unverified alphanumeric entries committed"
+      ]
+    },
+    {
+      "id": "ocr-correction-and-sanitization",
+      "level": 2,
+      "title": "OCR Exception Handling & String Normalization",
+      "skill_name": "Data Sanitization & Pattern Recognition",
+      "goal": "Reconcile degraded optical character recognition (OCR) output against source scans, correcting character confusion errors within 45 seconds per record.",
+      "description": "Scanned documents often yield OCR errors where '0' becomes 'O', '1' becomes 'l', or random keystrokes appear. Operators must normalize strings into standard formatting.",
+      "customerProfiles": [
+        "Inventory control manager requiring cleaned SKU references for automated warehouse picking."
+      ],
+      "initialSupplies": {
+        "scanned_manifests": 20,
+        "ocr_draft_records": 20,
+        "regex_validation_rulesets": 1
+      },
+      "actions": [
+        "load_manifest_scan",
+        "compare_ocr_against_scan",
+        "correct_substitution_error",
+        "apply_trim_and_casing",
+        "validate_against_regex"
+      ],
+      "successConditions": [
+        "Correct 100% of alphanumeric substitution errors across 20 manifests",
+        "Zero regex pattern mismatches on final SKU strings",
+        "Processing time under 45 seconds per manifest record"
+      ],
+      "steps": [
+        "Split terminal view: digital scan on left display, OCR buffer on right display",
+        "Scan string for common substitution pitfalls (0 vs O, 1 vs I/l, 5 vs S, 8 vs B)",
+        "Replace corrupted characters with validated glyphs from source scan",
+        "Execute automated regex check (Format: ^[A-Z]{3}-[0-9]{5}-[A-Z0-9]$) via Ctrl+Enter",
+        "Commit record and move immediately to next manifest in queue"
+      ],
+      "checks": [
+        "Regex compliance score equals 100%",
+        "Total cycle time for 20 manifests <= 15 minutes",
+        "Zero rejected records upon database ingest"
+      ]
+    },
+    {
+      "id": "double-entry-verification",
+      "level": 3,
+      "title": "Blind Double-Entry Verification & Collision Resolution",
+      "skill_name": "Dual-Key Verification & Discrepancy Auditing",
+      "goal": "Execute blind re-keying on high-consequence transaction fields and resolve discrepancy collisions under strict SLA timers.",
+      "description": "Financial and medical databases require blind secondary entry where the operator re-keys critical fields without seeing the primary operator's values. Any mismatch triggers an immediate collision review.",
+      "customerProfiles": [
+        "Compliance auditor enforcing SOX (Sarbanes-Oxley) segregation and dual-entry integrity standards."
+      ],
+      "initialSupplies": {
+        "primary_entry_records": 30,
+        "blind_entry_buffers": 30,
+        "discrepancy_tickets": 10
+      },
+      "actions": [
+        "fetch_blind_record",
+        "rekey_critical_fields",
+        "trigger_collision_check",
+        "inspect_original_source",
+        "adjudicate_discrepancy"
+      ],
+      "successConditions": [
+        "Complete 30 blind verification records with zero undetected character collisions",
+        "Resolve all detected discrepancies with 100% alignment to original source proof",
+        "Sustain entry speed >= 10,000 keystrokes per hour"
+      ],
+      "steps": [
+        "Open blind record buffer; primary values remain masked in the database backend",
+        "Key in secondary alphanumeric identifier and monetary value using 10-key numeric pad",
+        "Press Tab to advance and trigger backend checksum differential comparison",
+        "If collision warning sounds, review source scan proof at 200% magnification to confirm truth",
+        "Select definitive character value, input reason code 'SRC_VERIFIED', and stamp record"
+      ],
+      "checks": [
+        "Backend discrepancy collision rate resolves to 0 unresolved items",
+        "Audit trail contains operator signature and timestamp on every corrected entry",
+        "Gross entry speed meets or exceeds 10,000 KPH"
+      ]
+    },
+    {
+      "id": "high-volume-batch-reconciliation",
+      "level": 4,
+      "title": "High-Velocity Batch Ingestion & Integrity Audit",
+      "skill_name": "Full-Cycle Data Pipeline Management",
+      "goal": "Process a backlog of 50 multi-field entries under simulated shift pressure with zero database rollbacks and under 1.5% total exception overhead.",
+      "description": "Operators handle high-throughput queue conditions combining raw typing, exception routing, format normalization, and batch reconciliation against master totals.",
+      "customerProfiles": [
+        "Operations director requiring end-of-day batch closeout without reconciliation discrepancies or overtime."
+      ],
+      "initialSupplies": {
+        "batch_dockets": 50,
+        "master_hash_ledger": 1,
+        "quarantine_bins": 3
+      },
+      "actions": [
+        "ingest_batch_docket",
+        "rapid_transcribe_fields",
+        "execute_checksum_balancing",
+        "quarantine_unrecoverable_record",
+        "close_and_seal_batch"
+      ],
+      "successConditions": [
+        "50 batch dockets completed within 35 minutes",
+        "Batch balance checksum matches master ledger hash exactly (delta = 0)",
+        "Quarantine exception rate <= 1.5% of total records processed"
+      ],
+      "steps": [
+        "Initialize batch session and log beginning ledger control checksum",
+        "Transcribe header, line-item identifiers, and transactional amounts without pause",
+        "Perform rapid in-line triage on ambiguous strings: fix known corruptions or route to quarantine within 5 seconds",
+        "Run batch total checksum comparison against pre-calculated control slip",
+        "Investigate any balancing delta down to the individual line item until variance equals 0.00",
+        "Sign off batch manifest and transmit clean ledger to master database"
+      ],
+      "checks": [
+        "Master batch variance exactly 0.00",
+        "Zero uncommitted records left in local memory buffer",
+        "All quarantined items accompanied by standardized incident metadata"
+      ]
+    }
+  ]
+}

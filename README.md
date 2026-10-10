@@ -12,6 +12,8 @@ Start with a barista game. Add waiter as a second demo. Physical movement and pr
 
 ## Start here
 
+Coding agents: read [PLATFORMS.md](PLATFORMS.md) for platform choices, access and setup status.
+
 This is a starter repo, not a working app yet. Shared input/output shapes and a small barista fixture are in `shared/` and `fixtures/`.
 
 Use Gemini for reasoning, Gradium for voice, and React/Phaser for the game. Keep model keys on the server. Suggested practice target is 100 rounds per level, but begin with small batches and respect workshop request limits.

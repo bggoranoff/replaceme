@@ -81,6 +81,13 @@ function typingInField(target: EventTarget | null): boolean {
   return !!el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.isContentEditable)
 }
 
+/** Space is the timing minigame's big button (same as Up: hold to fill, press to stop). */
+function keyDir(engine: GameEngine, key: string): Dir | undefined {
+  if (KEYS[key]) return KEYS[key]
+  if (key === ' ' && engine.phase === 'playing' && engine.mech?.kind === 'timing') return 'up'
+  return undefined
+}
+
 function repeatable(engine: GameEngine, dir: Dir): boolean {
   if (engine.phase === 'world') return true
   if (engine.phase !== 'playing' || !engine.mech) return false
@@ -173,7 +180,7 @@ export function GameView({ world, mode = 'play', levelId = null, actions, speed 
     }
     const onKeyDown = (ev: KeyboardEvent) => {
       if (typingInField(ev.target)) return
-      const dir = KEYS[ev.key]
+      const dir = keyDir(engine, ev.key)
       if (dir) {
         ev.preventDefault()
         if (ev.repeat) return
@@ -195,7 +202,7 @@ export function GameView({ world, mode = 'play', levelId = null, actions, speed 
       }
     }
     const onKeyUp = (ev: KeyboardEvent) => {
-      const dir = KEYS[ev.key]
+      const dir = keyDir(engine, ev.key) ?? (ev.key === ' ' && keyHold ? 'up' : undefined)
       if (!dir) return
       const i = held.indexOf(dir)
       if (i !== -1) held.splice(i, 1)

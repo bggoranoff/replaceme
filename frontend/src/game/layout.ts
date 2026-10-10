@@ -61,9 +61,10 @@ export function mixIngredients(W: number, H: number, n: number): Rect[] {
 
 // --- timing ----------------------------------------------------------------
 
+/** The whole minigame stage (scene + meter): press or hold anywhere on it. */
 export function timingMeter(W: number, H: number): Rect {
   const c = contentRect(W, H)
-  return { x: c.x + 18, y: c.y + 44, w: c.w - 36, h: 30 }
+  return { x: c.x, y: c.y + 26, w: c.w, h: c.h - 26 - 22 }
 }
 
 // --- sort ------------------------------------------------------------------

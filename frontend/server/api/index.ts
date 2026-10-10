@@ -1,5 +1,6 @@
 import type { IncomingMessage, ServerResponse } from 'node:http'
 import { HttpError, sendJson, type ApiContext, type Route } from './http.ts'
+import { routes as progressRoutes } from './progress.ts'
 import { routes as runsRoutes } from './runs.ts'
 import { routes as skillsRoutes } from './skills.ts'
 import { routes as trainRoutes } from './train.ts'
@@ -7,7 +8,7 @@ import { routes as voiceRoutes } from './voice.ts'
 
 // Each feature owns one file in this folder exporting `routes: Route[]`; edit only your file.
 // A new file adds ONE import and ONE spread here. See shared/game_contract.md section j.
-export const routes: Route[] = [...trainRoutes, ...runsRoutes, ...skillsRoutes, ...voiceRoutes]
+export const routes: Route[] = [...trainRoutes, ...runsRoutes, ...skillsRoutes, ...voiceRoutes, ...progressRoutes]
 
 function match(pattern: string, pathname: string): Record<string, string> | null {
   const a = pattern.split('/')

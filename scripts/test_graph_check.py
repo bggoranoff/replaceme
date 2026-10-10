@@ -394,6 +394,16 @@ def test_branch_scope_flags_rule_changes():
     assert not report["ok"] and scope and scope[0]["path"] == "shared/actions.json", report["violations"]
 
 
+def test_missing_slug_rejected_without_writing():
+    w = world()
+    del w["slug"]
+    try:
+        gc.finalize_world(w, temp_repo(), commit=False)
+        raise AssertionError("expected GraphCheckError")
+    except gc.GraphCheckError as exc:
+        assert any(v["path"] == "slug" for v in exc.report["violations"]), exc.report["violations"]
+
+
 def test_legacy_v1_world_passes_through():
     legacy = {"version": 1, "role": "x", "levels": []}
     assert gc.finalize_world(legacy, root, commit=False) is legacy

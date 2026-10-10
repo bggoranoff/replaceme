@@ -1182,6 +1182,8 @@ def finalize_world(world: Dict[str, Any], repo_root: Path = WORKSPACE_ROOT, *, r
     first = check_world(world, repo_root, ref=ref, repair=True, rules=rules)
     report = check_world(world, repo_root, ref=ref, rules=rules)
     report["repairs"] = first["repairs"]
+    if not (isinstance(world.get("slug"), str) and re.fullmatch(r"[a-z0-9]+(-[a-z0-9]+)*", world["slug"])):
+        raise GraphCheckError(report)  # no games/<slug>/ to write to
     write_game_files(world, report, repo_root)
     print(f"[graph_check] {world.get('slug')}: ok={report['ok']} violations={len(report['violations'])} "
           f"repairs={len(report['repairs'])} graph={report['graph'].get('status')}")

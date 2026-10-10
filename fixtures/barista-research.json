@@ -1,17 +1,100 @@
 {
   "version": 1,
   "role": "barista",
+  "title": "Specialty Espresso Bar",
+  "theme": {
+    "name": "Artisan Caf\u00e9",
+    "floorType": "planks",
+    "floorColor1": "#c99b6d",
+    "floorColor2": "#bf9063",
+    "wallColor": "#f3e2c7",
+    "wallpaperColor": "#ead2b0",
+    "trimColor": "#a97d55",
+    "accentColor": "#6b4a33"
+  },
   "sources": [
     "Specialty Coffee Association (SCA) Barista Skills Standards",
     "World Barista Championship Rules"
   ],
   "rules": [
     "Always purge steam wand before and after steaming",
-    "Steam milk to 60-65\u00b0C (140-150\u00b0F); never exceed 70\u00b0C to avoid scorching",
+    "Steam milk to 60-65\u00b0C; never exceed 70\u00b0C to avoid scorching",
     "Confirm alternative milks or decaf substitutions before preparing"
   ],
   "assumptions": [
     "Commercial dual-boiler espresso machine, calibrated conical grinder, fresh dairy and plant milks"
+  ],
+  "stations": [
+    {
+      "id": "station-grinder",
+      "name": "Conical Grinder",
+      "icon": "grinder",
+      "tile": [
+        4,
+        2
+      ],
+      "w": 2,
+      "h": 1,
+      "color": "#4a3424",
+      "accent": "#c9ced6",
+      "description": "Dose and grind fresh coffee beans into portafilter."
+    },
+    {
+      "id": "station-espresso",
+      "name": "Espresso Machine",
+      "icon": "espresso",
+      "tile": [
+        2,
+        2
+      ],
+      "w": 2,
+      "h": 1,
+      "color": "#8e96a3",
+      "accent": "#ff4a3a",
+      "description": "Tamp grounds and extract 1:2 ratio espresso."
+    },
+    {
+      "id": "station-steamer",
+      "name": "Steam Wand Station",
+      "icon": "steamer",
+      "tile": [
+        6,
+        2
+      ],
+      "w": 2,
+      "h": 1,
+      "color": "#7a8a9e",
+      "accent": "#9fdfc4",
+      "description": "Aerate and texture silky microfoam at 60-65\u00b0C."
+    },
+    {
+      "id": "station-fridge",
+      "name": "Milk Refrigerator",
+      "icon": "fridge",
+      "tile": [
+        1,
+        7
+      ],
+      "w": 2,
+      "h": 2,
+      "color": "#6f8fc9",
+      "accent": "#fbf6ea",
+      "description": "Select whole milk, oat milk, or almond milk."
+    },
+    {
+      "id": "station-pickup",
+      "name": "Order Pickup Counter",
+      "icon": "register",
+      "tile": [
+        6,
+        4
+      ],
+      "w": 3,
+      "h": 1,
+      "color": "#a8714b",
+      "accent": "#ffd877",
+      "description": "Assemble drink and hand off to waiting customer."
+    }
   ],
   "levels": [
     {
@@ -20,7 +103,8 @@
       "title": "Milk Steaming & Microfoam Texturing",
       "skill_name": "Steam milk to optimal silky microfoam",
       "goal": "Steam whole milk to 60\u201365\u00b0C with glossy microfoam suitable for latte art",
-      "description": "Master aeration, whirlpool vortex texturing, and precise thermal cutoff to create silky microfoam without large bubbles.",
+      "instruction": "Walk over to the Steam Wand Station (top right counter) and press [SPACE] to purge, texture, and shut off at 62\u00b0C.",
+      "targetStationId": "station-steamer",
       "customerProfiles": [
         "Flat white enthusiast who inspects foam density and temperature"
       ],
@@ -32,12 +116,34 @@
       },
       "actions": [
         "purgeWand",
-        "insertWandTip",
-        "tiltPitcher15deg",
-        "openSteamValve",
-        "rollVortex",
-        "stopAt65C",
+        "steamToTemp",
         "wipeAndPurge"
+      ],
+      "controls": [
+        {
+          "id": "purge_wand",
+          "label": "Purge Condensation",
+          "type": "toggle",
+          "default": true
+        },
+        {
+          "id": "temp_celsius",
+          "label": "Target Steam Temperature",
+          "type": "slider",
+          "min": 40.0,
+          "max": 80.0,
+          "step": 1.0,
+          "default": 63.0,
+          "unit": "\u00b0C",
+          "targetMin": 60.0,
+          "targetMax": 65.0
+        },
+        {
+          "id": "vortex_whirlpool",
+          "label": "Whirlpool Vortex Roll",
+          "type": "toggle",
+          "default": true
+        }
       ],
       "successConditions": [
         "Milk temperature finishes strictly between 60\u00b0C and 65\u00b0C",
@@ -45,12 +151,10 @@
         "Steam wand wiped and purged immediately after steaming"
       ],
       "steps": [
-        "Purge steam wand for 1 second over drip tray to clear condensation",
-        "Submerge wand tip 1cm below surface and tilt pitcher 15 degrees to establish whirlpool",
-        "Open steam valve fully; introduce air gently until pitcher reaches body temp (37\u00b0C)",
-        "Submerge wand slightly deeper to incorporate microfoam in a silent rolling vortex",
-        "Shut off steam valve as thermometer passes 60\u00b0C so thermal momentum settles at 62-65\u00b0C",
-        "Wipe wand thoroughly with damp cloth and purge steam immediately"
+        "Walk to the Steam Wand Station",
+        "Purge steam wand for 1 second to clear moisture",
+        "Submerge tip 1cm, tilt pitcher 15\u00b0 for rolling vortex",
+        "Shut off valve at 60-65\u00b0C and wipe wand clean"
       ],
       "checks": [
         "Final temperature between 60\u00b0C and 65\u00b0C",
@@ -63,8 +167,9 @@
       "level": 2,
       "title": "Dial in Espresso Extraction",
       "skill_name": "Calibrate grind size, dose, and extraction ratio",
-      "goal": "Extract a 1:2 ratio espresso (18g in, 36g out) in 27\u201330 seconds with rich crema",
-      "description": "Adjust grind setting and distribution to eliminate channeling, achieving balanced sweetness and acidity.",
+      "goal": "Dose 18g and extract a 36g double shot in 28 seconds with rich golden crema",
+      "instruction": "First visit the Conical Grinder to dose 18g, then move to the Espresso Machine to lock portafilter and extract 36g.",
+      "targetStationId": "station-espresso",
       "customerProfiles": [
         "Espresso purist sensitive to under-extracted sourness or over-extracted bitterness"
       ],
@@ -79,10 +184,45 @@
         "weighDose18g",
         "distributeGrounds",
         "tampLevel15kg",
-        "flushGroupHead",
-        "lockPortafilter",
-        "startShot",
-        "stopAt36g"
+        "pullShot"
+      ],
+      "controls": [
+        {
+          "id": "dose_grams",
+          "label": "Bean Dose Weight",
+          "type": "slider",
+          "min": 14.0,
+          "max": 22.0,
+          "step": 0.5,
+          "default": 18.0,
+          "unit": "g",
+          "targetMin": 17.5,
+          "targetMax": 18.5
+        },
+        {
+          "id": "tamp_force_kg",
+          "label": "Tamping Pressure",
+          "type": "slider",
+          "min": 5.0,
+          "max": 25.0,
+          "step": 1.0,
+          "default": 15.0,
+          "unit": "kg",
+          "targetMin": 12.0,
+          "targetMax": 18.0
+        },
+        {
+          "id": "shot_yield_g",
+          "label": "Liquid Shot Yield",
+          "type": "slider",
+          "min": 25.0,
+          "max": 45.0,
+          "step": 1.0,
+          "default": 36.0,
+          "unit": "g",
+          "targetMin": 35.0,
+          "targetMax": 37.0
+        }
       ],
       "successConditions": [
         "Yield strictly 36g (+/- 1g) from 18g dose",
@@ -90,12 +230,9 @@
         "Thick hazelnut crema without pale blonding or channeling"
       ],
       "steps": [
-        "Dose exactly 18.0g of coffee beans and grind into dry portafilter basket",
-        "Use WDT needle tool or tap to distribute grounds evenly without clumps",
-        "Tamp firmly and level with 15kg pressure",
-        "Flush group head for 2 seconds to stabilize brew temperature at 93\u00b0C",
-        "Insert and lock portafilter; immediately tare cup and scale under spouts",
-        "Engage 9-bar brew pump and stop shot at 36g yield (target: 28 seconds)"
+        "Dose exactly 18.0g of coffee at the Grinder Station",
+        "Tamp firmly with 15kg pressure and lock into Grouphead",
+        "Engage 9-bar pump and stop extraction precisely at 36g"
       ],
       "checks": [
         "Dose 18g, yield 36g (1:2 ratio)",
@@ -108,36 +245,58 @@
       "level": 3,
       "title": "Handle Milk Stockout & Order Substitution",
       "skill_name": "Resolve unavailable supplies with clear customer communication",
-      "goal": "Politely resolve an oat milk latte order when oat milk is out of stock without delaying queue",
-      "description": "Check inventory, communicate shortage courteously, present delicious alternatives (almond/soy/dairy), and confirm choice before preparing.",
+      "goal": "Verify oat milk shortage in fridge, offer almond alternative, and secure customer confirmation",
+      "instruction": "Check the Milk Refrigerator to confirm oat milk stockout (0 cartons), then walk to the Pickup Counter to offer fresh almond milk.",
+      "targetStationId": "station-fridge",
       "customerProfiles": [
         "Busy morning commuter with dietary preference willing to accept alternative if offered kindly"
       ],
       "initialSupplies": {
         "oatMilk_cartons": 0,
         "almondMilk_cartons": 3,
-        "wholeMilk_cartons": 6,
-        "coffeeBeans_g": 500
+        "wholeMilk_cartons": 6
       },
       "actions": [
         "checkStock",
         "explainShortage",
         "offerAlmondOrSoy",
-        "confirmChoice",
-        "prepareDrink",
-        "serveWithApology"
+        "confirmChoice"
+      ],
+      "controls": [
+        {
+          "id": "fridge_check",
+          "label": "Inspect Inventory Count",
+          "type": "toggle",
+          "default": true
+        },
+        {
+          "id": "chosen_alternative",
+          "label": "Offered Alternative Milk",
+          "type": "choice",
+          "options": [
+            "Organic Almond Milk",
+            "Soy Milk",
+            "Lactose-Free Dairy"
+          ],
+          "default": "Organic Almond Milk"
+        },
+        {
+          "id": "customer_confirmation",
+          "label": "Obtain Explicit Customer Consent",
+          "type": "toggle",
+          "default": true
+        }
       ],
       "successConditions": [
-        "Customer explicitly confirms acceptable alternative or cancellation",
-        "No unauthorized substitution prepared",
-        "Transaction resolved within 45 seconds"
+        "Customer explicitly confirms acceptable alternative before preparation",
+        "Zero unauthorized substitutions served",
+        "Inventory accurately updated"
       ],
       "steps": [
-        "Check milk fridge and verify oat milk supply is at 0 cartons",
-        "Politely notify customer: 'I apologize, we are out of oat milk this morning'",
-        "Offer immediate alternatives: 'We have fresh almond milk or organic soy which pair great with this roast'",
-        "Wait for customer agreement before steaming",
-        "Prepare selected alternative and serve with a warm smile and discount token"
+        "Inspect Milk Refrigerator and record 0 cartons of oat milk",
+        "Approach customer at counter: explain shortage politely",
+        "Offer organic almond milk alternative and await agreement",
+        "Confirm agreed selection before steaming"
       ],
       "checks": [
         "Shortage detected before pulling shot",
@@ -150,8 +309,9 @@
       "level": 4,
       "title": "Multi-Order Barista Rush Prioritization",
       "skill_name": "Parallel workflow and ticket sequencing during peak morning rush",
-      "goal": "Queue and prepare 3 concurrent espresso drinks in under 120 seconds while maintaining standards",
-      "description": "Interleave grinding, milk steaming, and espresso extraction so that milk and espresso finish simultaneously for each cup.",
+      "goal": "Queue and prepare 3 concurrent espresso tickets in under 120 seconds while keeping stations clean",
+      "instruction": "Visit Grinder, Steamer, and Pickup Counter in rapid sequence to dispatch Americano, Flat White, and Cortado.",
+      "targetStationId": "station-pickup",
       "customerProfiles": [
         "Queue of 3 office workers ordering Americano, Latte, and Cortado"
       ],
@@ -164,21 +324,41 @@
         "grindNextDose",
         "steamMilk",
         "pourSimultaneously",
-        "rinsePitcher",
-        "cleanPortafilter",
-        "handOffDrink"
+        "wipeStations"
+      ],
+      "controls": [
+        {
+          "id": "sequence_order",
+          "label": "Ticket Execution Order",
+          "type": "choice",
+          "options": [
+            "Americano -> Cortado -> Latte",
+            "Latte -> Americano -> Cortado"
+          ],
+          "default": "Americano -> Cortado -> Latte"
+        },
+        {
+          "id": "parallel_steaming",
+          "label": "Steam Milk During Extraction",
+          "type": "toggle",
+          "default": true
+        },
+        {
+          "id": "station_wipe",
+          "label": "Wipe Counter Between Drinks",
+          "type": "toggle",
+          "default": true
+        }
       ],
       "successConditions": [
         "All 3 drinks served at peak temperature within 120 seconds",
-        "Zero cross-contamination between dairy and allergen pitchers",
+        "Zero cross-contamination between dairy pitchers",
         "Bar station maintained clean and wiped between tickets"
       ],
       "steps": [
-        "Review ticket sequence: Americano (hot water first), then Cortado, then Latte",
-        "Dose and lock espresso for drink 1; while shot extracts, steam milk for drink 2",
-        "Pour drink 1, rinse pitcher immediately, and stage cup 2",
-        "Grind dose 2, start extraction, and steam milk for drink 3",
-        "Serve all completed drinks and wipe steam wand and prep counter"
+        "Sequence tickets: Americano (hot water first), Cortado, then Latte",
+        "Extract shot 1 while steaming milk for drink 2",
+        "Assemble drinks, wipe steam wand, and hand off with ticket numbers"
       ],
       "checks": [
         "Total time under 120 seconds",

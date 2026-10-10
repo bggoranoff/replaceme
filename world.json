@@ -1,0 +1,287 @@
+{
+  "version": 1,
+  "researchVersion": 1,
+  "role": "waiter",
+  "title": "Fine Dining Bistro Floor",
+  "theme": {
+    "name": "Bistro Floor",
+    "floorType": "tile",
+    "floorColor1": "#f5ece1",
+    "floorColor2": "#ebd8c4",
+    "wallColor": "#faf4eb",
+    "wallpaperColor": "#edd9c0",
+    "trimColor": "#7a5035",
+    "accentColor": "#54331e"
+  },
+  "dimensions": {
+    "cols": 20,
+    "rows": 13,
+    "tile": 16
+  },
+  "solids": [
+    {
+      "x": 0,
+      "y": 0,
+      "w": 20,
+      "h": 2
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "w": 1,
+      "h": 13
+    },
+    {
+      "x": 19,
+      "y": 0,
+      "w": 1,
+      "h": 13
+    },
+    {
+      "x": 0,
+      "y": 12,
+      "w": 20,
+      "h": 1
+    },
+    {
+      "x": 3,
+      "y": 2,
+      "w": 4,
+      "h": 1
+    },
+    {
+      "x": 8,
+      "y": 2,
+      "w": 2,
+      "h": 1
+    },
+    {
+      "x": 12,
+      "y": 5,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "x": 16,
+      "y": 5,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "x": 1,
+      "y": 7,
+      "w": 2,
+      "h": 2
+    }
+  ],
+  "stations": [
+    {
+      "id": "station-kitchen",
+      "name": "Kitchen Pickup Pass",
+      "icon": "dish",
+      "tile": [
+        3,
+        2
+      ],
+      "w": 4,
+      "h": 1,
+      "color": "#7a8a9e",
+      "accent": "#ffd877",
+      "description": "Inspect and collect piping hot plated entrees."
+    },
+    {
+      "id": "station-pos",
+      "name": "POS Terminal",
+      "icon": "register",
+      "tile": [
+        8,
+        2
+      ],
+      "w": 2,
+      "h": 1,
+      "color": "#4a5a6e",
+      "accent": "#9fdfc4",
+      "description": "Enter table orders, special modifications, and allergy alerts."
+    },
+    {
+      "id": "station-table-1",
+      "name": "Table 1 (Booth)",
+      "icon": "table",
+      "tile": [
+        12,
+        5
+      ],
+      "w": 2,
+      "h": 2,
+      "color": "#c48b5f",
+      "accent": "#fff8e8",
+      "description": "Party of 2: Anniversary dinner."
+    },
+    {
+      "id": "station-table-2",
+      "name": "Table 2 (Window)",
+      "icon": "table",
+      "tile": [
+        16,
+        5
+      ],
+      "w": 2,
+      "h": 2,
+      "color": "#c48b5f",
+      "accent": "#fff8e8",
+      "description": "Party of 4: Business lunch with shellfish allergy."
+    },
+    {
+      "id": "station-bussing",
+      "name": "Bussing & Glassware Station",
+      "icon": "water",
+      "tile": [
+        1,
+        7
+      ],
+      "w": 2,
+      "h": 2,
+      "color": "#8fc6ee",
+      "accent": "#d9b48a",
+      "description": "Tray staging, clean cutlery, and sparkling water carafe."
+    }
+  ],
+  "levels": [
+    {
+      "id": "order-allergy",
+      "level": 1,
+      "title": "Allergy Verification & Order Entry",
+      "skill_name": "Inquire, flag, and route dietary restrictions safely",
+      "goal": "Verify shellfish allergy at Table 2 and enter modified order into POS terminal with kitchen allergy alert",
+      "instruction": "Walk to Table 2 (Window), take the guest's order, then walk to the POS Terminal to enter the allergy alert.",
+      "targetStationId": "station-table-2",
+      "customerProfiles": [
+        "Guest with severe shellfish anaphylaxis dining with business associates"
+      ],
+      "initialSupplies": {
+        "orderPad": 1,
+        "pen": 1
+      },
+      "actions": [
+        "askDietaryRestrictions",
+        "enterPosTicket",
+        "flagAllergyToChef"
+      ],
+      "controls": [
+        {
+          "id": "allergy_prompt",
+          "label": "Ask Dietary & Allergy Question",
+          "type": "toggle",
+          "default": true
+        },
+        {
+          "id": "flagged_allergen",
+          "label": "POS Allergen Modifier",
+          "type": "choice",
+          "options": [
+            "SEVERE SHELLFISH ALLERGY",
+            "Gluten-Free",
+            "Vegan"
+          ],
+          "default": "SEVERE SHELLFISH ALLERGY"
+        },
+        {
+          "id": "verbal_chef_check",
+          "label": "Verbal Kitchen Pass Confirmation",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "successConditions": [
+        "Allergy recorded and highlighted in red on kitchen ticket",
+        "Verbal confirmation received from head chef",
+        "Table marked with allergen alert token"
+      ],
+      "steps": [
+        "Approach Table 2 with a warm professional greeting",
+        "Ask: 'Are there any allergies or dietary preferences we should accommodate today?'",
+        "Note severe shellfish allergy clearly on pad",
+        "Walk to POS Terminal and input order with SEVERE ALLERGY red modifier"
+      ],
+      "checks": [
+        "Allergy question asked prior to menu finalization",
+        "POS kitchen ticket flagged",
+        "Chef acknowledgment verified"
+      ]
+    },
+    {
+      "id": "hot-pass-delivery",
+      "level": 2,
+      "title": "Synchronized Hot Entr\u00e9e Delivery",
+      "skill_name": "Deliver multi-plate courses simultaneously without food cooling",
+      "goal": "Pick up 2 hot main courses from kitchen pass and serve Table 1 from the left within 45 seconds",
+      "instruction": "Walk to Kitchen Pickup Pass, check temperature and garnishes, then deliver to Table 1 from the guest's left.",
+      "targetStationId": "station-kitchen",
+      "customerProfiles": [
+        "Anniversary couple expecting synchronized service"
+      ],
+      "initialSupplies": {
+        "hotPlates": 2,
+        "tray": 1
+      },
+      "actions": [
+        "inspectPlateGarnish",
+        "carryTwoPlatesBalanced",
+        "serveFromLeft"
+      ],
+      "controls": [
+        {
+          "id": "delivery_time_sec",
+          "label": "Pass-to-Table Delivery Time",
+          "type": "slider",
+          "min": 10.0,
+          "max": 90.0,
+          "step": 5.0,
+          "default": 35.0,
+          "unit": "s",
+          "targetMin": 15.0,
+          "targetMax": 45.0
+        },
+        {
+          "id": "serve_side",
+          "label": "Serving Approach Side",
+          "type": "choice",
+          "options": [
+            "Serve from Left (Correct)",
+            "Serve from Right",
+            "Reach Across Table"
+          ],
+          "default": "Serve from Left (Correct)"
+        },
+        {
+          "id": "announce_dish",
+          "label": "Announce Dish Name & Modifications",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "successConditions": [
+        "Food served hot at table within 45 seconds of pickup",
+        "Plates placed from the guest's left side quietly",
+        "Entr\u00e9es described accurately with sauce drizzle facing guest"
+      ],
+      "steps": [
+        "Hear pass bell and immediately approach Kitchen Pass",
+        "Inspect plate rim cleanliness and sauce placement",
+        "Balance plates and proceed smoothly to Table 1",
+        "Serve each guest from their left side, stating dish name"
+      ],
+      "checks": [
+        "Delivery time under 45 seconds",
+        "Correct left-side approach",
+        "Plates clean with zero spills"
+      ]
+    }
+  ],
+  "rules": [
+    "Serve food from the left and clear from the right",
+    "Verify all guest dietary allergies prior to ringing order",
+    "Deliver hot dishes within 60 seconds of kitchen pass bell"
+  ],
+  "entrypoint": "builder.levels"
+}

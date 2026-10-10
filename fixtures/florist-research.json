@@ -1,0 +1,311 @@
+{
+  "version": 1,
+  "role": "florist",
+  "title": "Botanical Floral Studio",
+  "theme": {
+    "name": "Garden Atelier",
+    "floorType": "garden",
+    "floorColor1": "#d8ebd5",
+    "floorColor2": "#c7dec3",
+    "wallColor": "#edf7ec",
+    "wallpaperColor": "#dbeed9",
+    "trimColor": "#5f9e5f",
+    "accentColor": "#3d6e3d"
+  },
+  "sources": [
+    "American Institute of Floral Designers (AIFD) Manual",
+    "European Floristry Standards"
+  ],
+  "rules": [
+    "Cut stems underwater or at a 45-degree angle to prevent air embolisms",
+    "Strip foliage below the waterline to prevent bacterial rot",
+    "Maintain floral cooler temperature between 2\u00b0C and 4\u00b0C"
+  ],
+  "assumptions": [
+    "Commercial floral shears, thorn strippers, fresh botanical stems, chilled display cooler"
+  ],
+  "stations": [
+    {
+      "id": "station-flowers",
+      "name": "Fresh Flower Cooler",
+      "icon": "flowers",
+      "tile": [
+        2,
+        2
+      ],
+      "w": 3,
+      "h": 1,
+      "color": "#7aa874",
+      "accent": "#f7a6b8",
+      "description": "Select garden roses, eucalyptus, and ranunculus stems."
+    },
+    {
+      "id": "station-cutting",
+      "name": "Pruning & Cutting Bench",
+      "icon": "knife",
+      "tile": [
+        6,
+        2
+      ],
+      "w": 2,
+      "h": 1,
+      "color": "#8a6d52",
+      "accent": "#ffd877",
+      "description": "Cut stems at 45\u00b0 angle and remove bottom foliage."
+    },
+    {
+      "id": "station-vases",
+      "name": "Vase & Nutrient Station",
+      "icon": "water",
+      "tile": [
+        2,
+        5
+      ],
+      "w": 2,
+      "h": 1,
+      "color": "#8fc6ee",
+      "accent": "#fff8e8",
+      "description": "Fill clean glass vases with flower food solution."
+    },
+    {
+      "id": "station-wrapping",
+      "name": "Kraft Paper & Ribbon Table",
+      "icon": "ribbon",
+      "tile": [
+        6,
+        5
+      ],
+      "w": 3,
+      "h": 1,
+      "color": "#d9b48a",
+      "accent": "#bfaef0",
+      "description": "Wrap arrangement with sustainable craft wrap and tied ribbon."
+    },
+    {
+      "id": "station-register",
+      "name": "Florist Checkout Counter",
+      "icon": "register",
+      "tile": [
+        6,
+        8
+      ],
+      "w": 3,
+      "h": 1,
+      "color": "#a8714b",
+      "accent": "#9fdfc4",
+      "description": "Tag arrangement and hand off to happy client."
+    }
+  ],
+  "levels": [
+    {
+      "id": "stem-preparation",
+      "level": 1,
+      "title": "Stem Trimming & 45\u00b0 Angle Cut",
+      "skill_name": "Condition fresh flower stems for maximum vase life",
+      "goal": "Prune thorns and cut 5 garden rose stems strictly at a 45\u00b0 angle with clean floral shears",
+      "instruction": "Walk to the Pruning & Cutting Bench and press [SPACE] to set cut angle to 45\u00b0 and strip lower foliage.",
+      "targetStationId": "station-cutting",
+      "customerProfiles": [
+        "Bride inspecting stem hydration for wedding centerpiece"
+      ],
+      "initialSupplies": {
+        "rose_stems": 5,
+        "shears": 1,
+        "stripper": 1
+      },
+      "actions": [
+        "stripThorns",
+        "cutAt45Deg",
+        "submergeInHydration"
+      ],
+      "controls": [
+        {
+          "id": "cut_angle_deg",
+          "label": "Shears Cutting Angle",
+          "type": "slider",
+          "min": 0.0,
+          "max": 90.0,
+          "step": 5.0,
+          "default": 45.0,
+          "unit": "\u00b0",
+          "targetMin": 40.0,
+          "targetMax": 50.0
+        },
+        {
+          "id": "strip_foliage_cm",
+          "label": "Foliage Stripped From Bottom",
+          "type": "slider",
+          "min": 0.0,
+          "max": 20.0,
+          "step": 1.0,
+          "default": 10.0,
+          "unit": "cm",
+          "targetMin": 8.0,
+          "targetMax": 15.0
+        },
+        {
+          "id": "crush_stem_check",
+          "label": "Clean Razor Cut (No Stem Crushing)",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "successConditions": [
+        "All 5 stems sliced cleanly at 40\u00b0\u201350\u00b0 without vascular crushing",
+        "Bottom 10cm stripped of foliage to prevent waterline bacteria",
+        "Stems immediately immersed in fresh floral preservative"
+      ],
+      "steps": [
+        "Take fresh rose stems from cooler to cutting bench",
+        "Gently strip lower leaves and thorns using thorn stripper",
+        "Position floral shears at 45\u00b0 angle and make a clean diagonal slice",
+        "Place trimmed stems into prepared hydration bucket"
+      ],
+      "checks": [
+        "Cut angle between 40\u00b0 and 50\u00b0",
+        "No submerged foliage",
+        "Hydration solution absorbed"
+      ]
+    },
+    {
+      "id": "spiral-bouquet",
+      "level": 2,
+      "title": "Spiral Hand-Tied Bouquet Composition",
+      "skill_name": "Assemble botanical balance using the Dutch spiral technique",
+      "goal": "Rotate stems in a continuous spiral to create a domed bouquet with focal garden roses and eucalyptus foliage",
+      "instruction": "Visit Flower Cooler to gather focal flowers and greenery, then arrange them at the Kraft Wrapping Table.",
+      "targetStationId": "station-wrapping",
+      "customerProfiles": [
+        "Customer seeking romantic hand-tied anniversary bouquet"
+      ],
+      "initialSupplies": {
+        "roses": 7,
+        "eucalyptus": 5,
+        "ranunculus": 3,
+        "twine": 1
+      },
+      "actions": [
+        "selectFocalStems",
+        "spiralStemsClockwise",
+        "bindWithTwine"
+      ],
+      "controls": [
+        {
+          "id": "focal_ratio",
+          "label": "Focal Flowers to Filler Ratio",
+          "type": "slider",
+          "min": 0.2,
+          "max": 0.8,
+          "step": 0.05,
+          "default": 0.6,
+          "unit": "%",
+          "targetMin": 0.5,
+          "targetMax": 0.7
+        },
+        {
+          "id": "spiral_direction",
+          "label": "Spiral Rotation Angle",
+          "type": "choice",
+          "options": [
+            "Clockwise Spiral",
+            "Counter-Clockwise Spiral",
+            "Crossed Stems (Incorrect)"
+          ],
+          "default": "Clockwise Spiral"
+        },
+        {
+          "id": "binding_tension",
+          "label": "Twine Binding Tension",
+          "type": "slider",
+          "min": 1.0,
+          "max": 10.0,
+          "step": 0.5,
+          "default": 7.0,
+          "unit": "N",
+          "targetMin": 6.0,
+          "targetMax": 8.0
+        }
+      ],
+      "successConditions": [
+        "Stems form a balanced 360\u00b0 self-standing spiral",
+        "Focal flowers distributed at varied heights",
+        "Bouquet securely tied without bruising delicate stems"
+      ],
+      "steps": [
+        "Select primary focal roses and secondary textural eucalyptus",
+        "Add stems one by one at a consistent 30\u00b0 angle in a clockwise spiral",
+        "Check balance from all sides in mirror",
+        "Secure binding point firmly with natural jute twine"
+      ],
+      "checks": [
+        "Spiral technique validated (no crossed stems)",
+        "Self-standing test passed",
+        "Binding point neat and secure"
+      ]
+    },
+    {
+      "id": "flower-stockout",
+      "level": 3,
+      "title": "Resolve Flower Shortage with Harmonious Substitute",
+      "skill_name": "Handle out-of-stock premium florals with botanical harmony",
+      "goal": "Explain peony shortage to customer and substitute with open garden roses of matching blush palette",
+      "instruction": "Check Flower Cooler to confirm zero peonies, then propose blush garden roses at the Checkout Counter.",
+      "targetStationId": "station-flowers",
+      "customerProfiles": [
+        "Client requesting peonies in late autumn when out of season"
+      ],
+      "initialSupplies": {
+        "peonies": 0,
+        "garden_roses_blush": 12,
+        "ranunculus": 6
+      },
+      "actions": [
+        "inspectCooler",
+        "explainSeasonalShortage",
+        "offerGardenRoses",
+        "confirmWithCustomer"
+      ],
+      "controls": [
+        {
+          "id": "cooler_audit",
+          "label": "Verify Peony Stock is 0",
+          "type": "toggle",
+          "default": true
+        },
+        {
+          "id": "substitute_flower",
+          "label": "Harmonious Palette Substitute",
+          "type": "choice",
+          "options": [
+            "Blush David Austin Roses",
+            "Carnations",
+            "Dried Grasses"
+          ],
+          "default": "Blush David Austin Roses"
+        },
+        {
+          "id": "seasonal_explanation",
+          "label": "Explain Seasonal Blooming Window",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "successConditions": [
+        "Customer educated courteously on seasonal availability",
+        "Equivalent premium bloom substitution approved",
+        "Arrangement aesthetics and value preserved"
+      ],
+      "steps": [
+        "Check inventory cooler and verify peony stockout",
+        "Explain: 'Peonies are out of season, but our David Austin garden roses offer the same lush, ruffled petal count'",
+        "Present fresh blush garden rose blooms for client approval",
+        "Receive confirmation and construct arrangement"
+      ],
+      "checks": [
+        "Zero unapproved substitutions",
+        "Customer delighted with alternative",
+        "Palette color harmony maintained"
+      ]
+    }
+  ]
+}

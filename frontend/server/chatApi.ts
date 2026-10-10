@@ -193,7 +193,7 @@ function createHandler(getEnv: () => Record<string, string>, getRepoRoot: () => 
   return (req, res, next) => {
     const pathname = (req.url ?? '').split('?')[0]
 
-    // Endpoint 1: /api/research (Researcher Agent)
+    // Endpoint 1: /api/research (Researcher + Builder Agents)
     if (pathname === '/api/research' && req.method === 'POST') {
       void (async () => {
         try {
@@ -202,39 +202,57 @@ function createHandler(getEnv: () => Record<string, string>, getRepoRoot: () => 
           const prompt = String(parsed.prompt || 'barista').trim()
           const repoRoot = getRepoRoot()
 
-          // Execute python researcher agent
+          // 1. Execute python researcher agent to produce scenarios
           try {
             await execFileAsync('python3', ['-m', 'researcher.agent', prompt], { cwd: repoRoot, env: { ...process.env, ...getEnv() } })
           } catch (pyErr) {
             console.warn('[Server] python3 -m researcher.agent warning:', pyErr)
           }
 
-          // Read research.json if produced
-          const researchFile = path.resolve(repoRoot, 'research.json')
-          if (fs.existsSync(researchFile)) {
-            const data = JSON.parse(fs.readFileSync(researchFile, 'utf8'))
-            sendJson(res, 200, data)
-            return
+          // 2. Execute python builder agent to synthesize the playable world & Entire branch
+          try {
+            await execFileAsync('python3', ['-m', 'builder.agent', '--brief', 'research.json'], { cwd: repoRoot, env: { ...process.env, ...getEnv() } })
+          } catch (pyErr) {
+            console.warn('[Server] python3 -m builder.agent warning:', pyErr)
           }
 
-          // Fallback if file not found
+          // Read research.json & world.json if produced
+          const researchFile = path.resolve(repoRoot, 'research.json')
+          const worldFile = path.resolve(repoRoot, 'world.json')
+
+          let briefData: any = null
+          let worldData: any = null
+
+          if (fs.existsSync(researchFile)) {
+            briefData = JSON.parse(fs.readFileSync(researchFile, 'utf8'))
+          }
+          if (fs.existsSync(worldFile)) {
+            worldData = JSON.parse(fs.readFileSync(worldFile, 'utf8'))
+          }
+
           sendJson(res, 200, {
+            brief: briefData,
+            world: worldData,
             role: prompt,
-            levels: [
-              {
-                id: `${prompt}-foundations`,
-                level: 1,
-                title: `${prompt} Foundations`,
-                goal: `Master core operations for ${prompt}`,
-                actions: ['prepare', 'execute', 'verify'],
-                successConditions: ['Goal achieved'],
-              },
-            ],
+            levels: briefData?.levels || worldData?.levels || [],
           })
         } catch (err) {
           sendJson(res, 500, { error: (err as Error).message ?? 'Research failed' })
         }
       })()
+      return
+    }
+
+    // Endpoint 1b: /api/world (Get current world specification)
+    if (pathname === '/api/world' && req.method === 'GET') {
+      const repoRoot = getRepoRoot()
+      const worldFile = path.resolve(repoRoot, 'world.json')
+      if (fs.existsSync(worldFile)) {
+        const worldData = JSON.parse(fs.readFileSync(worldFile, 'utf8'))
+        sendJson(res, 200, worldData)
+        return
+      }
+      sendJson(res, 404, { error: 'World not generated yet' })
       return
     }
 

@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { SkillView } from './SkillView'
 import { Skills } from './Skills'
-import { Cafe } from './Cafe'
+import { Cafe, type WorldSpec } from './Cafe'
 import { Frescoes } from './Frescoes'
 import { HalEye } from './HalEye'
+import { LoadingScreen } from './LoadingScreen'
 import type { Skill } from './skillData'
 
 type Recognition = {
@@ -102,6 +103,7 @@ function App() {
   const [skill, setSkill] = useState<Skill | null>(null)
   const [skills, setSkills] = useState<Skill[]>([])
   const [researchData, setResearchData] = useState<{ role?: string; levels?: unknown[] } | null>(null)
+  const [worldData, setWorldData] = useState<WorldSpec | undefined>(undefined)
   const [isResearching, setIsResearching] = useState(false)
 
   const start = async (next: string) => {
@@ -110,6 +112,7 @@ function App() {
     setSkill(null)
     setSkills([])
     setResearchData(null)
+    setWorldData(undefined)
     setIsResearching(true)
     try {
       const res = await fetch('/api/research', {
@@ -119,7 +122,8 @@ function App() {
       })
       if (res.ok) {
         const data = await res.json()
-        setResearchData(data)
+        setResearchData(data.brief || data)
+        setWorldData(data.world || undefined)
       }
     } catch (err) {
       console.warn('Research request failed:', err)
@@ -128,7 +132,7 @@ function App() {
     }
   }
 
-  // Rejects when training fails or yields no skills, so the café never reports a fake success.
+  // Rejects when training fails or yields no skills, so the game never reports a fake success.
   const handleTrain = async () => {
     const res = await fetch('/api/train', {
       method: 'POST',
@@ -144,6 +148,8 @@ function App() {
 
   const screen = !job ? (
     <PromptHero onSubmit={start} />
+  ) : isResearching ? (
+    <LoadingScreen job={job} onCancel={() => setJob(null)} />
   ) : skill ? (
     <SkillView skill={skill} job={job} onBack={() => setSkill(null)} />
   ) : view === 'skills' ? (
@@ -151,8 +157,10 @@ function App() {
   ) : (
     <Cafe
       job={job}
+      world={worldData}
+      researchData={researchData}
       isResearching={isResearching}
-      levelsCount={researchData?.levels?.length ?? 4}
+      levelsCount={researchData?.levels?.length ?? worldData?.levels?.length ?? 4}
       onBack={() => setJob(null)}
       onTrain={handleTrain}
       onTrained={() => setView('skills')}

@@ -181,6 +181,7 @@ def test_unknown_controls_rejected_and_repaired():
     w["levels"][0]["controls_hint"] = "Press Space to spin, Shift to go faster"
     w["levels"][1]["controls"] = ["key_up", "key_space"]
     w["levels"][2]["controls_hint"] = "Press Q to place a jar"
+    w["levels"][3]["controls_hint"] = "Up/Down choose, hold 2 seconds, then press Enter"  # a duration, not a key
     report = check(copy.deepcopy(w))
     paths = {v["path"] for v in report["violations"] if v["rule"] == "controls.allowlist"}
     assert paths == {"levels[0].controls_hint", "levels[1].controls", "levels[2].controls_hint"}, report["violations"]
@@ -266,11 +267,28 @@ def test_unreachable_pass_threshold():
     scoring = w["levels"][0]["scoring"]
     scoring["derived"][0].update(target=100000, weight=50, curve="step")
     scoring["pass_threshold"] = 90
-    assert "scoring.reachable" in rules_of(check(w)["violations"])
+    assert "scoring.reachable" in rules_of(check(copy.deepcopy(w))["violations"])
+    report = check(w, repair=True)  # lowered to the best reachable score instead of rejecting the game
+    assert "scoring.reachable" in rules_of(report["repairs"]) and 1 <= scoring["pass_threshold"] < 90, scoring["pass_threshold"]
+    assert check(w)["ok"]
     w = world()
     for opt in w["levels"][3]["scoring"]["turns"]["baby"].values():
         opt["points"] = 0
-    assert "scoring.reachable" in rules_of(check(w)["violations"])
+    assert "scoring.reachable" in rules_of(check(copy.deepcopy(w))["violations"])
+    check(w, repair=True)
+    assert check(w)["ok"]
+    # a critical option ends the level, so it never counts as the best answer
+    w = world()
+    for opt in w["levels"][3]["scoring"]["turns"]["baby"].values():
+        opt["critical"] = True
+    report = check(w, repair=True)
+    assert ("levels[3].scoring.turns.baby", "scoring.reachable") in {(v["path"], v["rule"]) for v in report["violations"]}, report["violations"]
+    # a flat zero cannot be learned from: rejected, not repaired
+    w = world()
+    for turn in w["levels"][3]["scoring"]["turns"].values():
+        for opt in turn.values():
+            opt["points"] = 0
+    assert "scoring.reachable" in rules_of(check(w, repair=True)["violations"])
 
 
 def test_hidden_targets():
@@ -288,6 +306,17 @@ def test_hidden_targets():
     assert gc.find_leaks("Heat to 93°C", secrets)
     assert not gc.find_leaks("Do it in 8 steps", secrets)
     assert not gc.find_leaks("Keep it gentle", secrets)
+    assert not gc.find_leaks("Scored 0-100 from how close you get", [(100.0, None)])
+    # success_line (feedback when nothing is off), metric and NPC dialogue are shown to the player too
+    w = world()
+    lvl = w["levels"][0]
+    lvl["success_line"] = "Perfect, 300 rpm every time."
+    lvl["metric"]["description"] = "0-100: best at 300 rpm"
+    lvl["dialogue"][0]["text"] = "Spin them at 300 rpm, dear."
+    leaks = {v["path"] for v in check(copy.deepcopy(w))["violations"] if v["rule"] == "hidden_target"}
+    assert leaks == {"levels[0].success_line", "levels[0].metric.description", "levels[0].dialogue[0].text"}, leaks
+    check(w, repair=True)
+    assert "300" not in lvl["dialogue"][0]["text"] and lvl["metric"]["description"].startswith("0-100") and check(w)["ok"]
 
 
 def test_other_mechanics_scoring():
@@ -402,6 +431,55 @@ def test_missing_slug_rejected_without_writing():
         raise AssertionError("expected GraphCheckError")
     except gc.GraphCheckError as exc:
         assert any(v["path"] == "slug" for v in exc.report["violations"]), exc.report["violations"]
+
+
+def test_malformed_worlds_reported_not_crashing():
+    """The builder is LLM-driven: wrong types anywhere must become violations, never exceptions."""
+    import random
+    junk = [None, "x", 0, -1, 1.5, [], {}, [1, 2], {"a": 1}, True, "", [{}], [None]]
+
+    def paths(node, p=()):
+        if p:
+            yield p
+        items = node.items() if isinstance(node, dict) else enumerate(node) if isinstance(node, list) else []
+        for k, v in items:
+            yield from paths(v, p + (k,))
+
+    rng = random.Random(7)
+    for _ in range(400):
+        w = world()
+        for _ in range(rng.randint(1, 3)):
+            target = rng.choice(list(paths(w)))
+            node = w
+            for k in target[:-1]:
+                node = node[k]
+            if rng.random() < 0.3:
+                node.pop(target[-1])
+            else:
+                node[target[-1]] = copy.deepcopy(rng.choice(junk))
+        for repair in (False, True):
+            report = check(copy.deepcopy(w), repair=repair)
+            assert not any(v["message"].startswith("malformed level") for v in report["violations"]), report["violations"]
+    w = world()
+    w["levels"][0]["params"] = ["not", "an", "object"]
+    w["levels"][1]["scoring"]["variables"] = [1, 2]
+    w["levels"][2]["quest"]["npc_id"] = ["theo"]
+    w["levels"][3]["params"]["turns"] = {"baby": {}}
+    w["map"]["solids"] = [{"x": "a"}, 5]
+    report = check(w, repair=True, use_graph=GRAPH)
+    assert not report["ok"] and {"levels[0].params", "levels[2].quest.npc_id"} <= {v["path"] for v in report["violations"]}
+
+
+def test_finalize_without_git_keeps_checked_world():
+    """The deploy image has no .git: rules come from the working tree and the world is kept, not committed."""
+    plain = temp_dir()
+    for rel, text in RULES["raw"].items():
+        (plain / rel).parent.mkdir(parents=True, exist_ok=True)
+        (plain / rel).write_text(text)
+    out = gc.finalize_world(world(), plain)
+    assert out["slug"] == "beekeeper" and (plain / "games/beekeeper/world.json").exists()
+    report = json.loads((plain / "games/beekeeper/graph_report.json").read_text())
+    assert report["ok"] and report["rules_commit"] is None and report["rules_source"].startswith("working tree")
 
 
 def test_legacy_v1_world_passes_through():

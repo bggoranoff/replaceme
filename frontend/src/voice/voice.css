@@ -1,0 +1,45 @@
+/* Mic control states for the job input (the base .mic styles live in App.css). */
+
+.prompt .mic.listening {
+  position: relative;
+}
+
+.prompt .mic.listening::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #e5484d;
+  animation: mic-rec 1s steps(2) infinite;
+}
+
+.prompt .mic.transcribing {
+  color: var(--ink);
+  background: var(--lavender);
+  box-shadow: var(--px);
+  opacity: 1;
+  cursor: progress;
+  animation: mic-think 0.9s steps(3) infinite;
+}
+
+@keyframes mic-rec {
+  50% {
+    opacity: 0.2;
+  }
+}
+
+@keyframes mic-think {
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .prompt .mic.listening::after,
+  .prompt .mic.transcribing {
+    animation: none;
+  }
+}

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { SkillView } from './SkillView'
 import { Skills } from './Skills'
 import { Cafe, type WorldSpec } from './Cafe'
@@ -6,53 +6,17 @@ import { Frescoes } from './Frescoes'
 import { HalEye } from './HalEye'
 import { LoadingScreen } from './LoadingScreen'
 import type { Skill } from './skillData'
-
-type Recognition = {
-  lang: string
-  interimResults: boolean
-  continuous: boolean
-  onresult: ((event: { results: ArrayLike<ArrayLike<{ transcript: string }>> }) => void) | null
-  onend: (() => void) | null
-  onerror: (() => void) | null
-  start: () => void
-  stop: () => void
-}
-
-type RecognitionCtor = new () => Recognition
-
-const SpeechRecognition: RecognitionCtor | undefined =
-  (window as unknown as { SpeechRecognition?: RecognitionCtor }).SpeechRecognition ??
-  (window as unknown as { webkitSpeechRecognition?: RecognitionCtor }).webkitSpeechRecognition
+import { useDictation } from './voice'
 
 function PromptHero({ onSubmit }: { onSubmit: (job: string) => void }) {
   const [prompt, setPrompt] = useState('')
-  const [listening, setListening] = useState(false)
-  const recognition = useRef<Recognition | null>(null)
-
-  useEffect(() => () => recognition.current?.stop(), [])
-
-  const toggleVoice = () => {
-    if (!SpeechRecognition) return
-    if (listening) {
-      recognition.current?.stop()
-      return
-    }
-    const r = new SpeechRecognition()
-    r.lang = 'en-US'
-    r.interimResults = true
-    r.continuous = false
-    r.onresult = (event) => {
-      const text = Array.from(event.results)
-        .map((result) => result[0].transcript)
-        .join('')
-      setPrompt(text)
-    }
-    r.onend = () => setListening(false)
-    r.onerror = () => setListening(false)
-    recognition.current = r
-    r.start()
-    setListening(true)
-  }
+  const input = useRef<HTMLInputElement>(null)
+  const dictation = useDictation((text) => {
+    setPrompt(text)
+    input.current?.focus()
+  })
+  const listening = dictation.state === 'recording'
+  const transcribing = dictation.state === 'transcribing'
 
   return (
     <section className="hero">
@@ -67,20 +31,23 @@ function PromptHero({ onSubmit }: { onSubmit: (job: string) => void }) {
         }}
       >
         <input
+          ref={input}
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
-          placeholder={listening ? 'Listening…' : 'Who do you want to replace (e.g. barista, florist)?'}
+          placeholder={
+            listening ? 'Listening…' : transcribing ? 'Transcribing…' : 'Who do you want to replace (e.g. barista, florist)?'
+          }
           aria-label="Who do you want to replace?"
           autoFocus
         />
         <button
           type="button"
-          className={`mic${listening ? ' listening' : ''}`}
-          onClick={toggleVoice}
-          disabled={!SpeechRecognition}
+          className={`mic${listening ? ' listening' : ''}${transcribing ? ' transcribing' : ''}`}
+          {...dictation.buttonProps}
+          disabled={!dictation.available || transcribing}
           aria-pressed={listening}
           aria-label={listening ? 'Stop voice input' : 'Start voice input'}
-          title={SpeechRecognition ? 'Speak your answer' : 'Voice input is not supported in this browser'}
+          title={dictation.available ? 'Click or hold to speak' : 'Voice input is not available'}
         >
           <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden>
             <path
@@ -93,6 +60,11 @@ function PromptHero({ onSubmit }: { onSubmit: (job: string) => void }) {
           ↑
         </button>
       </form>
+      {dictation.error && (
+        <p className="hint" role="status">
+          {dictation.error}
+        </p>
+      )}
     </section>
   )
 }

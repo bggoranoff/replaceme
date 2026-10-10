@@ -13,7 +13,10 @@ from typing import Any, Dict, List, Literal, Optional
 
 from pydantic import BaseModel, Field
 
+from builder.environments import ENV_ICONS, ENVIRONMENT_IDS, ENVIRONMENTS, describe_environments, pick_environment
 from builder.world_gen import ICONS, LOCATION_KINDS, seeded
+
+FLAVOR_ICONS = list(ICONS) + [i for i in ENV_ICONS if i not in ICONS]
 
 FLAVOR_TIMEOUT_S = 90
 
@@ -33,7 +36,7 @@ class LevelFlavor(BaseModel):
     skill_name: str = Field(..., description="The same action as a skill, 2-4 plain words, e.g. 'Restocking shelves'")
     location_name: str = Field(..., description="Plain name of the place on the map where it happens, 1-2 words, e.g. 'Counter', 'Back room'")
     location_kind: Literal["building", "stall", "station", "field", "table"] = Field(..., description="Kind of place")
-    icon: str = Field(..., description="Map icon, one of: " + ", ".join(ICONS))
+    icon: str = Field(..., description="The furniture or object this place is, one of: " + ", ".join(FLAVOR_ICONS) + ". Pick one that exists in the chosen environment")
     npc: NpcFlavor = Field(..., description="The villager who gives this quest")
     quest_title: str = Field(..., description="Quest title in the journal: plain words, max 5, says the job, no puns")
     aim: str = Field(..., description="The level goal shown to the player, plain everyday words, max 12 words: what to achieve, never how much or the answer")
@@ -48,6 +51,7 @@ class LevelFlavor(BaseModel):
 
 
 class WorldFlavor(BaseModel):
+    environment: Literal[ENVIRONMENT_IDS] = Field(..., description="Where this job really happens, the map setting: " + describe_environments())
     title: str = Field(..., description="Cozy village or venue name, max 4 words")
     theme_name: str = Field(..., description="Short theme name for the map")
     levels: List[LevelFlavor] = Field(..., description="One entry per task given, same task_id")
@@ -55,7 +59,8 @@ class WorldFlavor(BaseModel):
 
 SYSTEM = (
     "You write the flavor text for a cozy, Stardew Valley style village game that teaches a real job. "
-    "The game has one top-down village map. Each task happens at a place on the map and is given as a quest by a villager. "
+    "The game has one top-down map set where the job really happens: pick the environment (a cafe, garage, office, shop, kitchen, clinic, workshop, "
+    "warehouse interior, or the outdoor village when the work is outdoors). Each task happens at a piece of furniture or a place in that map and is given as a quest by a character. "
     "Write warm, short, natural lines in plain everyday words a 12-year-old understands: no jargon, no technical or Latin terms, "
     "one sentence per line, the shorter the better. Titles and place names say exactly what is done or where, never puns or fancy names. Never state numbers, amounts, settings or the correct answer: the player must discover them."
 )
@@ -124,7 +129,7 @@ def fallback_flavor(brief: Dict[str, Any], picked: List[Any]) -> Dict[str, Any]:
             "replies": [],
         })
     title = str(brief.get("title") or str(brief.get("job") or "Village").title()).strip()
-    return {"title": title, "theme_name": title, "levels": levels}
+    return {"title": title, "theme_name": title, "environment": pick_environment(brief), "levels": levels}
 
 
 def merge_flavor(primary: Optional[Dict[str, Any]], fallback: Dict[str, Any]) -> Dict[str, Any]:
@@ -139,11 +144,13 @@ def merge_flavor(primary: Optional[Dict[str, Any]], fallback: Dict[str, Any]) ->
         merged = {k: (v if v not in (None, "", []) else fb.get(k)) for k, v in lf.items()}
         if merged.get("location_kind") not in LOCATION_KINDS:
             merged["location_kind"] = None
-        if merged.get("icon") not in ICONS:
+        if merged.get("icon") not in FLAVOR_ICONS:
             merged["icon"] = None
         name = str((merged.get("npc") or {}).get("name") or "").strip()
         if not name or name.lower() in used:
             merged["npc"] = fb.get("npc")
         used.add(str(merged["npc"]["name"]).lower())
         levels.append(merged)
-    return {"title": primary.get("title") or fallback["title"], "theme_name": primary.get("theme_name") or fallback["theme_name"], "levels": levels}
+    env = primary.get("environment") if primary.get("environment") in ENVIRONMENTS else fallback.get("environment")
+    return {"title": primary.get("title") or fallback["title"], "theme_name": primary.get("theme_name") or fallback["theme_name"],
+            "environment": env, "levels": levels}

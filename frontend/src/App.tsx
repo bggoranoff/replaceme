@@ -1,11 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
-import { SkillView } from './SkillView'
 import { Skills } from './Skills'
 import { Cafe, type WorldSpec } from './Cafe'
 import { Frescoes } from './Frescoes'
 import { HalEye } from './HalEye'
 import { LoadingScreen } from './LoadingScreen'
-import type { Skill } from './skillData'
 
 type Recognition = {
   lang: string
@@ -100,8 +98,6 @@ function PromptHero({ onSubmit }: { onSubmit: (job: string) => void }) {
 function App() {
   const [job, setJob] = useState<string | null>(null)
   const [view, setView] = useState<'game' | 'skills'>('game')
-  const [skill, setSkill] = useState<Skill | null>(null)
-  const [skills, setSkills] = useState<Skill[]>([])
   const [researchData, setResearchData] = useState<{ role?: string; levels?: unknown[] } | null>(null)
   const [worldData, setWorldData] = useState<WorldSpec | undefined>(undefined)
   const [isResearching, setIsResearching] = useState(false)
@@ -109,8 +105,6 @@ function App() {
   const start = async (next: string) => {
     setJob(next)
     setView('game')
-    setSkill(null)
-    setSkills([])
     setResearchData(null)
     setWorldData(undefined)
     setIsResearching(true)
@@ -143,17 +137,14 @@ function App() {
     if (!res.ok || !Array.isArray(data.skills) || data.skills.length === 0) {
       throw new Error(data.error ?? `Training failed (${res.status})`)
     }
-    setSkills(data.skills)
   }
 
   const screen = !job ? (
     <PromptHero onSubmit={start} />
   ) : isResearching ? (
     <LoadingScreen job={job} onCancel={() => setJob(null)} />
-  ) : skill ? (
-    <SkillView skill={skill} job={job} onBack={() => setSkill(null)} />
   ) : view === 'skills' ? (
-    <Skills skills={skills} job={job} onBack={() => setView('game')} onOpen={setSkill} />
+    <Skills job={job} />
   ) : (
     <Cafe
       job={job}

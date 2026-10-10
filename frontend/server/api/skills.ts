@@ -43,21 +43,24 @@ export const routes: Route[] = [
     path: '/api/skills/:id/chat',
     handler: async (req, res, ctx, params) => {
       const { message, history } = parseChat(await readJson(req))
-      if (!readSkill(ctx.repoRoot, params.id)) throw new HttpError(404, `Skill not found: ${params.id}`)
+      const current = readSkill(ctx.repoRoot, params.id)
+      if (!current) throw new HttpError(404, `Skill not found: ${params.id}`)
       const apiKey = ctx.env.GEMINI_API_KEY || ctx.env.GOOGLE_API_KEY
 
+      let result: ChatResult
+      try {
+        result = apiKey
+          ? await geminiChat(apiKey, ctx.env.GEMINI_MODEL || DEFAULT_MODEL, current, message, history)
+          : fallbackChat(current, message)
+      } catch (err) {
+        console.warn('[skills] Gemini chat failed, answering from the skill alone:', (err as Error).message)
+        result = fallbackChat(current, message)
+      }
+
+      // Only the read-merge-write is serialized per skill, so a slow model call never blocks other chats.
       const body = await withSkillLock(params.id, async (): Promise<SkillChatResponse> => {
         const skill = readSkill(ctx.repoRoot, params.id)
         if (!skill) throw new HttpError(404, `Skill not found: ${params.id}`)
-        let result: ChatResult
-        try {
-          result = apiKey
-            ? await geminiChat(apiKey, ctx.env.GEMINI_MODEL || DEFAULT_MODEL, skill, message, history)
-            : fallbackChat(skill, message)
-        } catch (err) {
-          console.warn('[skills] Gemini chat failed, answering from the skill alone:', (err as Error).message)
-          result = fallbackChat(skill, message)
-        }
         if (!result.update) return { reply: result.reply, citations: result.citations, skill_updated: false, skill }
         const merged = mergeSkillUpdate(skill, result.update, new Date().toISOString())
         if (merged.changed.length) writeSkill(ctx.repoRoot, merged.skill)

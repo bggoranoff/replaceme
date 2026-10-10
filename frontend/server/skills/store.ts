@@ -81,8 +81,9 @@ function byLevel(skills: LearnedSkill[]): LearnedSkill[] {
 
 /**
  * Skills of the latest training (runs/latest.json): those whose attempts carry its training id
- * (run id = <training_id>-l<i>-a<NN>), else those whose id starts with its slug (level id = <slug>-<task>),
- * else the most recently updated job's skills.
+ * (run id = <training_id>-l<i>-a<NN>), else those whose id starts with its slug (level id = <slug>-<task>).
+ * Only without runs/latest.json: the most recently updated job's skills. Another job's skills are never
+ * shown for the latest training.
  */
 export function latestSkills(repoRoot: string): LearnedSkill[] {
   const skills = allSkills(repoRoot)
@@ -97,6 +98,7 @@ export function latestSkills(repoRoot: string): LearnedSkill[] {
     const found = skills.filter((s) => s.id.startsWith(`${slug}-`))
     if (found.length) return byLevel(found)
   }
+  if (trainingId || slug) return []
   const newest = skills.reduce<LearnedSkill | null>((a, s) => (!a || a.updated_at < s.updated_at ? s : a), null)
   return newest ? byLevel(skills.filter((s) => s.job === newest.job)) : []
 }
@@ -221,8 +223,12 @@ export function mergeSkillUpdate(skill: LearnedSkill, update: SkillUpdate, now: 
     changed.push('user_context')
   }
 
-  const steps = (update.steps ?? []).map((t) => t.trim()).filter(Boolean)
-  if (steps.length && steps.map(norm).join('\n') !== skill.steps.map(norm).join('\n')) {
+  // A full revised list replaces the steps. A list shorter than the current one is only the new steps
+  // (the model skipped the rest), so those are appended rather than wiping the learned steps.
+  const proposed = (update.steps ?? []).map((t) => t.trim()).filter(Boolean)
+  const knownSteps = new Set(skill.steps.map(norm))
+  const steps = proposed.length >= skill.steps.length ? proposed : [...skill.steps, ...proposed.filter((t) => !knownSteps.has(norm(t)))]
+  if (proposed.length && steps.map(norm).join('\n') !== skill.steps.map(norm).join('\n')) {
     next.steps = steps
     changed.push('steps')
   }

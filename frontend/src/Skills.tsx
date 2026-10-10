@@ -14,6 +14,7 @@ export function Skills({ job }: { job?: string }) {
   const [error, setError] = useState<string | null>(null)
   const [selected, setSelected] = useState(0)
   const [chats, setChats] = useState<Record<string, ChatMessage[]>>({})
+  const [pending, setPending] = useState<Record<string, boolean>>({})
   const [updated, setUpdated] = useState<Record<string, SectionKey[]>>({})
   const timers = useRef<Record<string, ReturnType<typeof setTimeout>>>({})
 
@@ -26,12 +27,23 @@ export function Skills({ job }: { job?: string }) {
         if (live) setSkills(data.skills)
       })
       .catch((e: unknown) => live && setError(e instanceof Error ? e.message : String(e)))
-    const pending = timers.current
+    const highlightTimers = timers.current
     return () => {
       live = false
-      Object.values(pending).forEach(clearTimeout)
+      Object.values(highlightTimers).forEach(clearTimeout)
     }
   }, [])
+
+  // The highlight is only useful if it is seen: bring the first changed section into view while the chat
+  // is docked beside the skill (sticky). In the one-column layout the chat sits below, so leave the scroll alone.
+  const flashed = skills?.[Math.min(selected, skills.length - 1)]?.id
+  const firstChanged = flashed ? updated[flashed]?.[0] : undefined
+  useEffect(() => {
+    if (!firstChanged) return
+    const chat = document.querySelector('.sk-chat')
+    if (!chat || getComputedStyle(chat).position !== 'sticky') return
+    document.querySelector(`.sk-doc [data-section="${firstChanged}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+  }, [firstChanged, updated])
 
   const count = skills?.length ?? 0
   useEffect(() => {
@@ -93,7 +105,9 @@ export function Skills({ job }: { job?: string }) {
           key={skill.id}
           skill={skill}
           messages={chats[skill.id] ?? []}
-          onMessages={(m) => setChats((c) => ({ ...c, [skill.id]: m }))}
+          pending={pending[skill.id] ?? false}
+          onPending={(p) => setPending((s) => ({ ...s, [skill.id]: p }))}
+          onMessages={(update) => setChats((c) => ({ ...c, [skill.id]: update(c[skill.id] ?? []) }))}
           onSkill={applySkill}
         />
       </div>

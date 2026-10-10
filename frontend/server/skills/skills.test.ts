@@ -52,6 +52,12 @@ describe('skill store', () => {
     assert.equal(latestSkills(root).length, 4)
   })
 
+  test('latestSkills never shows another job for a latest training without skills', () => {
+    const root = makeRepo()
+    fs.writeFileSync(path.join(root, 'runs', 'latest.json'), JSON.stringify({ training_id: 'newjob-1', slug: 'newjob' }))
+    assert.deepEqual(latestSkills(root), [])
+  })
+
   test('readSkill rejects ids that escape the skills folder', () => {
     const root = makeRepo()
     assert.equal(readSkill(root, '../runs'), null)
@@ -86,6 +92,13 @@ describe('skill store', () => {
     const again = mergeSkillUpdate(skill, { user_context: ['works on a small  hand-cranked machine.'], steps: skill.steps }, 'later')
     assert.deepEqual(again.changed, [])
     assert.equal(again.skill.updated_at, skill.updated_at)
+  })
+
+  test('mergeSkillUpdate appends a partial step list instead of dropping the learned steps', () => {
+    const base = fixtures[0]
+    const { skill, changed } = mergeSkillUpdate(base, { steps: [base.steps[0], 'Only the new step.'] }, 'now')
+    assert.deepEqual(changed, ['steps'])
+    assert.deepEqual(skill.steps, [...base.steps, 'Only the new step.'])
   })
 })
 

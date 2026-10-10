@@ -1,5 +1,11 @@
 /* Skills screen: list | skill | chat. Uses the tokens from App.css. */
 
+/* .page has overflow: hidden, which makes it the scroll container and stops the list and chat from
+   sticking. clip still clips but lets the window scroll. */
+.page:has(.sk-screen) {
+  overflow: clip;
+}
+
 .sk-screen {
   position: relative;
   display: flex;
@@ -507,6 +513,7 @@
 .sk-bubble p {
   margin: 0;
   white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 
 .sk-bubble.user {

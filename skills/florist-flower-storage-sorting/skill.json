@@ -1,0 +1,2262 @@
+{
+  "version": 2,
+  "id": "florist-flower-storage-sorting",
+  "name": "Postharvest Cold & Ambient Sorting",
+  "description": "Sort incoming postharvest flower and foliage shipments into appropriate environmental storage areas to maximize vase life and prevent chilling injury or toxic sap cross-contamination. Cold-tolerant temperate cut flowers and hardy greens are routed to a standard Floral Cooler held at 2°C–4°C, chilling-sensitive tropical blooms to an Ambient Tropical Bench maintained at 13°C–18°C, and sap-exuding Narcissus varieties to dedicated Narcissus Isolation Vessels for conditioning.",
+  "job": "florist",
+  "level_id": "florist-flower-storage-sorting",
+  "level_index": 3,
+  "mechanic": "sort",
+  "status": "learned",
+  "trained_attempts": 10,
+  "best_score": 100.0,
+  "final_score": 100.0,
+  "pass_threshold": 70.0,
+  "passed": true,
+  "learned_parameters": [
+    {
+      "variable": "eucalyptus-foliage-bunches",
+      "label": "Eucalyptus Foliage Bunches",
+      "value": "Floral Cooler (2°C–4°C)",
+      "unit": "",
+      "rationale": "Must be placed in 'floral-cooler-2-c-4-c'. In attempt 1 and 2, placing in the cooler yielded 100/100 sub-score (overall score 100.0 in attempt 2). Moving to 'ambient-tropical-bench-13-c-18-c' in attempt 3 dropped the sub-score to 0 (score 85.7), with feedback stating hardy greens stay crisp and dormant inside the refrigerated cooler. Measured: Tried: 'Floral Cooler (2°C–4°C)' (100/100), 'Ambient Tropical Bench' (0/100).",
+      "evidence": [
+        {
+          "attempt": 1,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 71.4
+        },
+        {
+          "attempt": 2,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 100.0
+        },
+        {
+          "attempt": 3,
+          "value": "Ambient Tropical Bench",
+          "score": 85.7
+        },
+        {
+          "attempt": 4,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 85.7
+        },
+        {
+          "attempt": 5,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 85.7
+        },
+        {
+          "attempt": 6,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 85.7
+        },
+        {
+          "attempt": 7,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 85.7
+        },
+        {
+          "attempt": 8,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 85.7
+        },
+        {
+          "attempt": 9,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 100.0
+        },
+        {
+          "attempt": 10,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 100.0
+        }
+      ]
+    },
+    {
+      "variable": "dutch-white-lilies-lilium-orientalis",
+      "label": "Dutch White Lilies (Lilium orientalis)",
+      "value": "Floral Cooler (2°C–4°C)",
+      "unit": "",
+      "rationale": "Must be placed in 'floral-cooler-2-c-4-c'. In attempts 1, 2, and 3, cooler placement scored 100/100 (attempt 2 total 100.0). In attempt 4, moving to ambient bench dropped sub-score to 0 (score 85.7), as lilies require high-humidity 2°C–4°C refrigerated storage to preserve petal firmness and bud life. Measured: Tried: 'Floral Cooler (2°C–4°C)' (100/100), 'Ambient Tropical Bench' (0/100).",
+      "evidence": [
+        {
+          "attempt": 1,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 71.4
+        },
+        {
+          "attempt": 2,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 100.0
+        },
+        {
+          "attempt": 3,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 85.7
+        },
+        {
+          "attempt": 4,
+          "value": "Ambient Tropical Bench",
+          "score": 85.7
+        },
+        {
+          "attempt": 5,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 85.7
+        },
+        {
+          "attempt": 6,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 85.7
+        },
+        {
+          "attempt": 7,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 85.7
+        },
+        {
+          "attempt": 8,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 85.7
+        },
+        {
+          "attempt": 9,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 100.0
+        },
+        {
+          "attempt": 10,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 100.0
+        }
+      ]
+    },
+    {
+      "variable": "freedom-red-roses-rosa",
+      "label": "Freedom Red Roses (Rosa)",
+      "value": "Floral Cooler (2°C–4°C)",
+      "unit": "",
+      "rationale": "Must be placed in 'floral-cooler-2-c-4-c'. In attempt 2, cooler placement scored 100/100 (total 100.0). In attempt 5, routing to ambient bench dropped sub-score to 0 (score 85.7), with feedback confirming garden roses must be held near freezing (2°C–4°C) to slow respiration and halt rapid blossom opening. Measured: Tried: 'Floral Cooler (2°C–4°C)' (100/100), 'Ambient Tropical Bench' (0/100).",
+      "evidence": [
+        {
+          "attempt": 1,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 71.4
+        },
+        {
+          "attempt": 2,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 100.0
+        },
+        {
+          "attempt": 3,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 85.7
+        },
+        {
+          "attempt": 4,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 85.7
+        },
+        {
+          "attempt": 5,
+          "value": "Ambient Tropical Bench",
+          "score": 85.7
+        },
+        {
+          "attempt": 6,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 85.7
+        },
+        {
+          "attempt": 7,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 85.7
+        },
+        {
+          "attempt": 8,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 85.7
+        },
+        {
+          "attempt": 9,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 100.0
+        },
+        {
+          "attempt": 10,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 100.0
+        }
+      ]
+    },
+    {
+      "variable": "anthurium-blooms",
+      "label": "Anthurium Blooms",
+      "value": "Ambient Tropical Bench",
+      "unit": "",
+      "rationale": "Must be placed on 'ambient-tropical-bench-13-c-18-c'. In attempt 1, cooler placement scored 0 (score 71.4), producing feedback that anthuriums suffer irreversible black chilling spots and necrosis below 10°C. In attempt 6, placement in isolation vessel also failed with 0 sub-score (score 85.7). Placing on the ambient bench scored 100/100 in attempt 2 (overall 100.0). Measured: Tried: 'Floral Cooler (2°C–4°C)' (0/100), 'Ambient Tropical Bench' (100/100), 'Narcissus Isolation Vessel' (0/100).",
+      "evidence": [
+        {
+          "attempt": 1,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 71.4
+        },
+        {
+          "attempt": 2,
+          "value": "Ambient Tropical Bench",
+          "score": 100.0
+        },
+        {
+          "attempt": 3,
+          "value": "Ambient Tropical Bench",
+          "score": 85.7
+        },
+        {
+          "attempt": 4,
+          "value": "Ambient Tropical Bench",
+          "score": 85.7
+        },
+        {
+          "attempt": 5,
+          "value": "Ambient Tropical Bench",
+          "score": 85.7
+        },
+        {
+          "attempt": 6,
+          "value": "Narcissus Isolation Vessel",
+          "score": 85.7
+        },
+        {
+          "attempt": 7,
+          "value": "Ambient Tropical Bench",
+          "score": 85.7
+        },
+        {
+          "attempt": 8,
+          "value": "Ambient Tropical Bench",
+          "score": 85.7
+        },
+        {
+          "attempt": 9,
+          "value": "Ambient Tropical Bench",
+          "score": 100.0
+        },
+        {
+          "attempt": 10,
+          "value": "Ambient Tropical Bench",
+          "score": 100.0
+        }
+      ]
+    },
+    {
+      "variable": "paperwhite-jonquils-narcissus-tazetta",
+      "label": "Paperwhite Jonquils (Narcissus tazetta)",
+      "value": "Narcissus Isolation Vessel",
+      "unit": "",
+      "rationale": "Must be placed in 'narcissus-isolation-vessel'. In attempt 2, isolation scored 100/100 (total 100.0). In attempt 7, cooler placement scored 0 (score 85.7), with feedback noting paperwhites release lycorine alkaloid sap and must condition in isolated water for 12 hours before sharing vases. Measured: Tried: 'Narcissus Isolation Vessel' (100/100), 'Floral Cooler (2°C–4°C)' (0/100).",
+      "evidence": [
+        {
+          "attempt": 1,
+          "value": "Narcissus Isolation Vessel",
+          "score": 71.4
+        },
+        {
+          "attempt": 2,
+          "value": "Narcissus Isolation Vessel",
+          "score": 100.0
+        },
+        {
+          "attempt": 3,
+          "value": "Narcissus Isolation Vessel",
+          "score": 85.7
+        },
+        {
+          "attempt": 4,
+          "value": "Narcissus Isolation Vessel",
+          "score": 85.7
+        },
+        {
+          "attempt": 5,
+          "value": "Narcissus Isolation Vessel",
+          "score": 85.7
+        },
+        {
+          "attempt": 6,
+          "value": "Narcissus Isolation Vessel",
+          "score": 85.7
+        },
+        {
+          "attempt": 7,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 85.7
+        },
+        {
+          "attempt": 8,
+          "value": "Narcissus Isolation Vessel",
+          "score": 85.7
+        },
+        {
+          "attempt": 9,
+          "value": "Narcissus Isolation Vessel",
+          "score": 100.0
+        },
+        {
+          "attempt": 10,
+          "value": "Narcissus Isolation Vessel",
+          "score": 100.0
+        }
+      ]
+    },
+    {
+      "variable": "vanda-orchids",
+      "label": "Vanda Orchids",
+      "value": "Ambient Tropical Bench",
+      "unit": "",
+      "rationale": "Must be placed on 'ambient-tropical-bench-13-c-18-c'. In attempt 1, cooler placement scored 0 (score 71.4) due to floret dropping and chilling damage. In attempt 8, isolation vessel placement scored 0 (score 85.7). Ambient bench placement scored 100/100 in attempt 2 (overall 100.0). Measured: Tried: 'Floral Cooler (2°C–4°C)' (0/100), 'Ambient Tropical Bench' (100/100), 'Narcissus Isolation Vessel' (0/100).",
+      "evidence": [
+        {
+          "attempt": 1,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 71.4
+        },
+        {
+          "attempt": 2,
+          "value": "Ambient Tropical Bench",
+          "score": 100.0
+        },
+        {
+          "attempt": 3,
+          "value": "Ambient Tropical Bench",
+          "score": 85.7
+        },
+        {
+          "attempt": 4,
+          "value": "Ambient Tropical Bench",
+          "score": 85.7
+        },
+        {
+          "attempt": 5,
+          "value": "Ambient Tropical Bench",
+          "score": 85.7
+        },
+        {
+          "attempt": 6,
+          "value": "Ambient Tropical Bench",
+          "score": 85.7
+        },
+        {
+          "attempt": 7,
+          "value": "Ambient Tropical Bench",
+          "score": 85.7
+        },
+        {
+          "attempt": 8,
+          "value": "Narcissus Isolation Vessel",
+          "score": 85.7
+        },
+        {
+          "attempt": 9,
+          "value": "Ambient Tropical Bench",
+          "score": 100.0
+        },
+        {
+          "attempt": 10,
+          "value": "Ambient Tropical Bench",
+          "score": 100.0
+        }
+      ]
+    },
+    {
+      "variable": "fresh-cut-golden-daffodils-narcissus",
+      "label": "Fresh-cut Golden Daffodils (Narcissus)",
+      "value": "Narcissus Isolation Vessel",
+      "unit": "",
+      "rationale": "Must be placed in 'narcissus-isolation-vessel'. Consistently scored 100/100 across attempts 1 through 10 in the isolation vessel, preventing harmful mucilage from damaging other flowers. Measured: Tried: 'Narcissus Isolation Vessel' (100/100).",
+      "evidence": [
+        {
+          "attempt": 1,
+          "value": "Narcissus Isolation Vessel",
+          "score": 71.4
+        },
+        {
+          "attempt": 2,
+          "value": "Narcissus Isolation Vessel",
+          "score": 100.0
+        },
+        {
+          "attempt": 3,
+          "value": "Narcissus Isolation Vessel",
+          "score": 85.7
+        },
+        {
+          "attempt": 4,
+          "value": "Narcissus Isolation Vessel",
+          "score": 85.7
+        },
+        {
+          "attempt": 5,
+          "value": "Narcissus Isolation Vessel",
+          "score": 85.7
+        },
+        {
+          "attempt": 6,
+          "value": "Narcissus Isolation Vessel",
+          "score": 85.7
+        },
+        {
+          "attempt": 7,
+          "value": "Narcissus Isolation Vessel",
+          "score": 85.7
+        },
+        {
+          "attempt": 8,
+          "value": "Narcissus Isolation Vessel",
+          "score": 85.7
+        },
+        {
+          "attempt": 9,
+          "value": "Narcissus Isolation Vessel",
+          "score": 100.0
+        },
+        {
+          "attempt": 10,
+          "value": "Narcissus Isolation Vessel",
+          "score": 100.0
+        }
+      ]
+    }
+  ],
+  "control_effects": [
+    {
+      "variable": "eucalyptus-foliage-bunches",
+      "effect": "Scores 100 in 'floral-cooler-2-c-4-c'; fails in ambient storage (attempt 3). Measured: Tried: 'Floral Cooler (2°C–4°C)' (100/100), 'Ambient Tropical Bench' (0/100).",
+      "evidence": [
+        {
+          "attempt": 1,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 71.4
+        },
+        {
+          "attempt": 2,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 100.0
+        },
+        {
+          "attempt": 3,
+          "value": "Ambient Tropical Bench",
+          "score": 85.7
+        },
+        {
+          "attempt": 4,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 85.7
+        },
+        {
+          "attempt": 5,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 85.7
+        },
+        {
+          "attempt": 6,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 85.7
+        },
+        {
+          "attempt": 7,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 85.7
+        },
+        {
+          "attempt": 8,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 85.7
+        },
+        {
+          "attempt": 9,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 100.0
+        },
+        {
+          "attempt": 10,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 100.0
+        }
+      ]
+    },
+    {
+      "variable": "dutch-white-lilies-lilium-orientalis",
+      "effect": "Scores 100 in 'floral-cooler-2-c-4-c'; drops to 0 in ambient storage (attempt 4). Measured: Tried: 'Floral Cooler (2°C–4°C)' (100/100), 'Ambient Tropical Bench' (0/100).",
+      "evidence": [
+        {
+          "attempt": 1,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 71.4
+        },
+        {
+          "attempt": 2,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 100.0
+        },
+        {
+          "attempt": 3,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 85.7
+        },
+        {
+          "attempt": 4,
+          "value": "Ambient Tropical Bench",
+          "score": 85.7
+        },
+        {
+          "attempt": 5,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 85.7
+        },
+        {
+          "attempt": 6,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 85.7
+        },
+        {
+          "attempt": 7,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 85.7
+        },
+        {
+          "attempt": 8,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 85.7
+        },
+        {
+          "attempt": 9,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 100.0
+        },
+        {
+          "attempt": 10,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 100.0
+        }
+      ]
+    },
+    {
+      "variable": "freedom-red-roses-rosa",
+      "effect": "Scores 100 in 'floral-cooler-2-c-4-c'; drops to 0 in ambient storage (attempt 5). Measured: Tried: 'Floral Cooler (2°C–4°C)' (100/100), 'Ambient Tropical Bench' (0/100).",
+      "evidence": [
+        {
+          "attempt": 1,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 71.4
+        },
+        {
+          "attempt": 2,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 100.0
+        },
+        {
+          "attempt": 3,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 85.7
+        },
+        {
+          "attempt": 4,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 85.7
+        },
+        {
+          "attempt": 5,
+          "value": "Ambient Tropical Bench",
+          "score": 85.7
+        },
+        {
+          "attempt": 6,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 85.7
+        },
+        {
+          "attempt": 7,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 85.7
+        },
+        {
+          "attempt": 8,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 85.7
+        },
+        {
+          "attempt": 9,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 100.0
+        },
+        {
+          "attempt": 10,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 100.0
+        }
+      ]
+    },
+    {
+      "variable": "anthurium-blooms",
+      "effect": "Scores 100 in 'ambient-tropical-bench-13-c-18-c'; suffers chilling necrosis in cold chambers (attempts 1, 6). Measured: Tried: 'Floral Cooler (2°C–4°C)' (0/100), 'Ambient Tropical Bench' (100/100), 'Narcissus Isolation Vessel' (0/100).",
+      "evidence": [
+        {
+          "attempt": 1,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 71.4
+        },
+        {
+          "attempt": 2,
+          "value": "Ambient Tropical Bench",
+          "score": 100.0
+        },
+        {
+          "attempt": 3,
+          "value": "Ambient Tropical Bench",
+          "score": 85.7
+        },
+        {
+          "attempt": 4,
+          "value": "Ambient Tropical Bench",
+          "score": 85.7
+        },
+        {
+          "attempt": 5,
+          "value": "Ambient Tropical Bench",
+          "score": 85.7
+        },
+        {
+          "attempt": 6,
+          "value": "Narcissus Isolation Vessel",
+          "score": 85.7
+        },
+        {
+          "attempt": 7,
+          "value": "Ambient Tropical Bench",
+          "score": 85.7
+        },
+        {
+          "attempt": 8,
+          "value": "Ambient Tropical Bench",
+          "score": 85.7
+        },
+        {
+          "attempt": 9,
+          "value": "Ambient Tropical Bench",
+          "score": 100.0
+        },
+        {
+          "attempt": 10,
+          "value": "Ambient Tropical Bench",
+          "score": 100.0
+        }
+      ]
+    },
+    {
+      "variable": "paperwhite-jonquils-narcissus-tazetta",
+      "effect": "Scores 100 in 'narcissus-isolation-vessel'; drops to 0 when placed in cooler without isolation (attempt 7). Measured: Tried: 'Narcissus Isolation Vessel' (100/100), 'Floral Cooler (2°C–4°C)' (0/100).",
+      "evidence": [
+        {
+          "attempt": 1,
+          "value": "Narcissus Isolation Vessel",
+          "score": 71.4
+        },
+        {
+          "attempt": 2,
+          "value": "Narcissus Isolation Vessel",
+          "score": 100.0
+        },
+        {
+          "attempt": 3,
+          "value": "Narcissus Isolation Vessel",
+          "score": 85.7
+        },
+        {
+          "attempt": 4,
+          "value": "Narcissus Isolation Vessel",
+          "score": 85.7
+        },
+        {
+          "attempt": 5,
+          "value": "Narcissus Isolation Vessel",
+          "score": 85.7
+        },
+        {
+          "attempt": 6,
+          "value": "Narcissus Isolation Vessel",
+          "score": 85.7
+        },
+        {
+          "attempt": 7,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 85.7
+        },
+        {
+          "attempt": 8,
+          "value": "Narcissus Isolation Vessel",
+          "score": 85.7
+        },
+        {
+          "attempt": 9,
+          "value": "Narcissus Isolation Vessel",
+          "score": 100.0
+        },
+        {
+          "attempt": 10,
+          "value": "Narcissus Isolation Vessel",
+          "score": 100.0
+        }
+      ]
+    },
+    {
+      "variable": "vanda-orchids",
+      "effect": "Scores 100 in 'ambient-tropical-bench-13-c-18-c'; drops florets and suffers chilling injury in cold chambers (attempts 1, 8). Measured: Tried: 'Floral Cooler (2°C–4°C)' (0/100), 'Ambient Tropical Bench' (100/100), 'Narcissus Isolation Vessel' (0/100).",
+      "evidence": [
+        {
+          "attempt": 1,
+          "value": "Floral Cooler (2°C–4°C)",
+          "score": 71.4
+        },
+        {
+          "attempt": 2,
+          "value": "Ambient Tropical Bench",
+          "score": 100.0
+        },
+        {
+          "attempt": 3,
+          "value": "Ambient Tropical Bench",
+          "score": 85.7
+        },
+        {
+          "attempt": 4,
+          "value": "Ambient Tropical Bench",
+          "score": 85.7
+        },
+        {
+          "attempt": 5,
+          "value": "Ambient Tropical Bench",
+          "score": 85.7
+        },
+        {
+          "attempt": 6,
+          "value": "Ambient Tropical Bench",
+          "score": 85.7
+        },
+        {
+          "attempt": 7,
+          "value": "Ambient Tropical Bench",
+          "score": 85.7
+        },
+        {
+          "attempt": 8,
+          "value": "Narcissus Isolation Vessel",
+          "score": 85.7
+        },
+        {
+          "attempt": 9,
+          "value": "Ambient Tropical Bench",
+          "score": 100.0
+        },
+        {
+          "attempt": 10,
+          "value": "Ambient Tropical Bench",
+          "score": 100.0
+        }
+      ]
+    },
+    {
+      "variable": "fresh-cut-golden-daffodils-narcissus",
+      "effect": "Scores 100 in 'narcissus-isolation-vessel' across all attempts. Measured: Tried: 'Narcissus Isolation Vessel' (100/100).",
+      "evidence": [
+        {
+          "attempt": 1,
+          "value": "Narcissus Isolation Vessel",
+          "score": 71.4
+        },
+        {
+          "attempt": 2,
+          "value": "Narcissus Isolation Vessel",
+          "score": 100.0
+        },
+        {
+          "attempt": 3,
+          "value": "Narcissus Isolation Vessel",
+          "score": 85.7
+        },
+        {
+          "attempt": 4,
+          "value": "Narcissus Isolation Vessel",
+          "score": 85.7
+        },
+        {
+          "attempt": 5,
+          "value": "Narcissus Isolation Vessel",
+          "score": 85.7
+        },
+        {
+          "attempt": 6,
+          "value": "Narcissus Isolation Vessel",
+          "score": 85.7
+        },
+        {
+          "attempt": 7,
+          "value": "Narcissus Isolation Vessel",
+          "score": 85.7
+        },
+        {
+          "attempt": 8,
+          "value": "Narcissus Isolation Vessel",
+          "score": 85.7
+        },
+        {
+          "attempt": 9,
+          "value": "Narcissus Isolation Vessel",
+          "score": 100.0
+        },
+        {
+          "attempt": 10,
+          "value": "Narcissus Isolation Vessel",
+          "score": 100.0
+        }
+      ]
+    }
+  ],
+  "steps": [
+    "Identify incoming temperate cut flowers and foliage (Eucalyptus Foliage Bunches, Dutch White Lilies [Lilium orientalis], and Freedom Red Roses [Rosa]) and store them immediately in the Floral Cooler set to 2°C–4°C.",
+    "Identify chilling-sensitive tropical blooms (Anthurium Blooms and Vanda Orchids) and place them on the Ambient Tropical Bench held at 13°C–18°C, never permitting exposure below 10°C.",
+    "Identify Narcissus species (Fresh-cut Golden Daffodils and Paperwhite Jonquils [Narcissus tazetta]) and isolate them in dedicated Narcissus Isolation Vessels filled with fresh water for a minimum of 12 hours before considering cross-flower arrangement.",
+    "Keep ambient tropicals away from refrigerated drafts and cold chamber shelving to avoid irreversible black chilling spots and petal drop.",
+    "Prevent water sharing between isolated Narcissus containers and buckets containing other flower types to stop toxic lycorine alkaloid sap transmission."
+  ],
+  "caveats": [
+    "Narcissus species exude toxic mucilage containing lycorine alkaloid that clogs vascular systems and poisons companion flowers; never mix them in communal buckets without proper isolated conditioning.",
+    "Tropical flowers such as Anthuriums and Vanda Orchids suffer rapid chilling necrosis, floret drop, and black spotting when exposed to temperatures below 10°C; do not place them inside standard refrigerated floral coolers.",
+    "Temperate flowers like roses and lilies held in warm ambient storage open prematurely and experience drastic reductions in vase life due to elevated respiration rates.",
+    "Hardy cut foliage like eucalyptus desiccates or loses dormancy if kept out of cold-chain refrigeration.",
+    "Narcissus species exude toxic mucilage and require isolation vessels.",
+    "Tropical flowers (anthuriums, orchids) must stay at warmer ambient temperatures (13°C–18°C) to prevent chilling injury.",
+    "All Narcissus varieties produce harmful mucilage that damages other flowers and require isolated vessels.",
+    "Tropical varieties (Anthurium, Vanda Orchids) suffer chilling injury below 10°C–13°C and must remain in ambient tropical conditions.",
+    "Standard cut flowers and foliage thrive at cold chain temperatures (2°C–4°C).",
+    "Temperate cut flowers and hardy foliage must stay in the Floral Cooler (2°C–4°C).",
+    "Narcissus species exude toxic mucilage and must be isolated.",
+    "Temperate cut flowers (roses, lilies) and cut foliage (eucalyptus) must be stored in the Floral Cooler (2°C–4°C).",
+    "Tropical flowers (anthuriums, vanda orchids) suffer chilling damage below 10°C–13°C and must be kept on the Ambient Tropical Bench.",
+    "Narcissus species (paperwhites, daffodils) secrete toxic mucilage and must be kept in the Narcissus Isolation Vessel.",
+    "All optimal item assignments have been conclusively mapped across attempts 1-5; re-applying the 100% solution achieves maximum score.",
+    "Narcissus species release mucilage that clogs the vascular bundles of other flowers if not isolated.",
+    "Tropical varieties (anthuriums, vanda orchids) require warm ambient temperatures (13°C–18°C) to prevent severe chilling injury.",
+    "Temperate cut flowers (roses, lilies) and cut foliage (eucalyptus) require refrigerated storage (2°C–4°C) to suppress respiration and prolong shelf life.",
+    "All Narcissus varieties secrete mucilage containing toxic alkaloids requiring specialized isolation containers.",
+    "Narcissus species (daffodils, paperwhites) exude lycorine alkaloids in mucilage and must condition in isolation.",
+    "Tropical flowers (anthuriums, orchids) require ambient storage (13°C–18°C) to prevent chilling necrosis.",
+    "Temperate cut flowers and greens (roses, lilies, eucalyptus) require refrigeration (2°C–4°C) to preserve freshness.",
+    "Temperate flowers and cut foliage require 2°C–4°C refrigeration to retard respiration and senescence."
+  ],
+  "problems": [
+    {
+      "problem": "Anthuriums suffer irreversible black chilling spots and petal necrosis if placed below 10°C.",
+      "attempt": 1,
+      "fix": "Apply the learned values."
+    },
+    {
+      "problem": "Tropical orchids drop florets and experience rapid chilling damage inside a standard floral cooler.",
+      "attempt": 1,
+      "fix": "Apply the learned values."
+    },
+    {
+      "problem": "Anthurium Blooms and Vanda Orchids are tropical and experience chilling damage in the standard floral cooler.",
+      "attempt": 1,
+      "fix": "Apply the learned values."
+    },
+    {
+      "problem": "Hardy greens and temperate cut foliage stay crisp and dormant inside the refrigerated cooler.",
+      "attempt": 3,
+      "fix": "Apply the learned values."
+    },
+    {
+      "problem": "Placing eucalyptus foliage in the ambient bench leads to premature senescence / loss of crisp dormancy.",
+      "attempt": 3,
+      "fix": "Apply the learned values."
+    },
+    {
+      "problem": "Lilies preserve petal firmness and bud life best in standard high-humidity refrigerated storage.",
+      "attempt": 4,
+      "fix": "Apply the learned values."
+    },
+    {
+      "problem": "Placing Lilium orientalis in ambient temperatures causes loss of petal firmness and rapid senescence.",
+      "attempt": 4,
+      "fix": "Apply the learned values."
+    },
+    {
+      "problem": "Temperate garden flowers like roses must be held near freezing to slow respiration and halt rapid blossom opening.",
+      "attempt": 5,
+      "fix": "Apply the learned values."
+    },
+    {
+      "problem": "Holding temperate roses at ambient temperatures leads to premature opening and shelf life failure.",
+      "attempt": 5,
+      "fix": "Apply the learned values."
+    },
+    {
+      "problem": "Placing tropical anthuriums in cold isolation vessels causes chilling damage and necrosis.",
+      "attempt": 6,
+      "fix": "Apply the learned values."
+    },
+    {
+      "problem": "Paperwhites release sap containing lycorine alkaloid; they must condition in isolated water for 12 hours before sharing vases.",
+      "attempt": 7,
+      "fix": "Apply the learned values."
+    },
+    {
+      "problem": "Paperwhites placed in floral cooler fail postharvest protocol due to alkaloid sap release requiring isolated conditioning.",
+      "attempt": 7,
+      "fix": "Apply the learned values."
+    },
+    {
+      "problem": "Placing tropical Vanda orchids in an isolation vessel exposes them to non-optimal postharvest conditions and potential sap contamination.",
+      "attempt": 8,
+      "fix": "Apply the learned values."
+    }
+  ],
+  "score_history": [
+    {
+      "attempt": 1,
+      "score": 71.4,
+      "passed": true
+    },
+    {
+      "attempt": 2,
+      "score": 100.0,
+      "passed": true
+    },
+    {
+      "attempt": 3,
+      "score": 85.7,
+      "passed": true
+    },
+    {
+      "attempt": 4,
+      "score": 85.7,
+      "passed": true
+    },
+    {
+      "attempt": 5,
+      "score": 85.7,
+      "passed": true
+    },
+    {
+      "attempt": 6,
+      "score": 85.7,
+      "passed": true
+    },
+    {
+      "attempt": 7,
+      "score": 85.7,
+      "passed": true
+    },
+    {
+      "attempt": 8,
+      "score": 85.7,
+      "passed": true
+    },
+    {
+      "attempt": 9,
+      "score": 100.0,
+      "passed": true
+    },
+    {
+      "attempt": 10,
+      "score": 100.0,
+      "passed": true
+    }
+  ],
+  "attempts": [
+    {
+      "attempt": 1,
+      "run_id": "florist-1791647970511-l3-a01",
+      "inputs": {
+        "choices": {
+          "eucalyptus-foliage-bunches": "floral-cooler-2-c-4-c",
+          "dutch-white-lilies-lilium-orientalis": "floral-cooler-2-c-4-c",
+          "freedom-red-roses-rosa": "floral-cooler-2-c-4-c",
+          "anthurium-blooms": "floral-cooler-2-c-4-c",
+          "paperwhite-jonquils-narcissus-tazetta": "narcissus-isolation-vessel",
+          "vanda-orchids": "floral-cooler-2-c-4-c",
+          "fresh-cut-golden-daffodils-narcissus": "narcissus-isolation-vessel"
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_left",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        }
+      ],
+      "score": 71.4,
+      "passed": true,
+      "feedback": [
+        "Anthuriums suffer irreversible black chilling spots and petal necrosis if placed below 10°C.",
+        "Tropical orchids drop florets and experience rapid chilling damage inside a standard floral cooler."
+      ],
+      "breakdown": {
+        "eucalyptus-foliage-bunches": {
+          "label": "Eucalyptus Foliage Bunches",
+          "score": 100
+        },
+        "dutch-white-lilies-lilium-orientalis": {
+          "label": "Dutch White Lilies (Lilium orientalis)",
+          "score": 100
+        },
+        "freedom-red-roses-rosa": {
+          "label": "Freedom Red Roses (Rosa)",
+          "score": 100
+        },
+        "anthurium-blooms": {
+          "label": "Anthurium Blooms",
+          "score": 0
+        },
+        "paperwhite-jonquils-narcissus-tazetta": {
+          "label": "Paperwhite Jonquils (Narcissus tazetta)",
+          "score": 100
+        },
+        "vanda-orchids": {
+          "label": "Vanda Orchids",
+          "score": 0
+        },
+        "fresh-cut-golden-daffodils-narcissus": {
+          "label": "Fresh-cut Golden Daffodils (Narcissus)",
+          "score": 100
+        }
+      },
+      "problems_found": [
+        "Anthuriums suffer irreversible black chilling spots and petal necrosis if placed below 10°C.",
+        "Tropical orchids drop florets and experience rapid chilling damage inside a standard floral cooler.",
+        "Anthurium Blooms and Vanda Orchids are tropical and experience chilling damage in the standard floral cooler."
+      ],
+      "caveats": [
+        "Narcissus species exude toxic mucilage and require isolation vessels.",
+        "Tropical flowers (anthuriums, orchids) must stay at warmer ambient temperatures (13°C–18°C) to prevent chilling injury."
+      ],
+      "hypothesis": "Eucalyptus is standard hardy cut foliage and should be stored in the standard floral cooler (2°C–4°C) to reduce respiration and preserve freshness, unlike chilling-sensitive tropicals or sap-emitting narcissus.",
+      "what_changed": "Initial attempt: placing eucalyptus-foliage-bunches into floral-cooler-2-c-4-c."
+    },
+    {
+      "attempt": 2,
+      "run_id": "florist-1791647970511-l3-a02",
+      "inputs": {
+        "choices": {
+          "eucalyptus-foliage-bunches": "floral-cooler-2-c-4-c",
+          "dutch-white-lilies-lilium-orientalis": "floral-cooler-2-c-4-c",
+          "freedom-red-roses-rosa": "floral-cooler-2-c-4-c",
+          "anthurium-blooms": "ambient-tropical-bench-13-c-18-c",
+          "paperwhite-jonquils-narcissus-tazetta": "narcissus-isolation-vessel",
+          "vanda-orchids": "ambient-tropical-bench-13-c-18-c",
+          "fresh-cut-golden-daffodils-narcissus": "narcissus-isolation-vessel"
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_left",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        }
+      ],
+      "score": 100.0,
+      "passed": true,
+      "feedback": [
+        "Lovely work!"
+      ],
+      "breakdown": {
+        "eucalyptus-foliage-bunches": {
+          "label": "Eucalyptus Foliage Bunches",
+          "score": 100
+        },
+        "dutch-white-lilies-lilium-orientalis": {
+          "label": "Dutch White Lilies (Lilium orientalis)",
+          "score": 100
+        },
+        "freedom-red-roses-rosa": {
+          "label": "Freedom Red Roses (Rosa)",
+          "score": 100
+        },
+        "anthurium-blooms": {
+          "label": "Anthurium Blooms",
+          "score": 100
+        },
+        "paperwhite-jonquils-narcissus-tazetta": {
+          "label": "Paperwhite Jonquils (Narcissus tazetta)",
+          "score": 100
+        },
+        "vanda-orchids": {
+          "label": "Vanda Orchids",
+          "score": 100
+        },
+        "fresh-cut-golden-daffodils-narcissus": {
+          "label": "Fresh-cut Golden Daffodils (Narcissus)",
+          "score": 100
+        }
+      },
+      "problems_found": [],
+      "caveats": [
+        "All Narcissus varieties produce harmful mucilage that damages other flowers and require isolated vessels.",
+        "Tropical varieties (Anthurium, Vanda Orchids) suffer chilling injury below 10°C–13°C and must remain in ambient tropical conditions.",
+        "Standard cut flowers and foliage thrive at cold chain temperatures (2°C–4°C)."
+      ],
+      "hypothesis": "Reassigning Anthurium Blooms and Vanda Orchids to 'ambient-tropical-bench-13-c-18-c' while maintaining all other correct placements will result in a 100% score.",
+      "what_changed": "Changed 'anthurium-blooms' and 'vanda-orchids' from 'floral-cooler-2-c-4-c' to 'ambient-tropical-bench-13-c-18-c'."
+    },
+    {
+      "attempt": 3,
+      "run_id": "florist-1791647970511-l3-a03",
+      "inputs": {
+        "choices": {
+          "eucalyptus-foliage-bunches": "ambient-tropical-bench-13-c-18-c",
+          "dutch-white-lilies-lilium-orientalis": "floral-cooler-2-c-4-c",
+          "freedom-red-roses-rosa": "floral-cooler-2-c-4-c",
+          "anthurium-blooms": "ambient-tropical-bench-13-c-18-c",
+          "paperwhite-jonquils-narcissus-tazetta": "narcissus-isolation-vessel",
+          "vanda-orchids": "ambient-tropical-bench-13-c-18-c",
+          "fresh-cut-golden-daffodils-narcissus": "narcissus-isolation-vessel"
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_left",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_left",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        }
+      ],
+      "score": 85.7,
+      "passed": true,
+      "feedback": [
+        "Hardy greens and temperate cut foliage stay crisp and dormant inside the refrigerated cooler."
+      ],
+      "breakdown": {
+        "eucalyptus-foliage-bunches": {
+          "label": "Eucalyptus Foliage Bunches",
+          "score": 0
+        },
+        "dutch-white-lilies-lilium-orientalis": {
+          "label": "Dutch White Lilies (Lilium orientalis)",
+          "score": 100
+        },
+        "freedom-red-roses-rosa": {
+          "label": "Freedom Red Roses (Rosa)",
+          "score": 100
+        },
+        "anthurium-blooms": {
+          "label": "Anthurium Blooms",
+          "score": 100
+        },
+        "paperwhite-jonquils-narcissus-tazetta": {
+          "label": "Paperwhite Jonquils (Narcissus tazetta)",
+          "score": 100
+        },
+        "vanda-orchids": {
+          "label": "Vanda Orchids",
+          "score": 100
+        },
+        "fresh-cut-golden-daffodils-narcissus": {
+          "label": "Fresh-cut Golden Daffodils (Narcissus)",
+          "score": 100
+        }
+      },
+      "problems_found": [
+        "Hardy greens and temperate cut foliage stay crisp and dormant inside the refrigerated cooler.",
+        "Placing eucalyptus foliage in the ambient bench leads to premature senescence / loss of crisp dormancy."
+      ],
+      "caveats": [
+        "Temperate cut flowers and hardy foliage must stay in the Floral Cooler (2°C–4°C).",
+        "Tropical flowers (Anthurium, Vanda Orchids) must stay at Ambient Tropical Bench (13°C–18°C) to prevent chilling damage.",
+        "Narcissus species exude toxic mucilage and must be isolated."
+      ],
+      "hypothesis": "Score is already perfect; check what goes wrong with another option: 'Eucalyptus Foliage Bunches' from 'Floral Cooler (2°C–4°C)' to 'Ambient Tropical Bench', keep the rest.",
+      "what_changed": "Eucalyptus Foliage Bunches: floral-cooler-2-c-4-c -> ambient-tropical-bench-13-c-18-c"
+    },
+    {
+      "attempt": 4,
+      "run_id": "florist-1791647970511-l3-a04",
+      "inputs": {
+        "choices": {
+          "eucalyptus-foliage-bunches": "floral-cooler-2-c-4-c",
+          "dutch-white-lilies-lilium-orientalis": "ambient-tropical-bench-13-c-18-c",
+          "freedom-red-roses-rosa": "floral-cooler-2-c-4-c",
+          "anthurium-blooms": "ambient-tropical-bench-13-c-18-c",
+          "paperwhite-jonquils-narcissus-tazetta": "narcissus-isolation-vessel",
+          "vanda-orchids": "ambient-tropical-bench-13-c-18-c",
+          "fresh-cut-golden-daffodils-narcissus": "narcissus-isolation-vessel"
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_left",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_left",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        }
+      ],
+      "score": 85.7,
+      "passed": true,
+      "feedback": [
+        "Lilies preserve petal firmness and bud life best in standard high-humidity refrigerated storage."
+      ],
+      "breakdown": {
+        "eucalyptus-foliage-bunches": {
+          "label": "Eucalyptus Foliage Bunches",
+          "score": 100
+        },
+        "dutch-white-lilies-lilium-orientalis": {
+          "label": "Dutch White Lilies (Lilium orientalis)",
+          "score": 0
+        },
+        "freedom-red-roses-rosa": {
+          "label": "Freedom Red Roses (Rosa)",
+          "score": 100
+        },
+        "anthurium-blooms": {
+          "label": "Anthurium Blooms",
+          "score": 100
+        },
+        "paperwhite-jonquils-narcissus-tazetta": {
+          "label": "Paperwhite Jonquils (Narcissus tazetta)",
+          "score": 100
+        },
+        "vanda-orchids": {
+          "label": "Vanda Orchids",
+          "score": 100
+        },
+        "fresh-cut-golden-daffodils-narcissus": {
+          "label": "Fresh-cut Golden Daffodils (Narcissus)",
+          "score": 100
+        }
+      },
+      "problems_found": [
+        "Lilies preserve petal firmness and bud life best in standard high-humidity refrigerated storage.",
+        "Placing Lilium orientalis in ambient temperatures causes loss of petal firmness and rapid senescence."
+      ],
+      "caveats": [
+        "Temperate cut flowers (roses, lilies) and cut foliage (eucalyptus) must be stored in the Floral Cooler (2°C–4°C).",
+        "Tropical flowers (anthuriums, vanda orchids) suffer chilling damage below 10°C–13°C and must be kept on the Ambient Tropical Bench.",
+        "Narcissus species (paperwhites, daffodils) secrete toxic mucilage and must be kept in the Narcissus Isolation Vessel."
+      ],
+      "hypothesis": "Score is already perfect; check what goes wrong with another option: 'Dutch White Lilies (Lilium orientalis)' from 'Floral Cooler (2°C–4°C)' to 'Ambient Tropical Bench', keep the rest.",
+      "what_changed": "Eucalyptus Foliage Bunches: ambient-tropical-bench-13-c-18-c -> floral-cooler-2-c-4-c; Dutch White Lilies (Lilium orientalis): floral-cooler-2-c-4-c -> ambient-tropical-bench-13-c-18-c"
+    },
+    {
+      "attempt": 5,
+      "run_id": "florist-1791647970511-l3-a05",
+      "inputs": {
+        "choices": {
+          "eucalyptus-foliage-bunches": "floral-cooler-2-c-4-c",
+          "dutch-white-lilies-lilium-orientalis": "floral-cooler-2-c-4-c",
+          "freedom-red-roses-rosa": "ambient-tropical-bench-13-c-18-c",
+          "anthurium-blooms": "ambient-tropical-bench-13-c-18-c",
+          "paperwhite-jonquils-narcissus-tazetta": "narcissus-isolation-vessel",
+          "vanda-orchids": "ambient-tropical-bench-13-c-18-c",
+          "fresh-cut-golden-daffodils-narcissus": "narcissus-isolation-vessel"
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_left",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        }
+      ],
+      "score": 85.7,
+      "passed": true,
+      "feedback": [
+        "Temperate garden flowers like roses must be held near freezing to slow respiration and halt rapid blossom opening."
+      ],
+      "breakdown": {
+        "eucalyptus-foliage-bunches": {
+          "label": "Eucalyptus Foliage Bunches",
+          "score": 100
+        },
+        "dutch-white-lilies-lilium-orientalis": {
+          "label": "Dutch White Lilies (Lilium orientalis)",
+          "score": 100
+        },
+        "freedom-red-roses-rosa": {
+          "label": "Freedom Red Roses (Rosa)",
+          "score": 0
+        },
+        "anthurium-blooms": {
+          "label": "Anthurium Blooms",
+          "score": 100
+        },
+        "paperwhite-jonquils-narcissus-tazetta": {
+          "label": "Paperwhite Jonquils (Narcissus tazetta)",
+          "score": 100
+        },
+        "vanda-orchids": {
+          "label": "Vanda Orchids",
+          "score": 100
+        },
+        "fresh-cut-golden-daffodils-narcissus": {
+          "label": "Fresh-cut Golden Daffodils (Narcissus)",
+          "score": 100
+        }
+      },
+      "problems_found": [
+        "Temperate garden flowers like roses must be held near freezing to slow respiration and halt rapid blossom opening.",
+        "Holding temperate roses at ambient temperatures leads to premature opening and shelf life failure."
+      ],
+      "caveats": [
+        "All optimal item assignments have been conclusively mapped across attempts 1-5; re-applying the 100% solution achieves maximum score."
+      ],
+      "hypothesis": "Score is already perfect; check what goes wrong with another option: 'Freedom Red Roses (Rosa)' from 'Floral Cooler (2°C–4°C)' to 'Ambient Tropical Bench', keep the rest.",
+      "what_changed": "Dutch White Lilies (Lilium orientalis): ambient-tropical-bench-13-c-18-c -> floral-cooler-2-c-4-c; Freedom Red Roses (Rosa): floral-cooler-2-c-4-c -> ambient-tropical-bench-13-c-18-c"
+    },
+    {
+      "attempt": 6,
+      "run_id": "florist-1791647970511-l3-a06",
+      "inputs": {
+        "choices": {
+          "eucalyptus-foliage-bunches": "floral-cooler-2-c-4-c",
+          "dutch-white-lilies-lilium-orientalis": "floral-cooler-2-c-4-c",
+          "freedom-red-roses-rosa": "floral-cooler-2-c-4-c",
+          "anthurium-blooms": "narcissus-isolation-vessel",
+          "paperwhite-jonquils-narcissus-tazetta": "narcissus-isolation-vessel",
+          "vanda-orchids": "ambient-tropical-bench-13-c-18-c",
+          "fresh-cut-golden-daffodils-narcissus": "narcissus-isolation-vessel"
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_left",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        }
+      ],
+      "score": 85.7,
+      "passed": true,
+      "feedback": [
+        "Anthuriums suffer irreversible black chilling spots and petal necrosis if placed below 10°C."
+      ],
+      "breakdown": {
+        "eucalyptus-foliage-bunches": {
+          "label": "Eucalyptus Foliage Bunches",
+          "score": 100
+        },
+        "dutch-white-lilies-lilium-orientalis": {
+          "label": "Dutch White Lilies (Lilium orientalis)",
+          "score": 100
+        },
+        "freedom-red-roses-rosa": {
+          "label": "Freedom Red Roses (Rosa)",
+          "score": 100
+        },
+        "anthurium-blooms": {
+          "label": "Anthurium Blooms",
+          "score": 0
+        },
+        "paperwhite-jonquils-narcissus-tazetta": {
+          "label": "Paperwhite Jonquils (Narcissus tazetta)",
+          "score": 100
+        },
+        "vanda-orchids": {
+          "label": "Vanda Orchids",
+          "score": 100
+        },
+        "fresh-cut-golden-daffodils-narcissus": {
+          "label": "Fresh-cut Golden Daffodils (Narcissus)",
+          "score": 100
+        }
+      },
+      "problems_found": [
+        "Placing tropical anthuriums in cold isolation vessels causes chilling damage and necrosis."
+      ],
+      "caveats": [
+        "Narcissus species release mucilage that clogs the vascular bundles of other flowers if not isolated.",
+        "Tropical varieties (anthuriums, vanda orchids) require warm ambient temperatures (13°C–18°C) to prevent severe chilling injury.",
+        "Temperate cut flowers (roses, lilies) and cut foliage (eucalyptus) require refrigerated storage (2°C–4°C) to suppress respiration and prolong shelf life."
+      ],
+      "hypothesis": "Score is already perfect; check what goes wrong with another option: 'Anthurium Blooms' from 'Ambient Tropical Bench' to 'Narcissus Isolation Vessel', keep the rest.",
+      "what_changed": "Freedom Red Roses (Rosa): ambient-tropical-bench-13-c-18-c -> floral-cooler-2-c-4-c; Anthurium Blooms: ambient-tropical-bench-13-c-18-c -> narcissus-isolation-vessel"
+    },
+    {
+      "attempt": 7,
+      "run_id": "florist-1791647970511-l3-a07",
+      "inputs": {
+        "choices": {
+          "eucalyptus-foliage-bunches": "floral-cooler-2-c-4-c",
+          "dutch-white-lilies-lilium-orientalis": "floral-cooler-2-c-4-c",
+          "freedom-red-roses-rosa": "floral-cooler-2-c-4-c",
+          "anthurium-blooms": "ambient-tropical-bench-13-c-18-c",
+          "paperwhite-jonquils-narcissus-tazetta": "floral-cooler-2-c-4-c",
+          "vanda-orchids": "ambient-tropical-bench-13-c-18-c",
+          "fresh-cut-golden-daffodils-narcissus": "narcissus-isolation-vessel"
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_left",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        }
+      ],
+      "score": 85.7,
+      "passed": true,
+      "feedback": [
+        "Paperwhites release sap containing lycorine alkaloid; they must condition in isolated water for 12 hours before sharing vases."
+      ],
+      "breakdown": {
+        "eucalyptus-foliage-bunches": {
+          "label": "Eucalyptus Foliage Bunches",
+          "score": 100
+        },
+        "dutch-white-lilies-lilium-orientalis": {
+          "label": "Dutch White Lilies (Lilium orientalis)",
+          "score": 100
+        },
+        "freedom-red-roses-rosa": {
+          "label": "Freedom Red Roses (Rosa)",
+          "score": 100
+        },
+        "anthurium-blooms": {
+          "label": "Anthurium Blooms",
+          "score": 100
+        },
+        "paperwhite-jonquils-narcissus-tazetta": {
+          "label": "Paperwhite Jonquils (Narcissus tazetta)",
+          "score": 0
+        },
+        "vanda-orchids": {
+          "label": "Vanda Orchids",
+          "score": 100
+        },
+        "fresh-cut-golden-daffodils-narcissus": {
+          "label": "Fresh-cut Golden Daffodils (Narcissus)",
+          "score": 100
+        }
+      },
+      "problems_found": [
+        "Paperwhites release sap containing lycorine alkaloid; they must condition in isolated water for 12 hours before sharing vases.",
+        "Paperwhites placed in floral cooler fail postharvest protocol due to alkaloid sap release requiring isolated conditioning."
+      ],
+      "caveats": [
+        "All Narcissus varieties secrete mucilage containing toxic alkaloids requiring specialized isolation containers."
+      ],
+      "hypothesis": "Testing Paperwhite Jonquils in the Floral Cooler will confirm the negative impact of Narcissus sap/mucilage on other cut flowers or the requirement for dedicated isolation.",
+      "what_changed": "Moving 'paperwhite-jonquils-narcissus-tazetta' from 'narcissus-isolation-vessel' to 'floral-cooler-2-c-4-c' as indicated by the systematic search suggestion while keeping all other items in their validated optimal placements."
+    },
+    {
+      "attempt": 8,
+      "run_id": "florist-1791647970511-l3-a08",
+      "inputs": {
+        "choices": {
+          "eucalyptus-foliage-bunches": "floral-cooler-2-c-4-c",
+          "dutch-white-lilies-lilium-orientalis": "floral-cooler-2-c-4-c",
+          "freedom-red-roses-rosa": "floral-cooler-2-c-4-c",
+          "anthurium-blooms": "ambient-tropical-bench-13-c-18-c",
+          "paperwhite-jonquils-narcissus-tazetta": "narcissus-isolation-vessel",
+          "vanda-orchids": "narcissus-isolation-vessel",
+          "fresh-cut-golden-daffodils-narcissus": "narcissus-isolation-vessel"
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        }
+      ],
+      "score": 85.7,
+      "passed": true,
+      "feedback": [
+        "Tropical orchids drop florets and experience rapid chilling damage inside a standard floral cooler."
+      ],
+      "breakdown": {
+        "eucalyptus-foliage-bunches": {
+          "label": "Eucalyptus Foliage Bunches",
+          "score": 100
+        },
+        "dutch-white-lilies-lilium-orientalis": {
+          "label": "Dutch White Lilies (Lilium orientalis)",
+          "score": 100
+        },
+        "freedom-red-roses-rosa": {
+          "label": "Freedom Red Roses (Rosa)",
+          "score": 100
+        },
+        "anthurium-blooms": {
+          "label": "Anthurium Blooms",
+          "score": 100
+        },
+        "paperwhite-jonquils-narcissus-tazetta": {
+          "label": "Paperwhite Jonquils (Narcissus tazetta)",
+          "score": 100
+        },
+        "vanda-orchids": {
+          "label": "Vanda Orchids",
+          "score": 0
+        },
+        "fresh-cut-golden-daffodils-narcissus": {
+          "label": "Fresh-cut Golden Daffodils (Narcissus)",
+          "score": 100
+        }
+      },
+      "problems_found": [
+        "Placing tropical Vanda orchids in an isolation vessel exposes them to non-optimal postharvest conditions and potential sap contamination."
+      ],
+      "caveats": [
+        "Narcissus species (daffodils, paperwhites) exude lycorine alkaloids in mucilage and must condition in isolation.",
+        "Tropical flowers (anthuriums, orchids) require ambient storage (13°C–18°C) to prevent chilling necrosis.",
+        "Temperate cut flowers and greens (roses, lilies, eucalyptus) require refrigeration (2°C–4°C) to preserve freshness."
+      ],
+      "hypothesis": "Testing Vanda Orchids in the Narcissus Isolation Vessel will trigger chilling injury or mucilage exposure feedback, confirming that orchids must remain on the Ambient Tropical Bench.",
+      "what_changed": "Move 'Vanda Orchids' from 'Ambient Tropical Bench' to 'Narcissus Isolation Vessel' as suggested by the systematic exploration, keeping all other items at their optimal settings."
+    },
+    {
+      "attempt": 9,
+      "run_id": "florist-1791647970511-l3-a09",
+      "inputs": {
+        "choices": {
+          "eucalyptus-foliage-bunches": "floral-cooler-2-c-4-c",
+          "dutch-white-lilies-lilium-orientalis": "floral-cooler-2-c-4-c",
+          "freedom-red-roses-rosa": "floral-cooler-2-c-4-c",
+          "anthurium-blooms": "ambient-tropical-bench-13-c-18-c",
+          "paperwhite-jonquils-narcissus-tazetta": "narcissus-isolation-vessel",
+          "vanda-orchids": "ambient-tropical-bench-13-c-18-c",
+          "fresh-cut-golden-daffodils-narcissus": "narcissus-isolation-vessel"
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_left",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        }
+      ],
+      "score": 100.0,
+      "passed": true,
+      "feedback": [
+        "Lovely work!"
+      ],
+      "breakdown": {
+        "eucalyptus-foliage-bunches": {
+          "label": "Eucalyptus Foliage Bunches",
+          "score": 100
+        },
+        "dutch-white-lilies-lilium-orientalis": {
+          "label": "Dutch White Lilies (Lilium orientalis)",
+          "score": 100
+        },
+        "freedom-red-roses-rosa": {
+          "label": "Freedom Red Roses (Rosa)",
+          "score": 100
+        },
+        "anthurium-blooms": {
+          "label": "Anthurium Blooms",
+          "score": 100
+        },
+        "paperwhite-jonquils-narcissus-tazetta": {
+          "label": "Paperwhite Jonquils (Narcissus tazetta)",
+          "score": 100
+        },
+        "vanda-orchids": {
+          "label": "Vanda Orchids",
+          "score": 100
+        },
+        "fresh-cut-golden-daffodils-narcissus": {
+          "label": "Fresh-cut Golden Daffodils (Narcissus)",
+          "score": 100
+        }
+      },
+      "problems_found": [],
+      "caveats": [
+        "Narcissus species exude toxic alkaloid mucilage and must condition in isolation.",
+        "Tropical flowers (anthuriums, vanda orchids) suffer chilling damage below 10°C–13°C and must stay on the ambient tropical bench.",
+        "Temperate flowers and cut foliage require 2°C–4°C refrigeration to retard respiration and senescence."
+      ],
+      "hypothesis": "Every option was tried; exploit the best combination.",
+      "what_changed": "Vanda Orchids: narcissus-isolation-vessel -> ambient-tropical-bench-13-c-18-c"
+    },
+    {
+      "attempt": 10,
+      "run_id": "florist-1791647970511-l3-a10",
+      "inputs": {
+        "choices": {
+          "eucalyptus-foliage-bunches": "floral-cooler-2-c-4-c",
+          "dutch-white-lilies-lilium-orientalis": "floral-cooler-2-c-4-c",
+          "freedom-red-roses-rosa": "floral-cooler-2-c-4-c",
+          "anthurium-blooms": "ambient-tropical-bench-13-c-18-c",
+          "paperwhite-jonquils-narcissus-tazetta": "narcissus-isolation-vessel",
+          "vanda-orchids": "ambient-tropical-bench-13-c-18-c",
+          "fresh-cut-golden-daffodils-narcissus": "narcissus-isolation-vessel"
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_left",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        }
+      ],
+      "score": 100.0,
+      "passed": true,
+      "feedback": [
+        "Lovely work!"
+      ],
+      "breakdown": {
+        "eucalyptus-foliage-bunches": {
+          "label": "Eucalyptus Foliage Bunches",
+          "score": 100
+        },
+        "dutch-white-lilies-lilium-orientalis": {
+          "label": "Dutch White Lilies (Lilium orientalis)",
+          "score": 100
+        },
+        "freedom-red-roses-rosa": {
+          "label": "Freedom Red Roses (Rosa)",
+          "score": 100
+        },
+        "anthurium-blooms": {
+          "label": "Anthurium Blooms",
+          "score": 100
+        },
+        "paperwhite-jonquils-narcissus-tazetta": {
+          "label": "Paperwhite Jonquils (Narcissus tazetta)",
+          "score": 100
+        },
+        "vanda-orchids": {
+          "label": "Vanda Orchids",
+          "score": 100
+        },
+        "fresh-cut-golden-daffodils-narcissus": {
+          "label": "Fresh-cut Golden Daffodils (Narcissus)",
+          "score": 100
+        }
+      },
+      "problems_found": [],
+      "caveats": [],
+      "hypothesis": "Final attempt: replay the best choices found.",
+      "what_changed": "No change: replay the same plan."
+    }
+  ],
+  "sources": [
+    {
+      "title": "University of Massachusetts Amherst Extension: Care and Handling of Cut Flowers",
+      "url": "https://ag.umass.edu/greenhouse-crops-floriculture/fact-sheets/care-handling-of-cut-flowers"
+    },
+    {
+      "title": "AIFD Guide to Floral Design: Postharvest Science",
+      "url": "https://aifd.org/"
+    }
+  ],
+  "user_context": [],
+  "updated_at": "2026-10-10T16:03:13.588Z"
+}

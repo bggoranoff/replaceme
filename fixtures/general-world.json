@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "researchVersion": 2,
+  "role": "general",
+  "title": "The Roost & Sprout Village Caf\u00e9",
+  "theme": {
+    "name": "General Workplace",
+    "floorType": "planks",
+    "floorColor1": "#c99b6d",
+    "floorColor2": "#bf9063",
+    "wallColor": "#f3e2c7",
+    "wallpaperColor": "#ead2b0",
+    "trimColor": "#a97d55",
+    "accentColor": "#6b4a33"
+  },
+  "dimensions": {
+    "cols": 20,
+    "rows": 13,
+    "tile": 16
+  },
+  "solids": [
+    {
+      "x": 0,
+      "y": 0,
+      "w": 20,
+      "h": 2
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "w": 1,
+      "h": 13
+    },
+    {
+      "x": 19,
+      "y": 0,
+      "w": 1,
+      "h": 13
+    },
+    {
+      "x": 0,
+      "y": 12,
+      "w": 20,
+      "h": 1
+    },
+    {
+      "x": 4,
+      "y": 2,
+      "w": 3,
+      "h": 1
+    }
+  ],
+  "stations": [
+    {
+      "id": "station-work",
+      "name": "Workstation",
+      "icon": "tool",
+      "tile": [
+        4,
+        2
+      ],
+      "w": 3,
+      "h": 1,
+      "color": "#7a8a9e",
+      "accent": "#ffd877",
+      "description": "Primary task station."
+    }
+  ],
+  "levels": [],
+  "rules": [
+    "Espresso extraction follows strict physical principles where dry dose, grind fineness, water temperature, and liquid yield govern flavor balance; under-extraction causes sourness while over-extraction causes harsh bitterness [1, 2, 3, 4].",
+    "Steaming milk creates microfoam via protein stabilization and lactose solubilization, but milk must never exceed 65\u00b0C\u201370\u00b0C to avoid scalding whey proteins and burning sugars [5, 6].",
+    "Steam wands must be purged and wiped immediately after every pitcher, and dairy and plant-milk allergens must use strictly segregated pitchers and cloths to prevent cross-contact [5, 7].",
+    "Espresso crema and microfoam emulsion decay rapidly after extraction, requiring beverages to be served within minutes of preparation [5, 8]."
+  ],
+  "entrypoint": "builder.levels"
+}

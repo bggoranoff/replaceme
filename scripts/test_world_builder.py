@@ -32,6 +32,8 @@ from builder.world_gen import BuildError, build_world, optimal_point, reveals, s
 
 RULES = json.loads((root / "shared/actions.json").read_text())
 BRIEFS = sorted((root / "fixtures").glob("*-research.v2.json"))
+# Worlds the builder generated from those briefs (example-world.v2.json is the contract sample).
+BUILT_WORLDS = [p.with_name(p.name.replace("-research.v2", "-world.v2")) for p in BRIEFS]
 check_world = runpy.run_path(str(root / "scripts/check_contracts.py"))["check_world"]
 
 
@@ -143,6 +145,43 @@ def test_worlds():
             check_level(name, world, lvl, locs, seen)
 
 
+def test_every_mechanic():
+    """Dropping one task type from each brief makes the builder use the remaining mechanics, converse included."""
+    seen_mechs = set()
+    for path in BRIEFS:
+        brief = json.loads(path.read_text())
+        for drop in {t["mechanic"] for t in brief["tasks"]}:
+            variant = dict(brief, tasks=[t for t in brief["tasks"] if t["mechanic"] != drop])
+            if len(variant["tasks"]) < 4:
+                continue
+            world = build(variant)
+            assert validate_world(world, RULES) == [], (path.name, drop, validate_world(world, RULES))
+            check_world(world)
+            seen = reachable(world)
+            locs = {l["id"]: l for l in world["map"]["locations"]}
+            for lvl in world["levels"]:
+                check_level(f"{path.name}-{drop}", world, lvl, locs, seen)
+                seen_mechs.add(lvl["mechanic"])
+                if lvl["mechanic"] == "converse":
+                    assert lvl["params"]["npc_id"] == lvl["quest"]["npc_id"]
+                    assert all(o["reply"] for t in lvl["params"]["turns"] for o in t["options"])
+    assert seen_mechs == set(RULES["limits"]["mechanic_ids"]), seen_mechs
+
+
+def test_fixture_worlds():
+    """The committed worlds (built with Gemini flavor) follow the rules too."""
+    paths = BUILT_WORLDS
+    assert paths
+    for path in paths:
+        world = json.loads(path.read_text())
+        assert validate_world(world, RULES) == [], (path.name, validate_world(world, RULES))
+        check_world(world)
+        seen = reachable(world)
+        locs = {l["id"]: l for l in world["map"]["locations"]}
+        for lvl in world["levels"]:
+            check_level(path.name, world, lvl, locs, seen)
+
+
 def check_level(name, world, lvl, locs, seen):
     where = f"{name}:{lvl['id']}"
     secrets = scoring_secrets(lvl["scoring"])
@@ -223,7 +262,7 @@ def test_select_and_repairs():
 def parity_cases():
     rng = random.Random(7)
     cases = []
-    for path in sorted((root / "fixtures").glob("*-world.v2.json")):
+    for path in BUILT_WORLDS + [root / "fixtures/example-world.v2.json"]:  # the sample adds a converse level
         world = json.loads(path.read_text())
         for lvl in world["levels"]:
             for _ in range(12):
@@ -332,7 +371,7 @@ def test_game_branch():
 
 
 if __name__ == "__main__":
-    for fn in (test_expressions, test_curves_and_feedback, test_worlds, test_select_and_repairs, test_ts_parity, test_game_branch):
+    for fn in (test_expressions, test_curves_and_feedback, test_worlds, test_every_mechanic, test_fixture_worlds, test_select_and_repairs, test_ts_parity, test_game_branch):
         fn()
         print(f"ok {fn.__name__}")
     print("World builder tests passed")

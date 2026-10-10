@@ -126,7 +126,8 @@ export class GameEngine {
     const speaker = npc?.name ?? 'Hint'
     this.messages = [...this.messages, { speaker, npc_id: npc ? npc.id : null, text, t_ms: this.obsTime() }].slice(-6)
     this.bubble = { npcId: npc ? npc.id : null, speaker, text, at: this.t, until: this.t + Math.max(2800, 60 * text.length) }
-    this.emit('dialogue', { npc_id: npc ? npc.id : null, speaker, text, voice: npc?.voice })
+    // Only NPC speech is a dialogue event (game_contract.md section g); hints stay in messages.
+    if (npc) this.emit('dialogue', { npc_id: npc.id, speaker, text, voice: npc.voice })
   }
 
   private hint(text: string) {

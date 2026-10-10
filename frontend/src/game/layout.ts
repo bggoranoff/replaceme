@@ -99,6 +99,6 @@ export function converseOptions(W: number, H: number, n: number): Rect[] {
   const c = contentRect(W, H)
   const top = c.y + 66
   const gap = 4
-  const h = Math.min(26, Math.floor((c.h - 66 - gap * (n - 1)) / Math.max(1, n)))
+  const h = Math.min(34, Math.floor((c.h - 66 - gap * (n - 1)) / Math.max(1, n)))
   return Array.from({ length: n }, (_, i) => ({ x: c.x, y: top + i * (h + gap), w: c.w, h }))
 }

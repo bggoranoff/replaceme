@@ -39,6 +39,8 @@ let latest = 0
 let loading: AbortController | null = null
 let clipUrl: string | null = null
 let blocked = false
+/** Set when the server says voice is not configured (503); later lines stay silent without a request. */
+let unavailable = false
 
 function release(): void {
   if (clipUrl) URL.revokeObjectURL(clipUrl)
@@ -72,6 +74,7 @@ async function speak(detail: DialogueEventDetail): Promise<void> {
       body: JSON.stringify({ text: detail.text, voice: voiceFor(detail) }),
       signal: controller.signal,
     })
+    if (res.status === 503) unavailable = true
     if (!res.ok) return
     const audio = await res.blob()
     if (id !== latest) return
@@ -88,7 +91,7 @@ async function speak(detail: DialogueEventDetail): Promise<void> {
 
 function onDialogue(event: Event): void {
   const detail = (event as CustomEvent<DialogueEventDetail>).detail
-  if (detail?.manual !== true || typeof detail.text !== 'string' || !detail.text.trim()) return
+  if (unavailable || detail?.manual !== true || typeof detail.text !== 'string' || !detail.text.trim()) return
   void speak(detail)
 }
 

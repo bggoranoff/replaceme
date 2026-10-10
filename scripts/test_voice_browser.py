@@ -237,7 +237,77 @@ async def test_voice_unavailable(browser):
     await page.locator(".prompt input").fill("beekeeper")
     await expect(page.locator(".prompt-send")).to_be_enabled()
     print("ok  without a Gradium key the mic disables itself and typing still works")
+
+    tts_requests = []
+
+    async def on_tts(route):
+        tts_requests.append(route.request.post_data)
+        await route.fulfill(status=503, content_type="application/json", body='{"error": "Voice is not configured"}')
+
+    await page.route("**/api/tts", on_tts)
+    for text in ("First line.", "Second line.", "Third line."):
+        await dispatch(page, {"text": text, "speaker": "Ada", "npcId": "npc-ada", "manual": True})
+        await page.wait_for_timeout(300)
+    assert len(tts_requests) == 1, f"after a 503 the voice-over stops asking, got {len(tts_requests)} requests"
+    print("ok  without a Gradium key the voice-over stays silent after one request")
     await context.close()
+
+
+async def test_second_press_cancels_pending_mic(browser):
+    context = await browser.new_context(permissions=["microphone"])
+    page = await context.new_page()
+    # The microphone answers slowly, as while the browser's permission prompt is open.
+    await page.add_init_script(
+        """
+        const realGetUserMedia = navigator.mediaDevices.getUserMedia.bind(navigator.mediaDevices);
+        navigator.mediaDevices.getUserMedia = (c) => new Promise((r) => setTimeout(() => r(realGetUserMedia(c)), 800));
+        """
+    )
+    uploads = []
+    await page.route("**/api/stt", lambda route: (uploads.append(1), route.fulfill(status=200, content_type="application/json", body='{"text": "x"}'))[1])
+    await page.goto(BASE)
+    mic = page.locator(".prompt .mic")
+    await mic.click()
+    await page.wait_for_timeout(200)
+    await mic.click()
+    await page.wait_for_timeout(1500)
+    await expect(mic).to_have_class("mic")
+    assert uploads == [], "a cancelled press records nothing"
+    await mic.click()
+    await expect(mic).to_have_class("mic listening", timeout=3000)
+    print("ok  pressing again while the mic is starting cancels it")
+    await context.close()
+
+
+async def test_autoplay_blocked_plays_on_next_gesture(browser):
+    page = await browser.new_page()
+    # Headless Chromium ignores the autoplay policy, so play() acts as if blocked until the first key press or click.
+    await page.add_init_script(
+        """
+        window.__plays = [];
+        let gestured = false;
+        addEventListener('keydown', () => { gestured = true }, true);
+        addEventListener('pointerdown', () => { gestured = true }, true);
+        const realPlay = HTMLMediaElement.prototype.play;
+        HTMLMediaElement.prototype.play = function () {
+          if (!gestured) {
+            window.__plays.push('blocked');
+            return Promise.reject(new DOMException('play() needs a user gesture', 'NotAllowedError'));
+          }
+          window.__plays.push('played');
+          return realPlay.call(this).catch(() => {});
+        };
+        """
+    )
+    await page.route("**/api/tts", lambda route: route.fulfill(status=200, content_type="audio/wav", body=wav(1)))
+    await page.goto(BASE)
+    await dispatch(page, {"text": "Morning!", "speaker": "Ada", "npcId": "npc-ada", "manual": True})
+    await until(lambda: page.evaluate("window.__plays.length === 1"))
+    assert await page.evaluate("window.__plays[0]") == "blocked"
+    await page.keyboard.press("ArrowRight")
+    await until(lambda: page.evaluate("window.__plays.includes('played')"))
+    print("ok  a line blocked by autoplay plays on the next key press")
+    await page.close()
 
 
 async def main():
@@ -252,6 +322,8 @@ async def main():
             await test_mic_fills_input(browser)
             await test_blocked_mic_keeps_typing(browser)
             await test_voice_unavailable(browser)
+            await test_second_press_cancels_pending_mic(browser)
+            await test_autoplay_blocked_plays_on_next_gesture(browser)
             await browser.close()
     finally:
         if proc:

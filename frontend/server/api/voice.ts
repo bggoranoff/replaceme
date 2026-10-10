@@ -55,6 +55,10 @@ async function callGradium(kind: string, url: string, init: RequestInit): Promis
   } catch (err) {
     throw new HttpError(502, `Gradium ${kind} request failed: ${(err as Error).message}`)
   }
+  if (res.status === 401 || res.status === 403) {
+    // A wrong or expired key is the same as no key for the browser: voice is unavailable, typing still works.
+    throw new HttpError(503, 'Voice is not configured: Gradium rejected GRADIUM_API_KEY')
+  }
   if (!res.ok) {
     const detail = (await res.text().catch(() => '')).trim().slice(0, 200) || res.statusText
     throw new GradiumRejected(502, `Gradium ${kind} error (${res.status}): ${detail}`)

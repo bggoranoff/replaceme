@@ -1,0 +1,257 @@
+/* Training runs viewer (RunsViewer + placeholder RunSpectator). */
+
+.runs {
+  position: relative;
+  width: min(960px, calc(100% - 48px));
+  margin: 24px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.runs-indicator {
+  margin: 0;
+  align-self: center;
+  padding: 8px 18px;
+  background: var(--cream);
+  box-shadow: var(--px), 0 6px 0 var(--drop);
+  font-weight: 700;
+  text-align: center;
+}
+
+.runs-stage {
+  display: grid;
+  grid-template-columns: 48px 1fr 48px;
+  align-items: center;
+  gap: 16px;
+}
+
+.runs-arrow {
+  width: 48px;
+  height: 48px;
+  border: 0;
+  background: var(--gold);
+  color: var(--ink);
+  box-shadow: var(--px), 0 5px 0 var(--drop);
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.runs-arrow:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.runs-error {
+  margin: 0;
+  text-align: center;
+  color: #a2412f;
+}
+
+.spectator {
+  min-height: 360px;
+  padding: 24px;
+  background: var(--cream);
+  box-shadow: var(--px), 0 8px 0 var(--drop);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.spec-empty {
+  margin: auto;
+  color: var(--ink-soft);
+}
+
+.spec-aim {
+  margin: 0;
+  font-weight: 700;
+}
+
+.spec-muted {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+.spec-vars {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.spec-var {
+  padding: 8px 12px;
+  border-left: 4px solid transparent;
+}
+
+.spec-var.active {
+  border-left-color: var(--leaf);
+  background: var(--cream-2);
+}
+
+.spec-var-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.spec-track {
+  height: 10px;
+  background: var(--cream-2);
+  box-shadow: inset 0 0 0 2px var(--ink-soft);
+}
+
+.spec-fill {
+  height: 100%;
+  background: var(--mint);
+  box-shadow: inset 0 0 0 2px var(--ink);
+}
+
+.spec-sort,
+.spec-talk {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.spec-card,
+.spec-bubble {
+  align-self: center;
+  margin: 0;
+  padding: 10px 16px;
+  background: #fff;
+  box-shadow: var(--px);
+}
+
+.spec-bins {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.spec-bin {
+  min-width: 96px;
+  padding: 12px;
+  text-align: center;
+  background: var(--cream-2);
+  box-shadow: var(--px);
+}
+
+.spec-bin.active {
+  background: var(--gold);
+}
+
+.spec-bin small {
+  display: block;
+  color: var(--ink-soft);
+}
+
+.spec-options {
+  margin: 0;
+  padding-left: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.spec-options li.active {
+  font-weight: 800;
+  color: var(--leaf);
+}
+
+.spec-map {
+  position: relative;
+  width: 100%;
+  background: #9fcf7a;
+  box-shadow: var(--px);
+  overflow: hidden;
+}
+
+.spec-solid {
+  position: absolute;
+  background: rgba(90, 70, 54, 0.35);
+}
+
+.spec-target {
+  position: absolute;
+  font-size: 11px;
+  padding: 1px 4px;
+  background: rgba(255, 248, 232, 0.85);
+  white-space: nowrap;
+}
+
+.spec-avatar {
+  position: absolute;
+  background: var(--pink);
+  box-shadow: inset 0 0 0 2px var(--ink);
+  border-radius: 50%;
+}
+
+.spec-result {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 4px 16px;
+  padding: 12px 16px;
+  background: var(--peach);
+  box-shadow: var(--px);
+}
+
+.spec-result.passed {
+  background: var(--mint);
+}
+
+.spec-result strong {
+  font-size: 32px;
+  grid-row: span 2;
+}
+
+.spec-result ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.spec-thought {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 2px dashed var(--cream-2);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.spec-thought p {
+  margin: 0;
+}
+
+.spec-last {
+  align-self: flex-start;
+  padding: 2px 8px;
+  background: var(--lavender);
+  font-weight: 700;
+  font-size: 13px;
+}
+
+@media (max-width: 640px) {
+  .runs {
+    width: calc(100% - 32px);
+  }
+
+  .runs-stage {
+    grid-template-columns: 40px 1fr 40px;
+    gap: 8px;
+  }
+
+  .runs-arrow {
+    width: 40px;
+    height: 40px;
+  }
+
+  .spectator {
+    padding: 16px;
+  }
+}

@@ -17,6 +17,7 @@ ReplaceMe is a Vite dev server (React game plus a `/api` middleware in `frontend
 From the repo root:
 
 ```bash
+python3 -m venv .venv && source .venv/bin/activate   # keep it active in the shell that runs npm run dev
 python3 -m pip install -r requirements.txt
 python3 -m playwright install chromium        # the actor trains in headless Chromium
 (cd frontend && npm install)

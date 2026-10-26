@@ -8,3 +8,4 @@ runs/
 games/
 .claude/worktrees/
 frontend/dist/
+.venv/

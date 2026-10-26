@@ -128,16 +128,26 @@ function App() {
     setView('training')
   }
 
+  // Home: back to the prompt. Drops ?slug= so a reload stays on the prompt too.
+  const goHome = () => {
+    setJob(null)
+    setView('game')
+    setWorldData(undefined)
+    setWorldError(null)
+    setIsResearching(false)
+    if (window.location.search) window.history.replaceState(null, '', window.location.pathname)
+  }
+
   const screen = !job ? (
     <PromptHero onSubmit={start} />
   ) : isResearching ? (
     <LoadingScreen job={job} onCancel={() => setJob(null)} />
   ) : view === 'training' ? (
-    <RunsViewer onDone={() => setView('skills')} />
+    <RunsViewer onDone={() => setView('skills')} onBack={() => setView('game')} />
   ) : view === 'skills' ? (
-    <Skills job={job} />
+    <Skills job={job} onBack={() => setView('game')} />
   ) : worldData ? (
-    <GameScreen world={worldData} onTrain={handleTrain} />
+    <GameScreen world={worldData} onTrain={handleTrain} onSkills={() => setView('skills')} />
   ) : (
     <p className="game-error world-error">{worldError ?? `No game for "${job}" yet.`}</p>
   )
@@ -149,6 +159,14 @@ function App() {
         <img className="logo" src="/favicon.svg?v=5" alt="" />
         replaceme
       </header>
+      {job && (
+        <button type="button" className="home" onClick={goHome} aria-label="Home" title="Home">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+            <path d="M3 11 12 4l9 7" />
+            <path d="M5 10v10h5v-6h4v6h5V10" />
+          </svg>
+        </button>
+      )}
       {screen}
     </main>
   )

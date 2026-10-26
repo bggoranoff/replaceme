@@ -1,0 +1,5 @@
+google-genai>=2.29
+anthropic>=0.109
+openai>=2.44
+pydantic>=2.13
+playwright>=1.63

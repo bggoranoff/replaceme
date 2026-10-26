@@ -58,8 +58,7 @@ export const MECHANIC_CONTROLS: Record<MechanicId, ControlInfo[]> = {
     { action: 'key_down', description: 'select the next variable' },
     { action: 'key_left', description: 'decrease the selected variable by one step per press step' },
     { action: 'key_right', description: 'increase the selected variable by one step per press step' },
-    { action: 'mouse_click', description: 'click slider:<var_id> to set the value at that x (value = min + (x - target.x) / target.w * (max - min), snapped to step), ingredient:<id> to add it, submit to score' },
-    { action: 'mouse_drag', description: 'drag on slider:<var_id> to set the value at the drop x' },
+    { action: 'mouse_click', description: 'click item:<var_id> to select it, tool:<var_id> to add one step, back:<var_id> to take one step back, ingredient:<id> to add it, submit to score' },
     { action: 'interact', description: 'submit and score the current values' },
   ],
   timing: [

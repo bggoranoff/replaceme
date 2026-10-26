@@ -177,7 +177,7 @@ export function drawFrame(ctx: Ctx, e: GameEngine, view: RenderView, scale: numb
   if (e.phase === 'world') {
     const quests = world.levels.length
     const done = world.levels.filter((l) => e.quests[l.id] === 'done').length
-    const label = `${world.title} · ${done}/${quests} quests`
+    const label = `${world.title} (${done}/${quests} quests)`
     ctx.font = '800 7px Nunito, system-ui, sans-serif'
     const w = ctx.measureText(label).width + 12
     roundRect(ctx, { x: 6, y: 6, w, h: 13 }, 3, 'rgba(58,38,20,0.78)')

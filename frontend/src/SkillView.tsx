@@ -30,7 +30,7 @@ function ScoreSparkline({ skill }: { skill: LearnedSkill }) {
         <span>
           Attempt 1 → {last.attempt}: <strong>{points[0].score}</strong> → <strong>{last.score}</strong>
         </span>
-        <span>best {skill.best_score} · pass at {skill.pass_threshold}</span>
+        <span>best {skill.best_score}, pass at {skill.pass_threshold}</span>
       </figcaption>
     </figure>
   )
@@ -69,7 +69,7 @@ export function SkillView({ skill, updated }: { skill: LearnedSkill; updated: Se
         <div>
           <h2 id="sk-title">{skill.name}</h2>
           <span className="sk-meta">
-            {skill.trained_attempts} attempts · best {skill.best_score} · {skill.passed ? 'passed' : 'not passed yet'}
+            {skill.trained_attempts} attempts, best {skill.best_score}, {skill.passed ? 'passed' : 'not passed yet'}
           </span>
         </div>
       </header>

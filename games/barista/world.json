@@ -572,7 +572,7 @@
         "title": "Fix the coffee"
       },
       "aim": "Brew a sweet, balanced mug: not sour, bitter or weak.",
-      "controls_hint": "Up/Down pick a setting, Left/Right adjust it, Enter to Brew. Or drag a slider and click Brew.",
+      "controls_hint": "Up/Down pick a setting, hold Right to add or Left to take out, Enter to Brew. Or hold the mouse on the tool and click Brew.",
       "metric": {
         "name": "Taste",
         "description": "0-100 from coffee, water, brew time and their balance"
@@ -1132,7 +1132,7 @@
         "title": "Order the supplies"
       },
       "aim": "Order a week of stock: nothing runs out, nothing goes bad.",
-      "controls_hint": "Up/Down pick an item, Left/Right adjust it, Enter to Send. Or drag a slider and click Send.",
+      "controls_hint": "Up/Down pick an item, hold Right to add or Left to take out, Enter to Send. Or hold the mouse on the tool and click Send.",
       "metric": {
         "name": "Stock",
         "description": "0-100 from stockouts, spoiled stock and cash stuck on shelves"

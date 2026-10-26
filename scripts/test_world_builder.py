@@ -9,6 +9,7 @@ Run: python3 scripts/test_world_builder.py
 """
 
 import json
+import os
 import random
 import runpy
 import shutil
@@ -36,6 +37,7 @@ BRIEFS = sorted((root / "fixtures").glob("*-research.v2.json"))
 # example-*.v2.json are the contract's hand-written shape examples, not builder output
 BUILT_WORLDS = [p.with_name(p.name.replace("-research.v2", "-world.v2")) for p in BRIEFS if not p.name.startswith("example-")]
 check_world = runpy.run_path(str(root / "scripts/check_contracts.py"))["check_world"]
+os.environ["ENTIRE_BRAIN_BIN"] = ""  # test builds must not store build decisions in the real Entire Brain
 
 
 def build(brief):

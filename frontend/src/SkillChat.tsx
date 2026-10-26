@@ -52,7 +52,6 @@ export function SkillChat({ skill, messages, pending, onPending, onMessages, onS
     <aside className="sk-chat" aria-label={`Chat about ${skill.name}`}>
       <div className="sk-chat-head">
         <strong>Ask about this skill</strong>
-        <span>Answers use my {skill.trained_attempts} attempts and a live web search.</span>
       </div>
       <div className="sk-chat-log" ref={log} aria-live="polite">
         {messages.map((m, i) => (

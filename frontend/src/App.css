@@ -100,6 +100,20 @@ input {
   height: 34px;
 }
 
+/* Sits just below the header, top-left of every screen but the prompt. */
+.home {
+  position: absolute;
+  top: 82px;
+  left: 24px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: var(--gold);
+}
+
 /* Shared game-style controls */
 
 .modes button,
@@ -107,7 +121,8 @@ input {
 .send,
 .mic,
 .skill-card,
-.back {
+.back,
+.home {
   border: 0;
   color: var(--ink);
   cursor: pointer;
@@ -121,7 +136,8 @@ input {
 .send:hover:not(:disabled),
 .mic:hover:not(:disabled),
 .skill-card:hover,
-.back:hover {
+.back:hover,
+.home:hover {
   filter: brightness(1.04);
   transform: translateY(-2px);
   box-shadow: var(--px), 0 9px 0 0 var(--drop);
@@ -132,7 +148,8 @@ input {
 .send:active:not(:disabled),
 .mic:active:not(:disabled),
 .skill-card:active,
-.back:active {
+.back:active,
+.home:active {
   transform: translateY(4px);
   box-shadow: var(--px), 0 3px 0 0 var(--drop);
 }

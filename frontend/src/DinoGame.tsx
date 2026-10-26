@@ -544,7 +544,7 @@ export function DinoGame() {
       />
       <p className="dino-hint">
         <span>
-          <kbd>Space</kbd> / <kbd>↑</kbd> / tap to jump ·
+          <kbd>Space</kbd> / <kbd>↑</kbd> / tap to jump,
         </span>{' '}
         <span>
           <kbd>↓</kbd> to duck

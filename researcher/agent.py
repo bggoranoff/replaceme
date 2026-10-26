@@ -113,7 +113,7 @@ class ResearcherAgent:
         if not job:
             raise ValueError("Empty job prompt")
         if not self.client.is_configured():
-            raise RuntimeError("Gemini API key not found (GEMINI_API_KEY or GOOGLE_API_KEY); research needs Google Search grounding")
+            raise RuntimeError(f"No API key for provider {self.client.provider!r}; research needs a model with web search")
         slug = slugify(job, fallback="job")
         run_id = f"{slug}-{int(time.time() * 1000)}"
         self._started = time.monotonic()

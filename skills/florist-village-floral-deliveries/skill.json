@@ -1,8 +1,8 @@
 {
   "version": 2,
   "id": "florist-village-floral-deliveries",
-  "name": "Special Event Floral Dispatch",
-  "description": "Special Event Floral Dispatch coordinates the rapid, damage-free transport of delicate custom arrangements to specific village venues. Delivering individual arrangements with a batch size of 1 order following the listed sequence achieves a full 100.0 score within 5.7 seconds.",
+  "name": "Delivering Floral Gifts",
+  "description": "This skill achieves prompt, damage-free delivery of delicate floral gifts across village locations without bumps or water spills. By carrying one order per trip using a pre-planned sequential route, florists maintain arrangement integrity and achieve full speed and placement accuracy in 7.4 to 7.5 seconds.",
   "job": "florist",
   "level_id": "florist-village-floral-deliveries",
   "level_index": 4,
@@ -24,7 +24,7 @@
         "order-4"
       ],
       "unit": "",
-      "rationale": "Best score 100.0 in 5.7 s.",
+      "rationale": "Best score 100.0 in 7.5 s.",
       "evidence": [
         {
           "attempt": 1,
@@ -83,7 +83,7 @@
       "label": "Orders carried per trip",
       "value": 1,
       "unit": "orders",
-      "rationale": "A batch size of 1 order was utilized in attempts #1 through #10, yielding a consistent score of 100.0 (Right place 100, Speed 100) and preventing mechanical damage or transit degradation, consistent with AIFD handling guidelines. Measured: Capacity observed: 1.",
+      "rationale": "A batch size of 1 order per trip was verified across attempts #1 through #10, consistently yielding a maximum score of 100.0 (Right place: 100, Speed: 100) and feedback 'Delivered in perfect shape!'. Transporting single arrangements protects delicate stems from physical impacts and spills. Measured: Capacity observed: 1.",
       "evidence": [
         {
           "attempt": 1,
@@ -141,7 +141,7 @@
   "control_effects": [
     {
       "variable": "route",
-      "effect": "Time and score per plan: listed x1: 5.7 s -> 100.0. Measured: Time and score per plan: listed x1: 5.7 s -> 100.0, listed x1: 5.7 s -> 100.0, listed x1: 5.7 s -> 100.0, listed x1: 5.7 s -> 100.0, listed x1: 5.7 s -> 100.0, listed x1: 5.7 s -> 100.0, listed x1: 5.7 s -> 100.0, listed x1: 5.7 s -> 100.0, listed x1: 5.7 s -> 100.0, listed x1: 5.7 s -> 100.0.",
+      "effect": "Running the listed x1 plan delivered completion times of 7.5 s in attempt #1 and 7.4 s in attempts #2-#10, consistently producing a 100.0 overall score. Measured: Time and score per plan: listed x1: 7.5 s -> 100.0, listed x1: 7.4 s -> 100.0, listed x1: 7.4 s -> 100.0, listed x1: 7.4 s -> 100.0, listed x1: 7.4 s -> 100.0, listed x1: 7.4 s -> 100.0, listed x1: 7.4 s -> 100.0, listed x1: 7.4 s -> 100.0, listed x1: 7.4 s -> 100.0, listed x1: 7.4 s -> 100.0.",
       "evidence": [
         {
           "attempt": 1,
@@ -197,23 +197,21 @@
     }
   ],
   "steps": [
-    "Verify the dispatch manifest and route policy set to 'listed' across all scheduled orders.",
-    "Set the carrying batch size to exactly 1 order per trip to prevent mechanical bruising and floral spillage during transport.",
-    "Pick up order-1 at the dispatch counter and courier it directly to 'spot:st-jude-village'.",
-    "Return to counter, pick up order-2, and transport it directly to 'spot:the-old-mill-bridal'.",
-    "Return to counter, pick up order-3, and deliver it promptly to 'spot:the-riverside-bakery'.",
-    "Return to counter, pick up order-4, and hand it over at 'spot:meadowview-memorial' to complete the 4-destination route in 5.7 seconds."
+    "Set dispatch handling batch size to 1 order per trip to avoid carrying overloaded arrangements that risk bumps, crushing, or water spills.",
+    "Adopt the 'listed' routing policy, following the sequential delivery queue order: order-1, order-2, order-3, and order-4.",
+    "Pick up order-1 from the flower cart counter and courier it directly to spot:st-jude-village.",
+    "Return to the counter, collect order-2, and transport it safely to spot:the-old-mill-bridal.",
+    "Pick up order-3 and deliver it without sudden tilt or drops to spot:the-riverside-bakery.",
+    "Collect the final order-4 and deliver it directly to spot:meadowview-memorial, completing the full four-stop cycle in approximately 7.4 to 7.5 seconds."
   ],
   "caveats": [
-    "Do not exceed a batch size of 1 order per delivery trip, as delicate floral displays risk bruising, crushing, or water spills when stacked or handled together.",
-    "Adhere strictly to the designated sequence (order-1 through order-4) to optimize speed and meet event timeline commitments.",
-    "Ensure each specific order is matched directly to its assigned event spot to avoid wrong-destination deductions.",
-    "No changes needed as maximum score has already been attained.",
-    "No modifications needed since 100.0 score is fully achieved and stable.",
-    "Maximum score of 100.0 is already achieved; keep repeating the optimal configuration.",
-    "No changes are required as maximum score (100.0) is consistently attained.",
-    "Maximum score of 100.0 is consistently achieved; maintain the identical optimal inputs.",
-    "Final attempt (10 of 10): exploit the proven 100.0 plan without deviation."
+    "Never bundle multiple floral arrangements into a single trip; carrying more than 1 order at a time risks physical collisions and spills.",
+    "Ensure each specific order is matched exactly to its designated location drop-off to avoid penalties on the Right Place sub-score.",
+    "Maintain consistent transit pacing along direct path lines to complete all drops within the optimal 7.4-7.5 second window.",
+    "Replaying the identical optimal plan preserves the perfect score.",
+    "Replaying the proven 100.0 configuration ensures consistent passes across remaining attempts.",
+    "Replaying the identical optimal plan guarantees a 100.0 score across all remaining attempts.",
+    "Attempt 10 is the final attempt; exploit the optimal plan."
   ],
   "problems": [],
   "score_history": [
@@ -271,7 +269,7 @@
   "attempts": [
     {
       "attempt": 1,
-      "run_id": "florist-1791647970511-l4-a01",
+      "run_id": "florist-1791648857246-l4-a01",
       "inputs": {
         "policy": "listed",
         "batch": 1,
@@ -292,7 +290,7 @@
         {
           "action": "interact",
           "params": {
-            "target_id": "location:special-event-floral-dispatch"
+            "target_id": "location:packing-counter"
           }
         },
         {
@@ -304,37 +302,13 @@
         {
           "action": "key_right",
           "params": {
-            "hold_ms": 200
+            "hold_ms": 1300
           }
         },
         {
           "action": "key_up",
           "params": {
-            "hold_ms": 200
-          }
-        },
-        {
-          "action": "key_right",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_up",
-          "params": {
-            "hold_ms": 200
-          }
-        },
-        {
-          "action": "key_right",
-          "params": {
-            "hold_ms": 600
-          }
-        },
-        {
-          "action": "key_up",
-          "params": {
-            "hold_ms": 0
+            "hold_ms": 300
           }
         },
         {
@@ -344,36 +318,6 @@
           }
         },
         {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 500
-          }
-        },
-        {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 200
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 200
-          }
-        },
-        {
-          "action": "interact",
-          "params": {
-            "target_id": "location:special-event-floral-dispatch"
-          }
-        },
-        {
           "action": "key_up",
           "params": {
             "hold_ms": 100
@@ -382,43 +326,31 @@
         {
           "action": "key_left",
           "params": {
+            "hold_ms": 1200
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "interact",
+          "params": {
+            "target_id": "location:packing-counter"
+          }
+        },
+        {
+          "action": "key_up",
+          "params": {
+            "hold_ms": 700
+          }
+        },
+        {
+          "action": "key_left",
+          "params": {
             "hold_ms": 300
-          }
-        },
-        {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 0
           }
         },
         {
@@ -428,13 +360,7 @@
           }
         },
         {
-          "action": "key_right",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_up",
+          "action": "key_down",
           "params": {
             "hold_ms": 0
           }
@@ -442,17 +368,41 @@
         {
           "action": "key_right",
           "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
             "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 400
           }
         },
         {
           "action": "interact",
           "params": {
-            "target_id": "location:special-event-floral-dispatch"
+            "target_id": "location:packing-counter"
           }
         },
         {
-          "action": "key_up",
+          "action": "key_left",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_down",
           "params": {
             "hold_ms": 300
           }
@@ -460,13 +410,13 @@
         {
           "action": "key_right",
           "params": {
-            "hold_ms": 0
+            "hold_ms": 400
           }
         },
         {
           "action": "key_up",
           "params": {
-            "hold_ms": 400
+            "hold_ms": 100
           }
         },
         {
@@ -476,19 +426,85 @@
           }
         },
         {
-          "action": "key_down",
+          "action": "key_left",
           "params": {
-            "hold_ms": 700
+            "hold_ms": 0
           }
         },
         {
           "action": "interact",
           "params": {
-            "target_id": "location:special-event-floral-dispatch"
+            "target_id": "location:packing-counter"
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 1300
           }
         },
         {
           "action": "key_up",
+          "params": {
+            "hold_ms": 300
+          }
+        },
+        {
+          "action": "interact",
+          "params": {
+            "target_id": "spot:st-jude-village"
+          }
+        },
+        {
+          "action": "key_up",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_left",
+          "params": {
+            "hold_ms": 1200
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "interact",
+          "params": {
+            "target_id": "location:packing-counter"
+          }
+        },
+        {
+          "action": "key_up",
+          "params": {
+            "hold_ms": 700
+          }
+        },
+        {
+          "action": "key_left",
+          "params": {
+            "hold_ms": 300
+          }
+        },
+        {
+          "action": "interact",
+          "params": {
+            "target_id": "spot:the-old-mill-bridal"
+          }
+        },
+        {
+          "action": "key_down",
           "params": {
             "hold_ms": 0
           }
@@ -502,13 +518,109 @@
         {
           "action": "key_down",
           "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 400
+          }
+        },
+        {
+          "action": "interact",
+          "params": {
+            "target_id": "location:packing-counter"
+          }
+        },
+        {
+          "action": "key_left",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 300
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 400
+          }
+        },
+        {
+          "action": "key_up",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "interact",
+          "params": {
+            "target_id": "spot:the-riverside-bakery"
+          }
+        },
+        {
+          "action": "key_left",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "interact",
+          "params": {
+            "target_id": "location:packing-counter"
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
             "hold_ms": 0
           }
         },
         {
           "action": "key_right",
           "params": {
-            "hold_ms": 100
+            "hold_ms": 200
+          }
+        },
+        {
+          "action": "key_up",
+          "params": {
+            "hold_ms": 400
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_up",
+          "params": {
+            "hold_ms": 500
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
           }
         },
         {
@@ -521,7 +633,7 @@
       "score": 100.0,
       "passed": true,
       "feedback": [
-        "Lovely work!"
+        "Delivered in perfect shape!"
       ],
       "breakdown": {
         "accuracy": {
@@ -535,14 +647,14 @@
       },
       "problems_found": [],
       "caveats": [
-        "No changes needed as maximum score has already been attained."
+        "Replaying the identical optimal plan preserves the perfect score."
       ],
-      "hypothesis": "Baseline exploration: Test delivery using the default 'listed' dispatch order and a batch size of 1 order per trip to assess timing, score components, and baseline route efficiency.",
-      "what_changed": "First attempt: initializing policy to 'listed' with batch size 1."
+      "hypothesis": "Starting with baseline policy 'listed' and batch size 1 to establish a benchmark for delivery accuracy and speed.",
+      "what_changed": "Baseline setup following search suggestion: policy = listed, batch = 1."
     },
     {
       "attempt": 2,
-      "run_id": "florist-1791647970511-l4-a02",
+      "run_id": "florist-1791648857246-l4-a02",
       "inputs": {
         "policy": "listed",
         "batch": 1,
@@ -563,7 +675,7 @@
         {
           "action": "interact",
           "params": {
-            "target_id": "location:special-event-floral-dispatch"
+            "target_id": "location:packing-counter"
           }
         },
         {
@@ -575,37 +687,13 @@
         {
           "action": "key_right",
           "params": {
-            "hold_ms": 200
+            "hold_ms": 1300
           }
         },
         {
           "action": "key_up",
           "params": {
-            "hold_ms": 200
-          }
-        },
-        {
-          "action": "key_right",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_up",
-          "params": {
-            "hold_ms": 200
-          }
-        },
-        {
-          "action": "key_right",
-          "params": {
-            "hold_ms": 600
-          }
-        },
-        {
-          "action": "key_up",
-          "params": {
-            "hold_ms": 0
+            "hold_ms": 300
           }
         },
         {
@@ -615,36 +703,6 @@
           }
         },
         {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 500
-          }
-        },
-        {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 200
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 200
-          }
-        },
-        {
-          "action": "interact",
-          "params": {
-            "target_id": "location:special-event-floral-dispatch"
-          }
-        },
-        {
           "action": "key_up",
           "params": {
             "hold_ms": 100
@@ -653,43 +711,31 @@
         {
           "action": "key_left",
           "params": {
+            "hold_ms": 1200
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "interact",
+          "params": {
+            "target_id": "location:packing-counter"
+          }
+        },
+        {
+          "action": "key_up",
+          "params": {
+            "hold_ms": 700
+          }
+        },
+        {
+          "action": "key_left",
+          "params": {
             "hold_ms": 300
-          }
-        },
-        {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 0
           }
         },
         {
@@ -699,13 +745,7 @@
           }
         },
         {
-          "action": "key_right",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_up",
+          "action": "key_down",
           "params": {
             "hold_ms": 0
           }
@@ -713,17 +753,41 @@
         {
           "action": "key_right",
           "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
             "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 400
           }
         },
         {
           "action": "interact",
           "params": {
-            "target_id": "location:special-event-floral-dispatch"
+            "target_id": "location:packing-counter"
           }
         },
         {
-          "action": "key_up",
+          "action": "key_left",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_down",
           "params": {
             "hold_ms": 300
           }
@@ -731,13 +795,13 @@
         {
           "action": "key_right",
           "params": {
-            "hold_ms": 0
+            "hold_ms": 400
           }
         },
         {
           "action": "key_up",
           "params": {
-            "hold_ms": 400
+            "hold_ms": 100
           }
         },
         {
@@ -747,27 +811,21 @@
           }
         },
         {
-          "action": "key_down",
+          "action": "key_left",
           "params": {
-            "hold_ms": 700
+            "hold_ms": 0
           }
         },
         {
           "action": "interact",
           "params": {
-            "target_id": "location:special-event-floral-dispatch"
-          }
-        },
-        {
-          "action": "key_up",
-          "params": {
-            "hold_ms": 0
+            "target_id": "location:packing-counter"
           }
         },
         {
           "action": "key_right",
           "params": {
-            "hold_ms": 100
+            "hold_ms": 0
           }
         },
         {
@@ -779,7 +837,31 @@
         {
           "action": "key_right",
           "params": {
-            "hold_ms": 100
+            "hold_ms": 200
+          }
+        },
+        {
+          "action": "key_up",
+          "params": {
+            "hold_ms": 400
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_up",
+          "params": {
+            "hold_ms": 500
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
           }
         },
         {
@@ -792,7 +874,7 @@
       "score": 100.0,
       "passed": true,
       "feedback": [
-        "Lovely work!"
+        "Delivered in perfect shape!"
       ],
       "breakdown": {
         "accuracy": {
@@ -806,14 +888,14 @@
       },
       "problems_found": [],
       "caveats": [
-        "No modifications needed since 100.0 score is fully achieved and stable."
+        "Replaying the identical optimal plan preserves the perfect score."
       ],
       "hypothesis": "Exploit: replay the fastest correct delivery plan.",
       "what_changed": "No change: replay the same plan."
     },
     {
       "attempt": 3,
-      "run_id": "florist-1791647970511-l4-a03",
+      "run_id": "florist-1791648857246-l4-a03",
       "inputs": {
         "policy": "listed",
         "batch": 1,
@@ -834,7 +916,7 @@
         {
           "action": "interact",
           "params": {
-            "target_id": "location:special-event-floral-dispatch"
+            "target_id": "location:packing-counter"
           }
         },
         {
@@ -846,37 +928,13 @@
         {
           "action": "key_right",
           "params": {
-            "hold_ms": 200
+            "hold_ms": 1300
           }
         },
         {
           "action": "key_up",
           "params": {
-            "hold_ms": 200
-          }
-        },
-        {
-          "action": "key_right",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_up",
-          "params": {
-            "hold_ms": 200
-          }
-        },
-        {
-          "action": "key_right",
-          "params": {
-            "hold_ms": 600
-          }
-        },
-        {
-          "action": "key_up",
-          "params": {
-            "hold_ms": 0
+            "hold_ms": 300
           }
         },
         {
@@ -886,36 +944,6 @@
           }
         },
         {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 500
-          }
-        },
-        {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 200
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 200
-          }
-        },
-        {
-          "action": "interact",
-          "params": {
-            "target_id": "location:special-event-floral-dispatch"
-          }
-        },
-        {
           "action": "key_up",
           "params": {
             "hold_ms": 100
@@ -924,43 +952,31 @@
         {
           "action": "key_left",
           "params": {
+            "hold_ms": 1200
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "interact",
+          "params": {
+            "target_id": "location:packing-counter"
+          }
+        },
+        {
+          "action": "key_up",
+          "params": {
+            "hold_ms": 700
+          }
+        },
+        {
+          "action": "key_left",
+          "params": {
             "hold_ms": 300
-          }
-        },
-        {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 0
           }
         },
         {
@@ -970,13 +986,7 @@
           }
         },
         {
-          "action": "key_right",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_up",
+          "action": "key_down",
           "params": {
             "hold_ms": 0
           }
@@ -984,17 +994,41 @@
         {
           "action": "key_right",
           "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
             "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 400
           }
         },
         {
           "action": "interact",
           "params": {
-            "target_id": "location:special-event-floral-dispatch"
+            "target_id": "location:packing-counter"
           }
         },
         {
-          "action": "key_up",
+          "action": "key_left",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_down",
           "params": {
             "hold_ms": 300
           }
@@ -1002,13 +1036,13 @@
         {
           "action": "key_right",
           "params": {
-            "hold_ms": 0
+            "hold_ms": 400
           }
         },
         {
           "action": "key_up",
           "params": {
-            "hold_ms": 400
+            "hold_ms": 100
           }
         },
         {
@@ -1018,27 +1052,21 @@
           }
         },
         {
-          "action": "key_down",
+          "action": "key_left",
           "params": {
-            "hold_ms": 700
+            "hold_ms": 0
           }
         },
         {
           "action": "interact",
           "params": {
-            "target_id": "location:special-event-floral-dispatch"
-          }
-        },
-        {
-          "action": "key_up",
-          "params": {
-            "hold_ms": 0
+            "target_id": "location:packing-counter"
           }
         },
         {
           "action": "key_right",
           "params": {
-            "hold_ms": 100
+            "hold_ms": 0
           }
         },
         {
@@ -1050,7 +1078,31 @@
         {
           "action": "key_right",
           "params": {
-            "hold_ms": 100
+            "hold_ms": 200
+          }
+        },
+        {
+          "action": "key_up",
+          "params": {
+            "hold_ms": 400
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_up",
+          "params": {
+            "hold_ms": 500
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
           }
         },
         {
@@ -1063,7 +1115,7 @@
       "score": 100.0,
       "passed": true,
       "feedback": [
-        "Lovely work!"
+        "Delivered in perfect shape!"
       ],
       "breakdown": {
         "accuracy": {
@@ -1077,14 +1129,14 @@
       },
       "problems_found": [],
       "caveats": [
-        "No modifications needed since 100.0 score is fully achieved and stable."
+        "Replaying the identical optimal plan preserves the perfect score across evaluations."
       ],
       "hypothesis": "Exploit: replay the fastest correct delivery plan.",
       "what_changed": "No change: replay the same plan."
     },
     {
       "attempt": 4,
-      "run_id": "florist-1791647970511-l4-a04",
+      "run_id": "florist-1791648857246-l4-a04",
       "inputs": {
         "policy": "listed",
         "batch": 1,
@@ -1105,7 +1157,7 @@
         {
           "action": "interact",
           "params": {
-            "target_id": "location:special-event-floral-dispatch"
+            "target_id": "location:packing-counter"
           }
         },
         {
@@ -1117,37 +1169,13 @@
         {
           "action": "key_right",
           "params": {
-            "hold_ms": 200
+            "hold_ms": 1300
           }
         },
         {
           "action": "key_up",
           "params": {
-            "hold_ms": 200
-          }
-        },
-        {
-          "action": "key_right",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_up",
-          "params": {
-            "hold_ms": 200
-          }
-        },
-        {
-          "action": "key_right",
-          "params": {
-            "hold_ms": 600
-          }
-        },
-        {
-          "action": "key_up",
-          "params": {
-            "hold_ms": 0
+            "hold_ms": 300
           }
         },
         {
@@ -1157,36 +1185,6 @@
           }
         },
         {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 500
-          }
-        },
-        {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 200
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 200
-          }
-        },
-        {
-          "action": "interact",
-          "params": {
-            "target_id": "location:special-event-floral-dispatch"
-          }
-        },
-        {
           "action": "key_up",
           "params": {
             "hold_ms": 100
@@ -1195,43 +1193,31 @@
         {
           "action": "key_left",
           "params": {
+            "hold_ms": 1200
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "interact",
+          "params": {
+            "target_id": "location:packing-counter"
+          }
+        },
+        {
+          "action": "key_up",
+          "params": {
+            "hold_ms": 700
+          }
+        },
+        {
+          "action": "key_left",
+          "params": {
             "hold_ms": 300
-          }
-        },
-        {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 0
           }
         },
         {
@@ -1241,13 +1227,7 @@
           }
         },
         {
-          "action": "key_right",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_up",
+          "action": "key_down",
           "params": {
             "hold_ms": 0
           }
@@ -1255,17 +1235,41 @@
         {
           "action": "key_right",
           "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
             "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 400
           }
         },
         {
           "action": "interact",
           "params": {
-            "target_id": "location:special-event-floral-dispatch"
+            "target_id": "location:packing-counter"
           }
         },
         {
-          "action": "key_up",
+          "action": "key_left",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_down",
           "params": {
             "hold_ms": 300
           }
@@ -1273,13 +1277,13 @@
         {
           "action": "key_right",
           "params": {
-            "hold_ms": 0
+            "hold_ms": 400
           }
         },
         {
           "action": "key_up",
           "params": {
-            "hold_ms": 400
+            "hold_ms": 100
           }
         },
         {
@@ -1289,27 +1293,21 @@
           }
         },
         {
-          "action": "key_down",
+          "action": "key_left",
           "params": {
-            "hold_ms": 700
+            "hold_ms": 0
           }
         },
         {
           "action": "interact",
           "params": {
-            "target_id": "location:special-event-floral-dispatch"
-          }
-        },
-        {
-          "action": "key_up",
-          "params": {
-            "hold_ms": 0
+            "target_id": "location:packing-counter"
           }
         },
         {
           "action": "key_right",
           "params": {
-            "hold_ms": 100
+            "hold_ms": 0
           }
         },
         {
@@ -1321,7 +1319,31 @@
         {
           "action": "key_right",
           "params": {
-            "hold_ms": 100
+            "hold_ms": 200
+          }
+        },
+        {
+          "action": "key_up",
+          "params": {
+            "hold_ms": 400
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_up",
+          "params": {
+            "hold_ms": 500
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
           }
         },
         {
@@ -1334,7 +1356,7 @@
       "score": 100.0,
       "passed": true,
       "feedback": [
-        "Lovely work!"
+        "Delivered in perfect shape!"
       ],
       "breakdown": {
         "accuracy": {
@@ -1348,14 +1370,14 @@
       },
       "problems_found": [],
       "caveats": [
-        "Maximum score of 100.0 is already achieved; keep repeating the optimal configuration."
+        "Replaying the identical optimal plan preserves the perfect score across attempts."
       ],
       "hypothesis": "Exploit: replay the fastest correct delivery plan.",
       "what_changed": "No change: replay the same plan."
     },
     {
       "attempt": 5,
-      "run_id": "florist-1791647970511-l4-a05",
+      "run_id": "florist-1791648857246-l4-a05",
       "inputs": {
         "policy": "listed",
         "batch": 1,
@@ -1376,7 +1398,7 @@
         {
           "action": "interact",
           "params": {
-            "target_id": "location:special-event-floral-dispatch"
+            "target_id": "location:packing-counter"
           }
         },
         {
@@ -1388,37 +1410,13 @@
         {
           "action": "key_right",
           "params": {
-            "hold_ms": 200
+            "hold_ms": 1300
           }
         },
         {
           "action": "key_up",
           "params": {
-            "hold_ms": 200
-          }
-        },
-        {
-          "action": "key_right",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_up",
-          "params": {
-            "hold_ms": 200
-          }
-        },
-        {
-          "action": "key_right",
-          "params": {
-            "hold_ms": 600
-          }
-        },
-        {
-          "action": "key_up",
-          "params": {
-            "hold_ms": 0
+            "hold_ms": 300
           }
         },
         {
@@ -1428,36 +1426,6 @@
           }
         },
         {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 500
-          }
-        },
-        {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 200
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 200
-          }
-        },
-        {
-          "action": "interact",
-          "params": {
-            "target_id": "location:special-event-floral-dispatch"
-          }
-        },
-        {
           "action": "key_up",
           "params": {
             "hold_ms": 100
@@ -1466,43 +1434,31 @@
         {
           "action": "key_left",
           "params": {
+            "hold_ms": 1200
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "interact",
+          "params": {
+            "target_id": "location:packing-counter"
+          }
+        },
+        {
+          "action": "key_up",
+          "params": {
+            "hold_ms": 700
+          }
+        },
+        {
+          "action": "key_left",
+          "params": {
             "hold_ms": 300
-          }
-        },
-        {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 0
           }
         },
         {
@@ -1512,13 +1468,7 @@
           }
         },
         {
-          "action": "key_right",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_up",
+          "action": "key_down",
           "params": {
             "hold_ms": 0
           }
@@ -1526,17 +1476,41 @@
         {
           "action": "key_right",
           "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
             "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 400
           }
         },
         {
           "action": "interact",
           "params": {
-            "target_id": "location:special-event-floral-dispatch"
+            "target_id": "location:packing-counter"
           }
         },
         {
-          "action": "key_up",
+          "action": "key_left",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_down",
           "params": {
             "hold_ms": 300
           }
@@ -1544,13 +1518,13 @@
         {
           "action": "key_right",
           "params": {
-            "hold_ms": 0
+            "hold_ms": 400
           }
         },
         {
           "action": "key_up",
           "params": {
-            "hold_ms": 400
+            "hold_ms": 100
           }
         },
         {
@@ -1560,27 +1534,21 @@
           }
         },
         {
-          "action": "key_down",
+          "action": "key_left",
           "params": {
-            "hold_ms": 700
+            "hold_ms": 0
           }
         },
         {
           "action": "interact",
           "params": {
-            "target_id": "location:special-event-floral-dispatch"
-          }
-        },
-        {
-          "action": "key_up",
-          "params": {
-            "hold_ms": 0
+            "target_id": "location:packing-counter"
           }
         },
         {
           "action": "key_right",
           "params": {
-            "hold_ms": 100
+            "hold_ms": 0
           }
         },
         {
@@ -1592,7 +1560,31 @@
         {
           "action": "key_right",
           "params": {
-            "hold_ms": 100
+            "hold_ms": 200
+          }
+        },
+        {
+          "action": "key_up",
+          "params": {
+            "hold_ms": 400
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_up",
+          "params": {
+            "hold_ms": 500
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
           }
         },
         {
@@ -1605,7 +1597,7 @@
       "score": 100.0,
       "passed": true,
       "feedback": [
-        "Lovely work!"
+        "Delivered in perfect shape!"
       ],
       "breakdown": {
         "accuracy": {
@@ -1619,14 +1611,14 @@
       },
       "problems_found": [],
       "caveats": [
-        "No changes are required as maximum score (100.0) is consistently attained."
+        "Replaying the proven 100.0 configuration ensures consistent passes across remaining attempts."
       ],
       "hypothesis": "Exploit: replay the fastest correct delivery plan.",
       "what_changed": "No change: replay the same plan."
     },
     {
       "attempt": 6,
-      "run_id": "florist-1791647970511-l4-a06",
+      "run_id": "florist-1791648857246-l4-a06",
       "inputs": {
         "policy": "listed",
         "batch": 1,
@@ -1647,7 +1639,7 @@
         {
           "action": "interact",
           "params": {
-            "target_id": "location:special-event-floral-dispatch"
+            "target_id": "location:packing-counter"
           }
         },
         {
@@ -1659,37 +1651,13 @@
         {
           "action": "key_right",
           "params": {
-            "hold_ms": 200
+            "hold_ms": 1300
           }
         },
         {
           "action": "key_up",
           "params": {
-            "hold_ms": 200
-          }
-        },
-        {
-          "action": "key_right",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_up",
-          "params": {
-            "hold_ms": 200
-          }
-        },
-        {
-          "action": "key_right",
-          "params": {
-            "hold_ms": 600
-          }
-        },
-        {
-          "action": "key_up",
-          "params": {
-            "hold_ms": 0
+            "hold_ms": 300
           }
         },
         {
@@ -1699,36 +1667,6 @@
           }
         },
         {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 500
-          }
-        },
-        {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 200
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 200
-          }
-        },
-        {
-          "action": "interact",
-          "params": {
-            "target_id": "location:special-event-floral-dispatch"
-          }
-        },
-        {
           "action": "key_up",
           "params": {
             "hold_ms": 100
@@ -1737,43 +1675,31 @@
         {
           "action": "key_left",
           "params": {
+            "hold_ms": 1200
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "interact",
+          "params": {
+            "target_id": "location:packing-counter"
+          }
+        },
+        {
+          "action": "key_up",
+          "params": {
+            "hold_ms": 700
+          }
+        },
+        {
+          "action": "key_left",
+          "params": {
             "hold_ms": 300
-          }
-        },
-        {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 0
           }
         },
         {
@@ -1783,13 +1709,7 @@
           }
         },
         {
-          "action": "key_right",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_up",
+          "action": "key_down",
           "params": {
             "hold_ms": 0
           }
@@ -1797,17 +1717,41 @@
         {
           "action": "key_right",
           "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
             "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 400
           }
         },
         {
           "action": "interact",
           "params": {
-            "target_id": "location:special-event-floral-dispatch"
+            "target_id": "location:packing-counter"
           }
         },
         {
-          "action": "key_up",
+          "action": "key_left",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_down",
           "params": {
             "hold_ms": 300
           }
@@ -1815,13 +1759,13 @@
         {
           "action": "key_right",
           "params": {
-            "hold_ms": 0
+            "hold_ms": 400
           }
         },
         {
           "action": "key_up",
           "params": {
-            "hold_ms": 400
+            "hold_ms": 100
           }
         },
         {
@@ -1831,27 +1775,21 @@
           }
         },
         {
-          "action": "key_down",
+          "action": "key_left",
           "params": {
-            "hold_ms": 700
+            "hold_ms": 0
           }
         },
         {
           "action": "interact",
           "params": {
-            "target_id": "location:special-event-floral-dispatch"
-          }
-        },
-        {
-          "action": "key_up",
-          "params": {
-            "hold_ms": 0
+            "target_id": "location:packing-counter"
           }
         },
         {
           "action": "key_right",
           "params": {
-            "hold_ms": 100
+            "hold_ms": 0
           }
         },
         {
@@ -1863,7 +1801,31 @@
         {
           "action": "key_right",
           "params": {
-            "hold_ms": 100
+            "hold_ms": 200
+          }
+        },
+        {
+          "action": "key_up",
+          "params": {
+            "hold_ms": 400
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_up",
+          "params": {
+            "hold_ms": 500
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
           }
         },
         {
@@ -1876,7 +1838,7 @@
       "score": 100.0,
       "passed": true,
       "feedback": [
-        "Lovely work!"
+        "Delivered in perfect shape!"
       ],
       "breakdown": {
         "accuracy": {
@@ -1890,14 +1852,14 @@
       },
       "problems_found": [],
       "caveats": [
-        "Maximum score of 100.0 is consistently achieved; maintain the identical optimal inputs."
+        "Replaying the identical optimal plan guarantees a 100.0 score across all remaining attempts."
       ],
       "hypothesis": "Exploit: replay the fastest correct delivery plan.",
       "what_changed": "No change: replay the same plan."
     },
     {
       "attempt": 7,
-      "run_id": "florist-1791647970511-l4-a07",
+      "run_id": "florist-1791648857246-l4-a07",
       "inputs": {
         "policy": "listed",
         "batch": 1,
@@ -1918,7 +1880,7 @@
         {
           "action": "interact",
           "params": {
-            "target_id": "location:special-event-floral-dispatch"
+            "target_id": "location:packing-counter"
           }
         },
         {
@@ -1930,37 +1892,13 @@
         {
           "action": "key_right",
           "params": {
-            "hold_ms": 200
+            "hold_ms": 1300
           }
         },
         {
           "action": "key_up",
           "params": {
-            "hold_ms": 200
-          }
-        },
-        {
-          "action": "key_right",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_up",
-          "params": {
-            "hold_ms": 200
-          }
-        },
-        {
-          "action": "key_right",
-          "params": {
-            "hold_ms": 600
-          }
-        },
-        {
-          "action": "key_up",
-          "params": {
-            "hold_ms": 0
+            "hold_ms": 300
           }
         },
         {
@@ -1970,36 +1908,6 @@
           }
         },
         {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 500
-          }
-        },
-        {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 200
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 200
-          }
-        },
-        {
-          "action": "interact",
-          "params": {
-            "target_id": "location:special-event-floral-dispatch"
-          }
-        },
-        {
           "action": "key_up",
           "params": {
             "hold_ms": 100
@@ -2008,43 +1916,31 @@
         {
           "action": "key_left",
           "params": {
+            "hold_ms": 1200
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "interact",
+          "params": {
+            "target_id": "location:packing-counter"
+          }
+        },
+        {
+          "action": "key_up",
+          "params": {
+            "hold_ms": 700
+          }
+        },
+        {
+          "action": "key_left",
+          "params": {
             "hold_ms": 300
-          }
-        },
-        {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 0
           }
         },
         {
@@ -2054,13 +1950,7 @@
           }
         },
         {
-          "action": "key_right",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_up",
+          "action": "key_down",
           "params": {
             "hold_ms": 0
           }
@@ -2068,17 +1958,41 @@
         {
           "action": "key_right",
           "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
             "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 400
           }
         },
         {
           "action": "interact",
           "params": {
-            "target_id": "location:special-event-floral-dispatch"
+            "target_id": "location:packing-counter"
           }
         },
         {
-          "action": "key_up",
+          "action": "key_left",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_down",
           "params": {
             "hold_ms": 300
           }
@@ -2086,13 +2000,13 @@
         {
           "action": "key_right",
           "params": {
-            "hold_ms": 0
+            "hold_ms": 400
           }
         },
         {
           "action": "key_up",
           "params": {
-            "hold_ms": 400
+            "hold_ms": 100
           }
         },
         {
@@ -2102,27 +2016,21 @@
           }
         },
         {
-          "action": "key_down",
+          "action": "key_left",
           "params": {
-            "hold_ms": 700
+            "hold_ms": 0
           }
         },
         {
           "action": "interact",
           "params": {
-            "target_id": "location:special-event-floral-dispatch"
-          }
-        },
-        {
-          "action": "key_up",
-          "params": {
-            "hold_ms": 0
+            "target_id": "location:packing-counter"
           }
         },
         {
           "action": "key_right",
           "params": {
-            "hold_ms": 100
+            "hold_ms": 0
           }
         },
         {
@@ -2134,7 +2042,31 @@
         {
           "action": "key_right",
           "params": {
-            "hold_ms": 100
+            "hold_ms": 200
+          }
+        },
+        {
+          "action": "key_up",
+          "params": {
+            "hold_ms": 400
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_up",
+          "params": {
+            "hold_ms": 500
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
           }
         },
         {
@@ -2147,7 +2079,7 @@
       "score": 100.0,
       "passed": true,
       "feedback": [
-        "Lovely work!"
+        "Delivered in perfect shape!"
       ],
       "breakdown": {
         "accuracy": {
@@ -2161,14 +2093,14 @@
       },
       "problems_found": [],
       "caveats": [
-        "Maximum score of 100.0 is consistently achieved; maintain the identical optimal inputs."
+        "Replaying the identical optimal plan preserves the perfect score."
       ],
       "hypothesis": "Exploit: replay the fastest correct delivery plan.",
       "what_changed": "No change: replay the same plan."
     },
     {
       "attempt": 8,
-      "run_id": "florist-1791647970511-l4-a08",
+      "run_id": "florist-1791648857246-l4-a08",
       "inputs": {
         "policy": "listed",
         "batch": 1,
@@ -2189,7 +2121,7 @@
         {
           "action": "interact",
           "params": {
-            "target_id": "location:special-event-floral-dispatch"
+            "target_id": "location:packing-counter"
           }
         },
         {
@@ -2201,37 +2133,13 @@
         {
           "action": "key_right",
           "params": {
-            "hold_ms": 200
+            "hold_ms": 1300
           }
         },
         {
           "action": "key_up",
           "params": {
-            "hold_ms": 200
-          }
-        },
-        {
-          "action": "key_right",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_up",
-          "params": {
-            "hold_ms": 200
-          }
-        },
-        {
-          "action": "key_right",
-          "params": {
-            "hold_ms": 600
-          }
-        },
-        {
-          "action": "key_up",
-          "params": {
-            "hold_ms": 0
+            "hold_ms": 300
           }
         },
         {
@@ -2241,36 +2149,6 @@
           }
         },
         {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 500
-          }
-        },
-        {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 200
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 200
-          }
-        },
-        {
-          "action": "interact",
-          "params": {
-            "target_id": "location:special-event-floral-dispatch"
-          }
-        },
-        {
           "action": "key_up",
           "params": {
             "hold_ms": 100
@@ -2279,43 +2157,31 @@
         {
           "action": "key_left",
           "params": {
+            "hold_ms": 1200
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "interact",
+          "params": {
+            "target_id": "location:packing-counter"
+          }
+        },
+        {
+          "action": "key_up",
+          "params": {
+            "hold_ms": 700
+          }
+        },
+        {
+          "action": "key_left",
+          "params": {
             "hold_ms": 300
-          }
-        },
-        {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 0
           }
         },
         {
@@ -2325,13 +2191,7 @@
           }
         },
         {
-          "action": "key_right",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_up",
+          "action": "key_down",
           "params": {
             "hold_ms": 0
           }
@@ -2339,17 +2199,41 @@
         {
           "action": "key_right",
           "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
             "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 400
           }
         },
         {
           "action": "interact",
           "params": {
-            "target_id": "location:special-event-floral-dispatch"
+            "target_id": "location:packing-counter"
           }
         },
         {
-          "action": "key_up",
+          "action": "key_left",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_down",
           "params": {
             "hold_ms": 300
           }
@@ -2357,13 +2241,13 @@
         {
           "action": "key_right",
           "params": {
-            "hold_ms": 0
+            "hold_ms": 400
           }
         },
         {
           "action": "key_up",
           "params": {
-            "hold_ms": 400
+            "hold_ms": 100
           }
         },
         {
@@ -2373,27 +2257,21 @@
           }
         },
         {
-          "action": "key_down",
+          "action": "key_left",
           "params": {
-            "hold_ms": 700
+            "hold_ms": 0
           }
         },
         {
           "action": "interact",
           "params": {
-            "target_id": "location:special-event-floral-dispatch"
-          }
-        },
-        {
-          "action": "key_up",
-          "params": {
-            "hold_ms": 0
+            "target_id": "location:packing-counter"
           }
         },
         {
           "action": "key_right",
           "params": {
-            "hold_ms": 100
+            "hold_ms": 0
           }
         },
         {
@@ -2405,7 +2283,31 @@
         {
           "action": "key_right",
           "params": {
-            "hold_ms": 100
+            "hold_ms": 200
+          }
+        },
+        {
+          "action": "key_up",
+          "params": {
+            "hold_ms": 400
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_up",
+          "params": {
+            "hold_ms": 500
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
           }
         },
         {
@@ -2418,7 +2320,7 @@
       "score": 100.0,
       "passed": true,
       "feedback": [
-        "Lovely work!"
+        "Delivered in perfect shape!"
       ],
       "breakdown": {
         "accuracy": {
@@ -2432,14 +2334,14 @@
       },
       "problems_found": [],
       "caveats": [
-        "Maximum score of 100.0 is stably achieved; repeat the optimal configuration."
+        "Replaying the identical optimal plan preserves the perfect score."
       ],
       "hypothesis": "Exploit: replay the fastest correct delivery plan.",
       "what_changed": "No change: replay the same plan."
     },
     {
       "attempt": 9,
-      "run_id": "florist-1791647970511-l4-a09",
+      "run_id": "florist-1791648857246-l4-a09",
       "inputs": {
         "policy": "listed",
         "batch": 1,
@@ -2460,7 +2362,7 @@
         {
           "action": "interact",
           "params": {
-            "target_id": "location:special-event-floral-dispatch"
+            "target_id": "location:packing-counter"
           }
         },
         {
@@ -2472,37 +2374,13 @@
         {
           "action": "key_right",
           "params": {
-            "hold_ms": 200
+            "hold_ms": 1300
           }
         },
         {
           "action": "key_up",
           "params": {
-            "hold_ms": 200
-          }
-        },
-        {
-          "action": "key_right",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_up",
-          "params": {
-            "hold_ms": 200
-          }
-        },
-        {
-          "action": "key_right",
-          "params": {
-            "hold_ms": 600
-          }
-        },
-        {
-          "action": "key_up",
-          "params": {
-            "hold_ms": 0
+            "hold_ms": 300
           }
         },
         {
@@ -2512,36 +2390,6 @@
           }
         },
         {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 500
-          }
-        },
-        {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 200
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 200
-          }
-        },
-        {
-          "action": "interact",
-          "params": {
-            "target_id": "location:special-event-floral-dispatch"
-          }
-        },
-        {
           "action": "key_up",
           "params": {
             "hold_ms": 100
@@ -2550,43 +2398,31 @@
         {
           "action": "key_left",
           "params": {
+            "hold_ms": 1200
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "interact",
+          "params": {
+            "target_id": "location:packing-counter"
+          }
+        },
+        {
+          "action": "key_up",
+          "params": {
+            "hold_ms": 700
+          }
+        },
+        {
+          "action": "key_left",
+          "params": {
             "hold_ms": 300
-          }
-        },
-        {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 0
           }
         },
         {
@@ -2596,13 +2432,7 @@
           }
         },
         {
-          "action": "key_right",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_up",
+          "action": "key_down",
           "params": {
             "hold_ms": 0
           }
@@ -2610,17 +2440,41 @@
         {
           "action": "key_right",
           "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
             "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 400
           }
         },
         {
           "action": "interact",
           "params": {
-            "target_id": "location:special-event-floral-dispatch"
+            "target_id": "location:packing-counter"
           }
         },
         {
-          "action": "key_up",
+          "action": "key_left",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_down",
           "params": {
             "hold_ms": 300
           }
@@ -2628,13 +2482,13 @@
         {
           "action": "key_right",
           "params": {
-            "hold_ms": 0
+            "hold_ms": 400
           }
         },
         {
           "action": "key_up",
           "params": {
-            "hold_ms": 400
+            "hold_ms": 100
           }
         },
         {
@@ -2644,27 +2498,21 @@
           }
         },
         {
-          "action": "key_down",
+          "action": "key_left",
           "params": {
-            "hold_ms": 700
+            "hold_ms": 0
           }
         },
         {
           "action": "interact",
           "params": {
-            "target_id": "location:special-event-floral-dispatch"
-          }
-        },
-        {
-          "action": "key_up",
-          "params": {
-            "hold_ms": 0
+            "target_id": "location:packing-counter"
           }
         },
         {
           "action": "key_right",
           "params": {
-            "hold_ms": 100
+            "hold_ms": 0
           }
         },
         {
@@ -2676,7 +2524,31 @@
         {
           "action": "key_right",
           "params": {
-            "hold_ms": 100
+            "hold_ms": 200
+          }
+        },
+        {
+          "action": "key_up",
+          "params": {
+            "hold_ms": 400
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_up",
+          "params": {
+            "hold_ms": 500
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
           }
         },
         {
@@ -2689,7 +2561,7 @@
       "score": 100.0,
       "passed": true,
       "feedback": [
-        "Lovely work!"
+        "Delivered in perfect shape!"
       ],
       "breakdown": {
         "accuracy": {
@@ -2703,14 +2575,15 @@
       },
       "problems_found": [],
       "caveats": [
-        "Final attempt (10 of 10): exploit the proven 100.0 plan without deviation."
+        "Replaying the proven 100.0 configuration ensures consistent passes across remaining attempts.",
+        "Attempt 10 is the final attempt; exploit the optimal plan."
       ],
       "hypothesis": "Exploit: replay the fastest correct delivery plan.",
       "what_changed": "No change: replay the same plan."
     },
     {
       "attempt": 10,
-      "run_id": "florist-1791647970511-l4-a10",
+      "run_id": "florist-1791648857246-l4-a10",
       "inputs": {
         "policy": "listed",
         "batch": 1,
@@ -2731,7 +2604,7 @@
         {
           "action": "interact",
           "params": {
-            "target_id": "location:special-event-floral-dispatch"
+            "target_id": "location:packing-counter"
           }
         },
         {
@@ -2743,37 +2616,13 @@
         {
           "action": "key_right",
           "params": {
-            "hold_ms": 200
+            "hold_ms": 1300
           }
         },
         {
           "action": "key_up",
           "params": {
-            "hold_ms": 200
-          }
-        },
-        {
-          "action": "key_right",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_up",
-          "params": {
-            "hold_ms": 200
-          }
-        },
-        {
-          "action": "key_right",
-          "params": {
-            "hold_ms": 600
-          }
-        },
-        {
-          "action": "key_up",
-          "params": {
-            "hold_ms": 0
+            "hold_ms": 300
           }
         },
         {
@@ -2783,36 +2632,6 @@
           }
         },
         {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 500
-          }
-        },
-        {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 200
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 200
-          }
-        },
-        {
-          "action": "interact",
-          "params": {
-            "target_id": "location:special-event-floral-dispatch"
-          }
-        },
-        {
           "action": "key_up",
           "params": {
             "hold_ms": 100
@@ -2821,43 +2640,31 @@
         {
           "action": "key_left",
           "params": {
+            "hold_ms": 1200
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "interact",
+          "params": {
+            "target_id": "location:packing-counter"
+          }
+        },
+        {
+          "action": "key_up",
+          "params": {
+            "hold_ms": 700
+          }
+        },
+        {
+          "action": "key_left",
+          "params": {
             "hold_ms": 300
-          }
-        },
-        {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_down",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_left",
-          "params": {
-            "hold_ms": 0
           }
         },
         {
@@ -2867,13 +2674,7 @@
           }
         },
         {
-          "action": "key_right",
-          "params": {
-            "hold_ms": 0
-          }
-        },
-        {
-          "action": "key_up",
+          "action": "key_down",
           "params": {
             "hold_ms": 0
           }
@@ -2881,17 +2682,41 @@
         {
           "action": "key_right",
           "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
             "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_down",
+          "params": {
+            "hold_ms": 400
           }
         },
         {
           "action": "interact",
           "params": {
-            "target_id": "location:special-event-floral-dispatch"
+            "target_id": "location:packing-counter"
           }
         },
         {
-          "action": "key_up",
+          "action": "key_left",
+          "params": {
+            "hold_ms": 100
+          }
+        },
+        {
+          "action": "key_down",
           "params": {
             "hold_ms": 300
           }
@@ -2899,13 +2724,13 @@
         {
           "action": "key_right",
           "params": {
-            "hold_ms": 0
+            "hold_ms": 400
           }
         },
         {
           "action": "key_up",
           "params": {
-            "hold_ms": 400
+            "hold_ms": 100
           }
         },
         {
@@ -2915,27 +2740,21 @@
           }
         },
         {
-          "action": "key_down",
+          "action": "key_left",
           "params": {
-            "hold_ms": 700
+            "hold_ms": 0
           }
         },
         {
           "action": "interact",
           "params": {
-            "target_id": "location:special-event-floral-dispatch"
-          }
-        },
-        {
-          "action": "key_up",
-          "params": {
-            "hold_ms": 0
+            "target_id": "location:packing-counter"
           }
         },
         {
           "action": "key_right",
           "params": {
-            "hold_ms": 100
+            "hold_ms": 0
           }
         },
         {
@@ -2947,7 +2766,31 @@
         {
           "action": "key_right",
           "params": {
-            "hold_ms": 100
+            "hold_ms": 200
+          }
+        },
+        {
+          "action": "key_up",
+          "params": {
+            "hold_ms": 400
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
+          }
+        },
+        {
+          "action": "key_up",
+          "params": {
+            "hold_ms": 500
+          }
+        },
+        {
+          "action": "key_right",
+          "params": {
+            "hold_ms": 0
           }
         },
         {
@@ -2960,7 +2803,7 @@
       "score": 100.0,
       "passed": true,
       "feedback": [
-        "Lovely work!"
+        "Delivered in perfect shape!"
       ],
       "breakdown": {
         "accuracy": {
@@ -2985,5 +2828,5 @@
     }
   ],
   "user_context": [],
-  "updated_at": "2026-10-10T16:03:19.088Z"
+  "updated_at": "2026-10-10T16:17:41.038Z"
 }

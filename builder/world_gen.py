@@ -38,7 +38,7 @@ KIND_SIZE = {"building": (5, 3), "stall": (4, 2), "station": (3, 2), "field": (5
 MECH_DEFAULT_KIND = {"mix": ("station", "pot"), "timing": ("station", "oven"), "sort": ("stall", "shelf"),
                      "deliver": ("stall", "counter"), "converse": ("stall", "stall")}
 CONTROLS_HINT = {
-    "mix": "Up/Down pick a setting, Left/Right adjust it, Enter to {submit}. Or drag a slider and click {submit}.",
+    "mix": "Up/Down pick a setting, hold Right to add or Left to take out, Enter to {submit}. Or hold the mouse on the tool and click {submit}.",
     "timing_stop": "Press Up or Enter, or click the gauge, to stop the needle.",
     "timing_hold": "Hold Up, or hold the mouse on the gauge, and release to stop.",
     "sort": "Left/Right pick a spot, Down or Enter to place. Or drag the item onto a spot.",

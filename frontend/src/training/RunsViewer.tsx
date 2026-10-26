@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { RunEvent, RunSummary, TrainStatus } from '../contract'
 import { RunSpectator } from './RunSpectator'
 import './runs.css'
@@ -8,9 +8,10 @@ const POLL_MS = 1000
 /**
  * Training screen (shared/game_contract.md section d): one run on screen at a time. Each level trains
  * in its own browser, so "Run i/N" walks the N concurrently trained levels, each showing its latest
- * attempt. Left/Right arrow keys or the two on-screen arrows switch runs. Calls onDone when skills are ready.
+ * attempt. Left/Right arrow keys or the two on-screen arrows switch runs. Once skills are ready a "See skills" button
+ * calls onDone; onBack goes back to the game.
  */
-export function RunsViewer({ onDone }: { onDone: () => void }) {
+export function RunsViewer({ onDone, onBack }: { onDone: () => void; onBack: () => void }) {
   const [status, setStatus] = useState<TrainStatus | null>(null)
   const [runs, setRuns] = useState<RunSummary[]>([])
   const [lane, setLane] = useState(0)
@@ -38,16 +39,7 @@ export function RunsViewer({ onDone }: { onDone: () => void }) {
     }
   }, [])
 
-  const doneRef = useRef(onDone)
-  useEffect(() => {
-    doneRef.current = onDone
-  })
   const ready = Boolean(status?.skills_ready && status.status !== 'running')
-  useEffect(() => {
-    if (!ready) return
-    const t = setTimeout(() => doneRef.current(), 1500)
-    return () => clearTimeout(t)
-  }, [ready])
 
   const lanes = status?.levels ?? []
   const n = lanes.length
@@ -91,7 +83,7 @@ export function RunsViewer({ onDone }: { onDone: () => void }) {
       <p className="runs-indicator" aria-live="polite">
         {n ? (
           <>
-            Run {index + 1}/{n} · {current.level_title} · attempt {run?.attempt ?? 0}/{current.attempts_total} · score{' '}
+            Run {index + 1}/{n}: {current.level_title}, attempt {run?.attempt ?? 0}/{current.attempts_total}, score{' '}
             {score ?? '…'}
           </>
         ) : (
@@ -102,10 +94,20 @@ export function RunsViewer({ onDone }: { onDone: () => void }) {
         <button type="button" className="runs-arrow" onClick={() => setLane((i) => i - 1)} disabled={n < 2} aria-label="Previous run">
           ‹
         </button>
-        <RunSpectator slug={status?.slug ?? null} run={run} events={events} />
+        <RunSpectator slug={status?.slug ?? null} run={run} events={events} levelDone={current?.status === 'done'} />
         <button type="button" className="runs-arrow" onClick={() => setLane((i) => i + 1)} disabled={n < 2} aria-label="Next run">
           ›
         </button>
+      </div>
+      <div className="runs-nav">
+        <button type="button" className="runs-back" onClick={onBack}>
+          ‹ Back to game
+        </button>
+        {ready && (
+          <button type="button" className="runs-back runs-skills" onClick={onDone}>
+            See skills ›
+          </button>
+        )}
       </div>
       {failed && <p className="runs-error">Training stopped: {status?.error ?? 'unknown error'}</p>}
     </section>

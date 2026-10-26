@@ -46,7 +46,6 @@ class MixDriver(Driver):
     def __init__(self, strategy, plan):
         super().__init__(strategy, plan)
         self.mouse: Set[str] = set()  # variables set with the mouse because keys had no effect
-        self.mouse_offset: Dict[str, float] = {}
         self.given_up: Set[str] = set()
         self.last_values: Dict[str, float] = {}
 
@@ -63,18 +62,17 @@ class MixDriver(Driver):
             step = v.get("step") or 1
             if abs(float(v.get("value", 0)) - want) <= step / 2:
                 continue
+            n = round((want - float(v.get("value", 0))) / step)
             if v["id"] in self.mouse:
-                slider = find_target(obs, f"slider:{v['id']}")
-                if slider and v["max"] > v["min"]:
-                    frac = (want - v["min"]) / (v["max"] - v["min"])
-                    x = slider["x"] + frac * slider["w"] + self.mouse_offset.get(v["id"], 0.0)
-                    return {"action": "mouse_click", "params": {"x": x, "y": slider["y"] + slider["h"] / 2}}
+                # click the station to pick it, then the tool (+1 step) or take-back (-1 step) per click
+                tid = f"item:{v['id']}" if sel != i else f"{'tool' if n > 0 else 'back'}:{v['id']}"
+                if tid in target_ids(obs):
+                    return {"action": "mouse_click", "params": {"target_id": tid}}
                 self.given_up.add(v["id"])
-                self.problems.append(f"Could not set {v.get('label', v['id'])}: neither keys nor the slider responded.")
+                self.problems.append(f"Could not set {v.get('label', v['id'])}: neither keys nor the tool responded.")
                 continue
             if sel != i:
                 return key("key_down" if i > sel else "key_up", abs(i - sel))
-            n = round((want - float(v.get("value", 0))) / step)
             return key("key_right" if n > 0 else "key_left", abs(n))
         order = self.plan.get("order")
         if order and "added_order" in ms:
@@ -94,26 +92,13 @@ class MixDriver(Driver):
         elif action["action"] in ("key_up", "key_down"):
             for v in variables:  # selection does not move: set the rest with the mouse
                 self.mouse.add(v["id"])
-        elif action["action"] == "mouse_click" and "x" in action["params"]:
-            for v in variables:
-                if v["id"] in self.mouse:
-                    self.given_up.add(v["id"])
-                    self.problems.append(f"{v.get('label', v['id'])} did not respond to the slider either.")
-                    break
-
-    def after(self, action, before, after):
-        """Calibrate slider clicks: shift the click by the observed value error."""
-        if action["action"] != "mouse_click" or "x" not in action.get("params", {}):
-            return
-        for v_after in (after.get("mechanic_state") or {}).get("variables") or []:
-            vid = v_after["id"]
-            if vid not in self.mouse:
-                continue
-            slider = find_target(after, f"slider:{vid}")
-            want = self.strategy.value_for(vid, self.plan)
-            if slider and v_after["max"] > v_after["min"] and abs(v_after["value"] - want) > (v_after.get("step") or 1) / 2:
-                self.mouse_offset[vid] = self.mouse_offset.get(vid, 0.0) + (want - v_after["value"]) / (v_after["max"] - v_after["min"]) * slider["w"]
-            break
+        elif action["action"] == "mouse_click":
+            tid = str(action["params"].get("target_id") or "")
+            vid = tid.split(":", 1)[1] if tid.split(":", 1)[0] in ("item", "tool", "back") else None
+            v = next((v for v in variables if v["id"] == vid), None)
+            if v and v["id"] in self.mouse:
+                self.given_up.add(v["id"])
+                self.problems.append(f"{v.get('label', v['id'])} did not respond to the tool either.")
 
     def inputs(self, obs):
         values = {}

@@ -19,6 +19,7 @@ if str(WORKSPACE_ROOT) not in sys.path:
     sys.path.insert(0, str(WORKSPACE_ROOT))
 
 from shared.brain import attach_reasoning
+from builder.brain_log import record_build
 from builder.flavor import fallback_flavor, gemini_flavor, merge_flavor
 from builder.graph_check import finalize_world
 from builder.world_gen import BuildError, build_world, select_tasks, slugify, validate_world
@@ -76,7 +77,9 @@ class BuilderAgent:
 
         # Entire Graph check against main's rules: writes games/<slug>/world.json + graph_report.json and
         # commits the game on game/<slug>; raises GraphCheckError instead of committing a failing world
-        return finalize_world(world, self.workspace_dir, commit=commit)
+        world = finalize_world(world, self.workspace_dir, commit=commit)
+        record_build(world)  # design decisions -> Entire Brain game/<slug>, no-op without the CLI
+        return world
 
 
 if __name__ == "__main__":

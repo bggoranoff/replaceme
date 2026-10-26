@@ -1,3 +1,5 @@
+import Anthropic from '@anthropic-ai/sdk'
+import OpenAI from 'openai'
 import { formatValue, type SkillUpdate } from './store.ts'
 import type { LearnedSkill, SkillChatRequest } from '../../src/contract.ts'
 
@@ -155,6 +157,95 @@ export async function geminiChat(
   const { reply, update } = parseModelOutput(text)
   if (!reply) throw new Error('Gemini returned an empty reply')
   return { reply, update, citations: citationsFrom(data) }
+}
+
+export type Provider = 'google' | 'anthropic' | 'openai' | 'bedrock'
+
+const PROVIDER_KEYS: Record<Provider, string[]> = {
+  google: ['GEMINI_API_KEY', 'GOOGLE_API_KEY'],
+  anthropic: ['ANTHROPIC_API_KEY'],
+  openai: ['OPENAI_API_KEY'],
+  bedrock: ['AWS_BEARER_TOKEN_BEDROCK'],
+}
+const PROVIDER_MODELS: Record<Provider, string> = {
+  google: DEFAULT_MODEL,
+  anthropic: 'claude-opus-5-5',
+  openai: 'gpt-6-luna',
+  bedrock: 'openai.gpt-6-luna',
+}
+
+/** Same rules as builder/gemini_client.py: LLM_PROVIDER, else the first provider with a key. */
+export function chatProvider(env: Record<string, string | undefined>): { provider: Provider; apiKey: string; model: string } | null {
+  const wanted = env.LLM_PROVIDER?.trim().toLowerCase() as Provider | undefined
+  const order = wanted ? [wanted] : (Object.keys(PROVIDER_KEYS) as Provider[])
+  for (const provider of order) {
+    const apiKey = PROVIDER_KEYS[provider]?.map((k) => env[k]?.trim()).find(Boolean)
+    if (!apiKey) continue
+    const model = env.LLM_MODEL || (provider === 'google' ? env.GEMINI_MODEL : undefined) || PROVIDER_MODELS[provider]
+    return { provider, apiKey, model }
+  }
+  return null
+}
+
+const JSON_INSTRUCTION = `\n\nRespond with only a JSON object matching this JSON schema, no prose around it:\n${JSON.stringify(RESPONSE_SCHEMA)}`
+
+function chatResult(text: string, citations: SourceRef[]): ChatResult {
+  const { reply, update } = parseModelOutput(text)
+  if (!reply) throw new Error('The model returned an empty reply')
+  const seen = new Set<string>()
+  return { reply, update, citations: citations.filter((c) => !seen.has(c.url) && seen.add(c.url)) }
+}
+
+export async function anthropicChat(apiKey: string, model: string, skill: LearnedSkill, message: string, history: ChatTurn[]): Promise<ChatResult> {
+  const client = new Anthropic({ apiKey, timeout: 120_000 })
+  const messages: Anthropic.MessageParam[] = [...history.slice(-MAX_HISTORY), { role: 'user' as const, text: message }].map((m) => ({ role: m.role === 'user' ? 'user' : 'assistant', content: m.text }))
+  const response = await client.messages.create({
+    model,
+    max_tokens: 16000,
+    system: systemInstruction(skill) + JSON_INSTRUCTION,
+    messages,
+    tools: [{ type: 'web_search_20260209', name: 'web_search', max_uses: 3 }],
+    output_config: { effort: 'low' },
+  })
+  let text = ''
+  const citations: SourceRef[] = []
+  for (const block of response.content) {
+    if (block.type !== 'text') continue
+    text += block.text
+    for (const c of block.citations ?? []) if (c.type === 'web_search_result_location') citations.push({ title: c.title ?? '', url: c.url })
+  }
+  return chatResult(text, citations)
+}
+
+export async function openaiChat(apiKey: string, model: string, skill: LearnedSkill, message: string, history: ChatTurn[], baseURL?: string): Promise<ChatResult> {
+  const client = new OpenAI({ apiKey, baseURL, timeout: 120_000 })
+  const input = [...history.slice(-MAX_HISTORY), { role: 'user' as const, text: message }].map((m) => ({ role: m.role === 'user' ? ('user' as const) : ('assistant' as const), content: m.text }))
+  const response = await client.responses.create({
+    model,
+    instructions: systemInstruction(skill) + JSON_INSTRUCTION,
+    input,
+    tools: [{ type: 'web_search' }],
+  })
+  const citations: SourceRef[] = []
+  for (const item of response.output) {
+    if (item.type !== 'message') continue
+    for (const part of item.content) {
+      if (part.type !== 'output_text') continue
+      for (const a of part.annotations) if (a.type === 'url_citation') citations.push({ title: a.title, url: a.url })
+    }
+  }
+  return chatResult(response.output_text, citations)
+}
+
+/** Chat through whichever provider chatProvider() picked. */
+export function modelChat(env: Record<string, string | undefined>, cfg: NonNullable<ReturnType<typeof chatProvider>>, skill: LearnedSkill, message: string, history: ChatTurn[]): Promise<ChatResult> {
+  if (cfg.provider === 'anthropic') return anthropicChat(cfg.apiKey, cfg.model, skill, message, history)
+  if (cfg.provider === 'openai') return openaiChat(cfg.apiKey, cfg.model, skill, message, history)
+  if (cfg.provider === 'bedrock') {
+    const baseURL = env.BEDROCK_BASE_URL || `https://bedrock-mantle.${env.AWS_REGION || 'us-east-1'}.api.aws/openai/v1`
+    return openaiChat(cfg.apiKey, cfg.model, skill, message, history, baseURL)
+  }
+  return geminiChat(cfg.apiKey, cfg.model, skill, message, history)
 }
 
 const QUESTION_START = /^(why|what|how|when|where|which|who|whom|whose|should|could|would|can|is|are|do|does|did|will|tell|explain)\b/i

@@ -1,8 +1,8 @@
 {
   "version": 2,
   "id": "florist-stem-hydration-quick-dip",
-  "name": "Quick-Dip Hydration Pulse",
-  "description": "This skill ensures rapid rehydration and unblocking of stem vascular systems using a concentrated citric acid hydration pulse without damaging plant tissue. The optimal immersion duration is maintained precisely at 1.76 s (safe active window between 1.06 s and 2.0 s) before transferring stems to holding water.",
+  "name": "Timing Stem Baths",
+  "description": "This skill ensures woody flower stems rapidly hydrate and retain maximum perkiness by immersing them in a concentrated citric acid hydration bath for an optimal duration. The target immersion duration is exactly 1.526 seconds, preventing acid burn while unlocking stem vascular uptake.",
   "job": "florist",
   "level_id": "florist-stem-hydration-quick-dip",
   "level_index": 2,
@@ -17,9 +17,9 @@
     {
       "variable": "dip_duration",
       "label": "Immersion Duration",
-      "value": 1.76,
+      "value": 1.526,
       "unit": "s",
-      "rationale": "Set to 1.76 s. Testing demonstrated that a duration of 1.76 s yields a perfect score of 100.0 (attempts #2, #5-#10), as does 1.058 s (attempt #4, score 100.0). Increasing duration to 2.54 s drops the score to 79.6 with feedback warning of cambium burning (attempt #3), while 4.1 s drops the score to 3.2 due to severe acid burn (attempt #1). This aligns with the Floralife Quick Dip 100 Usage Guide recommending a brief 1-2 second immersion pulse. Measured: Best sub-score 100/100 at 1.76 s. Tried 1.058 s (sub-score 100) to 4.1 s (sub-score 3). Sub-score stayed at or above 80 between 1.058 s and 2.54 s.",
+      "rationale": "An immersion duration of 1.526 s achieved a perfect score of 100.0 across attempts #2, #5, #6, #7, #8, #9, and #10. A lower duration of 0.746 s scored 95.1 (attempt #4), while extending the duration to 2.384 s lowered the score to 89.1 (attempt #3) and 4.1 s failed at 3.2 (attempt #1) due to acid burn. This adheres to quick dip protocols outlined in the Floralife Quick Dip 100 Usage Guide. Measured: Best sub-score 100/100 at 1.526 s. Tried 0.746 s (sub-score 95) to 4.1 s (sub-score 3). Sub-score stayed at or above 80 between 0.746 s and 2.384 s.",
       "evidence": [
         {
           "attempt": 1,
@@ -28,47 +28,47 @@
         },
         {
           "attempt": 2,
-          "value": 1.76,
+          "value": 1.526,
           "score": 100.0
         },
         {
           "attempt": 3,
-          "value": 2.54,
-          "score": 79.6
+          "value": 2.384,
+          "score": 89.1
         },
         {
           "attempt": 4,
-          "value": 1.058,
-          "score": 100.0
+          "value": 0.746,
+          "score": 95.1
         },
         {
           "attempt": 5,
-          "value": 1.76,
+          "value": 1.526,
           "score": 100.0
         },
         {
           "attempt": 6,
-          "value": 1.76,
+          "value": 1.526,
           "score": 100.0
         },
         {
           "attempt": 7,
-          "value": 1.76,
+          "value": 1.526,
           "score": 100.0
         },
         {
           "attempt": 8,
-          "value": 1.76,
+          "value": 1.526,
           "score": 100.0
         },
         {
           "attempt": 9,
-          "value": 1.76,
+          "value": 1.526,
           "score": 100.0
         },
         {
           "attempt": 10,
-          "value": 1.76,
+          "value": 1.526,
           "score": 100.0
         }
       ]
@@ -77,7 +77,7 @@
   "control_effects": [
     {
       "variable": "dip_duration",
-      "effect": "Controls the duration stems remain submerged in the acidic quick-dip solution. Values between 1.058 s and 1.76 s achieved maximum scores (100.0, attempts #2, #4-#10). Exceeding 2.0 s rapidly degrades the score (2.54 s scored 79.6 in attempt #3; 4.1 s scored 3.2 in attempt #1) due to citric acid burning the delicate cambium layer. Measured: Best sub-score 100/100 at 1.76 s. Tried 1.058 s (sub-score 100) to 4.1 s (sub-score 3). Sub-score stayed at or above 80 between 1.058 s and 2.54 s.",
+      "effect": "Controls how long stem bases remain submerged in the acid bath. Setting 1.526 s consistently scores 100.0 (attempts #2, #5-#10). Reducing to 0.746 s yields a score of 95.1 (attempt #4), while increasing to 2.384 s reduces perkiness to 89.1 (attempt #3) and 4.1 s results in a severe cambium burn with a score of 3.2 (attempt #1). Measured: Best sub-score 100/100 at 1.526 s. Tried 0.746 s (sub-score 95) to 4.1 s (sub-score 3). Sub-score stayed at or above 80 between 0.746 s and 2.384 s.",
       "evidence": [
         {
           "attempt": 1,
@@ -86,86 +86,81 @@
         },
         {
           "attempt": 2,
-          "value": 1.76,
+          "value": 1.526,
           "score": 100.0
         },
         {
           "attempt": 3,
-          "value": 2.54,
-          "score": 79.6
+          "value": 2.384,
+          "score": 89.1
         },
         {
           "attempt": 4,
-          "value": 1.058,
-          "score": 100.0
+          "value": 0.746,
+          "score": 95.1
         },
         {
           "attempt": 5,
-          "value": 1.76,
+          "value": 1.526,
           "score": 100.0
         },
         {
           "attempt": 6,
-          "value": 1.76,
+          "value": 1.526,
           "score": 100.0
         },
         {
           "attempt": 7,
-          "value": 1.76,
+          "value": 1.526,
           "score": 100.0
         },
         {
           "attempt": 8,
-          "value": 1.76,
+          "value": 1.526,
           "score": 100.0
         },
         {
           "attempt": 9,
-          "value": 1.76,
+          "value": 1.526,
           "score": 100.0
         },
         {
           "attempt": 10,
-          "value": 1.76,
+          "value": 1.526,
           "score": 100.0
         }
       ]
     }
   ],
   "steps": [
-    "Prepare a shallow container filled with undiluted quick-dip hydration solution (citric acid pulse).",
-    "Recut flower stems evenly using clean shears or a floral knife immediately prior to treatment.",
-    "Lower the cut stem bases into the quick-dip solution to a depth of roughly 1 to 2 inches.",
-    "Immerse the stem ends for exactly 1.76 s (keeping duration strictly between 1.06 s and 1.8 s).",
-    "Immediately withdraw the stems from the quick dip upon reaching 1.76 s.",
-    "Transfer the stems directly into clean holding water treated with flower food without rinsing."
+    "Prepare the concentrated citric acid hydration solution (such as Floralife Quick Dip) in a clean dipping container.",
+    "Trim woody stem bases cleanly at an angle prior to dipping.",
+    "Lower the stem cut ends into the hydration bath.",
+    "Submerge the stems for exactly 1.526 seconds, timing the dip accurately.",
+    "Immediately withdraw the stems from the bath upon reaching 1.526 seconds and transfer them to fresh holding water."
   ],
   "caveats": [
-    "Quick-dip hydration solutions have a very narrow active pulse window; leaving stems submerged longer than 2 seconds causes severe chemical burns to the cambium layer.",
-    "Do not leave stems sitting unattended in the dip container under any circumstances.",
-    "Ensure stems are placed directly into holding water immediately after the pulse to facilitate vascular uptake.",
-    "Quick-dip hydration solutions (citric acid pulse) typically prescribe very brief exposure, typically 1 to 2 seconds.",
-    "Quick-dip hydration solutions have a narrow active window around 1-2 seconds; exceeding it burns cambium tissue.",
-    "The sweet spot is centered near 1.5 - 1.8 seconds. Probing the lower boundary will delineate the full tolerance window.",
-    "Quick-dip hydration solutions (citric acid pulse) are designed for a 1-2 second active immersion pulse; exceeding 2 seconds risks cambium damage.",
-    "Quick-dip hydration solutions (citric acid pulse) require short exposure (1-2 seconds) to avoid burning stem cambium.",
-    "Quick-dip hydration solutions (citric acid pulse) require strict timing between 1 and 2 seconds to prevent burning delicate cambium tissue while ensuring uptake.",
-    "Quick-dip hydration pulses must remain within 1-2 seconds; longer exposures burn delicate cambium tissue."
+    "Submerging stems too long degrades vascular tissue rapidly; an immersion of 4.1 s burns the cambium layer with acid.",
+    "Submerging stems too briefly (e.g., 0.746 s) slightly reduces hydration efficiency and perkiness (score 95.1).",
+    "Maintain strict timing around 1.526 s to avoid steep score drops seen at higher immersion durations.",
+    "Search suggestion proposed going higher based on a single point, but direct feedback clearly indicates 4.1 s is far too long, requiring a much shorter immersion.",
+    "Steep drop-off occurs at longer durations (e.g., 4.1 s burns cambium). A short dip around 1.5 s is ideal.",
+    "Durations above 1.5 s degrade perkiness and can burn cambium tissue at longer exposure times.",
+    "Dipping too briefly (e.g. 0.746 s) yields slightly less perkiness (95.1), while dipping too long degrades stems rapidly.",
+    "Stay strictly at the optimal duration of 1.526 s to ensure consistent maximum perkiness without cambium damage.",
+    "No reason to deviate from the optimal value of 1.526 s.",
+    "Do not deviate from the optimal setting of 1.526 s as it has consistently produced perfect scores across five separate attempts.",
+    "Final attempt must replay the verified best setting of 1.526 s."
   ],
   "problems": [
     {
       "problem": "The stems remained submerged far too long; concentrated citric acid burned the delicate cambium layer at the base.",
       "attempt": 1,
-      "fix": "Reduce the immersion duration to 1.76 s (or within the 1.06 s to 1.8 s window) and immediately transfer stems to clear holding water."
+      "fix": "Reduce immersion duration strictly to 1.526 seconds and promptly remove stems from the acid solution into clean water."
     },
     {
-      "problem": "Immersion duration at 4.1 s was far too long.",
+      "problem": "Immersion duration of 4.1 s is far too long for a quick acid dip.",
       "attempt": 1,
-      "fix": "Apply the learned values."
-    },
-    {
-      "problem": "Durations above ~2 seconds begin incurring penalties for citric acid burn.",
-      "attempt": 3,
       "fix": "Apply the learned values."
     }
   ],
@@ -182,12 +177,12 @@
     },
     {
       "attempt": 3,
-      "score": 79.6,
+      "score": 89.1,
       "passed": true
     },
     {
       "attempt": 4,
-      "score": 100.0,
+      "score": 95.1,
       "passed": true
     },
     {
@@ -224,7 +219,7 @@
   "attempts": [
     {
       "attempt": 1,
-      "run_id": "florist-1791647970511-l2-a01",
+      "run_id": "florist-1791648857246-l2-a01",
       "inputs": {
         "values": {
           "dip_duration": 4.1
@@ -270,20 +265,20 @@
       },
       "problems_found": [
         "The stems remained submerged far too long; concentrated citric acid burned the delicate cambium layer at the base.",
-        "Immersion duration at 4.1 s was far too long."
+        "Immersion duration of 4.1 s is far too long for a quick acid dip."
       ],
       "caveats": [
-        "Quick-dip hydration solutions (citric acid pulse) typically prescribe very brief exposure, typically 1 to 2 seconds."
+        "Search suggestion proposed going higher based on a single point, but direct feedback clearly indicates 4.1 s is far too long, requiring a much shorter immersion."
       ],
-      "hypothesis": "Testing the midpoint duration of 4.1 s to observe feedback on whether the immersion window is shorter or longer.",
-      "what_changed": "Baseline initial attempt at dip_duration = 4.1 s."
+      "hypothesis": "Attempt 1 tests the baseline duration of 4.1s to observe whether the stem immersion duration is too short, too long, or near target.",
+      "what_changed": "Establishing baseline at dip_duration = 4.1s."
     },
     {
       "attempt": 2,
-      "run_id": "florist-1791647970511-l2-a02",
+      "run_id": "florist-1791648857246-l2-a02",
       "inputs": {
         "values": {
-          "dip_duration": 1.76
+          "dip_duration": 1.526
         }
       },
       "actions_taken": [
@@ -302,7 +297,7 @@
         {
           "action": "wait",
           "params": {
-            "ms": 780
+            "ms": 660
           }
         },
         {
@@ -316,7 +311,7 @@
       "score": 100.0,
       "passed": true,
       "feedback": [
-        "Lovely work!"
+        "Perky stems standing tall!"
       ],
       "breakdown": {
         "dip_duration": {
@@ -326,17 +321,17 @@
       },
       "problems_found": [],
       "caveats": [
-        "Quick-dip hydration solutions have a narrow active window around 1-2 seconds; exceeding it burns cambium tissue."
+        "Steep drop-off occurs at longer durations (e.g., 4.1 s burns cambium). A short dip around 1.5 s is ideal."
       ],
-      "hypothesis": "Reducing dip_duration significantly down to the standard 1–2 second quick-dip window will yield a much higher score.",
-      "what_changed": "Decreased dip_duration from 4.1 s down to 1.76 s (step index 20: 0.2 + 20 * 0.078 = 1.76) to target the 1–2 second range."
+      "hypothesis": "The optimal dip duration is in the standard quick dip range of 1.0 to 2.0 seconds. Testing around 1.5 s will show substantial improvement.",
+      "what_changed": "Decreasing dip_duration from 4.1 s to 1.526 s (a valid step: 0.2 + 17 * 0.078) to move into the quick immersion window."
     },
     {
       "attempt": 3,
-      "run_id": "florist-1791647970511-l2-a03",
+      "run_id": "florist-1791648857246-l2-a03",
       "inputs": {
         "values": {
-          "dip_duration": 2.54
+          "dip_duration": 2.384
         }
       },
       "actions_taken": [
@@ -355,7 +350,7 @@
         {
           "action": "wait",
           "params": {
-            "ms": 1180
+            "ms": 1100
           }
         },
         {
@@ -366,32 +361,30 @@
           }
         }
       ],
-      "score": 79.6,
+      "score": 89.1,
       "passed": true,
       "feedback": [
-        "The stems remained submerged far too long; concentrated citric acid burned the delicate cambium layer at the base."
+        "Perky stems standing tall!"
       ],
       "breakdown": {
         "dip_duration": {
           "label": "Immersion Duration",
-          "score": 80
+          "score": 89
         }
       },
-      "problems_found": [
-        "Durations above ~2 seconds begin incurring penalties for citric acid burn."
-      ],
+      "problems_found": [],
       "caveats": [
-        "The sweet spot is centered near 1.5 - 1.8 seconds. Probing the lower boundary will delineate the full tolerance window."
+        "Durations above 1.5 s degrade perkiness and can burn cambium tissue at longer exposure times."
       ],
-      "hypothesis": "Probe Immersion Duration above the best (2.54 s) to map the acceptable window and see what goes wrong there.",
-      "what_changed": "Immersion Duration: 1.76 -> 2.54"
+      "hypothesis": "Probe Immersion Duration above the best (2.384 s) to map the acceptable window and see what goes wrong there.",
+      "what_changed": "Immersion Duration: 1.526 -> 2.384"
     },
     {
       "attempt": 4,
-      "run_id": "florist-1791647970511-l2-a04",
+      "run_id": "florist-1791648857246-l2-a04",
       "inputs": {
         "values": {
-          "dip_duration": 1.058
+          "dip_duration": 0.746
         }
       },
       "actions_taken": [
@@ -410,7 +403,7 @@
         {
           "action": "wait",
           "params": {
-            "ms": 420
+            "ms": 260
           }
         },
         {
@@ -421,30 +414,30 @@
           }
         }
       ],
-      "score": 100.0,
+      "score": 95.1,
       "passed": true,
       "feedback": [
-        "Lovely work!"
+        "Perky stems standing tall!"
       ],
       "breakdown": {
         "dip_duration": {
           "label": "Immersion Duration",
-          "score": 100
+          "score": 95
         }
       },
       "problems_found": [],
       "caveats": [
-        "Quick-dip hydration solutions (citric acid pulse) are designed for a 1-2 second active immersion pulse; exceeding 2 seconds risks cambium damage."
+        "Dipping too briefly (e.g. 0.746 s) yields slightly less perkiness (95.1), while dipping too long degrades stems rapidly."
       ],
-      "hypothesis": "Probing at dip_duration = 1.058 s will test the lower bound of the hydration window and indicate whether insufficient immersion fails to hydrate the stems.",
-      "what_changed": "Testing dip_duration = 1.058 s (down from 1.76 s) following the systematic search suggestion to map the lower curve boundary."
+      "hypothesis": "Probe Immersion Duration below the best (0.746 s) to map the acceptable window and see what goes wrong there.",
+      "what_changed": "Immersion Duration: 2.384 -> 0.746"
     },
     {
       "attempt": 5,
-      "run_id": "florist-1791647970511-l2-a05",
+      "run_id": "florist-1791648857246-l2-a05",
       "inputs": {
         "values": {
-          "dip_duration": 1.76
+          "dip_duration": 1.526
         }
       },
       "actions_taken": [
@@ -463,7 +456,7 @@
         {
           "action": "wait",
           "params": {
-            "ms": 780
+            "ms": 660
           }
         },
         {
@@ -477,7 +470,7 @@
       "score": 100.0,
       "passed": true,
       "feedback": [
-        "Lovely work!"
+        "Perky stems standing tall!"
       ],
       "breakdown": {
         "dip_duration": {
@@ -487,17 +480,17 @@
       },
       "problems_found": [],
       "caveats": [
-        "Quick-dip hydration solutions (citric acid pulse) require short exposure (1-2 seconds) to avoid burning stem cambium."
+        "Stay strictly at the optimal duration of 1.526 s to ensure consistent maximum perkiness without cambium damage."
       ],
-      "hypothesis": "Replaying the confirmed optimal immersion duration of 1.76 s will reliably secure a 100.0 score.",
-      "what_changed": "Replaying 1.76 s as recommended by the search model to exploit the proven optimal parameter."
+      "hypothesis": "Replaying dip_duration = 1.526 s will reliably reproduce the perfect 100.0 score.",
+      "what_changed": "Reverting back to the verified optimal value of 1.526 s."
     },
     {
       "attempt": 6,
-      "run_id": "florist-1791647970511-l2-a06",
+      "run_id": "florist-1791648857246-l2-a06",
       "inputs": {
         "values": {
-          "dip_duration": 1.76
+          "dip_duration": 1.526
         }
       },
       "actions_taken": [
@@ -516,7 +509,7 @@
         {
           "action": "wait",
           "params": {
-            "ms": 780
+            "ms": 660
           }
         },
         {
@@ -530,7 +523,7 @@
       "score": 100.0,
       "passed": true,
       "feedback": [
-        "Lovely work!"
+        "Perky stems standing tall!"
       ],
       "breakdown": {
         "dip_duration": {
@@ -540,17 +533,17 @@
       },
       "problems_found": [],
       "caveats": [
-        "Quick-dip hydration solutions (citric acid pulse) require short exposure (1-2 seconds) to avoid burning stem cambium."
+        "No reason to deviate from the optimal value of 1.526 s."
       ],
-      "hypothesis": "Exploit: replay the best settings found so far.",
-      "what_changed": "No change: replay the same plan."
+      "hypothesis": "Submitting 1.526 s will again achieve a perfect score of 100.0.",
+      "what_changed": "Replaying the confirmed optimal setting dip_duration = 1.526 s."
     },
     {
       "attempt": 7,
-      "run_id": "florist-1791647970511-l2-a07",
+      "run_id": "florist-1791648857246-l2-a07",
       "inputs": {
         "values": {
-          "dip_duration": 1.76
+          "dip_duration": 1.526
         }
       },
       "actions_taken": [
@@ -569,7 +562,7 @@
         {
           "action": "wait",
           "params": {
-            "ms": 780
+            "ms": 660
           }
         },
         {
@@ -583,7 +576,7 @@
       "score": 100.0,
       "passed": true,
       "feedback": [
-        "Lovely work!"
+        "Perky stems standing tall!"
       ],
       "breakdown": {
         "dip_duration": {
@@ -593,123 +586,17 @@
       },
       "problems_found": [],
       "caveats": [
-        "Quick-dip hydration solutions (citric acid pulse) require strict timing between 1 and 2 seconds to prevent burning delicate cambium tissue while ensuring uptake."
-      ],
-      "hypothesis": "Continuing to exploit dip_duration = 1.76 s will maintain a perfect 100 score.",
-      "what_changed": "Replaying the proven optimal setting of 1.76 s."
-    },
-    {
-      "attempt": 8,
-      "run_id": "florist-1791647970511-l2-a08",
-      "inputs": {
-        "values": {
-          "dip_duration": 1.76
-        }
-      },
-      "actions_taken": [
-        {
-          "action": "mouse_down",
-          "params": {
-            "target_id": "meter"
-          }
-        },
-        {
-          "action": "wait",
-          "params": {
-            "ms": 20
-          }
-        },
-        {
-          "action": "wait",
-          "params": {
-            "ms": 780
-          }
-        },
-        {
-          "action": "mouse_up",
-          "params": {
-            "x": 208.0,
-            "y": 119.0
-          }
-        }
-      ],
-      "score": 100.0,
-      "passed": true,
-      "feedback": [
-        "Lovely work!"
-      ],
-      "breakdown": {
-        "dip_duration": {
-          "label": "Immersion Duration",
-          "score": 100
-        }
-      },
-      "problems_found": [],
-      "caveats": [
-        "Quick-dip hydration solutions (citric acid pulse) require strict timing between 1 and 2 seconds to prevent burning delicate cambium tissue while ensuring uptake."
-      ],
-      "hypothesis": "Replaying dip_duration = 1.76 s will continue to yield a 100.0 score.",
-      "what_changed": "Replaying the confirmed optimal dip_duration of 1.76 s."
-    },
-    {
-      "attempt": 9,
-      "run_id": "florist-1791647970511-l2-a09",
-      "inputs": {
-        "values": {
-          "dip_duration": 1.76
-        }
-      },
-      "actions_taken": [
-        {
-          "action": "mouse_down",
-          "params": {
-            "target_id": "meter"
-          }
-        },
-        {
-          "action": "wait",
-          "params": {
-            "ms": 20
-          }
-        },
-        {
-          "action": "wait",
-          "params": {
-            "ms": 780
-          }
-        },
-        {
-          "action": "mouse_up",
-          "params": {
-            "x": 208.0,
-            "y": 119.0
-          }
-        }
-      ],
-      "score": 100.0,
-      "passed": true,
-      "feedback": [
-        "Lovely work!"
-      ],
-      "breakdown": {
-        "dip_duration": {
-          "label": "Immersion Duration",
-          "score": 100
-        }
-      },
-      "problems_found": [],
-      "caveats": [
-        "Quick-dip hydration pulses must remain within 1-2 seconds; longer exposures burn delicate cambium tissue."
+        "No reason to deviate from the optimal value of 1.526 s."
       ],
       "hypothesis": "Exploit: replay the best settings found so far.",
       "what_changed": "No change: replay the same plan."
     },
     {
-      "attempt": 10,
-      "run_id": "florist-1791647970511-l2-a10",
+      "attempt": 8,
+      "run_id": "florist-1791648857246-l2-a08",
       "inputs": {
         "values": {
-          "dip_duration": 1.76
+          "dip_duration": 1.526
         }
       },
       "actions_taken": [
@@ -728,7 +615,7 @@
         {
           "action": "wait",
           "params": {
-            "ms": 780
+            "ms": 660
           }
         },
         {
@@ -742,7 +629,113 @@
       "score": 100.0,
       "passed": true,
       "feedback": [
-        "Lovely work!"
+        "Perky stems standing tall!"
+      ],
+      "breakdown": {
+        "dip_duration": {
+          "label": "Immersion Duration",
+          "score": 100
+        }
+      },
+      "problems_found": [],
+      "caveats": [
+        "Do not deviate from the optimal setting of 1.526 s as it has consistently produced perfect scores across five separate attempts."
+      ],
+      "hypothesis": "Submitting dip_duration = 1.526 will continue to reliably achieve 100.0.",
+      "what_changed": "Replay the optimal setting of 1.526 s."
+    },
+    {
+      "attempt": 9,
+      "run_id": "florist-1791648857246-l2-a09",
+      "inputs": {
+        "values": {
+          "dip_duration": 1.526
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "mouse_down",
+          "params": {
+            "target_id": "meter"
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 20
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 660
+          }
+        },
+        {
+          "action": "mouse_up",
+          "params": {
+            "x": 208.0,
+            "y": 119.0
+          }
+        }
+      ],
+      "score": 100.0,
+      "passed": true,
+      "feedback": [
+        "Perky stems standing tall!"
+      ],
+      "breakdown": {
+        "dip_duration": {
+          "label": "Immersion Duration",
+          "score": 100
+        }
+      },
+      "problems_found": [],
+      "caveats": [
+        "Final attempt must replay the verified best setting of 1.526 s."
+      ],
+      "hypothesis": "Submitting dip_duration = 1.526 s will reliably score 100.0 again.",
+      "what_changed": "Retaining dip_duration at 1.526 s to exploit the known optimal solution."
+    },
+    {
+      "attempt": 10,
+      "run_id": "florist-1791648857246-l2-a10",
+      "inputs": {
+        "values": {
+          "dip_duration": 1.526
+        }
+      },
+      "actions_taken": [
+        {
+          "action": "mouse_down",
+          "params": {
+            "target_id": "meter"
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 20
+          }
+        },
+        {
+          "action": "wait",
+          "params": {
+            "ms": 660
+          }
+        },
+        {
+          "action": "mouse_up",
+          "params": {
+            "x": 208.0,
+            "y": 119.0
+          }
+        }
+      ],
+      "score": 100.0,
+      "passed": true,
+      "feedback": [
+        "Perky stems standing tall!"
       ],
       "breakdown": {
         "dip_duration": {
@@ -763,5 +756,5 @@
     }
   ],
   "user_context": [],
-  "updated_at": "2026-10-10T16:03:36.610Z"
+  "updated_at": "2026-10-10T16:16:49.327Z"
 }

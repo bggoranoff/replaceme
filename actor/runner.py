@@ -16,6 +16,8 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from actor.agent import WORKSPACE_ROOT, ActorAgent, LevelLearner, public_level, write_json
+from builder.gemini_client import GeminiClient
+from shared import brain
 
 STEP_DELAY_S = float(os.getenv("ACTOR_STEP_DELAY_MS", "150")) / 1000.0
 PAGE_TIMEOUT_MS = int(os.getenv("ACTOR_PAGE_TIMEOUT_MS", "60000"))
@@ -123,6 +125,7 @@ class Trainer:
             skill = await learner.play()
             lv["status"] = "done"
             self.skills.append(skill)
+            await asyncio.to_thread(brain.push_actor_skill, self.slug, self.training_id, skill)
             return skill
         except Exception as exc:
             lv["status"] = "error"
@@ -158,9 +161,10 @@ async def train(slug: str, training_id: str, base_url: str, game_url: str, attem
             await api.dispose()
             return {**trainer.status, "skills": []}
         trainer.save_status()
-        gemini = os.getenv("ACTOR_USE_GEMINI", "1") != "0" and bool(os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY"))
+        llm = GeminiClient()
+        gemini = os.getenv("ACTOR_USE_GEMINI", "1") != "0" and llm.is_configured()
         print(f"[actor] training {training_id}: {len(levels)} levels x {attempts} attempts, "
-              f"Gemini {'on' if gemini else 'off (deterministic search)'}", file=sys.stderr)
+              f"model {f'{llm.provider}/{llm.model}' if gemini else 'off (deterministic search)'}", file=sys.stderr)
         browser = await p.chromium.launch(headless=True)
         try:
             await asyncio.gather(*(trainer.train_level(browser, lvl) for lvl in levels))

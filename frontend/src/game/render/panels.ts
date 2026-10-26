@@ -49,7 +49,7 @@ function controlsHint(e: GameEngine): string {
   const level = e.level!
   if (level.mechanic === 'mix') {
     const submit = String((level.params as { submit_label?: string }).submit_label ?? 'finish')
-    return `Up/Down pick a tool · hold Right (or hold the mouse on it) to use it · Left to take back · or drag its gauge · Enter: ${submit}`
+    return `Click an item, then press and hold its tool to use it. Click ${submit} when done.`
   }
   return level.controls_hint
 }
@@ -116,7 +116,7 @@ export function drawIntro(ctx: Ctx, e: GameEngine, t: number) {
   y += textBlock(ctx, level.aim, r.x + r.w / 2, y, w, { size: 8.5, weight: 700, align: 'center', maxLines: 3, lineH: 11 }) + 6
   px(ctx, shade(PARCHMENT, -0.12), x, y - 4, w, 1)
   text(ctx, `Score: ${level.metric.name}`, x, y + 6, { size: 8, weight: 800 })
-  y += 8 + textBlock(ctx, level.metric.description, x, y + 16, w, { size: 7, weight: 700, color: INK_SOFT, maxLines: 2, lineH: 9 })
+  y += 8
   if (level.time_limit_ms) text(ctx, `Time: ${fmtTime(level.time_limit_ms)}`, x + w, y - 2, { size: 7.5, weight: 800, align: 'right' })
   y += 14
   textBlock(ctx, controlsHint(e), x, y, w, { size: 7, weight: 700, color: INK, maxLines: 3, lineH: 9 })

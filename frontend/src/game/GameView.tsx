@@ -19,6 +19,8 @@ export interface GameViewProps {
   /** spectate: replay speed multiplier. */
   speed?: number
   className?: string
+  /** Called after every drawn frame with the canvas and engine (e.g. to follow the avatar). */
+  onFrame?: (engine: GameEngine, canvas: HTMLCanvasElement) => void
 }
 
 const KEYS: Record<string, Dir> = {
@@ -105,16 +107,18 @@ function repeatable(engine: GameEngine, dir: Dir): boolean {
 }
 
 /** The game renderer. One engine per mounted view; key it by run/world to reset. */
-export function GameView({ world, mode = 'play', levelId = null, actions, speed = 1, className }: GameViewProps) {
+export function GameView({ world, mode = 'play', levelId = null, actions, speed = 1, className, onFrame }: GameViewProps) {
   const wrap = useRef<HTMLDivElement>(null)
   const canvas = useRef<HTMLCanvasElement>(null)
   const engine = useMemo(() => new GameEngine(world, mode), [world, mode])
   const actionsRef = useRef<Action[]>(actions ?? [])
   const speedRef = useRef(speed)
+  const onFrameRef = useRef(onFrame)
   useEffect(() => {
     actionsRef.current = actions ?? []
     speedRef.current = speed
-  }, [actions, speed])
+    onFrameRef.current = onFrame
+  }, [actions, speed, onFrame])
 
   // Level opened directly (agent mode and replays start fresh in the playing phase).
   useEffect(() => {
@@ -302,6 +306,7 @@ export function GameView({ world, mode = 'play', levelId = null, actions, speed 
         }
       }
       drawFrame(ctx, engine, view, scale, now)
+      onFrameRef.current?.(engine, cv)
       frame = requestAnimationFrame(tick)
     }
     frame = requestAnimationFrame(tick)

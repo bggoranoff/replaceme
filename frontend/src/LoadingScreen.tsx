@@ -14,11 +14,11 @@ interface ResearchProgress {
   tasks: string[]
 }
 
-const STEPS: { id: Phase; title: string; detail: string }[] = [
-  { id: 'research', title: 'Researching the job', detail: 'Gemini and Google Search find four real tasks, their controls and what good looks like.' },
-  { id: 'build', title: 'Building the world', detail: 'The builder lays out a cozy map with quest-giving neighbours and four levels.' },
-  { id: 'check', title: 'Checking the rules', detail: 'Entire Graph checks every level against the platform rules on main.' },
-  { id: 'commit', title: 'Saving the game', detail: 'The finished world is committed to its own game branch.' },
+const STEPS: { id: Phase; title: string }[] = [
+  { id: 'research', title: 'Researching the job' },
+  { id: 'build', title: 'Building the world' },
+  { id: 'check', title: 'Checking the rules' },
+  { id: 'commit', title: 'Saving the game' },
 ]
 
 const POLL_MS = 2000
@@ -51,7 +51,7 @@ export function LoadingScreen({ job }: LoadingScreenProps) {
     let alive = true
     const poll = async () => {
       try {
-        const res = await fetch(`/api/research/progress?run=${encodeURIComponent(run)}`)
+        const res = await fetch(`/api/research/progress?run=${encodeURIComponent(run)}&job=${encodeURIComponent(job)}`)
         if (!res.ok) return
         const data = (await res.json()) as ResearchProgress
         if (alive && STEPS.some((s) => s.id === data.phase)) setProgress(data)
@@ -65,18 +65,16 @@ export function LoadingScreen({ job }: LoadingScreenProps) {
       alive = false
       clearInterval(timer)
     }
-  }, [run])
+  }, [run, job])
 
   const current = STEPS.findIndex((s) => s.id === progress.phase)
 
   return (
     <section className="loader">
       <header className="loader-head">
-        <p className="loader-kicker">Generating your game</p>
         <h2>
           Building a world for <em>{job}</em>
         </h2>
-        <p className="loader-sub">Our agents are researching the job and building four levels. Play while you wait.</p>
       </header>
 
       <div className="loader-game">
@@ -93,7 +91,6 @@ export function LoadingScreen({ job }: LoadingScreenProps) {
         <ol className="loader-steps">
           {STEPS.map((step, i) => {
             const state = i < current ? 'done' : i === current ? 'current' : 'pending'
-            const found = step.id === 'research' && progress.tasks.length > 0
             return (
               <li key={step.id} className={`loader-step ${state}`} aria-current={state === 'current' ? 'step' : undefined}>
                 <span className="loader-marker" aria-hidden>
@@ -101,7 +98,6 @@ export function LoadingScreen({ job }: LoadingScreenProps) {
                 </span>
                 <div className="loader-step-text">
                   <strong>{step.title}</strong>
-                  <span>{found ? `Found: ${progress.tasks.join(' · ')}` : step.detail}</span>
                 </div>
               </li>
             )

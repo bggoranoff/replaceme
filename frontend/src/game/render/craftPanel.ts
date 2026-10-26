@@ -624,18 +624,6 @@ function drawResult(ctx: Ctx, m: MixMechanic, r: Rect, t: number, liquid: string
 
 // --- panel ------------------------------------------------------------------------------
 
-/** A station's gauge: a thin track filled to the current amount, with a grip you can drag. */
-function drawGauge(ctx: Ctx, g: Rect, f: number, active: boolean) {
-  px(ctx, WOOD_DARK, g.x - 1, g.y - 1, g.w + 2, g.h + 2)
-  px(ctx, PARCHMENT_DARK, g.x, g.y, g.w, g.h)
-  const fill = Math.round(g.w * f)
-  px(ctx, active ? '#e8a23c' : '#c9a36a', g.x, g.y, fill, g.h)
-  px(ctx, active ? '#f6c66a' : '#dcbb85', g.x, g.y, fill, 1)
-  const kx = Math.round(g.x + fill)
-  px(ctx, WOOD_DARK, kx - 2, g.y - 2, 4, g.h + 4)
-  px(ctx, active ? GOLD : '#f6e3bb', kx - 1, g.y - 1, 2, g.h + 2)
-}
-
 function selectArrow(ctx: Ctx, x: number, y: number, t: number) {
   const o = Math.round(Math.sin(t / 150))
   px(ctx, GOLD, x + o, y - 3, 2, 7)
@@ -643,10 +631,10 @@ function selectArrow(ctx: Ctx, x: number, y: number, t: number) {
   px(ctx, GOLD, x + 4 + o, y - 1, 2, 3)
 }
 
-/** One-line controls hint built from the tools on this station (overrides a stale level hint). */
+/** One-line, mouse-first controls hint built from the tools on this station (overrides a stale level hint). */
 export function craftHint(m: MixMechanic): string {
   const verb = VERB_WORDS[m.verbs[m.selected]]
-  return `Up/Down pick · hold Right (or the tool) to ${verb.act.toLowerCase()} · Left to ${verb.back.toLowerCase()} · or drag a gauge · Enter: ${m.params.submit_label}`
+  return `Click an item, then press and hold the tool to ${verb.act.toLowerCase()}. Click ${m.params.submit_label} when done.`
 }
 
 export function drawCraft(ctx: Ctx, e: GameEngine, m: MixMechanic, t: number) {
@@ -655,10 +643,9 @@ export function drawCraft(ctx: Ctx, e: GameEngine, m: MixMechanic, t: number) {
   const vars = m.params.variables
   const liquid = shade(e.world.theme.palette.water ?? '#6fb3d9', 0.45)
 
-  // station items (Up/Down), each with its gauge (click or drag to set)
+  // station items (Up/Down or click to pick)
   vars.forEach((v, i) => {
     const r = l.items[i]
-    const g = l.gauges[i]
     const sel = i === m.selected
     const fx = m.fx[i]
     const bump = now - fx.at < 140 ? 1 : 0
@@ -666,12 +653,11 @@ export function drawCraft(ctx: Ctx, e: GameEngine, m: MixMechanic, t: number) {
       px(ctx, WOOD_DARK, r.x, r.y, r.w, r.h)
       px(ctx, sel ? '#fff1c4' : PARCHMENT, r.x + 1, r.y + 1, r.w - 2, r.h - 2)
       if (sel) px(ctx, GOLD, r.x + 1, r.y + 1, 3, r.h - 2)
-      const valueY = g.y - 4
       const tight = r.h < 28
+      const valueY = Math.round(r.y + r.h / 2 + (tight ? 7 : 8))
       glyph(ctx, m.verbs[i], r.x + 6, Math.round(valueY - (tight ? 11 : 12)), tintFor(v.label))
       text(ctx, v.label, r.x + 22, valueY - (tight ? 8.5 : 10), { size: tight ? 6 : 6.5, weight: 800, color: sel ? INK : INK_SOFT, maxW: r.w - 26 })
       text(ctx, fmtAmount(v, m.values[i]), r.x + 22, valueY - bump, { size: 8.5 + bump, weight: 800, color: sel ? '#7a3f12' : INK, maxW: r.w - 26 })
-      drawGauge(ctx, g, fracOf(v, m.values[i]), sel || m.dragging === i)
     })
     if (sel) selectArrow(ctx, r.x - 9, r.y + r.h / 2, t)
   })
@@ -710,7 +696,7 @@ export function drawCraft(ctx: Ctx, e: GameEngine, m: MixMechanic, t: number) {
     TOOLS[verb]({ ctx, r, v, f: fracOf(v, m.values[i]), fx, since, pouring, t, liquid: verb === 'pour' ? (namedTint(v.label) ?? liquid) : liquid, tint: toolTint, floorY: 0 }),
   )
   ctx.restore()
-  text(ctx, `hold ▶ to ${words.act.toLowerCase()}`, st.x + st.w / 2, floorY + 9.5, { size: 6.5, weight: 800, color: '#fff3d6', align: 'center' })
+  text(ctx, `press and hold to ${words.act.toLowerCase()}`, st.x + st.w / 2, floorY + 9.5, { size: 6.5, weight: 800, color: '#fff3d6', align: 'center' })
   // take back + action
   button(ctx, l.back, `◀ ${words.back}`, false, '#f6e3bb')
   ;(m.params.ingredients ?? []).forEach((g, k) => {

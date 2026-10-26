@@ -1,5 +1,5 @@
 """
-Tests for researcher reasoning traces in Entire Brain (shared/brain.py), the
+Tests for researcher reasoning traces and actor facts in Entire Brain (shared/brain.py), the
 researcher's C1 task normalization (researcher/normalize.py) and grounding
 retry, the builder's brain-first trace loading, and the research.json v2
 example fixture.
@@ -127,6 +127,40 @@ def test_push_and_load(tmp: Path):
     check(source == "entire-brain" and traces == TRACES, f"missing brain facts filled from research.json: {traces}")
 
 
+SKILL = {
+    "level_id": "dip-stems", "level_index": 2, "name": "Dip stems", "mechanic": "timing", "best_score": 100.0,
+    "final_score": 100.0, "pass_threshold": 70.0, "passed": True, "trained_attempts": 3,
+    "learned_parameters": [{"variable": "dip_s", "label": "Dip time", "value": 1.5, "unit": "s"}],
+    "steps": ["Trim the stems.", "Dip for 1.5 s."],
+    "problems": [{"problem": "Acid burned the stems.", "attempt": 1, "fix": "Apply the learned values."},
+                 {"problem": "Acid burned the stems.", "attempt": 1, "fix": "Dip for 1.5 s, not 4 s."}],
+    "attempts": [{"attempt": 1, "inputs": {"values": {"dip_s": 4}}, "score": 3.2, "passed": False, "feedback": ["Acid burned the stems."]},
+                 {"attempt": 2, "inputs": {"values": {"dip_s": 1.5}}, "score": 100.0, "passed": True, "feedback": ["Perky!"]},
+                 {"attempt": 3, "inputs": {"values": {"dip_s": 1.5}}, "score": 100.0, "passed": True, "feedback": ["Perky!"]}],
+}
+
+
+def test_actor_facts(tmp: Path):
+    facts = brain.actor_facts("some-job", "some-job-9", SKILL)
+    skill_text = facts[brain.ACTOR_SKILL_PATH][0]["text"]
+    check(skill_text.startswith("[replaceme actor skill] job=some-job training=some-job-9 level=dip-stems index=2"), skill_text)
+    check("learned: Dip time = 1.5 s" in skill_text and "procedure: 1. Trim the stems. 2. Dip for 1.5 s." in skill_text, skill_text)
+    lessons = facts[brain.ACTOR_LESSON_PATH]
+    check(len(lessons) == 1 and lessons[0]["kind"] == "gotcha" and lessons[0]["text"].endswith("fix: Dip for 1.5 s, not 4 s."),
+          f"duplicate problems merged, the real fix kept: {lessons}")
+    attempts = facts[brain.ACTOR_ATTEMPT_PATH]
+    check([a["text"].split("\n")[1] for a in attempts] == ["tried: dip_s=4", "tried: dip_s=1.5"], f"replays skipped: {attempts}")
+
+    stored = brain.push_actor_skill("some-job", "some-job-9", SKILL)
+    check({k: len(v) for k, v in stored.items()} == {brain.ACTOR_SKILL_PATH: 1, brain.ACTOR_LESSON_PATH: 1, brain.ACTOR_ATTEMPT_PATH: 2},
+          f"every actor fact stored: {stored}")
+    saved = json.loads((tmp / "facts.json").read_text())
+    check({f["branch"] for f in saved} == {"game/some-job"}, "actor facts live on brain branch game/<slug>")
+    check([(f["paths"][0], f["kind"]) for f in saved] == [(brain.ACTOR_SKILL_PATH, "convention"), (brain.ACTOR_LESSON_PATH, "gotcha"),
+                                                         (brain.ACTOR_ATTEMPT_PATH, "decision"), (brain.ACTOR_ATTEMPT_PATH, "decision")],
+          "actor facts filed under project.actor.* with valid kinds")
+
+
 def test_fallback_without_brain():
     old = os.environ.get("ENTIRE_BRAIN_BIN")
     os.environ["ENTIRE_BRAIN_BIN"] = ""
@@ -134,6 +168,7 @@ def test_fallback_without_brain():
         check(brain.brain_bin() is None, "empty ENTIRE_BRAIN_BIN disables the brain")
         ref = brain.push_traces("some-job", "some-job-1", TRACES)
         check(ref["stored"] is False and ref["ids"] == [], "nothing stored without the CLI")
+        check(brain.push_actor_skill("some-job", "some-job-9", SKILL) == {}, "no actor facts stored without the CLI")
         traces, source = brain.load_traces({"slug": "some-job", "brain": {"stored": True, "ids": ["fact:x"], "query": "q"},
                                             "reasoning_traces": TRACES})
         check(source == "research.json" and traces == TRACES, "falls back to research.json reasoning_traces")
@@ -297,10 +332,11 @@ def test_live():
 if __name__ == "__main__":
     test_fact_round_trip()
     with_fake_brain(test_push_and_load)
+    with_fake_brain(test_actor_facts)
     test_fallback_without_brain()
     test_normalize()
     test_grounding_retry()
     test_fixture()
     if "--live" in sys.argv:
         test_live()
-    print("Brain traces, researcher normalization, builder loading and research v2 fixture are valid")
+    print("Brain traces, actor facts, researcher normalization, builder loading and research v2 fixture are valid")

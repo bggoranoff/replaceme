@@ -38,6 +38,13 @@
   outline: none;
 }
 
+.game-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
 .train-agent {
   display: inline-flex;
   align-items: center;
@@ -67,6 +74,10 @@
 .train-agent:disabled {
   cursor: progress;
   opacity: 0.8;
+}
+
+.see-skills {
+  background: var(--gold);
 }
 
 .game-error {

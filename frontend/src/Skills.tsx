@@ -9,7 +9,8 @@ const HIGHLIGHT_MS = 4000
 const isTyping = (el: EventTarget | null) =>
   el instanceof HTMLElement && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.isContentEditable)
 
-export function Skills({ job }: { job?: string }) {
+/** onBack returns to the game, which stays playable after training. */
+export function Skills({ job, onBack }: { job?: string; onBack?: () => void }) {
   const [skills, setSkills] = useState<LearnedSkill[] | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [selected, setSelected] = useState(0)
@@ -59,9 +60,20 @@ export function Skills({ job }: { job?: string }) {
     return () => window.removeEventListener('keydown', onKey)
   }, [count])
 
-  if (error) return <p className="sk-status">{error}</p>
-  if (!skills) return <p className="sk-status">Loading skills…</p>
-  if (skills.length === 0) return <p className="sk-status">No skills yet. Train the agent first.</p>
+  const back = onBack && (
+    <button type="button" className="sk-back" onClick={onBack}>
+      ‹ Back to game
+    </button>
+  )
+  const status = (text: string) => (
+    <section className="sk-screen sk-screen-status">
+      <p className="sk-status">{text}</p>
+      {back}
+    </section>
+  )
+  if (error) return status(error)
+  if (!skills) return status('Loading skills…')
+  if (skills.length === 0) return status('No skills yet. Train the agent first.')
 
   const skill = skills[Math.min(selected, skills.length - 1)]
 
@@ -78,7 +90,10 @@ export function Skills({ job }: { job?: string }) {
 
   return (
     <section className="sk-screen">
-      <h1 className="sk-title">Skills learned for {job || skill.job}</h1>
+      <div className="sk-head">
+        <h1 className="sk-title">Skills learned for {job || skill.job}</h1>
+        {back}
+      </div>
 
       <div className="sk-layout">
         <nav className="sk-list" aria-label="Learned skills">

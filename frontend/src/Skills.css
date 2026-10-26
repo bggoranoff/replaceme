@@ -17,6 +17,33 @@
   padding: 0 32px;
 }
 
+.sk-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.sk-back {
+  padding: 8px 14px;
+  border: 0;
+  background: var(--gold);
+  color: var(--ink);
+  box-shadow: var(--px), 0 5px 0 var(--drop);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.sk-screen-status {
+  align-items: center;
+}
+
+.sk-screen-status .sk-status {
+  margin-top: 12px;
+}
+
 .sk-title {
   align-self: flex-start;
   margin: 0;

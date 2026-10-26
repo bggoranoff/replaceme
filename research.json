@@ -1,424 +1,1797 @@
 {
-  "version": 1,
-  "role": "waitress",
-  "title": "Bistro Floor & Dining Room Service",
-  "theme": {
-    "name": "Cozy French Brasserie",
-    "floorType": "herringbone-parquet",
-    "floorColor1": "#5c3a21",
-    "floorColor2": "#472c19",
-    "wallColor": "#243229",
-    "wallpaperColor": "#2f4035",
-    "trimColor": "#d4af37",
-    "accentColor": "#b8860b"
-  },
+  "version": 2,
+  "job": "rocket scientist",
+  "slug": "rocket-scientist",
+  "title": "Launch Console",
+  "setting": "Rocket Propulsion Test Stand & Firing Room, including the indoor Launch & Static Test Firing Room and High-Bay Vehicle Integration Cleanroom & Test Cell, with stations at the Firing Console, Fluid & Calibration Bench, High-Bay Integration Staging Bay, Fluid Management Manifold, Static Test Stand, and Launch Director Podium",
   "sources": [
-    "The Professional Server: A Guide to Concept-Driven Service (Prentice Hall)",
-    "Culinary Institute of America: Remarkable Service Guidelines",
-    "ServSafe Food Handler Dining Room Safety Standards"
+    {
+      "title": "ulalaunch.com",
+      "url": "https://www.ulalaunch.com/missions/archived-launched/delta-ii-icesat-2"
+    },
+    {
+      "title": "capcomespace.net",
+      "url": "http://www.capcomespace.net/dossiers/sea_launch/sl_users_guide_rev_c.pdf"
+    },
+    {
+      "title": "dlr.de",
+      "url": "https://elib.dlr.de/219040/1/DLR-FB-2025-16.pdf"
+    },
+    {
+      "title": "weebau.com",
+      "url": "http://weebau.com/lvpics2/13016.htm"
+    },
+    {
+      "title": "spaceflightnow.com",
+      "url": "http://spaceflightnow.com/ariane/va214/va214status.html"
+    },
+    {
+      "title": "funkystuff.org",
+      "url": "https://www.funkystuff.org/spacex-starship-iii-sequence-of-events-ift-3/"
+    },
+    {
+      "title": "americaspace.com",
+      "url": "https://www.americaspace.com/2015/04/27/record-setting-spacex-roars-to-geostationary-orbit-with-spectacular-falcon-9-launch/"
+    },
+    {
+      "title": "archive.org",
+      "url": "https://archive.org/stream/GPOCRPT99hrpt1016/GPO-CRPT-99hrpt1016_djvu.txt"
+    },
+    {
+      "title": "nasa.gov",
+      "url": "https://ntrs.nasa.gov/api/citations/19940018555/downloads/19940018555.pdf"
+    },
+    {
+      "title": "idu.ac.id",
+      "url": "https://ftp.idu.ac.id/wp-content/uploads/ebook/tdg/DESIGN%20SISTEM%20DAYA%20GERAK/Fundamentals%20of%20Rocket%20Propulsion.pdf"
+    },
+    {
+      "title": "quora.com",
+      "url": "https://www.quora.com/Why-was-it-required-for-the-space-shuttle-3-main-engines-to-ignite-at-T-6-6-seconds-before-launch-Why-didnt-they-ignite-at-0-seconds"
+    },
+    {
+      "title": "nasa.gov",
+      "url": "https://s3vi.ndc.nasa.gov/ssri-kb/static/resources/nasa-std-8729.1a.pdf"
+    },
+    {
+      "title": "system-safety.org",
+      "url": "https://mail.system-safety.org/Documents/MIL-STD-882D.pdf"
+    },
+    {
+      "title": "nasa.gov",
+      "url": "https://ntrs.nasa.gov/api/citations/20150015500/downloads/20150015500.pdf"
+    },
+    {
+      "title": "americaspace.com",
+      "url": "https://www.americaspace.com/2014/08/05/spacex-achieves-record-setting-second-mission-in-three-weeks/"
+    },
+    {
+      "title": "sid.ir",
+      "url": "https://sid.ir/fileserver/je/2001-280079-en-1138270.pdf"
+    },
+    {
+      "title": "ua.edu",
+      "url": "https://ir.ua.edu/bitstreams/add48837-de31-4e5c-8c61-9c7ef6e0aec4/download"
+    },
+    {
+      "title": "nasa.gov",
+      "url": "https://ntrs.nasa.gov/api/citations/20030066110/downloads/20030066110.pdf"
+    },
+    {
+      "title": "mdpi.com",
+      "url": "https://www.mdpi.com/2226-4310/13/9/768"
+    },
+    {
+      "title": "eucass.eu",
+      "url": "https://www.eucass.eu/doi/EUCASS2025-402.pdf"
+    },
+    {
+      "title": "fmv.se",
+      "url": "https://www.fmv.se/globalassets/dokument/om-fmv/systemsakerhet/mil-std-882c.pdf"
+    },
+    {
+      "title": "nasa.gov",
+      "url": "https://standards.nasa.gov/sites/default/files/standards/NASA/Baseline/0/nasa-std-87197.pdf"
+    },
+    {
+      "title": "govinfo.gov",
+      "url": "https://www.govinfo.gov/content/pkg/GPO-CRPT-99hrpt1016/pdf/GPO-CRPT-99hrpt1016.pdf"
+    },
+    {
+      "title": "ulalaunch.com",
+      "url": "https://www.ulalaunch.com/missions/archived-launched/delta-iv-nrol-71"
+    },
+    {
+      "title": "studylib.net",
+      "url": "https://studylib.net/doc/27863364/rocket-propulsion-elements"
+    },
+    {
+      "title": "researchgate.net",
+      "url": "https://www.researchgate.net/publication/415233366_RocketAgent_A_Long-Horizon_Engineering_Agent_for_Multidisciplinary_Design_of_Liquid-Rocket_Thrust_Chambers"
+    },
+    {
+      "title": "nasa.gov",
+      "url": "https://ntrs.nasa.gov/api/citations/19990049416/downloads/19990049416.pdf"
+    },
+    {
+      "title": "wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/Rocketdyne_F-1"
+    },
+    {
+      "title": "everydayastronaut.com",
+      "url": "https://everydayastronaut.com/raptor-engine/"
+    },
+    {
+      "title": "cerfacs.fr",
+      "url": "https://cerfacs.fr/wp-content/uploads/2023/10/Phd_Mouze-Mornettas_TH_CFD_23_141.pdf"
+    },
+    {
+      "title": "researchgate.net",
+      "url": "https://www.researchgate.net/publication/265927928_A_Model_for_Design_and_Analysis_of_Regeneratively_Cooled_Rocket_Engines"
+    },
+    {
+      "title": "nasa.gov",
+      "url": "https://ntrs.nasa.gov/api/citations/20100033271/downloads/20100033271.pdf"
+    },
+    {
+      "title": "tudelft.nl",
+      "url": "https://repository.tudelft.nl/file/File_2a869da2-68ab-4306-99cf-c28dc6a40b7d"
+    },
+    {
+      "title": "scribd.com",
+      "url": "https://www.scribd.com/document/1019101039/Liquid-Propellant-Rocket-Engine-Throttling-a-Comprehensive-Review"
+    },
+    {
+      "title": "alvarovillalba.com",
+      "url": "https://alvarovillalba.com/rockets"
+    },
+    {
+      "title": "science.gov",
+      "url": "https://www.science.gov/topicpages/r/rocket+engine+throttling.html"
+    },
+    {
+      "title": "studylib.net",
+      "url": "https://studylib.net/doc/27162390/rocket-propulsion-elements"
+    },
+    {
+      "title": "vdoc.pub",
+      "url": "https://vdoc.pub/documents/the-development-of-propulsion-technology-for-us-space-launch-vehicles-1926-1991-lv9ha9eo0c80"
+    },
+    {
+      "title": "github.io",
+      "url": "https://sundevilrocketry.github.io/downloads/Liquids%20AIAA%20Paper.pdf"
+    },
+    {
+      "title": "aiaa.org",
+      "url": "https://arc.aiaa.org/doi/10.2514/1.T7095"
+    },
+    {
+      "title": "dlr.de",
+      "url": "https://elib.dlr.de/200019/1/Martin2023_Aerospace_BKD-HARCC_FLameAnchoring.pdf"
+    },
+    {
+      "title": "science.gov",
+      "url": "https://www.science.gov/topicpages/r/rocket+engine+injector.html"
+    },
+    {
+      "title": "astronomicalreturns.com",
+      "url": "https://www.astronomicalreturns.com/2020/06/get-tea-teb-kerosene-wont-light.html"
+    },
+    {
+      "title": "nasa.gov",
+      "url": "https://ntrs.nasa.gov/api/citations/19750012398/downloads/19750012398.pdf"
+    },
+    {
+      "title": "quora.com",
+      "url": "https://www.quora.com/Why-is-there-a-countdown-during-a-missile-rocket-launch"
+    },
+    {
+      "title": "ecosimpro.com",
+      "url": "https://ecosimpro.com/wp-content/uploads/2026/09/SP2026_630_paper.pdf"
+    },
+    {
+      "title": "dlr.de",
+      "url": "https://elib.dlr.de/200713/1/2023-a-9-02.pdf"
+    },
+    {
+      "title": "eucass.eu",
+      "url": "https://www.eucass.eu/doi/EUCASS2019-0563.pdf"
+    },
+    {
+      "title": "researchgate.net",
+      "url": "https://www.researchgate.net/publication/324597970_Specific_Impulse_and_Ignition_Delay_Time_Assessment_for_DMAZ_with_Liquid_Oxidizers_for_an_Upper_Stage_Rocket_Engine"
+    },
+    {
+      "title": "vdoc.pub",
+      "url": "https://vdoc.pub/documents/history-of-liquid-propellant-rocket-engines-5ftq3u2v2f30"
+    },
+    {
+      "title": "nasa.gov",
+      "url": "https://ntrs.nasa.gov/api/citations/19910011922/downloads/19910011922.pdf?attachment=true"
+    },
+    {
+      "title": "nasa.gov",
+      "url": "https://ntrs.nasa.gov/api/citations/19720011246/downloads/19720011246.pdf?attachment=true"
+    },
+    {
+      "title": "aiaa.org",
+      "url": "https://aiaa.org/wp-content/uploads/2024/12/marsascentvehicle-hybridpropulsioneffort.pdf"
+    },
+    {
+      "title": "researchgate.net",
+      "url": "https://www.researchgate.net/publication/350061170_A_detailed_mechanism_for_the_initial_hypergolic_reaction_in_liquid_hydrazinenitrogen_tetroxide_mixtures_based_on_quantum_chemistry_calculations"
+    },
+    {
+      "title": "mdpi.com",
+      "url": "https://www.mdpi.com/2072-666X/13/11/2033"
+    },
+    {
+      "title": "spacecentre.nz",
+      "url": "https://www.spacecentre.nz/resources/docs/nasa/SaturnV_Manual.pdf"
+    },
+    {
+      "title": "dlr.de",
+      "url": "https://elib.dlr.de/200226/1/MA_MR_final.pdf"
+    },
+    {
+      "title": "nasa.gov",
+      "url": "https://ntrs.nasa.gov/api/citations/20070006480/downloads/20070006480.pdf"
+    },
+    {
+      "title": "nasa.gov",
+      "url": "https://ntrs.nasa.gov/api/citations/20050217123/downloads/20050217123.pdf"
+    },
+    {
+      "title": "dtic.mil",
+      "url": "https://ndia.dtic.mil/wp-content/uploads/2012/system/track914790.pdf"
+    },
+    {
+      "title": "mdpi.com",
+      "url": "https://www.mdpi.com/1660-4601/21/12/1649"
+    },
+    {
+      "title": "nasa.gov",
+      "url": "https://explorers.larc.nasa.gov/2021APMIDEX/pdf_files/NPR_8705_4A.pdf"
+    },
+    {
+      "title": "nde-ed.org",
+      "url": "https://www.nde-ed.org/NDEEngineering/SafeDesign/MIL-STD-882E.pdf"
+    },
+    {
+      "title": "wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/Launch_status_check"
+    },
+    {
+      "title": "space.com",
+      "url": "https://www.space.com/12190-space-shuttle-launch-countdown-minutes-liftoff.html"
+    },
+    {
+      "title": "regulations.gov",
+      "url": "https://www.regulations.gov/document/FAA-2019-0229-0001"
+    },
+    {
+      "title": "linde-gas.com",
+      "url": "https://www.linde-gas.com/products-and-services/gases/liquefied-gases-subcooling-for-space"
+    },
+    {
+      "title": "linde-gas.com",
+      "url": "https://www.linde-gas.com/industries/space/engine-testing-and-launch"
+    },
+    {
+      "title": "faa.gov",
+      "url": "https://www.faa.gov/about/office_org/headquarters_offices/ast/regulations/media/Launch_Site_Safety_re-Assessment_Matrix_Pkg.pdf"
+    },
+    {
+      "title": "cornell.edu",
+      "url": "https://www.law.cornell.edu/cfr/text/14/appendix-G_to_part_417"
+    },
+    {
+      "title": "nasa.gov",
+      "url": "https://standards.nasa.gov/system/files/tmp/NASA_STD_4010B%20%20Final%2008-27-2026_1.pdf"
+    },
+    {
+      "title": "nasa.gov",
+      "url": "https://ntrs.nasa.gov/api/citations/20110000675/downloads/20110000675.pdf?attachment=true"
+    },
+    {
+      "title": "nasa.gov",
+      "url": "https://www.nasa.gov/blogs/missions/2026/04/01/live-artemis-ii-launch-day-updates/"
+    },
+    {
+      "title": "af.mil",
+      "url": "https://static.e-publishing.af.mil/production/1/ssc/publication/sscman91-710v7/sscman91-710v7.pdf"
+    },
+    {
+      "title": "scribd.com",
+      "url": "https://www.scribd.com/document/692593723/AFSPCMAN91-710V7"
+    },
+    {
+      "title": "psirep.com",
+      "url": "https://www.psirep.com/system/files/structural_health_monitoring_with_vti_instruments_and_virginia_tech_-_ex1403a-datasheet.pdf"
+    },
+    {
+      "title": "nasa.gov",
+      "url": "https://standards.nasa.gov/sites/default/files/standards/A/0/nasa-std-871912a.pdf"
+    },
+    {
+      "title": "af.mil",
+      "url": "https://static.e-publishing.af.mil/production/1/ssc/publication/sscman91-710v6/sscman91-710v6.pdf"
+    },
+    {
+      "title": "oclc.org",
+      "url": "https://nmsu.contentdm.oclc.org/digital/api/collection/NMSGCBOK/id/929/download"
+    },
+    {
+      "title": "16streets.com",
+      "url": "https://16streets.com/39-B/HTML%20Pages/shuttle/technology/sts-newsref/srb.html"
+    },
+    {
+      "title": "everyspec.com",
+      "url": "https://everyspec.com/USAF/USAF-AFSC/download.php?spec=AFSPCMAN91-710V6.002723.pdf"
+    },
+    {
+      "title": "everyspec.com",
+      "url": "https://everyspec.com/NASA/NASA-MSFC/MSFC-SPEC/download.php?spec=MSFC-SPEC-3635A.046739.pdf"
+    },
+    {
+      "title": "ulalaunch.com",
+      "url": "https://www.ulalaunch.com/docs/default-source/rockets/deltaiipayloadplannersguide2007.pdf?sfvrsn=4c924b53_2"
+    },
+    {
+      "title": "ni.com",
+      "url": "https://download.ni.com/support/catalogs/daq-pxi-product-catalog.pdf"
+    },
+    {
+      "title": "nasa.gov",
+      "url": "https://ntrs.nasa.gov/api/citations/20120001571/downloads/20120001571.pdf"
+    },
+    {
+      "title": "mananenterprise.com",
+      "url": "https://www.mananenterprise.com/download/Interface%20-%20Full%20Catalog.pdf"
+    },
+    {
+      "title": "nasa.gov",
+      "url": "https://explorers.larc.nasa.gov/2019APSMEX/MO/pdf_files/AFSPCMAN%2091-710.pdf"
+    },
+    {
+      "title": "nasa.gov",
+      "url": "https://standards.nasa.gov/sites/default/files/standards/NASA/w/CHANGE-1/1/NASA-STD-4003A.pdf"
+    },
+    {
+      "title": "navytribe.com",
+      "url": "https://navytribe.com/wp-content/uploads/2015/11/navsea-sw550-aa-mmi-010.pdf"
+    },
+    {
+      "title": "dewesoft.com",
+      "url": "https://forum.dewesoft.com/hardware-discussions/dewesoft-instruments/how-to-connect-pressure-sensor-to-dewe-43"
+    }
   ],
   "rules": [
-    "Never auction food at the table; track seat numbers (pivot points) systematically.",
-    "Serve food from the guest's left whenever structurally possible, and clear plates from the guest's right.",
-    "Critical allergens must be flagged explicitly before transmitting tickets to the kitchen.",
-    "Maintain tray center of gravity above 80% to avoid spills in high-traffic floor pathways."
+    "Launch Commit Criteria (LCC) are Absolute: Every engine redline has hard limits defined before propellant loading; if any parameter drifts outside during terminal countdown, an immediate hold or auto-abort must be initiated",
+    "Stoichiometry Dictates Survival: Propellant mixture ratios are deliberately tuned off-stoichiometric (fuel-rich) to preserve combustion chamber wall integrity against temperatures exceeding 3,500 K",
+    "Prevent Hard Starts at All Costs: Propellant must never accumulate in the thrust chamber prior to ignition, as liquid oxygen and hydrocarbon fuel pooling leads to chamber detonations",
+    "Failsafe Redundancy & Triage: Hardware failures are classified strictly according to standard hazard severity tables (MIL-STD-882E / NASA-STD-8729.1), and single-point failures on critical systems require an immediate mission scrub",
+    "Traceability & Chain of Custody: Flight hardware, safety pins, and ordnance must have serialized sign-offs, and no unauthorized tool or component can remain inside the vehicle envelope"
   ],
   "assumptions": [
-    "Shift takes place during peak dinner service at a 40-seat boutique bistro.",
-    "The dining room uses a 4-point pivot system with Seat 1 facing the entrance.",
-    "Tickets are transmitted via digital POS directly to kitchen line printers."
+    "The vehicle modeled uses a standard bipropellant liquid rocket engine (LOX oxidizer and RP-1 kerosene fuel) operating with a gas-generator or expander cycle",
+    "The engineer acts as the Propulsion Operations & Systems Lead, transitioning from pre-fire configuration to countdown command"
   ],
-  "stations": [
+  "tasks": [
     {
-      "id": "station-kitchen-pass",
-      "name": "Kitchen Pass & Heat Lamps",
-      "icon": "kitchen",
-      "tile": [
-        8,
-        1
+      "id": "calibrate-combustor",
+      "title": "Calibrate engine fluid ratios",
+      "summary": "Configure the engine controller's primary hydraulic variables at the Fluid & Calibration Bench, including the oxidizer-to-fuel mass ratio, chamber pressure, injector pressure drop ratio, and fuel film-cooling bypass percentage before a hot-fire test.",
+      "mechanic": "mix",
+      "mechanic_rationale": "The mix mechanic accurately models the independent numeric tuning across interconnected continuous fluid parameters with narrow tolerance margins.",
+      "aim": "Calibrate the hydraulic regulators, trim valves, and cooling bypass on the test bench to establish a stable and safe engine operating envelope before hot-fire testing.",
+      "variables": [
+        {
+          "id": "of_mixture_ratio",
+          "label": "Oxidizer-to-Fuel Ratio (O/F)",
+          "unit": "ratio",
+          "min": 2.1,
+          "max": 2.7,
+          "step": 0.01,
+          "default": 2.2
+        },
+        {
+          "id": "chamber_pressure",
+          "label": "Chamber Pressure (P_c)",
+          "unit": "bar",
+          "min": 60.0,
+          "max": 80.0,
+          "step": 0.5,
+          "default": 65.0
+        },
+        {
+          "id": "inj_press_drop_ratio",
+          "label": "Injector Pressure Drop (ΔP/P_c)",
+          "unit": "%",
+          "min": 12.0,
+          "max": 24.0,
+          "step": 0.5,
+          "default": 14.0
+        },
+        {
+          "id": "bfc_bypass_percent",
+          "label": "Barrier Film Cooling Bypass (BFC)",
+          "unit": "%",
+          "min": 2.0,
+          "max": 7.0,
+          "step": 0.1,
+          "default": 3.0
+        }
       ],
-      "w": 4,
-      "h": 2,
-      "color": "#8b263e",
-      "accent": "#f59e0b",
-      "description": "Inspect completed dishes under heat lamps, garnish plates, and load serving trays."
+      "derived": [
+        {
+          "id": "absolute_inj_drop",
+          "label": "Absolute Injector Pressure Drop (ΔP_inj)",
+          "expr": "chamber_pressure * (inj_press_drop_ratio / 100)"
+        },
+        {
+          "id": "core_mixture_ratio",
+          "label": "Core Zone Mixture Ratio ((O/F)_core)",
+          "expr": "of_mixture_ratio / (1 - (bfc_bypass_percent / 100))"
+        }
+      ],
+      "optima": [
+        {
+          "term": "of_mixture_ratio",
+          "target": 2.4,
+          "rationale": "Running fuel-rich lowers combustion gas molecular weight, maximizes characteristic velocity and specific impulse, and limits flame temperature to manageable levels below 3500 K.",
+          "source_urls": [
+            "https://ntrs.nasa.gov/api/citations/19990049416/downloads/19990049416.pdf",
+            "https://en.wikipedia.org/wiki/Rocketdyne_F-1",
+            "https://everydayastronaut.com/raptor-engine/",
+            "https://cerfacs.fr/wp-content/uploads/2023/10/Phd_Mouze-Mornettas_TH_CFD_23_141.pdf"
+          ]
+        },
+        {
+          "term": "chamber_pressure",
+          "target": 70.0,
+          "rationale": "Sizing chamber pressure at 70 bar establishes required thrust and throat mass flux while providing optimal sea-level nozzle expansion without internal shock separation.",
+          "source_urls": [
+            "https://en.wikipedia.org/wiki/Rocketdyne_F-1",
+            "https://everydayastronaut.com/raptor-engine/",
+            "https://ntrs.nasa.gov/api/citations/20100033271/downloads/20100033271.pdf",
+            "https://repository.tudelft.nl/file/File_2a869da2-68ab-4306-99cf-c28dc6a40b7d"
+          ]
+        },
+        {
+          "term": "inj_press_drop_ratio",
+          "target": 18.0,
+          "rationale": "A pressure drop ratio between 15% and 20% decouples the propellant feed system from combustion chamber acoustic oscillations, avoiding low-frequency instabilities.",
+          "source_urls": [
+            "https://ntrs.nasa.gov/api/citations/20100033271/downloads/20100033271.pdf",
+            "https://www.scribd.com/document/1019101039/Liquid-Propellant-Rocket-Engine-Throttling-a-Comprehensive-Review",
+            "https://alvarovillalba.com/rockets"
+          ]
+        },
+        {
+          "term": "bfc_bypass_percent",
+          "target": 4.0,
+          "rationale": "Allocating 3.5% to 5.0% of fuel to peripheral film cooling creates a protective boundary sub-layer that insulates the chamber liner without excessive specific impulse loss.",
+          "source_urls": [
+            "https://alvarovillalba.com/rockets",
+            "https://vdoc.pub/documents/the-development-of-propulsion-technology-for-us-space-launch-vehicles-1926-1991-lv9ha9eo0c80",
+            "https://sundevilrocketry.github.io/downloads/Liquids%20AIAA%20Paper.pdf"
+          ]
+        },
+        {
+          "term": "absolute_inj_drop",
+          "target": 12.6,
+          "rationale": "The resulting differential pressure across the injector must remain between 10.20 bar and 14.40 bar to maintain acoustic decoupling without exceeding pump delivery limits.",
+          "source_urls": [
+            "https://www.science.gov/topicpages/r/rocket+engine+throttling.html"
+          ]
+        },
+        {
+          "term": "core_mixture_ratio",
+          "target": 2.5,
+          "rationale": "Accounting for film cooling diversion, the core combustion zone ratio must remain between 2.38 and 2.63 to avoid elevating core gas temperatures by over 250 K.",
+          "source_urls": [
+            "https://www.science.gov/topicpages/r/rocket+engine+throttling.html",
+            "https://arc.aiaa.org/doi/10.2514/1.T7095"
+          ]
+        }
+      ],
+      "heuristic": [
+        {
+          "term": "of_mixture_ratio",
+          "tolerance": 0.1,
+          "weight": 1.0,
+          "curve": "gaussian",
+          "too_low": "Incomplete combustion produces soot and polycyclic aromatic hydrocarbons, showing an opaque, orange, smoky exhaust plume and fouling cooling channels.",
+          "too_high": "Excess free oxygen creates an aggressive oxidizing environment and elevated flame temperatures, causing chamber liner oxidation and throat erosion.",
+          "rationale": "Deviating from optimal O/F either causes incomplete combustion fouling or aggressive thermal and oxidative attack on copper liners."
+        },
+        {
+          "term": "chamber_pressure",
+          "tolerance": 2.0,
+          "weight": 1.0,
+          "curve": "gaussian",
+          "too_low": "Nozzle exit pressure drops below ambient limits, causing asymmetric flow separation, dangerous side loads, and nozzle skirt flutter.",
+          "too_high": "Convective heat flux scales aggressively, threatening liner burn-through and exceeding structural hoop stress safety margins.",
+          "rationale": "Chamber pressure governs nozzle expansion dynamics and structural heat flux loads."
+        },
+        {
+          "term": "inj_press_drop_ratio",
+          "tolerance": 3.0,
+          "weight": 1.0,
+          "curve": "gaussian",
+          "too_low": "Combustion noise couples with feedline elasticity, triggering low-frequency chugging instability and violent thrust oscillations.",
+          "too_high": "Excessive upstream feed pressure is demanded, increasing turbopump cavitation risk, while atomization overshoot splatters liquid on the injector face.",
+          "rationale": "Injector pressure drop ratio serves as an acoustic barrier isolating the feed lines from chamber acoustics."
+        },
+        {
+          "term": "bfc_bypass_percent",
+          "tolerance": 0.5,
+          "weight": 0.8,
+          "curve": "gaussian",
+          "too_low": "Thermal boundary layer breaks down, causing liner blanching, thermal fatigue cracking, and hot gas burnout near the throat.",
+          "too_high": "Specific impulse degrades substantially, with unburned fuel streaking down the nozzle to form heavy coking deposits and hydrocarbon smoke.",
+          "rationale": "BFC bypass balances thermal liner protection against performance loss and soot deposition."
+        },
+        {
+          "term": "absolute_inj_drop",
+          "tolerance": 2.0,
+          "weight": 0.9,
+          "curve": "linear",
+          "too_low": "Manifold pressure differential is insufficient, nearing the bench abort interlock due to lack of hydraulic acoustic isolation.",
+          "too_high": "Manifold back-pressure approaches supply limits, overloading feed components.",
+          "rationale": "Absolute injector drop must ensure acoustic stability without exceeding turbopump discharge limits."
+        },
+        {
+          "term": "core_mixture_ratio",
+          "tolerance": 0.12,
+          "weight": 0.9,
+          "curve": "linear",
+          "too_low": "Core combustion runs excessively fuel-rich, quenching core efficiency and degrading combustion stability.",
+          "too_high": "Core zone temperatures rise drastically, accelerating throat erosion even with peripheral cooling active.",
+          "rationale": "Core mixture ratio directly drives local core gas temperatures and chamber throat life."
+        }
+      ],
+      "sort_items": [],
+      "sort_bins": [],
+      "orders": [],
+      "dialogue": [],
+      "caveats": [
+        "Volumetric flow calibration must be compensated against RTD temperature telemetry before setting mass mixture ratios due to cryogenic LOX density swings with chill-down temperature and subcooling.",
+        "Calibrated steady-state O/F must not be applied prior to ignition; injector calibration benches must enforce a 20 to 50 ms fuel-lead pre-injection sequence to avoid explosive hard starts.",
+        "Upstream cavitating venturis must maintain a pressure recovery drop of at least 15% across their throats to prevent chamber pressure fluctuations from feeding back to main propellant tanks."
+      ],
+      "problems": [
+        "Low-frequency pressure oscillations (100–300 Hz chugging) occurring when injector pressure drop ratio falls below 15.0% of chamber pressure.",
+        "Local wall blanching and copper discoloration near the chamber throat when barrier film cooling bypass drops below 3.5% or suffers circumferential maldistribution.",
+        "Heavy soot deposits, sluggish ignition ramp, and low characteristic velocity efficiency when O/F is below 2.30 or BFC bypass exceeds 5.0%.",
+        "Excessive manifold back-pressure exceeding pump discharge limits (> 85 bar) when injector pressure drop ratio exceeds 20.0%."
+      ],
+      "sources": [
+        {
+          "title": "studylib.net",
+          "url": "https://studylib.net/doc/27863364/rocket-propulsion-elements"
+        },
+        {
+          "title": "researchgate.net",
+          "url": "https://www.researchgate.net/publication/415233366_RocketAgent_A_Long-Horizon_Engineering_Agent_for_Multidisciplinary_Design_of_Liquid-Rocket_Thrust_Chambers"
+        },
+        {
+          "title": "nasa.gov",
+          "url": "https://ntrs.nasa.gov/api/citations/19990049416/downloads/19990049416.pdf"
+        },
+        {
+          "title": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Rocketdyne_F-1"
+        },
+        {
+          "title": "everydayastronaut.com",
+          "url": "https://everydayastronaut.com/raptor-engine/"
+        },
+        {
+          "title": "cerfacs.fr",
+          "url": "https://cerfacs.fr/wp-content/uploads/2023/10/Phd_Mouze-Mornettas_TH_CFD_23_141.pdf"
+        },
+        {
+          "title": "researchgate.net",
+          "url": "https://www.researchgate.net/publication/265927928_A_Model_for_Design_and_Analysis_of_Regeneratively_Cooled_Rocket_Engines"
+        },
+        {
+          "title": "nasa.gov",
+          "url": "https://ntrs.nasa.gov/api/citations/20100033271/downloads/20100033271.pdf"
+        },
+        {
+          "title": "tudelft.nl",
+          "url": "https://repository.tudelft.nl/file/File_2a869da2-68ab-4306-99cf-c28dc6a40b7d"
+        },
+        {
+          "title": "scribd.com",
+          "url": "https://www.scribd.com/document/1019101039/Liquid-Propellant-Rocket-Engine-Throttling-a-Comprehensive-Review"
+        },
+        {
+          "title": "alvarovillalba.com",
+          "url": "https://alvarovillalba.com/rockets"
+        },
+        {
+          "title": "science.gov",
+          "url": "https://www.science.gov/topicpages/r/rocket+engine+throttling.html"
+        },
+        {
+          "title": "studylib.net",
+          "url": "https://studylib.net/doc/27162390/rocket-propulsion-elements"
+        },
+        {
+          "title": "vdoc.pub",
+          "url": "https://vdoc.pub/documents/the-development-of-propulsion-technology-for-us-space-launch-vehicles-1926-1991-lv9ha9eo0c80"
+        },
+        {
+          "title": "github.io",
+          "url": "https://sundevilrocketry.github.io/downloads/Liquids%20AIAA%20Paper.pdf"
+        },
+        {
+          "title": "aiaa.org",
+          "url": "https://arc.aiaa.org/doi/10.2514/1.T7095"
+        },
+        {
+          "title": "dlr.de",
+          "url": "https://elib.dlr.de/200019/1/Martin2023_Aerospace_BKD-HARCC_FLameAnchoring.pdf"
+        },
+        {
+          "title": "science.gov",
+          "url": "https://www.science.gov/topicpages/r/rocket+engine+injector.html"
+        }
+      ]
     },
     {
-      "id": "station-pos",
-      "name": "POS Terminal Station",
-      "icon": "register",
-      "tile": [
-        2,
-        9
+      "id": "time-chilldown-ignition",
+      "title": "Time chilldown and ignition",
+      "summary": "Execute the automated terminal countdown sequence at the Firing Console by timing the cryogenic line chilldown bleed, initiating the TEA-TEB pyrophoric igniter torch, and holding the chamber throttle ramp to mainstage.",
+      "mechanic": "timing",
+      "mechanic_rationale": "The timing mechanic mirrors the time-critical transient phases of a rocket engine start sequence via dynamic hold and stop actions on moving countdown indicators.",
+      "aim": "Execute the terminal countdown sequence by precisely timing cryogenic chilldown, pyrophoric igniter injection lead, and intermediate thrust ramp dwell.",
+      "variables": [
+        {
+          "id": "t_chill",
+          "label": "LOX Pre-Chill Bleed Hold Duration",
+          "unit": "s",
+          "min": 0.0,
+          "max": 8.0,
+          "step": 0.1,
+          "default": 1.5
+        },
+        {
+          "id": "t_lead",
+          "label": "Pyrophoric Igniter Injection Stop Lead",
+          "unit": "ms",
+          "min": 50.0,
+          "max": 300.0,
+          "step": 5.0,
+          "default": 80.0
+        },
+        {
+          "id": "t_dwell",
+          "label": "Ramp-to-Mainstage Intermediate Dwell Hold",
+          "unit": "s",
+          "min": 0.5,
+          "max": 4.0,
+          "step": 0.1,
+          "default": 1.0
+        }
       ],
-      "w": 2,
-      "h": 2,
-      "color": "#1f2937",
-      "accent": "#10b981",
-      "description": "Input orders, apply allergen modifiers, fire courses, and process payments."
+      "derived": [],
+      "optima": [
+        {
+          "term": "t_chill",
+          "range": [
+            3.5,
+            4.5
+          ],
+          "rationale": "Allows LOX feedlines and turbopump housings to transition past film boiling to dense liquid conditions while avoiding excess cryogen boil-off or structural frost accumulation.",
+          "source_urls": [
+            "https://www.quora.com/Why-is-there-a-countdown-during-a-missile-rocket-launch",
+            "https://elib.dlr.de/200713/1/2023-a-9-02.pdf",
+            "https://www.eucass.eu/doi/EUCASS2019-0563.pdf",
+            "https://ntrs.nasa.gov/api/citations/19910011922/downloads/19910011922.pdf?attachment=true"
+          ]
+        },
+        {
+          "term": "t_lead",
+          "range": [
+            120.0,
+            180.0
+          ],
+          "rationale": "Establishes a stable TEA-TEB radical flame kernel just before main propellant admission without risking hard starts from delayed ignition or orifice slagging from unbacked burning.",
+          "source_urls": [
+            "https://www.astronomicalreturns.com/2020/06/get-tea-teb-kerosene-wont-light.html",
+            "https://www.researchgate.net/publication/324597970_Specific_Impulse_and_Ignition_Delay_Time_Assessment_for_DMAZ_with_Liquid_Oxidizers_for_an_Upper_Stage_Rocket_Engine",
+            "https://ntrs.nasa.gov/api/citations/19720011246/downloads/19720011246.pdf?attachment=true",
+            "https://aiaa.org/wp-content/uploads/2024/12/marsascentvehicle-hybridpropulsioneffort.pdf"
+          ]
+        },
+        {
+          "term": "t_dwell",
+          "range": [
+            1.8,
+            2.2
+          ],
+          "rationale": "Ensures chamber acoustic flame anchoring and turbopump power stabilization at intermediate plateau pressure before spooling to full thrust, preventing chug instability or regenerative throat overheating.",
+          "source_urls": [
+            "https://vdoc.pub/documents/history-of-liquid-propellant-rocket-engines-5ftq3u2v2f30",
+            "https://www.spacecentre.nz/resources/docs/nasa/SaturnV_Manual.pdf"
+          ]
+        }
+      ],
+      "heuristic": [
+        {
+          "term": "t_chill",
+          "tolerance": 0.5,
+          "weight": 1.0,
+          "curve": "gaussian",
+          "too_low": "Cryogenic lines exhibit two-phase film boiling, causing erratic manifold pressure oscillations and turbopump cavitation from insufficient liquid density.",
+          "too_high": "Excessive overboard cryogen expenditure leads to ullage collapse, external manifold frost accumulation, and low-temperature valve freeze alarms.",
+          "rationale": "Chilldown must clear the Leidenfrost regime without wasting propellant margins or freezing valve seals."
+        },
+        {
+          "term": "t_lead",
+          "tolerance": 30.0,
+          "weight": 1.0,
+          "curve": "gaussian",
+          "too_low": "Hypergolic ignition slug arrives late, causing unignited propellants to pool and detonate in a destructive high-pressure hard start.",
+          "too_high": "Pyrophoric torch burns out prematurely without propellant backing, forming solid oxide slag deposits that plug injector micro-orifices.",
+          "rationale": "Pyrophoric lead time governs whether propellant mixes into an existing flame or accumulates into an explosive acoustic pulse."
+        },
+        {
+          "term": "t_dwell",
+          "tolerance": 0.2,
+          "weight": 1.0,
+          "curve": "gaussian",
+          "too_low": "Chamber flame anchoring fails to stabilize, driving severe acoustic chug or screech instabilities and turbine inlet temperature spikes during ramp.",
+          "too_high": "Low-flow intermediate dwell exposes nozzle throat liners to high thermal flux without sufficient coolant velocity, triggering overheat alarms and sequencer timeout.",
+          "rationale": "Dwell time at intermediate thrust balances acoustic anchoring against cooling channel heat capacity."
+        }
+      ],
+      "sort_items": [],
+      "sort_bins": [],
+      "orders": [],
+      "dialogue": [],
+      "caveats": [
+        "Liquid oxygen contacts ambient walls initially in the film boiling regime; main oxidizer valves must not open while feedline skin thermocouples indicate transition temperatures above 95 K [10].",
+        "TEA-TEB pyrophoric fluid decomposes spontaneously on contact with air or moisture; manifolds must maintain a dry GN2 blanket (> 50 psig) until firing [2, 21, 28].",
+        "Lead intervals between igniter discharge and main valve actuation must cushion hydraulic water hammer against downstream chamber backpressure [7, 15, 18, 29]."
+      ],
+      "problems": [
+        "Cryogenic Vapor Lock / Turbopump Cavitation: Caused by Phase 1 duration < 3.5 s; manifests as high-frequency discharge pressure oscillations (100–300 Hz) and rapid drop in oxidizer mass flow [5, 10, 25].",
+        "Combustor Hard Start Detonation: Caused by Phase 2 lead < 120 ms; manifests as destructive dynamic pressure pulse exceeding 2.5x rated chamber pressure and acoustic accelerometer trips [13, 20].",
+        "Igniter Injector Coking & Vitreous Slagging: Caused by Phase 2 lead > 180 ms; manifests as TEA-TEB differential pressure rising > 20% and dimmed optical detector output [13, 21].",
+        "Start-Transient Chug / Screech Instability: Caused by Phase 3 dwell < 1.8 s; manifests as low-frequency (50–150 Hz) or high-frequency (> 1500 Hz) chamber pressure hum [10, 15, 24].",
+        "Regenerative Throat Overheat: Caused by Phase 3 dwell > 2.2 s; manifests as nozzle throat wall temperature gradient exceeding 80 K/s and coolant delta-T exceeding limits [15]."
+      ],
+      "sources": [
+        {
+          "title": "astronomicalreturns.com",
+          "url": "https://www.astronomicalreturns.com/2020/06/get-tea-teb-kerosene-wont-light.html"
+        },
+        {
+          "title": "nasa.gov",
+          "url": "https://ntrs.nasa.gov/api/citations/19750012398/downloads/19750012398.pdf"
+        },
+        {
+          "title": "quora.com",
+          "url": "https://www.quora.com/Why-is-there-a-countdown-during-a-missile-rocket-launch"
+        },
+        {
+          "title": "ecosimpro.com",
+          "url": "https://ecosimpro.com/wp-content/uploads/2026/09/SP2026_630_paper.pdf"
+        },
+        {
+          "title": "dlr.de",
+          "url": "https://elib.dlr.de/200713/1/2023-a-9-02.pdf"
+        },
+        {
+          "title": "eucass.eu",
+          "url": "https://www.eucass.eu/doi/EUCASS2019-0563.pdf"
+        },
+        {
+          "title": "researchgate.net",
+          "url": "https://www.researchgate.net/publication/324597970_Specific_Impulse_and_Ignition_Delay_Time_Assessment_for_DMAZ_with_Liquid_Oxidizers_for_an_Upper_Stage_Rocket_Engine"
+        },
+        {
+          "title": "vdoc.pub",
+          "url": "https://vdoc.pub/documents/history-of-liquid-propellant-rocket-engines-5ftq3u2v2f30"
+        },
+        {
+          "title": "nasa.gov",
+          "url": "https://ntrs.nasa.gov/api/citations/19910011922/downloads/19910011922.pdf?attachment=true"
+        },
+        {
+          "title": "nasa.gov",
+          "url": "https://ntrs.nasa.gov/api/citations/19720011246/downloads/19720011246.pdf?attachment=true"
+        },
+        {
+          "title": "aiaa.org",
+          "url": "https://aiaa.org/wp-content/uploads/2024/12/marsascentvehicle-hybridpropulsioneffort.pdf"
+        },
+        {
+          "title": "researchgate.net",
+          "url": "https://www.researchgate.net/publication/350061170_A_detailed_mechanism_for_the_initial_hypergolic_reaction_in_liquid_hydrazinenitrogen_tetroxide_mixtures_based_on_quantum_chemistry_calculations"
+        },
+        {
+          "title": "mdpi.com",
+          "url": "https://www.mdpi.com/2072-666X/13/11/2033"
+        },
+        {
+          "title": "spacecentre.nz",
+          "url": "https://www.spacecentre.nz/resources/docs/nasa/SaturnV_Manual.pdf"
+        },
+        {
+          "title": "dlr.de",
+          "url": "https://elib.dlr.de/200226/1/MA_MR_final.pdf"
+        },
+        {
+          "title": "dlr.de",
+          "url": "https://elib.dlr.de/219040/1/DLR-FB-2025-16.pdf"
+        },
+        {
+          "title": "nasa.gov",
+          "url": "https://ntrs.nasa.gov/api/citations/20070006480/downloads/20070006480.pdf"
+        },
+        {
+          "title": "nasa.gov",
+          "url": "https://ntrs.nasa.gov/api/citations/20050217123/downloads/20050217123.pdf"
+        }
+      ]
     },
     {
-      "id": "station-table-one",
-      "name": "Booth Table 1",
-      "icon": "table",
-      "tile": [
-        6,
-        6
+      "id": "triage-telemetry",
+      "title": "Triage telemetry hazard warnings",
+      "summary": "Sort live sensor redline exceedances, telemetry anomalies, and fault logs into four system safety hazard categories at the Firing Console during hot-fire processing.",
+      "mechanic": "sort",
+      "mechanic_rationale": "The sort mechanic models categorizing an incoming stream of operational events into standardized regulatory bins.",
+      "aim": "Route live telemetry redline exceedances, sensor anomalies, and test stand fault logs into their correct system safety hazard severity categories during a rocket engine hot-fire test.",
+      "variables": [],
+      "derived": [],
+      "optima": [],
+      "heuristic": [],
+      "sort_items": [
+        {
+          "label": "ITEM_HPOTP_VIB: HPOTP bearing radial accelerometer VIB-OX-104A at 22.4 g RMS sustained for 65 ms (Redline: > 18.0 g RMS for > 50 ms)",
+          "correct_bin": "Category I: Catastrophic",
+          "feedback": "HPOTP bearing raceway spallation or rubbing in a 100% supercritical LOX stream leads to frictional ignition and uncontained turbopump structural disintegration, resulting in total loss of engine and test stand asset (monetary loss >= $10M)."
+        },
+        {
+          "label": "ITEM_MCC_DP_DROP: MCC coolant jacket differential pressure MCC-DP-201B drops to 380 psid (Redline: < 450 psid) with throat skin temp TC-THRT-209 exceeding 1,150 K",
+          "correct_bin": "Category I: Catastrophic",
+          "feedback": "Coolant flow collapse leads to instantaneous throat wall thermal erosion and high-pressure chamber rupture at high heat fluxes, destroying the thrust frame and facility (monetary loss >= $10M)."
+        },
+        {
+          "label": "ITEM_TVC_HYD_LOSS: Primary gimbal actuator TVC supply pressure HYD-P-302 drops to 1,720 psia (Redline abort: < 2,100 psia for > 100 ms) with actuator servo stall warning",
+          "correct_bin": "Category II: Critical",
+          "feedback": "Loss of gimbal actuator authority prevents thrust vectoring, aborting primary test and flight certification objectives and requiring major component requalification ($1M to $10M loss), but the engine remains physically contained on the stand."
+        },
+        {
+          "label": "ITEM_PB_SEAL_LEAK: Preburner dual seal cavity purge pressure PRG-P-405 rises to 58 psia (Warning threshold: 45 psia) with leak rate at 140 sccm",
+          "correct_bin": "Category III: Marginal",
+          "feedback": "Secondary containment seal leak vents propellant into an inert GN2 buffer without cross-over, causing minor mission degradation (truncating test duration by 30 seconds) and minor teardown repairs ($100k to $1M loss)."
+        },
+        {
+          "label": "ITEM_DELUGE_FLOW_DIP: Flame trench acoustic water deluge manifold FAC-FLW-501 drops to 36,500 GPM (Minimum specification: 41,000 GPM) for 1.8 s",
+          "correct_bin": "Category III: Marginal",
+          "feedback": "Deluge flow dip degrades acoustic and thermal mitigation, causing localized concrete spalling and deflector plate fatigue needing minor stand repairs and 3 days of downtime ($100k to $1M loss)."
+        },
+        {
+          "label": "ITEM_STRUCT_TC_OPEN: Structural mast ambient skin thermocouple TC-SKIN-608D reports open circuit (9,999 °C / NaN flag) while redundant channels A, B, and C report 21 °C",
+          "correct_bin": "Category IV: Negligible",
+          "feedback": "Open-circuit failure on a non-controlling channel with redundant sensors reporting nominal conditions causes no hardware damage or mission degradation, requiring only routine post-test cable replacement (< $100k loss)."
+        }
       ],
-      "w": 3,
-      "h": 2,
-      "color": "#4a2810",
-      "accent": "#d4af37",
-      "description": "Four-top leather booth where guests dine, require water refills, and receive service."
+      "sort_bins": [
+        "Category I: Catastrophic",
+        "Category II: Critical",
+        "Category III: Marginal",
+        "Category IV: Negligible"
+      ],
+      "orders": [],
+      "dialogue": [],
+      "caveats": [
+        "Never categorize hazard severity based on a raw single-channel spike unless verified against physical voting logic or companion parameters (e.g., pairing turbopump vibration with bearing cavity temperature).",
+        "Account for sensor persistence windows (30 to 50 ms) to avoid misclassifying sub-10 ms electrical transients or inductive kicks as catastrophic events.",
+        "Hazard classification varies by operational environment: flight critical failure modes (e.g., loss of TVC causing loss of vehicle) are Category I in flight but classified as Category II on a bolted ground test stand."
+      ],
+      "problems": [
+        "Cryogenic chilldown sensor bias shift: Pressure transducers experience zero-shift drift of 8 to 12 psia at cryogenic temperatures (< -180 °C), tripping false low-pressure warnings at ignition.",
+        "Two-phase flow noise tripping purge monitors: Boil-off expansion during startup transients causes purge cavity pressure spikes (> 50 psia) between T0 and T+2.5 s.",
+        "Flame deflector water steam ingress: Trench water mist penetrates sensor connectors, producing high-frequency electrical noise (> 25 g at 10 kHz) that mimics bearing failure."
+      ],
+      "sources": [
+        {
+          "title": "dtic.mil",
+          "url": "https://ndia.dtic.mil/wp-content/uploads/2012/system/track914790.pdf"
+        },
+        {
+          "title": "mdpi.com",
+          "url": "https://www.mdpi.com/1660-4601/21/12/1649"
+        },
+        {
+          "title": "nasa.gov",
+          "url": "https://s3vi.ndc.nasa.gov/ssri-kb/static/resources/nasa-std-8729.1a.pdf"
+        },
+        {
+          "title": "nasa.gov",
+          "url": "https://explorers.larc.nasa.gov/2021APMIDEX/pdf_files/NPR_8705_4A.pdf"
+        },
+        {
+          "title": "nde-ed.org",
+          "url": "https://www.nde-ed.org/NDEEngineering/SafeDesign/MIL-STD-882E.pdf"
+        }
+      ]
     },
     {
-      "id": "station-service-station",
-      "name": "Side Service Station",
-      "icon": "busser",
-      "tile": [
-        15,
-        9
+      "id": "poll-terminal-readiness",
+      "title": "Answer readiness poll questions",
+      "summary": "Respond across the mission intercom loop at the Launch Director Podium during the formal terminal countdown Go/No-Go readiness poll at T-9 minutes.",
+      "mechanic": "converse",
+      "mechanic_rationale": "The converse mechanic models multi-turn intercom communication where every response must adhere strictly to established engineering flight rules.",
+      "aim": "Certify vehicle cryogenic conditioning, launch commit criteria, and voice loop readiness status as PROP during a terminal countdown poll.",
+      "variables": [],
+      "derived": [],
+      "optima": [],
+      "heuristic": [],
+      "sort_items": [],
+      "sort_bins": [],
+      "orders": [],
+      "dialogue": [
+        {
+          "npc_line": "PROP, this is LD on Countdown Net 1. Verify stage-one LOX engine chilldown and subcooling purge status at the T-9 minute hold.",
+          "options": [
+            {
+              "text": "LD, PROP. LOX pump bleeds verified at -184.2 °C, within the subcooling threshold below -183 °C. GHe purge hold sequence complete, engine manifold temperatures are stable and conditioned.",
+              "points": 1.0,
+              "feedback": "Precise, standard callsign discipline citing physical telemetry verified below the subcooling threshold and confirming completion of the moisture purge sequence.",
+              "critical": false
+            },
+            {
+              "text": "LD, PROP. Chilldown is progressing well; bleeds are hovering right around -180 °C, which is close enough to liquid saturation, and the purge is actively flowing.",
+              "points": 0.4,
+              "feedback": "-180 °C is above the atmospheric boiling point of liquid oxygen (-182.96 °C), meaning two-phase boiling and vapor cavities exist that could cause turbopump cavitation.",
+              "critical": false
+            },
+            {
+              "text": "LD, PROP. We have a transient manifold bleed spike up to -174 °C, but once the turbopump pre-valves open during the terminal count, bulk LOX flow will chill it down before ignition. We are good to continue.",
+              "points": 0.0,
+              "feedback": "Violates Launch Commit Criteria. Initiating sequence into an unconditioned cryogenic state can result in vapor lock and catastrophic turbopump destruction.",
+              "critical": true
+            },
+            {
+              "text": "Yeah, Launch Director, PROP here. My screens are showing green on the temperatures and the purge seems active on the board.",
+              "points": 0.2,
+              "feedback": "Violates loop protocol through informal colloquial phrasing, vague impressions, and an absence of engineering units or telemetry verification.",
+              "critical": false
+            }
+          ]
+        },
+        {
+          "npc_line": "Weather and PROP, LD. Tactical radar paints an isolated, non-transparent cumulus cell 8 nautical miles west of our flight corridor with tops measured at the -22 °C isotherm level. PROP, evaluate impact to launch commit under Lightning Launch Commit Criteria.",
+          "options": [
+            {
+              "text": "LD, PROP. Red constraint under LLCC Rule G417.7. Slant distance is 8 nautical miles, violating the mandatory 10-nautical-mile standoff for cumulus tops colder than -20 °C. PROP is NO-GO on weather.",
+              "points": 1.0,
+              "feedback": "Correctly applies standard Lightning Launch Commit Criteria requiring a 10-nautical-mile standoff from cumulus clouds colder than -20 °C and issues a clear NO-GO.",
+              "critical": false
+            },
+            {
+              "text": "LD, PROP. The cumulus cell is 8 nautical miles out and drifting west away from the pad. Because the flight path does not physically penetrate the cloud envelope, PROP recommends we waive the rule and declare GO.",
+              "points": 0.0,
+              "feedback": "Violates safety criteria by attempting an unauthorized waiver. Triggered lightning does not require flying through the cloud to initiate an electrical discharge.",
+              "critical": true
+            },
+            {
+              "text": "LD, PROP. That cloud is close at 8 nautical miles, but if the surface electric field mills read below 1 kilovolt per meter, we might have an exception. Let's ask Weather to check the field mill network before we hold.",
+              "points": 0.3,
+              "feedback": "Misapplies field mill exceptions, which do not apply to cumulus cloud tops colder than -20 °C.",
+              "critical": false
+            },
+            {
+              "text": "LD, PROP. 8 nautical miles is within the 10-mile circle. That doesn't look compliant, so we probably need to hold, but I defer entirely to the Weather Officer.",
+              "points": 0.5,
+              "feedback": "Indecisive and passive response. Every console polled must directly assert safety criteria affecting the vehicle and deliver an unambiguous call.",
+              "critical": false
+            }
+          ]
+        },
+        {
+          "npc_line": "Copy, holding at T-9 minutes. Weather confirms the cumulus cell has fully collapsed to +8 °C and dissipated. However, the pad anemometer at the 162-foot level reports sustained winds of 26 knots, with peak gusts recorded at 36 knots. PROP, evaluate umbilical release and tail-service mast clearance for terminal count entry.",
+          "options": [
+            {
+              "text": "LD, PROP. Peak gusts of 36 knots violate our structural and umbilical commit limit of 30 knots sustained, 33 knots peak gust. PROP recommends holding until peak gusts remain under 30 knots for 10 consecutive minutes.",
+              "points": 1.0,
+              "feedback": "Correctly identifies that a 36-knot gust violates structural and umbilical release thresholds and appropriately requests a consecutive stabilization window.",
+              "critical": false
+            },
+            {
+              "text": "LD, PROP. Sustained wind is 26 knots, which is technically under our 30-knot sustained limit. The 36-knot gusts are brief transients, so we can pick up the count and rely on the automatic ground sequencer to abort if a gust hits at T-10 seconds.",
+              "points": 0.4,
+              "feedback": "Flawed operational risk practice. Countdowns should not proceed into known violating gusts relying solely on terminal automatic redline aborts.",
+              "critical": false
+            },
+            {
+              "text": "LD, PROP. High gusts actually improve hydrogen dispersion at the tail service mast. 36 knots is well within vehicle flight aerodynamic limits, so PROP is GO to resume.",
+              "points": 0.0,
+              "feedback": "Conflates in-flight aerodynamic parameters with pad structural hold-down loads and ground umbilical disconnect envelopes.",
+              "critical": true
+            },
+            {
+              "text": "LD, PROP. Can we ask the MET team to determine if that 36-knot gust was a one-second spike or a three-second average before we decide whether to hold?",
+              "points": 0.2,
+              "feedback": "Introduces unnecessary net debate; Launch Commit Criteria peak gusts refer to peak instantaneous readings across anemometer arrays.",
+              "critical": false
+            }
+          ]
+        },
+        {
+          "npc_line": "Wind has moderated to 20 knots sustained, peak gusts 24 knots over the last 15 minutes. All Lightning Launch Commit Criteria are green. Cryogenic systems are replenished and stable. We are polling to resume count and enter terminal sequencing at T-9 minutes. PROP, your status?",
+          "options": [
+            {
+              "text": "LD, PROP is GO to resume countdown and enter terminal sequence.",
+              "points": 1.0,
+              "feedback": "Standard, concise operational protocol identifying station, addressee, and explicit GO status for the planned terminal action.",
+              "critical": false
+            },
+            {
+              "text": "PROP is ready. Pressures and temperatures are all looking good on my telemetry displays; go ahead and pick up the count whenever the rest of the team is ready.",
+              "points": 0.5,
+              "feedback": "Informal and verbose response that omits the standard canonical keyword 'GO'.",
+              "critical": false
+            },
+            {
+              "text": "LD, PROP is NO-GO... wait, sorry, re-checking sensor PT-401... bleeds warmed up to -182.8 °C, but that's within 0.2 degrees of the limit. Scratch that, PROP is GO, let's roll.",
+              "points": 0.0,
+              "feedback": "Vacillating between NO-GO and GO, guessing near limit margins, and using unprofessional slang on a formal terminal poll triggers mandatory holds and investigations.",
+              "critical": true
+            },
+            {
+              "text": "Launch Director, this is the Propulsion Systems Console Lead speaking. The engineering support team in the back room has completed our review and we concur with resuming count.",
+              "points": 0.3,
+              "feedback": "Excessively wordy and non-standard callsign usage consumes critical countdown voice net time.",
+              "critical": false
+            }
+          ]
+        }
       ],
-      "w": 3,
-      "h": 2,
-      "color": "#334155",
-      "accent": "#94a3b8",
-      "description": "Store clean cutlery, restock ice water carafes, scrape dirty dishes, and stow bus tubs."
+      "caveats": [
+        "LOX boils at -182.96 °C (90.19 K) at standard atmospheric pressure; subcooling to temperatures below -183 °C is essential to avoid turbopump cavitation.",
+        "Engine turbopump bearings and fuel injectors require positive-pressure purge conditioning (typically > 1.2 bar absolute) to avoid icing and atmospheric condensation prior to chilldown.",
+        "Under LLCC (14 CFR Appendix G to Part 417), cumulus clouds with tops colder than -20 °C require a strict 10-nautical-mile standoff from the flight path.",
+        "Field mill exemptions apply only to warm non-precipitating cumulus regimes between +5 °C and -5 °C (or specific -10 °C regimes) under strict electric field limits, never to cloud tops colder than -20 °C.",
+        "Ground wind limits at the 162-foot level are typically capped at 30 knots sustained and 33 to 34 knots peak gust to prevent excessive bending moments and umbilical re-contact."
+      ],
+      "problems": [
+        "Extended hold times lead to passive heat soak into chilldown bleeds, requiring a propellant replenish or bleed recirculation rate increase to restore subcooling below -183 °C.",
+        "Distant cumulus tops crossing -20 °C within 10 nautical miles create lightning trigger risks that require an immediate NO-GO rather than relying on visual pad observations.",
+        "Intermittent wind gusts breaching 33 to 34 knots require declaring a HOLD and observing a mandatory clear window (e.g., 10 minutes) below limits.",
+        "Net clutter and informal phrasing degrade situational awareness; operators must strictly follow standard station callouts and concise status declarations."
+      ],
+      "sources": [
+        {
+          "title": "wikipedia.org",
+          "url": "https://en.wikipedia.org/wiki/Launch_status_check"
+        },
+        {
+          "title": "space.com",
+          "url": "https://www.space.com/12190-space-shuttle-launch-countdown-minutes-liftoff.html"
+        },
+        {
+          "title": "regulations.gov",
+          "url": "https://www.regulations.gov/document/FAA-2019-0229-0001"
+        },
+        {
+          "title": "linde-gas.com",
+          "url": "https://www.linde-gas.com/products-and-services/gases/liquefied-gases-subcooling-for-space"
+        },
+        {
+          "title": "linde-gas.com",
+          "url": "https://www.linde-gas.com/industries/space/engine-testing-and-launch"
+        },
+        {
+          "title": "faa.gov",
+          "url": "https://www.faa.gov/about/office_org/headquarters_offices/ast/regulations/media/Launch_Site_Safety_re-Assessment_Matrix_Pkg.pdf"
+        },
+        {
+          "title": "cornell.edu",
+          "url": "https://www.law.cornell.edu/cfr/text/14/appendix-G_to_part_417"
+        },
+        {
+          "title": "nasa.gov",
+          "url": "https://standards.nasa.gov/system/files/tmp/NASA_STD_4010B%20%20Final%2008-27-2026_1.pdf"
+        },
+        {
+          "title": "nasa.gov",
+          "url": "https://ntrs.nasa.gov/api/citations/20110000675/downloads/20110000675.pdf?attachment=true"
+        },
+        {
+          "title": "nasa.gov",
+          "url": "https://www.nasa.gov/blogs/missions/2026/04/01/live-artemis-ii-launch-day-updates/"
+        }
+      ]
+    },
+    {
+      "id": "deliver-arming-pins",
+      "title": "Deliver safety arming hardware",
+      "summary": "Transport serialized mechanical safe-and-arm lockout pins, transducer cal-plugs, and ground lanyards from the High-Bay Integration Staging Bay to the test stand and pad interface before pad clearance lockouts.",
+      "mechanic": "deliver",
+      "mechanic_rationale": "The deliver mechanic simulates moving delicate safety-critical items across cleanroom and pad waypoints within a strict countdown time constraint.",
+      "aim": "Transport and deliver safety lockout, shunt calibration, and grounding hardware from the staging cleanroom to designated thrust stand interfaces within pad clearance time limits.",
+      "variables": [],
+      "derived": [],
+      "optima": [],
+      "heuristic": [],
+      "sort_items": [],
+      "sort_bins": [],
+      "orders": [
+        {
+          "item": "Serialized Detent Safe-and-Arm Lockout Pin (P/N SA-PIN-417, S/N 019)",
+          "destination": "Lead Ordnance Engineer at Thrust Mount S&A Bracket (Target ID: TM-SA-01)",
+          "note": "Priority 1. Carry in conductive, padded sleeve with under 15 g transverse shock. Deliver within 20 s to verify detent seating before pad clearance siren."
+        },
+        {
+          "item": "Serialized Precision Resistive Shunt Calibration Dummy Plug (P/N CAL-PLUG-100K-B, S/N 084)",
+          "destination": "Instrumentation Specialist at Stand Junction Box J-04 (Target ID: TB-JB-04)",
+          "note": "Priority 2. Class 1A ESD sensitive (< 250 V); require anti-static strap and protective ESD conductive caps. Deliver within 35 s."
+        },
+        {
+          "item": "Serialized Braided Copper-Beryllium Static Grounding Lanyard with Quick-Disconnect Clamp (P/N BND-LNYD-08, S/N 112)",
+          "destination": "Mechanical Integration Technician at Engine Gimbal Pad Interface (Target ID: TM-GMB-GND)",
+          "note": "Priority 3. Avoid kinking and shield clamp teeth from grit/oil to ensure < 2.5 mΩ bonding. Deliver within 45 s before airlock seals."
+        }
+      ],
+      "dialogue": [],
+      "caveats": [
+        "All safety arming and calibration hardware must be transported and secured across the transit corridor within a strict 45-second deadline before pad clearance lockouts seal the area and arm deluge/purge interlocks.",
+        "Never force or hammer a stuck S&A lockout pin; if insertion force exceeds 22 N (5 lbf), check the optical indicator to confirm the hard-mechanical SAFE position (90° out-of-line) and use a cleanroom micro-alignment tool.",
+        "Range safety regulations strictly prohibit straightening bent connector pins on safety-critical instrumentation connectors; bent pins must be tagged out and replaced.",
+        "Differential pressure across the cleanroom airlock must not exceed 50 Pa (0.20 in. H2O); verify the green differential pressure indicator LED before entering to avoid seal interlock lockouts."
+      ],
+      "problems": [
+        "Pin detent jamming stopping 10 mm short of full insertion caused by thermal expansion mismatch, rotor misalignment, or galling/corrosion of internal spring detent balls.",
+        "Bonding resistance exceeding 2.5 mΩ threshold due to anodized coatings, primer overspray, oxidation, or dirty clamp teeth.",
+        "Transducer calibration signal baseline offset fluctuations (> 0.05 mV/V) caused by bent pins or gold-plating wear from misaligned connector mating.",
+        "Courier trapped at integration airlock doors when differential pressure exceeds 50 Pa, requiring manual bypass dump valve operation."
+      ],
+      "sources": [
+        {
+          "title": "af.mil",
+          "url": "https://static.e-publishing.af.mil/production/1/ssc/publication/sscman91-710v7/sscman91-710v7.pdf"
+        },
+        {
+          "title": "scribd.com",
+          "url": "https://www.scribd.com/document/692593723/AFSPCMAN91-710V7"
+        },
+        {
+          "title": "psirep.com",
+          "url": "https://www.psirep.com/system/files/structural_health_monitoring_with_vti_instruments_and_virginia_tech_-_ex1403a-datasheet.pdf"
+        },
+        {
+          "title": "nasa.gov",
+          "url": "https://standards.nasa.gov/sites/default/files/standards/A/0/nasa-std-871912a.pdf"
+        },
+        {
+          "title": "af.mil",
+          "url": "https://static.e-publishing.af.mil/production/1/ssc/publication/sscman91-710v6/sscman91-710v6.pdf"
+        },
+        {
+          "title": "oclc.org",
+          "url": "https://nmsu.contentdm.oclc.org/digital/api/collection/NMSGCBOK/id/929/download"
+        },
+        {
+          "title": "16streets.com",
+          "url": "https://16streets.com/39-B/HTML%20Pages/shuttle/technology/sts-newsref/srb.html"
+        },
+        {
+          "title": "everyspec.com",
+          "url": "https://everyspec.com/USAF/USAF-AFSC/download.php?spec=AFSPCMAN91-710V6.002723.pdf"
+        },
+        {
+          "title": "everyspec.com",
+          "url": "https://everyspec.com/NASA/NASA-MSFC/MSFC-SPEC/download.php?spec=MSFC-SPEC-3635A.046739.pdf"
+        },
+        {
+          "title": "ulalaunch.com",
+          "url": "https://www.ulalaunch.com/docs/default-source/rockets/deltaiipayloadplannersguide2007.pdf?sfvrsn=4c924b53_2"
+        },
+        {
+          "title": "ni.com",
+          "url": "https://download.ni.com/support/catalogs/daq-pxi-product-catalog.pdf"
+        },
+        {
+          "title": "nasa.gov",
+          "url": "https://ntrs.nasa.gov/api/citations/20120001571/downloads/20120001571.pdf"
+        },
+        {
+          "title": "mananenterprise.com",
+          "url": "https://www.mananenterprise.com/download/Interface%20-%20Full%20Catalog.pdf"
+        },
+        {
+          "title": "nasa.gov",
+          "url": "https://explorers.larc.nasa.gov/2019APSMEX/MO/pdf_files/AFSPCMAN%2091-710.pdf"
+        },
+        {
+          "title": "nasa.gov",
+          "url": "https://standards.nasa.gov/sites/default/files/standards/NASA/w/CHANGE-1/1/NASA-STD-4003A.pdf"
+        },
+        {
+          "title": "navytribe.com",
+          "url": "https://navytribe.com/wp-content/uploads/2015/11/navsea-sw550-aa-mmi-010.pdf"
+        },
+        {
+          "title": "dewesoft.com",
+          "url": "https://forum.dewesoft.com/hardware-discussions/dewesoft-instruments/how-to-connect-pressure-sensor-to-dewe-43"
+        },
+        {
+          "title": "nasa.gov",
+          "url": "https://explorers.larc.nasa.gov/2019APSMEX/MO/pdf_files/AFSPCMAN%2091-710.pdf"
+        }
+      ]
     }
   ],
-  "levels": [
+  "reasoning_traces": [
     {
-      "id": "take-order",
-      "level": 1,
-      "title": "Pivot Order & Allergy Tagging",
-      "skill_name": "Order Taking & POS Entry",
-      "goal": "Record Table 1's entree selections with the requested gluten allergy modifier and transmit the order at the POS Terminal.",
-      "instruction": "Walk to the POS Terminal, enter the meals for Seat 1 and Seat 2, tag the gluten-free modifier, and press Send Ticket.",
-      "targetStationId": "station-pos",
-      "customerProfiles": [
-        "Seat 1: Guest with celiac disease ordering Pan-Seared Salmon.",
-        "Seat 2: Guest ordering Ribeye Steak cooked Medium-Rare."
-      ],
-      "initialSupplies": {
-        "order_pads": 10,
-        "pos_receipt_rolls": 2
-      },
-      "actions": [
-        "Select Seat 1 Entree",
-        "Tag Allergy Alert",
-        "Select Seat 2 Entree and Temp",
-        "Send Ticket to Kitchen"
-      ],
-      "controls": [
-        {
-          "id": "seat_1_entree",
-          "label": "Seat 1 Entree",
-          "type": "choice",
-          "default": "Pan-Seared Salmon",
-          "options": [
-            "Pan-Seared Salmon",
-            "Ribeye Steak",
-            "Wild Mushroom Risotto"
-          ],
-          "unit": null
-        },
-        {
-          "id": "allergy_gluten_free",
-          "label": "Celiac / Gluten Allergy Flag",
-          "type": "toggle",
-          "default": false,
-          "unit": null
-        },
-        {
-          "id": "seat_2_entree",
-          "label": "Seat 2 Entree",
-          "type": "choice",
-          "default": "Ribeye Steak",
-          "options": [
-            "Pan-Seared Salmon",
-            "Ribeye Steak",
-            "Duck Confit"
-          ],
-          "unit": null
-        },
-        {
-          "id": "steak_doneness",
-          "label": "Steak Doneness",
-          "type": "choice",
-          "default": "Medium",
-          "options": [
-            "Rare",
-            "Medium-Rare",
-            "Medium",
-            "Well-Done"
-          ],
-          "unit": null
-        },
-        {
-          "id": "send_to_kitchen",
-          "label": "Transmit Kitchen Ticket",
-          "type": "toggle",
-          "default": false,
-          "unit": null
-        }
-      ],
-      "successConditions": [
-        "Seat 1 entree is set to Pan-Seared Salmon.",
-        "Gluten allergy toggle is activated for the kitchen line.",
-        "Seat 2 steak doneness is set to Medium-Rare.",
-        "Kitchen ticket transmission is toggled to true."
-      ],
-      "steps": [
-        "Review diner order specifications for Table 1.",
-        "Select the correct entrees matching seat pivot points.",
-        "Toggle the gluten-free warning to avoid kitchen cross-contamination.",
-        "Set Ribeye doneness to Medium-Rare.",
-        "Send the order ticket to the kitchen pass."
-      ],
-      "checks": [
-        "seat_1_entree == 'Pan-Seared Salmon'",
-        "allergy_gluten_free == true",
-        "seat_2_entree == 'Ribeye Steak'",
-        "steak_doneness == 'Medium-Rare'",
-        "send_to_kitchen == true"
+      "task_id": "calibrate-combustor",
+      "step": 1,
+      "thought": "Why chosen: Rocket engine performance and combustion stability depend entirely on precise calibration; oxidizer-rich mixtures melt liners while low injector pressure drops trigger destructive acoustic chugging. Mechanic mix: The mix mechanic accurately models the independent numeric tuning across interconnected continuous fluid parameters with narrow tolerance margins.",
+      "evidence": [
+        "https://elib.dlr.de/219040/1/DLR-FB-2025-16.pdf",
+        "https://ntrs.nasa.gov/api/citations/19940018555/downloads/19940018555.pdf",
+        "https://sid.ir/fileserver/je/2001-280079-en-1138270.pdf",
+        "https://ir.ua.edu/bitstreams/add48837-de31-4e5c-8c61-9c7ef6e0aec4/download",
+        "https://ntrs.nasa.gov/api/citations/20030066110/downloads/20030066110.pdf",
+        "https://www.mdpi.com/2226-4310/13/9/768"
       ]
     },
     {
-      "id": "deliver-entrees",
-      "level": 2,
-      "title": "Tray Balancing & Pivot Delivery",
-      "skill_name": "Food Carrying & Silent Delivery",
-      "goal": "Pick up plated dinners from the Kitchen Pass and deliver them to Table 1 without spills or auctioning food.",
-      "instruction": "Walk to Table 1, ensure tray stability is at least 85%, and deliver Seat 1's meal from the guest's left side.",
-      "targetStationId": "station-table-one",
-      "customerProfiles": [
-        "Table 1: Waiting for two entrees, observant of formal service etiquette."
-      ],
-      "initialSupplies": {
-        "entrees_on_pass": 2,
-        "tray_jacks": 2
-      },
-      "actions": [
-        "Adjust Tray Balance",
-        "Approach Table 1",
-        "Position Service Stance",
-        "Place Seat 1 Dish"
-      ],
-      "controls": [
-        {
-          "id": "tray_stability_pct",
-          "label": "Tray Balance & Grip Stability",
-          "type": "slider",
-          "default": 65,
-          "min": 40,
-          "step": 1,
-          "targetMin": 85,
-          "unit": "%"
-        },
-        {
-          "id": "service_side",
-          "label": "Service Approach Angle",
-          "type": "choice",
-          "default": "Guest's Right",
-          "options": [
-            "Guest's Left",
-            "Guest's Right",
-            "Across Center of Table"
-          ],
-          "unit": null
-        },
-        {
-          "id": "auction_food_query",
-          "label": "Ask 'Who ordered the Salmon?'",
-          "type": "toggle",
-          "default": true,
-          "unit": null
-        },
-        {
-          "id": "confirm_plates_placed",
-          "label": "Set Dishes at Designated Seats",
-          "type": "toggle",
-          "default": false,
-          "unit": null
-        }
-      ],
-      "successConditions": [
-        "Tray stability is maintained between 85% and 100%.",
-        "Approach is executed from the guest's left.",
-        "Food auctioning question is switched off.",
-        "Plates placed toggle is confirmed."
-      ],
-      "steps": [
-        "Lift the heavy oval banquet tray with both hot plates.",
-        "Raise tray balance stability slider above 85%.",
-        "Approach Seat 1 from the guest's left side without reaching over diner space.",
-        "Ensure food is not auctioned off by keeping silent pivot memory.",
-        "Confirm delivery of both plates."
-      ],
-      "checks": [
-        "tray_stability_pct >= 85",
-        "service_side == \"Guest's Left\"",
-        "auction_food_query == false",
-        "confirm_plates_placed == true"
+      "task_id": "time-chilldown-ignition",
+      "step": 2,
+      "thought": "Why chosen: Warm valves cause violent cavitation and turbopump overspeed, while igniter activation must lead propellant valve opening by milliseconds to avoid catastrophic hard-start chamber detonations. Mechanic timing: The timing mechanic mirrors the time-critical transient phases of a rocket engine start sequence via dynamic hold and stop actions on moving countdown indicators.",
+      "evidence": [
+        "https://elib.dlr.de/219040/1/DLR-FB-2025-16.pdf",
+        "https://www.quora.com/Why-was-it-required-for-the-space-shuttle-3-main-engines-to-ignite-at-T-6-6-seconds-before-launch-Why-didnt-they-ignite-at-0-seconds",
+        "https://www.eucass.eu/doi/EUCASS2025-402.pdf"
       ]
     },
     {
-      "id": "clear-and-bus",
-      "level": 3,
-      "title": "Pre-Bussing & Table Maintenance",
-      "skill_name": "Table Bussing & Station Sanitation",
-      "goal": "Clear finished plates and used silverware from Table 1, then scrape and sort ware into the Side Service Station bus tub.",
-      "instruction": "Walk to the Side Service Station, configure plate stacking between 2 and 4, scrape scraps, and separate silverware.",
-      "targetStationId": "station-service-station",
-      "customerProfiles": [
-        "Table 1: Both diners have laid cutlery in the 4:20 position signaling completion."
-      ],
-      "initialSupplies": {
-        "bus_tubs_empty": 1,
-        "clean_sanitizer_towels": 4
-      },
-      "actions": [
-        "Stack Cleared Plates",
-        "Scrape Food Scraps",
-        "Separate Cutlery",
-        "Offer Dessert & Coffee"
-      ],
-      "controls": [
-        {
-          "id": "stacked_plate_count",
-          "label": "Stacked Plates Carried",
-          "type": "slider",
-          "default": 1,
-          "min": 1,
-          "step": 1,
-          "targetMin": 2,
-          "unit": "plates"
-        },
-        {
-          "id": "scrape_food_remnants",
-          "label": "Scrape Scraps into Trash Chute",
-          "type": "toggle",
-          "default": false,
-          "unit": null
-        },
-        {
-          "id": "separate_flatware",
-          "label": "Sort Cutlery in Soak Cylinders",
-          "type": "toggle",
-          "default": false,
-          "unit": null
-        },
-        {
-          "id": "crumb_table_cleared",
-          "label": "Crumb Table and Reset Linens",
-          "type": "toggle",
-          "default": false,
-          "unit": null
-        }
-      ],
-      "successConditions": [
-        "Stacked plates carried is between 2 and 4.",
-        "Food scraps are scraped into the compost/trash receptacle.",
-        "Flatware is sorted separately from china.",
-        "Table crumber is used and reset confirmed."
-      ],
-      "steps": [
-        "Clear empty dishware using the three-plate clearing technique.",
-        "Carry between 2 and 4 plates safely to the Side Service Station.",
-        "Scrape remaining food debris before nesting plates.",
-        "Separate knives and forks into dedicated soak cups.",
-        "Mark the table as crumbed and ready for dessert or billing."
-      ],
-      "checks": [
-        "stacked_plate_count >= 2",
-        "stacked_plate_count <= 4",
-        "scrape_food_remnants == true",
-        "separate_flatware == true",
-        "crumb_table_cleared == true"
+      "task_id": "triage-telemetry",
+      "step": 3,
+      "thought": "Why chosen: Disciplined real-time triage prevents vehicle loss from unrecognized catastrophic failures and avoids multimillion-dollar launch scrubs caused by minor sensor anomalies. Mechanic sort: The sort mechanic models categorizing an incoming stream of operational events into standardized regulatory bins.",
+      "evidence": [
+        "https://s3vi.ndc.nasa.gov/ssri-kb/static/resources/nasa-std-8729.1a.pdf",
+        "https://mail.system-safety.org/Documents/MIL-STD-882D.pdf",
+        "https://ntrs.nasa.gov/api/citations/20150015500/downloads/20150015500.pdf",
+        "https://ntrs.nasa.gov/api/citations/20030066110/downloads/20030066110.pdf",
+        "https://www.fmv.se/globalassets/dokument/om-fmv/systemsakerhet/mil-std-882c.pdf",
+        "https://standards.nasa.gov/sites/default/files/standards/NASA/Baseline/0/nasa-std-87197.pdf",
+        "https://www.govinfo.gov/content/pkg/GPO-CRPT-99hrpt1016/pdf/GPO-CRPT-99hrpt1016.pdf"
       ]
     },
     {
-      "id": "settle-check",
-      "level": 4,
-      "title": "Check Splitting & Payment Settlement",
-      "skill_name": "Tender Processing & Shift Closeout",
-      "goal": "Split Table 1's final tab evenly between 2 cards, apply the requested 20% gratuity, and print customer merchant copies.",
-      "instruction": "Walk to the POS Terminal, split the check across 2 covers, apply a 20% tip, and finalize transaction.",
-      "targetStationId": "station-pos",
-      "customerProfiles": [
-        "Table 1: Couples requesting an even split across two credit cards with a 20% tip."
-      ],
-      "initialSupplies": {
-        "bill_presenters": 2,
-        "merchant_pens": 4
-      },
-      "actions": [
-        "Split Tab by Seat",
-        "Select Payment Method",
-        "Apply Gratuity Percentage",
-        "Finalize POS Closeout"
-      ],
-      "controls": [
-        {
-          "id": "split_covers",
-          "label": "Split Evenly Across Covers",
-          "type": "slider",
-          "default": 1,
-          "min": 1,
-          "step": 1,
-          "targetMin": 2,
-          "unit": "guests"
-        },
-        {
-          "id": "payment_type",
-          "label": "Tender Type",
-          "type": "choice",
-          "default": "Cash",
-          "options": [
-            "Cash",
-            "Split Credit Card",
-            "House Account",
-            "Gift Voucher"
-          ],
-          "unit": null
-        },
-        {
-          "id": "gratuity_pct",
-          "label": "Tip Percentage Applied",
-          "type": "slider",
-          "default": 15,
-          "min": 0,
-          "step": 1,
-          "targetMin": 20,
-          "unit": "%"
-        },
-        {
-          "id": "print_receipts_and_close",
-          "label": "Print Merchant Vouchers & Close Table",
-          "type": "toggle",
-          "default": false,
-          "unit": null
-        }
-      ],
-      "successConditions": [
-        "Split covers slider is set to 2.",
-        "Payment type is set to Split Credit Card.",
-        "Tip percentage is set to 20%.",
-        "Receipt print and table closeout toggle is true."
-      ],
-      "steps": [
-        "Open Table 1 ticket on the POS screen.",
-        "Divide total balance evenly across 2 diners.",
-        "Select Split Credit Card processing.",
-        "Enter exactly 20% gratuity.",
-        "Print customer receipts and close the table session."
-      ],
-      "checks": [
-        "split_covers == 2",
-        "payment_type == 'Split Credit Card'",
-        "gratuity_pct == 20",
-        "print_receipts_and_close == true"
+      "task_id": "poll-terminal-readiness",
+      "step": 4,
+      "thought": "Why chosen: The verbal readiness poll provides the ultimate procedural gate ensuring all Launch Commit Criteria, vehicle systems, and weather rules are satisfied prior to terminal sequence entry. Mechanic converse: The converse mechanic models multi-turn intercom communication where every response must adhere strictly to established engineering flight rules.",
+      "evidence": [
+        "https://www.ulalaunch.com/missions/archived-launched/delta-ii-icesat-2",
+        "https://elib.dlr.de/219040/1/DLR-FB-2025-16.pdf",
+        "https://www.americaspace.com/2015/04/27/record-setting-spacex-roars-to-geostationary-orbit-with-spectacular-falcon-9-launch/",
+        "https://archive.org/stream/GPOCRPT99hrpt1016/GPO-CRPT-99hrpt1016_djvu.txt",
+        "https://www.eucass.eu/doi/EUCASS2025-402.pdf",
+        "https://www.govinfo.gov/content/pkg/GPO-CRPT-99hrpt1016/pdf/GPO-CRPT-99hrpt1016.pdf",
+        "https://www.ulalaunch.com/missions/archived-launched/delta-iv-nrol-71"
+      ]
+    },
+    {
+      "task_id": "deliver-arming-pins",
+      "step": 5,
+      "thought": "Why chosen: Mechanical lockout pins and flight plugs guarantee pad personnel safety from premature pyrotechnic initiation until ground clearance is enforced and remote control begins. Mechanic deliver: The deliver mechanic simulates moving delicate safety-critical items across cleanroom and pad waypoints within a strict countdown time constraint.",
+      "evidence": [
+        "http://www.capcomespace.net/dossiers/sea_launch/sl_users_guide_rev_c.pdf",
+        "http://weebau.com/lvpics2/13016.htm",
+        "https://www.funkystuff.org/spacex-starship-iii-sequence-of-events-ift-3/"
+      ]
+    },
+    {
+      "task_id": null,
+      "step": 6,
+      "thought": "Assumptions: The vehicle modeled uses a standard bipropellant liquid rocket engine (LOX oxidizer and RP-1 kerosene fuel) operating with a gas-generator or expander cycle The engineer acts as the Propulsion Operations & Systems Lead, transitioning from pre-fire configuration to countdown command",
+      "evidence": []
+    },
+    {
+      "task_id": "calibrate-combustor",
+      "step": 7,
+      "thought": "Optimum for Oxidizer-to-Fuel Ratio (O/F): 2.4 ratio. Running fuel-rich lowers combustion gas molecular weight, maximizes characteristic velocity and specific impulse, and limits flame temperature to manageable levels below 3500 K. Scoring: tolerance 0.1, weight 1, gaussian curve because Deviating from optimal O/F either causes incomplete combustion fouling or aggressive thermal and oxidative attack on copper liners.",
+      "evidence": [
+        "https://ntrs.nasa.gov/api/citations/19990049416/downloads/19990049416.pdf",
+        "https://en.wikipedia.org/wiki/Rocketdyne_F-1",
+        "https://everydayastronaut.com/raptor-engine/",
+        "https://cerfacs.fr/wp-content/uploads/2023/10/Phd_Mouze-Mornettas_TH_CFD_23_141.pdf"
+      ]
+    },
+    {
+      "task_id": "calibrate-combustor",
+      "step": 8,
+      "thought": "Optimum for Chamber Pressure (P_c): 70 bar. Sizing chamber pressure at 70 bar establishes required thrust and throat mass flux while providing optimal sea-level nozzle expansion without internal shock separation. Scoring: tolerance 2, weight 1, gaussian curve because Chamber pressure governs nozzle expansion dynamics and structural heat flux loads.",
+      "evidence": [
+        "https://en.wikipedia.org/wiki/Rocketdyne_F-1",
+        "https://everydayastronaut.com/raptor-engine/",
+        "https://ntrs.nasa.gov/api/citations/20100033271/downloads/20100033271.pdf",
+        "https://repository.tudelft.nl/file/File_2a869da2-68ab-4306-99cf-c28dc6a40b7d"
+      ]
+    },
+    {
+      "task_id": "calibrate-combustor",
+      "step": 9,
+      "thought": "Optimum for Injector Pressure Drop (ΔP/P_c): 18 %. A pressure drop ratio between 15% and 20% decouples the propellant feed system from combustion chamber acoustic oscillations, avoiding low-frequency instabilities. Scoring: tolerance 3, weight 1, gaussian curve because Injector pressure drop ratio serves as an acoustic barrier isolating the feed lines from chamber acoustics.",
+      "evidence": [
+        "https://ntrs.nasa.gov/api/citations/20100033271/downloads/20100033271.pdf",
+        "https://www.scribd.com/document/1019101039/Liquid-Propellant-Rocket-Engine-Throttling-a-Comprehensive-Review",
+        "https://alvarovillalba.com/rockets"
+      ]
+    },
+    {
+      "task_id": "calibrate-combustor",
+      "step": 10,
+      "thought": "Optimum for Barrier Film Cooling Bypass (BFC): 4 %. Allocating 3.5% to 5.0% of fuel to peripheral film cooling creates a protective boundary sub-layer that insulates the chamber liner without excessive specific impulse loss. Scoring: tolerance 0.5, weight 0.8, gaussian curve because BFC bypass balances thermal liner protection against performance loss and soot deposition.",
+      "evidence": [
+        "https://alvarovillalba.com/rockets",
+        "https://vdoc.pub/documents/the-development-of-propulsion-technology-for-us-space-launch-vehicles-1926-1991-lv9ha9eo0c80",
+        "https://sundevilrocketry.github.io/downloads/Liquids%20AIAA%20Paper.pdf"
+      ]
+    },
+    {
+      "task_id": "calibrate-combustor",
+      "step": 11,
+      "thought": "Optimum for Absolute Injector Pressure Drop (ΔP_inj): 12.6. The resulting differential pressure across the injector must remain between 10.20 bar and 14.40 bar to maintain acoustic decoupling without exceeding pump delivery limits. Scoring: tolerance 2, weight 0.9, linear curve because Absolute injector drop must ensure acoustic stability without exceeding turbopump discharge limits.",
+      "evidence": [
+        "https://www.science.gov/topicpages/r/rocket+engine+throttling.html"
+      ]
+    },
+    {
+      "task_id": "calibrate-combustor",
+      "step": 12,
+      "thought": "Optimum for Core Zone Mixture Ratio ((O/F)_core): 2.5. Accounting for film cooling diversion, the core combustion zone ratio must remain between 2.38 and 2.63 to avoid elevating core gas temperatures by over 250 K. Scoring: tolerance 0.12, weight 0.9, linear curve because Core mixture ratio directly drives local core gas temperatures and chamber throat life.",
+      "evidence": [
+        "https://www.science.gov/topicpages/r/rocket+engine+throttling.html",
+        "https://arc.aiaa.org/doi/10.2514/1.T7095"
+      ]
+    },
+    {
+      "task_id": "calibrate-combustor",
+      "step": 13,
+      "thought": "Caveats: Volumetric flow calibration must be compensated against RTD temperature telemetry before setting mass mixture ratios due to cryogenic LOX density swings with chill-down temperature and subcooling. Calibrated steady-state O/F must not be applied prior to ignition; injector calibration benches must enforce a 20 to 50 ms fuel-lead pre-injection sequence to avoid explosive hard starts. Upstream cavitating venturis must maintain a pressure recovery drop of at least 15% across their throats to prevent chamber pressure fluctuations from feeding back to main propellant tanks. Problems: Low-frequency pressure oscillations (100–300 Hz chugging) occurring when injector pressure drop ratio falls below 15.0% of chamber pressure. Local wall blanching and copper discoloration near the chamber throat when barrier film cooling bypass drops below 3.5% or suffers circumferential maldistribution. Heavy soot deposits, sluggish ignition ramp, and low characteristic velocity efficiency when O/F is below 2.30 or BFC bypass exceeds 5.0%. Excessive manifold back-pressure exceeding pump discharge limits (> 85 bar) when injector pressure drop ratio exceeds 20.0%.",
+      "evidence": [
+        "https://studylib.net/doc/27863364/rocket-propulsion-elements",
+        "https://www.researchgate.net/publication/415233366_RocketAgent_A_Long-Horizon_Engineering_Agent_for_Multidisciplinary_Design_of_Liquid-Rocket_Thrust_Chambers",
+        "https://ntrs.nasa.gov/api/citations/19990049416/downloads/19990049416.pdf",
+        "https://en.wikipedia.org/wiki/Rocketdyne_F-1",
+        "https://everydayastronaut.com/raptor-engine/",
+        "https://cerfacs.fr/wp-content/uploads/2023/10/Phd_Mouze-Mornettas_TH_CFD_23_141.pdf",
+        "https://www.researchgate.net/publication/265927928_A_Model_for_Design_and_Analysis_of_Regeneratively_Cooled_Rocket_Engines",
+        "https://ntrs.nasa.gov/api/citations/20100033271/downloads/20100033271.pdf"
+      ]
+    },
+    {
+      "task_id": "time-chilldown-ignition",
+      "step": 14,
+      "thought": "Optimum for LOX Pre-Chill Bleed Hold Duration: 3.5-4.5 s. Allows LOX feedlines and turbopump housings to transition past film boiling to dense liquid conditions while avoiding excess cryogen boil-off or structural frost accumulation. Scoring: tolerance 0.5, weight 1, gaussian curve because Chilldown must clear the Leidenfrost regime without wasting propellant margins or freezing valve seals.",
+      "evidence": [
+        "https://www.quora.com/Why-is-there-a-countdown-during-a-missile-rocket-launch",
+        "https://elib.dlr.de/200713/1/2023-a-9-02.pdf",
+        "https://www.eucass.eu/doi/EUCASS2019-0563.pdf",
+        "https://ntrs.nasa.gov/api/citations/19910011922/downloads/19910011922.pdf?attachment=true"
+      ]
+    },
+    {
+      "task_id": "time-chilldown-ignition",
+      "step": 15,
+      "thought": "Optimum for Pyrophoric Igniter Injection Stop Lead: 120-180 ms. Establishes a stable TEA-TEB radical flame kernel just before main propellant admission without risking hard starts from delayed ignition or orifice slagging from unbacked burning. Scoring: tolerance 30, weight 1, gaussian curve because Pyrophoric lead time governs whether propellant mixes into an existing flame or accumulates into an explosive acoustic pulse.",
+      "evidence": [
+        "https://www.astronomicalreturns.com/2020/06/get-tea-teb-kerosene-wont-light.html",
+        "https://www.researchgate.net/publication/324597970_Specific_Impulse_and_Ignition_Delay_Time_Assessment_for_DMAZ_with_Liquid_Oxidizers_for_an_Upper_Stage_Rocket_Engine",
+        "https://ntrs.nasa.gov/api/citations/19720011246/downloads/19720011246.pdf?attachment=true",
+        "https://aiaa.org/wp-content/uploads/2024/12/marsascentvehicle-hybridpropulsioneffort.pdf"
+      ]
+    },
+    {
+      "task_id": "time-chilldown-ignition",
+      "step": 16,
+      "thought": "Optimum for Ramp-to-Mainstage Intermediate Dwell Hold: 1.8-2.2 s. Ensures chamber acoustic flame anchoring and turbopump power stabilization at intermediate plateau pressure before spooling to full thrust, preventing chug instability or regenerative throat overheating. Scoring: tolerance 0.2, weight 1, gaussian curve because Dwell time at intermediate thrust balances acoustic anchoring against cooling channel heat capacity.",
+      "evidence": [
+        "https://vdoc.pub/documents/history-of-liquid-propellant-rocket-engines-5ftq3u2v2f30",
+        "https://www.spacecentre.nz/resources/docs/nasa/SaturnV_Manual.pdf"
+      ]
+    },
+    {
+      "task_id": "time-chilldown-ignition",
+      "step": 17,
+      "thought": "Caveats: Liquid oxygen contacts ambient walls initially in the film boiling regime; main oxidizer valves must not open while feedline skin thermocouples indicate transition temperatures above 95 K [10]. TEA-TEB pyrophoric fluid decomposes spontaneously on contact with air or moisture; manifolds must maintain a dry GN2 blanket (> 50 psig) until firing [2, 21, 28]. Lead intervals between igniter discharge and main valve actuation must cushion hydraulic water hammer against downstream chamber backpressure [7, 15, 18, 29]. Problems: Cryogenic Vapor Lock / Turbopump Cavitation: Caused by Phase 1 duration < 3.5 s; manifests as high-frequency discharge pressure oscillations (100–300 Hz) and rapid drop in oxidizer mass flow [5, 10, 25]. Combustor Hard Start Detonation: Caused by Phase 2 lead < 120 ms; manifests as destructive dynamic pressure pulse exceeding 2.5x rated chamber pressure and acoustic accelerometer trips [13, 20]. Igniter Injector Coking & Vitreous Slagging: Caused by Phase 2 lead > 180 ms; manifests as TEA-TEB differential pressure rising > 20% and dimmed optical detector output [13, 21]. Start-Transient Chug / Screech Instability: Caused by Phase 3 dwell < 1.8 s; manifests as low-frequency (50–150 Hz) or high-frequency (> 1500 Hz) chamber pressure hum [10, 15, 24]. Regenerative Throat Overheat: Caused by Phase 3 dwell > 2.2 s; manifests as nozzle throat wall temperature gradient exceeding 80 K/s and coolant delta-T exceeding limits [15].",
+      "evidence": [
+        "https://www.astronomicalreturns.com/2020/06/get-tea-teb-kerosene-wont-light.html",
+        "https://ntrs.nasa.gov/api/citations/19750012398/downloads/19750012398.pdf",
+        "https://www.quora.com/Why-is-there-a-countdown-during-a-missile-rocket-launch",
+        "https://ecosimpro.com/wp-content/uploads/2026/09/SP2026_630_paper.pdf",
+        "https://elib.dlr.de/200713/1/2023-a-9-02.pdf",
+        "https://www.eucass.eu/doi/EUCASS2019-0563.pdf",
+        "https://www.researchgate.net/publication/324597970_Specific_Impulse_and_Ignition_Delay_Time_Assessment_for_DMAZ_with_Liquid_Oxidizers_for_an_Upper_Stage_Rocket_Engine",
+        "https://vdoc.pub/documents/history-of-liquid-propellant-rocket-engines-5ftq3u2v2f30"
+      ]
+    },
+    {
+      "task_id": "triage-telemetry",
+      "step": 18,
+      "thought": "Right destinations: ITEM_HPOTP_VIB: HPOTP bearing radial accelerometer VIB-OX-104A at 22.4 g RMS sustained for 65 ms (Redline: > 18.0 g RMS for > 50 ms) -> Category I: Catastrophic (HPOTP bearing raceway spallation or rubbing in a 100% supercritical LOX stream leads to frictional ignition and uncontained turbopump structural disintegration, resulting in total loss of engine and test stand asset (monetary loss >= $10M).); ITEM_MCC_DP_DROP: MCC coolant jacket differential pressure MCC-DP-201B drops to 380 psid (Redline: < 450 psid) with throat skin temp TC-THRT-209 exceeding 1,150 K -> Category I: Catastrophic (Coolant flow collapse leads to instantaneous throat wall thermal erosion and high-pressure chamber rupture at high heat fluxes, destroying the thrust frame and facility (monetary loss >= $10M).); ITEM_TVC_HYD_LOSS: Primary gimbal actuator TVC supply pressure HYD-P-302 drops to 1,720 psia (Redline abort: < 2,100 psia for > 100 ms) with actuator servo stall warning -> Category II: Critical (Loss of gimbal actuator authority prevents thrust vectoring, aborting primary test and flight certification objectives and requiring major component requalification ($1M to $10M loss), but the engine remains physically contained on the stand.); ITEM_PB_SEAL_LEAK: Preburner dual seal cavity purge pressure PRG-P-405 rises to 58 psia (Warning threshold: 45 psia) with leak rate at 140 sccm -> Category III: Marginal (Secondary containment seal leak vents propellant into an inert GN2 buffe...",
+      "evidence": []
+    },
+    {
+      "task_id": "triage-telemetry",
+      "step": 19,
+      "thought": "Caveats: Never categorize hazard severity based on a raw single-channel spike unless verified against physical voting logic or companion parameters (e.g., pairing turbopump vibration with bearing cavity temperature). Account for sensor persistence windows (30 to 50 ms) to avoid misclassifying sub-10 ms electrical transients or inductive kicks as catastrophic events. Hazard classification varies by operational environment: flight critical failure modes (e.g., loss of TVC causing loss of vehicle) are Category I in flight but classified as Category II on a bolted ground test stand. Problems: Cryogenic chilldown sensor bias shift: Pressure transducers experience zero-shift drift of 8 to 12 psia at cryogenic temperatures (< -180 °C), tripping false low-pressure warnings at ignition. Two-phase flow noise tripping purge monitors: Boil-off expansion during startup transients causes purge cavity pressure spikes (> 50 psia) between T0 and T+2.5 s. Flame deflector water steam ingress: Trench water mist penetrates sensor connectors, producing high-frequency electrical noise (> 25 g at 10 kHz) that mimics bearing failure.",
+      "evidence": [
+        "https://ndia.dtic.mil/wp-content/uploads/2012/system/track914790.pdf",
+        "https://www.mdpi.com/1660-4601/21/12/1649",
+        "https://s3vi.ndc.nasa.gov/ssri-kb/static/resources/nasa-std-8729.1a.pdf",
+        "https://explorers.larc.nasa.gov/2021APMIDEX/pdf_files/NPR_8705_4A.pdf",
+        "https://www.nde-ed.org/NDEEngineering/SafeDesign/MIL-STD-882E.pdf"
+      ]
+    },
+    {
+      "task_id": "poll-terminal-readiness",
+      "step": 20,
+      "thought": "Conversation turn \"PROP, this is LD on Countdown Net 1. Verify stage-one LOX engine chilldown and subcooling purge status at the T-9 minute hold.\": best response \"LD, PROP. LOX pump bleeds verified at -184.2 °C, within the subcooling threshold below -183 °C. GHe purge hold sequence complete, engine manifold temperatures are stable and conditioned.\" because Precise, standard callsign discipline citing physical telemetry verified below the subcooling threshold and confirming completion of the moisture purge sequence. Serious errors: LD, PROP. We have a transient manifold bleed spike up to -174 °C, but once the turbopump pre-valves open during the terminal count, bulk LOX flow will chill it down before ignition. We are good to continue.",
+      "evidence": []
+    },
+    {
+      "task_id": "poll-terminal-readiness",
+      "step": 21,
+      "thought": "Conversation turn \"Weather and PROP, LD. Tactical radar paints an isolated, non-transparent cumulus cell 8 nautical miles west of our flight corridor with tops measured at the -22 °C isotherm level. PROP, evaluate impact to launch commit under Lightning Launch Commit Criteria.\": best response \"LD, PROP. Red constraint under LLCC Rule G417.7. Slant distance is 8 nautical miles, violating the mandatory 10-nautical-mile standoff for cumulus tops colder than -20 °C. PROP is NO-GO on weather.\" because Correctly applies standard Lightning Launch Commit Criteria requiring a 10-nautical-mile standoff from cumulus clouds colder than -20 °C and issues a clear NO-GO. Serious errors: LD, PROP. The cumulus cell is 8 nautical miles out and drifting west away from the pad. Because the flight path does not physically penetrate the cloud envelope, PROP recommends we waive the rule and declare GO.",
+      "evidence": []
+    },
+    {
+      "task_id": "poll-terminal-readiness",
+      "step": 22,
+      "thought": "Conversation turn \"Copy, holding at T-9 minutes. Weather confirms the cumulus cell has fully collapsed to +8 °C and dissipated. However, the pad anemometer at the 162-foot level reports sustained winds of 26 knots, with peak gusts recorded at 36 knots. PROP, evaluate umbilical release and tail-service mast clearance for terminal count entry.\": best response \"LD, PROP. Peak gusts of 36 knots violate our structural and umbilical commit limit of 30 knots sustained, 33 knots peak gust. PROP recommends holding until peak gusts remain under 30 knots for 10 consecutive minutes.\" because Correctly identifies that a 36-knot gust violates structural and umbilical release thresholds and appropriately requests a consecutive stabilization window. Serious errors: LD, PROP. High gusts actually improve hydrogen dispersion at the tail service mast. 36 knots is well within vehicle flight aerodynamic limits, so PROP is GO to resume.",
+      "evidence": []
+    },
+    {
+      "task_id": "poll-terminal-readiness",
+      "step": 23,
+      "thought": "Conversation turn \"Wind has moderated to 20 knots sustained, peak gusts 24 knots over the last 15 minutes. All Lightning Launch Commit Criteria are green. Cryogenic systems are replenished and stable. We are polling to resume count and enter terminal sequencing at T-9 minutes. PROP, your status?\": best response \"LD, PROP is GO to resume countdown and enter terminal sequence.\" because Standard, concise operational protocol identifying station, addressee, and explicit GO status for the planned terminal action. Serious errors: LD, PROP is NO-GO... wait, sorry, re-checking sensor PT-401... bleeds warmed up to -182.8 °C, but that's within 0.2 degrees of the limit. Scratch that, PROP is GO, let's roll.",
+      "evidence": []
+    },
+    {
+      "task_id": "poll-terminal-readiness",
+      "step": 24,
+      "thought": "Caveats: LOX boils at -182.96 °C (90.19 K) at standard atmospheric pressure; subcooling to temperatures below -183 °C is essential to avoid turbopump cavitation. Engine turbopump bearings and fuel injectors require positive-pressure purge conditioning (typically > 1.2 bar absolute) to avoid icing and atmospheric condensation prior to chilldown. Under LLCC (14 CFR Appendix G to Part 417), cumulus clouds with tops colder than -20 °C require a strict 10-nautical-mile standoff from the flight path. Field mill exemptions apply only to warm non-precipitating cumulus regimes between +5 °C and -5 °C (or specific -10 °C regimes) under strict electric field limits, never to cloud tops colder than -20 °C. Ground wind limits at the 162-foot level are typically capped at 30 knots sustained and 33 to 34 knots peak gust to prevent excessive bending moments and umbilical re-contact. Problems: Extended hold times lead to passive heat soak into chilldown bleeds, requiring a propellant replenish or bleed recirculation rate increase to restore subcooling below -183 °C. Distant cumulus tops crossing -20 °C within 10 nautical miles create lightning trigger risks that require an immediate NO-GO rather than relying on visual pad observations. Intermittent wind gusts breaching 33 to 34 knots require declaring a HOLD and observing a mandatory clear window (e.g., 10 minutes) below limits. Net clutter and informal phrasing degrade situational awareness; operators must strictly follow standard station...",
+      "evidence": [
+        "https://en.wikipedia.org/wiki/Launch_status_check",
+        "https://www.space.com/12190-space-shuttle-launch-countdown-minutes-liftoff.html",
+        "https://www.regulations.gov/document/FAA-2019-0229-0001",
+        "https://www.linde-gas.com/products-and-services/gases/liquefied-gases-subcooling-for-space",
+        "https://www.linde-gas.com/industries/space/engine-testing-and-launch",
+        "https://www.faa.gov/about/office_org/headquarters_offices/ast/regulations/media/Launch_Site_Safety_re-Assessment_Matrix_Pkg.pdf",
+        "https://www.law.cornell.edu/cfr/text/14/appendix-G_to_part_417",
+        "https://standards.nasa.gov/system/files/tmp/NASA_STD_4010B%20%20Final%2008-27-2026_1.pdf"
+      ]
+    },
+    {
+      "task_id": "deliver-arming-pins",
+      "step": 25,
+      "thought": "Orders and constraints: Serialized Detent Safe-and-Arm Lockout Pin (P/N SA-PIN-417, S/N 019) -> Lead Ordnance Engineer at Thrust Mount S&A Bracket (Target ID: TM-SA-01) (Priority 1. Carry in conductive, padded sleeve with under 15 g transverse shock. Deliver within 20 s to verify detent seating before pad clearance siren.); Serialized Precision Resistive Shunt Calibration Dummy Plug (P/N CAL-PLUG-100K-B, S/N 084) -> Instrumentation Specialist at Stand Junction Box J-04 (Target ID: TB-JB-04) (Priority 2. Class 1A ESD sensitive (< 250 V); require anti-static strap and protective ESD conductive caps. Deliver within 35 s.); Serialized Braided Copper-Beryllium Static Grounding Lanyard with Quick-Disconnect Clamp (P/N BND-LNYD-08, S/N 112) -> Mechanical Integration Technician at Engine Gimbal Pad Interface (Target ID: TM-GMB-GND) (Priority 3. Avoid kinking and shield clamp teeth from grit/oil to ensure < 2.5 mΩ bonding. Deliver within 45 s before airlock seals.)",
+      "evidence": []
+    },
+    {
+      "task_id": "deliver-arming-pins",
+      "step": 26,
+      "thought": "Caveats: All safety arming and calibration hardware must be transported and secured across the transit corridor within a strict 45-second deadline before pad clearance lockouts seal the area and arm deluge/purge interlocks. Never force or hammer a stuck S&A lockout pin; if insertion force exceeds 22 N (5 lbf), check the optical indicator to confirm the hard-mechanical SAFE position (90° out-of-line) and use a cleanroom micro-alignment tool. Range safety regulations strictly prohibit straightening bent connector pins on safety-critical instrumentation connectors; bent pins must be tagged out and replaced. Differential pressure across the cleanroom airlock must not exceed 50 Pa (0.20 in. H2O); verify the green differential pressure indicator LED before entering to avoid seal interlock lockouts. Problems: Pin detent jamming stopping 10 mm short of full insertion caused by thermal expansion mismatch, rotor misalignment, or galling/corrosion of internal spring detent balls. Bonding resistance exceeding 2.5 mΩ threshold due to anodized coatings, primer overspray, oxidation, or dirty clamp teeth. Transducer calibration signal baseline offset fluctuations (> 0.05 mV/V) caused by bent pins or gold-plating wear from misaligned connector mating. Courier trapped at integration airlock doors when differential pressure exceeds 50 Pa, requiring manual bypass dump valve operation.",
+      "evidence": [
+        "https://static.e-publishing.af.mil/production/1/ssc/publication/sscman91-710v7/sscman91-710v7.pdf",
+        "https://www.scribd.com/document/692593723/AFSPCMAN91-710V7",
+        "https://www.psirep.com/system/files/structural_health_monitoring_with_vti_instruments_and_virginia_tech_-_ex1403a-datasheet.pdf",
+        "https://standards.nasa.gov/sites/default/files/standards/A/0/nasa-std-871912a.pdf",
+        "https://static.e-publishing.af.mil/production/1/ssc/publication/sscman91-710v6/sscman91-710v6.pdf",
+        "https://nmsu.contentdm.oclc.org/digital/api/collection/NMSGCBOK/id/929/download",
+        "https://16streets.com/39-B/HTML%20Pages/shuttle/technology/sts-newsref/srb.html",
+        "https://everyspec.com/USAF/USAF-AFSC/download.php?spec=AFSPCMAN91-710V6.002723.pdf"
+      ]
+    },
+    {
+      "task_id": null,
+      "step": 27,
+      "thought": "Thinking (choosing tasks): **My Rocket Scientist Life-Sim Game: \"ReplaceMe\" Design** Okay, so I'm envisioning a cozy life-sim game, \"ReplaceMe,\" and I need to break down the \"rocket scientist\" job into playable levels. As an expert in the field, I need these levels to be engaging, grounded in reality, and use mechanics that resonate with the actual work. Here's the plan, keeping in mind the need for real-world fidelity and measurable quantities: 1. **Propellant Mixing (Mechanic: Mix)**: The worker's task is the precise mixing of rocket propellants. This is central because the O/F ratio and composition are *everything* for performance. This uses the *mix* mechanic perfectly. Think of the real-world setup: a cleanroom or integration facility. There's a control console, mixing tanks, and quality control equipment. The key quantities are: * **Liquid Rocket Engines (e.g., LOX/RP-1):** The Oxidizer-to-Fuel ratio (O/F) is critical. Optimal Isp is documented to be around 2.27 to 2.56, but there are tradeoffs with engine design and chamber pressure. (e.g. For a Merlin engine this is around 2.2-2.7, where chamber pressure can be e.g. 70 to 100 bar or higher) [Source: Sutton, G. P., & Biblarz, O. (2016). *Rocket Propulsion Elements* (9th ed.). Wiley.]. The player needs to mix the LOX and RP-1 to achieve a specific O/F ratio within a narrow tolerance. * **Solid Rocket Propellant (e.g., APCP):** This also involves mixing, but in this case, it's specific percentages of oxidizer (Ammoniu...",
+      "evidence": [
+        "search: \"ignition sequence\" \"chilldown\" liquid rocket engine test stand timing seconds",
+        "search: \"liquid rocket engine\" \"oxidizer to fuel ratio\" \"chamber pressure\" NASA SP-125 OR \"Sutton\"",
+        "search: \"NASA-STD-8729\" OR \"MIL-STD-882\" failure severity sort categories",
+        "search: \"launch readiness review\" \"go for launch\" flight director poll console positions"
+      ]
+    },
+    {
+      "task_id": null,
+      "step": 28,
+      "thought": "Thinking (choosing tasks): **Rocket Scientist's Task Breakdown** Okay, let's break this down from a rocket scientist's perspective. I'm taking on the role, so here’s how I would approach the 5 core tasks in order of priority, focusing on real-world engineering challenges, and linking them to standard practices and references. **Task 1: Propellant Combustion Mixing & Injector Flow Configuration (Mix Mechanic)** This is the very first thing I'd tackle. I'm setting the stage for a successful hot fire test, so the *mix* is crucial. I'm dealing with a liquid oxygen (LOX) / RP-1 kerosene engine because it's a standard and well-understood bipropellant combination (Huzel & Huang, *Design of Liquid Propellant Rocket Engines*). My focus here will be on achieving the best specific impulse ($I_{sp}$) while managing the combustion chamber's safety. * **Oxidizer-to-Fuel (O/F) Ratio:** I'd aim for an O/F ratio of 2.40 (with a range of 2.35 - 2.55) for optimal performance without overheating the injector face. While stoichiometric LOX/RP-1 is around 3.4, peak $I_{sp}$ is found in fuel-rich conditions (Sutton & Biblarz, *Rocket Propulsion Elements*, 9th Ed., Chapter 5). * **Combustion Chamber Pressure ($P_c$):** The target would be 70.0 bar (nominal 68 - 72 bar, though 40-100 bar is acceptable), typical of a high-performance first-stage engine. This will be the main driving force (and primary \"result\") for most of the subsequent test phases. * **Injector Pressure Drop ($\\Delta P_{inj}$):**...",
+      "evidence": []
+    },
+    {
+      "task_id": null,
+      "step": 29,
+      "thought": "Sources considered for choosing tasks: ulalaunch.com; capcomespace.net; dlr.de; weebau.com; spaceflightnow.com; funkystuff.org; americaspace.com; archive.org; nasa.gov; idu.ac.id; quora.com; system-safety.org; sid.ir; ua.edu; mdpi.com; eucass.eu; fmv.se; govinfo.gov",
+      "evidence": [
+        "https://www.ulalaunch.com/missions/archived-launched/delta-ii-icesat-2",
+        "http://www.capcomespace.net/dossiers/sea_launch/sl_users_guide_rev_c.pdf",
+        "https://elib.dlr.de/219040/1/DLR-FB-2025-16.pdf",
+        "http://weebau.com/lvpics2/13016.htm",
+        "http://spaceflightnow.com/ariane/va214/va214status.html",
+        "https://www.funkystuff.org/spacex-starship-iii-sequence-of-events-ift-3/",
+        "https://www.americaspace.com/2015/04/27/record-setting-spacex-roars-to-geostationary-orbit-with-spectacular-falcon-9-launch/",
+        "https://archive.org/stream/GPOCRPT99hrpt1016/GPO-CRPT-99hrpt1016_djvu.txt"
+      ]
+    },
+    {
+      "task_id": "calibrate-combustor",
+      "step": 30,
+      "thought": "Thinking: **My Approach to Calibrating Engine Fluid Ratios** Okay, so I need to put together a practitioner's report for calibrating engine fluid ratios, specifically for a \"rocket scientist\" role, and the task at hand is engine fluid calibration before a hot-fire test at the Fluid & Calibration Bench. No problem. My focus has to be on these key parameters: the oxidizer-to-fuel ratio (targeting 2.40, with a range of 2.30 to 2.50), chamber pressure (ideally 70.0 bar, acceptable between 68.0 and 72.0 bar), injector pressure drop ratio (looking for 18.0%, but acceptable within 15.0% to 20.0%), and barrier film cooling flow (a target of 4.0%, allowing between 3.5% and 5.0%). Now, the game mechanic provided is a \"mix\" function - I need to set the amounts using a station ID and a list of variables with their IDs, labels, units, min/max values, step sizes, and defaults. There's also an optional list of ingredients, a submit label, and a scoring system. I see this as a structured way to guide the calibration process. My first thought is to ground this in some practical knowledge, so I need to start with some research to back up my assumptions. I'll search on liquid propellant rocket engine calibration and hot-fire setup. I need to focus on typical LOX/RP-1 or LOX/Methane engines, since the target ratio of 2.4 points towards that. I already know that LOX/RP-1 typically has a mixture ratio around 2.2-2.6. LOX/Kerosene typically around 2.3 - 2.8, and LOX/CH4 around 2.5 - 3.5. A mixtu...",
+      "evidence": [
+        "search: \"injector pressure drop\" \"chamber pressure\" 15% 20% chugging instability Sutton",
+        "search: \"Huzel and Huang\" \"injector pressure drop\" \"film cooling\" mixture ratio",
+        "search: rocket engine \"barrier film cooling\" percentage of fuel flow \"chamber pressure\" 70 bar",
+        "search: \"oxidizer to fuel\" 2.4 \"chamber pressure\" 70 bar LOX RP-1"
+      ]
+    },
+    {
+      "task_id": "calibrate-combustor",
+      "step": 31,
+      "thought": "Thinking: Okay, here's my interpretation of those thoughts, crafted for an expert audience, presented in the first person: **Navigating the Complexities of SP-125 Barrier Film Cooling** Right, let's dive into this. I need to refresh my memory, or perhaps, solidify some empirical understandings, regarding Huzel and Huang's recommendations, specifically concerning the SP-125 configuration. I'm focusing on barrier film cooling. I know, instinctively, the key parameters I need to consider for any serious analysis. First, I have to find details about the flow percentage - understanding what they propose as optimal for the cooling flow. Secondly, injector pressure drop ratio is absolutely crucial; it dictates the effectiveness of the injection and impacts film formation dynamics. Third, chamber pressure itself is a fundamental driver; it’s intrinsically linked to heat transfer and boundary layer behavior. Finally, the oxidizer-to-fuel ratio obviously comes into play, as it’s critical for combustion characteristics and thermal loading. Those are the cornerstones. Time to get the data and contextualize it!",
+      "evidence": [
+        "search: \"Huzel and Huang\" \"Design of Liquid Propellant Rocket Engines\" \"film cooling\" percentage",
+        "search: \"film cooling\" \"percent\" \"Huzel and Huang\" \"NASA SP-125\"",
+        "search: \"barrier film cooling\" percentage rocket engine \"fuel\"",
+        "search: \"pressure drop ratio\" injector \"chamber pressure\" Huzel Huang"
+      ]
+    },
+    {
+      "task_id": "calibrate-combustor",
+      "step": 32,
+      "thought": "Thinking: **Engine Calibration Parameter Review** Alright, let's get down to brass tacks. My task is to configure the engine controller's primary hydraulic variables on the Fluid & Calibration Bench before the hot-fire test. The prompt has specified four critical parameters: Oxidizer-to-Fuel Ratio ($O/F$), Chamber Pressure ($P_c$), Injector Pressure Drop Ratio ($\\Delta P_{inj} / P_c$), and Barrier Film Cooling Bypass Flow ($\\dot{m}_{bfc} / \\dot{m}_{fuel}$). I need to define the settings, ranges, and potential failure modes. Here's the breakdown, based on my understanding of rocket engine design principles and the prompt's focus: 1. **Oxidizer-to-Fuel Mixture Ratio ($O/F$ or $r$):** * **Unit:** Dimensionless (ratio) * **Min..Max:** 2.10 to 2.70 (with a tighter operating window in the prompt's focus: 2.30 to 2.50) * **Step:** 0.01 * **Default:** 2.20 * **Optimal:** 2.40 (per the focus specified in the prompt) * *Too Low:* Sooting and coking are the main problems, leading to a drop in characteristic exhaust velocity ($C^*$) and specific impulse ($I_{sp}$). We'll see a yellow/orange, smoky plume, and unburned hydrocarbons depositing on the nozzle walls. * *Too High:* Combustion temperatures rise dangerously towards stoichiometric conditions, causing excessive chamber wall heat flux and potentially exceeding cooling channel burnout limits. This means throat oxidation and erosion are major concerns, along with the risk of copper channel blanching. 2. **Combustion Chamber Pressur...",
+      "evidence": []
+    },
+    {
+      "task_id": "calibrate-combustor",
+      "step": 33,
+      "thought": "Sources considered: studylib.net; researchgate.net; nasa.gov; wikipedia.org; everydayastronaut.com; cerfacs.fr; tudelft.nl; scribd.com; alvarovillalba.com; science.gov; vdoc.pub; github.io; aiaa.org; dlr.de",
+      "evidence": [
+        "https://studylib.net/doc/27863364/rocket-propulsion-elements",
+        "https://www.researchgate.net/publication/415233366_RocketAgent_A_Long-Horizon_Engineering_Agent_for_Multidisciplinary_Design_of_Liquid-Rocket_Thrust_Chambers",
+        "https://ntrs.nasa.gov/api/citations/19990049416/downloads/19990049416.pdf",
+        "https://en.wikipedia.org/wiki/Rocketdyne_F-1",
+        "https://everydayastronaut.com/raptor-engine/",
+        "https://cerfacs.fr/wp-content/uploads/2023/10/Phd_Mouze-Mornettas_TH_CFD_23_141.pdf",
+        "https://www.researchgate.net/publication/265927928_A_Model_for_Design_and_Analysis_of_Regeneratively_Cooled_Rocket_Engines",
+        "https://ntrs.nasa.gov/api/citations/20100033271/downloads/20100033271.pdf"
+      ]
+    },
+    {
+      "task_id": "time-chilldown-ignition",
+      "step": 34,
+      "thought": "Thinking: **My Approach to Crafting a Propulsion Test Engineer Practitioner's Report** Okay, so I've got the task: \"Time chilldown and ignition\" – specifically, executing the automated terminal countdown sequence at the Firing Console. This is bread and butter for any propulsion engineer, especially in the launch operations sphere. The core of this operation, from my perspective, revolves around precisely timing three critical phases: the LOX line pre-chill hold, the pyrophoric igniter injection stop lead, and the ramp-to-mainstage hold. It's all about nailing those timing windows. I need to create a practitioner's report, and the game mechanics are all about precision timing – stopping a moving meter or holding and releasing within specified tolerances. We're talking about station identification, and then those three phases, each with clear identifiers, labels, units, minimums, maximums, and importantly, either a \"stop\" or \"hold\" mode. The game parameters specify each phase's hold time or stop trigger; that's the core of the problem. Before I even think about the specifics, I have to ensure complete safety compliance. No way I'm going anywhere near anything that remotely touches on nuclear weapons or fissile materials. This is purely about liquid rocket engine operations – the cryogenic chilldown bleed, the TEA-TEB igniter, and the throttle ramp – it's all textbook aerospace stuff. Think Merlin 1D or F-1 engines; completely standard and safe procedures. We're well clear o...",
+      "evidence": [
+        "search: \"pyrophoric\" \"TEA-TEB\" ignition lead time ms rocket engine",
+        "search: \"chilldown\" \"TEA-TEB\" ignition sequence rocket engine timing milliseconds",
+        "search: liquid rocket engine \"chilldown bleed\" \"mainstage\" timing sequence",
+        "search: NASA SP-8089 liquid rocket engine start transient chilldown"
+      ]
+    },
+    {
+      "task_id": "time-chilldown-ignition",
+      "step": 35,
+      "thought": "Thinking: **My Practitioner's Report: Rocket Scientist - Time Chilldown and Ignition** Okay, so I need to craft a practitioner's report, focusing on the \"Time Chilldown and Ignition\" task for a rocket scientist, specifically for the automated terminal countdown sequence at the Firing Console. I need to make this clear and concise, as the stakeholders understand the field, so there's no need for excessive hand-holding. This is about execution, not theory. My immediate thought is to structure the report around those three critical phases I need to nail: * **Phase 1:** That LOX line pre-chill hold time—4.0 seconds, with a narrow tolerance of 3.5 to 4.5 seconds. Precision is paramount here. * **Phase 2:** The Pyrophoric igniter injection stop lead. I need to nail this at 150 milliseconds, with a tolerance band of 120 to 180 ms. This sets up the critical ignition. * **Phase 3:** The Ramp-to-mainstage hold time, which is two seconds (1.8 to 2.2 s). This is the controlled burn and ignition of the rocket. My mental model is that I'm manipulating a set of hold and release parameters in a timing-based game mechanic. I can use station IDs, phases, min and max values, and the `stop` or `hold` parameters. To get the necessary technical detail, my immediate thought is to revisit some classics. I'll need to go back and cross-reference some texts: * Huzel & Huang's *Modern Engineering for Design of Liquid-Propellant Rocket Engines* is the place to start for overall sequence and valve oper...",
+      "evidence": [
+        "search: \"Huzel\" \"Huang\" \"start sequence\" \"chilldown\"",
+        "search: \"Modern Engineering for Design of Liquid-Propellant Rocket Engines\" \"chilldown\" \"ignition\"",
+        "search: \"TEA-TEB\" \"ignition lead\" \"chamber pressure\" \"mainstage\" \"ms\"",
+        "search: \"hard start\" \"ignition delay\" \"pyrophoric\" \"liquid oxygen\""
+      ]
+    },
+    {
+      "task_id": "time-chilldown-ignition",
+      "step": 36,
+      "thought": "Thinking: **My Deep Dive into Critical Rocket Engine Timing** Okay, so I need to really nail down the specifics of some crucial timing elements in this project. My focus needs to be laser-sharp. I'm thinking in terms of three key phases, each with precise stop/release points. Let me break them down and detail what I'm looking for: * **Phase 1: LOX Line Pre-Chill Hold Time.** This is about that critical hold during the pre-chill bleed. I need the exact engineering details here - eliminating any chance of vapor lock, geysering, or cavitation in the liquid oxygen feed line. Specifically, I'm looking for: * The optimal pre-chill hold time (I'm thinking around 4.0 seconds, but I need to confirm the *exact* tolerance range, ideally something like 3.5 to 4.5 seconds). I need to understand what constitutes an acceptable deviation, how that impacts performance, and what the operator would visually observe if they stopped the bleed too early or too late. The measurement needs to be in a standard unit of time, obviously. I also need to search for the engineering specs for this particular phase in the literature. * **Phase 2: Pyrophoric Igniter Injection Stop Lead.** This one is about the timing of the pyrophoric igniter (most likely TEA-TEB) injection relative to the main fuel valve opening. I need to understand how to prevent those hard starts and flameouts. Specifically: * I'm looking for the *exact* injection stop lead time prior to main fuel valve open or injector contact (I'm th...",
+      "evidence": [
+        "search: \"TEA-TEB\" \"lead\" \"igniter\" liquid oxygen kerosene engine start transient",
+        "search: \"chilldown\" \"bleed\" \"hard start\" \"water hammer\" liquid rocket engine",
+        "search: \"mainstage\" \"hold\" \"ramp\" \"chamber pressure\" liquid rocket engine startup transient",
+        "search: \"start transient\" \"chilldown\" \"intermediate\" thrust chamber Huzel Huang"
+      ]
+    },
+    {
+      "task_id": "time-chilldown-ignition",
+      "step": 37,
+      "thought": "Thinking: **Firing Console Countdown Sequencing: A Deep Dive** Okay, so I need to nail this rocket engine ignition sequence. Let's break down the prompt and make sure I'm hitting every point. First, I'm a \"rocket scientist,\" the task is \"Time chilldown and ignition,\" and I need to execute this automated sequence at the Firing Console. Specifically, I'm focusing on three critical phases: pre-chill of the LOX line, stopping the pyrophoric igniter injection, and holding the chamber throttle ramp before mainstage. Here's the plan: I'll treat this as a phased operation with *precise* timing. The mechanic here is \"timing,\" and I'm dealing with parameters defined with their own timing constraints. I'm going to structure my analysis in a way that provides a robust engineering understanding for whoever is reading this. **Executive Overview:** This terminal countdown sequence is for a cryogenic bipropellant rocket engine using LOX (liquid oxygen) and RP-1 (rocket propellant 1), and ignited with TEA-TEB (Triethylaluminum - Triethylborane). I need to highlight the engineering rationale behind these transient sequences – it's all about how these transient phases work, as discussed in Huzel & Huang, Sutton & Biblarz, and NASA publications. I will cite these and others. **Phase-by-Phase Breakdown:** * **Phase 1: LOX Line Pre-Chill Hold Time.** It's all about that bleed valve! I need to hold it open for the right duration to chill that LOX line before isolating it, and verify that the chi...",
+      "evidence": []
+    },
+    {
+      "task_id": "time-chilldown-ignition",
+      "step": 38,
+      "thought": "Sources considered: nasa.gov; astronomicalreturns.com; iist.ac.in; quora.com; ecosimpro.com; reddit.com; dlr.de; eucass.eu; researchgate.net; vdoc.pub; aiaa.org; mdpi.com; facebook.com; spacecentre.nz; spacex.com; ibb.ch",
+      "evidence": [
+        "https://ntrs.nasa.gov/api/citations/19900000819/downloads/19900000819.pdf?attachment=true",
+        "https://www.astronomicalreturns.com/2020/06/get-tea-teb-kerosene-wont-light.html",
+        "https://stageweb.iist.ac.in/sites/default/files/2025-08/2024%20Curriculum%20-AE-IIST%20FULL%20SEM.pdf",
+        "https://ntrs.nasa.gov/api/citations/19760023196/downloads/19760023196.pdf",
+        "https://ntrs.nasa.gov/api/citations/19750012398/downloads/19750012398.pdf",
+        "https://www.quora.com/Why-is-there-a-countdown-during-a-missile-rocket-launch",
+        "https://ecosimpro.com/wp-content/uploads/2026/09/SP2026_630_paper.pdf",
+        "https://www.quora.com/What-are-the-drawbacks-of-using-pressure-fed-rocket-engines-in-space-applications"
+      ]
+    },
+    {
+      "task_id": "triage-telemetry",
+      "step": 39,
+      "thought": "Thinking: **Triage of Telemetry Hazard Warnings: My Mental Checklist** Alright, let's break this down. As a propulsion/test/systems safety engineer, my mind immediately goes into triage mode. I'm at the Firing Console, and this task is crucial during hot-fire processing: I need to quickly classify telemetry anomalies and redline exceedances into the right hazard categories. This requires a sharp focus on real-time decision-making, as misclassifying can have severe consequences. First, I analyze the core mechanics. I'm basically sorting items – live sensor data, anomaly reports, fault logs – based on their potential for hazard. I have four established bins: Category I (Catastrophic), Category II (Critical), Category III (Marginal), and Category IV (Negligible). My job is to route these incoming items to the correct bin, justifying my decision and understanding what happens if I mis-classify something. This entire process is about achieving a practitioner's report, and so, the data must be clearly and correctly classified. Second, I need to know the standards and the specifics of the data. I'm thinking *MIL-STD-882E* and *NASA-STD-8729.1A*, *NASA-STD-8719.13*, and *NASA-STD-8719.24*. These are my rulebooks. I'm referencing the severity definitions: Category I is death, facility loss, or irreversible environmental damage; Category II is permanent partial disability, significant injury, major system damage; Category III is minor injury or system degradation; and Category IV is...",
+      "evidence": [
+        "search: \"MIL-STD-882E\" \"Severity Categories\" \"Catastrophic\" \"Critical\" \"Marginal\" \"Negligible\"",
+        "search: \"NASA-STD-8729.1\" severity categories hazard"
+      ]
+    },
+    {
+      "task_id": "triage-telemetry",
+      "step": 40,
+      "thought": "Thinking: **Alright, let's break this down. My objective is to classify these telemetry readings into safety hazard categories during a hot-fire test. It's all about risk assessment based on established standards.** First, I need to get crystal clear on the categories themselves: Catastrophic (I), Critical (II), Marginal (III), and Negligible (IV). MIL-STD-882E provides the severity definitions, which are my bedrock. Loss of life? Catastrophic. Potential for hospitalization and significant system damage? Critical. Minor injuries and minor degradation? Marginal. Something that barely registers? Negligible. And NASA's definitions are similar, loss of life, flight vehicle, facility would be catastrophic, loss of primary mission would be critical, degradation of mission would be marginal, and negligible would be first-aid injury. I need to keep those definitions firmly in mind. Now, for each telemetry item, the primary job is to establish its potential consequences. I'm focusing on six specific examples. I'm imagining myself in the firing console, seeing these readings flash: 1. **HPOTP Shaft Vibration Redline Exceedance:** This one is a big red flag. Exceeding 18.0g RMS (or 28 g pk-pk) vibration is a classic sign of imminent turbopump bearing failure, potentially leading to a catastrophic fire and uncontained disintegration. That's *Category I: Catastrophic*, no question. (MIL-STD-882E Table I: Catastrophic – loss exceeding $10M, potential loss of life.) 2. **MCC Coolant Jack...",
+      "evidence": [
+        "search: \"redline\" \"hot fire\" \"test stand\" \"MIL-STD-882\" OR \"NASA-STD-8729\"",
+        "search: \"redline limits\" \"turbopump\" \"vibration\" \"chamber pressure\" hot-fire"
+      ]
+    },
+    {
+      "task_id": "triage-telemetry",
+      "step": 41,
+      "thought": "Thinking: **Telemetry Triage Report for Firing Console: A Practitioner's Perspective** Okay, this is excellent information. I need to synthesize this for my role as the \"rocket scientist\" performing telemetry triage at the Firing Console. The goal is a rigorous practitioner's report. Here’s how I’m thinking to structure this for a hot-fire processing scenario, specifically considering the Firing Console, the Propulsion Test Conductor (PTC), and the Systems Safety Console. I need to be explicit about the context of MIL-STD-882E Table I (Severity Categories) and the relevant NASA standards (NASA-STD-8729.1A, NASA-STD-8719.13, and NASA-STD-8719.24). The report will organize around four hazard severity categories: * **Category I: Catastrophic** - These are the big ones: death, facility loss, or monetary damage exceeding $10 million (as per MIL-STD-882E). * **Category II: Critical** - Think severe injury, major system damage, costing between $1 million and $10 million. * **Category III: Marginal** - Minor injury, mission degradation, with damage from $100,000 to $1 million. * **Category IV: Negligible** - Negligible damage, minor first aid, with costs under $100,000. I'll be very specific about the criteria and make sure all of this is clearly defined with citations: MIL-STD-882E [1.1.2, 1.1.9], and NASA standards. Then, I'll map out six realistic telemetry routing items, presenting each with a complete technical specification: telemetry channel ID, parameter name, engineering...",
+      "evidence": []
+    },
+    {
+      "task_id": "triage-telemetry",
+      "step": 42,
+      "thought": "Sources considered: dtic.mil; mdpi.com; nasa.gov; nde-ed.org",
+      "evidence": [
+        "https://ndia.dtic.mil/wp-content/uploads/2012/system/track914790.pdf",
+        "https://www.mdpi.com/1660-4601/21/12/1649",
+        "https://s3vi.ndc.nasa.gov/ssri-kb/static/resources/nasa-std-8729.1a.pdf",
+        "https://explorers.larc.nasa.gov/2021APMIDEX/pdf_files/NPR_8705_4A.pdf",
+        "https://www.nde-ed.org/NDEEngineering/SafeDesign/MIL-STD-882E.pdf"
+      ]
+    },
+    {
+      "task_id": "poll-terminal-readiness",
+      "step": 43,
+      "thought": "Thinking: **Practitioner's Report: Simulating Launch Readiness Poll Responses** Okay, so I need to craft a practitioner's report simulating a readiness poll for a launch, specifically focusing on my role as the Propulsion Lead. The user wants me to roleplay as though I were answering the Launch Director during the terminal countdown – those crucial minutes before liftoff. The goal is to provide realistic dialogue options, scoring them for accuracy, and highlighting potential pitfalls. The user wants to see a simulation of a Launch Systems / Propulsion / Booster Systems Engineer or Propulsion Lead on the Launch Director's countdown voice loop. First, I need to frame the \"game\" mechanics. It needs to include a few turns of dialogue, with the Launch Director initiating the poll and me, the Propulsion Lead, responding. Each turn will have a few options to choose from, each scored and justified. I’ll make sure to cover three key protocol checks: 1. **Propellant Subcooling**: This is critical, specifically LOX/RP-1 or LOX/LH2 conditioning. I have to demonstrate understanding of temperature limits, like the LOX boiling point around -183 °C and the subcooled limit of -207 °C (for Falcon 9). I will check NASA and FAA documentation to make sure I am providing the most accurate information. 2. **Launch Weather Constraints**: The Launch Commit Criteria. This is where the user expects me to be able to address cumulus cloud rules (e.g., distance from the flight path), and surface wind c...",
+      "evidence": [
+        "search: \"LOX chilldown\" OR \"subcooling\" launch commit criteria temperature",
+        "search: \"cumulus cloud\" \"launch commit criteria\" 14 CFR 417 Appendix G",
+        "search: \"14 CFR Appendix G to Part 417\" cumulus clouds",
+        "search: NASA launch countdown voice protocol \"Go/No-Go\" poll rules"
+      ]
+    },
+    {
+      "task_id": "poll-terminal-readiness",
+      "step": 44,
+      "thought": "Thinking: **Propulsion Lead Readiness Poll: A Practitioner's Perspective** Okay, here's the rundown. As the Propulsion Lead at the Launch Director Podium, my role in the T-9 minute readiness poll is critical. I'm responsible for assessing propulsion system readiness, and that means verifying that everything is where it needs to be – cryogenically, meteorologically, and procedurally. I need to be *clear*, *concise*, and *correct* in my communications. Let's break down how this works in a simulated 4-turn sequence. **Turn 1: Cryogenic Thermal Conditioning / Subcooling Limit Check** * **NPC (Launch Director):** \"PROP, this is LD on Countdown Net 1. Verify stage-one LOX engine chilldown and subcooling purge status at the T-9 minute hold.\" * **Option A (Optimal, 1.0):** \"LD, PROP. LOX pump bleeds verified at -184.2 °C, within the subcooling threshold below -183 °C. GHe purge hold sequence complete, manifolds conditioned.\" *Rationale:* Provides precise temperature confirmation and system status. Meets the requirement of subcooling below -183 °C. * **Option B (Suboptimal, 0.4):** \"LD, PROP. Chilldown is progressing nicely, bleeds are roughly around -180 °C, which is close enough to liquid temperature, purge is running.\" *Rationale:* Lacks precision and certainty. This could be interpreted as \"close enough\" is inherently a problem with cryogenics. * **Option C (Critical Error, 0.0):** \"LD, PROP. We have a purge line spike at -174 °C, but once the turbopumps spin up the flow will c...",
+      "evidence": []
+    },
+    {
+      "task_id": "poll-terminal-readiness",
+      "step": 45,
+      "thought": "Sources considered: wikipedia.org; space.com; regulations.gov; linde-gas.com; faa.gov; cornell.edu; nasa.gov",
+      "evidence": [
+        "https://en.wikipedia.org/wiki/Launch_status_check",
+        "https://www.space.com/12190-space-shuttle-launch-countdown-minutes-liftoff.html",
+        "https://www.regulations.gov/document/FAA-2019-0229-0001",
+        "https://www.linde-gas.com/products-and-services/gases/liquefied-gases-subcooling-for-space",
+        "https://www.linde-gas.com/industries/space/engine-testing-and-launch",
+        "https://www.faa.gov/about/office_org/headquarters_offices/ast/regulations/media/Launch_Site_Safety_re-Assessment_Matrix_Pkg.pdf",
+        "https://www.law.cornell.edu/cfr/text/14/appendix-G_to_part_417",
+        "https://standards.nasa.gov/system/files/tmp/NASA_STD_4010B%20%20Final%2008-27-2026_1.pdf"
+      ]
+    },
+    {
+      "task_id": "deliver-arming-pins",
+      "step": 46,
+      "thought": "Thinking: **My Practitioner's Report: Delivering Safety Arming Hardware** Okay, so I need to create a practitioner's report, specifically targeting the \"rocket scientist\" role, focusing on the \"Deliver safety arming hardware\" task. The context is time-critical: I'm talking about getting serialized mechanical safe-and-arm lockout pins, transducer cal-plugs, and ground lanyards from the High-Bay Integration Staging Bay to the test stand and pad interface *before* the pre-pad clearance lockouts kick in. The core mechanic is a `deliver` task: carrying items across a map, following specific orders, dealing with capacity constraints and a tight 45-second deadline before the automated pre-purge lockout begins. My report needs to cover two key areas. First, I need to craft 2-4 realistic orders for this task. I need to clearly define *what* is being carried, *who* or *where* it's going, and the inherent constraints – priority, handling requirements, and most importantly, timing. I’ll need to make sure I cover the consequences of a wrong or late delivery – this is safety-critical hardware, after all. Secondly, I need to cover the practical *caveats* – what a practitioner absolutely *must* know – and highlight common problems that arise during this process. I'll need to explain *how* these problems manifest, and most importantly, *how* to troubleshoot and fix them, providing supporting data with units, and backing it all up with authoritative sources and standards. I'm thinking I'll...",
+      "evidence": [
+        "search: AFSPCMAN 91-710 safe and arm pin lanyard ground",
+        "search: \"NASA-STD-8719.12\" \"pin\" OR \"lockout\" OR \"safe and arm\"",
+        "search: pyrotechnic safe and arm device \"lock pin\" \"lanyard\" test stand launch pad",
+        "search: \"AFSPCMAN 91-710\" \"safe and arm\" \"pin\" or \"plugs\""
+      ]
+    },
+    {
+      "task_id": "deliver-arming-pins",
+      "step": 47,
+      "thought": "Thinking: **Focusing on Rocket Propulsion Test Stand Safety** Okay, so I need to refine my search. We're talking rocket propulsion test stands and pad operations, and I need to hone in on some specific safety-critical hardware and procedures. Let's get down to brass tacks: I need to focus on the static ground lanyards, transducer calibration shunts (cal-plugs), and the mechanical safe-and-arm lockout pins. Let's break it down by location and procedure. We're dealing with the cleanroom staging and high bay areas. That includes the safe and arm mechanical lock pin, usually a \"Remove Before Flight\" type, with a detent or ball-lock mechanism. Then there are the transducer calibration plugs or shunt calibration plugs – the cal-plugs used for pressure and thrust load cell instrumentation, obviously. I also need to make sure the grounding lanyards or static bonding straps meet all the necessary specifications – we're talking bonding resistance less than 1 ohm, or ideally less than 2.5 milliohms, in line with MIL-B-5087B, NASA-STD-8719.12, and AFSPCMAN 91-710. Finally, let's not forget the pre-purge lockout, the critical pre-fire phase. This means inert gas pre-purge with gaseous nitrogen (GN2) or helium, typically, *before* cold flow or hot fire operations. This also triggers the pad clearance warning - the klaxon or any other method, and the pad clearance lockouts, usually giving that standard 30-45 second warning before any valve actuation or hazardous atmosphere envelope is in...",
+      "evidence": [
+        "search: \"shunt cal\" plug pressure transducer rocket test stand",
+        "search: \"bonding resistance\" \"2.5 milliohms\" \"NASA-STD-8719.12\" OR \"AFSPCMAN 91-710\"",
+        "search: \"cal-plug\" OR \"calibration plug\" transducer rocket test stand",
+        "search: \"safe-and-arm\" \"lockout pin\" OR \"safing pin\" \"test stand\""
+      ]
+    },
+    {
+      "task_id": "deliver-arming-pins",
+      "step": 48,
+      "thought": "Thinking: **Ordnance and Safety Protocol Review for Critical Hardware Staging** Okay, let's get this organized. My focus is on the crucial safety aspects of this upcoming test, specifically the staging of critical hardware before the test stand pre-purge. I need to deliver a rock-solid report, and the existing sources, like the Space Systems Command Manual 91-710 Vol 3 and Vol 6, NASA-STD-8719.12, NASA-STD-4003, MIL-B-5087B, and RCC 319, lay out the clear standards I need to adhere to. My job, as a Rocket Scientist / Test Conductor / Ordnance Officer, requires a meticulous plan. First, I'll provide an executive overview, setting the context: critical safety arming hardware is being staged prior to the test stand pre-purge. Then, the core of the report will be structured around three specific orders, representing the *deliver* action for various items. The orders will follow the flow from: Cleanroom Safe -> Integration Airlock -> Test Stand Thrust Mount. Here's how I envision them: * **Order 1:** A Serialized Mechanical Safe-and-Arm (S&A) Lockout Pin (e.g., P/N SA-PIN-04A, S/N 018). I’ll detail who is responsible for carrying it, the origin (Cleanroom Safe), the destination (Range Safety Officer at S&A Bracket), associated priority and constraints (handling, ESD, mechanical detent protection, serial number custody transfer logs), delivery timing (within the 45-second pre-purge window), and the consequences of failure (a pin mismatch could cause a launch abort). * **Order 2:...",
+      "evidence": []
+    },
+    {
+      "task_id": "deliver-arming-pins",
+      "step": 49,
+      "thought": "Sources considered: af.mil; scribd.com; psirep.com; nasa.gov; oclc.org; 16streets.com; everyspec.com; ulalaunch.com; ni.com; mananenterprise.com; navytribe.com; dewesoft.com",
+      "evidence": [
+        "https://static.e-publishing.af.mil/production/1/ssc/publication/sscman91-710v7/sscman91-710v7.pdf",
+        "https://www.scribd.com/document/692593723/AFSPCMAN91-710V7",
+        "https://www.psirep.com/system/files/structural_health_monitoring_with_vti_instruments_and_virginia_tech_-_ex1403a-datasheet.pdf",
+        "https://standards.nasa.gov/sites/default/files/standards/A/0/nasa-std-871912a.pdf",
+        "https://static.e-publishing.af.mil/production/1/ssc/publication/sscman91-710v6/sscman91-710v6.pdf",
+        "https://nmsu.contentdm.oclc.org/digital/api/collection/NMSGCBOK/id/929/download",
+        "https://16streets.com/39-B/HTML%20Pages/shuttle/technology/sts-newsref/srb.html",
+        "https://everyspec.com/USAF/USAF-AFSC/download.php?spec=AFSPCMAN91-710V6.002723.pdf"
       ]
     }
-  ]
+  ],
+  "brain": {
+    "stored": true,
+    "ids": [
+      "fact:9577919e4e6e57716b8fdfce",
+      "fact:78ff8b9938cf064089d85eb3",
+      "fact:eae3bacc853e7233fdc00d77",
+      "fact:ecf5d2a03df172d92b45ca71",
+      "fact:d6be02d42e06407d10fd38d4",
+      "fact:f500e2006dbd5c79de247e3e",
+      "fact:93b0567fb1aa632aac9c1362",
+      "fact:9dce0aaa938cbd2153cc57bc",
+      "fact:efbaed32bc7bcc839d36c667",
+      "fact:733f8b01805eb4e74c4c5195",
+      "fact:205a56224a47f2d633aad538",
+      "fact:b210476740d4412730f5210a",
+      "fact:c15d7969a8c46708bc08d340",
+      "fact:23bd62468fa7fee3e2b9b3ac",
+      "fact:759232e0fd88a62eef7d8432",
+      "fact:c42bbd6ea393b56011ef1e7b",
+      "fact:2117cb71008afd3f17df1eb7",
+      "fact:3be99759fafbe06d59cc9e71",
+      "fact:4762850acb2b625a5197fef6",
+      "fact:1c1f12f3c1eaf9bb1bd78c03",
+      "fact:f114959ad1a8ece9170241f6",
+      "fact:05962d3993c3425cb99c4d35",
+      "fact:4cb63f3088030d6852a5cee7",
+      "fact:a80587cfa8605eee041611c0",
+      "fact:96d02c310cd2a122ff3e0d4f",
+      "fact:206aaa37f36474447547f2b3",
+      "fact:65ccf20f6ebde7c8e2619963",
+      "fact:3505e20d564bba61687de1f4",
+      "fact:d8eec729a0837e2f1988f539",
+      "fact:c3cd24dabaa8594a9af3d8ad",
+      "fact:86718d9eafd5c2aa94215760",
+      "fact:640dee2ab2d9a5d8d7d103e5",
+      "fact:5e85ffa200335fc6a3637957",
+      "fact:bf3d8980f77c6a146967b4dc",
+      "fact:8ed15225e8c918733796788d",
+      "fact:9073937b9538a8d04d34b07a",
+      "fact:f1db28078957965e1e40e028",
+      "fact:3b73be9881d4f63fd9baf6e7",
+      "fact:001e6b8d96151c2416c1ce8f",
+      "fact:2620572c01fe64103903ca8e",
+      "fact:0c08812216ad5c82544de928",
+      "fact:adbe2def15046ee7512dad9d",
+      "fact:015b42fb5bf658977cc441dc",
+      "fact:b37bc1ee1bb1a3a34907a3cc",
+      "fact:6eb59fbabd1325d7bf9cd3b1",
+      "fact:a6fd50e6dd42d208b187ba39",
+      "fact:049d7d1da6df864591c18a4f",
+      "fact:1cfe3152adceb70d9db0d711",
+      "fact:a23f17e11c9a42b3e72dbfb4"
+    ],
+    "query": "[replaceme research trace] run=rocket-scientist-1791654403140"
+  }
 }

@@ -20,7 +20,7 @@ import { routes as worldRoutes, slugify } from './world.ts'
 //   training/skills/<level_id>/            skill.json and SKILL.md (contract e)
 //
 //   POST /api/research {prompt}: slugify(prompt), or an alias, names a prebuilt game -> after PREBUILT_DELAY_MS
-//     (default 2500, so the loading screen still shows briefly) answer {brief, world, slug, branch, graph, prebuilt: true}
+//     (default 25000, so the loading screen walks through every step) answer {brief, world, slug, branch, graph, prebuilt: true}
 //     without running the researcher and builder.
 //   POST /api/train {slug, fresh?}: the prebuilt game has a cached training -> copy it into runs/<new training id>/ and
 //     skills/ (the cached training id is rewritten to a fresh <slug>-<unix_ms>), reveal the recorded attempts round by
@@ -52,7 +52,7 @@ function readJsonFile(file: string): Record<string, unknown> | null {
 const gamesDir = (repoRoot: string) => path.join(repoRoot, 'games')
 
 /** The games/<dir> whose prebuilt.json marker claims this slug: its own folder first, then any alias. */
-function markedDir(repoRoot: string, slug: string): string | null {
+export function markedDir(repoRoot: string, slug: string): string | null {
   if (fs.existsSync(path.join(gamesDir(repoRoot), slug, MARKER))) return slug
   let dirs: fs.Dirent[] = []
   try {
@@ -278,7 +278,7 @@ export const routes: Route[] = [
       if (!game) return fallthrough(worldRoutes, 'POST', '/api/research')(replayRequest(req, body), res, ctx, params)
       // Walk the loading screen through every step (progress.ts reads artifact mtimes):
       // research found -> world built -> rules checked -> saved, over PREBUILT_DELAY_MS.
-      const total = delayMs(ctx, 'PREBUILT_DELAY_MS', 9000)
+      const total = delayMs(ctx, 'PREBUILT_DELAY_MS', 25000)
       const dir = path.join(gamesDir(ctx.repoRoot), game.slug)
       const stages: [string, number][] = [['research.json', 0.3], ['world.json', 0.6], ['graph_report.json', 0.8]]
       let at = 0

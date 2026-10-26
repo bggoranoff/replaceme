@@ -17,6 +17,7 @@ The **Actor Agent** learns each level by doing, like a human trainee, and export
   - Run events are streamed to `/api/runs/:id/events`.
   - Status goes to `runs/<training_id>/status.json` and the learning record to `runs/<training_id>/learning/<level_id>.json`.
   - Skills go to `skills/<level_id>/skill.json` (`LearnedSkill`) and `skills/<level_id>/SKILL.md`.
+  - What it learned (skill, lessons, short attempt summaries) is stored in Entire Brain on branch `game/<slug>` under `project.actor.*` (`shared/brain.py`).
 
 ## Modules
 

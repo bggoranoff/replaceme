@@ -392,8 +392,8 @@ def render_skill_md(s: Dict[str, Any]) -> str:
     for key in ("name", "description", "status", "level_id", "mechanic", "trained_attempts", "best_score", "updated_at"):
         lines.append(f"{key}: {_yaml(s[key])}")
     lines += ["---", "", f"# {s['name']}", "", s["description"], "",
-              f"Job: {s['job']} · Level {s['level_index']} ({s['mechanic']}) · {s['trained_attempts']} attempts · "
-              f"best {s['best_score']} · final {s['final_score']} · pass at {s['pass_threshold']} · "
+              f"Job: {s['job']}, level {s['level_index']} ({s['mechanic']}), {s['trained_attempts']} attempts, "
+              f"best {s['best_score']}, final {s['final_score']}, pass at {s['pass_threshold']}, "
               f"{'passed' if s['passed'] else 'not passed'}", "", "## Learned parameters", ""]
     for p in s["learned_parameters"]:
         ev = ", ".join(f"#{e['attempt']}: {fmt(e['value'], p['unit']) if not isinstance(e['value'], (list, dict)) else e['value']} -> {e['score']}"

@@ -1,5 +1,5 @@
 import type { SkillChatRequest, SkillChatResponse } from '../../src/contract.ts'
-import { DEFAULT_MODEL, fallbackChat, geminiChat, type ChatResult } from '../skills/chat.ts'
+import { chatProvider, fallbackChat, modelChat, type ChatResult } from '../skills/chat.ts'
 import { latestSkills, mergeSkillUpdate, readSkill, withSkillLock, writeSkill } from '../skills/store.ts'
 import { HttpError, readJson, sendJson, type Route } from './http.ts'
 
@@ -45,15 +45,13 @@ export const routes: Route[] = [
       const { message, history } = parseChat(await readJson(req))
       const current = readSkill(ctx.repoRoot, params.id)
       if (!current) throw new HttpError(404, `Skill not found: ${params.id}`)
-      const apiKey = ctx.env.GEMINI_API_KEY || ctx.env.GOOGLE_API_KEY
+      const cfg = chatProvider(ctx.env)
 
       let result: ChatResult
       try {
-        result = apiKey
-          ? await geminiChat(apiKey, ctx.env.GEMINI_MODEL || DEFAULT_MODEL, current, message, history)
-          : fallbackChat(current, message)
+        result = cfg ? await modelChat(ctx.env, cfg, current, message, history) : fallbackChat(current, message)
       } catch (err) {
-        console.warn('[skills] Gemini chat failed, answering from the skill alone:', (err as Error).message)
+        console.warn(`[skills] ${cfg?.provider} chat failed, answering from the skill alone:`, (err as Error).message)
         result = fallbackChat(current, message)
       }
 

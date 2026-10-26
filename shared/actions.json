@@ -51,8 +51,8 @@
     "mix": {
       "title": "Mix / set amounts",
       "description": "Set the amount or setting of each ingredient or process variable, then brew/stir/submit. Covers cooking, potion making, brewing, dosing, configuring.",
-      "controls": ["key_up", "key_down", "key_left", "key_right", "mouse_click", "mouse_drag", "interact"],
-      "input_mapping": "key_up/key_down select variable; key_left/key_right change selected value by -/+ step per press step; mouse_drag slider:<var_id> handle or mouse_click on slider:<var_id> track sets value at that position (snapped to step); mouse_click ingredient:<id> appends to add order (only if params.ingredients); interact or mouse_click submit scores",
+      "controls": ["key_up", "key_down", "key_left", "key_right", "mouse_click", "interact"],
+      "input_mapping": "key_up/key_down select variable; key_left/key_right change selected value by -/+ step per press step; mouse_click item:<var_id> selects it; mouse_click tool:<var_id> / back:<var_id> changes the selected value by +/- one step (a person can also hold the mouse on them: one step per 100 ms); mouse_click ingredient:<id> appends to add order (only if params.ingredients); interact or mouse_click submit scores",
       "params": {
         "station_id": "string, map location the level opens at",
         "variables": "[{ id, label, unit, min, max, step, default }] (1-6)",
@@ -63,7 +63,7 @@
       "aim": "Produce the best result by choosing the right values.",
       "scoring": "numeric spec: scoring.variables + scoring.derived (+ optional scoring.order)",
       "fail_conditions": ["score < pass_threshold", "time_limit_ms elapsed before submit (score computed on current values)"],
-      "target_prefixes": ["slider:<var_id>", "ingredient:<id>", "submit"]
+      "target_prefixes": ["item:<var_id>", "tool:<var_id>", "back:<var_id>", "ingredient:<id>", "submit"]
     },
     "timing": {
       "title": "Timing / hold and release",

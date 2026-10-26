@@ -79,9 +79,11 @@ export const routes: Route[] = [
       writeStatus(ctx.repoRoot, status)
       fs.writeFileSync(path.join(ctx.repoRoot, 'runs', 'latest.json'), JSON.stringify({ training_id: trainingId, slug }))
 
-      // This server's own address (Vite may listen on ::1 only, so 127.0.0.1 is not always reachable).
+      // This server over loopback, in the family the request came in on (Vite may listen on ::1 only, so
+      // 127.0.0.1 is not always reachable). Not localAddress itself: on Cloud Run that is a link-local
+      // interface address (169.254.x.x) that refuses connections from inside the container.
       const addr = req.socket.localAddress ?? '127.0.0.1'
-      const host = addr.startsWith('::ffff:') ? addr.slice(7) : addr.includes(':') ? `[${addr}]` : addr
+      const host = addr.includes(':') && !addr.startsWith('::ffff:') ? '[::1]' : '127.0.0.1'
       const args = ['-m', 'actor.agent', '--slug', slug, '--training-id', trainingId,
         '--base-url', `http://${host}:${req.socket.localPort}`, '--attempts', String(attempts)]
       const gameUrl = ctx.env.ACTOR_GAME_URL || process.env.ACTOR_GAME_URL
